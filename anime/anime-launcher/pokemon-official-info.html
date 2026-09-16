@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--
+  [編集者向けメモ] このページはポケットモンスター（テレビアニメ・新シリーズ2023〜）専用特設ページ
+  の「公式情報まとめ」です。各話早見表（pokemon-detail.html）・年代記（pokemon-chronicle.html）が
+  「何が起きたか」の記録なのに対し、このページは「なぜそうなっているか」という制作背景（公式発表・
+  インタビュー・スタッフコメント、および調査に基づく考察）を集約する保管庫です。
+  データの共有元は shared/pokemon-anime-data.js の window.POKEMON_ANIME_DATA（OP_TIMELINE/ED_TIMELINE/
+  EPISODES）ですが、本ページの本文（考察・出典）は原則このファイルに直書きします（他ページのような
+  全話ループ描画ではなく、個別に調査・追記していく記事形式のため）。
+  新しい話数の追加・情報更新の具体的な手順は anime-launcher/pokemon-maintenance.md を参照してください。
+  （このコメントはページの表示上には出力されず、ブラウザの「ページのソースを表示」や
+  開発者ツールのElementsパネルからのみ確認できます。）
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公式情報まとめ | ポケットモンスター</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #eaf5fd; color: #1a2a3a; min-height: 100vh; padding: 0 0 60px; }
+  .content { max-width: min(900px, 96vw); margin: 0 auto; padding: 0 16px; }
+
+  .back-link { display: inline-block; margin: 14px 0 4px; font-size: 0.8rem; color: #3f7fb8; text-decoration: none; }
+  .back-link:hover { color: #1f6fae; text-decoration: underline; }
+
+  /* ── ヒーロー（他ページと共通の見た目） ── */
+  .hero { padding: 22px 26px; border-radius: 14px; margin-top: 6px;
+           background: linear-gradient(135deg, #1e8fe0, #57c2f0); color: #fff;
+           box-shadow: 0 6px 20px rgba(30,120,190,0.28); }
+  .hero .status-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; color: #14456f;
+                          background: #fff; border-radius: 999px; padding: 3px 12px; }
+  .hero h1 { font-size: 1.3rem; font-weight: 700; margin-top: 8px; text-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  .hero .ep-sub { font-size: 0.82rem; margin-top: 6px; opacity: 0.95; }
+
+  section.block { margin-top: 26px; }
+  section.block h2 { font-size: 1rem; color: #14456f; font-weight: 700; margin-bottom: 10px;
+                       padding-bottom: 7px; border-bottom: 2px solid #cbe6fa; }
+  section.block h3 { font-size: 0.9rem; color: #1f6fae; font-weight: 700; margin: 18px 0 8px; }
+
+  .prose { font-size: 0.87rem; line-height: 1.85; color: #38495a; }
+  .prose + .prose { margin-top: 10px; }
+  .source-note { font-size: 0.72rem; color: #7f93b3; margin-top: 8px; line-height: 1.7; }
+  .source-note a { color: #3f7fb8; }
+  .source-note a:hover { color: #1f6fae; }
+
+  /* ── 「調査に基づく考察」であることを明示するアラート帯（pokemon-detail.htmlのinfo-alertと同系統） ── */
+  .note-alert { margin: 14px 0; padding: 12px 16px; border-radius: 8px; font-size: 0.78rem;
+                 line-height: 1.9; background: #fff8e6; border: 1px solid #f0d78c; color: #6b5416; }
+  .note-alert .alert-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; color: #8a6a00;
+                               background: #ffe9a8; border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; }
+
+  /* ── 個別事例カード ── */
+  .case-card { background: #fff; border: 1px solid #cbe6fa; border-radius: 10px; padding: 14px 18px; margin-top: 14px; }
+  .case-card .case-title { font-size: 0.86rem; font-weight: 700; color: #14456f; margin-bottom: 6px; }
+  .case-card .case-body { font-size: 0.82rem; line-height: 1.8; color: #38495a; }
+  .case-card .case-tag { display: inline-block; font-size: 0.66rem; font-weight: 700; color: #14456f;
+                            background: #eaf5fd; border: 1px solid #cbe6fa; border-radius: 999px;
+                            padding: 2px 10px; margin-bottom: 8px; margin-right: 6px; }
+
+  /* ── 出典一覧テーブル（season-legendと同系統の見た目） ── */
+  table.source-table { width: 100%; border-collapse: collapse; font-size: 0.78rem;
+                         background: #fff; border-radius: 8px; overflow: hidden;
+                         box-shadow: 0 1px 4px rgba(30,110,180,0.08); margin-top: 8px; }
+  table.source-table th, table.source-table td { padding: 8px 10px; border-bottom: 1px solid #e4f0fa; text-align: left; vertical-align: top; }
+  table.source-table th { background: #f3faff; color: #3f7fb8; font-weight: 700; font-size: 0.7rem; white-space: nowrap; }
+  table.source-table a { color: #3f7fb8; }
+  table.source-table a:hover { color: #1f6fae; }
+
+  .empty-note { margin: 40px auto; text-align: center; color: #5b7085; font-size: 0.88rem; line-height: 2; }
+</style>
+</head>
+<body>
+
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+</div>
+
+<div class="content">
+  <a class="back-link" href="pokemon-detail.html">← ポケットモンスター 作品詳細へ戻る</a>
+
+  <div class="hero">
+    <span class="status-badge">随時更新</span>
+    <h1>📚 公式情報まとめ</h1>
+    <div class="ep-sub">各話早見表・年代記だけでは伝わらない「なぜそうなっているか」を、製作者インタビューや公式発表、それらに基づく考察でまとめる保管庫です。</div>
+  </div>
+
+  <section class="block">
+    <h2>このページについて</h2>
+    <div class="prose">各話早見表（pokemon-detail.html）のinfoボタンでは「シーズンの区切りとOP/EDの切り替わりが一致しない箇所」を事実として記録していますが、それが<b>なぜ</b>起きているのかという制作背景の考察は、情報がまとまり次第このページに追記していきます。今後、他の話題（キャラクターデザインの変更経緯、シナリオ上の裏設定、スタッフインタビュー等）が見つかった場合もここに追記する想定です。</div>
+    <div class="prose">断定できる公式発表・一次情報と、状況証拠からの推測は明確に分けて記載します（推測部分は🔍の注記帯で区別）。</div>
+  </section>
+
+  <section class="block">
+    <h2>OP/EDの切り替わりが一致しない箇所について</h2>
+
+    <h3>一般的な演出技法として：「特殊OP・特殊ED」</h3>
+    <div class="prose">物語の重要な節目やクライマックス回で、通常の主題歌（歌入りOP/ED）を流さず、BGMのみ・静止画・本編の続きといった簡易的な演出に差し替える手法は、アニポケに限らず他のアニメ作品でも広く見られる構造です。ファンの間では「特殊OP」「特殊ED」と呼ばれ、物語の緊迫感や余韻を壊さないための演出、あるいは限られた尺（放送時間）を本編内容に多く割り当てるための編成上の工夫として使われます。</div>
+    <div class="prose">特に有名な例が『Re:ゼロから始める異世界生活』第15話「狂気の外側」です。魔女教による惨劇とスバルの死を描く回で、通常のED曲を流さずBGMとクレジットのみの「特殊ED」となり、その絶望感が大きな話題を呼びました（ニコニコ大百科に専用の用語記事が作られるほど）。このように、OP/EDの通常演出をあえて崩すこと自体が、視聴者に「今回は特別な回である」と伝えるサインとして機能する例は珍しくありません。</div>
+    <div class="source-note">出典:
+      <a href="https://dic.pixiv.net/a/%E7%89%B9%E6%AE%8AED" target="_blank" rel="noopener noreferrer">ピクシブ百科事典「特殊ED」</a> ／
+      <a href="https://dic.nicovideo.jp/a/%E3%83%AA%E3%82%BC%E3%83%AD15%E8%A9%B1%E3%81%AEed" target="_blank" rel="noopener noreferrer">ニコニコ大百科「リゼロ15話のED」</a>
+    </div>
+
+    <h3>アニポケでの3つの事例と共通パターン</h3>
+    <div class="prose">各話早見表で確認済みの3事例を、放送形式の観点から突き合わせたところ、いずれも「通常の毎週30分放送とは異なる特別な尺の回」であるという共通点が見つかりました。</div>
+
+    <div class="case-card">
+      <span class="case-tag">前後編・1時間スペシャル</span>
+      <div class="case-title">第1話・第2話「はじまりのペンダント」前編・後編</div>
+      <div class="case-body">2023年4月14日、初回1時間スペシャルとして前後編が同日に放送されました。通常フォーマットのOPは存在せず、正式なOP「ドキメキダイアリー」は第3話から。第2話ではこのOP曲をEDとして先行使用しています。前後編がそのまま1本の物語として連続しているため、話の合間に本来入るはずのOP/ED挿入位置が、通常回とは異なる扱いになったと考えられます。</div>
+      <div class="source-note">出典: <a href="https://www.famitsu.com/news/202303/03294868.html" target="_blank" rel="noopener noreferrer">ファミ通.com「新シリーズ『ポケットモンスター』初回1時間スペシャルが4月14日に放送」</a></div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-tag">前後編・1時間スペシャル</span>
+      <div class="case-title">第89話〜第91話（第4章→第5章の境界）</div>
+      <div class="case-body">第90話・第91話「大空へ向かって、再び」前編・後編は、2025年4月11日に第1・2話と同じ形式の1時間スペシャルとして同日放送されました（第89話はその3週間前・2025年3月21日に単独放送）。EDテーマ「ピッカーン！」は第88話で終了し、OPテーマ「Only One Story」は第89話まで使用と、切り替わりが1話分ズレています。新OP「GET BACK」は第92話からで、第91話はこの曲をEDとして先行使用。第90話・第91話はOP/ED双方が空欄という、第1・2話と同じ構造です。</div>
+      <div class="source-note">出典: <a href="https://wiki.pokemonwiki.com/wiki/2023%E5%B9%B4%E7%89%88%E7%AC%AC90%E8%A9%B1" target="_blank" rel="noopener noreferrer">ポケモンWiki「2023年版第90話」</a>（「テレビ東京系列では第91話と2本立てで1時間スペシャルとして放送」と明記）</div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-tag">3話構成の短期集中特別編</span>
+      <div class="case-title">特別編「エピソード：メガシンカ」（第112〜114話）</div>
+      <div class="case-body">レックウザライジング編とメガボルテージ編の間の1年間、ロイとウルトがメガシンカを習得するまでを描く3話完結の特別編（2025年10月10日・17日・24日の毎週金曜3週連続放送）。専用のEDテーマ「尤（ゆう）」（ゆず。メガボルテージ編OP「GET BACK」と同じアーティスト）は確認できましたが、専用のOPは確認できませんでした。</div>
+      <div class="source-note">出典:
+        <a href="https://www.pokemon.co.jp/info/2025/08/250829_a01.html" target="_blank" rel="noopener noreferrer">ポケットモンスターオフィシャルサイト「エピソード：メガシンカ」情報公開</a> ／
+        <a href="https://www.pashplus.jp/anime/429869/" target="_blank" rel="noopener noreferrer">PASH! PLUS</a>
+      </div>
+    </div>
+
+    <div class="note-alert">
+      <div class="alert-badge">🔍 考察（推測であり断定ではありません）</div>
+      3事例に共通するのは、<b>通常回をまたぐ前後編、または短期集中の特別編という「規格外の尺」の回である</b>という点です。前後編構成の第1・2話・第90・91話では、2話分をまたいで挿入されるはずのOP/EDの片方（またはED先行使用のような変則運用）を省略・共有することで、本来なら合計2回分入るはずのOP/ED尺を圧縮し、一気に見せたい物語の内容に多く時間を割いていると考えられます。特別編「エピソード：メガシンカ」も、3話という短期集中の企画で専用EDのみに絞っている点で、同じ「尺の効率化」の発想に近い可能性があります。<br><br>
+      ただし、この判断（テンポ重視か制作コストか、あるいはその両方か）を明言した製作者インタビューや公式コメントは、2026年9月時点の調査では見つかっていません。上記はあくまで放送形式・OP/EDタイムラインの突き合わせから導いた状況証拠に基づく推測であり、新しい一次情報が見つかり次第この節を更新します。
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>今後追記する話題（見つかり次第）</h2>
+    <div class="empty-note">現時点では上記のOP/ED考察のみです。製作者インタビュー・公式コメント・その他の制作裏話が見つかり次第、ここに事例を追加していきます。</div>
+  </section>
+
+  <section class="block">
+    <h2>出典一覧</h2>
+    <table class="source-table">
+      <tr><th>内容</th><th>出典</th></tr>
+      <tr><td>特殊ED（一般的な用語の解説）</td><td><a href="https://dic.pixiv.net/a/%E7%89%B9%E6%AE%8AED" target="_blank" rel="noopener noreferrer">ピクシブ百科事典「特殊ED」</a></td></tr>
+      <tr><td>Re:ゼロ 第15話の特殊ED（他アニメの実例）</td><td><a href="https://dic.nicovideo.jp/a/%E3%83%AA%E3%82%BC%E3%83%AD15%E8%A9%B1%E3%81%AEed" target="_blank" rel="noopener noreferrer">ニコニコ大百科「リゼロ15話のED」</a></td></tr>
+      <tr><td>第1話「初回1時間スペシャル」</td><td><a href="https://www.famitsu.com/news/202303/03294868.html" target="_blank" rel="noopener noreferrer">ファミ通.com</a></td></tr>
+      <tr><td>第90・91話「1時間スペシャル・2本立て」</td><td><a href="https://wiki.pokemonwiki.com/wiki/2023%E5%B9%B4%E7%89%88%E7%AC%AC90%E8%A9%B1" target="_blank" rel="noopener noreferrer">ポケモンWiki「2023年版第90話」</a></td></tr>
+      <tr><td>特別編「エピソード：メガシンカ」放送情報・主題歌</td><td><a href="https://www.pokemon.co.jp/info/2025/08/250829_a01.html" target="_blank" rel="noopener noreferrer">ポケットモンスターオフィシャルサイト</a> ／ <a href="https://www.pashplus.jp/anime/429869/" target="_blank" rel="noopener noreferrer">PASH! PLUS</a></td></tr>
+      <tr><td>OP/ED曲名・アーティスト（既存データの裏取り元）</td><td><a href="https://ja.wikipedia.org/wiki/%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC_(2023%E5%B9%B4%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%A1)" target="_blank" rel="noopener noreferrer">日本語Wikipedia「ポケットモンスター (2023年のアニメ)」</a></td></tr>
+    </table>
+    <div class="source-note">最終調査日: 2026-09-16</div>
+  </section>
+</div>
+
+</body>
+</html>

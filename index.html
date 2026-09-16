@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mobile-hub</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0;
+    padding: 24px 16px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f4f4f6;
+    color: #222;
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin: 0 0 4px;
+  }
+  .sub {
+    color: #777;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+  .grid {
+    display: grid;
+    gap: 14px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .card {
+    display: block;
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid #e5e5ea;
+  }
+  .card.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.5;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: #eee;
+    color: #888;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #16161a; color: #eee; }
+    .card { background: #1f1f24; border-color: #2b2b31; }
+    .card-desc { color: #aaa; }
+    .sub { color: #999; }
+    .badge { background: #2b2b31; color: #999; }
+  }
+</style>
+</head>
+<body>
+  <h1>mobile-hub</h1>
+  <div class="sub">個人運用サイト群のモバイル閲覧ポータル</div>
+  <div class="grid">
+    <a class="card" href="anime/anime-launcher/anime-launcher.html">
+      <div class="card-title">アニメ</div>
+      <div class="card-desc">視聴サイトランチャー・お気に入り・アニメガイド・サイト状況</div>
+    </a>
+    <a class="card" href="pokemon/index.html">
+      <div class="card-title">ポケモン</div>
+      <div class="card-desc">ポータル・まとめページ（POKÉTOON / OP・ED・映画曲・ゲーム曲 / 世界観）</div>
+    </a>
+    <a class="card" href="https://ishi-private.github.io/planner/">
+      <div class="card-title">Planner</div>
+      <div class="card-desc">タスク・知見管理（閲覧専用・別リポジトリで公開中）</div>
+    </a>
+    <div class="card disabled">
+      <div class="card-title">Arknights<span class="badge">準備中</span></div>
+      <div class="card-desc">静的化対応予定</div>
+    </div>
+  </div>
+</body>
+</html>

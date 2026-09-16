@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サイト状況</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #0f0f13; color: #e2e2e2; min-height: 100vh; padding: 0 0 32px; }
+  /* ページタイトルバナー廃止に伴い、site-header-sticky直後に単独で残した#subtitle
+     （生成日時・総作品数のメタ情報、JSで内容を設定）の見た目。旧デザインの.subtitleと
+     同じサイズ・色を踏襲している。 */
+  #subtitle { max-width: var(--page-max-width); margin: 0 auto 12px; padding: 0 16px;
+               font-size: 0.75rem; color: #444; }
+
+  /* ── 網羅率セクション ── */
+  .summary { max-width: var(--page-max-width); margin: 0 auto 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .stat-card { flex: 1; min-width: 140px; background: #1c1c24; border: 1px solid #2a2a35;
+                border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .stat-num { font-size: 1.5rem; font-weight: 700; color: #ccc; }
+  .stat-label { font-size: 0.7rem; color: #666; margin-top: 4px; }
+
+  section { max-width: var(--page-max-width); margin: 0 auto 28px; }
+  h2 { font-size: 0.95rem; color: #999; font-weight: 500; margin-bottom: 10px;
+        padding-bottom: 6px; border-bottom: 1px solid #222; }
+
+  table { width: 100%; border-collapse: collapse; background: #1c1c24; border-radius: 8px;
+           overflow: hidden; font-size: 0.85rem; }
+  thead th { text-align: left; padding: 10px 12px; background: #191922; color: #778;
+              font-weight: 600; font-size: 0.75rem; }
+  tbody td { padding: 10px 12px; border-top: 1px solid #24242e; }
+  tbody tr:hover { background: #20202a; }
+  .site-name { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .bar-wrap { width: 100px; height: 6px; background: #26262f; border-radius: 3px; overflow: hidden; }
+  .bar { height: 100%; border-radius: 3px; }
+  .rate-cell { display: flex; align-items: center; gap: 8px; }
+  .num { color: #999; font-variant-numeric: tabular-nums; }
+
+  .excluded-table td { color: #888; }
+  .excluded-table .site-name { font-weight: 600; color: #a66; }
+  .reason { font-size: 0.78rem; color: #666; }
+
+  .section-footnote { font-size: 0.7rem; color: #444; margin-top: 8px; }
+
+  /* ── ヘルスチェックセクション ── */
+  #hc-search-wrap { max-width: var(--page-max-width); margin: 0 auto 12px; position: relative; }
+  #hc-search { width: 100%; padding: 10px 14px 10px 36px; font-size: 0.9rem;
+             background: #1c1c24; border: 1px solid #333; border-radius: 8px;
+             color: #e2e2e2; outline: none; }
+  #hc-search:focus { border-color: #555; }
+  #hc-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+                  color: #666; font-size: 0.9rem; pointer-events: none; }
+
+  #hc-filter-wrap { max-width: var(--page-max-width); margin: 0 auto 14px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn { padding: 5px 14px; border: 1px solid #333; border-radius: 20px;
+                 font-size: 0.75rem; cursor: pointer; background: #1c1c24; color: #888;
+                 transition: all 0.15s; }
+  .filter-btn:hover { border-color: #555; color: #ccc; }
+  .filter-btn.active { background: #2a2a40; border-color: #6060a0; color: #ccd; }
+
+  #hc-count { max-width: var(--page-max-width); margin: 0 auto 10px; font-size: 0.8rem; color: #555; }
+
+  .hc-legend { max-width: var(--page-max-width); margin: 0 auto 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: #888; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .legend-sub { color: #555; font-size: 0.68rem; }
+
+  #hc-list { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+
+  .cat-group { background: #13131e; border: 1px solid #28283a; border-radius: 10px; overflow: hidden; }
+  .cat-summary { display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+                  cursor: pointer; list-style: none; user-select: none; }
+  .cat-summary::-webkit-details-marker { display: none; }
+  .cat-summary::marker { display: none; }
+  .cat-summary:hover { background: #191928; }
+  .cat-icon { font-size: 0.65rem; color: #556; transition: transform 0.2s; flex-shrink: 0; display: inline-block; }
+  details[open] > .cat-summary .cat-icon { transform: rotate(90deg); }
+  .cat-name { flex: 1; font-size: 0.97rem; color: #b8b8d4; font-weight: 500; }
+  .cat-badge { font-size: 0.72rem; background: #22223a; color: #778; padding: 2px 8px; border-radius: 10px; flex-shrink: 0; }
+  .cat-body { padding: 0 8px 8px; display: flex; flex-direction: column; gap: 6px; }
+  .cat-body .card { border-radius: 6px; }
+
+  .card { background: #1c1c24; border: 1px solid #2a2a35; border-radius: 8px;
+           padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;
+           transition: border-color 0.15s; position: relative; overflow: hidden; }
+  .card:hover { border-color: #444; }
+  .card-left-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+
+  .card-head { display: flex; align-items: flex-start; gap: 10px; }
+  .status-badge { flex-shrink: 0; font-size: 1.1rem; line-height: 1; margin-top: 2px; }
+  .card-info { flex: 1; min-width: 0; }
+  .card-name { font-size: 0.97rem; color: #e2e2e2; font-weight: 500; }
+  .card-url { font-size: 0.73rem; color: #556; margin-top: 2px;
+               white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-url a { color: #6688aa; text-decoration: none; }
+  .card-url a:hover { color: #99bbdd; }
+  .score-area { flex-shrink: 0; text-align: right; }
+  .score-num { font-size: 1.2rem; font-weight: 700; line-height: 1; }
+  .score-bar-wrap { width: 60px; height: 4px; background: #222; border-radius: 2px; margin-top: 4px; }
+  .score-bar { height: 100%; border-radius: 2px; }
+  .score-label { font-size: 0.62rem; color: #555; margin-top: 2px; }
+
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+  .tag { font-size: 0.68rem; padding: 2px 7px; border-radius: 10px; background: #22223a;
+          color: #778; border: 1px solid #333; }
+  .tag.ok    { background: #0d2a1a; color: #4a9; border-color: #1a4a2a; }
+  .tag.warn  { background: #2a2200; color: #aa8; border-color: #443300; }
+  .tag.dead  { background: #2a1111; color: #a55; border-color: #4a1a1a; }
+  .tag.player { background: #0d1e2e; color: #46a; border-color: #1a3a5a; }
+
+  .btn-group { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+  .site-btn { padding: 5px 10px; border: none; border-radius: 5px; font-size: 0.75rem;
+               font-weight: 600; cursor: pointer; color: #fff; text-decoration: none;
+               white-space: nowrap; transition: opacity 0.15s; line-height: 1.4; }
+  .site-btn:hover { opacity: 0.82; }
+  .site-btn.mirror { background: #2a2a3a !important; color: #888; font-weight: 400; }
+
+  .card-note { font-size: 0.71rem; color: #555; line-height: 1.5; border-top: 1px solid #222; padding-top: 6px; }
+  .dead-note { color: #8a4444; }
+
+  footer { max-width: var(--page-max-width); margin: 0 auto; font-size: 0.7rem; color: #444; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+</div>
+
+<p id="subtitle"></p>
+
+<div class="page-content">
+
+<div class="summary" id="summary"></div>
+
+<section>
+  <h2>📊 網羅率（採用サイト・自動巡回で実際に使用中）</h2>
+  <table id="adopted-table">
+    <thead>
+      <tr><th>サイト</th><th>発見数</th><th>発見率</th><th>confirmed率</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>非採用サイト（調査済み・除外理由あり）</h2>
+  <table class="excluded-table" id="excluded-table">
+    <thead>
+      <tr><th>サイト</th><th>除外理由</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <p class="section-footnote">採用/非採用の判断基準は site-monitor/data/workflow_decisions.md を参照。</p>
+</section>
+
+<section>
+  <h2>🩺 ヘルスチェック（個別サイトの詳細・手動メンテナンス）</h2>
+  <div id="hc-search-wrap">
+    <span id="hc-search-icon">🔍</span>
+    <input id="hc-search" type="text" placeholder="サイト名・URLで絞り込み...">
+  </div>
+  <div id="hc-filter-wrap">
+    <button class="filter-btn active" data-cat="all">すべて</button>
+    <button class="filter-btn" data-cat="ok">✅ 推奨</button>
+    <button class="filter-btn" data-cat="warn">⚠️ 条件付き</button>
+    <button class="filter-btn" data-cat="dead">❌ 廃止・問題</button>
+  </div>
+  <div id="hc-count"></div>
+  <div class="hc-legend" id="hc-legend"></div>
+  <div id="hc-list"></div>
+</section>
+
+<footer id="footer"></footer>
+</div>
+
+<script>
+const COVERAGE = {
+  "generated_at": "2026-08-14 15:42",
+  "total_anime": 182,
+  "with_any_link": 174,
+  "zero_link": 8,
+  "adopted": [
+    {
+      "name": "AnimeHeaven",
+      "color": "#e06c3c",
+      "priority": 1,
+      "adopted": true,
+      "found_count": 143,
+      "found_rate": 78.6,
+      "confirmed_count": 143,
+      "confirmed_rate": 78.6
+    },
+    {
+      "name": "AnimeGG",
+      "color": "#c026d3",
+      "priority": 3,
+      "adopted": true,
+      "found_count": 110,
+      "found_rate": 60.4,
+      "confirmed_count": 110,
+      "confirmed_rate": 60.4
+    },
+    {
+      "name": "GogoAnime",
+      "color": "#3c8be0",
+      "priority": 2,
+      "adopted": true,
+      "found_count": 25,
+      "found_rate": 13.7,
+      "confirmed_count": 25,
+      "confirmed_rate": 13.7
+    }
+  ],
+  "excluded": [
+    {
+      "name": "9AnimeTV",
+      "reason": "前回は採用扱いだったが全ミラーが接続不可（primary: HTTP 522, www: timeout）"
+    },
+    {
+      "name": "AnimePahe",
+      "reason": "全ミラーCloudflareブロック、検索API(/api?m=search)がJSON非取得（ブラウザ必須）"
+    },
+    {
+      "name": "Miruro",
+      "reason": "到達可・実ブラウザ網羅率も良好だがReact SPAで検索結果がサーバー側HTMLに出ず、旧APIも410 Gone"
+    },
+    {
+      "name": "AnimeKAI",
+      "reason": "primary(.to)はDNS不可、mirror(.my)は到達可だがReact SPAで検索API未特定"
+    },
+    {
+      "name": "AniWave",
+      "reason": "コンテンツ実体のないパーキングページ。本家は2024年閉鎖済みでなりすまし/フィッシングリスク"
+    },
+    {
+      "name": "AniTube",
+      "reason": "primaryはCloudflareブロック、mirrorは話数リンクが死んだ外部ドメインへ転送されるリンク切れ"
+    },
+    {
+      "name": "AnimeNova",
+      "reason": "primaryがSSLエラー、mirrorは到達可だが検索API未特定"
+    },
+    {
+      "name": "B9GOOD",
+      "reason": "運営者が著作権侵害で摘発済み(2023-2024)。マルウェア/フィッシングリスク"
+    },
+    {
+      "name": "KissAnime",
+      "reason": "本家は2020年閉鎖済み。現存ミラーは全て非公式クローンでフィッシング/マルウェアリスク"
+    },
+    {
+      "name": "HiAnime",
+      "reason": "2025年サービス終了・ミラーも閉鎖済み"
+    },
+    {
+      "name": "AnimeFlv",
+      "reason": "スペイン語字幕のみ（ES）"
+    },
+    {
+      "name": "AnimateTimes",
+      "reason": "動画なし（ニュースサイト）"
+    },
+    {
+      "name": "Nyaa",
+      "reason": "トレントのみ。ランチャーから直接再生不可"
+    },
+    {
+      "name": "9Anime",
+      "reason": "乗っ取り確認済み（角度の異なるアドサイトへ転送）"
+    },
+    {
+      "name": "AniDL",
+      "reason": "download カテゴリ。全ミラー接続不可/リンク切れ"
+    }
+  ]
+};
+const HEALTH = {
+  "categories": [
+    {
+      "id": "ok",
+      "label": "✅ 推奨サイト（Chrome 実証済み）",
+      "barColor": "#1f6e4c"
+    },
+    {
+      "id": "warn",
+      "label": "⚠️ 動作確認中・条件付き",
+      "barColor": "#6e5200"
+    },
+    {
+      "id": "dead",
+      "label": "❌ 廃止・乗っ取り確認済み",
+      "barColor": "#6e1f1f"
+    }
+  ],
+  "sites": [
+    {
+      "id": "animeheaven",
+      "name": "AnimeHeaven",
+      "cat": "ok",
+      "url": "https://animeheaven.me/",
+      "score": 95,
+      "category": "streaming",
+      "lang": "英語",
+      "player": true,
+      "anime": "14/15",
+      "tags": [
+        "subbed",
+        "dubbed"
+      ],
+      "mirrors": [],
+      "note": "Spring2026全対応。Fate/Zeroのみ未確認。search.php?s={クエリ} で検索可",
+      "color": "#e06c3c"
+    },
+    {
+      "id": "gogoanime",
+      "name": "Gogoanime",
+      "cat": "ok",
+      "url": "https://gogoanime.by/",
+      "score": 38,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "15/15",
+      "tags": [
+        "subbed",
+        "dubbed"
+      ],
+      "mirrors": [
+        {
+          "label": "mirror: .cv",
+          "url": "https://gogoanimes.cv/"
+        }
+      ],
+      "note": "全15タイトル確認。旧ドメイン gogoanimes.fi は品質低下（score 33）",
+      "color": "#3c8be0"
+    },
+    {
+      "id": "miruro",
+      "name": "Miruro",
+      "cat": "ok",
+      "url": "https://www.miruro.tv/",
+      "score": 45,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "15/15",
+      "tags": [
+        "subbed",
+        "dubbed"
+      ],
+      "mirrors": [
+        {
+          "label": "mirror: .com",
+          "url": "https://www.miruro.com/"
+        },
+        {
+          "label": "mirror: .ro",
+          "url": "https://miruro.ro/"
+        },
+        {
+          "label": "mirror: .lat",
+          "url": "https://miruro.lat/"
+        }
+      ],
+      "note": "全15タイトル確認。UIが最も洗練されている。React SPAのためリンク自動収集の対象外",
+      "color": "#0891b2"
+    },
+    {
+      "id": "animepahe",
+      "name": "AnimePahe",
+      "cat": "ok",
+      "url": "https://animepahe.ch/",
+      "score": null,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "subbed",
+        "720p",
+        "1080p"
+      ],
+      "mirrors": [
+        {
+          "label": "mirror: .pw",
+          "url": "https://animepahe.pw/"
+        },
+        {
+          "label": "mirror: .org",
+          "url": "https://animepahe.org/"
+        }
+      ],
+      "note": "公式ドメイン（サイト内バナーで確認）。CF bot check あり→ブラウザ通過可。旧 .ru はパーキング化。2026-08-13再確認: 検索APIがCloudflare保護で機能せずリンク自動収集の対象外",
+      "color": "#7c3aed"
+    },
+    {
+      "id": "animatetimes",
+      "name": "AnimateTimes",
+      "cat": "ok",
+      "url": "https://www.animatetimes.com/",
+      "score": 75,
+      "category": "news",
+      "lang": "日本語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "news",
+        "jp"
+      ],
+      "mirrors": [],
+      "note": "ニュース・タグDB専用。ストリーミング機能なし",
+      "color": "#e55c2a"
+    },
+    {
+      "id": "anidl",
+      "name": "AniDL",
+      "cat": "warn",
+      "url": "https://anidl.org/",
+      "score": 5,
+      "category": "download",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "download",
+        "subbed",
+        "small-size"
+      ],
+      "mirrors": [
+        {
+          "label": "mirror: new.anidl.org",
+          "url": "https://new.anidl.org/"
+        }
+      ],
+      "note": "⚠️ 2026-06-10: anidl.org / new.anidl.org 共にCloudflare Blocked（score 5）。2026-08-13再確認: 全ミラー接続不可のため非採用",
+      "color": "#16a34a"
+    },
+    {
+      "id": "nyaa",
+      "name": "Nyaa",
+      "cat": "ok",
+      "url": "https://nyaa.si/",
+      "score": 68,
+      "category": "torrent",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "torrent",
+        "raw",
+        "subbed"
+      ],
+      "mirrors": [
+        {
+          "label": "mirror: nyaa.land",
+          "url": "https://nyaa.land/"
+        }
+      ],
+      "note": "nyaa.lol は Matrix homeserver に転用済み（Nyaaとは無関係）。トレントのみでランチャー用途に不適",
+      "color": "#1f6e4c"
+    },
+    {
+      "id": "dlzip",
+      "name": "DL-ZIP",
+      "cat": "ok",
+      "url": "https://dl-zip.com/",
+      "score": 68,
+      "category": "download",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "download",
+        "subbed"
+      ],
+      "mirrors": [],
+      "note": "",
+      "color": "#0369a1"
+    },
+    {
+      "id": "animegg",
+      "name": "AnimeGG",
+      "cat": "ok",
+      "url": "https://www.animegg.org/",
+      "score": 45,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "subbed"
+      ],
+      "mirrors": [],
+      "note": "2026-08-13: 到達可能・検索/最新話取得とも動作確認済み。mp4upload外部ホストの動画削除リスクは残るためAnimeHeaven/GogoAnimeに次ぐ3番手として採用",
+      "color": "#c026d3"
+    },
+    {
+      "id": "animeflv",
+      "name": "AnimeFlv",
+      "cat": "warn",
+      "url": "https://www4.animeflv.net/",
+      "score": 38,
+      "category": "streaming",
+      "lang": "スペイン語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "subbed-es",
+        "streaming"
+      ],
+      "mirrors": [],
+      "note": "ES字幕専門。StreamWish・Mega 使用",
+      "color": "#b84c00"
+    },
+    {
+      "id": "monoschinos",
+      "name": "MonosChinos",
+      "cat": "warn",
+      "url": "https://monoschinos.st/",
+      "score": 38,
+      "category": "streaming",
+      "lang": "スペイン語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "subbed-es",
+        "streaming"
+      ],
+      "mirrors": [],
+      "note": "ES字幕専門。filemoon・voe.sx・mp4upload 使用",
+      "color": "#a21caf"
+    },
+    {
+      "id": "9tsu",
+      "name": "9tsu",
+      "cat": "warn",
+      "url": "https://9tsu.vip/",
+      "score": 45,
+      "category": "streaming",
+      "lang": "日本語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "japanese",
+        "drama",
+        "variety"
+      ],
+      "mirrors": [
+        {
+          "label": "9tsu.tv",
+          "url": "https://9tsu.tv/"
+        },
+        {
+          "label": "9tsu.org",
+          "url": "https://9tsu.org/"
+        },
+        {
+          "label": "8tsu.net",
+          "url": "https://8tsu.net/"
+        }
+      ],
+      "note": "日本語コンテンツ特化。ドラマ・バラエティも含む",
+      "color": "#854d0e"
+    },
+    {
+      "id": "nosub",
+      "name": "Nosub (animenosub)",
+      "cat": "warn",
+      "url": "https://animenosub.to/",
+      "score": 38,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [
+        "raw",
+        "no-sub"
+      ],
+      "mirrors": [],
+      "note": "無字幕・Raw 専門",
+      "color": "#475569"
+    },
+    {
+      "id": "hianime",
+      "name": "HiAnime",
+      "cat": "dead",
+      "url": "https://hianime.to/",
+      "score": 0,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [],
+      "mirrors": [
+        {
+          "label": "hianime.nz (T/O)",
+          "url": "https://hianime.nz/"
+        }
+      ],
+      "note": "❌ 2026年3月13日 閉鎖。USTR「悪名高いサイト」リスト掲載後に運営終了。全URLタイムアウト",
+      "color": "#6e1f1f"
+    },
+    {
+      "id": "animekai",
+      "name": "AnimeKAI",
+      "cat": "dead",
+      "url": "https://animekai.to/",
+      "score": 0,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [],
+      "mirrors": [
+        {
+          "label": "animekai.my (score 38)",
+          "url": "https://animekai.my/"
+        }
+      ],
+      "note": "❌ primary(.to)はDNS不可。mirror(.my)は到達可だがReact SPAでリンク自動収集不可のため非採用",
+      "color": "#6e1f1f"
+    },
+    {
+      "id": "9anime",
+      "name": "9Anime",
+      "cat": "dead",
+      "url": "https://9anime.com/",
+      "score": 0,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [],
+      "mirrors": [],
+      "note": "❌ ドメイン乗っ取り確認。9anime.to → angeltarotreading.com へリダイレクト。9anime.com → アドサイトへ JS 転送",
+      "color": "#6e1f1f"
+    },
+    {
+      "id": "aniwatchtv",
+      "name": "AniWatch.tv",
+      "cat": "dead",
+      "url": "https://aniwatchtv.to/",
+      "score": 0,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [],
+      "mirrors": [
+        {
+          "label": "aniwatch.sbs (score 45)",
+          "url": "https://aniwatch.sbs/"
+        },
+        {
+          "label": "aniwatch.re (score 38)",
+          "url": "https://aniwatch.re/"
+        }
+      ],
+      "note": "❌ aniwatchtv.to タイムアウト。HiAnime と同系",
+      "color": "#6e1f1f"
+    },
+    {
+      "id": "9animetv",
+      "name": "9AnimeTV",
+      "cat": "dead",
+      "url": "https://9animetv.to/",
+      "score": 0,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [],
+      "mirrors": [],
+      "note": "❌ 2026-08-13再確認: 全ミラータイムアウト/522エラーで接続不可",
+      "color": "#6e1f1f"
+    },
+    {
+      "id": "aniwave",
+      "name": "AniWave",
+      "cat": "dead",
+      "url": "https://aniwave.to/",
+      "score": 0,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [],
+      "mirrors": [],
+      "note": "❌ 2026-08-13調査: HTTPは200/player=YESで一見良好だが<title>が\"aniwave.to\"のみでコンテンツ実体のないパーキングページ。本家は2024年閉鎖済みでなりすまし/フィッシングリスク",
+      "color": "#6e1f1f"
+    },
+    {
+      "id": "anitube",
+      "name": "AniTube",
+      "cat": "dead",
+      "url": "https://anitube.vip/",
+      "score": 0,
+      "category": "streaming",
+      "lang": "英語",
+      "player": false,
+      "anime": "—",
+      "tags": [],
+      "mirrors": [
+        {
+          "label": "anitube.org",
+          "url": "https://anitube.org/"
+        }
+      ],
+      "note": "❌ 2026-08-13調査: primaryはCloudflareブロック。mirrorは検索は動くが話数リンクが死んだ外部ドメイン(kickassanime.com.in)へ転送されるリンク切れ",
+      "color": "#6e1f1f"
+    }
+  ]
+};
+
+// ── 網羅率セクション ─────────────────────────────────────────────────────────
+function rateColor(pct) {
+  if (pct >= 70) return "#22c55e";
+  if (pct >= 40) return "#eab308";
+  if (pct >= 15) return "#f97316";
+  return "#555";
+}
+
+document.getElementById("subtitle").textContent =
+  `生成日時: ${COVERAGE.generated_at}　|　総作品数 ${COVERAGE.total_anime} 件`;
+
+const summary = document.getElementById("summary");
+[
+  { label: "総作品数",       num: COVERAGE.total_anime },
+  { label: "リンクあり",     num: COVERAGE.with_any_link },
+  { label: "リンクなし",     num: COVERAGE.zero_link },
+].forEach(s => {
+  const c = document.createElement("div");
+  c.className = "stat-card";
+  c.innerHTML = `<div class="stat-num">${s.num}</div><div class="stat-label">${s.label}</div>`;
+  summary.appendChild(c);
+});
+
+const covTbody = document.querySelector("#adopted-table tbody");
+COVERAGE.adopted.forEach(r => {
+  const tr = document.createElement("tr");
+  const foundCol = rateColor(r.found_rate);
+  const confCol = rateColor(r.confirmed_rate);
+  tr.innerHTML = `
+    <td><div class="site-name"><span class="dot" style="background:${r.color}"></span>${r.name}</div></td>
+    <td class="num">${r.found_count} / ${COVERAGE.total_anime}</td>
+    <td><div class="rate-cell"><div class="bar-wrap"><div class="bar" style="width:${r.found_rate}%;background:${foundCol}"></div></div><span class="num">${r.found_rate}%</span></div></td>
+    <td><div class="rate-cell"><div class="bar-wrap"><div class="bar" style="width:${r.confirmed_rate}%;background:${confCol}"></div></div><span class="num">${r.confirmed_rate}%</span></div></td>
+  `;
+  covTbody.appendChild(tr);
+});
+
+const exTbody = document.querySelector("#excluded-table tbody");
+COVERAGE.excluded.forEach(s => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td class="site-name">${s.name}</td><td class="reason">${s.reason}</td>`;
+  exTbody.appendChild(tr);
+});
+
+document.getElementById("footer").textContent =
+  "本ページは 10_generate_sites_page.py で再生成できます（網羅率セクションはwatch-config.jsonから自動集計）。";
+
+// ── ヘルスチェックセクション ─────────────────────────────────────────────────
+const STATUS_ICON = { ok: "✅", warn: "⚠️", dead: "❌" };
+
+function scoreColor(s) {
+  if (s === null || s === 0) return "#444";
+  if (s >= 80) return "#22c55e";
+  if (s >= 60) return "#84cc16";
+  if (s >= 40) return "#eab308";
+  if (s >= 20) return "#f97316";
+  return "#ef4444";
+}
+
+function makeHcCard(site) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.dataset.cat = site.cat;
+  card.dataset.name = site.name.toLowerCase();
+  card.dataset.url = site.url.toLowerCase();
+
+  const bar = document.createElement("div");
+  bar.className = "card-left-bar";
+  bar.style.background = site.color;
+  card.appendChild(bar);
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+
+  const statusBadge = document.createElement("div");
+  statusBadge.className = "status-badge";
+  statusBadge.textContent = STATUS_ICON[site.cat] || "?";
+
+  const info = document.createElement("div");
+  info.className = "card-info";
+  info.innerHTML =
+    `<div class="card-name">${site.name}</div>` +
+    `<div class="card-url"><a href="${site.url}" target="_blank" rel="noopener">${site.url}</a>` +
+    ` &nbsp;<span style="color:#444;">${site.category} · ${site.lang}</span></div>`;
+
+  const scoreArea = document.createElement("div");
+  scoreArea.className = "score-area";
+  if (site.score !== null) {
+    const sc = site.score;
+    const col = scoreColor(sc);
+    scoreArea.innerHTML =
+      `<div class="score-num" style="color:${col}">${sc}</div>` +
+      `<div class="score-bar-wrap"><div class="score-bar" style="width:${Math.min(sc,100)}%;background:${col}"></div></div>` +
+      `<div class="score-label">/ 100pt</div>`;
+  } else {
+    scoreArea.innerHTML = `<div class="score-num" style="color:#444">CF</div><div class="score-label">bot check</div>`;
+  }
+
+  head.appendChild(statusBadge);
+  head.appendChild(info);
+  head.appendChild(scoreArea);
+  card.appendChild(head);
+
+  const tagWrap = document.createElement("div");
+  tagWrap.className = "card-tags";
+  if (site.cat === "ok") tagWrap.innerHTML += `<span class="tag ok">推奨</span>`;
+  if (site.cat === "warn") tagWrap.innerHTML += `<span class="tag warn">要確認</span>`;
+  if (site.cat === "dead") tagWrap.innerHTML += `<span class="tag dead">廃止</span>`;
+  if (site.player) tagWrap.innerHTML += `<span class="tag player">player検出</span>`;
+  if (site.anime && site.anime !== "—") tagWrap.innerHTML += `<span class="tag ok">アニメ ${site.anime}</span>`;
+  site.tags.forEach(t => { tagWrap.innerHTML += `<span class="tag">${t}</span>`; });
+  card.appendChild(tagWrap);
+
+  const btnGroup = document.createElement("div");
+  btnGroup.className = "btn-group";
+  if (site.cat !== "dead") {
+    const mainBtn = document.createElement("a");
+    mainBtn.href = site.url;
+    mainBtn.target = "_blank";
+    mainBtn.rel = "noopener noreferrer";
+    mainBtn.className = "site-btn";
+    mainBtn.style.background = site.color;
+    mainBtn.textContent = "▶ 開く";
+    btnGroup.appendChild(mainBtn);
+  }
+  site.mirrors.forEach(m => {
+    const btn = document.createElement("a");
+    btn.href = m.url;
+    btn.target = "_blank";
+    btn.rel = "noopener noreferrer";
+    btn.className = "site-btn mirror";
+    btn.textContent = m.label;
+    btnGroup.appendChild(btn);
+  });
+  if (btnGroup.children.length > 0) card.appendChild(btnGroup);
+
+  if (site.note) {
+    const noteEl = document.createElement("div");
+    noteEl.className = "card-note" + (site.cat === "dead" ? " dead-note" : "");
+    noteEl.textContent = site.note;
+    card.appendChild(noteEl);
+  }
+
+  return card;
+}
+
+function makeHcCatGroup(cat, sites) {
+  const details = document.createElement("details");
+  details.className = "cat-group";
+  details.open = true;
+
+  const summaryEl = document.createElement("summary");
+  summaryEl.className = "cat-summary";
+  summaryEl.innerHTML =
+    `<span class="cat-icon">▶</span>` +
+    `<span class="cat-name">${cat.label}</span>` +
+    `<span class="cat-badge">${sites.length}</span>`;
+
+  const body = document.createElement("div");
+  body.className = "cat-body";
+  sites.forEach(s => body.appendChild(makeHcCard(s)));
+
+  details.appendChild(summaryEl);
+  details.appendChild(body);
+  return details;
+}
+
+let hcCurrentCat = "all";
+
+function renderHcList() {
+  const q = document.getElementById("hc-search").value.trim().toLowerCase();
+  const container = document.getElementById("hc-list");
+  container.innerHTML = "";
+
+  let filtered = HEALTH.sites.filter(s => {
+    if (hcCurrentCat !== "all" && s.cat !== hcCurrentCat) return false;
+    if (!q) return true;
+    return s.name.toLowerCase().includes(q) || s.url.toLowerCase().includes(q) ||
+           s.note.toLowerCase().includes(q) || s.tags.join(" ").includes(q);
+  });
+
+  document.getElementById("hc-count").textContent =
+    `${filtered.length} / ${HEALTH.sites.length} サイト`;
+
+  if (q || hcCurrentCat !== "all") {
+    filtered.forEach(s => container.appendChild(makeHcCard(s)));
+    return;
+  }
+
+  HEALTH.categories.forEach(cat => {
+    const inCat = filtered.filter(s => s.cat === cat.id);
+    if (inCat.length > 0) container.appendChild(makeHcCatGroup(cat, inCat));
+  });
+}
+
+function renderHcLegend() {
+  const el = document.getElementById("hc-legend");
+  const items = [
+    { color: "#22c55e", label: "score 80+", sub: "優良" },
+    { color: "#eab308", label: "score 40-79", sub: "普通" },
+    { color: "#ef4444", label: "score 0-39",  sub: "低品質" },
+    { color: "#444",    label: "CF / 未測定", sub: "" },
+  ];
+  items.forEach(i => {
+    const item = document.createElement("div");
+    item.className = "legend-item";
+    item.innerHTML =
+      `<div class="legend-dot" style="background:${i.color}"></div>` +
+      `<span>${i.label}</span>` +
+      (i.sub ? `<span class="legend-sub">${i.sub}</span>` : "");
+    el.appendChild(item);
+  });
+}
+
+document.getElementById("hc-search").addEventListener("input", renderHcList);
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    hcCurrentCat = btn.dataset.cat;
+    renderHcList();
+  });
+});
+
+renderHcLegend();
+renderHcList();
+</script>
+</body>
+</html>

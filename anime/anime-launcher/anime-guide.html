@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アニメガイド</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #0a0a0e; color: #e2e2e2; min-height: 100vh; }
+
+  .page-nav a { color: #556; text-decoration: none; }
+  .page-nav a:hover { color: #999; }
+  .page-nav .sep { color: #2a2a35; }
+  .page-nav .current { color: #bbb; font-weight: 600; }
+
+  /* ── スティッキーヘッダー内のコントロール行（common.css の .site-header-sticky を利用） ── */
+  .controls { max-width: var(--page-max-width); margin: 0 auto;
+                   display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+  /* 共通インプット */
+  select, input[type="text"] {
+    padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+    border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none;
+  }
+  select:focus, input:focus { border-color: #4a4a6a; }
+  #season-select { min-width: 120px; }
+  #search-wrap { flex: 1; min-width: 160px; position: relative; }
+  #search { width: 100%; padding-left: 32px; }
+  #search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+                  color: #556; font-size: 0.82rem; pointer-events: none; }
+  #sort-select { min-width: 130px; color: #778; }
+
+  /* ── シーズンナビ（←select→） ── */
+  .season-nav { display: flex; align-items: center; gap: 4px; }
+  .snav-btn { width: 26px; height: 28px; border: 1px solid #2a2a3a; border-radius: 6px;
+               background: #16161e; color: #668; font-size: 0.8rem; cursor: pointer;
+               display: flex; align-items: center; justify-content: center;
+               transition: background 0.1s; user-select: none; flex-shrink: 0; }
+  .snav-btn:hover { background: #22223a; color: #aab; }
+  .snav-btn:active { background: #2a2a44; }
+
+  /* ── ? インフォボタン ── */
+  .info-btn { position: relative; width: 26px; height: 26px; border: 1px solid #2a2a3a;
+               border-radius: 50%; background: #16161e; color: #668; font-size: 0.72rem;
+               font-weight: 700; cursor: pointer; flex-shrink: 0;
+               display: flex; align-items: center; justify-content: center;
+               transition: background 0.1s; }
+  .info-btn::before { content: "●"; position: absolute; top: -4px; right: -4px;
+                       font-size: 0.42rem; color: #5599cc; }
+  .info-btn:hover { background: #22223a; color: #aab; }
+
+  /* インフォポップアップ */
+  #info-popup { display: none; position: fixed; z-index: 200;
+                 background: #1c1c28; border: 1px solid #3a3a54; border-radius: 10px;
+                 padding: 14px 18px; min-width: 260px; max-width: 320px;
+                 box-shadow: 0 8px 32px rgba(0,0,0,0.6); font-size: 0.78rem; }
+  #info-popup.visible { display: block; }
+  #info-popup h3 { color: #aab; font-size: 0.82rem; margin-bottom: 10px;
+                    border-bottom: 1px solid #2a2a3a; padding-bottom: 6px; }
+  .shortcut-row { display: flex; align-items: center; gap: 10px; padding: 3px 0; color: #889; }
+  .shortcut-key { background: #22222e; border: 1px solid #3a3a4a; border-radius: 5px;
+                   padding: 2px 8px; font-family: monospace; color: #99bbdd;
+                   font-size: 0.78rem; min-width: 28px; text-align: center; flex-shrink: 0; }
+  #info-popup .close-btn { position: absolute; top: 8px; right: 10px; cursor: pointer;
+                            color: #556; font-size: 1rem; }
+  #info-popup .close-btn:hover { color: #99a; }
+
+  /* ── トグルスイッチ ── */
+  .toggles { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .toggle-item { display: flex; align-items: center; gap: 6px; cursor: pointer;
+                  font-size: 0.74rem; color: #667; user-select: none; white-space: nowrap; }
+  .toggle-item:hover { color: #99a; }
+  .sw { position: relative; width: 34px; height: 18px; flex-shrink: 0; }
+  .sw input { opacity: 0; width: 0; height: 0; }
+  .sw-track { position: absolute; inset: 0; background: #22222e;
+               border-radius: 9px; border: 1px solid #333; transition: background 0.2s; }
+  .sw-thumb { position: absolute; top: 2px; left: 2px; width: 12px; height: 12px;
+               background: #556; border-radius: 50%; transition: transform 0.2s, background 0.2s; }
+  .sw input:checked ~ .sw-track { background: #1e3050; border-color: #3a5a80; }
+  .sw input:checked ~ .sw-thumb { transform: translateX(16px); background: #5599cc; }
+
+  /* ── ジャンルフィルタ ── */
+  #genre-wrap { max-width: var(--page-max-width); margin: 10px auto 0;
+                 display: none; gap: 5px; flex-wrap: wrap; padding: 0 16px; }
+  .genre-btn { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px;
+                font-size: 0.69rem; cursor: pointer; background: #13131c; color: #667;
+                transition: all 0.12s; white-space: nowrap; }
+  .genre-btn:hover { border-color: #3a3a5a; color: #99a; }
+  .genre-btn.active { background: #162030; border-color: #305070; color: #6699cc; }
+
+  /* ── コンテンツ ── */
+  .content { padding: 0 16px 32px; }
+  #count { max-width: var(--page-max-width); margin: 0 auto 10px; font-size: 0.74rem; color: #3a3a4a; }
+
+  /* ── グリッド ── */
+  #grid { max-width: var(--page-max-width); margin: 0 auto;
+           display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+
+  /* ── カード ── */
+  .card { background: #111119; border: 1px solid #1e1e28; border-radius: 8px;
+           overflow: hidden; display: flex; flex-direction: column;
+           transition: border-color 0.15s, transform 0.15s; }
+  .card:hover { border-color: #36364a; transform: translateY(-2px); }
+
+  .thumb-link { display: block; text-decoration: none; flex-shrink: 0; }
+  .thumb-wrap { aspect-ratio: 16/9; overflow: hidden; background: #0d0d16; position: relative; }
+  .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block;
+                     transition: opacity 0.25s; }
+  .thumb-wrap img.loading { opacity: 0; }
+  .thumb-wrap img.loaded  { opacity: 1; }
+  .no-thumb { width: 100%; height: 100%; display: flex; align-items: center;
+               justify-content: center; color: #2a2a3a; font-size: 1.8rem; }
+  .thumb-link:hover .thumb-wrap img { opacity: 0.85; }
+
+  .season-badge { position: absolute; top: 5px; right: 5px;
+                   background: rgba(10,10,20,0.82); color: #ccaa44; font-size: 0.58rem;
+                   padding: 2px 6px; border-radius: 7px; border: 1px solid rgba(200,160,40,0.35);
+                   backdrop-filter: blur(4px); display: none; }
+
+  .pop-badge { position: absolute; bottom: 5px; left: 5px;
+                background: rgba(10,10,20,0.82); font-size: 0.58rem; font-weight: 700;
+                padding: 2px 6px; border-radius: 7px; backdrop-filter: blur(4px);
+                font-variant-numeric: tabular-nums; }
+  .pop-badge.pop-hi  { color: #f0c040; border: 1px solid rgba(240,192,64,0.45); }
+  .pop-badge.pop-mid { color: #6699cc; border: 1px solid rgba(102,153,204,0.45); }
+  .pop-badge.pop-lo  { color: #778;    border: 1px solid rgba(100,100,130,0.35); }
+
+  /* ── お気に入り星（グリッドカード：サムネイル左上に重ねる） ── */
+  .fav-star { position: absolute; top: 5px; left: 5px; z-index: 2;
+               width: 24px; height: 24px; border: none; border-radius: 50%;
+               background: rgba(10,10,20,0.72); backdrop-filter: blur(4px);
+               color: #556; font-size: 0.95rem; cursor: pointer;
+               display: flex; align-items: center; justify-content: center;
+               transition: transform 0.1s; }
+  .fav-star:hover { transform: scale(1.15); }
+
+  /* ── お気に入り星（リストアイテム：先頭に小さく表示） ── */
+  .list-fav-star { flex-shrink: 0; width: 22px; height: 22px; border: none; background: none;
+                     color: #445; font-size: 0.95rem; cursor: pointer;
+                     display: flex; align-items: center; justify-content: center;
+                     transition: transform 0.1s; }
+  .list-fav-star:hover { transform: scale(1.15); }
+
+  .card-body { padding: 8px 9px 9px; display: flex; flex-direction: column; gap: 5px; }
+  .card-title { font-size: 0.8rem; color: #c8c8d8; line-height: 1.45;
+                 display: -webkit-box; -webkit-line-clamp: 2;
+                 -webkit-box-orient: vertical; overflow: hidden; }
+
+  .meta-area { display: none; }
+  .tag-row { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag { font-size: 0.6rem; padding: 2px 6px; border-radius: 8px; }
+  .tag-ep    { background: #181826; color: #556; border: 1px solid #262636; }
+  .tag-genre { background: #0c1824; color: #447799; border: 1px solid #182840; }
+  .tag-sc    { background: #1a1200; color: #997722; border: 1px solid #302200; }
+
+  .at-area { display: none; }
+  .at-btn { display: block; text-align: center; text-decoration: none;
+             background: #1c1610; border: 1px solid #362a18; border-radius: 6px;
+             color: #c07830; font-size: 0.69rem; font-weight: 600; padding: 5px 0;
+             transition: background 0.12s; }
+  .at-btn:hover { background: #261e14; border-color: #4a3820; }
+
+  /* ── 閾値フィルター ── */
+  #threshold-wrap {
+    max-width: var(--page-max-width); margin: 5px auto 0; padding: 0 16px;
+    display: none; flex-direction: column; gap: 3px;
+  }
+  .threshold-row { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .threshold-label {
+    font-size: 0.67rem; color: #445; min-width: 56px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .th-btn {
+    padding: 2px 9px; border: 1px solid #1e1e2e; border-radius: 10px;
+    font-size: 0.67rem; cursor: pointer; background: #0e0e18; color: #3a3a52;
+    transition: all 0.12s; white-space: nowrap;
+  }
+  .th-btn:hover { border-color: #3a3a5a; color: #667; }
+  .th-btn.active { background: #0e2030; border-color: #245870; color: #55aacc; }
+
+  /* ── セクションヘッダー（クロスモード） ── */
+  .section-header {
+    grid-column: 1/-1;
+    display: flex; align-items: baseline; gap: 8px;
+    padding: 14px 2px 6px; border-top: 1px solid #1c1c28; margin-top: 4px;
+  }
+  .section-header:first-child { border-top: none; padding-top: 2px; }
+  .section-title { font-size: 0.78rem; color: #7788aa; font-weight: 600; }
+  .section-count { font-size: 0.66rem; color: #334; }
+
+  /* カード内シーズン表示（クロスモード時） */
+  .card-season { font-size: 0.61rem; color: #445; display: none; margin-top: -2px; }
+  body.cross-mode .card-season { display: block; }
+
+  /* ── ビュー切り替え ── */
+  .view-toggle { display: flex; gap: 3px; margin-left: 4px; }
+  .vt-btn { width: 28px; height: 28px; border: 1px solid #2a2a3a; border-radius: 6px;
+             background: #16161e; color: #3a3a52; font-size: 0.88rem; cursor: pointer;
+             display: flex; align-items: center; justify-content: center; transition: all 0.12s; }
+  .vt-btn:hover { border-color: #4a4a6a; color: #99a; }
+  .vt-btn.active { background: #1a2a3a; border-color: #2a4a6a; color: #6699cc; }
+
+  /* ── リスト表示 ── */
+  #grid.list-mode { display: block; }
+  .list-item { display: flex; align-items: center; gap: 10px; padding: 7px 4px;
+                border-bottom: 1px solid #111118; }
+  .list-item:hover { background: #0d0d16; }
+  .list-score { flex-shrink: 0; width: 38px; text-align: right;
+                 font-size: 0.67rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .list-score.pop-hi  { color: #f0c040; }
+  .list-score.pop-mid { color: #6699cc; }
+  .list-score.pop-lo  { color: #445; }
+  .list-score.no-score { color: #2a2a38; }
+  .list-title { flex: 1; font-size: 0.81rem; color: #b0b0c4; overflow: hidden;
+                 text-overflow: ellipsis; white-space: nowrap; text-decoration: none; }
+  .list-title:hover { color: #8ab4e0; }
+  .list-season { flex-shrink: 0; font-size: 0.65rem; color: #2a2a3a; width: 46px; text-align: right; }
+  body.cross-mode .list-season { color: #556; }
+  .list-sc { flex-shrink: 0; font-size: 0.58rem; padding: 1px 5px; border-radius: 8px;
+              background: #1a1200; color: #997722; border: 1px solid #302200; }
+
+  /* リストセクション区切り（水平線） */
+  .list-divider { display: flex; align-items: center; gap: 10px; padding: 14px 4px 6px; }
+  .list-divider::before, .list-divider::after { content: ""; flex: 1; height: 1px; background: #1c1c2a; }
+  .list-divider-label { font-size: 0.72rem; color: #7788aa; font-weight: 600; white-space: nowrap; }
+  .list-divider-count { font-size: 0.62rem; color: #2a2a40; }
+  .list-divider:first-child { padding-top: 4px; }
+
+  /* ── もっと読み込む ── */
+  #load-more-wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 12px 16px 28px; text-align: center; }
+  #load-more-btn { padding: 7px 28px; border: 1px solid #2a2a3a; border-radius: 8px;
+                    background: #0e0e18; color: #445; font-size: 0.8rem; cursor: pointer;
+                    transition: all 0.12s; }
+  #load-more-btn:hover { border-color: #4a4a6a; color: #778; }
+
+  /* トグル状態 */
+  body.show-filter #genre-wrap    { display: flex; }
+  body.show-filter #threshold-wrap { display: flex; }
+
+  #loading { text-align: center; color: #333; padding: 80px; grid-column: 1/-1; font-size: 0.88rem; }
+</style>
+</head>
+<body>
+
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+  <div class="controls">
+    <!-- シーズンナビ：←ボタン・select・→ボタン -->
+    <div class="season-nav">
+      <button class="snav-btn" id="btn-yr-back"  title="1年前の同じ季節 (←)">◀</button>
+      <button class="snav-btn" id="btn-s-back"   title="1シーズン過去 (↑)">▲</button>
+      <select id="season-select"></select>
+      <button class="snav-btn" id="btn-s-fwd"    title="1シーズン先 (↓)">▼</button>
+      <button class="snav-btn" id="btn-yr-fwd"   title="1年後の同じ季節 (→)">▶</button>
+      <button class="info-btn" id="btn-info"     title="ショートカット一覧">?</button>
+    </div>
+
+    <div id="search-wrap">
+      <span id="search-icon">🔍</span>
+      <input id="search" type="text" placeholder="タイトルで絞り込み...">
+    </div>
+    <select id="sort-select">
+      <option value="score">人気スコア順</option>
+      <option value="popular">続編数順</option>
+      <option value="title">タイトル順</option>
+    </select>
+
+    <div class="view-toggle">
+      <button class="vt-btn active" data-mode="grid" title="グリッド表示">⊞</button>
+      <button class="vt-btn" data-mode="list" title="リスト表示">≡</button>
+    </div>
+    <div class="toggles">
+      <label class="toggle-item" title="ジャンル・人気度・年代フィルターを表示">
+        <span class="sw">
+          <input type="checkbox" id="toggle-filter">
+          <span class="sw-track"></span><span class="sw-thumb"></span>
+        </span>フィルター
+      </label>
+      <label class="toggle-item" title="全期間モード：閾値で全シーズンを横断表示">
+        <span class="sw">
+          <input type="checkbox" id="toggle-allperiod">
+          <span class="sw-track"></span><span class="sw-thumb"></span>
+        </span>全期間
+      </label>
+    </div>
+  </div>
+  <div id="genre-wrap"></div>
+  <div id="threshold-wrap">
+    <div class="threshold-row">
+      <span class="threshold-label">人気度</span>
+      <button class="th-btn" data-dim="pop" data-val="90">90+</button>
+      <button class="th-btn" data-dim="pop" data-val="85">85+</button>
+      <button class="th-btn" data-dim="pop" data-val="80">80+</button>
+      <button class="th-btn" data-dim="pop" data-val="70">70+</button>
+      <button class="th-btn" data-dim="pop" data-val="60">60+</button>
+      <button class="th-btn active" data-dim="pop" data-val="">ALL</button>
+    </div>
+    <div class="threshold-row">
+      <span class="threshold-label">年代</span>
+      <button class="th-btn" data-dim="era" data-val="2023">2023年〜</button>
+      <button class="th-btn" data-dim="era" data-val="2020">2020年〜</button>
+      <button class="th-btn" data-dim="era" data-val="2015">2015年〜</button>
+      <button class="th-btn" data-dim="era" data-val="2010">2010年〜</button>
+      <button class="th-btn" data-dim="era" data-val="2000">2000年〜</button>
+      <button class="th-btn active" data-dim="era" data-val="">ALL</button>
+    </div>
+  </div>
+</div>
+
+<!-- インフォポップアップ -->
+<div id="info-popup">
+  <span class="close-btn" id="info-close">✕</span>
+  <h3>⌨️ キーボードショートカット</h3>
+  <div class="shortcut-row"><span class="shortcut-key">↑</span> 1シーズン過去へ</div>
+  <div class="shortcut-row"><span class="shortcut-key">↓</span> 1シーズン先へ</div>
+  <div class="shortcut-row"><span class="shortcut-key">←</span> 1年前の同じ季節へ</div>
+  <div class="shortcut-row"><span class="shortcut-key">→</span> 1年後の同じ季節へ</div>
+  <div style="margin-top:10px;color:#445;font-size:0.69rem;">※ 検索ボックス入力中は無効</div>
+</div>
+
+<div class="content">
+  <div id="count"></div>
+  <div id="grid"><div id="loading">データ読み込み中...</div></div>
+</div>
+<div id="load-more-wrap">
+  <button id="load-more-btn" style="display:none"></button>
+</div>
+
+<script src="../anime-db/data/anime_guide_data.js"></script>
+<script src="../shared/favorites-data.js"></script>
+<script src="../shared/favorites.js?v=20260915"></script>
+<script src="../shared/search-aliases.js"></script>
+<script>
+if (typeof ANIME_GUIDE_DATA === "undefined") {
+  document.getElementById("loading").textContent =
+    "anime_guide_data.js が見つかりません。step12_build_guide_data.py を実行してください。";
+  throw new Error("no data");
+}
+
+// ── 状態 ────────────────────────────────────────────────────────────────────
+let currentSeason = null;
+let activeGenres  = new Set();
+let sortMode      = "score";
+let popThreshold  = null;   // null=ALL, number=最小スコア
+let eraThreshold  = null;   // null=ALL, number=最小年
+let viewMode      = "grid";    // "grid" | "list"
+let filterMode    = "season";  // "season" | "all"
+let _flatItems    = [];
+let _renderOffset = 0;
+const RENDER_BATCH = 100;
+
+// ── グループ定義 ─────────────────────────────────────────────────────────────
+const ERA_GROUP_DEFS = [
+  { label: "2025年代",    min: 2025 },
+  { label: "2020年代",    min: 2020, max: 2025 },
+  { label: "2015年代",    min: 2015, max: 2020 },
+  { label: "2010年代",    min: 2010, max: 2015 },
+  { label: "2000年代",    min: 2000, max: 2010 },
+  { label: "2000年以前",  min: 0,    max: 2000 },
+  { label: "未定",        min: null },
+];
+const ERA_GROUP_ORDER = ERA_GROUP_DEFS.map(d => d.label);
+
+const POP_BRACKET_DEFS = [
+  { label: "90点以上",  min: 90 },
+  { label: "85〜90点",  min: 85, max: 90 },
+  { label: "80〜85点",  min: 80, max: 85 },
+  { label: "70〜80点",  min: 70, max: 80 },
+  { label: "60〜70点",  min: 60, max: 70 },
+  { label: "60点未満",  min: 0,  max: 60 },
+  { label: "スコアなし", min: null },
+];
+const POP_BRACKET_ORDER = POP_BRACKET_DEFS.map(d => d.label);
+
+// ── 時代分類 ─────────────────────────────────────────────────────────────────
+const ERA_DEFS = [
+  { label: "放送決定",   test: y => y === null },
+  { label: "2025年代",   test: y => y >= 2025 },
+  { label: "2020年代",   test: y => y >= 2020 && y < 2025 },
+  { label: "2015年代",   test: y => y >= 2015 && y < 2020 },
+  { label: "2010年代",   test: y => y >= 2010 && y < 2015 },
+  { label: "2000年代",   test: y => y >= 2000 && y < 2010 },
+  { label: "2000年以前", test: y => y !== null && y < 2000 },
+];
+
+function getEraLabel(season) {
+  if (!season || season === "放送決定") return "放送決定";
+  const m = season.match(/^(\d{4})/);
+  const y = m ? parseInt(m[1]) : null;
+  for (const era of ERA_DEFS) if (era.test(y)) return era.label;
+  return "その他";
+}
+
+// ── シーズンリスト構築 ────────────────────────────────────────────────────────
+// seasons は descending（新→旧）なので、↑=過去 になるよう ascending で持つ
+const allSeasons = [...(ANIME_GUIDE_DATA.seasons || [])].reverse();
+// 放送決定があれば先頭から外して末尾に追加（or 先頭に置く）
+// 現状は特殊値なのでリスト末尾に追加（下に来る）
+// allSeasons は ascending（古→新）
+
+// era→seasons マッピング（select の optgroup 構築用）
+const eraMap = {}; // { "2025年代": ["2025冬","2025春",...], ... }
+allSeasons.forEach(s => {
+  const era = getEraLabel(s);
+  if (!eraMap[era]) eraMap[era] = [];
+  eraMap[era].push(s);
+});
+
+// ── シーズンセレクト構築 ─────────────────────────────────────────────────────
+const sel = document.getElementById("season-select");
+
+// ERA_DEFS 順に optgroup を追加（放送決定は最後に）
+const eraOrder = ERA_DEFS.map(e => e.label).filter(label => label !== "放送決定");
+// 古い時代を上（↑方向）にするため ascending 順: 2000年以前→...→2025年代→放送決定
+const buildOrder = [
+  "2000年以前","2000年代","2010年代","2015年代","2020年代","2025年代","放送決定"
+];
+buildOrder.forEach(eraLabel => {
+  const seasons = eraMap[eraLabel];
+  if (!seasons || seasons.length === 0) return;
+  const grp = document.createElement("optgroup");
+  grp.label = eraLabel;
+  seasons.forEach(s => {
+    const opt = document.createElement("option");
+    opt.value = s;
+    opt.textContent = s;
+    grp.appendChild(opt);
+  });
+  sel.appendChild(grp);
+});
+
+// 初期値: 現在のシーズン
+const TODAY_SEASON = "2026夏";
+const defaultSeason = allSeasons.includes(TODAY_SEASON)
+  ? TODAY_SEASON
+  : allSeasons[allSeasons.length - 1]; // 最新
+sel.value = defaultSeason;
+currentSeason = defaultSeason;
+
+function selectSeason(s) {
+  if (!s || !allSeasons.includes(s)) return;
+  currentSeason = s;
+  sel.value = s;
+  if (filterMode === "season" && document.getElementById("toggle-filter").checked) {
+    buildGenreButtons(s);
+  }
+  render();
+}
+
+sel.addEventListener("change", () => selectSeason(sel.value));
+
+// ── シーズン移動ロジック ──────────────────────────────────────────────────────
+function seasonIdx() { return allSeasons.indexOf(currentSeason); }
+
+function moveSeason(delta) {
+  if (filterMode === "all") return;
+  const idx = seasonIdx();
+  const next = allSeasons[idx + delta];
+  if (next) selectSeason(next);
+}
+
+function moveYear(delta) {
+  if (filterMode === "all") return;
+  const m = currentSeason && currentSeason.match(/^(\d{4})(春|夏|秋|冬)$/);
+  if (!m) return;
+  const target = `${parseInt(m[1]) + delta}${m[2]}`;
+  if (allSeasons.includes(target)) selectSeason(target);
+}
+
+// ── キーボードショートカット ──────────────────────────────────────────────────
+document.addEventListener("keydown", e => {
+  // 検索ボックス入力中は無視
+  if (document.activeElement === document.getElementById("search")) return;
+  // select にフォーカスがある場合は select 自身に任せない（上書きする）
+  switch (e.key) {
+    case "ArrowUp":    e.preventDefault(); moveSeason(-1); break; // 過去
+    case "ArrowDown":  e.preventDefault(); moveSeason(+1); break; // 先
+    case "ArrowLeft":  e.preventDefault(); moveYear(-1);   break; // 1年前
+    case "ArrowRight": e.preventDefault(); moveYear(+1);   break; // 1年後
+  }
+});
+
+// ── ボタンクリック ────────────────────────────────────────────────────────────
+document.getElementById("btn-s-back").addEventListener("click", () => moveSeason(-1));
+document.getElementById("btn-s-fwd" ).addEventListener("click", () => moveSeason(+1));
+document.getElementById("btn-yr-back").addEventListener("click", () => moveYear(-1));
+document.getElementById("btn-yr-fwd" ).addEventListener("click", () => moveYear(+1));
+
+// ── インフォポップアップ ──────────────────────────────────────────────────────
+const infoPopup = document.getElementById("info-popup");
+document.getElementById("btn-info").addEventListener("click", e => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  infoPopup.style.top  = `${rect.bottom + 8}px`;
+  infoPopup.style.left = `${Math.min(rect.left, window.innerWidth - 340)}px`;
+  infoPopup.classList.toggle("visible");
+  e.stopPropagation();
+});
+document.getElementById("info-close").addEventListener("click", () => {
+  infoPopup.classList.remove("visible");
+});
+document.addEventListener("click", e => {
+  if (!infoPopup.contains(e.target) && e.target.id !== "btn-info") {
+    infoPopup.classList.remove("visible");
+  }
+});
+
+// ── トグルスイッチ ────────────────────────────────────────────────────────────
+document.getElementById("toggle-filter").addEventListener("change", e => {
+  document.body.classList.toggle("show-filter", e.target.checked);
+  if (e.target.checked) {
+    if (filterMode === "all") buildGenreButtonsAll();
+    else buildGenreButtons(currentSeason);
+  } else {
+    // 非表示時: フィルターをすべてリセット
+    activeGenres.clear();
+    document.getElementById("genre-wrap").innerHTML = "";
+    popThreshold = null;
+    eraThreshold = null;
+    document.querySelectorAll(".th-btn[data-dim='pop']").forEach(b => b.classList.toggle("active", b.dataset.val === ""));
+    document.querySelectorAll(".th-btn[data-dim='era']").forEach(b => b.classList.toggle("active", b.dataset.val === ""));
+  }
+  render();
+});
+
+document.getElementById("toggle-allperiod").addEventListener("change", e => {
+  filterMode = e.target.checked ? "all" : "season";
+  if (document.getElementById("toggle-filter").checked) {
+    if (filterMode === "all") buildGenreButtonsAll();
+    else buildGenreButtons(currentSeason);
+  }
+  render();
+});
+
+// ── ジャンルボタン ────────────────────────────────────────────────────────────
+function buildGenreButtons(season) {
+  const wrap = document.getElementById("genre-wrap");
+  wrap.innerHTML = "";
+  activeGenres.clear();
+  const genreSet = new Set();
+  ANIME_GUIDE_DATA.anime
+    .filter(a => a.primary_season === season)
+    .forEach(a => (a.genres || []).forEach(g => genreSet.add(g)));
+  if (genreSet.size === 0) return;
+  addGenreBtn(wrap, "⭐ ロングラン", "ロングラン");
+  [...genreSet].sort().forEach(g => addGenreBtn(wrap, g, g));
+}
+
+function buildGenreButtonsAll() {
+  const wrap = document.getElementById("genre-wrap");
+  wrap.innerHTML = "";
+  activeGenres.clear();
+  const genreSet = new Set();
+  ANIME_GUIDE_DATA.anime.forEach(a => (a.genres || []).forEach(g => genreSet.add(g)));
+  addGenreBtn(wrap, "⭐ ロングラン", "ロングラン");
+  [...genreSet].sort().forEach(g => addGenreBtn(wrap, g, g));
+}
+
+function addGenreBtn(wrap, label, value) {
+  const btn = document.createElement("button");
+  btn.className = "genre-btn";
+  btn.textContent = label;
+  btn.addEventListener("click", () => {
+    if (activeGenres.has(value)) { activeGenres.delete(value); btn.classList.remove("active"); }
+    else                          { activeGenres.add(value);    btn.classList.add("active"); }
+    render();
+  });
+  wrap.appendChild(btn);
+}
+
+// ── お気に入り星ボタン（グリッドカード／リストアイテム共通） ──────────────────────
+function makeFavStarBtn(id, className, onUpdate) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = className;
+  function render() {
+    const state = AnimeFavorites.get(id);
+    btn.textContent = AnimeFavorites.STATE_STAR[state];
+    btn.style.color = state > 0 ? AnimeFavorites.STATE_COLOR[state] : "";
+    btn.title = AnimeFavorites.STATE_LABEL[state] + "（クリックで切替）";
+  }
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    AnimeFavorites.cycle(id);
+    render();
+    if (onUpdate) onUpdate();
+  });
+  render();
+  return btn;
+}
+
+// ── カード生成 ────────────────────────────────────────────────────────────────
+function makeCard(a) {
+  const card = document.createElement("div");
+  card.className = "card";
+
+  function applyFavBorder() {
+    const state = AnimeFavorites.get(a.id);
+    card.style.borderColor = AnimeFavorites.STATE_COLOR[state] || "";
+  }
+
+  const thumbLink = document.createElement("a");
+  thumbLink.className = "thumb-link";
+  thumbLink.href = a.at_url;
+  thumbLink.target = "_blank";
+  thumbLink.rel = "noopener noreferrer";
+  thumbLink.title = a.title;
+
+  const thumbWrap = document.createElement("div");
+  thumbWrap.className = "thumb-wrap";
+  if (a.thumbnail) {
+    const img = document.createElement("img");
+    img.className = "loading";
+    img.alt = a.title;
+    img.loading = "lazy";
+    img.src = a.thumbnail;
+    img.onload  = () => { img.classList.remove("loading"); img.classList.add("loaded"); };
+    img.onerror = () => { thumbWrap.innerHTML = '<div class="no-thumb">📺</div>'; };
+    thumbWrap.appendChild(img);
+  } else {
+    thumbWrap.innerHTML = '<div class="no-thumb">📺</div>';
+  }
+  if (a.season_count >= 3) {
+    const badge = document.createElement("div");
+    badge.className = "season-badge";
+    badge.textContent = `⭐ S${a.season_count}`;
+    thumbWrap.appendChild(badge);
+  }
+  if (a.popularity_score != null) {
+    const pb = document.createElement("div");
+    const cls = a.popularity_score >= 80 ? "pop-hi" : a.popularity_score >= 60 ? "pop-mid" : "pop-lo";
+    pb.className = `pop-badge ${cls}`;
+    pb.textContent = a.popularity_score.toFixed(1);
+    thumbWrap.appendChild(pb);
+  }
+  thumbWrap.appendChild(makeFavStarBtn(a.id, "fav-star", applyFavBorder));
+  thumbLink.appendChild(thumbWrap);
+  card.appendChild(thumbLink);
+
+  const body = document.createElement("div");
+  body.className = "card-body";
+
+  const titleEl = document.createElement("div");
+  titleEl.className = "card-title";
+  titleEl.title = a.title;
+  titleEl.textContent = a.title;
+  body.appendChild(titleEl);
+
+  const seasonEl = document.createElement("div");
+  seasonEl.className = "card-season";
+  seasonEl.textContent = a.primary_season || "?";
+  body.appendChild(seasonEl);
+
+  const metaArea = document.createElement("div");
+  metaArea.className = "meta-area tag-row";
+  if (a.episode_text) {
+    const t = document.createElement("span");
+    t.className = "tag tag-ep";
+    t.textContent = a.episode_text.replace("全","").replace("話","ep");
+    metaArea.appendChild(t);
+  }
+  if (a.season_count >= 2) {
+    const t = document.createElement("span");
+    t.className = "tag tag-sc";
+    t.textContent = `S${a.season_count}`;
+    metaArea.appendChild(t);
+  }
+  (a.genres || []).forEach(g => {
+    const t = document.createElement("span");
+    t.className = "tag tag-genre";
+    t.textContent = g;
+    metaArea.appendChild(t);
+  });
+  if (metaArea.children.length) body.appendChild(metaArea);
+
+  const atArea = document.createElement("div");
+  atArea.className = "at-area";
+  const atBtn = document.createElement("a");
+  atBtn.className = "at-btn";
+  atBtn.href = a.at_url;
+  atBtn.target = "_blank";
+  atBtn.rel = "noopener noreferrer";
+  atBtn.textContent = "animatetimes →";
+  atArea.appendChild(atBtn);
+  body.appendChild(atArea);
+
+  card.appendChild(body);
+  applyFavBorder();
+  return card;
+}
+
+// ── リストアイテム生成 ─────────────────────────────────────────────────────────
+function makeListItem(a) {
+  const el = document.createElement("div");
+  el.className = "list-item";
+  function applyFavBorder() {
+    const state = AnimeFavorites.get(a.id);
+    el.style.borderBottomColor = AnimeFavorites.STATE_COLOR[state] || "";
+  }
+  el.appendChild(makeFavStarBtn(a.id, "list-fav-star", applyFavBorder));
+  const score = a.popularity_score;
+  const scoreCls = score == null ? "no-score" : score >= 80 ? "pop-hi" : score >= 60 ? "pop-mid" : "pop-lo";
+  const scoreEl = document.createElement("span");
+  scoreEl.className = `list-score ${scoreCls}`;
+  scoreEl.textContent = score != null ? score.toFixed(1) : "–";
+  el.appendChild(scoreEl);
+  const titleEl = document.createElement("a");
+  titleEl.className = "list-title";
+  titleEl.href = a.at_url;
+  titleEl.target = "_blank";
+  titleEl.rel = "noopener noreferrer";
+  titleEl.title = a.title;
+  titleEl.textContent = a.title;
+  el.appendChild(titleEl);
+  const seasonEl = document.createElement("span");
+  seasonEl.className = "list-season";
+  seasonEl.textContent = a.primary_season || "";
+  el.appendChild(seasonEl);
+  if (a.season_count >= 2) {
+    const scEl = document.createElement("span");
+    scEl.className = "list-sc";
+    scEl.textContent = `S${a.season_count}`;
+    el.appendChild(scEl);
+  }
+  applyFavBorder();
+  return el;
+}
+
+// ── クロスモード用ヘルパー ────────────────────────────────────────────────────
+function getYear(season) {
+  const m = (season || "").match(/^(\d{4})/);
+  return m ? parseInt(m[1]) : null;
+}
+
+function getEraGroup(a) {
+  const y = getYear(a.primary_season);
+  if (y === null) return "未定";
+  for (const def of ERA_GROUP_DEFS) {
+    if (def.min === null) continue;
+    if (y >= def.min && (def.max === undefined || y < def.max)) return def.label;
+  }
+  return "未定";
+}
+
+function getPopGroup(a) {
+  const s = a.popularity_score;
+  if (s == null) return "スコアなし";
+  for (const def of POP_BRACKET_DEFS) {
+    if (def.min === null) continue;
+    if (s >= def.min && (def.max === undefined || s < def.max)) return def.label;
+  }
+  return "スコアなし";
+}
+
+function renderGrouped(grid, items, groupFn, groupOrder) {
+  const groups = {};
+  items.forEach(a => { const g = groupFn(a); (groups[g] = groups[g] || []).push(a); });
+  const frag = document.createDocumentFragment();
+  groupOrder.forEach(g => {
+    if (!groups[g] || groups[g].length === 0) return;
+    if (viewMode === "list") {
+      const div = document.createElement("div");
+      div.className = "list-divider";
+      div.innerHTML = `<span class="list-divider-label">${g}</span><span class="list-divider-count">${groups[g].length}件</span>`;
+      frag.appendChild(div);
+      groups[g].forEach(a => frag.appendChild(makeListItem(a)));
+    } else {
+      const hdr = document.createElement("div");
+      hdr.className = "section-header";
+      hdr.innerHTML = `<span class="section-title">${g}</span><span class="section-count">${groups[g].length}作品</span>`;
+      frag.appendChild(hdr);
+      groups[g].forEach(a => frag.appendChild(makeCard(a)));
+    }
+  });
+  grid.appendChild(frag);
+}
+
+// ── 順次読み込み ───────────────────────────────────────────────────────────────
+function appendBatch() {
+  const grid = document.getElementById("grid");
+  const batch = _flatItems.slice(_renderOffset, _renderOffset + RENDER_BATCH);
+  const frag = document.createDocumentFragment();
+  batch.forEach(a => frag.appendChild(viewMode === "list" ? makeListItem(a) : makeCard(a)));
+  grid.appendChild(frag);
+  _renderOffset += batch.length;
+  const rem = _flatItems.length - _renderOffset;
+  const btn = document.getElementById("load-more-btn");
+  if (rem > 0) {
+    btn.textContent = `さらに読み込む（残り ${rem} 件）`;
+    btn.style.display = "";
+  } else {
+    btn.style.display = "none";
+  }
+}
+
+// ── 検索: タイトル文字列だけでなく、ローマ字/ひらがな/カタカナ表記のエイリアスも対象にする
+// （例: 「FAIRY TAIL」を「フェアリー」で検索してもヒットする） ─────────────────────
+function kataToHira(s) {
+  return s.replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60));
+}
+function hiraToKata(s) {
+  return s.replace(/[ぁ-ゖ]/g, c => String.fromCharCode(c.charCodeAt(0) + 0x60));
+}
+function matchesSearch(a, q) {
+  if (!q) return true;
+  if (a.title.toLowerCase().includes(q)) return true;
+  const alias = (window.SEARCH_ALIASES || {})[String(a.id)];
+  if (!alias) return false;
+  if (alias.romaji && alias.romaji.includes(q)) return true;
+  const qHira = kataToHira(q), qKata = hiraToKata(q);  // クエリをひらがな/カタカナ両表記に正規化して照合
+  if (alias.hiragana && alias.hiragana.includes(qHira)) return true;
+  if (alias.katakana && alias.katakana.includes(qKata)) return true;
+  return false;
+}
+
+// ── レンダリング ──────────────────────────────────────────────────────────────
+function render() {
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  grid.classList.toggle("list-mode", viewMode === "list");
+
+  const isAllSeasons = filterMode === "all";
+  const isThreshold = popThreshold !== null || eraThreshold !== null;
+  document.body.classList.toggle("cross-mode", isAllSeasons);
+
+  let items = ANIME_GUIDE_DATA.anime.filter(a => {
+    // 検索語がある場合はシーズン絞り込みを無視し、全作品を対象に検索する
+    if (!isAllSeasons && !q && a.primary_season !== currentSeason) return false;
+    if (popThreshold !== null && (a.popularity_score == null || a.popularity_score < popThreshold)) return false;
+    if (eraThreshold !== null) {
+      const y = getYear(a.primary_season);
+      if (y === null || y < eraThreshold) return false;
+    }
+    if (q && !matchesSearch(a, q)) return false;
+    if (activeGenres.has("ロングラン") && a.season_count < 3) return false;
+    const others = [...activeGenres].filter(g => g !== "ロングラン");
+    if (others.length > 0 && !others.some(g => (a.genres || []).includes(g))) return false;
+    return true;
+  });
+
+  if (sortMode === "score") {
+    items.sort((a,b) => {
+      const sa = a.popularity_score ?? -1;
+      const sb = b.popularity_score ?? -1;
+      return sb - sa || a.title.localeCompare(b.title,"ja");
+    });
+  } else if (sortMode === "popular") {
+    items.sort((a,b) => b.season_count - a.season_count || a.title.localeCompare(b.title,"ja"));
+  } else {
+    items.sort((a,b) => a.title.localeCompare(b.title,"ja"));
+  }
+
+  // お気に入り登録済み（★/今すぐ見たい）をトップに表示。同じお気に入り状態内では上記の並び順を維持。
+  items.sort((a,b) => AnimeFavorites.get(b.id) - AnimeFavorites.get(a.id));
+
+  const suffix = isAllSeasons ? (isThreshold ? "（絞り込み）" : "（全期間）") : "";
+  document.getElementById("count").textContent = `${items.length} 作品${suffix}`;
+
+  if (items.length === 0) {
+    grid.innerHTML = `<div style="color:#333;padding:60px;text-align:center;grid-column:1/-1">該当なし</div>`;
+    document.getElementById("load-more-btn").style.display = "none";
+    return;
+  }
+
+  if (isThreshold && isAllSeasons) {
+    document.getElementById("load-more-btn").style.display = "none";
+    if (popThreshold !== null && eraThreshold === null) {
+      renderGrouped(grid, items, getEraGroup, ERA_GROUP_ORDER);
+    } else if (eraThreshold !== null && popThreshold === null) {
+      renderGrouped(grid, items, getPopGroup, POP_BRACKET_ORDER);
+    } else {
+      _flatItems = items; _renderOffset = 0; appendBatch();
+    }
+  } else {
+    _flatItems = items; _renderOffset = 0; appendBatch();
+  }
+}
+
+// ── イベント ──────────────────────────────────────────────────────────────────
+document.getElementById("search").addEventListener("input", render);
+document.getElementById("sort-select").addEventListener("change", e => {
+  sortMode = e.target.value;
+  render();
+});
+
+// ── 閾値ボタン ────────────────────────────────────────────────────────────────
+document.querySelectorAll(".th-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const dim = btn.dataset.dim;
+    const val = btn.dataset.val;
+    const newVal = val === "" ? null : Number(val);
+    if (dim === "pop") popThreshold = newVal;
+    else               eraThreshold  = newVal;
+    document.querySelectorAll(`.th-btn[data-dim="${dim}"]`).forEach(b => {
+      b.classList.toggle("active", b.dataset.val === val);
+    });
+    render();
+  });
+});
+
+// ── ビュー切り替え ────────────────────────────────────────────────────────────
+document.querySelectorAll(".vt-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    viewMode = btn.dataset.mode;
+    document.querySelectorAll(".vt-btn").forEach(b => b.classList.toggle("active", b.dataset.mode === viewMode));
+    render();
+  });
+});
+
+// ── もっと読み込む ────────────────────────────────────────────────────────────
+document.getElementById("load-more-btn").addEventListener("click", appendBatch);
+
+// ── 初期化 ────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>

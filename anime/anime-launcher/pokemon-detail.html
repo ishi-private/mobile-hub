@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<!--
+  [編集者向けメモ] このページはポケットモンスター（テレビアニメ・新シリーズ2023〜）専用特設ページ
+  （各話早見表）です。表示データは shared/pokemon-anime-data.js の window.POKEMON_ANIME_DATA を
+  共有元とし、そこに含まれる DATA_META（verifiedAt/verifiedThroughEp）が現在のデータ鮮度を保持
+  しています。新しい話数の追加・情報更新の具体的な手順は anime-launcher/pokemon-maintenance.md
+  を参照してください。（このコメントはページの表示上には出力されず、ブラウザの「ページのソースを
+  表示」や開発者ツールのElementsパネルからのみ確認できます。）
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポケットモンスター（テレビアニメ）| 作品詳細</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #eaf5fd; color: #1a2a3a; min-height: 100vh; padding: 0 0 60px; }
+  .content { max-width: min(1400px, 96vw); margin: 0 auto; padding: 0 16px; }
+
+  .back-link { display: inline-block; margin: 14px 0 4px; font-size: 0.8rem; color: #3f7fb8; text-decoration: none; }
+  .back-link:hover { color: #1f6fae; text-decoration: underline; }
+
+  /* ── ヒーロー（公式サイト風の青グラデーション） ── */
+  .hero { display: flex; gap: 22px; padding: 24px 26px; align-items: flex-start; flex-wrap: wrap;
+           background: linear-gradient(135deg, #1e8fe0, #57c2f0); border-radius: 14px;
+           box-shadow: 0 6px 20px rgba(30,120,190,0.28); color: #fff; }
+  .hero-thumb { width: 180px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.2);
+                 box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
+  .hero-thumb img { width: 100%; display: block; }
+  .hero-body { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
+  .hero-title { font-size: 1.55rem; color: #fff; font-weight: 700; text-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  .hero-sub { font-size: 0.86rem; color: #eaf6ff; opacity: 0.92; }
+  .hero-meta { font-size: 0.8rem; color: #fff; display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero-meta span { background: rgba(255,255,255,0.22); border-radius: 5px; padding: 3px 9px; }
+  .hero-note { font-size: 0.72rem; color: #eaf6ff; margin-top: 4px; line-height: 1.7; opacity: 0.92; }
+
+  section.block { margin-top: 30px; }
+  section.block h2 { font-size: 1.05rem; color: #14456f; font-weight: 700; margin-bottom: 12px;
+                       padding-bottom: 8px; border-bottom: 2px solid #cbe6fa; }
+  .prose { font-size: 0.87rem; line-height: 1.85; color: #38495a; white-space: pre-line; }
+
+  /* ── 出典表記 ── */
+  .source-note { font-size: 0.72rem; color: #7f93b3; margin-top: 8px; line-height: 1.7; }
+  .source-note a { color: #3f7fb8; }
+  .source-note a:hover { color: #1f6fae; }
+  .sources-block { margin-top: 40px; font-size: 0.76rem; color: #5b7085; line-height: 1.9;
+                     background: #fff; border: 1px solid #cbe6fa; border-radius: 10px; padding: 14px 18px; }
+  .sources-block h3 { font-size: 0.82rem; color: #14456f; font-weight: 700; margin-bottom: 8px; }
+  .sources-block ul { margin: 0 0 0 1.2em; padding: 0; }
+  .sources-block li { margin-bottom: 4px; }
+  .sources-block a { color: #1f7fd1; }
+  .sources-block a:hover { color: #145a99; }
+
+  /* ── キャラクター紹介 ── */
+  .chara-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
+  .chara-card { text-align: center; }
+  .chara-card img { width: 100%; aspect-ratio: 3/4; object-fit: contain; border-radius: 10px;
+                      background: #fff; border: 1px solid #cbe6fa; box-shadow: 0 1px 6px rgba(30,110,180,0.12); }
+  .chara-card .chara-name { margin-top: 8px; font-size: 0.86rem; font-weight: 700; color: #163c58; }
+  .chara-card .chara-cv { font-size: 0.74rem; color: #5b7085; margin-top: 2px; }
+
+  table.info-table { width: 100%; border-collapse: collapse; font-size: 0.85rem;
+                       background: #fff; border-radius: 8px; overflow: hidden;
+                       box-shadow: 0 1px 4px rgba(30,110,180,0.08); }
+  table.info-table th, table.info-table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid #e4f0fa; }
+  table.info-table th { color: #3f7fb8; font-weight: 700; width: 9em; white-space: nowrap; vertical-align: top;
+                          background: #f3faff; }
+  table.info-table td { color: #2c3e50; }
+
+  /* ── 最新話コールアウト（詳細は別ページへ） ── */
+  .latest-callout { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+                      background: #fff; border: 1px solid #cbe6fa; border-left: 5px solid #ffcb05;
+                      border-radius: 10px; padding: 16px 20px; box-shadow: 0 1px 6px rgba(30,110,180,0.1); }
+  .latest-callout .tag { display: inline-block; font-size: 0.66rem; font-weight: 700; color: #8a6a00;
+                           background: #fff2b8; border-radius: 4px; padding: 2px 8px; margin-bottom: 5px; }
+  .latest-callout .ep-title { font-size: 1.02rem; font-weight: 700; color: #163c58; }
+  .latest-callout .ep-sub { font-size: 0.76rem; color: #5b7085; margin-top: 3px; }
+  .latest-callout .go-btn { margin-left: auto; flex-shrink: 0; display: inline-block; background: #1f7fd1;
+                              color: #fff; text-decoration: none; font-size: 0.8rem; font-weight: 700;
+                              padding: 9px 18px; border-radius: 999px; transition: background 0.15s; }
+  .latest-callout .go-btn:hover { background: #145a99; }
+
+  /* ── 表示切替ユーティリティボタン ── */
+  .toggle-utils { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .toggle-utils button { font-size: 0.72rem; padding: 6px 12px; border-radius: 6px; border: 1px solid #b9d9ef;
+                           background: #fff; color: #1f6fae; cursor: pointer; font-weight: 600; }
+  .toggle-utils button:hover { background: #eaf5fd; border-color: #7fbde8; }
+
+  /* ── シーズン切替コントロール行（ボタングループ＋特別編トグル＋infoボタン＋対応表の開閉） ──
+     ボタングループの見た目はBootstrap 5.3のボタングループを参考にしている：
+     https://getbootstrap.jp/docs/5.3/components/button-group/ */
+  .season-controls-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .season-btn-group { display: inline-flex; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(30,110,180,0.1); }
+  .season-btn-group button { position: relative; padding: 8px 15px; font-size: 0.86rem; font-weight: 700;
+                               border: 1px solid var(--sc, #7fa); border-right-width: 0; background: #fff;
+                               color: #2c3446; cursor: pointer; transition: background 0.15s, color 0.15s; }
+  .season-btn-group button:last-child { border-right-width: 1px; }
+  .season-btn-group button:hover { filter: brightness(0.96); z-index: 1; }
+  .season-btn-group button.on { background: var(--sc, #1f7fd1); color: #fff; }
+  .sp-toggle-btn { font-size: 0.8rem; padding: 7px 14px; border-radius: 6px; border: 1px solid #b7b7c2;
+                    background: #fff; color: #556; cursor: pointer; }
+  .sp-toggle-btn.on { background: #888890; color: #fff; border-color: #888890; }
+  .info-icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px;
+                    border-radius: 50%; border: 1.5px solid #1f7fd1; color: #1f7fd1; background: #fff;
+                    font-size: 0.76rem; font-weight: 700; font-style: italic; font-family: Georgia, "Times New Roman", serif;
+                    cursor: pointer; padding: 0; flex-shrink: 0; }
+  .info-icon-btn:hover { background: #eaf5fd; }
+  .legend-toggle-btn { font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; border: 1px solid #b9d9ef;
+                         background: #fff; color: #1f6fae; cursor: pointer; margin-left: auto; white-space: nowrap; }
+  .legend-toggle-btn:hover { background: #eaf5fd; }
+
+  /* ── OP/EDのズレに関する「現在の調査状況」アラート（infoボタンで開閉） ── */
+  .info-alert { display: none; margin-bottom: 14px; padding: 12px 16px; border-radius: 8px; font-size: 0.78rem;
+                 line-height: 1.9; background: #fff8e6; border: 1px solid #f0d78c; color: #6b5416; }
+  .info-alert.show { display: block; }
+  .info-alert .alert-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; color: #8a6a00;
+                               background: #ffe9a8; border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; }
+  .info-alert ol, .info-alert ul { margin: 6px 0 0 1.3em; padding: 0; }
+  .info-alert li { margin-bottom: 4px; }
+
+  /* ── シーズン番号↔シーズン名 対応表（7行、デフォルト折りたたみ） ── */
+  .season-legend-wrap[hidden] { display: none; }
+  .season-legend-wrap { margin-bottom: 16px; }
+  table.season-legend { width: 100%; border-collapse: collapse; font-size: 0.82rem;
+                          background: #fff; border-radius: 8px; overflow: hidden;
+                          box-shadow: 0 1px 4px rgba(30,110,180,0.08); }
+  table.season-legend th, table.season-legend td { padding: 8px 10px; border-bottom: 1px solid #e4f0fa; text-align: left; }
+  table.season-legend th { background: #f3faff; color: #3f7fb8; font-weight: 700; font-size: 0.7rem; }
+  table.season-legend tr.current-row { background: #fffbe9; }
+  .legend-no-badge { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px;
+                       border-radius: 50%; border: 2px solid var(--sc, #7fa);
+                       background: color-mix(in srgb, var(--sc, #7fa) 16%, #fff); color: #23313f;
+                       font-weight: 700; font-size: 0.8rem; }
+  table.season-legend td.legend-name { font-weight: 700; color: #163c58; }
+  table.season-legend td.legend-range { color: #7f93b3; font-size: 0.76rem; white-space: nowrap; }
+  table.season-legend td.legend-op a, table.season-legend td.legend-ed a { color: #1f7fd1; text-decoration: none; }
+  table.season-legend td.legend-op a:hover, table.season-legend td.legend-ed a:hover { text-decoration: underline; }
+  table.season-legend .legend-artist { display: block; font-size: 0.7rem; color: #7f93b3; margin-top: 1px; }
+
+  /* ── 話数早見表（横並び） ── */
+  .ep-table-wrap { overflow-x: auto; overflow-y: hidden; border: 1px solid #cbe6fa; border-radius: 8px;
+                    background: #fff; box-shadow: 0 1px 6px rgba(30,110,180,0.08); }
+  /* table自体にwidthを明示しないと、table-layout:fixedでもcolの幅指定が無視され、
+     各行（シーズン見出し・OP・ED等のcolspan結合セル）のテキスト量に応じて列幅が
+     不揃いに縮んでしまう。JS側でcolの合計に一致する幅をtableに明示的に設定する
+     （renderEpTable()内、詳しくは[[feedback_table_fixed_layout_colspan_width_bug]]参照）。
+     また、非表示にした話数の列をvisibility:collapse等でDOM上に残したまま隠す方式だと、
+     colspanセルと大量の非表示colが混在した際にセル幅が0に潰れて表全体が空白表示になる
+     不具合が実機で確認できたため、非表示の話数はそもそもDOMに生成せず、シーズン切替の
+     たびにrenderEpTable()でテーブルを丸ごと再構築する方式にしている。 */
+  table.ep-wide { border-collapse: collapse; font-size: 0.72rem; table-layout: fixed; }
+  table.ep-wide col.ep-col { width: 104px; }
+  table.ep-wide th, table.ep-wide td { padding: 6px 6px; border-bottom: 1px solid #e4f0fa;
+                                          border-right: 1px solid #eef6fc; text-align: center; vertical-align: middle;
+                                          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  table.ep-wide .row-label { position: sticky; left: 0; z-index: 2; background: #f3faff; color: #3f7fb8;
+                               font-weight: 700; text-align: left; padding: 6px 10px; width: 108px;
+                               white-space: nowrap; border-right: 1px solid #cbe6fa; }
+  table.ep-wide thead .row-label { z-index: 3; }
+  table.ep-wide .season-head { color: #fff; font-weight: 700; font-size: 0.68rem; padding: 7px 4px;
+                                 background: color-mix(in srgb, var(--sc, #7fa) 62%, #ffffff 0%);
+                                 border-right: 2px solid #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.25); }
+  table.ep-wide .season-head.current { box-shadow: inset 0 -3px 0 #ffcb05; }
+  table.ep-wide td.cell-ep { padding: 0; }
+  table.ep-wide td.cell-ep a { display: block; padding: 6px 6px; color: #1f7fd1; font-weight: 700;
+                                 text-decoration: none; font-variant-numeric: tabular-nums; }
+  table.ep-wide td.cell-ep a:hover { background: #eaf5fd; text-decoration: underline; }
+  table.ep-wide td.cell-ep.unaired a { color: #9db4c6; }
+  table.ep-wide td.cell-thumb { padding: 4px; }
+  table.ep-wide td.cell-thumb img { width: 100%; height: 54px; object-fit: cover; border-radius: 4px; display: block; }
+  table.ep-wide td.cell-thumb.empty { color: #c3d3e0; font-size: 0.64rem; }
+  table.ep-wide td.cell-sub { color: #2c3e50; font-weight: 600; line-height: 1.3; font-size: 0.68rem; }
+  table.ep-wide td.cell-sub.empty { color: #c3d3e0; }
+  table.ep-wide td.cell-official a { color: #1f7fd1; font-weight: 700; font-size: 0.86rem; text-decoration: none; }
+  table.ep-wide td.cell-official a:hover { text-decoration: underline; }
+  table.ep-wide td.cell-official.empty { color: #c3d3e0; }
+  table.ep-wide td.cell-date { color: #5b7085; font-size: 0.66rem; }
+  table.ep-wide td.cell-date.empty { color: #c3d3e0; }
+  table.ep-wide td.cell-region { color: #2c3e50; font-weight: 600; font-size: 0.68rem; }
+  table.ep-wide td.cell-region.empty { color: #c3d3e0; }
+  table.ep-wide td.cell-op, table.ep-wide td.cell-ed { color: #5b7085; font-size: 0.66rem; line-height: 1.3; }
+  table.ep-wide td.cell-op.empty, table.ep-wide td.cell-ed.empty { color: #c3d3e0; }
+  table.ep-wide .latest-col { box-shadow: inset 0 0 0 2px #ffcb05; }
+
+  /* ── 結合セル（シーズン見出し／OP／ED）の画面はみ出し抑制 ──
+     colspanで結合されたセルは、通常は左端寄せ表示（左端にマージンを空ける）。横スクロールで
+     セルの左枠が早見表の可視領域の左端（＝固定ラベル列の右端）にかかっている間は、位置決め
+     そのものをネイティブのposition:stickyに任せて画面に追従させる（JSで毎スクロール
+     transformを計算し直す方式だと、ブラウザのスクロール描画とJSの再計算タイミングが
+     ズレて一瞬右にずれて見える不具合があったため、JSでの位置計算はやめた）。
+     ラベルの内容が現在見えているセル幅より大きく収まらない場合は、はみ出し防止のため
+     JS(updateStickyLabels)で表示自体を消す（こちらは位置ではなく表示/非表示の二値なので
+     多少の遅延があっても目立たない）。 */
+  table.ep-wide th.merged-cell, table.ep-wide td.merged-cell { overflow: visible; text-align: left; }
+  table.ep-wide .cell-label { display: inline-block; white-space: nowrap; margin-left: 12px;
+                                position: sticky; left: 120px; /* 108(固定ラベル列幅) + 12(マージン) */ }
+  table.ep-wide td.cell-op .cell-label, table.ep-wide td.cell-ed .cell-label { color: #1f7fd1; text-decoration: none; }
+  table.ep-wide td.cell-op .cell-label:hover, table.ep-wide td.cell-ed .cell-label:hover { text-decoration: underline; }
+  table.ep-wide td.cell-op.empty .cell-label, table.ep-wide td.cell-ed.empty .cell-label { color: #c3d3e0; }
+</style>
+</head>
+<body>
+
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+</div>
+
+<div class="content">
+  <a class="back-link" href="favorites.html">← お気に入りへ戻る</a>
+
+  <div class="hero">
+    <div class="hero-thumb">
+      <img src="https://img2.animatetimes.com/2022/12/f341a68df00a26244c14f9390974dbeb69801a56b40a50_16437181_25cc98912c3972e2c38722cbc6a78cda737f0354.jpg" alt="ポケットモンスター" title="出典: アニメイトタイムズ">
+    </div>
+    <div class="hero-body">
+      <div class="hero-title">ポケットモンスター（テレビアニメ・新シリーズ 2023〜）</div>
+      <div class="hero-sub">通称「アニポケ」第8シリーズ／主人公：リコ＆ロイ</div>
+      <div class="hero-meta">
+        <span>テレビ東京系</span>
+        <span>2023年4月14日〜放送中</span>
+        <span>現在：第7章「ワンダーボヤージュ」編</span>
+      </div>
+      <div class="hero-note">
+        このページは「ポケットモンスター」テレビアニメシリーズのうち、2023年4月開始の最新シリーズ（リコ＆ロイ主人公編）を対象にした専用特設ページです。<br>
+        歴代シリーズ（無印〜サン＆ムーン等）は話数が膨大（全シリーズ通算1,300話超）なため、今回は現行シリーズのみを対象にしています。他の歴代シリーズを追加する場合は別途拡張予定です。
+      </div>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2>基本情報</h2>
+    <table class="info-table">
+      <tr><th>放送局</th><td>テレビ東京系列ほか</td></tr>
+      <tr><th>放送開始</th><td>2023年4月14日〜（放送中）</td></tr>
+      <tr><th>原作</th><td>『ポケットモンスター』シリーズ（ゲームフリーク／任天堂／クリーチャーズ）</td></tr>
+      <tr><th>アニメーション制作</th><td>OLM（第1〜45話：OLM TEAM KATO／第46話〜：OLM TEAM KUMEMURA）</td></tr>
+      <tr><th>監督</th><td>でんさおり（第1〜136話）／中田誠（第137話〜、「ワンダーボヤージュ」編より）</td></tr>
+      <tr><th>シリーズ構成</th><td>佐藤大</td></tr>
+      <tr><th>主人公（CV）</th><td>リコ：鈴木みのり／ロイ：寺崎裕香</td></tr>
+    </table>
+    <div class="source-note">出典: <a href="https://ja.wikipedia.org/wiki/%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC_(2023%E5%B9%B4%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%A1)" target="_blank" rel="noopener noreferrer">日本語Wikipedia「ポケットモンスター (2023年のアニメ)」</a></div>
+  </section>
+
+  <section class="block">
+    <h2>作品概要</h2>
+    <div class="prose">本作はポケモンアニメシリーズの第8シリーズにあたり、「冒険を通じて大事な何かを『見つける』物語」をテーマに、登場人物・世界観を全面リニューアルした作品。新主人公のリコとロイが、飛行船ブレイブアサギ号を拠点とする「ライジングボルテッカーズ」のメンバーとして、ポケモンにまつわる様々な謎を解き明かす冒険に旅立つ。ゲーム『ポケットモンスター スカーレット・バイオレット』の舞台や要素（テラスタル、パルデア地方等）も随所に盛り込まれている。</div>
+    <div class="source-note">出典: <a href="https://ja.wikipedia.org/wiki/%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC_(2023%E5%B9%B4%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%A1)" target="_blank" rel="noopener noreferrer">日本語Wikipedia「ポケットモンスター (2023年のアニメ)」</a></div>
+  </section>
+
+  <section class="block">
+    <h2>🆕 最新話</h2>
+    <div class="latest-callout" id="latest-callout"><!-- JSで描画 --></div>
+  </section>
+
+  <section class="block">
+    <h2>📜 年代記</h2>
+    <div class="latest-callout" id="chronicle-callout"><!-- JSで描画 --></div>
+  </section>
+
+  <section class="block">
+    <h2>📚 公式情報まとめ</h2>
+    <div class="latest-callout" id="official-info-callout"><!-- JSで描画 --></div>
+  </section>
+
+  <section class="block">
+    <h2>各話早見表（第1章〜第7章「ワンダーボヤージュ」）</h2>
+    <div class="toggle-utils">
+      <button id="btn-all-on" type="button">全シーズン表示</button>
+      <button id="btn-latest-only" type="button">最新章のみ表示</button>
+      <button id="btn-scroll-latest" type="button">最新話へスクロール</button>
+    </div>
+    <div class="season-controls-row">
+      <div class="season-btn-group" id="season-btn-group"><!-- JS: 1〜7の連結ボタン --></div>
+      <span id="season-sp-toggle-wrap"><!-- JS: 特別編トグル --></span>
+      <button class="info-icon-btn" id="op-ed-info-btn" type="button" title="OP/EDの切り替わり・放送間隔について">i</button>
+      <button class="legend-toggle-btn" id="legend-toggle-btn" type="button">▼ シーズン対応表を表示</button>
+    </div>
+    <div class="info-alert" id="op-ed-info-alert"><!-- JS --></div>
+    <div class="season-legend-wrap" id="season-legend" hidden><!-- JS: 番号↔シーズン名 対応表（7行） --></div>
+    <div class="ep-table-wrap" id="ep-table-wrap">
+      <table class="ep-wide" id="ep-table"><!-- JSで描画 --></table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>キャラクター紹介</h2>
+    <div class="chara-grid">
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara01-3.png" alt="リコ">
+        <div class="chara-name">リコ</div>
+        <div class="chara-cv">CV: 鈴木みのり</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara02-4.png" alt="ロイ">
+        <div class="chara-name">ロイ</div>
+        <div class="chara-cv">CV: 寺崎裕香</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara07-5.png" alt="ドット">
+        <div class="chara-name">ドット</div>
+        <div class="chara-cv">CV: 青山吉能</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara24.png" alt="ウルト">
+        <div class="chara-name">ウルト</div>
+        <div class="chara-cv">CV: 藤原夏海</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara28-3.png" alt="ナヴィ">
+        <div class="chara-name">ナヴィ</div>
+        <div class="chara-cv">CV: 芹澤優</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara25.png" alt="フリード">
+        <div class="chara-name">フリード</div>
+        <div class="chara-cv">CV: 八代拓</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara08-2.png" alt="オリオ">
+        <div class="chara-name">オリオ</div>
+        <div class="chara-cv">CV: 佐倉綾音</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara09-2.png" alt="マードック">
+        <div class="chara-name">マードック</div>
+        <div class="chara-cv">CV: 三宅健太</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara10-2.png" alt="モリー">
+        <div class="chara-name">モリー</div>
+        <div class="chara-cv">CV: 真堂圭</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara11-3.png" alt="ランドウ">
+        <div class="chara-name">ランドウ</div>
+        <div class="chara-cv">CV: 塾一久</div>
+      </div>
+      <div class="chara-card">
+        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara23.png" alt="キャプテンピカチュウ">
+        <div class="chara-name">キャプテンピカチュウ</div>
+        <div class="chara-cv">CV: 大谷育江</div>
+      </div>
+    </div>
+    <div class="source-note">出典: <a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/chara/" target="_blank" rel="noopener noreferrer">テレビ東京公式サイト キャラクター紹介</a>（画像）／<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/staff/" target="_blank" rel="noopener noreferrer">同 スタッフ・キャスト</a>（CV）</div>
+  </section>
+
+  <div class="sources-block">
+    <h3>情報源・データの範囲について</h3>
+    <!-- [編集者向けメモ] データ最終確認日等の鮮度情報はここには表示せず、shared/pokemon-anime-data.js
+         の DATA_META と anime-launcher/pokemon-maintenance.md を参照してください。 -->
+    <ul>
+      <li><b>基本情報・作品概要・章（シーズン）区分</b>：<a href="https://ja.wikipedia.org/wiki/%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC_(2023%E5%B9%B4%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%A1)" target="_blank" rel="noopener noreferrer">日本語Wikipedia「ポケットモンスター (2023年のアニメ)」</a></li>
+      <li><b>OP/ED（曲名・アーティスト・使用話数範囲）</b>：上記Wikipediaに加え、<a href="https://wiki.pokemonwiki.com/wiki/%E3%82%AA%E3%83%BC%E3%83%97%E3%83%8B%E3%83%B3%E3%82%B0%E3%83%86%E3%83%BC%E3%83%9E%E6%9B%B2%E4%B8%80%E8%A6%A7" target="_blank" rel="noopener noreferrer">ポケモンWiki「オープニングテーマ曲一覧」</a>・<a href="https://wiki.pokemonwiki.com/wiki/%E3%82%A8%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%86%E3%83%BC%E3%83%9E%E6%9B%B2%E4%B8%80%E8%A6%A7" target="_blank" rel="noopener noreferrer">同「エンディングテーマ曲一覧」</a></li>
+      <li><b>各話サブタイトル・放送日・あらすじ・公式リンク（行の「〇」）</b>：<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/episodes/" target="_blank" rel="noopener noreferrer">テレビ東京公式サイト エピソード一覧</a>を全16ページ（<code>index.html</code>〜<code>index_16.html</code>）スクレイピングして取得（2026-09-14）。<b>第1〜149話（放送済み全話）を収録済み</b>。第150話は本稿執筆時点（2026年9月）でまだ放送されていないため公式データがなく、<a href="https://anipoke-ricoroi-wiki.jp/episodes/" target="_blank" rel="noopener noreferrer">アニポケ リコロイWiki</a>由来のサブタイトルのみ収録。公式リンクのアンカー番号はCMSの内部エントリIDと見られ、話数から計算する式は無いため、全ページを実際にスクレイピングして一つずつ取得している。</li>
+      <li><b>サムネイル画像（既定表示）</b>：上記と同じテレビ東京公式サイトの話数別画像（<code>/images/episodes/{話数}_1.jpg</code>。第1〜9話は2桁ゼロ埋め、例：<code>01_1.jpg</code>）。第150話は本稿執筆時点でまだ放送されていないため未掲載。</li>
+      <li><b>ヒーロー画像（作品全体のサムネイル）</b>：<a href="https://www.animatetimes.com/" target="_blank" rel="noopener noreferrer">アニメイトタイムズ</a></li>
+      <li><b>キャラクター画像・CV</b>：<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/chara/" target="_blank" rel="noopener noreferrer">テレビ東京公式サイト キャラクター紹介</a>・<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/staff/" target="_blank" rel="noopener noreferrer">同 スタッフ・キャスト</a></li>
+      <li><b>舞台（地方）</b>：現時点ではどの話数も未収録です。あらすじだけでは舞台となる地方が判明しないことも多いため、内容を確認しながら今後順次追加していく予定です。</li>
+      <li>自分用メモ（各話詳細ページの画像・テキスト）はこのブラウザのlocalStorageにのみ保存され、上記の出典とは無関係の個人データです。</li>
+    </ul>
+  </div>
+
+</div>
+
+<script src="../shared/pokemon-anime-data.js"></script>
+<script src="../shared/pokemon-episode-memo.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA = window.POKEMON_ANIME_DATA;
+  var SEASONS = DATA.SEASONS;
+  var EPISODES = DATA.EPISODES;
+  var LATEST_AIRED = DATA.LATEST_AIRED;
+  var TOTAL_EP = DATA.TOTAL_EP;
+  var seasonOf = DATA.seasonOf;
+  var opOf = DATA.opOf;
+  var edOf = DATA.edOf;
+  var Memo = window.PokemonEpisodeMemo;
+
+  function el(tag, className, html) {
+    var e = document.createElement(tag);
+    if (className) e.className = className;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function episodeUrl(ep) {
+    return "pokemon-episode.html?ep=" + ep;
+  }
+
+  // テレビ東京公式サイトのエピソード一覧ページの画像URLパターン。第10〜149話は確認済み
+  // （第1〜9話は掲載終了、第150話は放送前のため404）。自分用メモで画像を登録していない
+  // 話数のデフォルトサムネイルとして使う。存在しない場合はimg.onerrorで空欄にフォールバックする。
+  function officialThumbnailUrl(ep) {
+    // 第1〜9話は2桁ゼロ埋め（01_1.jpg等）でないと閲覧できない。第10話以降は素の数字のまま。
+    var epStr = ep < 10 ? ("0" + ep) : String(ep);
+    return "https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/episodes/" + epStr + "_1.jpg";
+  }
+
+  function officialEpisodeUrl(data) {
+    if (!data || !data.official) return null;
+    return "https://www.tv-tokyo.co.jp/anime/pocketmonster2023/episodes/" + data.official.page + "#" + data.official.anchor;
+  }
+
+  // ── 最新話コールアウト（詳細はpokemon-episode.htmlへ） ─────
+  function renderLatestCallout() {
+    var box = document.getElementById("latest-callout");
+    var epData = EPISODES[LATEST_AIRED] || {};
+    var season = seasonOf(LATEST_AIRED);
+
+    var html = "";
+    html += '<div>';
+    html += '<div class="tag">最新放送話（' + (epData.date || "") + '）</div>';
+    html += '<div class="ep-title">第' + LATEST_AIRED + '話「' + (epData.subtitle || "") + '」</div>';
+    html += '<div class="ep-sub">章：' + (season ? season.label : "") + '</div>';
+    html += '</div>';
+    html += '<a class="go-btn" href="' + episodeUrl(LATEST_AIRED) + '" target="_blank" rel="noopener noreferrer">あらすじを見る →</a>';
+    box.innerHTML = html;
+  }
+
+  // ── 年代記コールアウト（最新話コールアウトと同じ記載粒度に統一） ─────
+  // 以前はシーズン対応表の操作列に置いた小さなリンクボタンだったが、年代記ページが
+  // 試作段階を終えて全話収録・シーズン切替対応の本運用ページになったのに合わせて、
+  // 最新話コールアウトと同格の紹介ブロックに格上げした。
+  function renderChronicleCallout() {
+    var box = document.getElementById("chronicle-callout");
+    var html = "";
+    html += '<div>';
+    html += '<div class="tag">全' + LATEST_AIRED + '話収録・シーズン別タグ付き</div>';
+    html += '<div class="ep-title">年代記ページ</div>';
+    html += '<div class="ep-sub">公式サイトの話数紹介要素（class="entry"）をCSSごと再現。各話の先頭にシーズンタグを表示し、上部のボタンでシーズン単位の表示切替もできます。</div>';
+    html += '</div>';
+    html += '<a class="go-btn" href="pokemon-chronicle.html" target="_blank" rel="noopener noreferrer">年代記を見る →</a>';
+    box.innerHTML = html;
+  }
+
+  // ── 公式情報まとめコールアウト（年代記コールアウトと同じ記載粒度に統一） ─────
+  // OP/EDの切り替わりが一致しない箇所（op-ed-info-alert参照）等、「何が起きたか」だけでなく
+  // 「なぜそうなっているか」の製作者インタビュー・公式発表・考察を集約する保管庫ページへの導線。
+  function renderOfficialInfoCallout() {
+    var box = document.getElementById("official-info-callout");
+    var html = "";
+    html += '<div>';
+    html += '<div class="tag">製作者インタビュー・公式発表・考察を集約</div>';
+    html += '<div class="ep-title">公式情報まとめページ</div>';
+    html += '<div class="ep-sub">OP/EDの切り替わりが一致しない箇所（第1・2話／第89〜91話／特別編「エピソード：メガシンカ」）について、なぜそうなっているかの考察と出典をまとめています。今後見つかった話題も随時追記予定です。</div>';
+    html += '</div>';
+    html += '<a class="go-btn" href="pokemon-official-info.html" target="_blank" rel="noopener noreferrer">公式情報まとめを見る →</a>';
+    box.innerHTML = html;
+  }
+
+  // ── 結合セル（シーズン見出し／OP／ED）の画面はみ出し抑制 ─────
+  // colspanで結合されたセルは横に長く、横スクロールで左側が画面外に出ると
+  // ラベルの文字も画面外に出て読めなくなる。これを防ぐため、セルの左枠が早見表の
+  // 可視領域の左端（＝話数/シーズン/OP/ED用の固定ラベル列のすぐ右）にかかっている間は
+  // CSSのposition:sticky（.cell-label）でラベルをその位置に追従させ続け、ラベルの内容が
+  // 現在見えているセル幅より大きく収まらない場合はJSで表示自体を消す。
+  var stickyCells = []; // renderEpTable()内で colspan>1 のth/tdを登録する
+  var ROW_LABEL_WIDTH = 108; // .row-label の width と合わせる
+  var EP_COL_WIDTH = 104; // col.ep-col の width と合わせる
+  var LABEL_MARGIN = 12; // .cell-label の margin-left と合わせる（左端に文字がくっつかないように）
+
+  // ラベルの「位置決め」自体はCSSのposition:sticky（.cell-label、left:120px）に任せている。
+  // ここでは、そのstickyな状態でラベルの内容が現在見えているセル幅より大きく収まらない
+  // 場合に、隣のセルへのはみ出しを防ぐため表示/非表示だけを切り替える。位置ではなく
+  // 表示/非表示の二値なので、多少タイミングがズレても視覚的にはほぼ気付かれない
+  // （以前はtransformで位置もJS計算していたが、ブラウザのネイティブなスクロール描画と
+  // JSの再計算タイミングがズレて一瞬右にずれて見える不具合があったため、位置決めは
+  // ネイティブのposition:stickyに委ね、JSはこの非表示判定だけに絞った）。
+  function updateStickyLabels() {
+    var wrap = document.getElementById("ep-table-wrap");
+    if (!wrap || !stickyCells.length) return;
+    var wrapRect = wrap.getBoundingClientRect();
+    var anchorX = wrapRect.left + ROW_LABEL_WIDTH + LABEL_MARGIN; // .cell-labelのsticky left(120px)の実座標
+    var rightBound = wrapRect.right;
+
+    stickyCells.forEach(function (cell) {
+      var label = cell.querySelector(".cell-label");
+      if (!label) return;
+
+      var cellRect = cell.getBoundingClientRect();
+      var straddling = cellRect.left <= anchorX && cellRect.right >= anchorX;
+      if (!straddling) {
+        label.style.visibility = "visible"; // セルの左枠が画面内にあるので通常表示でよい
+        return;
+      }
+
+      var visibleWidth = Math.min(cellRect.right, rightBound) - anchorX;
+      var labelWidth = label.getBoundingClientRect().width;
+      label.style.visibility = labelWidth > visibleWidth ? "hidden" : "visible";
+    });
+  }
+
+  // スクロール中の非表示判定はsetTimeoutで間引く。位置決めはCSS側で完結しているため、
+  // ここは高頻度・高精度に追従させる必要はない。
+  var stickyScrollScheduled = false;
+  function onStickyScroll() {
+    if (stickyScrollScheduled) return;
+    stickyScrollScheduled = true;
+    setTimeout(function () {
+      stickyScrollScheduled = false;
+      updateStickyLabels();
+    }, 32);
+  }
+
+  // ── シーズン切替（ボタングループ＋7行の対応表） ──────────────
+  var hiddenSeasons = {}; // key -> true で非表示
+
+  // シーズンを代表するOP/EDを選ぶ。「シーズン最終話の値」だと、第4章のように最終話付近が
+  // ちょうど情報未確認の空白区間（第89話）に重なる場合に空欄になってしまう不具合があったため、
+  // シーズンの話数範囲と最も重なりが大きい区間を代表として選ぶ方式にしている。
+  function representativeInTimeline(timeline, season) {
+    var best = null, bestOverlap = 0;
+    timeline.forEach(function (entry) {
+      var overlap = Math.min(entry.range[1], season.range[1]) - Math.max(entry.range[0], season.range[0]) + 1;
+      if (overlap > bestOverlap) {
+        bestOverlap = overlap;
+        best = entry;
+      }
+    });
+    return best;
+  }
+  function representativeOp(season) { return representativeInTimeline(DATA.OP_TIMELINE, season); }
+  function representativeEd(season) { return representativeInTimeline(DATA.ED_TIMELINE, season); }
+
+  function songNode(entry) {
+    if (!entry || !entry.title) return document.createTextNode("―");
+    var wrap = document.createElement("span");
+    var titleEl = entry.youtubeUrl ? document.createElement("a") : document.createElement("span");
+    if (entry.youtubeUrl) {
+      titleEl.href = entry.youtubeUrl;
+      titleEl.target = "_blank";
+      titleEl.rel = "noopener noreferrer";
+    }
+    titleEl.textContent = entry.title;
+    wrap.appendChild(titleEl);
+    if (entry.artist) {
+      wrap.appendChild(document.createElement("br"));
+      wrap.appendChild(el("span", "legend-artist", entry.artist));
+    }
+    return wrap;
+  }
+
+  // シーズン切替ボタン本体（Bootstrap 5.3のボタングループを参考にした連結ボタン）。
+  // 1〜7が独立したトグルボタンとして機能する。特別編（章番号なし）は別ボタンで用意する。
+  function renderSeasonButtonGroup() {
+    var group = document.getElementById("season-btn-group");
+    group.innerHTML = "";
+    SEASONS.filter(function (s) { return !s.special; }).forEach(function (s) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "on";
+      btn.style.setProperty("--sc", s.color);
+      btn.dataset.key = s.key;
+      btn.textContent = s.no;
+      btn.title = "第" + s.no + "章「" + s.label + "」の表示/非表示";
+      btn.addEventListener("click", function () {
+        hiddenSeasons[s.key] = !hiddenSeasons[s.key];
+        applyToggleState();
+      });
+      group.appendChild(btn);
+    });
+
+    var spWrap = document.getElementById("season-sp-toggle-wrap");
+    spWrap.innerHTML = "";
+    var sp = SEASONS.filter(function (s) { return s.special; })[0];
+    if (sp) {
+      var spBtn = document.createElement("button");
+      spBtn.type = "button";
+      spBtn.className = "sp-toggle-btn on";
+      spBtn.dataset.key = sp.key;
+      spBtn.textContent = "特別編";
+      spBtn.title = "特別編「" + sp.label + "」（第" + sp.range[0] + "〜" + sp.range[1] + "話）の表示/非表示";
+      spBtn.addEventListener("click", function () {
+        hiddenSeasons[sp.key] = !hiddenSeasons[sp.key];
+        applyToggleState();
+      });
+      spWrap.appendChild(spBtn);
+    }
+  }
+
+  // シーズン番号↔シーズン名の対応表（7行）。デフォルトは折りたたみ、ボタンで開閉する。
+  function renderSeasonLegend() {
+    var container = document.getElementById("season-legend");
+    container.innerHTML = "";
+
+    var table = document.createElement("table");
+    table.className = "season-legend";
+    var thead = document.createElement("tr");
+    ["番号", "シーズン（章）名", "話数", "OP", "ED"].forEach(function (h) {
+      thead.appendChild(el("th", null, h));
+    });
+    table.appendChild(thead);
+
+    SEASONS.filter(function (s) { return !s.special; }).forEach(function (s) {
+      var tr = document.createElement("tr");
+      if (s.current) tr.className = "current-row";
+
+      var tdNo = document.createElement("td");
+      var badge = el("span", "legend-no-badge", String(s.no));
+      badge.style.setProperty("--sc", s.color);
+      tdNo.appendChild(badge);
+      tr.appendChild(tdNo);
+
+      tr.appendChild(el("td", "legend-name", s.label));
+      tr.appendChild(el("td", "legend-range", "第" + s.range[0] + "〜" + s.range[1] + "話"));
+
+      var tdOp = el("td", "legend-op");
+      tdOp.appendChild(songNode(representativeOp(s)));
+      tr.appendChild(tdOp);
+
+      var tdEd = el("td", "legend-ed");
+      tdEd.appendChild(songNode(representativeEd(s)));
+      tr.appendChild(tdEd);
+
+      table.appendChild(tr);
+    });
+    container.appendChild(table);
+  }
+
+  // OP/EDの切り替わりのズレについて、infoボタンで開閉する「現在の調査状況」アラート。
+  function renderOpEdInfoAlert() {
+    var box = document.getElementById("op-ed-info-alert");
+    box.innerHTML =
+      '<div class="alert-badge">🔍 現在の調査状況（今後の追加確認で内容が変わる可能性があります）</div>' +
+      '<a href="https://ja.wikipedia.org/wiki/%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC_(2023%E5%B9%B4%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%A1)" target="_blank" rel="noopener noreferrer">日本語Wikipedia「ポケットモンスター (2023年のアニメ)」</a>および' +
+      '<a href="https://wiki.pokemonwiki.com/wiki/%E3%82%AA%E3%83%BC%E3%83%97%E3%83%8B%E3%83%B3%E3%82%B0%E3%83%86%E3%83%BC%E3%83%9E%E6%9B%B2%E4%B8%80%E8%A6%A7" target="_blank" rel="noopener noreferrer">ポケモンWiki</a>の' +
+      'OP/ED一覧ページを突き合わせて確認した限り、シーズン（章）の区切りとOP/EDの切り替わりが一致しない箇所が複数あります。' +
+      '<ol>' +
+      '<li>第1話・第2話：通常フォーマットのOPが存在しません。正式なOP「ドキメキダイアリー」は第3話からで、第2話はEDとして同曲を先行使用しています（第1話はOP/ED双方とも情報が確認できず空欄）。</li>' +
+      '<li>第89話〜第91話（第4章→第5章の境界、劇中で1年間の時間経過がある区切り）：ED「ピッカーン！」は第88話で終了し、OP「Only One Story」は第89話まで使用と切り替わりが1話ズレています。新OP「GET BACK」は第92話からで、第91話はEDとして同曲を先行使用。第89話・第90話のED、第90話・第91話のOPは情報源で確認できず空欄にしています。</li>' +
+      '<li>特別編「エピソード：メガシンカ」（第112〜114話）：専用のOPは確認できませんでした。</li>' +
+      '</ol>' +
+      '他にも未確認の細かいズレが残っている可能性があります。早見表のOP/ED行は「章」単位ではなく、このズレを反映した独立した区間で表示しています。' +
+      '<hr style="margin:14px 0;border:none;border-top:1px solid #f0d78c;">' +
+      '<div class="alert-badge">📅 放送間隔が毎週（7日）でない話数（25件）</div>' +
+      '<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/episodes/" target="_blank" rel="noopener noreferrer">テレビ東京公式サイト</a>の放送日を全話分突き合わせたところ、次の話数間で7日間隔以外の空きがありました。' +
+      '<ul>' +
+      '<li><b>同日2話同時放送</b>：第1話→第2話、第90話→第91話（前後編のため実質0日）</li>' +
+      '<li><b>2週間空き（14件）</b>：第40→41話、第45→46話（第3章開始）、第47→48話、第58→59話、第59→60話、第67→68話（第4章開始）、第96→97話、第102→103話、第103→104話、第123→124話、第141→142話、第142→143話、第143→144話、第144→145話</li>' +
+      '<li><b>3週間空き（9件）</b>：第12→13話、第23→24話、第34→35話（年末年始）、第78→79話（年末年始）、第89→90話（第5章開始・劇中1年経過）、第111→112話（特別編開始）、第122→123話（年末年始）、第132→133話、第136→137話（第7章開始）</li>' +
+      '</ul>' +
+      '3週間空きの9件のうち5件は章の変わり目（第3・4・5・7章、特別編の開始）、4件は年末年始と重なっています。逆に、章の変わり目でも第2章・第6章の開始時は休止が入っていません。' +
+      '<hr style="margin:14px 0;border:none;border-top:1px solid #f0d78c;">' +
+      '<div class="alert-badge">🗂️ 早見表の記号・優先表示について</div>' +
+      '<ul>' +
+      '<li><b>※</b>：まだ放送されていない予告段階の話数を示します。</li>' +
+      '<li><b>サムネ行</b>：テレビ東京公式サイトの画像を既定表示しますが、自分用メモ①に画像を登録した話数はそちらを優先表示します。</li>' +
+      '<li><b>公式行の「〇」</b>：テレビ東京公式サイトの該当話ページ（アンカー付き）を新しいタブで開きます。</li>' +
+      '</ul>';
+  }
+
+  function applyToggleState() {
+    SEASONS.forEach(function (s) {
+      var hidden = !!hiddenSeasons[s.key];
+      var groupBtn = document.querySelector('.season-btn-group button[data-key="' + s.key + '"]');
+      if (groupBtn) groupBtn.classList.toggle("on", !hidden);
+      var spBtn = document.querySelector('.sp-toggle-btn[data-key="' + s.key + '"]');
+      if (spBtn) spBtn.classList.toggle("on", !hidden);
+    });
+    // 非表示のシーズンをCSSで隠すだけ（col側をvisibility:collapse等にする）だと、
+    // table-layout:fixed＋大量の非表示colとcolspanセルが混在した際にセル幅が0に
+    // 潰れて表全体が空白表示になる不具合が実機で確認できたため、非表示話数の列は
+    // そもそもDOMに含めずテーブルを丸ごと再構築する方式にしている。
+    renderEpTable();
+    updateStickyLabels();
+  }
+
+  // 指定話数が現在表示中（その話数の属するシーズンが非表示になっていない）かどうか
+  function isEpVisible(ep) {
+    var s = seasonOf(ep);
+    return !(s && hiddenSeasons[s.key]);
+  }
+
+  // [start, end]の範囲を、現在表示中の話数だけの連続した部分区間に分割する。
+  // OP/EDの区間（シーズン境界と必ずしも一致しない）がシーズン非表示によって
+  // 部分的に隠れるケース（第89〜90話の空白区間等）に対応するために使う。
+  function splitVisibleRanges(start, end) {
+    var ranges = [];
+    var curStart = null;
+    for (var ep = start; ep <= end; ep++) {
+      if (isEpVisible(ep)) {
+        if (curStart === null) curStart = ep;
+      } else if (curStart !== null) {
+        ranges.push([curStart, ep - 1]);
+        curStart = null;
+      }
+    }
+    if (curStart !== null) ranges.push([curStart, end]);
+    return ranges;
+  }
+
+  // ── 話数早見表（横並び） ─────────────────────────────
+  // hiddenSeasonsで非表示にした話数はDOMに一切生成しない（colのvisibility:collapse等で
+  // 隠す方式は、colspanセルと大量の非表示colが混在するとセル幅が0になる不具合が実機で
+  // 確認できたため採用していない）。トグルのたびに丸ごと再構築するが、最大でも150列なので
+  // 十分高速。
+  function renderEpTable() {
+    var table = document.getElementById("ep-table");
+    table.innerHTML = "";
+
+    var visibleEps = [];
+    for (var ep = 1; ep <= TOTAL_EP; ep++) {
+      if (isEpVisible(ep)) visibleEps.push(ep);
+    }
+
+    // table自体に幅を明示しないと、table-layout:fixedでもcolのwidth指定が
+    // 行内容（colspan結合セルのテキスト量）に応じて不揃いに再配分されてしまうため、
+    // colの合計幅どおりになるよう明示的に指定する（表示中の話数分のみ）。
+    table.style.width = (ROW_LABEL_WIDTH + visibleEps.length * EP_COL_WIDTH) + "px";
+
+    var colgroup = document.createElement("colgroup");
+    colgroup.appendChild(el("col", null)); // 行ラベル列
+    visibleEps.forEach(function (e) { colgroup.appendChild(el("col", "ep-col")); });
+    table.appendChild(colgroup);
+
+    // 画面はみ出し抑制の対象になる結合セル（colspan>1）を集めておく
+    stickyCells = [];
+
+    // thead: シーズン見出し行（章ごとにcolspanでまとめて表示。非表示のシーズンは丸ごと省く）
+    var thead = document.createElement("thead");
+    var seasonRow = document.createElement("tr");
+    seasonRow.appendChild(el("th", "row-label", "シーズン（章）"));
+    SEASONS.forEach(function (s) {
+      if (hiddenSeasons[s.key]) return;
+      var span = s.range[1] - s.range[0] + 1;
+      var th = document.createElement("th");
+      th.className = "season-head merged-cell" + (s.current ? " current" : "");
+      th.colSpan = span;
+      th.style.setProperty("--sc", s.color);
+      var noLabel = s.special ? "特別編" : ("第" + s.no + "章");
+      var label = el("span", "cell-label", noLabel + " " + s.label);
+      label.title = s.label + "（" + s.period + "／第" + s.range[0] + "〜" + s.range[1] + "話）";
+      th.appendChild(label);
+      seasonRow.appendChild(th);
+      stickyCells.push(th);
+    });
+    thead.appendChild(seasonRow);
+    table.appendChild(thead);
+
+    var tbody = document.createElement("tbody");
+
+    function bodyRow(labelText, cellFn) {
+      var tr = document.createElement("tr");
+      tr.appendChild(el("th", "row-label", labelText));
+      visibleEps.forEach(function (e) {
+        var td = cellFn(e, seasonOf(e));
+        td.dataset.ep = e;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+      return tr;
+    }
+
+    // OP/EDのように「話数ではなく区間単位」で値が決まる行向け。SEASONSではなく
+    // OP_TIMELINE/ED_TIMELINEを渡す（シーズン境界と必ずしも一致しないため独立させている）。
+    // 区間がシーズン非表示で部分的に隠れる場合は、表示中の部分区間ごとにセルを分けて描画する。
+    function bodyRowByTimeline(labelText, className, timeline) {
+      var tr = document.createElement("tr");
+      tr.appendChild(el("th", "row-label", labelText));
+      timeline.forEach(function (entry) {
+        splitVisibleRanges(entry.range[0], entry.range[1]).forEach(function (range) {
+          var span = range[1] - range[0] + 1;
+          var td = document.createElement("td");
+          td.className = className + " merged-cell";
+          td.colSpan = span;
+          var hasTitle = !!entry.title;
+          if (!hasTitle) td.classList.add("empty");
+          var labelEl = entry.youtubeUrl ? document.createElement("a") : document.createElement("span");
+          labelEl.className = "cell-label";
+          if (entry.youtubeUrl) {
+            labelEl.href = entry.youtubeUrl;
+            labelEl.target = "_blank";
+            labelEl.rel = "noopener noreferrer";
+          }
+          labelEl.textContent = hasTitle ? entry.title : "―";
+          labelEl.title = hasTitle
+            ? entry.title + (entry.artist ? "／" + entry.artist : "") + (entry.youtubeUrl ? "（クリックでYouTubeへ）" : "")
+            : "情報未確認（第" + entry.range[0] + "〜" + entry.range[1] + "話）";
+          td.appendChild(labelEl);
+          tr.appendChild(td);
+          stickyCells.push(td);
+        });
+      });
+      tbody.appendChild(tr);
+      return tr;
+    }
+
+    // 行1: 話数（詳細ページへのリンク。新規タブで開く）
+    bodyRow("話数", function (ep, s) {
+      var isFuture = ep > LATEST_AIRED;
+      var td = el("td", "cell-ep" + (isFuture ? " unaired" : ""));
+      var a = document.createElement("a");
+      a.href = episodeUrl(ep);
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = "第" + ep + "話" + (isFuture ? "※" : "");
+      td.appendChild(a);
+      if (ep === LATEST_AIRED) td.classList.add("latest-col");
+      return td;
+    });
+
+    // 行2: サムネ（自分用メモ①の画像があればそれを、無ければテレビ東京公式サイトの
+    // エピソード画像をデフォルト表示。どちらも無い/読み込めない場合は空欄）
+    bodyRow("サムネ", function (ep, s) {
+      var td = el("td", "cell-thumb");
+      if (ep === LATEST_AIRED) td.classList.add("latest-col");
+      var custom = Memo ? Memo.getThumbnail(ep) : null;
+      var img = document.createElement("img");
+      img.src = custom || officialThumbnailUrl(ep);
+      img.alt = "第" + ep + "話のサムネイル";
+      // loading="lazy"は、横スクロールするテーブル内の画像だとブラウザのIntersectionObserverが
+      // 正しく発火せず、スクロールしても永久に読み込まれないことが実機で確認できたため使わない
+      // （table-layout:fixed内のposition:stickyやoverflow構成との組み合わせが影響している可能性）。
+      img.onerror = function () {
+        td.classList.add("empty");
+        td.innerHTML = "";
+        td.textContent = "―";
+      };
+      td.appendChild(img);
+      return td;
+    });
+
+    // 行3: サブタイトル
+    bodyRow("サブタイトル", function (ep, s) {
+      var data = EPISODES[ep];
+      var text = data && data.subtitle ? data.subtitle : "";
+      var td = el("td", "cell-sub" + (text ? "" : " empty"), text || "―");
+      if (ep === LATEST_AIRED) td.classList.add("latest-col");
+      if (text) td.title = "第" + ep + "話「" + text + "」";
+      return td;
+    });
+
+    // 行4: 放送日
+    bodyRow("放送日", function (ep, s) {
+      var data = EPISODES[ep];
+      var text = data && data.date ? data.date : "";
+      var td = el("td", "cell-date" + (text ? "" : " empty"), text || "―");
+      if (ep === LATEST_AIRED) td.classList.add("latest-col");
+      return td;
+    });
+
+    // 行5: 舞台（地方）。話数だけでは判明しないことも多いため、現時点ではデータ未収録
+    // （EPISODES[ep].regionが今後入力される想定の空の列）。
+    bodyRow("舞台", function (ep, s) {
+      var data = EPISODES[ep];
+      var text = data && data.region ? data.region : "";
+      var td = el("td", "cell-region" + (text ? "" : " empty"), text || "―");
+      if (ep === LATEST_AIRED) td.classList.add("latest-col");
+      return td;
+    });
+
+    // 行6: 公式（テレビ東京公式サイトの該当話ページへのアンカー付きリンク。〇がリンク文字）
+    bodyRow("公式", function (ep, s) {
+      var data = EPISODES[ep];
+      var url = officialEpisodeUrl(data);
+      var td = el("td", "cell-official" + (url ? "" : " empty"));
+      if (url) {
+        var a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = "〇";
+        a.title = "公式サイトの第" + ep + "話ページへ";
+        td.appendChild(a);
+      } else {
+        td.textContent = "―";
+      }
+      return td;
+    });
+
+    // 行7: OP（区間単位でセルを結合し、公式YouTubeへのリンクを付与）
+    bodyRowByTimeline("OP", "cell-op", DATA.OP_TIMELINE);
+
+    // 行8: ED（区間単位でセルを結合し、公式YouTubeへのリンクを付与）
+    bodyRowByTimeline("ED", "cell-ed", DATA.ED_TIMELINE);
+
+    table.appendChild(tbody);
+  }
+
+  // ── 初期化 ──────────────────────────────────────────
+  function init() {
+    renderLatestCallout();
+    renderChronicleCallout();
+    renderOfficialInfoCallout();
+    renderSeasonButtonGroup();
+    renderSeasonLegend();
+    renderOpEdInfoAlert();
+    renderEpTable();
+
+    document.getElementById("btn-all-on").addEventListener("click", function () {
+      hiddenSeasons = {};
+      applyToggleState();
+    });
+    document.getElementById("btn-latest-only").addEventListener("click", function () {
+      hiddenSeasons = {};
+      SEASONS.forEach(function (s) { if (!s.current) hiddenSeasons[s.key] = true; });
+      applyToggleState();
+    });
+    document.getElementById("btn-scroll-latest").addEventListener("click", scrollToLatest);
+
+    var infoBtn = document.getElementById("op-ed-info-btn");
+    var infoAlert = document.getElementById("op-ed-info-alert");
+    infoBtn.addEventListener("click", function () {
+      infoAlert.classList.toggle("show");
+    });
+
+    var legendToggleBtn = document.getElementById("legend-toggle-btn");
+    var legendWrap = document.getElementById("season-legend");
+    legendToggleBtn.addEventListener("click", function () {
+      var willShow = legendWrap.hidden;
+      legendWrap.hidden = !willShow;
+      legendToggleBtn.textContent = willShow ? "▲ シーズン対応表を隠す" : "▼ シーズン対応表を表示";
+    });
+
+    var wrap = document.getElementById("ep-table-wrap");
+    wrap.addEventListener("scroll", onStickyScroll);
+    window.addEventListener("resize", onStickyScroll);
+
+    // 初期表示位置を最新話に合わせる（右端＝最新話付近へスクロール）
+    scrollToLatest();
+    updateStickyLabels();
+  }
+
+  function scrollToLatest() {
+    var wrap = document.getElementById("ep-table-wrap");
+    // レイアウト確定後にスクロールさせるため次イベントループへ回す
+    // （requestAnimationFrameはバックグラウンドタブで発火が止まることがあるためsetTimeoutを使う）
+    setTimeout(function () {
+      wrap.scrollLeft = wrap.scrollWidth;
+      updateStickyLabels();
+    }, 0);
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

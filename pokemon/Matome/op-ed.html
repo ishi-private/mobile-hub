@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OP/ED・映画曲・ゲーム曲 まとめ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="../shared/portal.css">
+<style>
+  /* Bootstrapのボタングループ(btn-toolbar/btn-group)をポータルの配色に合わせて調整 */
+  .view-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+  .view-toolbar .btn { font-size: 0.85rem; font-weight: 700; }
+  .view-toolbar .btn-check:checked + .btn { background-color: var(--pk-brand-red); border-color: var(--pk-brand-red); color: #fff; }
+  .series-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; }
+  .series-toolbar .btn-group { flex-wrap: wrap; }
+  .series-toolbar .btn { font-size: 0.8rem; }
+  .series-toolbar .btn-check:checked + .btn { background-color: var(--pk-accent); border-color: var(--pk-accent); color: #fff; }
+  table.pk-table td[rowspan], table.pk-table th[rowspan] { vertical-align: middle; }
+
+  /* 曲リンク（YouTube/Spotify）・非公式タグ */
+  .song-links { margin-top: 4px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .song-link-btn { display: inline-flex; align-items: center; gap: 3px; font-size: 0.66rem; font-weight: 700;
+                     padding: 1px 8px; border-radius: 999px; text-decoration: none; white-space: nowrap; }
+  .song-link-btn.yt { background: #ffe1e1; color: #c4231c; }
+  .song-link-btn.sp { background: #d9f7e3; color: #1a8f4c; }
+  .song-unofficial-tag { font-size: 0.64rem; color: #b3651a; font-weight: 700; }
+
+  /* 人気ランキング（デフォルト折りたたみ） */
+  .popularity-details summary { cursor: pointer; font-weight: 700; padding: 10px 14px;
+                                   background: var(--pk-panel); border: 1px solid var(--pk-panel-border);
+                                   border-radius: 10px; list-style: none; }
+  .popularity-details summary::-webkit-details-marker { display: none; }
+  .popularity-details summary::before { content: "▶ "; }
+  .popularity-details[open] summary::before { content: "▼ "; }
+  .popularity-details .pk-table-wrap { margin-top: 10px; }
+  .popularity-details tbody tr { cursor: context-menu; }
+
+  /* 曲名の右クリックメニュー（自作） */
+  .song-context-menu { position: fixed; z-index: 1000; background: var(--pk-panel);
+                          border: 1px solid var(--pk-panel-border); border-radius: 8px;
+                          box-shadow: 0 4px 16px rgba(0,0,0,0.18); padding: 4px; min-width: 140px; }
+  .song-context-menu button { display: block; width: 100%; text-align: left; background: none; border: none;
+                                 padding: 8px 12px; font-size: 0.8rem; color: var(--pk-text); cursor: pointer; border-radius: 6px; }
+  .song-context-menu button:hover { background: var(--pk-bg); }
+  .song-highlight-flash { animation: songFlash 1.4s ease; }
+  @keyframes songFlash { 0% { background: #fff3b0; } 100% { background: transparent; } }
+
+  /* サイト内ミニプレイヤー（曲リンクをクリックするとページ最下部で埋め込み再生） */
+  body.has-mini-player { padding-bottom: 96px; }
+  #mini-player-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+                        background: var(--pk-panel); border-top: 3px solid var(--pk-brand-red);
+                        box-shadow: 0 -6px 20px rgba(0,0,0,0.15); }
+  #mini-player-bar[hidden] { display: none; }
+  .mini-player-inner { display: flex; align-items: center; gap: 12px; padding: 8px 14px;
+                          max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+  .mini-player-info { flex: 1 1 120px; min-width: 0; }
+  .mini-player-label { font-size: 0.66rem; font-weight: 700; color: var(--pk-text-dim); display: block; }
+  .mini-player-title { font-size: 0.86rem; font-weight: 700; display: block; overflow: hidden;
+                          text-overflow: ellipsis; white-space: nowrap; }
+  .mini-player-media { flex: 0 0 auto; line-height: 0; }
+  .mini-player-media iframe { display: block; border-radius: 8px; border: none; }
+  .mini-player-nav { display: flex; gap: 4px; flex: 0 0 auto; }
+  .mini-player-nav button, .mini-player-close { border: none; background: var(--pk-bg); color: var(--pk-text);
+                          border-radius: 50%; width: 30px; height: 30px; font-size: 0.9rem; cursor: pointer; flex: 0 0 auto; }
+  .mini-player-nav button:hover, .mini-player-close:hover { background: var(--pk-panel-border); }
+  .mini-player-pos { font-size: 0.68rem; color: var(--pk-text-dim); flex: 0 0 auto; white-space: nowrap; }
+  .song-link-btn.yt, .song-link-btn.sp { cursor: pointer; }
+
+  /* ランダム再生ボタン */
+  .shuffle-toolbar { margin: 10px 0 0; }
+  .shuffle-btn { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 0.85rem;
+                   padding: 8px 16px; border-radius: 999px; border: 2px solid var(--pk-brand-red);
+                   background: #fff; color: var(--pk-brand-red); cursor: pointer; }
+  .shuffle-btn.active { background: var(--pk-brand-red); color: #fff; }
+  .shuffle-btn:disabled { opacity: 0.45; cursor: not-allowed; border-color: var(--pk-panel-border); color: var(--pk-text-dim); }
+</style>
+</head>
+<body class="pk-body">
+
+<div class="pk-content">
+
+  <a class="back-link" href="../index.html">← ポケモン ポータルへ戻る</a>
+
+  <div class="pk-hero">
+    <h1>OP/ED・映画曲・ゲーム曲 まとめ</h1>
+    <p>
+      ポケモンの音楽を「TVアニメOP/ED」「映画曲」「ゲーム曲」の3つの切り口でまとめたページです。下のボタンで表示を切り替えられます（デフォルトはOP/ED）。<br>
+      各曲の「▶ YouTube」「♪ Spotify」ボタンをクリックすると、このページの最下部に埋め込みプレイヤーが表示されてそのまま試聴できます（Ctrl/Cmd+クリックや中クリックでは通常どおり新しいタブで開きます）。
+      <span id="embed-support-note"></span>
+    </p>
+  </div>
+
+  <div class="btn-toolbar view-toolbar" role="toolbar" aria-label="表示切替ツールバー">
+    <div class="btn-group" role="group" aria-label="まとめ表示切替">
+      <input type="radio" class="btn-check" name="view-switch" id="view-check-opEd" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="view-check-opEd">OP/ED</label>
+      <input type="radio" class="btn-check" name="view-switch" id="view-check-movie" autocomplete="off">
+      <label class="btn btn-outline-primary" for="view-check-movie">映画曲</label>
+      <input type="radio" class="btn-check" name="view-switch" id="view-check-game" autocomplete="off">
+      <label class="btn btn-outline-primary" for="view-check-game">ゲーム曲</label>
+    </div>
+  </div>
+
+  <div class="shuffle-toolbar">
+    <button type="button" class="shuffle-btn" id="shuffle-play-btn">🔀 ランダム再生</button>
+    <span style="font-size:0.76rem; color:var(--pk-text-dim); margin-left:8px;">
+      公式YouTube試聴リンクがある曲（OP/ED・映画曲・ゲーム曲すべて）からランダムに連続再生します。
+    </span>
+  </div>
+
+  <div id="view-opEd">
+
+  <div class="pk-hero" style="margin-top:16px;">
+    <p>
+      TVアニメ『ポケットモンスター』シリーズのOP・ED主題歌を、<b>時系列順にOP列・ED列を分けて</b>まとめています。<br>
+      同じ行のOP・EDがその期間に同時に使用されていた組み合わせです（OP/EDは別々のタイミングで切り替わるため、期間の境界は一致しないことがあります）。<br>
+      劇場版の主題歌は今回のスコープ外です（映画曲タブ参照）。作品ごとの再生リスト作成は未着手（今後の課題）。<br>
+      各曲にはYouTube（優先）またはSpotifyの視聴リンクを付与しています。公式チャンネル以外の個人アップロードのみの曲には「※非公式」と表示しています。
+    </p>
+    <p id="source-note"></p>
+  </div>
+
+  <section class="pk-section">
+    <h2><span class="en">RANKING</span><span class="jp">人気ランキング</span></h2>
+    <div class="pk-section-note">
+      複数のカラオケ/調査サイトを基にした内部スコアによる人気上位曲です（算出方法は下記参照）。曲名を右クリックすると、下の一覧表の該当箇所へスクロールできます。
+    </div>
+    <details class="popularity-details">
+      <summary>人気ランキングを表示する（上位15曲）</summary>
+      <div class="pk-table-wrap">
+        <table class="pk-table">
+          <thead><tr><th>順位</th><th>曲名</th><th>シーズン</th><th>ボーカル</th></tr></thead>
+          <tbody id="popularity-body"></tbody>
+        </table>
+      </div>
+      <div class="pk-table-note">
+        算出方法: ①<a class="pk-table-link" href="https://ranking.net/rankings/best-pokemon-songs" target="_blank" rel="noopener noreferrer">みんなのランキング</a>「歴代ポケモン主題歌ランキング」1〜68位（ユーザー投票、2026-09-13時点）②<a class="pk-table-link" href="https://utaten.com/karaoke/pokemon-theme-song/" target="_blank" rel="noopener noreferrer">カラオケうたてん</a>TOP10・人気OP/ED特集（編集部選出）③<a class="pk-table-link" href="https://www.inside-games.jp/article/2016/02/24/96247.html" target="_blank" rel="noopener noreferrer">DAM（第一興商）カラオケリクエストランキング</a>1〜26位（2015-2016実測）の3出典を重み付け合算した内部スコアで順位付け。実際のスコア数値は内部保持のみでページには表示しない。劇場版主題歌・ゲームCMソングは対象外。詳細は<code>reports/2026-09-17_song-links-and-popularity.md</code>参照
+      </div>
+    </details>
+  </section>
+
+  <section class="pk-section">
+    <h2><span class="en">FILTER</span><span class="jp">表示するシリーズ（ON/OFF）</span></h2>
+    <div class="btn-toolbar series-toolbar" role="toolbar" aria-label="シリーズ表示切替ツールバー">
+      <div class="btn-group" role="group" aria-label="シリーズ表示切替" id="series-toggle-group"></div>
+    </div>
+  </section>
+
+  <section id="groups-container"></section>
+
+  </div><!-- /#view-opEd -->
+
+  <div id="view-movie" hidden>
+    <div class="pk-hero" style="margin-top:16px;">
+      <p>
+        劇場版ポケットモンスター（通算23作品、1998〜2020年）のOP・ED主題歌を全作品分まとめています。<br>
+        主データソースは日本語版Wikipedia「ポケットモンスター (劇場版)」の主題歌一覧表（生データを直接取得）。TICKET JAM・ぽけあに（1〜11作目）で曲名・歌手を照合しています（精度方針: 主要2サイトに絞った確認）。<br>
+        調査結果の詳細は<code>reports/2026-09-19_movie-game-songs-full.md</code>参照。短編作品・特別上映版はスコープ外です。
+      </p>
+    </div>
+    <section class="pk-section">
+      <h2><span class="en">MOVIES</span><span class="jp">劇場版 通算1〜23作品</span></h2>
+      <div class="pk-table-wrap">
+        <table class="pk-table">
+          <thead><tr><th>公開年</th><th>作品タイトル</th><th>OP（曲名・ボーカル）</th><th>ED（曲名・ボーカル）</th></tr></thead>
+          <tbody id="movie-body"></tbody>
+        </table>
+      </div>
+      <div class="pk-table-note">
+        「なし」はその年の映画にOP主題歌が用意されなかったことを示す（EDのみの作品が多数ある）。TV版主題歌と同一音源を映画で流用している曲は、視聴リンクにその旨を注記。
+      </div>
+    </section>
+  </div>
+
+  <div id="view-game" hidden>
+    <div class="pk-hero" style="margin-top:16px;">
+      <p>
+        ゲーム本編の楽曲を、atwiki「みんなで決めるゲーム音楽ベスト100まとめwiki」のページ区分に沿って15タイトル分（赤・緑〜スカーレット・バイオレット）まとめています。<br>
+        各世代とも、全ポケモン作品合同投票順位が高い曲、および同wiki内に個別の解説ページがある曲をすべて選出（DPパイロットと同一基準）。公式サイト「Pokémon Game Sound Library」がYouTubeで公開している赤・緑／ルビー・サファイア／ファイアレッド・リーフグリーン／ダイヤモンド・パールの4タイトルのみ、動画のタイムスタンプ付き試聴リンクを付与しています。<br>
+        調査結果の詳細は<code>reports/2026-09-19_movie-game-songs-full.md</code>参照。
+      </p>
+    </div>
+    <section class="pk-section">
+      <h2><span class="en">FILTER</span><span class="jp">表示するタイトル（ON/OFF）</span></h2>
+      <div class="btn-toolbar series-toolbar" role="toolbar" aria-label="ゲームタイトル表示切替ツールバー">
+        <div class="btn-group" role="group" aria-label="ゲームタイトル表示切替" id="game-toggle-group"></div>
+      </div>
+    </section>
+    <section id="game-groups-container"></section>
+  </div>
+
+</div>
+
+<div id="mini-player-bar" hidden>
+  <div class="mini-player-inner">
+    <div class="mini-player-info">
+      <span class="mini-player-label" id="mini-player-label"></span>
+      <span class="mini-player-title" id="mini-player-title"></span>
+    </div>
+    <span class="mini-player-pos" id="mini-player-pos" hidden></span>
+    <div class="mini-player-nav">
+      <button type="button" id="mini-player-prev" title="前の曲" hidden>⏮</button>
+      <button type="button" id="mini-player-next" title="次の曲" hidden>⏭</button>
+    </div>
+    <div class="mini-player-media" id="mini-player-media">
+      <div id="yt-player-mount"></div>
+    </div>
+    <div class="mini-player-media" id="spotify-frame-wrap" hidden></div>
+    <button type="button" class="mini-player-close" id="mini-player-close" aria-label="プレイヤーを閉じる">✕</button>
+  </div>
+</div>
+
+<script src="data/op-ed-data.js"></script>
+<script src="data/song-links-data.js"></script>
+<script src="data/movie-game-songs-data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // まとめ表示の切替（OP/ED・映画曲・ゲーム曲）
+  var VIEWS = ["opEd", "movie", "game"];
+  VIEWS.forEach(function (v) {
+    document.getElementById("view-check-" + v).addEventListener("change", function () {
+      VIEWS.forEach(function (v2) {
+        document.getElementById("view-" + v2).hidden = (v2 !== v);
+      });
+    });
+  });
+
+  var DATA = window.OP_ED_DATA;
+
+  document.getElementById("source-note").innerHTML =
+    "出典（5件をクロスチェック。詳細は <code>reports/2026-09-16_op-ed-cross-check.md</code> 参照）: " +
+    "日本語版Wikipedia各シリーズ記事 / Bulbapedia / TICKET JAM / ピクシブ百科事典 / Oricon等音楽データベース複数";
+
+  // 人気ランキング表を描画（曲名セルは右クリックで下の一覧表へスクロールできる）
+  var popBody = document.getElementById("popularity-body");
+  (window.POPULARITY_RANKING || []).forEach(function (r) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + r.rank + "位</td>" +
+      '<td class="song-title-cell" data-song-key="' + escapeAttr(r.title + "|" + r.vocal) + '" title="右クリックでスクロール">' + r.title + "</td>" +
+      "<td>" + r.season + "</td><td>" + r.vocal + "</td>";
+    popBody.appendChild(tr);
+  });
+  popBody.addEventListener("contextmenu", function (e) {
+    var cell = e.target.closest(".song-title-cell");
+    if (!cell) return;
+    e.preventDefault();
+    showSongContextMenu(e.clientX, e.clientY, cell.getAttribute("data-song-key"));
+  });
+
+  function escapeAttr(s) {
+    var div = document.createElement("div");
+    div.textContent = s;
+    return div.innerHTML.replace(/"/g, "&quot;");
+  }
+
+  // 自作の右クリックメニュー（「スクロール」= 下の一覧表の該当箇所へ移動）
+  var activeMenu = null;
+  function closeSongContextMenu() {
+    if (activeMenu) { activeMenu.remove(); activeMenu = null; }
+  }
+  document.addEventListener("click", closeSongContextMenu);
+  document.addEventListener("scroll", closeSongContextMenu, true);
+
+  function showSongContextMenu(x, y, songKey) {
+    closeSongContextMenu();
+    var menu = document.createElement("div");
+    menu.className = "song-context-menu";
+    menu.style.left = x + "px";
+    menu.style.top = y + "px";
+    var btn = document.createElement("button");
+    btn.textContent = "スクロール（該当箇所へ移動）";
+    btn.addEventListener("click", function (ev) {
+      ev.stopPropagation();
+      closeSongContextMenu();
+      scrollToSong(songKey);
+    });
+    menu.appendChild(btn);
+    document.body.appendChild(menu);
+    activeMenu = menu;
+  }
+
+  function scrollToSong(songKey) {
+    var target = document.querySelector('.op-ed-cell[data-song-key="' + CSS.escape(songKey) + '"]');
+    if (!target) return;
+    // 対象セルが属するシリーズが非表示になっていればONにする
+    var section = target.closest(".pk-section[id^='series-section-']");
+    if (section && section.hidden) {
+      var idx = section.id.replace("series-section-", "");
+      var cb = document.getElementById("series-check-" + idx);
+      if (cb) { cb.checked = true; section.hidden = false; }
+    }
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    target.classList.remove("song-highlight-flash");
+    void target.offsetWidth; // reflow でアニメーションを再トリガー
+    target.classList.add("song-highlight-flash");
+  }
+
+  // 曲名+ボーカルから視聴リンクHTMLを組み立てる（YouTube優先、非公式ならSpotifyも併記）
+  function renderSongLinks(title, vocal) {
+    if (!title) return "";
+    var link = window.SONG_LINKS ? window.SONG_LINKS[title + "|" + vocal] : null;
+    if (!link) return "";
+    var titleAttr = ' data-title="' + escapeAttr(title) + '"';
+    var html = '<div class="song-links">';
+    if (link.youtube) {
+      html += '<a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + link.youtube.id + '"' + titleAttr + ' target="_blank" rel="noopener noreferrer">▶ YouTube</a>';
+    }
+    if (!link.youtubeOfficial) {
+      html += '<span class="song-unofficial-tag">※非公式</span>';
+    }
+    if (link.spotify) {
+      html += '<a class="song-link-btn sp" href="' + link.spotify + '"' + titleAttr + ' target="_blank" rel="noopener noreferrer">♪ Spotify（公式）</a>';
+    }
+    html += "</div>";
+    return html;
+  }
+
+  // 同一内容が連続する行をrowspanでまとめるためのスパン計算（表示ルール: F:\CLAUDE.md 参照）
+  function computeSpans(rows, keyFn) {
+    var spans = new Array(rows.length).fill(null);
+    var i = 0;
+    while (i < rows.length) {
+      var j = i + 1;
+      while (j < rows.length && keyFn(rows[j]) === keyFn(rows[i])) j++;
+      spans[i] = j - i;
+      i = j;
+    }
+    return spans;
+  }
+  function opKey(r) { return r.opTitle + "\u0001" + r.opVocal; }
+  function edKey(r) { return r.edTitle + "\u0001" + r.edVocal; }
+
+  var toggleGroup = document.getElementById("series-toggle-group");
+  var container = document.getElementById("groups-container");
+  var entries = []; // { input, label, section } を全シリーズ分ためておき、ダブルクリック(ソロ表示)で相互参照する
+
+  DATA.groups.forEach(function (g, gi) {
+    // --- ON/OFFトグルボタン（Bootstrap 5.3 チェックボックストグルボタン方式） ---
+    var checkId = "series-check-" + gi;
+    var input = document.createElement("input");
+    input.type = "checkbox";
+    input.className = "btn-check";
+    input.id = checkId;
+    input.checked = true;
+    input.autocomplete = "off";
+    var label = document.createElement("label");
+    label.className = "btn btn-outline-primary";
+    label.setAttribute("for", checkId);
+    label.title = g.work;
+    label.textContent = "第" + (gi + 1);
+    toggleGroup.appendChild(input);
+    toggleGroup.appendChild(label);
+
+    // --- シリーズ表 ---
+    var section = document.createElement("div");
+    section.className = "pk-section";
+    section.id = "series-section-" + gi;
+    section.style.marginTop = gi === 0 ? "0" : "34px";
+
+    var h2 = document.createElement("h2");
+    h2.innerHTML = '<span class="en">' + (gi + 1) + '</span><span class="jp">' + g.series + "『" + g.work + "』</span>";
+    section.appendChild(h2);
+
+    var wrap = document.createElement("div");
+    wrap.className = "pk-table-wrap";
+    var table = document.createElement("table");
+    table.className = "pk-table";
+    table.innerHTML = "<thead><tr><th>期間</th><th>話数/編</th><th>OP（曲名・ボーカル）</th><th>ED（曲名・ボーカル）</th></tr></thead>";
+    var tbody = document.createElement("tbody");
+
+    var opSpans = computeSpans(g.rows, opKey);
+    var edSpans = computeSpans(g.rows, edKey);
+
+    g.rows.forEach(function (r, ri) {
+      var tr = document.createElement("tr");
+      var tds = "<td>" + r.period + "</td><td>" + r.epLabel + "</td>";
+      if (opSpans[ri] !== null) {
+        var opSpanAttr = opSpans[ri] > 1 ? ' rowspan="' + opSpans[ri] + '"' : "";
+        var opKeyAttr = r.opTitle ? ' data-song-key="' + escapeAttr(r.opTitle + "|" + r.opVocal) + '"' : "";
+        tds += '<td class="wrap op-ed-cell"' + opSpanAttr + opKeyAttr + ">" + (r.opTitle ? r.opTitle + "<br><span style=\"color:var(--pk-text-dim);font-size:0.72rem;\">" + r.opVocal + "</span>" + renderSongLinks(r.opTitle, r.opVocal) : "") + "</td>";
+      }
+      if (edSpans[ri] !== null) {
+        var edSpanAttr = edSpans[ri] > 1 ? ' rowspan="' + edSpans[ri] + '"' : "";
+        var edKeyAttr = r.edTitle ? ' data-song-key="' + escapeAttr(r.edTitle + "|" + r.edVocal) + '"' : "";
+        tds += '<td class="wrap op-ed-cell"' + edSpanAttr + edKeyAttr + ">" + (r.edTitle ? r.edTitle + "<br><span style=\"color:var(--pk-text-dim);font-size:0.72rem;\">" + r.edVocal + "</span>" + renderSongLinks(r.edTitle, r.edVocal) : "") + "</td>";
+      }
+      tr.innerHTML = tds;
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    section.appendChild(wrap);
+
+    if (g.notes && g.notes.length) {
+      var note = document.createElement("div");
+      note.className = "pk-table-note";
+      note.innerHTML = g.notes.map(function (n) { return "※ " + n; }).join("<br>");
+      section.appendChild(note);
+    }
+
+    container.appendChild(section);
+
+    input.addEventListener("change", function () {
+      section.hidden = !input.checked;
+    });
+
+    entries.push({ input: input, label: label, section: section });
+  });
+
+  // --- 映画曲（劇場版 通算1〜23作品） ---
+  // データ: data/movie-game-songs-data.js の window.MOVIE_SONGS_DATA
+  var movieBody = document.getElementById("movie-body");
+
+  function renderMovieSong(song) {
+    if (!song) return '<span style="color:var(--pk-text-dim);">なし</span>';
+    var html = song.title + '<br><span style="color:var(--pk-text-dim);font-size:0.72rem;">' + song.vocal + "</span>";
+    if (song.yt) {
+      html += '<div class="song-links"><a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + song.yt + '" data-title="' + escapeAttr(song.title) + '" target="_blank" rel="noopener noreferrer">▶ YouTube</a>';
+      if (!song.off) html += '<span class="song-unofficial-tag">※非公式</span>';
+      html += "</div>";
+    } else if (song.off === false) {
+      html += '<div class="song-links"><span class="song-unofficial-tag">※公式音源未確認</span></div>';
+    }
+    if (song.note) html += '<div class="pk-table-note" style="margin-top:4px;">' + song.note + "</div>";
+    return html;
+  }
+
+  (window.MOVIE_SONGS_DATA || []).forEach(function (m) {
+    var tr = document.createElement("tr");
+    var titleCell = "第" + m.no + "作『" + m.title + "』";
+    if (m.note) titleCell += '<div class="pk-table-note" style="margin-top:4px;">' + m.note + "</div>";
+    if (m.main) {
+      titleCell += '<div class="pk-table-note" style="margin-top:4px;">メインテーマ: ' + renderMovieSong(m.main) + "</div>";
+    }
+    tr.innerHTML = "<td>" + m.year + "</td><td class=\"wrap\">" + titleCell + "</td>" +
+      '<td class="wrap">' + renderMovieSong(m.op) + "</td>" +
+      '<td class="wrap">' + renderMovieSong(m.ed) + "</td>";
+    movieBody.appendChild(tr);
+  });
+
+  // --- ゲーム曲（本編シリーズ 15タイトル分） ---
+  // データ: data/movie-game-songs-data.js の window.GAME_SONGS_DATA
+  // 「詳細」列の〇はatwiki内に当該曲専用の解説ページが存在することを示す（リンク先）。
+  function timeToSeconds(t) {
+    var parts = t.split(":").map(Number);
+    var sec = 0;
+    for (var i = 0; i < parts.length; i++) sec = sec * 60 + parts[i];
+    return sec;
+  }
+
+  var gameToggleGroup = document.getElementById("game-toggle-group");
+  var gameContainer = document.getElementById("game-groups-container");
+  var gameEntries = [];
+
+  (window.GAME_SONGS_DATA || []).forEach(function (g, gi) {
+    var checkId = "game-check-" + gi;
+    var input = document.createElement("input");
+    input.type = "checkbox";
+    input.className = "btn-check";
+    input.id = checkId;
+    input.checked = true;
+    input.autocomplete = "off";
+    var label = document.createElement("label");
+    label.className = "btn btn-outline-primary";
+    label.setAttribute("for", checkId);
+    label.title = g.title;
+    label.textContent = g.years.split(/[〜～]/)[0];
+    gameToggleGroup.appendChild(input);
+    gameToggleGroup.appendChild(label);
+
+    var section = document.createElement("div");
+    section.className = "pk-section";
+    section.id = "game-section-" + gi;
+    section.style.marginTop = gi === 0 ? "0" : "28px";
+
+    var h2 = document.createElement("h2");
+    h2.innerHTML = '<span class="en">' + g.years + '</span><span class="jp">' + g.title + "</span>";
+    section.appendChild(h2);
+
+    var note = document.createElement("div");
+    note.className = "pk-section-note";
+    note.innerHTML = "作曲: " + g.composers + " ｜ 出典: <a class=\"pk-table-link\" href=\"" + g.atwikiUrl + "\" target=\"_blank\" rel=\"noopener noreferrer\">atwiki該当ページ</a>" +
+      (g.officialVideo
+        ? " ｜ 公式試聴: <a class=\"pk-table-link\" href=\"https://www.youtube.com/watch?v=" + g.officialVideo.id + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + g.officialVideo.label + "</a>" + (g.officialVideo.note ? "（" + g.officialVideo.note + "）" : "")
+        : " ｜ 公式BGM動画は未対応のため試聴リンクなし");
+    section.appendChild(note);
+
+    var wrap = document.createElement("div");
+    wrap.className = "pk-table-wrap";
+    var table = document.createElement("table");
+    table.className = "pk-table";
+    table.innerHTML = "<thead><tr><th>順位</th><th>曲名</th><th>詳細</th><th>試聴</th></tr></thead>";
+    var tbody = document.createElement("tbody");
+
+    g.songs.forEach(function (s) {
+      var tr = document.createElement("tr");
+      var rankLabel = s.rank !== null ? s.rank + "位" : "-";
+      var detailCell = s.detailUrl
+        ? '<a class="pk-table-link" href="' + s.detailUrl + '" target="_blank" rel="noopener noreferrer">〇</a>'
+        : "";
+      var listenCell;
+      if (s.yt && g.officialVideo) {
+        // dur: この曲の再生時間（秒）。複数曲が1本の長尺動画にタイムスタンプで収録されているため、
+        // 動画自体の終了(onEnded)を待つと後続の別の曲がそのまま流れ続けてしまう。ランダム再生ではdur経過で強制的に次の曲へ進める。
+        var durAttr = s.dur ? ' data-dur="' + s.dur + '"' : "";
+        listenCell = '<a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + g.officialVideo.id + '&t=' + timeToSeconds(s.yt) + 's" data-title="' + escapeAttr(s.title) + '"' + durAttr + ' target="_blank" rel="noopener noreferrer">▶ 公式動画で聴く</a>';
+      } else {
+        listenCell = '<span style="color:var(--pk-text-dim);font-size:0.76rem;">-</span>';
+      }
+      tr.innerHTML = "<td>" + rankLabel + "</td><td class=\"wrap\">" + s.title + (s.note ? '<div class="pk-table-note" style="margin-top:4px;">' + s.note + "</div>" : "") + "</td>" +
+        "<td>" + detailCell + "</td><td>" + listenCell + "</td>";
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    section.appendChild(wrap);
+
+    gameContainer.appendChild(section);
+
+    input.addEventListener("change", function () {
+      section.hidden = !input.checked;
+    });
+    gameEntries.push({ input: input, label: label, section: section });
+  });
+
+  gameEntries.forEach(function (entry, gi) {
+    entry.label.addEventListener("dblclick", function (e) {
+      e.preventDefault();
+      gameEntries.forEach(function (other, gi2) {
+        var solo = gi2 === gi;
+        other.input.checked = solo;
+        other.section.hidden = !solo;
+      });
+    });
+  });
+
+  // ダブルクリック: そのシリーズだけを表示（ソロ表示）、他は全てOFFにする
+  entries.forEach(function (entry, gi) {
+    entry.label.addEventListener("dblclick", function (e) {
+      e.preventDefault(); // ダブルクリックによるテキスト選択を防ぐ
+      entries.forEach(function (other, gi2) {
+        var solo = gi2 === gi;
+        other.input.checked = solo;
+        other.section.hidden = !solo;
+      });
+    });
+  });
+
+  // --- サイト内ミニプレイヤー（単曲再生＋ランダム連続再生） ---
+  // 各所の「▶ YouTube」「♪ Spotify」ボタン（<a>）のクリックを横取りし、
+  // ページ最下部の固定バーにYouTube/Spotifyの公式埋め込みプレイヤーを表示して曲を流す。
+  // 通常クリック=サイト内再生、Ctrl/Cmdクリック・中クリック・右クリック→新しいタブで開くは<a href>のまま機能する。
+  // ランダム再生はYouTube IFrame Player APIで単一のプレイヤーインスタンスを使い回し、
+  // 再生終了(onStateChange=ENDED)・再生エラー(onError)を検知して次の曲へ自動的に進む。
+  var miniBar = document.getElementById("mini-player-bar");
+  var miniLabel = document.getElementById("mini-player-label");
+  var miniTitle = document.getElementById("mini-player-title");
+  var miniPos = document.getElementById("mini-player-pos");
+  var miniMedia = document.getElementById("mini-player-media");
+  var spotifyWrap = document.getElementById("spotify-frame-wrap");
+  var prevBtn = document.getElementById("mini-player-prev");
+  var nextBtn = document.getElementById("mini-player-next");
+  var shuffleBtn = document.getElementById("shuffle-play-btn");
+
+  function songTitleFromButton(btn) {
+    if (btn.dataset.title) return btn.dataset.title;
+    // data-titleが無い場合のフォールバック: ボタンと同じセル内のテキストから曲名らしき部分を拾う
+    var cell = btn.closest("td") || btn.parentElement;
+    if (!cell) return "";
+    var clone = cell.cloneNode(true);
+    var linksDiv = clone.querySelector(".song-links");
+    if (linksDiv) linksDiv.remove();
+    var note = clone.querySelector(".pk-table-note");
+    if (note) note.remove();
+    return clone.textContent.replace(/\s+/g, " ").trim();
+  }
+
+  // YouTube/Spotifyの埋め込みプレイヤーはpostMessageベースのAPIでオリジンを検証しており、
+  // file://（ローカルファイルを直接開いた場合）には対応していない（YouTube側で「動画プレーヤーの設定エラー エラー153」になる）。
+  // このページをローカルファイルとして直接開いている場合は埋め込みを諦め、従来どおり新しいタブで開く動作にフォールバックする。
+  var canEmbed = location.protocol === "http:" || location.protocol === "https:";
+  var embedNote = document.getElementById("embed-support-note");
+  if (!canEmbed) {
+    if (embedNote) {
+      embedNote.textContent = "（このページをローカルファイルとして直接開いているため埋め込み再生・ランダム再生は無効です。今はボタンをクリックすると新しいタブでYouTube/Spotifyが開きます。ローカルHTTPサーバー経由で開くと有効になります）";
+      embedNote.style.color = "var(--pk-text-dim)";
+    }
+    shuffleBtn.disabled = true;
+    shuffleBtn.title = "file://で開いているため利用できません（ローカルHTTPサーバー経由で開いてください）";
+  }
+
+  function showMiniPlayer(label, title) {
+    miniLabel.textContent = label;
+    miniTitle.textContent = title;
+    miniBar.hidden = false;
+    document.body.classList.add("has-mini-player");
+  }
+
+  // --- YouTube IFrame Player（ページに1つだけ生成し使い回す） ---
+  var ytPlayer = null;
+  var ytReady = false;
+  var pendingPlay = null; // プレイヤー準備が間に合わない間にクリックされた場合に保持
+  var segmentTimer = null; // 「この曲は何秒で終わりとみなすか」の強制タイマー（下記参照）
+
+  window.onYouTubeIframeAPIReady = function () {
+    ytPlayer = new YT.Player("yt-player-mount", {
+      width: "160", height: "90",
+      playerVars: { rel: 0, playsinline: 1 },
+      events: {
+        onReady: function () {
+          ytReady = true;
+          if (pendingPlay) {
+            var p = pendingPlay;
+            pendingPlay = null;
+            playYouTubeTrack(p.videoId, p.startSeconds, p.durationSeconds, p.onSegmentEnd);
+          }
+        },
+        onStateChange: function (ev) {
+          if (ev.data === YT.PlayerState.ENDED) advanceQueue(1);
+        },
+        onError: function () {
+          advanceQueue(1); // 再生できない曲（削除・地域制限等）はスキップして次へ
+        }
+      }
+    });
+  };
+  if (canEmbed) {
+    var ytApiScript = document.createElement("script");
+    ytApiScript.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(ytApiScript);
+  }
+
+  // ゲーム曲の一部（赤・緑／ルビー・サファイア／ファイアレッド・リーフグリーン／ダイヤモンド・パール）は
+  // 複数曲が1本の長尺BGM集動画にタイムスタンプで収録されている。この動画自体の終了(onStateChange=ENDED)は
+  // 全曲を聴き終えるまで発火しないため、そのまま待つと目的の曲の後に無関係な別の曲が延々re生し続けてしまう。
+  // durationSeconds（この曲が占める区間の長さ、次の曲の開始時刻から逆算済み）が分かっている場合は、
+  // その時間が経過した時点でonSegmentEndを強制的に呼び出す（ランダム再生なら次の曲へ、単曲再生なら一時停止）。
+  function playYouTubeTrack(videoId, startSeconds, durationSeconds, onSegmentEnd) {
+    if (segmentTimer) { clearTimeout(segmentTimer); segmentTimer = null; }
+    miniMedia.hidden = false;
+    spotifyWrap.hidden = true;
+    spotifyWrap.innerHTML = "";
+    if (!ytReady) {
+      pendingPlay = { videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, onSegmentEnd: onSegmentEnd };
+      return;
+    }
+    ytPlayer.loadVideoById({ videoId: videoId, startSeconds: startSeconds || 0 });
+    if (durationSeconds && onSegmentEnd) {
+      segmentTimer = setTimeout(function () {
+        segmentTimer = null;
+        onSegmentEnd();
+      }, durationSeconds * 1000);
+    }
+  }
+
+  function playSpotifyTrack(spotifyId) {
+    if (ytPlayer && ytReady) ytPlayer.stopVideo();
+    miniMedia.hidden = true;
+    spotifyWrap.hidden = false;
+    spotifyWrap.innerHTML = '<iframe width="300" height="80" src="https://open.spotify.com/embed/track/' + spotifyId + '" title="Spotify player" ' +
+      'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>';
+  }
+
+  // --- ランダム再生（シャッフルキュー） ---
+  var shuffleQueue = [];
+  var shuffleIndex = -1;
+  var shuffleActive = false;
+
+  function collectAllYoutubeSongs() {
+    var seen = {};
+    var pool = [];
+    document.querySelectorAll(".song-link-btn.yt").forEach(function (btn) {
+      var url = new URL(btn.href, location.href);
+      var videoId = url.searchParams.get("v");
+      if (!videoId) return;
+      var tParam = url.searchParams.get("t");
+      var startSeconds = tParam ? parseInt(tParam, 10) : 0;
+      var key = videoId + "|" + startSeconds;
+      if (seen[key]) return;
+      seen[key] = true;
+      var durationSeconds = btn.dataset.dur ? parseInt(btn.dataset.dur, 10) : null;
+      pool.push({ videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, title: songTitleFromButton(btn) });
+    });
+    return pool;
+  }
+
+  function shuffleArray(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  function updatePosLabel() {
+    if (shuffleActive && shuffleQueue.length) {
+      miniPos.textContent = (shuffleIndex + 1) + " / " + shuffleQueue.length;
+      miniPos.hidden = false;
+      prevBtn.hidden = false;
+      nextBtn.hidden = false;
+    } else {
+      miniPos.hidden = true;
+      prevBtn.hidden = true;
+      nextBtn.hidden = true;
+    }
+  }
+
+  function advanceQueue(dir) {
+    if (!shuffleActive || !shuffleQueue.length) return;
+    shuffleIndex += dir;
+    if (shuffleIndex >= shuffleQueue.length) {
+      shuffleQueue = shuffleArray(collectAllYoutubeSongs()); // 一周したら再シャッフルして無限に続ける
+      shuffleIndex = 0;
+    } else if (shuffleIndex < 0) {
+      shuffleIndex = shuffleQueue.length - 1;
+    }
+    var track = shuffleQueue[shuffleIndex];
+    showMiniPlayer("🔀 ランダム再生中", track.title);
+    playYouTubeTrack(track.videoId, track.startSeconds, track.durationSeconds, function () { advanceQueue(1); });
+    updatePosLabel();
+  }
+
+  function startShuffle() {
+    if (!canEmbed) return;
+    shuffleQueue = shuffleArray(collectAllYoutubeSongs());
+    if (!shuffleQueue.length) return;
+    shuffleIndex = -1;
+    shuffleActive = true;
+    shuffleBtn.textContent = "⏹ ランダム再生を停止";
+    shuffleBtn.classList.add("active");
+    advanceQueue(1);
+  }
+
+  function stopShuffle() {
+    if (segmentTimer) { clearTimeout(segmentTimer); segmentTimer = null; }
+    if (!shuffleActive) return;
+    shuffleActive = false;
+    shuffleQueue = [];
+    shuffleIndex = -1;
+    shuffleBtn.textContent = "🔀 ランダム再生";
+    shuffleBtn.classList.remove("active");
+    updatePosLabel();
+  }
+
+  shuffleBtn.addEventListener("click", function () {
+    if (shuffleActive) stopShuffle(); else startShuffle();
+  });
+  prevBtn.addEventListener("click", function () { advanceQueue(-1); });
+  nextBtn.addEventListener("click", function () { advanceQueue(1); });
+  updatePosLabel();
+
+  document.getElementById("mini-player-close").addEventListener("click", function () {
+    stopShuffle();
+    if (ytPlayer && ytReady) ytPlayer.stopVideo();
+    spotifyWrap.innerHTML = "";
+    miniBar.hidden = true;
+    document.body.classList.remove("has-mini-player");
+  });
+
+  // --- 単曲再生（表内の▶ボタンから） ---
+  document.addEventListener("click", function (e) {
+    if (!canEmbed) return; // <a target="_blank">の標準動作に任せる
+    var yt = e.target.closest(".song-link-btn.yt");
+    if (yt) {
+      if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return; // 新規タブ操作はブラウザ標準動作に任せる
+      e.preventDefault();
+      stopShuffle(); // 単曲を選んだらランダム再生は解除
+      var url = new URL(yt.href, location.href);
+      var videoId = url.searchParams.get("v");
+      var tParam = url.searchParams.get("t"); // 例: "8337s" または null
+      var startSeconds = tParam ? parseInt(tParam, 10) : 0;
+      var durationSeconds = yt.dataset.dur ? parseInt(yt.dataset.dur, 10) : null;
+      showMiniPlayer("YouTubeで再生中", songTitleFromButton(yt));
+      // durationSecondsが分かる曲（長尺BGM集動画の一部）は、区間終了時に自動で一時停止する（他の曲へ流れ続けないように）
+      playYouTubeTrack(videoId, startSeconds, durationSeconds, function () {
+        if (ytPlayer && ytReady) ytPlayer.pauseVideo();
+      });
+      return;
+    }
+    var sp = e.target.closest(".song-link-btn.sp");
+    if (sp) {
+      if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      stopShuffle();
+      var m = sp.href.match(/track\/([A-Za-z0-9]+)/);
+      if (!m) return;
+      showMiniPlayer("Spotifyで再生中", songTitleFromButton(sp));
+      playSpotifyTrack(m[1]);
+      return;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

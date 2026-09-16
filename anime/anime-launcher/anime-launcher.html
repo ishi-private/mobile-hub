@@ -1,0 +1,5800 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アニメ視聴ランチャー</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #0f0f13; color: #e2e2e2; min-height: 100vh; }
+  .page-nav a { color: #556; text-decoration: none; }
+  .page-nav a:hover { color: #999; }
+  .page-nav .sep { color: #2a2a35; }
+  .page-nav .current { color: #bbb; font-weight: 600; }
+  .main { padding: 0 16px 40px; }
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; gap: 10px; align-items: center; }
+  #search-wrap { flex: 1; position: relative; }
+  #search { width: 100%; padding: 10px 16px 10px 38px; font-size: 0.95rem;
+             background: #1c1c24; border: 1px solid #333; border-radius: 8px;
+             color: #e2e2e2; outline: none; }
+  #search:focus { border-color: #555; }
+  #search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+                  color: #555; font-size: 0.9rem; pointer-events: none; }
+  .view-toggle { display: flex; flex-shrink: 0; }
+  .vbtn { padding: 9px 14px; font-size: 0.78rem; font-weight: 600; border: 1px solid #333;
+           background: #1c1c24; color: #555; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .vbtn:first-child { border-radius: 6px 0 0 6px; }
+  .vbtn:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+  .vbtn.active { background: #2a2a35; color: #ccc; border-color: #444; }
+  #btn-shuffle { padding: 9px 14px; font-size: 0.78rem; font-weight: 600; border: 1px solid #333;
+                  border-radius: 6px; background: #1c1c24; color: #888; cursor: pointer;
+                  transition: all 0.15s; white-space: nowrap; flex-shrink: 0; }
+  #btn-shuffle:hover { background: #2a2a35; color: #ccc; border-color: #444; }
+  #count { text-align: center; font-size: 0.78rem; color: #444; margin-bottom: 14px; }
+
+  /* ── テキストビュー（サイトドメイン別 表形式） ── */
+  #list { max-width: var(--page-max-width); margin: 0 auto; }
+  .anime-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+  .anime-table thead th { text-align: left; padding: 4px 12px; font-size: 0.7rem;
+                            color: #667; font-weight: 600; }
+  .anime-table thead th.domain-th { text-align: center; }
+  .anime-table tbody tr.anime-row td { background: #1c1c24; border-top: 1px solid #2a2a35;
+                                         border-bottom: 1px solid #2a2a35; padding: 9px 12px; }
+  .anime-table tbody tr.anime-row td:first-child { border-left: 1px solid #2a2a35; border-radius: 8px 0 0 8px; }
+  .anime-table tbody tr.anime-row td:last-child { border-right: 1px solid #2a2a35; border-radius: 0 8px 8px 0; }
+  .anime-table tbody tr.anime-row:hover td { border-color: #444; }
+  .anime-table tbody tr.anime-row.indented td:first-child { padding-left: 30px; }
+  .title-cell { min-width: 0; }
+  .title-cell .primary { color: #e2e2e2; font-size: 0.93rem; line-height: 1.3; }
+  .title-cell .secondary { font-size: 0.73rem; color: #555; margin-top: 2px; overflow: hidden;
+                             white-space: nowrap; text-overflow: ellipsis; }
+  .domain-cell { text-align: center; white-space: nowrap; width: 1%; }
+  .site-btn { padding: 5px 11px; border: none; border-radius: 5px;
+               font-size: 0.76rem; font-weight: 600; cursor: pointer;
+               color: #fff; text-decoration: none; white-space: nowrap;
+               transition: opacity 0.15s; display: inline-block; }
+  .site-btn:hover { opacity: 0.82; }
+  .site-btn.pending { background: #444 !important; opacity: 0.55;
+                       border: 1px solid #666; cursor: help; }
+  .site-btn.pending:hover { opacity: 0.75; }
+  .site-btn.dash { background: #2a2a35 !important; color: #556; opacity: 0.5;
+                    border: 1px solid #333; font-weight: 400; cursor: pointer; }
+  .site-btn.dash:hover { opacity: 0.75; }
+  .site-btn.empty { background: #444 !important; opacity: 0.5;
+                     border: 1px solid #555; cursor: pointer; }
+  .site-btn.empty:hover { opacity: 0.75; }
+  .no-sites { font-size: 0.73rem; color: #333; font-style: italic; }
+  .group-row td { padding: 0; border: none; background: transparent; }
+  .group-hdr { background: #14141b; border: 1px solid #2a2a35; border-radius: 7px;
+                padding: 8px 14px; display: flex; align-items: center; gap: 8px;
+                cursor: pointer; color: #888; font-size: 0.85rem; user-select: none;
+                transition: border-color 0.15s; }
+  .group-hdr:hover { border-color: #444; color: #bbb; }
+  .g-arrow { font-size: 0.65rem; color: #444; transition: transform 0.15s; }
+  .g-arrow.open { transform: rotate(90deg); }
+  .g-cnt { margin-left: auto; font-size: 0.7rem; color: #444; }
+
+  /* ── 画像ビュー ── */
+  #list.img { display: flex; flex-direction: column; gap: 12px; }
+  .series-sec { border: 1px solid #252530; border-radius: 8px; overflow: hidden; }
+  .series-sec-hdr { padding: 9px 14px; display: flex; align-items: center; gap: 8px;
+                     cursor: pointer; color: #888; font-size: 0.85rem; user-select: none;
+                     background: #14141b; transition: background 0.15s; }
+  .series-sec-hdr:hover { background: #1c1c26; color: #bbb; }
+  .series-sec-hdr .g-arrow { font-size: 0.65rem; color: #444; transition: transform 0.15s; }
+  .series-sec-hdr .g-arrow.open { transform: rotate(90deg); }
+  .series-sec-hdr .g-cnt { margin-left: auto; font-size: 0.7rem; color: #444; }
+  .series-sec-grid { display: grid;
+                      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                      gap: 10px; padding: 10px; }
+  .singles-grid { display: grid;
+                   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                   gap: 10px; }
+  .flat-grid { display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px; }
+  .img-card { background: #1c1c24; border: 1px solid #2a2a35; border-radius: 8px;
+               overflow: hidden; transition: border-color 0.15s; }
+  .img-card:hover { border-color: #555; }
+  .img-card.src-mal   { border-color: #4a9eff; }
+  .img-card.src-mal:hover { border-color: #77bbff; }
+  .img-card.src-other { border-color: #4caf50; }
+  .img-card.src-other:hover { border-color: #7dcf7d; }
+  .img-card .poster { width: 100%; aspect-ratio: 2/3; object-fit: cover;
+                       display: block; background: #1a1a22; }
+  .img-card .no-poster { width: 100%; aspect-ratio: 2/3; display: flex;
+                           align-items: center; justify-content: center;
+                           background: #1a1a22; color: #333; font-size: 2rem; }
+  .img-card .ititle { padding: 6px 7px 4px; font-size: 0.7rem; color: #ccc;
+                       line-height: 1.35; overflow: hidden;
+                       display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+  .img-card .ibtns { padding: 4px 7px 8px; display: flex; gap: 3px; flex-wrap: wrap; }
+  .img-btn { padding: 3px 7px; border: none; border-radius: 4px; font-size: 0.62rem;
+              font-weight: 700; color: #fff; text-decoration: none; cursor: pointer;
+              display: inline-block; white-space: nowrap; }
+  .img-btn.pending { background: #444 !important; opacity: 0.6; border: 1px solid #666; cursor: help; }
+  .img-btn.empty { background: #444 !important; opacity: 0.5; border: 1px solid #555; }
+
+  /* ── ポスタービュー（画像=直接リンク、サイト色ボーダー） ── */
+  #list.poster { display: flex; flex-direction: column; gap: 12px; }
+  .poster-sec { border: 1px solid #252530; border-radius: 8px; overflow: hidden; }
+  .poster-sec-hdr { padding: 9px 14px; display: flex; align-items: center; gap: 8px;
+                     cursor: pointer; color: #888; font-size: 0.85rem; user-select: none;
+                     background: #14141b; transition: background 0.15s; }
+  .poster-sec-hdr:hover { background: #1c1c26; color: #bbb; }
+  .poster-sec-hdr .g-arrow { font-size: 0.65rem; color: #444; transition: transform 0.15s; }
+  .poster-sec-hdr .g-arrow.open { transform: rotate(90deg); }
+  .poster-sec-hdr .g-cnt { margin-left: auto; font-size: 0.7rem; color: #444; }
+  .poster-sec-grid { display: grid;
+                      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                      gap: 10px; padding: 10px; }
+  .poster-singles-grid { display: grid;
+                   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                   gap: 10px; }
+  .poster-flat-grid { display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px; }
+  .poster-card { display: block; background: #1c1c24; border: 2px solid #333;
+                  border-radius: 8px; overflow: hidden; text-decoration: none;
+                  transition: transform 0.15s, border-color 0.15s; cursor: pointer; }
+  .poster-card:hover { transform: translateY(-2px); }
+  .poster-card.no-link { cursor: default; border-color: #2a2a35; opacity: 0.6; }
+  .poster-card .poster { width: 100%; aspect-ratio: 1/1; object-fit: cover;
+                       object-position: top; display: block; background: #1a1a22; }
+  .poster-card .no-poster { width: 100%; aspect-ratio: 1/1; display: flex;
+                           align-items: center; justify-content: center;
+                           background: #1a1a22; color: #333; font-size: 2rem; }
+  .poster-card .ptitle { padding: 6px 7px 7px; font-size: 0.7rem; color: #ccc;
+                       line-height: 1.35; overflow: hidden;
+                       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+  /* ── サイト凡例 ── */
+  #site-legend { max-width: var(--page-max-width); margin: 0 auto 12px; display: flex;
+                     align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.7rem; color: #777; }
+  #site-legend .legend-item { display: flex; align-items: center; gap: 5px; }
+  #site-legend .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+  /* ── 複数シーズン: 代表カード＋選択メニュー ── */
+  .poster-group-wrap { position: relative; }
+  .season-menu { position: absolute; top: 100%; left: 0; right: 0; margin-top: 4px;
+                   background: #1c1c24; border: 1px solid #3a3a4a; border-radius: 8px;
+                   box-shadow: 0 8px 24px rgba(0,0,0,0.5); z-index: 20; overflow: hidden; }
+  .season-menu-item { display: flex; align-items: center; gap: 7px; padding: 8px 10px;
+                        font-size: 0.72rem; color: #ccc; text-decoration: none;
+                        border-bottom: 1px solid #26262f; transition: background 0.1s; }
+  .season-menu-item:last-child { border-bottom: none; }
+  .season-menu-item:hover { background: #262632; }
+  .season-menu-item .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .season-menu-item.no-link { color: #555; cursor: default; }
+
+  /* ── 分類セクション区切り（劇場版・webアニメ） ── */
+  .tier-divider { max-width: var(--page-max-width); margin: 22px auto 14px;
+                    display: flex; align-items: center; gap: 12px; }
+  .tier-divider-line { flex: 1; height: 1px; background: #2a2a35; }
+  .tier-divider-label { font-size: 0.78rem; color: #778; font-weight: 600; white-space: nowrap; }
+  .tier-divider-row td { padding: 20px 12px 6px; border: none; background: transparent; }
+  .tier-divider-row .tier-divider { margin: 0; max-width: none; }
+</style>
+</head>
+<body>
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+  <div class="controls">
+    <div id="search-wrap">
+      <span id="search-icon">🔍</span>
+      <input id="search" type="text" placeholder="アニメを検索..." autofocus>
+    </div>
+    <div class="view-toggle">
+      <button class="vbtn" id="btn-text" onclick="setView('text')">☰ テキスト</button>
+      <button class="vbtn" id="btn-image" onclick="setView('image')">▦ 画像</button>
+      <button class="vbtn active" id="btn-poster" onclick="setView('poster')">🖼 ポスター</button>
+    </div>
+    <button id="btn-shuffle" onclick="reshufflePoster()">🔀 ランダム</button>
+  </div>
+  <div id="site-legend"></div>
+</div>
+<div class="main">
+<div id="count"></div>
+<div id="list"></div>
+</div>
+<script>
+const GROUPS = [
+  {
+    "base": "とある科学の超電磁砲T",
+    "short_base": "レールガン",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1099/106939l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 14984,
+        "title": "とある科学の超電磁砲T（3期）",
+        "title_ja": "とある科学の超電磁砲T（3期）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/to-aru-kagaku-no-railgun-t",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1099/106939l.jpg",
+        "short_title": "レールガン（3期）",
+        "best_site": {
+          "url": "https://www.animegg.org/series/to-aru-kagaku-no-railgun-t",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "（3期）"
+      }
+    ]
+  },
+  {
+    "base": "凪のあすから（凪あす）",
+    "short_base": "凪あす",
+    "group_image": "https://cdn.myanimelist.net/images/anime/7/53549l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 3587,
+        "title": "凪のあすから（凪あす）",
+        "title_ja": "凪のあすから（凪あす）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/nagi-no-asukara",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/7/53549l.jpg",
+        "short_title": "凪あす",
+        "best_site": {
+          "url": "https://www.animegg.org/series/nagi-no-asukara",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "アルマちゃんは家族になりたい",
+    "short_base": "アルマちゃん",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1631/153644l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 25474,
+        "title": "アルマちゃんは家族になりたい",
+        "title_ja": "アルマちゃんは家族になりたい",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?yonww",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/alma-chan-wants-to-be-a-family",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1631/153644l.jpg",
+        "short_title": "アルマちゃん",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?yonww",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "アークナイツ",
+    "short_base": "アークナイツ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1644/128406l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 9490,
+        "title": "アークナイツ【黎明前奏/PRELUDE TO DAWN】",
+        "title_ja": "アークナイツ【黎明前奏/PRELUDE TO DAWN】",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?glm7l",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1644/128406l.jpg",
+        "series_name": "アークナイツ",
+        "short_title": "アークナイツ【黎明前奏/PRELUDE TO DAWN】",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?glm7l",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "【黎明前奏/PRELUDE TO DAWN】"
+      },
+      {
+        "anime_db_id": 19116,
+        "title": "アークナイツ【冬隠帰路/PERISH IN FROST】（第2期）",
+        "title_ja": "アークナイツ【冬隠帰路/PERISH IN FROST】（第2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?q4b9r",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1593/138601l.jpg",
+        "series_name": "アークナイツ",
+        "short_title": "アークナイツ【冬隠帰路/PERISH IN FROST】（第2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?q4b9r",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "【冬隠帰路/PERISH IN FROST】（第2期）"
+      },
+      {
+        "anime_db_id": 24010,
+        "title": "アークナイツ【焔燼曙明/RISE FROM EMBER】",
+        "title_ja": "アークナイツ【焔燼曙明/RISE FROM EMBER】",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?kdj42",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/arknights-rise-from-ember",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/arknights-rise-from-ember-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1790/149462l.jpg",
+        "series_name": "アークナイツ",
+        "short_title": "アークナイツ【焔燼曙明/RISE FROM EMBER】",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?kdj42",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "【焔燼曙明/RISE FROM EMBER】"
+      }
+    ]
+  },
+  {
+    "base": "BLEACH 千年血戦篇",
+    "short_base": "BLEACH",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1164/138058l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 14033,
+        "title": "BLEACH 千年血戦篇（第1クール）",
+        "title_ja": "BLEACH 千年血戦篇（第1クール）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?uqhn4",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/bleach-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bleach",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1908/135431l.jpg",
+        "series_name": "BLEACH 千年血戦篇",
+        "short_title": "BLEACH（第1クール）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?uqhn4",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（第1クール）"
+      },
+      {
+        "anime_db_id": 19244,
+        "title": "BLEACH 千年血戦篇-訣別譚-",
+        "title_ja": "BLEACH 千年血戦篇-訣別譚-",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?gpc1t",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/bleach-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bleach",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1164/138058l.jpg",
+        "series_name": "BLEACH 千年血戦篇",
+        "short_title": "BLEACH-訣別譚-",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?gpc1t",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "-訣別譚-"
+      },
+      {
+        "anime_db_id": 22787,
+        "title": "BLEACH 千年血戦篇-相剋譚-",
+        "title_ja": "BLEACH 千年血戦篇-相剋譚-",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?w24ez",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/bleach-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bleach",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1595/144074l.jpg",
+        "series_name": "BLEACH 千年血戦篇",
+        "short_title": "BLEACH-相剋譚-",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?w24ez",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "-相剋譚-"
+      },
+      {
+        "anime_db_id": 25417,
+        "title": "BLEACH 千年血戦篇-禍進譚-",
+        "title_ja": "BLEACH 千年血戦篇-禍進譚-",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?07v8r",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/bleach-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bleach",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1653/154517l.jpg",
+        "series_name": "BLEACH 千年血戦篇",
+        "short_title": "BLEACH-禍進譚-",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?07v8r",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "-禍進譚-"
+      }
+    ]
+  },
+  {
+    "base": "やがて君になる（やが君）",
+    "short_base": "やが君",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1783/96153l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 7240,
+        "title": "やがて君になる（やが君）",
+        "title_ja": "やがて君になる（やが君）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?odbas",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1783/96153l.jpg",
+        "short_title": "やが君",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?odbas",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "文豪ストレイドッグス",
+    "short_base": "文スト",
+    "group_image": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 13610,
+        "title": "文豪ストレイドッグス 第2シーズン（2期）",
+        "title_ja": "文豪ストレイドッグス 第2シーズン（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?lmili",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bungou-stray-dogs-2nd-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+        "series_name": "文豪ストレイドッグス",
+        "short_title": "文スト 第2シーズン（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?lmili",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2シーズン（2期）"
+      },
+      {
+        "anime_db_id": 13611,
+        "title": "文豪ストレイドッグス 第1シーズン",
+        "title_ja": "文豪ストレイドッグス 第1シーズン",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?acboj",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bungou-stray-dogs",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+        "series_name": "文豪ストレイドッグス",
+        "short_title": "文スト 第1シーズン",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?acboj",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第1シーズン"
+      },
+      {
+        "anime_db_id": 13612,
+        "title": "文豪ストレイドッグス 第3シーズン（3期）",
+        "title_ja": "文豪ストレイドッグス 第3シーズン（3期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?z2jnw",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bungou-stray-dogs-3rd-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+        "series_name": "文豪ストレイドッグス",
+        "short_title": "文スト 第3シーズン（3期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?z2jnw",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第3シーズン（3期）"
+      },
+      {
+        "anime_db_id": 13647,
+        "title": "文豪ストレイドッグス 第4シーズン（4期）",
+        "title_ja": "文豪ストレイドッグス 第4シーズン（4期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?tv3re",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bungou-stray-dogs-4th-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+        "series_name": "文豪ストレイドッグス",
+        "short_title": "文スト 第4シーズン（4期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?tv3re",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第4シーズン（4期）"
+      },
+      {
+        "anime_db_id": 20445,
+        "title": "文豪ストレイドッグス 第5シーズン",
+        "title_ja": "文豪ストレイドッグス 第5シーズン",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?3x4vm",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bungou-stray-dogs-5th-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+        "series_name": "文豪ストレイドッグス",
+        "short_title": "文スト 第5シーズン",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?3x4vm",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第5シーズン"
+      },
+      {
+        "anime_db_id": 13406,
+        "title": "文豪ストレイドッグス BEAST",
+        "title_ja": "文豪ストレイドッグス BEAST",
+        "sites": [],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+        "series_name": "文豪ストレイドッグス",
+        "short_title": "文スト BEAST",
+        "best_site": null,
+        "season_label": "BEAST"
+      },
+      {
+        "anime_db_id": 13613,
+        "title": "文豪ストレイドッグスDEAD APPLE(デッドアップル）",
+        "title_ja": "文豪ストレイドッグスDEAD APPLE(デッドアップル）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/bungou-stray-dogs-dead-apple",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg",
+        "series_name": "文豪ストレイドッグス",
+        "short_title": "文ストDEAD APPLE(デッドアップル）",
+        "best_site": {
+          "url": "https://www.animegg.org/series/bungou-stray-dogs-dead-apple",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "DEAD APPLE(デッドアップル）"
+      }
+    ]
+  },
+  {
+    "base": "千歳くんはラムネ瓶のなか",
+    "short_base": "千歳くん",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1015/151233l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 25058,
+        "title": "千歳くんはラムネ瓶のなか",
+        "title_ja": "千歳くんはラムネ瓶のなか",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?yrmrw",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/chitose-is-in-the-ramune-bottle",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1015/151233l.jpg",
+        "short_title": "千歳くん",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?yrmrw",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "Fate/Zero",
+    "short_base": "Fate/Zero",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1887/117644l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 2297,
+        "title": "Fate/Zero",
+        "title_ja": "Fate/Zero",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?1xbu0",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/fate-zero",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/fate-strange-fake-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1887/117644l.jpg",
+        "short_title": "Fate/Zero",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?1xbu0",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "葬送のフリーレン",
+    "short_base": "葬送のフリーレン",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 17322,
+        "title": "葬送のフリーレン",
+        "title_ja": "葬送のフリーレン",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ak2gr",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg",
+        "series_name": "葬送のフリーレン",
+        "short_title": "葬送のフリーレン",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ak2gr",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 24971,
+        "title": "葬送のフリーレン 第2期",
+        "title_ja": "葬送のフリーレン 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?hgj3i",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg",
+        "series_name": "葬送のフリーレン",
+        "short_title": "葬送のフリーレン 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?hgj3i",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      },
+      {
+        "anime_db_id": 28019,
+        "title": "葬送のフリーレン 第3期",
+        "title_ja": "葬送のフリーレン 第3期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ak2gr",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg",
+        "series_name": "葬送のフリーレン",
+        "short_title": "葬送のフリーレン 第3期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ak2gr",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第3期"
+      },
+      {
+        "anime_db_id": 28093,
+        "title": "葬送のフリーレン（第1期）",
+        "title_ja": "葬送のフリーレン（第1期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ak2gr",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "葬送のフリーレン",
+        "image_url": "https://img2.animatetimes.com/2022/09/92c37b909ddd992b3fa00b908d5459976588f67fcf1b47_28040167_4bc06a95b4f7eb2b94b04ad6ff20e0c4410bd722.jpg",
+        "image_source": "animatetimes",
+        "short_title": "葬送のフリーレン（第1期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ak2gr",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（第1期）"
+      }
+    ]
+  },
+  {
+    "base": "鋼の錬金術師",
+    "short_base": "鋼の錬金術師",
+    "group_image": "https://cdn.myanimelist.net/images/anime/10/75815l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 384,
+        "title": "鋼の錬金術師（ハガレン）",
+        "title_ja": "鋼の錬金術師（ハガレン）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/fullmetal-alchemist",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://animeheaven.me/anime.php?0oqgh",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/10/75815l.jpg",
+        "series_name": "鋼の錬金術師",
+        "short_title": "鋼の錬金術師（ハガレン）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?0oqgh",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（ハガレン）"
+      },
+      {
+        "anime_db_id": 15347,
+        "title": "鋼の錬金術師 FULLMETAL ALCHEMIST",
+        "title_ja": "鋼の錬金術師 FULLMETAL ALCHEMIST",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/fullmetal-alchemist",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://animeheaven.me/anime.php?0oqgh",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1208/94745l.jpg",
+        "series_name": "鋼の錬金術師",
+        "short_title": "鋼の錬金術師 FULLMETAL ALCHEMIST",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?0oqgh",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "FULLMETAL ALCHEMIST"
+      }
+    ]
+  },
+  {
+    "base": "鬼灯の冷徹",
+    "short_base": "鬼灯の冷徹",
+    "group_image": "https://cdn.myanimelist.net/images/anime/7/87177l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 3402,
+        "title": "鬼灯の冷徹",
+        "title_ja": "鬼灯の冷徹",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/hoozuki-no-reitetsu",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/7/87177l.jpg",
+        "series_name": "鬼灯の冷徹",
+        "short_title": "鬼灯の冷徹",
+        "best_site": {
+          "url": "https://www.animegg.org/series/hoozuki-no-reitetsu",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 15263,
+        "title": "鬼灯の冷徹 第弐期（2期）",
+        "title_ja": "鬼灯の冷徹 第弐期（2期）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/hoozuki-no-reitetsu-2nd-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/8/88280l.jpg",
+        "series_name": "鬼灯の冷徹",
+        "short_title": "鬼灯の冷徹 第弐期（2期）",
+        "best_site": {
+          "url": "https://www.animegg.org/series/hoozuki-no-reitetsu-2nd-season",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "第弐期（2期）"
+      }
+    ]
+  },
+  {
+    "base": "転生したら第七王子だったので、気ままに魔術を極めます",
+    "short_base": "第七王子",
+    "group_image": "https://img2.animatetimes.com/2022/11/7e4c41b7913b83a75935b7444fd3893e65c026601ef0c0_06722986_77e2f2e37f05d8ebf9097587583b87dc21bc9758.jpg",
+    "entries": [
+      {
+        "anime_db_id": 24211,
+        "title": "転生したら第七王子だったので、気ままに魔術を極めます 第2期",
+        "title_ja": "転生したら第七王子だったので、気ままに魔術を極めます 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?o9t9k",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability-season-2",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1580/141243l.jpg",
+        "series_name": "転生したら第七王子だったので、気ままに魔術を極めます",
+        "short_title": "第七王子 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?o9t9k",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      },
+      {
+        "anime_db_id": 18329,
+        "title": "転生したら第七王子だったので、気ままに魔術を極めます",
+        "title_ja": "転生したら第七王子だったので、気ままに魔術を極めます",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?b470g",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/tensei-shitara-dainana-ouji-datta-node-kimama-ni-majutsu-wo-kiwamemasu",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "転生したら第七王子だったので、気ままに魔術を極めます",
+        "image_url": "https://img2.animatetimes.com/2022/11/7e4c41b7913b83a75935b7444fd3893e65c026601ef0c0_06722986_77e2f2e37f05d8ebf9097587583b87dc21bc9758.jpg",
+        "image_source": "animatetimes",
+        "short_title": "第七王子",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?b470g",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 19069,
+        "title": "転生したら第七王子だったので、気ままに魔術を極めます",
+        "title_ja": "転生したら第七王子だったので、気ままに魔術を極めます",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?b470g",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/tensei-shitara-dainana-ouji-datta-node-kimama-ni-majutsu-wo-kiwamemasu",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "転生したら第七王子だったので、気ままに魔術を極めます",
+        "short_title": "第七王子",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?b470g",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "異世界かるてっと",
+    "short_base": "異世界かるてっと",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1965/99667l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 7502,
+        "title": "異世界かるてっと",
+        "title_ja": "異世界かるてっと",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?vbn4s",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/isekai-quartet",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/isekai-quartet-3-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1965/99667l.jpg",
+        "series_name": "異世界かるてっと",
+        "short_title": "異世界かるてっと",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?vbn4s",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 26210,
+        "title": "異世界かるてっと３",
+        "title_ja": "異世界かるてっと３",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?myuqg",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/isekai-quartet-season-3",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/isekai-quartet-3-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: isekai-quartet-3",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1965/99667l.jpg",
+        "series_name": "異世界かるてっと",
+        "short_title": "異世界かるてっと３",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?myuqg",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "３"
+      },
+      {
+        "anime_db_id": 14855,
+        "title": "劇場版 異世界かるてっと ～あなざーわーるど～",
+        "title_ja": "劇場版 異世界かるてっと ～あなざーわーるど～",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/isekai-quartet-movie-another-world",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1222/122000l.jpg",
+        "series_name": "異世界かるてっと",
+        "short_title": "劇場版 異世界かるてっと ～あなざーわーるど～",
+        "best_site": {
+          "url": "https://www.animegg.org/series/isekai-quartet-movie-another-world",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版  ～あなざーわーるど～"
+      },
+      {
+        "anime_db_id": 14858,
+        "title": "異世界かるてっと2（2期）",
+        "title_ja": "異世界かるてっと2（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?20mlr",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/isekai-quartet-2nd-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1030/103383l.jpg",
+        "series_name": "異世界かるてっと",
+        "short_title": "異世界かるてっと2（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?20mlr",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "2（2期）"
+      }
+    ]
+  },
+  {
+    "base": "異修羅",
+    "short_base": "異修羅",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1364/140875l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 23788,
+        "title": "異修羅 第2期",
+        "title_ja": "異修羅 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?x2e56",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/ishura-season-2",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/ishura-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1364/140875l.jpg",
+        "series_name": "異修羅",
+        "short_title": "異修羅 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?x2e56",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      },
+      {
+        "anime_db_id": 19734,
+        "title": "異修羅（いしゅら）",
+        "title_ja": "異修羅（いしゅら）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?4rb3h",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/ishura",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/ishura-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "series_name": "異修羅",
+        "image_url": "https://img2.animatetimes.com/2023/02/97b8d224f070331b230ec750c9586a90656d5696269462_48504331_27567f414ac390812b7aa2fbe2a8caea29c567a5.jpg",
+        "image_source": "animatetimes",
+        "short_title": "異修羅（いしゅら）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?4rb3h",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（いしゅら）"
+      }
+    ]
+  },
+  {
+    "base": "違国日記",
+    "short_base": "違国日記",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1791/154233l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 24003,
+        "title": "違国日記",
+        "title_ja": "違国日記",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?08e0u",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/journal-with-witch",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1791/154233l.jpg",
+        "series_name": "違国日記",
+        "short_title": "違国日記",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?08e0u",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 21269,
+        "title": "違国日記",
+        "title_ja": "違国日記",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?08e0u",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/journal-with-witch",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "違国日記",
+        "image_url": "https://img2.animatetimes.com/2023/06/3b614fd8c89220b9497972f6c281222d66fcb25aea6a83_56636851_070ec3c6e8feeab0d2bc760e7a3a0de249b9b992-e1727836776814.jpg",
+        "image_source": "animatetimes",
+        "short_title": "違国日記",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?08e0u",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "かぐや様は告らせたい？～天才たちの恋愛頭脳戦～",
+    "short_base": "かぐや様",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1764/106659l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 13541,
+        "title": "かぐや様は告らせたい？～天才たちの恋愛頭脳戦～（第2期）",
+        "title_ja": "かぐや様は告らせたい？～天才たちの恋愛頭脳戦～（第2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?r0f5g",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1764/106659l.jpg",
+        "short_title": "かぐや様（第2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?r0f5g",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（第2期）"
+      }
+    ]
+  },
+  {
+    "base": "ゆるキャン△",
+    "short_base": "ゆるキャン△",
+    "group_image": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 6577,
+        "title": "ゆるキャン△",
+        "title_ja": "ゆるキャン△",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?76jna",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg",
+        "series_name": "ゆるキャン△",
+        "short_title": "ゆるキャン△",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?76jna",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 13964,
+        "title": "ゆるキャン△ SEASON２",
+        "title_ja": "ゆるキャン△ SEASON２",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?0mwyq",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: yuru-camp-season-2",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg",
+        "series_name": "ゆるキャン△",
+        "short_title": "ゆるキャン△ SEASON２",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?0mwyq",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "SEASON２"
+      },
+      {
+        "anime_db_id": 18164,
+        "title": "ゆるキャン△ SEASON３（第3期）",
+        "title_ja": "ゆるキャン△ SEASON３（第3期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?iguu3",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: yuru-camp-season-3",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg",
+        "series_name": "ゆるキャン△",
+        "short_title": "ゆるキャン△ SEASON３（第3期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?iguu3",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "SEASON３（第3期）"
+      },
+      {
+        "anime_db_id": 25171,
+        "title": "ゆるキャン△ SEASON４（第4期）",
+        "title_ja": "ゆるキャン△ SEASON４（第4期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?76jna",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg",
+        "series_name": "ゆるキャン△",
+        "short_title": "ゆるキャン△ SEASON４（第4期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?76jna",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "SEASON４（第4期）"
+      },
+      {
+        "anime_db_id": 13966,
+        "title": "映画『ゆるキャン△』",
+        "title_ja": "映画『ゆるキャン△』",
+        "sites": [],
+        "series_name": "ゆるキャン△",
+        "image_url": "https://img2.animatetimes.com/2021/12/6281b4236331e_a24a0a19409657d58cc9b83dada5753d.jpg",
+        "image_source": "animatetimes",
+        "short_title": "映画『ゆるキャン△』",
+        "best_site": null,
+        "season_label": "映画『』"
+      },
+      {
+        "anime_db_id": 13188,
+        "title": "ゆるキャン△",
+        "title_ja": "ゆるキャン△",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?76jna",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "ゆるキャン△",
+        "image_url": "https://img2.animatetimes.com/2021/08/6115e6d89a949_50ec019c33e3acc0a028d8c837090f3b.jpg",
+        "image_source": "animatetimes",
+        "short_title": "ゆるキャン△",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?76jna",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 13963,
+        "title": "ゆるキャン△（1期）",
+        "title_ja": "ゆるキャン△（1期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?76jna",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "ゆるキャン△",
+        "image_url": "https://img2.animatetimes.com/2021/12/61b94e5f8240f_ec01ee3dd4747daacf6a4479b9a9ceec.jpg",
+        "image_source": "animatetimes",
+        "short_title": "ゆるキャン△（1期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?76jna",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（1期）"
+      }
+    ]
+  },
+  {
+    "base": "メダリスト",
+    "short_base": "メダリスト",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1029/146850l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 21115,
+        "title": "メダリスト",
+        "title_ja": "メダリスト",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?qb3k8",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/medalist",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/medalist-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1029/146850l.jpg",
+        "series_name": "メダリスト",
+        "short_title": "メダリスト",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?qb3k8",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 25754,
+        "title": "メダリスト 第2期",
+        "title_ja": "メダリスト 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ypqq1",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/medalist-season-2",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/medalist-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1029/146850l.jpg",
+        "series_name": "メダリスト",
+        "short_title": "メダリスト 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ypqq1",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      },
+      {
+        "anime_db_id": 27437,
+        "title": "劇場版 メダリスト",
+        "title_ja": "劇場版 メダリスト",
+        "sites": [],
+        "series_name": "メダリスト",
+        "image_url": "https://img2.animatetimes.com/2026/01/b244512e9390524c1da057191a4f4f4d69c1e27d82c4a0_77860218_461a86da0b0727565c4a3037e9d35e247a2a76a4-e1774314156805.jpg",
+        "image_source": "animatetimes",
+        "short_title": "劇場版 メダリスト",
+        "best_site": null,
+        "season_label": "劇場版"
+      }
+    ]
+  },
+  {
+    "base": "真夜中ぱんチ",
+    "short_base": "真夜中ぱんチ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1700/143395l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 23518,
+        "title": "真夜中ぱんチ",
+        "title_ja": "真夜中ぱんチ",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ixyy5",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/mayonaka-punch",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/mayonaka-punch-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1700/143395l.jpg",
+        "short_title": "真夜中ぱんチ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ixyy5",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "貴族転生 ～恵まれた生まれから最強の力を得る～",
+    "short_base": "貴族転生",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1629/153722l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 25422,
+        "title": "貴族転生 ～恵まれた生まれから最強の力を得る～",
+        "title_ja": "貴族転生 ～恵まれた生まれから最強の力を得る～",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/noble-reincarnation-born-blessed-so-ill-obtain-ultimate-power",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1629/153722l.jpg",
+        "short_title": "貴族転生",
+        "best_site": {
+          "url": "https://www.animegg.org/series/noble-reincarnation-born-blessed-so-ill-obtain-ultimate-power",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "ある魔女が死ぬまで",
+    "short_base": "ある魔女が死ぬまで",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1620/148221l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 24291,
+        "title": "ある魔女が死ぬまで",
+        "title_ja": "ある魔女が死ぬまで",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?nffbm",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/once-upon-a-witch-s-death",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1620/148221l.jpg",
+        "short_title": "ある魔女が死ぬまで",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?nffbm",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "劇場版ポケットモンスター アドバンスジェネレーション 裂空の訪問者 デオキシス",
+    "short_base": "デオキシス",
+    "group_image": null,
+    "entries": [
+      {
+        "anime_db_id": 16130,
+        "title": "劇場版ポケットモンスター アドバンスジェネレーション 裂空の訪問者 デオキシス",
+        "title_ja": "劇場版ポケットモンスター アドバンスジェネレーション 裂空の訪問者 デオキシス",
+        "sites": [],
+        "short_title": "デオキシス",
+        "best_site": null,
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "RDG レッドデータガール",
+    "short_base": "RDG レッドデータガール",
+    "group_image": "https://cdn.myanimelist.net/images/anime/4/50313l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 3186,
+        "title": "RDG レッドデータガール",
+        "title_ja": "RDG レッドデータガール",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/red-data-girl",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://animeheaven.me/anime.php?054z5",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/4/50313l.jpg",
+        "short_title": "RDG レッドデータガール",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?054z5",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "Re:ゼロから始める異世界生活",
+    "short_base": "リゼロ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 12013,
+        "title": "Re:ゼロから始める異世界生活（1期）",
+        "title_ja": "Re:ゼロから始める異世界生活（1期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?yhxeg",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg",
+        "series_name": "Re:ゼロから始める異世界生活",
+        "short_title": "リゼロ（1期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?yhxeg",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（1期）"
+      },
+      {
+        "anime_db_id": 15099,
+        "title": "Re:ゼロから始める異世界生活 2nd season（2期）",
+        "title_ja": "Re:ゼロから始める異世界生活 2nd season（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?vumoa",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg",
+        "series_name": "Re:ゼロから始める異世界生活",
+        "short_title": "リゼロ 2nd season（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?vumoa",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "2nd season（2期）"
+      },
+      {
+        "anime_db_id": 20420,
+        "title": "Re:ゼロから始める異世界生活 3rd season（3期）",
+        "title_ja": "Re:ゼロから始める異世界生活 3rd season（3期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?f6eal",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg",
+        "series_name": "Re:ゼロから始める異世界生活",
+        "short_title": "リゼロ 3rd season（3期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?f6eal",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "3rd season（3期）"
+      },
+      {
+        "anime_db_id": 25741,
+        "title": "Re:ゼロから始める異世界生活 4th season（4期）",
+        "title_ja": "Re:ゼロから始める異世界生活 4th season（4期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ilp9j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg",
+        "series_name": "Re:ゼロから始める異世界生活",
+        "short_title": "リゼロ 4th season（4期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ilp9j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "4th season（4期）"
+      },
+      {
+        "anime_db_id": 15100,
+        "title": "Re:ゼロから始める異世界生活 Memory Snow",
+        "title_ja": "Re:ゼロから始める異世界生活 Memory Snow",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/rezero-kara-hajimeru-isekai-seikatsu---memory-snow",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1706/144725l.jpg",
+        "series_name": "Re:ゼロから始める異世界生活",
+        "short_title": "リゼロ Memory Snow",
+        "best_site": {
+          "url": "https://www.animegg.org/series/rezero-kara-hajimeru-isekai-seikatsu---memory-snow",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "Memory Snow"
+      },
+      {
+        "anime_db_id": 15101,
+        "title": "Re:ゼロから始める異世界生活 氷結の絆",
+        "title_ja": "Re:ゼロから始める異世界生活 氷結の絆",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?yhxeg",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/rezero-kara-hajimeru-isekai-seikatsu---hyouketsu-no-kizuna-dub",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg",
+        "series_name": "Re:ゼロから始める異世界生活",
+        "short_title": "リゼロ 氷結の絆",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?yhxeg",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "氷結の絆"
+      }
+    ]
+  },
+  {
+    "base": "瑠璃の宝石",
+    "short_base": "瑠璃の宝石",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1431/148742l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 24836,
+        "title": "瑠璃の宝石",
+        "title_ja": "瑠璃の宝石",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?gu33j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/ruri-rocks",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1431/148742l.jpg",
+        "short_title": "瑠璃の宝石",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?gu33j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "るろうに剣心 －明治剣客浪漫譚－",
+    "short_base": "るろうに剣心",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1346/119505l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 16661,
+        "title": "るろうに剣心 -明治剣客浪漫譚-",
+        "title_ja": "るろうに剣心 -明治剣客浪漫譚-",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/rurouni-kenshin",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://animeheaven.me/anime.php?rmigl",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/rurouni-kenshin-meiji-kenkaku-romantan-kyoto-douran-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1346/119505l.jpg",
+        "series_name": "るろうに剣心 －明治剣客浪漫譚－",
+        "short_title": "るろうに剣心 -明治剣客浪漫譚-",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?rmigl",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "-明治剣客浪漫譚-"
+      },
+      {
+        "anime_db_id": 25726,
+        "title": "るろうに剣心 －明治剣客浪漫譚－ 第三期",
+        "title_ja": "るろうに剣心 －明治剣客浪漫譚－ 第三期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?xht89",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1391/148722l.jpg",
+        "series_name": "るろうに剣心 －明治剣客浪漫譚－",
+        "short_title": "るろうに剣心 第三期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?xht89",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第三期"
+      },
+      {
+        "anime_db_id": 23245,
+        "title": "るろうに剣心 －明治剣客浪漫譚－ 京都動乱",
+        "title_ja": "るろうに剣心 －明治剣客浪漫譚－ 京都動乱",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?xht89",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1314/145530l.jpg",
+        "series_name": "るろうに剣心 －明治剣客浪漫譚－",
+        "short_title": "るろうに剣心 京都動乱",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?xht89",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "京都動乱"
+      },
+      {
+        "anime_db_id": 14052,
+        "title": "るろうに剣心 －明治剣客浪漫譚－",
+        "title_ja": "るろうに剣心 －明治剣客浪漫譚－",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/rurouni-kenshin",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://animeheaven.me/anime.php?rmigl",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/rurouni-kenshin-meiji-kenkaku-romantan-kyoto-douran-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "series_name": "るろうに剣心 －明治剣客浪漫譚－",
+        "image_url": "https://img2.animatetimes.com/2021/12/c7e98ea36f501c70d5f5478bebe380c765163cecf25693_34227711_ad343d146f3138669756e75f3e924a6612b57392-e1695956214779.jpg",
+        "image_source": "animatetimes",
+        "short_title": "るろうに剣心",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?rmigl",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "シャインポスト",
+    "short_base": "シャインポスト",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1976/123710l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 13567,
+        "title": "シャインポスト",
+        "title_ja": "シャインポスト",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?kirzp",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/shine-post",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1976/123710l.jpg",
+        "series_name": "シャインポスト",
+        "short_title": "シャインポスト",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?kirzp",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 19220,
+        "title": "シャインポスト",
+        "title_ja": "シャインポスト",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?kirzp",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/shine-post",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "シャインポスト",
+        "short_title": "シャインポスト",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?kirzp",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "小市民シリーズ",
+    "short_base": "小市民シリーズ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1164/143459l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 23391,
+        "title": "小市民シリーズ",
+        "title_ja": "小市民シリーズ",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?szo8x",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1164/143459l.jpg",
+        "series_name": "小市民シリーズ",
+        "short_title": "小市民シリーズ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?szo8x",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 24876,
+        "title": "小市民シリーズ 第2期",
+        "title_ja": "小市民シリーズ 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?h0xu8",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1164/143459l.jpg",
+        "series_name": "小市民シリーズ",
+        "short_title": "小市民シリーズ 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?h0xu8",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      }
+    ]
+  },
+  {
+    "base": "終末トレインどこへいく？",
+    "short_base": "終末トレイン",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1224/137451l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 18000,
+        "title": "終末トレインどこへいく？",
+        "title_ja": "終末トレインどこへいく？",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?3gxod",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1224/137451l.jpg",
+        "short_title": "終末トレイン",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?3gxod",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "SPY×FAMILY",
+    "short_base": "SPY×FAMILY",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 24157,
+        "title": "SPY×FAMILY Season 3（3期）",
+        "title_ja": "SPY×FAMILY Season 3（3期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ixx42",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/spy-x-family-season-3-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/spy-x-family-season-3",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1697/151793l.jpg",
+        "series_name": "SPY×FAMILY",
+        "short_title": "SPY×FAMILY Season 3（3期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ixx42",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Season 3（3期）"
+      },
+      {
+        "anime_db_id": 19100,
+        "title": "劇場版 SPY×FAMILY CODE: White",
+        "title_ja": "劇場版 SPY×FAMILY CODE: White",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?cgw1v",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/spy-x-family-movie-code-white",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1567/141475l.jpg",
+        "series_name": "SPY×FAMILY",
+        "short_title": "劇場版 SPY×FAMILY CODE: White",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?cgw1v",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版  CODE: White"
+      },
+      {
+        "anime_db_id": 19101,
+        "title": "SPY×FAMILY Season2（2期）",
+        "title_ja": "SPY×FAMILY Season2（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ojfp5",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg",
+        "series_name": "SPY×FAMILY",
+        "short_title": "SPY×FAMILY Season2（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ojfp5",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Season2（2期）"
+      },
+      {
+        "anime_db_id": 24167,
+        "title": "SPY×FAMILY",
+        "title_ja": "SPY×FAMILY",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?yyfp6",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/spy-x-family",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg",
+        "series_name": "SPY×FAMILY",
+        "short_title": "SPY×FAMILY",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?yyfp6",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "お隣の天使様にいつの間にか駄目人間にされていた件",
+    "short_base": "お隣の天使様",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1240/133638l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 14205,
+        "title": "お隣の天使様にいつの間にか駄目人間にされていた件",
+        "title_ja": "お隣の天使様にいつの間にか駄目人間にされていた件",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?qopgv",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/otonari-no-tenshi-sama-ni-itsunomanika-dame-ningen-ni-sareteita-ken",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1240/133638l.jpg",
+        "series_name": "お隣の天使様にいつの間にか駄目人間にされていた件",
+        "short_title": "お隣の天使様",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?qopgv",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 22824,
+        "title": "お隣の天使様にいつの間にか駄目人間にされていた件 第2期",
+        "title_ja": "お隣の天使様にいつの間にか駄目人間にされていた件 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ttcnk",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/the-angel-next-door-spoils-me-rotten-season-2",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1240/133638l.jpg",
+        "series_name": "お隣の天使様にいつの間にか駄目人間にされていた件",
+        "short_title": "お隣の天使様 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ttcnk",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      }
+    ]
+  },
+  {
+    "base": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す",
+    "short_base": "補助魔法",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1732/153360l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 25709,
+        "title": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す",
+        "title_ja": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?8c9r2",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/the-banished-court-magician-aims-to-become-the-strongest",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1732/153360l.jpg",
+        "series_name": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す",
+        "short_title": "補助魔法",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?8c9r2",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 20979,
+        "title": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す",
+        "title_ja": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?8c9r2",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/the-banished-court-magician-aims-to-become-the-strongest",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す",
+        "short_title": "補助魔法",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?8c9r2",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "斉木楠雄のΨ難",
+    "short_base": "斉木楠雄のΨ難",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1973/142750l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 6140,
+        "title": "斉木楠雄のΨ難",
+        "title_ja": "斉木楠雄のΨ難",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?87m2t",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1973/142750l.jpg",
+        "series_name": "斉木楠雄のΨ難",
+        "short_title": "斉木楠雄のΨ難",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?87m2t",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 14141,
+        "title": "斉木楠雄のΨ難（第2期）",
+        "title_ja": "斉木楠雄のΨ難（第2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?5r29v",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1973/142750l.jpg",
+        "series_name": "斉木楠雄のΨ難",
+        "short_title": "斉木楠雄のΨ難（第2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?5r29v",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（第2期）"
+      },
+      {
+        "anime_db_id": 4657,
+        "title": "映画 斉木楠雄のΨ難",
+        "title_ja": "映画 斉木楠雄のΨ難",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?87m2t",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "斉木楠雄のΨ難",
+        "image_url": "https://img2.animatetimes.com/2018/11/51a219432e1d374a5684fafceab58dc3654c74397df334_58483720_d3d09ded918c8eb4f1d6e4aed8a7f5a193eddf98.png",
+        "image_source": "animatetimes",
+        "short_title": "映画 斉木楠雄のΨ難",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?87m2t",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "映画"
+      },
+      {
+        "anime_db_id": 14142,
+        "title": "斉木楠雄のΨ難 完結編",
+        "title_ja": "斉木楠雄のΨ難 完結編",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?5r29v",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1961/91383l.jpg",
+        "series_name": "斉木楠雄のΨ難",
+        "short_title": "斉木楠雄のΨ難 完結編",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?5r29v",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "完結編"
+      },
+      {
+        "anime_db_id": 14143,
+        "title": "斉木楠雄のΨ難 Ψ始動編",
+        "title_ja": "斉木楠雄のΨ難 Ψ始動編",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?5r29v",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1961/91383l.jpg",
+        "series_name": "斉木楠雄のΨ難",
+        "short_title": "斉木楠雄のΨ難 Ψ始動編",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?5r29v",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Ψ始動編"
+      }
+    ]
+  },
+  {
+    "base": "逃げ上手の若君",
+    "short_base": "逃げ上手の若君",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1386/140401l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 11641,
+        "title": "逃げ上手の若君",
+        "title_ja": "逃げ上手の若君",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?gr29e",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/nige-jouzu-no-wakagimi",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1386/140401l.jpg",
+        "series_name": "逃げ上手の若君",
+        "short_title": "逃げ上手の若君",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?gr29e",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 25034,
+        "title": "逃げ上手の若君 第二期",
+        "title_ja": "逃げ上手の若君 第二期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?8s06m",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/the-elusive-samurai-season-2",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1289/156329l.jpg",
+        "series_name": "逃げ上手の若君",
+        "short_title": "逃げ上手の若君 第二期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?8s06m",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第二期"
+      }
+    ]
+  },
+  {
+    "base": "約束のネバーランド",
+    "short_base": "約ネバ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1830/118780l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 7270,
+        "title": "約束のネバーランド",
+        "title_ja": "約束のネバーランド",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?gwoye",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1830/118780l.jpg",
+        "series_name": "約束のネバーランド",
+        "short_title": "約ネバ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?gwoye",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 13526,
+        "title": "約束のネバーランド Season 2",
+        "title_ja": "約束のネバーランド Season 2",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/yakusoku-no-neverland-2nd-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1815/110626l.jpg",
+        "series_name": "約束のネバーランド",
+        "short_title": "約ネバ Season 2",
+        "best_site": {
+          "url": "https://www.animegg.org/series/yakusoku-no-neverland-2nd-season",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "Season 2"
+      }
+    ]
+  },
+  {
+    "base": "幼女戦記",
+    "short_base": "幼女戦記",
+    "group_image": "https://cdn.myanimelist.net/images/anime/5/82890l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 5321,
+        "title": "幼女戦記",
+        "title_ja": "幼女戦記",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?kmsb6",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/youjo-senki",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/5/82890l.jpg",
+        "series_name": "幼女戦記",
+        "short_title": "幼女戦記",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?kmsb6",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 14370,
+        "title": "劇場版 幼女戦記",
+        "title_ja": "劇場版 幼女戦記",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?zw93o",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1249/117182l.jpg",
+        "series_name": "幼女戦記",
+        "short_title": "劇場版 幼女戦記",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?zw93o",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版"
+      },
+      {
+        "anime_db_id": 14369,
+        "title": "幼女戦記Ⅱ（2期）",
+        "title_ja": "幼女戦記Ⅱ（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?jrus1",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/saga-of-tanya-the-evil-season-2",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/5/82890l.jpg",
+        "series_name": "幼女戦記",
+        "short_title": "幼女戦記Ⅱ（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?jrus1",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Ⅱ（2期）"
+      }
+    ]
+  },
+  {
+    "base": "終末ツーリング",
+    "short_base": "終末ツーリング",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1681/151599l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 25582,
+        "title": "終末ツーリング",
+        "title_ja": "終末ツーリング",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?en5dl",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/touring-after-the-apocalypse",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1681/151599l.jpg",
+        "short_title": "終末ツーリング",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?en5dl",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "ヴァイオレット・エヴァーガーデン",
+    "short_base": "ヴァイオレット・エヴァーガーデン",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 6170,
+        "title": "ヴァイオレット・エヴァーガーデン",
+        "title_ja": "ヴァイオレット・エヴァーガーデン",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?z58tb",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/violet-evergarden",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg",
+        "series_name": "ヴァイオレット・エヴァーガーデン",
+        "short_title": "ヴァイオレット・エヴァーガーデン",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?z58tb",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 12166,
+        "title": "劇場版 ヴァイオレット・エヴァーガーデン",
+        "title_ja": "劇場版 ヴァイオレット・エヴァーガーデン",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/violet-evergarden-movie",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1825/110716l.jpg",
+        "series_name": "ヴァイオレット・エヴァーガーデン",
+        "short_title": "劇場版 ヴァイオレット・エヴァーガーデン",
+        "best_site": {
+          "url": "https://www.animegg.org/series/violet-evergarden-movie",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版"
+      },
+      {
+        "anime_db_id": 12001,
+        "title": "ヴァイオレット・エヴァーガーデン 外伝 - 永遠と自動手記人形 -",
+        "title_ja": "ヴァイオレット・エヴァーガーデン 外伝 - 永遠と自動手記人形 -",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?z58tb",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/violet-evergarden",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg",
+        "series_name": "ヴァイオレット・エヴァーガーデン",
+        "short_title": "ヴァイオレット・エヴァーガーデン 外伝 - 永遠と自動手記人形 -",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?z58tb",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "外伝 - 永遠と自動手記人形 -"
+      }
+    ]
+  },
+  {
+    "base": "アオのハコ",
+    "short_base": "アオのハコ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1341/145349l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 23082,
+        "title": "アオのハコ",
+        "title_ja": "アオのハコ",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?oduzb",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1341/145349l.jpg",
+        "series_name": "アオのハコ",
+        "short_title": "アオのハコ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?oduzb",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 25746,
+        "title": "アオのハコ 第2期",
+        "title_ja": "アオのハコ 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?oduzb",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1341/145349l.jpg",
+        "series_name": "アオのハコ",
+        "short_title": "アオのハコ 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?oduzb",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      }
+    ]
+  },
+  {
+    "base": "コードギアス 反逆のルルーシュ",
+    "short_base": "コードギアス",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 15065,
+        "title": "コードギアス 反逆のルルーシュ",
+        "title_ja": "コードギアス 反逆のルルーシュ",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?45ky1",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/code-geass-lelouch-of-the-rebellion-r2-special-edition-zero-requiem",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg",
+        "series_name": "コードギアス 反逆のルルーシュ",
+        "short_title": "コードギアス",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?45ky1",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 12743,
+        "title": "コードギアス 反逆のルルーシュII 叛道",
+        "title_ja": "コードギアス 反逆のルルーシュII 叛道",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?45ky1",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/code-geass-lelouch-of-the-rebellion-r2-special-edition-zero-requiem",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg",
+        "series_name": "コードギアス 反逆のルルーシュ",
+        "short_title": "コードギアスII 叛道",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?45ky1",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "II 叛道"
+      },
+      {
+        "anime_db_id": 12744,
+        "title": "コードギアス 反逆のルルーシュIII 皇道",
+        "title_ja": "コードギアス 反逆のルルーシュIII 皇道",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?45ky1",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/code-geass-lelouch-of-the-rebellion-r2-special-edition-zero-requiem",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg",
+        "series_name": "コードギアス 反逆のルルーシュ",
+        "short_title": "コードギアスIII 皇道",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?45ky1",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "III 皇道"
+      },
+      {
+        "anime_db_id": 12745,
+        "title": "コードギアス 反逆のルルーシュR2（2期）",
+        "title_ja": "コードギアス 反逆のルルーシュR2（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?1iv8b",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/code-geass-lelouch-of-the-rebellion-r2-special-edition-zero-requiem",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1088/135089l.jpg",
+        "series_name": "コードギアス 反逆のルルーシュ",
+        "short_title": "コードギアスR2（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?1iv8b",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "R2（2期）"
+      },
+      {
+        "anime_db_id": 12742,
+        "title": "コードギアス 反逆のルルーシュI 興道",
+        "title_ja": "コードギアス 反逆のルルーシュI 興道",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?45ky1",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/code-geass-lelouch-of-the-rebellion-r2-special-edition-zero-requiem",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg",
+        "series_name": "コードギアス 反逆のルルーシュ",
+        "short_title": "コードギアスI 興道",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?45ky1",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "I 興道"
+      }
+    ]
+  },
+  {
+    "base": "ダンボール戦機",
+    "short_base": "ダンボール戦機",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1937/94703l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 2149,
+        "title": "ダンボール戦機",
+        "title_ja": "ダンボール戦機",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/danball-senki",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1937/94703l.jpg",
+        "series_name": "ダンボール戦機",
+        "short_title": "ダンボール戦機",
+        "best_site": {
+          "url": "https://www.animegg.org/series/danball-senki",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 13976,
+        "title": "ダンボール戦機W（2期）",
+        "title_ja": "ダンボール戦機W（2期）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/inazuma-eleven-go-vs-danball-senki-w-movie",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/60753l.jpg",
+        "series_name": "ダンボール戦機",
+        "short_title": "ダンボール戦機W（2期）",
+        "best_site": {
+          "url": "https://www.animegg.org/series/inazuma-eleven-go-vs-danball-senki-w-movie",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "W（2期）"
+      },
+      {
+        "anime_db_id": 14850,
+        "title": "ダンボール戦機WARS（3期）",
+        "title_ja": "ダンボール戦機WARS（3期）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/danball-senki-wars",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1937/94703l.jpg",
+        "series_name": "ダンボール戦機",
+        "short_title": "ダンボール戦機WARS（3期）",
+        "best_site": {
+          "url": "https://www.animegg.org/series/danball-senki-wars",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "WARS（3期）"
+      }
+    ]
+  },
+  {
+    "base": "衛宮さんちの今日のごはん",
+    "short_base": "衛宮さんち",
+    "group_image": "https://img2.animatetimes.com/different/news/2018/10/1538441491966.jpg",
+    "entries": [
+      {
+        "anime_db_id": 7022,
+        "title": "衛宮さんちの今日のごはん",
+        "title_ja": "衛宮さんちの今日のごはん",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/emiya-san-chi-no-kyou-no-gohan",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "image_url": "https://img2.animatetimes.com/different/news/2018/10/1538441491966.jpg",
+        "image_source": "animatetimes",
+        "short_title": "衛宮さんち",
+        "best_site": {
+          "url": "https://www.animegg.org/series/emiya-san-chi-no-kyou-no-gohan",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "銀魂' 延長戦",
+    "short_base": "銀魂' 延長戦",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1452/123686l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 14060,
+        "title": "銀魂' 延長戦",
+        "title_ja": "銀魂' 延長戦",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?jif2t",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true,
+            "no_episodes": true
+          },
+          {
+            "url": "https://www.animegg.org/series/gintama-enchousen",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1452/123686l.jpg",
+        "short_title": "銀魂' 延長戦",
+        "best_site": {
+          "url": "https://www.animegg.org/series/gintama-enchousen",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "ひきこまり吸血姫の悶々",
+    "short_base": "ひきこまり",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1032/137893l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 19323,
+        "title": "ひきこまり吸血姫の悶々",
+        "title_ja": "ひきこまり吸血姫の悶々",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?bx0kd",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1032/137893l.jpg",
+        "short_title": "ひきこまり",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?bx0kd",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "氷菓",
+    "short_base": "氷菓",
+    "group_image": "https://cdn.myanimelist.net/images/anime/13/50521l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 2780,
+        "title": "氷菓",
+        "title_ja": "氷菓",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?kswa5",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/hyouka",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/13/50521l.jpg",
+        "short_title": "氷菓",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?kswa5",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "神之塔 -Tower of God- 王子の帰還",
+    "short_base": "神之塔",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1218/143537l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 16625,
+        "title": "神之塔 -Tower of God- 王子の帰還",
+        "title_ja": "神之塔 -Tower of God- 王子の帰還",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?nzvy0",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/kami-no-tou-ouji-no-kikan",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1218/143537l.jpg",
+        "short_title": "神之塔",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?nzvy0",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "虚構推理",
+    "short_base": "虚構推理",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1310/117188l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 7780,
+        "title": "虚構推理",
+        "title_ja": "虚構推理",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ml8gg",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1310/117188l.jpg",
+        "series_name": "虚構推理",
+        "short_title": "虚構推理",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ml8gg",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 13645,
+        "title": "虚構推理 Season2",
+        "title_ja": "虚構推理 Season2",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?nkh0a",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1310/117188l.jpg",
+        "series_name": "虚構推理",
+        "short_title": "虚構推理 Season2",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?nkh0a",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Season2"
+      }
+    ]
+  },
+  {
+    "base": "リコリス・リコイル",
+    "short_base": "リコリコ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1261/127311l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 19780,
+        "title": "リコリス・リコイル",
+        "title_ja": "リコリス・リコイル",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?mymlq",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/lycoris-recoil",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/lycoris-recoil-friends-are-thieves-of-time-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1261/127311l.jpg",
+        "series_name": "リコリス・リコイル",
+        "short_title": "リコリコ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?mymlq",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 19735,
+        "title": "リコリス・リコイル Friends are thieves of time.",
+        "title_ja": "リコリス・リコイル Friends are thieves of time.",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?a8048",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/lycoris-recoil-friends-are-thieves-of-time-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/lycoris-recoil-friends-are-thieves-of-time",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "リコリス・リコイル",
+        "image_url": "https://img2.animatetimes.com/2023/02/62fddf89911d55bc57422757ecc32d62678dbc2f090a57_77775507_1eaa786fee4990d4e8aaa5932baf56efa69c1049.jpg",
+        "image_source": "animatetimes",
+        "short_title": "リコリコ Friends are thieves of time.",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?a8048",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Friends are thieves of time."
+      }
+    ]
+  },
+  {
+    "base": "メイドインアビス",
+    "short_base": "メイドインアビス",
+    "group_image": "https://cdn.myanimelist.net/images/anime/6/86733l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 6534,
+        "title": "メイドインアビス",
+        "title_ja": "メイドインアビス",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?amn09",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/made-in-abyss",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/6/86733l.jpg",
+        "series_name": "メイドインアビス",
+        "short_title": "メイドインアビス",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?amn09",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 6115,
+        "title": "劇場版総集編メイドインアビス【前編】旅立ちの夜明け／【後編】放浪する黄昏",
+        "title_ja": "劇場版総集編メイドインアビス【前編】旅立ちの夜明け／【後編】放浪する黄昏",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?amn09",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1173/95167l.jpg",
+        "series_name": "メイドインアビス",
+        "short_title": "劇場版総集編メイドインアビス【前編】旅立ちの夜明け／【後編】放浪する黄昏",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?amn09",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版総集編【前編】旅立ちの夜明け／【後編】放浪する黄昏"
+      },
+      {
+        "anime_db_id": 13762,
+        "title": "メイドインアビス 烈日の黄金郷（2期）",
+        "title_ja": "メイドインアビス 烈日の黄金郷（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?1logn",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/made-in-abyss-retsujitsu-no-ougonkyou",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1864/122519l.jpg",
+        "series_name": "メイドインアビス",
+        "short_title": "メイドインアビス 烈日の黄金郷（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?1logn",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "烈日の黄金郷（2期）"
+      },
+      {
+        "anime_db_id": 15026,
+        "title": "メイドインアビス 深き魂の黎明",
+        "title_ja": "メイドインアビス 深き魂の黎明",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?9hih3",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/made-in-abyss",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/6/86733l.jpg",
+        "series_name": "メイドインアビス",
+        "short_title": "メイドインアビス 深き魂の黎明",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?9hih3",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "深き魂の黎明"
+      },
+      {
+        "anime_db_id": 26603,
+        "title": "メイドインアビス 目覚める神秘",
+        "title_ja": "メイドインアビス 目覚める神秘",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?amn09",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/made-in-abyss",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/6/86733l.jpg",
+        "series_name": "メイドインアビス",
+        "short_title": "メイドインアビス 目覚める神秘",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?amn09",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "目覚める神秘"
+      }
+    ]
+  },
+  {
+    "base": "魔法使いの嫁",
+    "short_base": "魔法使いの嫁",
+    "group_image": "https://cdn.myanimelist.net/images/anime/3/88476l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 17152,
+        "title": "魔法使いの嫁 SEASON2（2期）",
+        "title_ja": "魔法使いの嫁 SEASON2（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?kitbd",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/88476l.jpg",
+        "series_name": "魔法使いの嫁",
+        "short_title": "魔法使いの嫁 SEASON2（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?kitbd",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "SEASON2（2期）"
+      },
+      {
+        "anime_db_id": 6033,
+        "title": "魔法使いの嫁（まほよめ）",
+        "title_ja": "魔法使いの嫁（まほよめ）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?0jcxm",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/88476l.jpg",
+        "series_name": "魔法使いの嫁",
+        "short_title": "魔法使いの嫁（まほよめ）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?0jcxm",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "（まほよめ）"
+      }
+    ]
+  },
+  {
+    "base": "無職転生",
+    "short_base": "無職転生",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1530/117776l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 9105,
+        "title": "無職転生 ～異世界行ったら本気だす～",
+        "title_ja": "無職転生 ～異世界行ったら本気だす～",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?tqdvk",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1530/117776l.jpg",
+        "series_name": "無職転生",
+        "short_title": "無職転生 ～異世界行ったら本気だす～",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?tqdvk",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "～異世界行ったら本気だす～"
+      },
+      {
+        "anime_db_id": 14665,
+        "title": "無職転生 Ⅱ ～異世界行ったら本気だす～（第2期）",
+        "title_ja": "無職転生 Ⅱ ～異世界行ったら本気だす～（第2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?yvdz3",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "無職転生",
+        "image_url": "https://img2.animatetimes.com/2022/03/f3932b5722cd9acff233280d5c8eedb86642b8534080c5_68611105_29fc5ec6648e7e89b5cee54d0c569a9bd8b0f453-e1715648667897.jpg",
+        "image_source": "animatetimes",
+        "short_title": "無職転生 Ⅱ ～異世界行ったら本気だす～（第2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?yvdz3",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Ⅱ ～異世界行ったら本気だす～（第2期）"
+      },
+      {
+        "anime_db_id": 24285,
+        "title": "無職転生Ⅲ ～異世界行ったら本気だす～",
+        "title_ja": "無職転生Ⅲ ～異世界行ったら本気だす～",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?sfvog",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "無職転生",
+        "image_url": "https://img2.animatetimes.com/2024/07/41bc3eff8b15a60a1b1194427bb4147b6a0cff61090ae0_55509881_12b68b05a3e41f7ae076f3054e53ea62fc88f13f-e1779236712233.webp",
+        "image_source": "animatetimes",
+        "short_title": "無職転生Ⅲ ～異世界行ったら本気だす～",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?sfvog",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "Ⅲ ～異世界行ったら本気だす～"
+      }
+    ]
+  },
+  {
+    "base": "NARUTO -ナルト-",
+    "short_base": "NARUTO",
+    "group_image": "https://img2.animatetimes.com/2019/04/5cb03b5d3c130_6318dc7733af9118ce110e06c423230c.jpg",
+    "entries": [
+      {
+        "anime_db_id": 1695,
+        "title": "NARUTO -ナルト-",
+        "title_ja": "NARUTO -ナルト-",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ukr6y",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/naruto",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "NARUTO -ナルト-",
+        "image_url": "https://img2.animatetimes.com/2019/04/5cb03b5d3c130_6318dc7733af9118ce110e06c423230c.jpg",
+        "image_source": "animatetimes",
+        "short_title": "NARUTO",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ukr6y",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 15349,
+        "title": "劇場版 NARUTO -ナルト- 大活劇!雪姫忍法帖だってばよ!!",
+        "title_ja": "劇場版 NARUTO -ナルト- 大活劇!雪姫忍法帖だってばよ!!",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/naruto-the-movie-ninja-clash-in-the-land-of-snow",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1918/134487l.jpg",
+        "series_name": "NARUTO -ナルト-",
+        "short_title": "劇場版 NARUTO 大活劇!雪姫忍法帖だってばよ!!",
+        "best_site": {
+          "url": "https://www.animegg.org/series/naruto-the-movie-ninja-clash-in-the-land-of-snow",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版  大活劇!雪姫忍法帖だってばよ!!"
+      },
+      {
+        "anime_db_id": 15354,
+        "title": "劇場版 NARUTO -ナルト- 大激突!幻の地底遺跡だってばよ",
+        "title_ja": "劇場版 NARUTO -ナルト- 大激突!幻の地底遺跡だってばよ",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/naruto-the-movie-2-legend-of-the-stone-of-gelel",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "NARUTO -ナルト-",
+        "image_url": "https://img2.animatetimes.com/2022/05/628335ed9791a_a8c7177e58e57fc3caf60490e716b09c.jpg",
+        "image_source": "animatetimes",
+        "short_title": "劇場版 NARUTO 大激突!幻の地底遺跡だってばよ",
+        "best_site": {
+          "url": "https://www.animegg.org/series/naruto-the-movie-2-legend-of-the-stone-of-gelel",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版  大激突!幻の地底遺跡だってばよ"
+      },
+      {
+        "anime_db_id": 15362,
+        "title": "劇場版 NARUTO -ナルト- 大興奮!みかづき島のアニマル騒動だってばよ",
+        "title_ja": "劇場版 NARUTO -ナルト- 大興奮!みかづき島のアニマル騒動だってばよ",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/naruto-the-movie-3-guardians-of-the-crescent-moon-kingdom",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "NARUTO -ナルト-",
+        "image_url": "https://img2.animatetimes.com/2022/05/628335eeb2fe7_7474823bc232b40f532137b12697e926.jpg",
+        "image_source": "animatetimes",
+        "short_title": "劇場版 NARUTO 大興奮!みかづき島のアニマル騒動だってばよ",
+        "best_site": {
+          "url": "https://www.animegg.org/series/naruto-the-movie-3-guardians-of-the-crescent-moon-kingdom",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版  大興奮!みかづき島のアニマル騒動だってばよ"
+      },
+      {
+        "anime_db_id": 15363,
+        "title": "劇場版 NARUTO -ナルト- 疾風伝",
+        "title_ja": "劇場版 NARUTO -ナルト- 疾風伝",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?nc7bk",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/naruto-shippuden",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1703/134493l.jpg",
+        "series_name": "NARUTO -ナルト-",
+        "short_title": "劇場版 NARUTO 疾風伝",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?nc7bk",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版  疾風伝"
+      },
+      {
+        "anime_db_id": 15364,
+        "title": "劇場版 NARUTO -ナルト- 疾風伝 絆",
+        "title_ja": "劇場版 NARUTO -ナルト- 疾風伝 絆",
+        "sites": [],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1484/134494l.jpg",
+        "series_name": "NARUTO -ナルト-",
+        "short_title": "劇場版 NARUTO 疾風伝 絆",
+        "best_site": null,
+        "season_label": "劇場版  疾風伝 絆"
+      },
+      {
+        "anime_db_id": 15365,
+        "title": "劇場版 NARUTO -ナルト- 疾風伝 火の意志を継ぐ者",
+        "title_ja": "劇場版 NARUTO -ナルト- 疾風伝 火の意志を継ぐ者",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/naruto-shippuden-movie-3-hi-no-ishi-o-tsugu-mono",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1703/134493l.jpg",
+        "series_name": "NARUTO -ナルト-",
+        "short_title": "劇場版 NARUTO 疾風伝 火の意志を継ぐ者",
+        "best_site": {
+          "url": "https://www.animegg.org/series/naruto-shippuden-movie-3-hi-no-ishi-o-tsugu-mono",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版  疾風伝 火の意志を継ぐ者"
+      },
+      {
+        "anime_db_id": 15366,
+        "title": "劇場版 NARUTO -ナルト- 疾風伝 ザ・ロストタワー",
+        "title_ja": "劇場版 NARUTO -ナルト- 疾風伝 ザ・ロストタワー",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/naruto-shippuden-movie-4-the-lost-tower",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1479/116734l.jpg",
+        "series_name": "NARUTO -ナルト-",
+        "short_title": "劇場版 NARUTO 疾風伝 ザ・ロストタワー",
+        "best_site": {
+          "url": "https://www.animegg.org/series/naruto-shippuden-movie-4-the-lost-tower",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版  疾風伝 ザ・ロストタワー"
+      },
+      {
+        "anime_db_id": 15367,
+        "title": "劇場版 NARUTO -ナルト- ブラッド・プリズン",
+        "title_ja": "劇場版 NARUTO -ナルト- ブラッド・プリズン",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/naruto-shippuden-movie-5-blood-prison",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1500/134496l.jpg",
+        "series_name": "NARUTO -ナルト-",
+        "short_title": "劇場版 NARUTO ブラッド・プリズン",
+        "best_site": {
+          "url": "https://www.animegg.org/series/naruto-shippuden-movie-5-blood-prison",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版  ブラッド・プリズン"
+      }
+    ]
+  },
+  {
+    "base": "のんのんびより ばけーしょん",
+    "short_base": "のんのんびより",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1044/93575l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 14276,
+        "title": "劇場版 のんのんびより ばけーしょん",
+        "title_ja": "劇場版 のんのんびより ばけーしょん",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/non-non-biyori-movie-vacation",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1044/93575l.jpg",
+        "short_title": "劇場版 のんのんびより",
+        "best_site": {
+          "url": "https://www.animegg.org/series/non-non-biyori-movie-vacation",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版"
+      }
+    ]
+  },
+  {
+    "base": "狼と香辛料 MERCHANT MEETS THE WISE WOLF",
+    "short_base": "狼と香辛料",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1059/142414l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 14624,
+        "title": "狼と香辛料 MERCHANT MEETS THE WISE WOLF",
+        "title_ja": "狼と香辛料 MERCHANT MEETS THE WISE WOLF",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?jq9sg",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/ookami-to-koushinryou-merchant-meets-the-wise-wolf",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/ookami-to-koushinryou-merchant-meets-the-wise-wolf-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1059/142414l.jpg",
+        "series_name": "狼と香辛料 MERCHANT MEETS THE WISE WOLF",
+        "short_title": "狼と香辛料",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?jq9sg",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 24930,
+        "title": "狼と香辛料 MERCHANT MEETS THE WISE WOLF 第2期",
+        "title_ja": "狼と香辛料 MERCHANT MEETS THE WISE WOLF 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?jq9sg",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/ookami-to-koushinryou-merchant-meets-the-wise-wolf",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/ookami-to-koushinryou-merchant-meets-the-wise-wolf-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1059/142414l.jpg",
+        "series_name": "狼と香辛料 MERCHANT MEETS THE WISE WOLF",
+        "short_title": "狼と香辛料 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?jq9sg",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      }
+    ]
+  },
+  {
+    "base": "クオリディア・コード",
+    "short_base": "クオリディア・コード",
+    "group_image": "https://cdn.myanimelist.net/images/anime/6/80823l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 5964,
+        "title": "クオリディア・コード",
+        "title_ja": "クオリディア・コード",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/qualidea-code",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/6/80823l.jpg",
+        "short_title": "クオリディア・コード",
+        "best_site": {
+          "url": "https://www.animegg.org/series/qualidea-code",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "SHIROBAKO",
+    "short_base": "SHIROBAKO",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1460/141897l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 5142,
+        "title": "SHIROBAKO",
+        "title_ja": "SHIROBAKO",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/shirobako",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1460/141897l.jpg",
+        "series_name": "SHIROBAKO",
+        "short_title": "SHIROBAKO",
+        "best_site": {
+          "url": "https://www.animegg.org/series/shirobako",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 12760,
+        "title": "劇場版 SHIROBAKO",
+        "title_ja": "劇場版 SHIROBAKO",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/shirobako",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "SHIROBAKO",
+        "image_url": "https://img2.animatetimes.com/2021/07/6257eaabbbb0f_fbd5845fa0fb39cd86da590c346d5532-e1649928884424.jpg",
+        "image_source": "animatetimes",
+        "short_title": "劇場版 SHIROBAKO",
+        "best_site": {
+          "url": "https://www.animegg.org/series/shirobako",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版"
+      }
+    ]
+  },
+  {
+    "base": "転生王女と天才令嬢の魔法革命",
+    "short_base": "転生王女",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1053/129004l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 16663,
+        "title": "転生王女と天才令嬢の魔法革命",
+        "title_ja": "転生王女と天才令嬢の魔法革命",
+        "sites": [
+          {
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true,
+            "url": "https://animeheaven.me/anime.php?tnj2h"
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1053/129004l.jpg",
+        "series_name": "転生王女と天才令嬢の魔法革命",
+        "short_title": "転生王女",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?tnj2h",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 18945,
+        "title": "転生王女と天才令嬢の魔法革命",
+        "title_ja": "転生王女と天才令嬢の魔法革命",
+        "sites": [
+          {
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true,
+            "url": "https://animeheaven.me/anime.php?tnj2h"
+          }
+        ],
+        "series_name": "転生王女と天才令嬢の魔法革命",
+        "short_title": "転生王女",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?tnj2h",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "杖と剣のウィストリア",
+    "short_base": "ウィストリア",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1281/144104l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 23571,
+        "title": "杖と剣のウィストリア",
+        "title_ja": "杖と剣のウィストリア",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?dlkkd",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1281/144104l.jpg",
+        "series_name": "杖と剣のウィストリア",
+        "short_title": "ウィストリア",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?dlkkd",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 24972,
+        "title": "杖と剣のウィストリア シーズン2",
+        "title_ja": "杖と剣のウィストリア シーズン2",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?y98v5",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1281/144104l.jpg",
+        "series_name": "杖と剣のウィストリア",
+        "short_title": "ウィストリア シーズン2",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?y98v5",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "シーズン2"
+      },
+      {
+        "anime_db_id": 22876,
+        "title": "杖と剣のウィストリア",
+        "title_ja": "杖と剣のウィストリア",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?dlkkd",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "杖と剣のウィストリア",
+        "short_title": "ウィストリア",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?dlkkd",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "響け！ユーフォニアム",
+    "short_base": "ユーフォ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1517/142072l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 15617,
+        "title": "響け！ユーフォニアム３",
+        "title_ja": "響け！ユーフォニアム３",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?nda6o",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: hibike-euphonium-3",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1230/143099l.jpg",
+        "series_name": "響け！ユーフォニアム",
+        "short_title": "ユーフォ３",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?nda6o",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "３"
+      },
+      {
+        "anime_db_id": 15565,
+        "title": "劇場版 響け！ユーフォニアム～届けたいメロディ～",
+        "title_ja": "劇場版 響け！ユーフォニアム～届けたいメロディ～",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?aj66j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/5/88024l.jpg",
+        "series_name": "響け！ユーフォニアム",
+        "short_title": "劇場版 ユーフォ～届けたいメロディ～",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?aj66j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版 ～届けたいメロディ～"
+      },
+      {
+        "anime_db_id": 15566,
+        "title": "劇場版 響け！ユーフォニアム～誓いのフィナーレ～",
+        "title_ja": "劇場版 響け！ユーフォニアム～誓いのフィナーレ～",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?aj66j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "響け！ユーフォニアム",
+        "image_url": "https://img2.animatetimes.com/2022/06/629f073cb3653_795c052a2acccd31c91212b22083169f-e1654589257267.jpg",
+        "image_source": "animatetimes",
+        "short_title": "劇場版 ユーフォ～誓いのフィナーレ～",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?aj66j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版 ～誓いのフィナーレ～"
+      },
+      {
+        "anime_db_id": 15614,
+        "title": "劇場版 響け！ユーフォニアム～北宇治高校吹奏楽部へようこそ～",
+        "title_ja": "劇場版 響け！ユーフォニアム～北宇治高校吹奏楽部へようこそ～",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?aj66j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/8/81156l.jpg",
+        "series_name": "響け！ユーフォニアム",
+        "short_title": "劇場版 ユーフォ～北宇治高校吹奏楽部へようこそ～",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?aj66j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版 ～北宇治高校吹奏楽部へようこそ～"
+      },
+      {
+        "anime_db_id": 15615,
+        "title": "特別編 響け！ユーフォニアム～アンサンブルコンテスト～",
+        "title_ja": "特別編 響け！ユーフォニアム～アンサンブルコンテスト～",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?aj66j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "響け！ユーフォニアム",
+        "image_url": "https://img2.animatetimes.com/2023/06/554a1553c30d6aa1616a148244628ebb647ad6e336b6b8_83355937_30f478edde88254bdd41ce039b44a8dc00c835b3.jpg",
+        "image_source": "animatetimes",
+        "short_title": "特別編 ユーフォ～アンサンブルコンテスト～",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?aj66j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "特別編 ～アンサンブルコンテスト～"
+      },
+      {
+        "anime_db_id": 15585,
+        "title": "響け！ユーフォニアム 2（2期）",
+        "title_ja": "響け！ユーフォニアム 2（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?pl0ag",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/10/81155l.jpg",
+        "series_name": "響け！ユーフォニアム",
+        "short_title": "ユーフォ 2（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?pl0ag",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "2（2期）"
+      },
+      {
+        "anime_db_id": 5405,
+        "title": "響け！ユーフォニアム",
+        "title_ja": "響け！ユーフォニアム",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?aj66j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1517/142072l.jpg",
+        "series_name": "響け！ユーフォニアム",
+        "short_title": "ユーフォ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?aj66j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 25697,
+        "title": "最終楽章 響け！ユーフォニアム",
+        "title_ja": "最終楽章 響け！ユーフォニアム",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?aj66j",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "響け！ユーフォニアム",
+        "image_url": "https://img2.animatetimes.com/2025/03/026c23b308b10c7fde7a3cbb5df63d726a263d143f9f23_70204465_1b24cf4de4ea6183f6e08bb57e0e6689a4bc17ca.jpg",
+        "image_source": "animatetimes",
+        "short_title": "最終楽章 ユーフォ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?aj66j",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "最終楽章"
+      }
+    ]
+  },
+  {
+    "base": "HUNTER×HUNTER（ハンターハンター）",
+    "short_base": "HUNTER×HUNTER",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1337/99013l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 2420,
+        "title": "HUNTER×HUNTER（ハンターハンター）",
+        "title_ja": "HUNTER×HUNTER（ハンターハンター）",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/hunter-x-hunter",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://animeheaven.me/anime.php?ac4cz",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: hunter-x-hunter-2011",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1337/99013l.jpg",
+        "short_title": "HUNTER×HUNTER",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ac4cz",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "SHY 東京奪還編",
+    "short_base": "SHY 東京奪還編",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1518/143558l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 23256,
+        "title": "SHY 東京奪還編",
+        "title_ja": "SHY 東京奪還編",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?4svx1",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/series/shy-2nd-season/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/shy-2nd-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: shy-2nd-season",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1518/143558l.jpg",
+        "short_title": "SHY 東京奪還編",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?4svx1",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "甲鉄城のカバネリ",
+    "short_base": "甲鉄城のカバネリ",
+    "group_image": "https://img2.animatetimes.com/2018/11/619b40725f3bb_62b6c2a5d3bf787e1cbd3c44eec3b74d-e1637564539777.jpg",
+    "entries": [
+      {
+        "anime_db_id": 13715,
+        "title": "甲鉄城のカバネリ 海門決戦",
+        "title_ja": "甲鉄城のカバネリ 海門決戦",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?s9dqw",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: koutetsujou-no-kabaneri-unato-kessen",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/12/79164l.jpg",
+        "series_name": "甲鉄城のカバネリ",
+        "short_title": "甲鉄城のカバネリ 海門決戦",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?s9dqw",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "海門決戦"
+      },
+      {
+        "anime_db_id": 5312,
+        "title": "甲鉄城のカバネリ",
+        "title_ja": "甲鉄城のカバネリ",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?s9dqw",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "甲鉄城のカバネリ",
+        "image_url": "https://img2.animatetimes.com/2018/11/619b40725f3bb_62b6c2a5d3bf787e1cbd3c44eec3b74d-e1637564539777.jpg",
+        "image_source": "animatetimes",
+        "short_title": "甲鉄城のカバネリ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?s9dqw",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "シャングリラ・フロンティア",
+    "short_base": "シャンフロ",
+    "group_image": "https://img2.animatetimes.com/2022/07/8d289377f77ed36d5d8694bddce3bbe26563f736ee8154_57926491_a262cb2760ff6db0357a53d3b426bb1c7b572c10.jpeg",
+    "entries": [
+      {
+        "anime_db_id": 23827,
+        "title": "シャングリラ・フロンティア 2nd season",
+        "title_ja": "シャングリラ・フロンティア 2nd season",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?e9eks",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: shangri-la-frontier-season-2",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1500/139931l.jpg",
+        "series_name": "シャングリラ・フロンティア",
+        "short_title": "シャンフロ 2nd season",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?e9eks",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "2nd season"
+      },
+      {
+        "anime_db_id": 16199,
+        "title": "シャングリラ・フロンティア",
+        "title_ja": "シャングリラ・フロンティア",
+        "sites": [
+          {
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true,
+            "url": "https://animeheaven.me/anime.php?t322s"
+          }
+        ],
+        "series_name": "シャングリラ・フロンティア",
+        "image_url": "https://img2.animatetimes.com/2022/07/8d289377f77ed36d5d8694bddce3bbe26563f736ee8154_57926491_a262cb2760ff6db0357a53d3b426bb1c7b572c10.jpeg",
+        "image_source": "animatetimes",
+        "short_title": "シャンフロ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?t322s",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "ワンパンマン",
+    "short_base": "ワンパンマン",
+    "group_image": "https://img2.animatetimes.com/2022/08/a4e315b9502b5f392cbd89830360128b67ce529f6ebc18_71758184_7a05598e7a6cee4d5ca9852095b39c7f2a86cf9f-e1741574832898.jpg",
+    "entries": [
+      {
+        "anime_db_id": 16772,
+        "title": "ワンパンマン 第3期",
+        "title_ja": "ワンパンマン 第3期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?b2cc0",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/one-punch-man-season-3",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: one-punch-man-season-3",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/12/76049l.jpg",
+        "series_name": "ワンパンマン",
+        "short_title": "ワンパンマン 第3期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?b2cc0",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第3期"
+      },
+      {
+        "anime_db_id": 13525,
+        "title": "ワンパンマン 第2期",
+        "title_ja": "ワンパンマン 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?6cw4h",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/one-punch-man-2nd-season",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/12/76049l.jpg",
+        "series_name": "ワンパンマン",
+        "short_title": "ワンパンマン 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?6cw4h",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      },
+      {
+        "anime_db_id": 26848,
+        "title": "ワンパンマン 第1期",
+        "title_ja": "ワンパンマン 第1期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?72xov",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/onepunch-man",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/12/76049l.jpg",
+        "series_name": "ワンパンマン",
+        "short_title": "ワンパンマン 第1期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?72xov",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第1期"
+      },
+      {
+        "anime_db_id": 5497,
+        "title": "ワンパンマン",
+        "title_ja": "ワンパンマン",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?72xov",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/onepunch-man",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "series_name": "ワンパンマン",
+        "image_url": "https://img2.animatetimes.com/2022/08/a4e315b9502b5f392cbd89830360128b67ce529f6ebc18_71758184_7a05598e7a6cee4d5ca9852095b39c7f2a86cf9f-e1741574832898.jpg",
+        "image_source": "animatetimes",
+        "short_title": "ワンパンマン",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?72xov",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "サイレント・ウィッチ　沈黙の魔女の隠しごと",
+    "short_base": "サイレント・ウィッチ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1669/149732l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 24600,
+        "title": "サイレント・ウィッチ　沈黙の魔女の隠しごと",
+        "title_ja": "サイレント・ウィッチ　沈黙の魔女の隠しごと",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?5plvt",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/secrets-of-the-silent-witch",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: secrets-of-the-silent-witch",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1669/149732l.jpg",
+        "short_title": "サイレント・ウィッチ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?5plvt",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "ロード・エルメロイII世の事件簿 -魔眼蒐集列車 Grace note-",
+    "short_base": "エルメロイII世",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1107/111530l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 7764,
+        "title": "ロード・エルメロイII世の事件簿 -魔眼蒐集列車 Grace note-",
+        "title_ja": "ロード・エルメロイII世の事件簿 -魔眼蒐集列車 Grace note-",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/lord-el-melloi-ii-sei-no-jikenbo-rail-zeppelin-grace-note---hakamori-to-neko-to-majutsushi",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: lord-el-melloi-ii-sei-no-jikenbo-rail-zeppelin-grace-note-tokubetsu-hen",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1107/111530l.jpg",
+        "series_name": "ロード・エルメロイII世の事件簿 -魔眼蒐集列車 Grace note-",
+        "short_title": "エルメロイII世",
+        "best_site": {
+          "url": "https://www.animegg.org/series/lord-el-melloi-ii-sei-no-jikenbo-rail-zeppelin-grace-note---hakamori-to-neko-to-majutsushi",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 14078,
+        "title": "ロード・エルメロイII世の事件簿 -魔眼蒐集列車 Grace note- 特別編",
+        "title_ja": "ロード・エルメロイII世の事件簿 -魔眼蒐集列車 Grace note- 特別編",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/lord-el-melloi-ii-sei-no-jikenbo-rail-zeppelin-grace-note---hakamori-to-neko-to-majutsushi",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1107/111530l.jpg",
+        "series_name": "ロード・エルメロイII世の事件簿 -魔眼蒐集列車 Grace note-",
+        "short_title": "エルメロイII世 特別編",
+        "best_site": {
+          "url": "https://www.animegg.org/series/lord-el-melloi-ii-sei-no-jikenbo-rail-zeppelin-grace-note---hakamori-to-neko-to-majutsushi",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "特別編"
+      }
+    ]
+  },
+  {
+    "base": "食戟のソーマ",
+    "short_base": "食戟のソーマ",
+    "group_image": "https://img2.animatetimes.com/2018/11/62b02f7d6aa6e_27d588ce0d80a418b971bbb560b7dbb5-e1655713688982.jpg",
+    "entries": [
+      {
+        "anime_db_id": 15601,
+        "title": "食戟のソーマ 餐ノ皿（3期）",
+        "title_ja": "食戟のソーマ 餐ノ皿（3期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?3nsxf",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: shokugeki-no-souma-san-no-sara-toutsuki-ressha-hen",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/3/88434l.jpg",
+        "series_name": "食戟のソーマ",
+        "short_title": "食戟のソーマ 餐ノ皿（3期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?3nsxf",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "餐ノ皿（3期）"
+      },
+      {
+        "anime_db_id": 5273,
+        "title": "食戟のソーマ",
+        "title_ja": "食戟のソーマ",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?ojn4p",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "食戟のソーマ",
+        "image_url": "https://img2.animatetimes.com/2018/11/62b02f7d6aa6e_27d588ce0d80a418b971bbb560b7dbb5-e1655713688982.jpg",
+        "image_source": "animatetimes",
+        "short_title": "食戟のソーマ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?ojn4p",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 14158,
+        "title": "食戟のソーマ 神ノ皿（4期）",
+        "title_ja": "食戟のソーマ 神ノ皿（4期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?nijve",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "食戟のソーマ",
+        "image_url": "https://img2.animatetimes.com/2021/12/62b0309eb8762_4cf0c0463ff2c97abe94d6664006203a-e1655713971291.jpg",
+        "image_source": "animatetimes",
+        "short_title": "食戟のソーマ 神ノ皿（4期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?nijve",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "神ノ皿（4期）"
+      },
+      {
+        "anime_db_id": 14159,
+        "title": "食戟のソーマ 豪ノ皿（5期）",
+        "title_ja": "食戟のソーマ 豪ノ皿（5期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?lpa4t",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "食戟のソーマ",
+        "image_url": "https://img2.animatetimes.com/2021/12/62b030f8eab29_39c57cd9a53688cf02669ed3cfdb0974-e1655714066950.jpg",
+        "image_source": "animatetimes",
+        "short_title": "食戟のソーマ 豪ノ皿（5期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?lpa4t",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "豪ノ皿（5期）"
+      },
+      {
+        "anime_db_id": 15600,
+        "title": "食戟のソーマ 弐ノ皿（2期）",
+        "title_ja": "食戟のソーマ 弐ノ皿（2期）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?j0x1v",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "series_name": "食戟のソーマ",
+        "image_url": "https://img2.animatetimes.com/2022/06/629eff6522082_accfbdc3251fe58aa611572bac652638.jpeg",
+        "image_source": "animatetimes",
+        "short_title": "食戟のソーマ 弐ノ皿（2期）",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?j0x1v",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "弐ノ皿（2期）"
+      }
+    ]
+  },
+  {
+    "base": "新シリーズ ポケットモンスター",
+    "short_base": "ポケットモンスター",
+    "group_image": "https://img2.animatetimes.com/2022/12/f341a68df00a26244c14f9390974dbeb69801a56b40a50_16437181_25cc98912c3972e2c38722cbc6a78cda737f0354.jpg",
+    "entries": [
+      {
+        "anime_db_id": 19097,
+        "title": "新シリーズ ポケットモンスター",
+        "title_ja": "新シリーズ ポケットモンスター",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?9v661",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/pokemon-horizons-the-search-for-laqua",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: pokemon-horizons-the-series",
+        "image_url": "https://img2.animatetimes.com/2022/12/f341a68df00a26244c14f9390974dbeb69801a56b40a50_16437181_25cc98912c3972e2c38722cbc6a78cda737f0354.jpg",
+        "image_source": "animatetimes",
+        "short_title": "ポケットモンスター",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?9v661",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "SAKAMOTO DAYS",
+    "short_base": "SAKAMOTO DAYS",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1026/146459l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 24107,
+        "title": "SAKAMOTO DAYS",
+        "title_ja": "SAKAMOTO DAYS",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?5u8d5",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/sakamoto-days",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/sakamoto-days-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: sakamoto-days-part-2",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1026/146459l.jpg",
+        "series_name": "SAKAMOTO DAYS",
+        "short_title": "SAKAMOTO DAYS",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?5u8d5",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      },
+      {
+        "anime_db_id": 27287,
+        "title": "SAKAMOTO DAYS 第2期",
+        "title_ja": "SAKAMOTO DAYS 第2期",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?r7510",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/sakamoto-days",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/sakamoto-days-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1026/146459l.jpg",
+        "series_name": "SAKAMOTO DAYS",
+        "short_title": "SAKAMOTO DAYS 第2期",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?r7510",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "第2期"
+      },
+      {
+        "anime_db_id": 26834,
+        "title": "SAKAMOTO DAYS",
+        "title_ja": "SAKAMOTO DAYS",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?5u8d5",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/sakamoto-days",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/sakamoto-days-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          }
+        ],
+        "series_name": "SAKAMOTO DAYS",
+        "image_url": "https://img2.animatetimes.com/2025/09/0c6e6f59ba7a7a285af325612f5a9b6969b0ce767abab8_13515665_e985b73a08cfb40f94fd28f91752cf7420a83b73-e1773194904256.jpg",
+        "image_source": "animatetimes",
+        "short_title": "SAKAMOTO DAYS",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?5u8d5",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "永久のユウグレ",
+    "short_base": "永久のユウグレ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1294/151734l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 26302,
+        "title": "永久のユウグレ",
+        "title_ja": "永久のユウグレ",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?nm4a6",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/dusk-beyond-the-end-of-the-world",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "note": "manual: dusk-beyond-the-end-of-the-world",
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1294/151734l.jpg",
+        "short_title": "永久のユウグレ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?nm4a6",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "異世界おじさん（いせおじ）",
+    "short_base": "いせおじ",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1743/125204l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 12470,
+        "title": "異世界おじさん（いせおじ）",
+        "title_ja": "異世界おじさん（いせおじ）",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?k2dem",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1743/125204l.jpg",
+        "short_title": "いせおじ",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?k2dem",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "本編"
+      }
+    ]
+  },
+  {
+    "base": "BLEACH",
+    "short_base": "BLEACH",
+    "group_image": "https://cdn.myanimelist.net/images/anime/1554/134492l.jpg",
+    "entries": [
+      {
+        "anime_db_id": 23500,
+        "title": "劇場版BLEACH MEMORIES OF NOBODY",
+        "title_ja": "劇場版BLEACH MEMORIES OF NOBODY",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/bleach-memories-of-nobody",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1834/134488l.jpg",
+        "series_name": "BLEACH",
+        "short_title": "劇場版BLEACH MEMORIES OF NOBODY",
+        "best_site": {
+          "url": "https://www.animegg.org/series/bleach-memories-of-nobody",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版 MEMORIES OF NOBODY"
+      },
+      {
+        "anime_db_id": 23501,
+        "title": "劇場版BLEACH The DiamondDust Rebellion もう一つの氷輪丸",
+        "title_ja": "劇場版BLEACH The DiamondDust Rebellion もう一つの氷輪丸",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/bleach-the-diamonddust-rebellion",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1502/134489l.jpg",
+        "series_name": "BLEACH",
+        "short_title": "劇場版BLEACH The DiamondDust Rebellion もう一つの氷輪丸",
+        "best_site": {
+          "url": "https://www.animegg.org/series/bleach-the-diamonddust-rebellion",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版 The DiamondDust Rebellion もう一つの氷輪丸"
+      },
+      {
+        "anime_db_id": 23502,
+        "title": "劇場版BLEACH Fade to Black 君の名を呼ぶ",
+        "title_ja": "劇場版BLEACH Fade to Black 君の名を呼ぶ",
+        "sites": [
+          {
+            "url": "https://www.animegg.org/series/bleach-fade-to-black",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1633/134491l.jpg",
+        "series_name": "BLEACH",
+        "short_title": "劇場版BLEACH Fade to Black 君の名を呼ぶ",
+        "best_site": {
+          "url": "https://www.animegg.org/series/bleach-fade-to-black",
+          "label": "AnimeGG",
+          "color": "#c026d3"
+        },
+        "season_label": "劇場版 Fade to Black 君の名を呼ぶ"
+      },
+      {
+        "anime_db_id": 23503,
+        "title": "劇場版BLEACH 地獄篇",
+        "title_ja": "劇場版BLEACH 地獄篇",
+        "sites": [
+          {
+            "url": "https://animeheaven.me/anime.php?aa3pl",
+            "label": "AnimeHeaven",
+            "color": "#e06c3c",
+            "confirmed": true
+          },
+          {
+            "url": "https://gogoanime.by/bleach-episode-1-english-subbed/",
+            "label": "GogoAnime",
+            "color": "#3c8be0",
+            "confirmed": true
+          },
+          {
+            "url": "https://www.animegg.org/series/bleach",
+            "label": "AnimeGG",
+            "color": "#c026d3",
+            "confirmed": true
+          }
+        ],
+        "mal_image_url": "https://cdn.myanimelist.net/images/anime/1554/134492l.jpg",
+        "series_name": "BLEACH",
+        "short_title": "劇場版BLEACH 地獄篇",
+        "best_site": {
+          "url": "https://animeheaven.me/anime.php?aa3pl",
+          "label": "AnimeHeaven",
+          "color": "#e06c3c"
+        },
+        "season_label": "劇場版 地獄篇"
+      }
+    ]
+  },
+  {
+    "base": "映画 約束のネバーランド",
+    "short_base": "約ネバ",
+    "group_image": "https://img2.animatetimes.com/2021/10/616fa111d0156_847a41b94877c863f18c68c2f38f77e7.jpg",
+    "entries": [
+      {
+        "anime_db_id": 13527,
+        "title": "映画 約束のネバーランド",
+        "title_ja": "映画 約束のネバーランド",
+        "sites": [],
+        "image_url": "https://img2.animatetimes.com/2021/10/616fa111d0156_847a41b94877c863f18c68c2f38f77e7.jpg",
+        "image_source": "animatetimes",
+        "short_title": "約ネバ",
+        "best_site": null,
+        "season_label": "本編"
+      }
+    ]
+  }
+];
+const ANIME  = GROUPS.flatMap(g => g.entries);
+
+// ── 分類分離: 劇場版・webアニメ は通常リストから外し、最下部に別セクションとして表示する ──
+const WEB_ANIME_IDS = new Set([7022]); // 衛宮さんちの今日のごはん（webアニメで特殊なため分離）
+function isMovieEntry(a) { return /劇場版|^映画/.test(a.title || ''); }
+function isWebAnimeEntry(a) { return WEB_ANIME_IDS.has(a.anime_db_id); }
+
+function splitGroupsByTier(groups) {
+  const normal = [];
+  const webMap = new Map();
+  const movieMap = new Map();
+  groups.forEach(g => {
+    const rest = [];
+    g.entries.forEach(a => {
+      if (isWebAnimeEntry(a)) {
+        if (!webMap.has(g.base)) webMap.set(g.base, { ...g, entries: [] });
+        webMap.get(g.base).entries.push(a);
+      } else if (isMovieEntry(a)) {
+        if (!movieMap.has(g.base)) movieMap.set(g.base, { ...g, entries: [] });
+        movieMap.get(g.base).entries.push(a);
+      } else {
+        rest.push(a);
+      }
+    });
+    if (rest.length > 0) normal.push({ ...g, entries: rest });
+  });
+  return { normal, web: [...webMap.values()], movie: [...movieMap.values()] };
+}
+
+const TIERS = splitGroupsByTier(GROUPS);
+
+let VIEW = 'poster';
+const EXPANDED = new Set();   // デフォルト: 全シリーズ折りたたみ
+
+// ポスタービュー専用の表示順（グループ単位でシャッフル）。デフォルトでシャッフル済みの状態で表示する。
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let POSTER_ORDER = {
+  normal: shuffleArray(TIERS.normal),
+  web: shuffleArray(TIERS.web),
+  movie: shuffleArray(TIERS.movie),
+};
+
+function reshufflePoster() {
+  POSTER_ORDER = {
+    normal: shuffleArray(TIERS.normal),
+    web: shuffleArray(TIERS.web),
+    movie: shuffleArray(TIERS.movie),
+  };
+  renderList(document.getElementById('search').value);
+}
+
+function setView(v) {
+  VIEW = v;
+  document.getElementById('btn-text').classList.toggle('active', v === 'text');
+  document.getElementById('btn-image').classList.toggle('active', v === 'image');
+  document.getElementById('btn-poster').classList.toggle('active', v === 'poster');
+  document.getElementById('btn-shuffle').style.display = v === 'poster' ? '' : 'none';
+  renderList(document.getElementById('search').value);
+}
+
+function toggleGroup(base) {
+  if (EXPANDED.has(base)) EXPANDED.delete(base);
+  else EXPANDED.add(base);
+  renderList(document.getElementById('search').value);
+}
+
+function makeSiteBtns(sites, cls) {
+  const frag = document.createDocumentFragment();
+  const confirmed = (sites || []).filter(s => s.confirmed === true && !s.no_episodes);
+  const empty     = (sites || []).filter(s => s.confirmed === true && s.no_episodes);
+  const pending   = (sites || []).filter(s => s.confirmed === false && s.url);
+  if (!confirmed.length && !empty.length && !pending.length) {
+    if (cls !== 'img-btn') {
+      const sp = document.createElement('span');
+      sp.className = 'no-sites';
+      sp.textContent = 'サイト未設定';
+      frag.appendChild(sp);
+    }
+    return frag;
+  }
+  confirmed.forEach(s => {
+    const a = document.createElement('a');
+    a.href = s.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.className = cls;
+    a.style.background = s.color || '#555';
+    a.textContent = (cls === 'img-btn' ? '' : '▶ ') + s.label;
+    frag.appendChild(a);
+  });
+  empty.forEach(s => {
+    const a = document.createElement('a');
+    a.href = s.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.className = cls + ' empty';
+    a.title = '配信話数なし（ページはあるが空）';
+    a.textContent = (cls === 'img-btn' ? '' : '▶ ') + s.label;
+    frag.appendChild(a);
+  });
+  pending.forEach(s => {
+    const a = document.createElement('a');
+    a.href = s.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.className = cls + ' pending';
+    a.title = '動画再生未確認 - クリックして確認';
+    a.textContent = '？ ' + s.label;
+    frag.appendChild(a);
+  });
+  return frag;
+}
+
+// テキストビューの列: サイトドメイン別（リンク未登録時はトップページへのグレーアウト「－」ボタン）
+const DOMAINS = [
+  { label: 'AnimeHeaven', color: '#e06c3c', top: 'https://animeheaven.me/' },
+  { label: 'GogoAnime',   color: '#3c8be0', top: 'https://gogoanime.by/' },
+  { label: 'AnimeGG',     color: '#c026d3', top: 'https://www.animegg.org/' },
+];
+
+function makeDomainCell(sites, domain) {
+  const td = document.createElement('td');
+  td.className = 'domain-cell';
+  const found = (sites || []).find(s => s.label === domain.label);
+  const a = document.createElement('a');
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  if (found && found.confirmed === true && found.no_episodes) {
+    a.href = found.url;
+    a.className = 'site-btn empty';
+    a.textContent = '▶';
+    a.title = domain.label + ': 配信話数なし（ページはあるが空）';
+  } else if (found && found.confirmed === true) {
+    a.href = found.url;
+    a.className = 'site-btn';
+    a.style.background = found.color || domain.color;
+    a.textContent = '▶';
+    a.title = domain.label;
+  } else if (found && found.confirmed === false && found.url) {
+    a.href = found.url;
+    a.className = 'site-btn pending';
+    a.textContent = '？';
+    a.title = domain.label + ': 動画再生未確認 - クリックして確認';
+  } else {
+    a.href = domain.top;
+    a.className = 'site-btn dash';
+    a.textContent = '－';
+    a.title = domain.label + ': リンク未登録（トップページを開く）';
+  }
+  td.appendChild(a);
+  return td;
+}
+
+function makeTextRow(anime, indented) {
+  const tr = document.createElement('tr');
+  tr.className = 'anime-row' + (indented ? ' indented' : '');
+  const titleTd = document.createElement('td');
+  titleTd.className = 'title-cell';
+  const primary = anime.title_ja || anime.title;
+  const secondary = anime.title_ja && anime.title && anime.title !== primary ? anime.title : '';
+  titleTd.innerHTML = `<div class="primary">${primary}</div>` +
+    (secondary ? `<div class="secondary">${secondary}</div>` : '');
+  tr.appendChild(titleTd);
+  DOMAINS.forEach(d => tr.appendChild(makeDomainCell(anime.sites, d)));
+  return tr;
+}
+
+function makeGroupRow(g) {
+  const tr = document.createElement('tr');
+  tr.className = 'group-row';
+  const td = document.createElement('td');
+  td.colSpan = DOMAINS.length + 1;
+  td.appendChild(makeGroupHdr(g, 'group-hdr', null));
+  tr.appendChild(td);
+  return tr;
+}
+
+function makeImgCard(anime) {
+  const card = document.createElement('div');
+  const hasMal = !!anime.mal_image_url;
+  const hasAlt = !!anime.image_url;
+  const srcClass = hasMal ? 'src-mal' : hasAlt ? 'src-other' : '';
+  card.className = 'img-card' + (srcClass ? ' ' + srcClass : '');
+  const imgUrl = hasMal ? anime.mal_image_url : anime.image_url;
+  if (imgUrl) {
+    const img = document.createElement('img');
+    img.className = 'poster';
+    img.src = imgUrl;
+    img.alt = anime.title_ja || anime.title;
+    img.loading = 'lazy';
+    card.appendChild(img);
+  } else {
+    const ph = document.createElement('div');
+    ph.className = 'no-poster';
+    ph.textContent = (anime.title_ja || anime.title || '?')[0];
+    card.appendChild(ph);
+  }
+  const tDiv = document.createElement('div');
+  tDiv.className = 'ititle';
+  tDiv.textContent = anime.title_ja || anime.title;
+  card.appendChild(tDiv);
+  const bDiv = document.createElement('div');
+  bDiv.className = 'ibtns';
+  bDiv.appendChild(makeSiteBtns(anime.sites, 'img-btn'));
+  card.appendChild(bDiv);
+  return card;
+}
+
+function makeGroupHdr(g, cls, extraClass, useShortBase) {
+  const isOpen = EXPANDED.has(g.base);
+  const hdr = document.createElement('div');
+  hdr.className = cls + (extraClass ? ' ' + extraClass : '');
+  const arrow = document.createElement('span');
+  arrow.className = 'g-arrow' + (isOpen ? ' open' : '');
+  arrow.textContent = '▶';
+  const label = document.createElement('span');
+  label.textContent = useShortBase ? (g.short_base || g.base) : g.base;
+  const cnt = document.createElement('span');
+  cnt.className = 'g-cnt';
+  cnt.textContent = g.entries.length + '作品';
+  hdr.appendChild(arrow); hdr.appendChild(label); hdr.appendChild(cnt);
+  hdr.addEventListener('click', () => toggleGroup(g.base));
+  return hdr;
+}
+
+// サイト凡例（優先順位・色は _best_site() と同期させること）
+const SITE_LEGEND = [
+  { label: 'AnimeHeaven', color: '#e06c3c' },
+  { label: 'GogoAnime',   color: '#3c8be0' },
+  { label: 'AnimeGG',     color: '#c026d3' },
+  { label: 'リンクなし',   color: '#333' },
+];
+
+function renderPosterLegend() {
+  const el = document.getElementById('site-legend');
+  el.innerHTML = '';
+  SITE_LEGEND.forEach(s => {
+    const item = document.createElement('span');
+    item.className = 'legend-item';
+    const dot = document.createElement('span');
+    dot.className = 'legend-dot';
+    dot.style.background = s.color;
+    item.appendChild(dot);
+    item.appendChild(document.createTextNode(s.label));
+    el.appendChild(item);
+  });
+}
+
+function makePosterImg(anime) {
+  const hasMal = !!anime.mal_image_url;
+  const hasAlt = !!anime.image_url;
+  const imgUrl = hasMal ? anime.mal_image_url : anime.image_url;
+  if (imgUrl) {
+    const img = document.createElement('img');
+    img.className = 'poster';
+    img.src = imgUrl;
+    img.alt = anime.short_title || anime.title_ja || anime.title;
+    img.loading = 'lazy';
+    return img;
+  }
+  const ph = document.createElement('div');
+  ph.className = 'no-poster';
+  ph.textContent = (anime.short_title || anime.title_ja || anime.title || '?')[0];
+  return ph;
+}
+
+function makePosterCard(anime) {
+  const best = anime.best_site;
+  const card = document.createElement(best ? 'a' : 'div');
+  card.className = 'poster-card' + (best ? '' : ' no-link');
+  if (best) {
+    card.href = best.url;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.style.borderColor = best.color || '#333';
+  }
+  card.appendChild(makePosterImg(anime));
+  const tDiv = document.createElement('div');
+  tDiv.className = 'ptitle';
+  tDiv.textContent = anime.short_title || anime.title_ja || anime.title;
+  card.appendChild(tDiv);
+  return card;
+}
+
+// ── 複数シーズン: 代表カード＋クリックで選択メニュー ──
+const OPEN_MENUS = new Set();
+
+function toggleSeasonMenu(base) {
+  if (OPEN_MENUS.has(base)) OPEN_MENUS.delete(base);
+  else OPEN_MENUS.add(base);
+  renderList(document.getElementById('search').value);
+}
+
+function makeSeasonMenu(g) {
+  const menu = document.createElement('div');
+  menu.className = 'season-menu';
+  g.entries.forEach(a => {
+    const best = a.best_site;
+    const item = document.createElement(best ? 'a' : 'div');
+    item.className = 'season-menu-item' + (best ? '' : ' no-link');
+    if (best) {
+      item.href = best.url;
+      item.target = '_blank';
+      item.rel = 'noopener noreferrer';
+    }
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.style.background = best ? (best.color || '#555') : '#333';
+    item.appendChild(dot);
+    item.appendChild(document.createTextNode(a.season_label || a.short_title));
+    menu.appendChild(item);
+  });
+  return menu;
+}
+
+function makeGroupCoverCard(g) {
+  const wrap = document.createElement('div');
+  wrap.className = 'poster-group-wrap';
+  const isOpen = OPEN_MENUS.has(g.base);
+
+  const card = document.createElement('div');
+  card.className = 'poster-card';
+  card.appendChild(makePosterImg({ mal_image_url: g.group_image, short_title: g.short_base }));
+  const tDiv = document.createElement('div');
+  tDiv.className = 'ptitle';
+  tDiv.textContent = g.short_base;
+  card.appendChild(tDiv);
+  card.addEventListener('click', () => toggleSeasonMenu(g.base));
+  wrap.appendChild(card);
+
+  if (isOpen) {
+    wrap.appendChild(makeSeasonMenu(g));
+  }
+  return wrap;
+}
+
+function filterGroupList(list, q) {
+  if (!q) return list;
+  return list.map(g => ({
+    ...g,
+    entries: g.entries.filter(a =>
+      (a.title || '').toLowerCase().includes(q) ||
+      (a.title_ja || '').toLowerCase().includes(q)
+    )
+  })).filter(g => g.entries.length > 0);
+}
+
+function makeTierDivider(label) {
+  const div = document.createElement('div');
+  div.className = 'tier-divider';
+  div.innerHTML = `<span class="tier-divider-line"></span>` +
+    `<span class="tier-divider-label">${label}</span>` +
+    `<span class="tier-divider-line"></span>`;
+  return div;
+}
+
+function makeTierDividerRow(label) {
+  const tr = document.createElement('tr');
+  tr.className = 'tier-divider-row';
+  const td = document.createElement('td');
+  td.colSpan = DOMAINS.length + 1;
+  td.appendChild(makeTierDivider(label));
+  tr.appendChild(td);
+  return tr;
+}
+
+function buildPosterGrid(groups, q) {
+  const grid = document.createElement('div');
+  grid.className = 'poster-flat-grid';
+  groups.forEach(g => {
+    if (g.entries.length > 1 && !(q && g.entries.length === 1)) {
+      grid.appendChild(makeGroupCoverCard(g));
+    } else {
+      g.entries.forEach(a => grid.appendChild(makePosterCard(a)));
+    }
+  });
+  return grid;
+}
+
+function buildImageSection(groups, q) {
+  const frag = document.createDocumentFragment();
+  if (q) {
+    const grid = document.createElement('div');
+    grid.className = 'flat-grid';
+    groups.forEach(g => g.entries.forEach(a => grid.appendChild(makeImgCard(a))));
+    frag.appendChild(grid);
+  } else {
+    const singles = [];
+    groups.forEach(g => {
+      if (g.entries.length > 1) {
+        const isOpen = EXPANDED.has(g.base);
+        const sec = document.createElement('div');
+        sec.className = 'series-sec';
+        sec.appendChild(makeGroupHdr(g, 'series-sec-hdr', null, false));
+        if (isOpen) {
+          const grid = document.createElement('div');
+          grid.className = 'series-sec-grid';
+          g.entries.forEach(a => grid.appendChild(makeImgCard(a)));
+          sec.appendChild(grid);
+        }
+        frag.appendChild(sec);
+      } else {
+        singles.push(g.entries[0]);
+      }
+    });
+    if (singles.length > 0) {
+      const sg = document.createElement('div');
+      sg.className = 'singles-grid';
+      singles.forEach(a => sg.appendChild(makeImgCard(a)));
+      frag.appendChild(sg);
+    }
+  }
+  return frag;
+}
+
+function appendTextRows(tbody, groups, q) {
+  groups.forEach(g => {
+    if (g.entries.length > 1 && !q) {
+      const isOpen = EXPANDED.has(g.base);
+      tbody.appendChild(makeGroupRow(g));
+      if (isOpen) {
+        g.entries.forEach(a => tbody.appendChild(makeTextRow(a, true)));
+      }
+    } else {
+      g.entries.forEach(a => tbody.appendChild(makeTextRow(a, false)));
+    }
+  });
+}
+
+function renderList(query) {
+  const q = query.trim().toLowerCase();
+  const groups      = filterGroupList(TIERS.normal, q);
+  const webGroups   = filterGroupList(TIERS.web, q);
+  const movieGroups = filterGroupList(TIERS.movie, q);
+  const countEntries = gs => gs.reduce((s, g) => s + g.entries.length, 0);
+  const total = countEntries(groups) + countEntries(webGroups) + countEntries(movieGroups);
+  document.getElementById('count').textContent =
+    total === ANIME.length ? `${ANIME.length} 作品` : `${total} / ${ANIME.length} 作品`;
+
+  const container = document.getElementById('list');
+  container.innerHTML = '';
+
+  if (VIEW === 'poster') {
+    document.getElementById('site-legend').style.display = 'flex';
+    renderPosterLegend();
+    container.className = 'poster';
+    // 複数シーズンは1枚の代表カードにまとめ、クリックでシーズン選択メニューを開く。
+    // 検索中でグループが1件に絞られた場合は個別カードを直接表示する。
+    // 表示順はPOSTER_ORDER（シャッフル済み）を使う。他ビューの並び順には影響しない。
+    const posterGroups      = filterGroupList(POSTER_ORDER.normal, q);
+    const posterWebGroups   = filterGroupList(POSTER_ORDER.web, q);
+    const posterMovieGroups = filterGroupList(POSTER_ORDER.movie, q);
+    container.appendChild(buildPosterGrid(posterGroups, q));
+    if (posterWebGroups.length > 0) {
+      container.appendChild(makeTierDivider('📺 webアニメ'));
+      container.appendChild(buildPosterGrid(posterWebGroups, q));
+    }
+    if (posterMovieGroups.length > 0) {
+      container.appendChild(makeTierDivider('🎬 劇場版'));
+      container.appendChild(buildPosterGrid(posterMovieGroups, q));
+    }
+  } else if (VIEW === 'image') {
+    document.getElementById('site-legend').style.display = 'none';
+    container.className = 'img';
+    container.appendChild(buildImageSection(groups, q));
+    if (webGroups.length > 0) {
+      container.appendChild(makeTierDivider('📺 webアニメ'));
+      container.appendChild(buildImageSection(webGroups, q));
+    }
+    if (movieGroups.length > 0) {
+      container.appendChild(makeTierDivider('🎬 劇場版'));
+      container.appendChild(buildImageSection(movieGroups, q));
+    }
+  } else {
+    document.getElementById('site-legend').style.display = 'none';
+    container.className = 'text';
+    const table = document.createElement('table');
+    table.className = 'anime-table';
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
+    const titleTh = document.createElement('th');
+    titleTh.textContent = '作品';
+    headRow.appendChild(titleTh);
+    DOMAINS.forEach(d => {
+      const th = document.createElement('th');
+      th.className = 'domain-th';
+      th.textContent = d.label;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+    const tbody = document.createElement('tbody');
+    appendTextRows(tbody, groups, q);
+    if (webGroups.length > 0) {
+      tbody.appendChild(makeTierDividerRow('📺 webアニメ'));
+      appendTextRows(tbody, webGroups, q);
+    }
+    if (movieGroups.length > 0) {
+      tbody.appendChild(makeTierDividerRow('🎬 劇場版'));
+      appendTextRows(tbody, movieGroups, q);
+    }
+    table.appendChild(tbody);
+    container.appendChild(table);
+  }
+}
+
+document.getElementById('search').addEventListener('input', e => renderList(e.target.value));
+renderList('');
+</script>
+</body>
+</html>

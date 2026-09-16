@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<!--
+  [編集者向けメモ] このページはポケットモンスター（テレビアニメ・新シリーズ2023〜）専用特設ページ
+  の話数ごとの詳細ページです（?ep=N で該当話を表示）。表示データは shared/pokemon-anime-data.js の
+  window.POKEMON_ANIME_DATA を共有元とし、そこに含まれる DATA_META（verifiedAt/verifiedThroughEp）
+  が現在のデータ鮮度を保持しています。新しい話数の追加・情報更新の具体的な手順は
+  anime-launcher/pokemon-maintenance.md を参照してください。
+  （このコメントはページの表示上には出力されず、ブラウザの「ページのソースを表示」や
+  開発者ツールのElementsパネルからのみ確認できます。）
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>話数詳細 | ポケットモンスター</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #eaf5fd; color: #1a2a3a; min-height: 100vh; padding: 0 0 60px; }
+  .content { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  .back-link { display: inline-block; margin: 14px 0 4px; font-size: 0.8rem; color: #3f7fb8; text-decoration: none; }
+  .back-link:hover { color: #1f6fae; text-decoration: underline; }
+
+  /* ── ヒーロー ── */
+  .hero { padding: 22px 26px; border-radius: 14px; margin-top: 6px;
+           background: linear-gradient(135deg, #1e8fe0, #57c2f0); color: #fff;
+           box-shadow: 0 6px 20px rgba(30,120,190,0.28); }
+  .hero .season-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; color: #14456f;
+                        background: #fff; border-radius: 999px; padding: 3px 12px; margin-bottom: 10px; }
+  .hero .ep-no { font-size: 0.95rem; font-weight: 700; color: #eaf6ff; opacity: 0.92; }
+  .hero .ep-title { font-size: 1.4rem; font-weight: 700; margin-top: 4px; text-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  .hero .ep-meta { margin-top: 12px; font-size: 0.78rem; display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero .ep-meta span { background: rgba(255,255,255,0.22); border-radius: 5px; padding: 3px 10px; }
+  .hero.unaired { background: linear-gradient(135deg, #90a5b8, #b9c7d4); }
+  .hero.unaired .season-tag { color: #445; }
+
+  section.block { margin-top: 26px; }
+  section.block h2 { font-size: 0.98rem; color: #14456f; font-weight: 700; margin-bottom: 10px;
+                       padding-bottom: 7px; border-bottom: 2px solid #cbe6fa; }
+  .placeholder { font-size: 0.84rem; color: #8098ac; background: #f3faff; border: 1px dashed #cbe6fa;
+                  border-radius: 10px; padding: 16px 18px; line-height: 1.8; }
+
+  /* ── あらすじ：公式サイトの class="entry" 要素をCSSごと再現（年代記ページ pokemon-chronicle.html と同一実装）
+       .entry自体の背景は、実際の話数一覧ページ（class="contents episodes"）ではより詳細度の高い
+       上書きルールで打ち消されているため rgba(255,255,255,0.6) のみとし、entryttl／dateにのみ
+       公式のモンスターボール風装飾（画像アセット）を適用している。詳細は[[feedback_reproduce_with_css]]。 */
+  .entry { background: rgba(255,255,255,0.6); border-radius: 8px; overflow: hidden;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08); padding-bottom: 20px; }
+  .entry .entryttl { margin: 0; padding: 16px 20px; color: #fff; text-align: center; font-weight: 700;
+                       font-size: 1.05rem; line-height: 1.4;
+                       background: url("https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/lower/lower_entry_h3_bg.png")
+                                    no-repeat center center / cover, #f5605f;
+                       border-bottom: 6px solid #000; }
+  .entry .date { width: 160px; height: 28px; margin: -14px auto 16px; position: relative; z-index: 1;
+                   color: #4cf54c; text-align: center; line-height: 28px; font-weight: 700; font-size: 0.74rem;
+                   background: url("https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/lower/lower_entry_date_bg.svg") no-repeat 6px center,
+                               url("https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/lower/lower_entry_date_bg.svg") no-repeat right 6px center,
+                               #000;
+                   background-size: 15px 15px, 15px 15px, auto; border-radius: 100px; }
+  .entry .txtbox { margin: 0 20px; }
+  .entry .txtbox p { font-size: 0.9rem; line-height: 1.9; color: #38495a; white-space: pre-line; }
+  .entry .thum { display: flex; gap: 10px; margin: 14px 20px 0; flex-wrap: wrap; }
+  .entry .thum img { width: 220px; max-width: 100%; border-radius: 6px; border: 1px solid #cbe6fa; display: block; }
+
+  table.info-table { width: 100%; border-collapse: collapse; font-size: 0.85rem;
+                       background: #fff; border-radius: 8px; overflow: hidden;
+                       box-shadow: 0 1px 4px rgba(30,110,180,0.08); }
+  table.info-table th, table.info-table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid #e4f0fa; }
+  table.info-table th { color: #3f7fb8; font-weight: 700; width: 8em; white-space: nowrap; vertical-align: top;
+                          background: #f3faff; }
+  table.info-table td { color: #2c3e50; }
+  table.info-table td a { color: #1f7fd1; }
+
+  /* ── 自分用メモ（テキスト＋スクリーンショット4枚） ── */
+  .memo-note { font-size: 0.72rem; color: #5b7085; margin-bottom: 10px; line-height: 1.7; }
+  .memo-textarea { width: 100%; min-height: 80px; resize: vertical; font-family: inherit; font-size: 0.86rem;
+                     color: #2c3e50; border: 1px solid #cbe6fa; border-radius: 8px; padding: 10px 12px;
+                     background: #fff; }
+  .memo-shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+  .memo-shot { position: relative; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden;
+                border: 1px dashed #b9d9ef; background: #f3faff; display: flex; align-items: center;
+                justify-content: center; cursor: pointer; }
+  .memo-shot.has-image { border-style: solid; border-color: #cbe6fa; }
+  .memo-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .memo-shot .placeholder-label { font-size: 0.72rem; color: #7f93b3; text-align: center; padding: 0 8px; line-height: 1.5; }
+  .memo-shot .slot-badge { position: absolute; top: 5px; left: 5px; font-size: 0.62rem; font-weight: 700; color: #fff;
+                             background: rgba(20,69,111,0.75); border-radius: 4px; padding: 1px 6px; }
+  .memo-shot .remove-btn { position: absolute; top: 5px; right: 5px; font-size: 0.7rem; line-height: 1; color: #fff;
+                             background: rgba(0,0,0,0.5); border: none; border-radius: 50%; width: 20px; height: 20px;
+                             cursor: pointer; display: none; }
+  .memo-shot.has-image:hover .remove-btn { display: block; }
+  .memo-shot input[type="file"] { display: none; }
+  .memo-status { font-size: 0.72rem; color: #7f93b3; margin-top: 8px; min-height: 1.2em; }
+  .memo-status.error { color: #c0392b; }
+
+  /* ── 前後の話へのナビゲーション ── */
+  .ep-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 30px; }
+  .ep-nav a, .ep-nav span { flex: 1; display: block; padding: 12px 16px; border-radius: 10px; text-decoration: none;
+                              font-size: 0.8rem; background: #fff; border: 1px solid #cbe6fa; color: #1f6fae;
+                              box-shadow: 0 1px 6px rgba(30,110,180,0.08); }
+  .ep-nav a:hover { background: #eaf5fd; border-color: #7fbde8; }
+  .ep-nav span.disabled { color: #b9c7d4; background: #f3f6f8; box-shadow: none; }
+  .ep-nav .dir { font-size: 0.68rem; opacity: 0.75; display: block; margin-bottom: 2px; }
+  .ep-nav .next { text-align: right; }
+
+  .empty-note { margin: 60px auto; text-align: center; color: #5b7085; font-size: 0.95rem; line-height: 2; }
+</style>
+</head>
+<body>
+
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+</div>
+
+<div class="content">
+  <a class="back-link" href="pokemon-detail.html">← ポケットモンスター 作品詳細へ戻る</a>
+  <div id="body"></div>
+</div>
+
+<script src="../shared/pokemon-anime-data.js"></script>
+<script src="../shared/pokemon-episode-memo.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA = window.POKEMON_ANIME_DATA;
+  var EPISODES = DATA.EPISODES;
+  var LATEST_AIRED = DATA.LATEST_AIRED;
+  var TOTAL_EP = DATA.TOTAL_EP;
+  var seasonOf = DATA.seasonOf;
+  var opOf = DATA.opOf;
+  var edOf = DATA.edOf;
+  var Memo = window.PokemonEpisodeMemo;
+
+  function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name);
+  }
+
+  function el(tag, className, html) {
+    var e = document.createElement(tag);
+    if (className) e.className = className;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function episodeUrl(ep) {
+    return "pokemon-episode.html?ep=" + ep;
+  }
+
+  // 話数サムネイル画像URL（公式サイト準拠、ep<10は0パディング）。pokemon-detail.html/pokemon-chronicle.html と同じ規則。
+  function officialThumbUrl(ep, n) {
+    var epStr = ep < 10 ? ("0" + ep) : String(ep);
+    return "https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/episodes/" + epStr + "_" + n + ".jpg";
+  }
+
+  function renderNotFound(bodyEl) {
+    bodyEl.appendChild(el("div", "empty-note",
+      "指定された話数が見つかりません。<br>" +
+      '<a class="back-link" href="pokemon-detail.html">← 各話早見表へ戻る</a>'));
+  }
+
+  function renderEpisode(bodyEl, ep) {
+    var data = EPISODES[ep] || {};
+    var season = seasonOf(ep);
+    var op = opOf(ep);
+    var ed = edOf(ep);
+    var isFuture = ep > LATEST_AIRED || data.aired === false;
+
+    // ── ヒーロー ──
+    var hero = el("div", "hero" + (isFuture ? " unaired" : ""));
+    if (season) {
+      var noLabel = season.special ? "特別編" : ("第" + season.no + "章");
+      hero.appendChild(el("div", "season-tag", noLabel + " 「" + season.label + "」"));
+    }
+    hero.appendChild(el("div", "ep-no", "第" + ep + "話" + (isFuture ? "（放送予定）" : "")));
+    hero.appendChild(el("div", "ep-title", data.subtitle ? ("「" + data.subtitle + "」") : "（サブタイトル未収録）"));
+    var metaParts = [];
+    if (data.date) metaParts.push((isFuture ? "放送予定：" : "放送日：") + data.date);
+    if (data.region) metaParts.push("舞台：" + data.region);
+    if (op && op.title) metaParts.push("OP：" + op.title);
+    if (ed && ed.title) metaParts.push("ED：" + ed.title);
+    if (metaParts.length) {
+      var meta = el("div", "ep-meta");
+      metaParts.forEach(function (p) { meta.appendChild(el("span", null, p)); });
+      hero.appendChild(meta);
+    }
+    bodyEl.appendChild(hero);
+
+    // ── OP/EDアーティスト等の詳細 ──
+    if ((op && op.title) || (ed && ed.title)) {
+      var sec = el("section", "block");
+      sec.appendChild(el("h2", null, "主題歌（この話数）"));
+      var table = document.createElement("table");
+      table.className = "info-table";
+      if (op && op.title) {
+        var tr1 = document.createElement("tr");
+        tr1.appendChild(el("th", null, "OP"));
+        var td1 = document.createElement("td");
+        td1.textContent = op.title + "／" + op.artist;
+        if (op.youtubeUrl) {
+          td1.appendChild(document.createTextNode(" "));
+          var a1 = document.createElement("a");
+          a1.href = op.youtubeUrl; a1.target = "_blank"; a1.rel = "noopener noreferrer";
+          a1.textContent = "[YouTube]";
+          td1.appendChild(a1);
+        }
+        tr1.appendChild(td1);
+        table.appendChild(tr1);
+      }
+      if (ed && ed.title) {
+        var tr2 = document.createElement("tr");
+        tr2.appendChild(el("th", null, "ED"));
+        var td2 = document.createElement("td");
+        td2.textContent = ed.title + "／" + ed.artist;
+        if (ed.youtubeUrl) {
+          td2.appendChild(document.createTextNode(" "));
+          var a2 = document.createElement("a");
+          a2.href = ed.youtubeUrl; a2.target = "_blank"; a2.rel = "noopener noreferrer";
+          a2.textContent = "[YouTube]";
+          td2.appendChild(a2);
+        }
+        tr2.appendChild(td2);
+        table.appendChild(tr2);
+      }
+      sec.appendChild(table);
+      bodyEl.appendChild(sec);
+    }
+
+    // ── あらすじ（公式サイトの class="entry" 要素をCSSごと再現。年代記ページと同一実装） ──
+    // [編集者向けメモ] 公式サイトの class="entry" 要素をCSSごと再現（モンスターボール風の配色）
+    var synSec = el("section", "block");
+    synSec.appendChild(el("h2", null, "あらすじ"));
+    if (data.synopsis) {
+      var entry = el("div", "entry");
+      entry.appendChild(el("div", "entryttl", "第" + ep + "話：" + data.subtitle));
+      if (data.date) entry.appendChild(el("div", "date", data.date + " 放送"));
+      var txtbox = el("div", "txtbox");
+      var p = document.createElement("p");
+      p.textContent = data.synopsis;
+      txtbox.appendChild(p);
+      entry.appendChild(txtbox);
+      var thum = el("div", "thum");
+      [1, 2].forEach(function (n) {
+        var img = document.createElement("img");
+        img.src = officialThumbUrl(ep, n);
+        img.alt = "第" + ep + "話 画像" + n;
+        img.loading = "lazy";
+        img.onerror = function () { img.remove(); };
+        thum.appendChild(img);
+      });
+      entry.appendChild(thum);
+      synSec.appendChild(entry);
+    } else if (isFuture) {
+      synSec.appendChild(el("div", "placeholder", "この話はまだ放送されていません。放送後にあらすじを追加する予定です。"));
+    } else {
+      synSec.appendChild(el("div", "placeholder", "この話のあらすじはまだ収録されていません。今後追加予定です。"));
+    }
+    bodyEl.appendChild(synSec);
+
+    // ── 自分用メモ（テキスト＋スクリーンショット4枚） ──
+    bodyEl.appendChild(renderMemoSection(ep));
+
+    // ── 前後の話へのナビゲーション ──
+    var nav = el("div", "ep-nav");
+    if (ep > 1) {
+      var prevData = EPISODES[ep - 1];
+      var prevA = document.createElement("a");
+      prevA.href = episodeUrl(ep - 1);
+      prevA.innerHTML = '<span class="dir">← 前の話</span>第' + (ep - 1) + '話' +
+                          (prevData && prevData.subtitle ? "「" + prevData.subtitle + "」" : "");
+      nav.appendChild(prevA);
+    } else {
+      nav.appendChild(el("span", "disabled", '<span class="dir">← 前の話</span>なし'));
+    }
+    if (ep < TOTAL_EP) {
+      var nextData = EPISODES[ep + 1];
+      var nextA = document.createElement("a");
+      nextA.className = "next";
+      nextA.href = episodeUrl(ep + 1);
+      nextA.innerHTML = '<span class="dir">次の話 →</span>第' + (ep + 1) + '話' +
+                          (nextData && nextData.subtitle ? "「" + nextData.subtitle + "」" : "");
+      nav.appendChild(nextA);
+    } else {
+      nav.appendChild(el("span", "disabled next", '<span class="dir">次の話 →</span>なし'));
+    }
+    bodyEl.appendChild(nav);
+  }
+
+  // 自分用メモ（テキスト＋スクリーンショット4枚）のUIを組み立てる。
+  // すべてこのブラウザのlocalStorageにのみ保存され、他の閲覧者やClaudeには共有されない。
+  function renderMemoSection(ep) {
+    var sec = el("section", "block");
+    sec.appendChild(el("h2", null, "📝 自分用メモ"));
+    sec.appendChild(el("div", "memo-note",
+      "この話数を見た感想や気づきを自由にメモできます（このブラウザだけに保存され、他の人には共有されません）。" +
+      "1枚目はサムネイル用に、公式サイトや配信サービス等からこの話にふさわしい画像を選んで登録すると、" +
+      "各話早見表（pokemon-detail.html）のこの話数の列にもミニサイズで表示されます。"));
+
+    var current = Memo.get(ep);
+
+    var textarea = document.createElement("textarea");
+    textarea.className = "memo-textarea";
+    textarea.placeholder = "感想・気づきなど自由に書き留める…";
+    textarea.value = current.notes;
+    var status = el("div", "memo-status", "");
+    function showStatus(msg, isError) {
+      status.textContent = msg;
+      status.classList.toggle("error", !!isError);
+      if (!isError && msg) {
+        setTimeout(function () { if (status.textContent === msg) status.textContent = ""; }, 2000);
+      }
+    }
+    textarea.addEventListener("change", function () {
+      var ok = Memo.setNotes(ep, textarea.value);
+      showStatus(ok ? "保存しました" : "保存に失敗しました（ブラウザのストレージ容量を確認してください）", !ok);
+    });
+    sec.appendChild(textarea);
+
+    var shots = el("div", "memo-shots");
+    var slotLabels = ["①サムネイル用", "②", "③", "④"];
+    for (var i = 0; i < Memo.MAX_IMAGES; i++) {
+      shots.appendChild(makeShotSlot(ep, i, current.images[i], slotLabels[i], showStatus));
+    }
+    sec.appendChild(shots);
+    sec.appendChild(status);
+    return sec;
+  }
+
+  function makeShotSlot(ep, index, dataUrl, label, showStatus) {
+    var slot = el("label", "memo-shot" + (dataUrl ? " has-image" : ""));
+
+    var input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+
+    function renderContent() {
+      slot.innerHTML = "";
+      slot.appendChild(input);
+      if (dataUrl) {
+        slot.classList.add("has-image");
+        var img = document.createElement("img");
+        img.src = dataUrl;
+        img.alt = label;
+        slot.appendChild(img);
+        var removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "remove-btn";
+        removeBtn.textContent = "×";
+        removeBtn.title = "削除";
+        removeBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          Memo.clearImage(ep, index);
+          dataUrl = null;
+          renderContent();
+          showStatus("削除しました", false);
+        });
+        slot.appendChild(removeBtn);
+      } else {
+        slot.classList.remove("has-image");
+        slot.appendChild(el("div", "placeholder-label", label + "<br>タップして画像を選択"));
+      }
+      slot.appendChild(el("div", "slot-badge", label.replace(/[^①②③④]/g, "") || String(index + 1)));
+    }
+
+    input.addEventListener("change", function () {
+      var file = input.files && input.files[0];
+      if (!file) return;
+      Memo.fileToDataUrl(file).then(function (resized) {
+        var ok = Memo.setImage(ep, index, resized);
+        if (ok) {
+          dataUrl = resized;
+          renderContent();
+          showStatus("保存しました", false);
+        } else {
+          showStatus("保存に失敗しました（ブラウザのストレージ容量を確認してください）", true);
+        }
+      }).catch(function (err) {
+        showStatus(err.message || "画像の読み込みに失敗しました", true);
+      });
+      input.value = "";
+    });
+
+    renderContent();
+    return slot;
+  }
+
+  function render() {
+    var bodyEl = document.getElementById("body");
+    var epRaw = getParam("ep");
+    var ep = parseInt(epRaw, 10);
+
+    if (!epRaw || isNaN(ep) || ep < 1 || ep > TOTAL_EP) {
+      renderNotFound(bodyEl);
+      document.title = "話数が見つかりません | ポケットモンスター";
+      return;
+    }
+
+    document.title = "第" + ep + "話 | ポケットモンスター";
+    renderEpisode(bodyEl, ep);
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

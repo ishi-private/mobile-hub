@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POKÉTOON まとめ</title>
+<link rel="stylesheet" href="../shared/portal.css">
+</head>
+<body class="pk-body">
+
+<div class="pk-content">
+
+  <a class="back-link" href="../index.html">← ポケモン ポータルへ戻る</a>
+
+  <div class="pk-hero">
+    <h1>POKÉTOON まとめ</h1>
+    <p>
+      ポケモン公式YouTubeチャンネルのショートアニメシリーズ「POKÉTOON（ポケトゥーン）」の話数一覧です。<br>
+      タイトルは各話の再生ページへのリンクになっています。
+    </p>
+    <p id="playlist-note"></p>
+  </div>
+
+  <section class="pk-section">
+    <h2><span class="en">EPISODES</span><span class="jp">話数一覧</span></h2>
+    <div class="pk-table-wrap">
+      <table class="pk-table">
+        <thead>
+          <tr><th>#</th><th>タイトル</th><th>公開日</th><th>登場ポケモン</th></tr>
+        </thead>
+        <tbody id="episode-body"></tbody>
+      </table>
+    </div>
+    <div class="pk-table-note" id="related-note"></div>
+  </section>
+
+</div>
+
+<script src="data/poketoon-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var DATA = window.POKETOON_DATA;
+
+  var playlistNote = document.getElementById("playlist-note");
+  playlistNote.innerHTML = "全話を確認できる公式再生リスト: " +
+    '<a class="pk-table-link" href="' + DATA.officialPlaylistUrl + '" target="_blank" rel="noopener noreferrer">' + DATA.officialPlaylistLabel + "</a>";
+
+  var tbody = document.getElementById("episode-body");
+  DATA.episodes.forEach(function (ep) {
+    var tr = document.createElement("tr");
+    var url = "https://www.youtube.com/watch?v=" + ep.videoId;
+    tr.innerHTML =
+      "<td>" + ep.no + "</td>" +
+      '<td class="wrap"><a class="pk-table-link" href="' + url + '" target="_blank" rel="noopener noreferrer">' + ep.title + "</a></td>" +
+      "<td>" + ep.date + "</td>" +
+      '<td class="wrap">' + ep.pokemon + "</td>";
+    tbody.appendChild(tr);
+  });
+
+  if (DATA.related && DATA.related.length) {
+    var html = "関連動画（話数一覧には含めていません）: ";
+    html += DATA.related.map(function (r) {
+      return '<a class="pk-table-link" href="https://www.youtube.com/watch?v=' + r.videoId + '" target="_blank" rel="noopener noreferrer">' + r.title + "</a>（" + r.note + "）";
+    }).join(" / ");
+    document.getElementById("related-note").innerHTML = html;
+  }
+})();
+</script>
+
+</body>
+</html>

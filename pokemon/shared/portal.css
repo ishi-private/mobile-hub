@@ -1,0 +1,205 @@
+/* Pokemon ハブ共通ポータルスタイル
+   全体ポータル(Pokemon/index.html)・各サブPJポータル(例: Worldview/index.html)で共有する。
+   デザインは公式サイト https://www.pokemon.co.jp/ を参考にしたライトテーマ
+   （白背景・カード型ニュース一覧・「英語見出し＋日本語副題」のセクション構成・青系CTA）。
+   新しいサブPJポータルを作るときはこのファイルを読み込み、pk-hero/pk-grid/pk-cardを使う。 */
+
+:root {
+  --pk-bg: #f4f6fa;
+  --pk-panel: #ffffff;
+  --pk-panel-border: #e5e8f0;
+  --pk-text: #262a35;
+  --pk-text-dim: #767c8c;
+  --pk-accent: #2f8fe0;       /* 公式サイトのCTA/リンク系の青 */
+  --pk-accent-dim: #cfe6fa;
+  --pk-brand-red: #ee1515;    /* Pokémonブランドレッド（ロゴ・見出しアクセント用） */
+  --pk-badge-todo-bg: #fff3cd;
+  --pk-badge-todo-text: #8a6100;
+  --pk-badge-active-bg: #e3f6ea;
+  --pk-badge-active-text: #1f7a45;
+  --pk-badge-source-bg: #eef2fb;
+  --pk-badge-source-text: #3b4a63;
+}
+
+* { box-sizing: border-box; }
+
+body.pk-body {
+  margin: 0;
+  padding: 0 0 60px;
+  min-height: 100vh;
+  background: var(--pk-bg);
+  color: var(--pk-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Yu Gothic UI", sans-serif;
+}
+
+.pk-content {
+  max-width: min(1100px, 94vw);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ── ヘッダー(ヒーロー) ── */
+.pk-hero {
+  padding: 24px 26px;
+  margin-top: 22px;
+  border-radius: 14px;
+  background: var(--pk-panel);
+  border: 1px solid var(--pk-panel-border);
+  border-top: 5px solid var(--pk-brand-red);
+  box-shadow: 0 2px 10px rgba(30, 40, 60, 0.05);
+}
+.pk-hero-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.pk-hero-brand img { height: 26px; width: auto; display: block; }
+.pk-hero-brand .pk-unofficial {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--pk-text-dim);
+  background: var(--pk-bg);
+  border: 1px solid var(--pk-panel-border);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.pk-hero .pk-badge-top {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--pk-brand-red);
+  border-radius: 999px;
+  padding: 3px 12px;
+  margin-bottom: 10px;
+}
+.pk-hero h1 { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.01em; color: var(--pk-text); }
+.pk-hero p { margin: 10px 0 0; font-size: 0.85rem; line-height: 1.9; color: var(--pk-text-dim); }
+.pk-hero .back-link { display: inline-block; margin-bottom: 10px; font-size: 0.78rem; color: var(--pk-accent); text-decoration: none; }
+.pk-hero .back-link:hover { text-decoration: underline; }
+
+/* ── セクション見出し（公式サイトの「NEWS 最新情報」パターン: 英語＋日本語） ── */
+.pk-section { margin-top: 34px; }
+/* element.hidden=true が他クラスのdisplay指定と詳細度同点で無効化されるケースの防御（[[feedback_hidden_attribute_display_specificity_bug]]参照） */
+.pk-section[hidden] { display: none; }
+.pk-section h2 {
+  display: flex; align-items: baseline; gap: 10px;
+  font-weight: 800; margin: 0 0 6px; padding-bottom: 10px;
+  border-bottom: 3px solid var(--pk-panel-border);
+}
+.pk-section h2 .en { font-size: 1.5rem; color: var(--pk-text); letter-spacing: 0.02em; }
+.pk-section h2 .jp { font-size: 0.82rem; color: var(--pk-text-dim); font-weight: 700; }
+.pk-section .pk-section-note { font-size: 0.76rem; color: var(--pk-text-dim); line-height: 1.8; margin: 10px 0 16px; }
+
+/* ── カードグリッド ── */
+.pk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.pk-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--pk-panel);
+  border: 1px solid var(--pk-panel-border);
+  border-radius: 12px;
+  overflow: hidden;
+  color: var(--pk-text);
+  transition: box-shadow 0.15s, transform 0.15s;
+  box-shadow: 0 1px 4px rgba(30, 40, 60, 0.05);
+}
+.pk-card:hover { box-shadow: 0 8px 20px rgba(30, 40, 60, 0.12); transform: translateY(-2px); }
+.pk-card.is-disabled { cursor: default; opacity: 0.75; }
+.pk-card.is-disabled:hover { box-shadow: 0 1px 4px rgba(30, 40, 60, 0.05); transform: none; }
+
+.pk-card-link { display: block; text-decoration: none; color: inherit; }
+.pk-card-title-link { text-decoration: none; color: inherit; }
+.pk-card-title-link:hover { text-decoration: underline; }
+
+/* カード下部のボタン列: 内部ポータルへの導線と、外部の公式サイトへのボタンを並べる */
+.pk-card-actions { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+.pk-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.72rem; font-weight: 700;
+  padding: 6px 12px; border-radius: 999px;
+  text-decoration: none; white-space: nowrap;
+  border: 1px solid transparent;
+  transition: opacity 0.15s, background 0.15s;
+}
+.pk-btn.primary { background: var(--pk-accent); color: #fff; }
+.pk-btn.primary:hover { opacity: 0.86; }
+.pk-btn.outline { background: transparent; color: var(--pk-accent); border-color: var(--pk-accent-dim); }
+.pk-btn.outline:hover { background: var(--pk-accent-dim); }
+
+/* サムネイル: 各テーマの公式サイトから引用した画像を <img> で読み込む。出典は .pk-thumb-credit に明記する。 */
+.pk-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, #eef1f8, #e4e8f2);
+}
+.pk-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pk-thumb .pk-thumb-fallback {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-size: 2.4rem; color: var(--pk-text-dim);
+}
+
+.pk-card-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.pk-card-title { font-size: 0.95rem; font-weight: 700; }
+.pk-card-desc { font-size: 0.76rem; color: var(--pk-text-dim); line-height: 1.7; flex: 1; }
+.pk-thumb-credit { font-size: 0.62rem; color: var(--pk-text-dim); padding: 3px 14px 0; }
+
+.pk-badge {
+  align-self: flex-start;
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+.pk-badge.todo { background: var(--pk-badge-todo-bg); color: var(--pk-badge-todo-text); }
+.pk-badge.active { background: var(--pk-badge-active-bg); color: var(--pk-badge-active-text); }
+.pk-badge.source { background: var(--pk-badge-source-bg); color: var(--pk-badge-source-text); }
+
+/* 空欄プレースホルダー(まだ何も登録がないセクション用) */
+.pk-empty-card {
+  border: 1px dashed var(--pk-panel-border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--pk-text-dim);
+  line-height: 1.8;
+  background: var(--pk-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+/* ── データテーブル（まとめページ用） ── */
+.pk-table-wrap { overflow-x: auto; border: 1px solid var(--pk-panel-border); border-radius: 10px; background: var(--pk-panel); }
+table.pk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; white-space: nowrap; }
+table.pk-table th, table.pk-table td { padding: 8px 12px; border-bottom: 1px solid var(--pk-panel-border); text-align: left; }
+table.pk-table th { background: var(--pk-bg); color: var(--pk-text-dim); font-weight: 700; font-size: 0.72rem; position: sticky; top: 0; }
+table.pk-table tbody tr:hover { background: var(--pk-bg); }
+table.pk-table td.wrap { white-space: normal; }
+table.pk-table a.pk-table-link { color: var(--pk-accent); text-decoration: none; font-weight: 600; }
+table.pk-table a.pk-table-link:hover { text-decoration: underline; }
+table.pk-table tr.pk-table-group-row td { background: var(--pk-badge-source-bg); font-weight: 700; color: var(--pk-text); }
+.pk-table-note { font-size: 0.68rem; color: var(--pk-text-dim); margin-top: 8px; line-height: 1.7; }
+
+/* 画像出典まとめ */
+.pk-sources {
+  margin-top: 40px;
+  font-size: 0.72rem;
+  color: var(--pk-text-dim);
+  line-height: 2;
+  background: var(--pk-panel);
+  border: 1px solid var(--pk-panel-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+.pk-sources h3 { font-size: 0.78rem; color: var(--pk-text); font-weight: 700; margin: 0 0 6px; }
+.pk-sources a { color: var(--pk-accent); }

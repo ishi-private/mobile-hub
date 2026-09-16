@@ -1,0 +1,59 @@
+/**
+ * shared/common.css
+ * アニメ関連自作サイト（nav.js ファミリー）共通デザイントークン
+ *
+ * 使い方: <link rel="stylesheet" href="../shared/common.css"> を
+ *         各ページの <style> より前に読み込む。
+ *
+ * 提供するもの:
+ *   1. サイトカラー変数（--color-animeheaven 等）
+ *   2. 共通ページ幅変数（--page-max-width）
+ *   3. スティッキーヘッダーの基本クラス（.site-header-sticky）
+ *
+ * 2026-09-16: 各ページの`.page-title`（h1のみの非スティッキーな見出しバナー）は廃止した
+ * （ユーザー指示。nav.jsの現在地強調表示でページ識別は足りるため）。かつて提供していた
+ * `.page-title-row` / 配下のh1 / .subtitle のCSSもこれに伴い削除済み。
+ *
+ * 各ページの <style> 内では、max-width の値は var(--page-max-width) を使い、
+ * サイト固有の配色（ボタン背景色等）は var(--color-animeheaven) 等を使うこと。
+ * 新しいページを作る場合もこのファイルを読み込み、値をハードコードしないこと。
+ *
+ * 採用サイトの色を変更する場合は、このファイル1箇所を直せば全ページに反映される
+ * （site-monitor/data/workflow_decisions.md の採用サイト表と同期させること）。
+ */
+
+:root {
+  /* 採用サイト配色（2026-08-14時点。変更時は workflow_decisions.md も更新） */
+  --color-animeheaven: #e06c3c;
+  --color-gogoanime:   #3c8be0;
+  --color-animegg:     #c026d3;
+  --color-no-link:     #333333;
+
+  /* お気に入り状態の配色（2026-08-14。shared/favorites.jsのSTATE_COLORと同じ値を使うこと） */
+  --color-favorite:          #eab308;  /* お気に入り（黄） */
+  --color-favorite-priority: #ef4444;  /* 永久保存版（赤。2026-09-15: 今すぐ見たい→永久保存版に用途変更） */
+
+  /* 共通ページ幅 */
+  --page-max-width: 1100px;
+}
+
+/* ── スティッキーヘッダー（ナビ + ページ固有コントロール） ──────────────────
+ * 縦スクロールしても常に最上部に表示される領域。ページの一番上に置く
+ * （2026-09-16: 以前はこの上に非スティッキーの.page-titleバナーがあったが廃止済み）。
+ */
+.site-header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 14, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #1e1e2a;
+  padding: 10px 16px 12px;
+  margin: 0 0 18px;
+}
+
+.site-header-sticky .page-nav {
+  max-width: var(--page-max-width);
+  margin: 0 auto 10px;
+}

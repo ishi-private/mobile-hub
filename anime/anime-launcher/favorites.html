@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お気に入り</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #0f0f13; color: #e2e2e2; min-height: 100vh; padding: 0 0 32px; }
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; gap: 10px; align-items: center; }
+  /* common.cssの.site-header-stickyは padding-bottom:12px / margin-bottom:18px だが、
+     このページだけ下側の余白を詰めて表示密度を上げる（ユーザー指示、値はそれぞれ5px）。 */
+  .site-header-sticky { padding-bottom: 5px; margin-bottom: 5px; }
+  #search-wrap { flex: 1; position: relative; }
+  #search { width: 100%; padding: 10px 16px 10px 38px; font-size: 0.95rem;
+             background: #1c1c24; border: 1px solid #333; border-radius: 8px;
+             color: #e2e2e2; outline: none; }
+  #search:focus { border-color: #555; }
+  #search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+                  color: #555; font-size: 0.9rem; pointer-events: none; }
+
+  /* ── 表示モード切替（編集 / ポスター）＋ポスター用ランダム入れ替え ── */
+  .view-toggle { display: flex; flex-shrink: 0; }
+  .vbtn { padding: 9px 14px; font-size: 0.78rem; font-weight: 600; border: 1px solid #333;
+           background: #1c1c24; color: #555; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .vbtn:first-child { border-radius: 6px 0 0 6px; }
+  .vbtn:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+  .vbtn.active { background: #2a2a35; color: #ccc; border-color: #444; }
+  #btn-shuffle { padding: 9px 14px; font-size: 0.78rem; font-weight: 600; border: 1px solid #333;
+                  border-radius: 6px; background: #1c1c24; color: #888; cursor: pointer;
+                  transition: all 0.15s; white-space: nowrap; flex-shrink: 0; }
+  #btn-shuffle:hover { background: #2a2a35; color: #ccc; border-color: #444; }
+
+  /* ── お気に入り状態の凡例（クリックでフィルター） ── */
+  #star-legend { max-width: var(--page-max-width); margin: 0 auto 12px; display: flex;
+                  align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.72rem; color: #777; }
+  .legend-filter-btn { display: flex; align-items: center; gap: 5px; padding: 4px 12px;
+                         border: 1px solid transparent; border-radius: 14px; background: none;
+                         cursor: pointer; font-size: 0.72rem; color: #888; transition: all 0.15s; }
+  .legend-filter-btn:hover { background: #1c1c24; }
+  .legend-filter-btn .star { font-size: 0.95rem; }
+  .legend-filter-btn .pin-icon { display: inline-flex; color: #fff; }
+  .legend-filter-btn.active { background: #1c1c24; color: #ddd; font-weight: 600; }
+  /* 操作説明の開閉ボタン（既定は非表示。pokemon-detail.htmlのinfo-icon-btnと同じ丸ボタン方式） */
+  .legend-info-btn { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px;
+                       border-radius: 50%; border: 1.5px solid #667; color: #889; background: none;
+                       font-size: 0.64rem; font-weight: 700; font-style: italic;
+                       font-family: Georgia, "Times New Roman", serif;
+                       cursor: pointer; padding: 0; flex-shrink: 0; transition: all 0.15s; }
+  .legend-info-btn:hover { background: #1c1c24; border-color: #889; color: #ccc; }
+  .legend-info-btn.active { border-color: #ccc; color: #ccc; }
+  .legend-note { display: none; color: #556; }
+  .legend-note.show { display: inline; }
+
+  .content { padding: 0 16px; }
+  #count { max-width: var(--page-max-width); margin: 0 auto 12px; font-size: 0.78rem; color: #444; }
+  #list { max-width: var(--page-max-width); margin: 0 auto;
+           display: flex; flex-direction: column; gap: 8px; }
+  #list.poster-mode { display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+
+  /* ── ポスターモード（画像中心・★/❤はバッジ表示のみ・タイトルは2〜3行許容） ── */
+  .poster-card { position: relative; display: block; background: #1c1c24; border: 2px solid #333;
+                  border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
+  .poster-card:hover { transform: translateY(-2px); }
+  .poster-card .poster { width: 100%; aspect-ratio: 1/1; object-fit: cover;
+                           display: block; background: #0d0d16; }
+  .poster-card .no-poster { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center;
+                              justify-content: center; background: #0d0d16; color: #2a2a3a; font-size: 2rem; }
+  .poster-badges-left { position: absolute; top: 5px; left: 6px; display: flex; align-items: center;
+                          gap: 4px; text-shadow: 0 1px 3px rgba(0,0,0,0.9); pointer-events: none; }
+  .poster-badges-left .badge-pin { color: #fff; display: flex; }
+  .poster-badges-left .badge-star { font-size: 1.1rem; line-height: 1; }
+  .poster-badge-heart { position: absolute; top: 5px; right: 6px; font-size: 1.1rem; line-height: 1;
+                          color: #e0447c; text-shadow: 0 1px 3px rgba(0,0,0,0.9); pointer-events: none; }
+  .poster-card .ptitle { padding: 6px 7px 7px; font-size: 0.72rem; color: #ccc; line-height: 1.35;
+                           overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+
+  /* ── 行（全画面幅・画像は行の高さに合わせて伸縮・ボーダーにぴったり密着） ── */
+  .fav-row { background: #1c1c24; border: 1px solid #2a2a35; border-radius: 8px;
+              padding: 0; display: flex; align-items: stretch; gap: 12px;
+              min-width: 0; overflow: hidden; transition: border-color 0.15s; cursor: pointer; }
+  .fav-row:hover { border-color: #444; }
+  .fav-thumb { width: 96px; flex-shrink: 0; border-radius: 0; overflow: hidden;
+                background: #0d0d16; }
+  .fav-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .fav-thumb .no-thumb { width: 100%; height: 100%; display: flex; align-items: center;
+                           justify-content: center; color: #2a2a3a; font-size: 2.4rem; }
+  .fav-star { flex-shrink: 0; width: 30px; height: 30px; border: none; background: none;
+               cursor: pointer; font-size: 1.25rem; line-height: 1; padding: 0;
+               display: flex; align-items: center; justify-content: center;
+               transition: transform 0.1s; }
+  .fav-star:hover { transform: scale(1.15); }
+  .fav-star.state-0 { color: #333; }
+  .fav-pin { flex-shrink: 0; width: 26px; height: 26px; border: none; background: none;
+              cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;
+              color: #333; transition: transform 0.1s; }
+  .fav-pin:hover { transform: scale(1.15); }
+  .fav-pin.active { color: #fff; }
+  .fav-heart { flex-shrink: 0; font-size: 1.05rem; line-height: 1; color: #333; }
+  .fav-heart.active { color: #e0447c; }
+
+  /* ── タイトル行（1行目：タイトル＋リンク） ── */
+  .fav-info { flex: 1; min-width: 0; display: flex; flex-direction: column;
+               justify-content: center; gap: 6px; padding: 16px 12px 16px 0; }
+  .fav-title-row { display: flex; align-items: center; justify-content: space-between;
+                     gap: 8px; min-width: 0; }
+  .fav-title { flex: 1; min-width: 0; font-size: 0.95rem; color: #e2e2e2;
+                overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fav-link-wrap { flex-shrink: 0; }
+  .site-btn { padding: 5px 11px; border: none; border-radius: 5px; font-size: 0.76rem;
+               font-weight: 600; cursor: pointer; color: #fff; text-decoration: none;
+               white-space: nowrap; transition: opacity 0.15s; display: inline-block; }
+  .site-btn:hover { opacity: 0.82; }
+  .no-link-note { flex-shrink: 0; font-size: 0.68rem; color: #333; font-style: italic; }
+  .empty-note { max-width: var(--page-max-width); margin: 40px auto; text-align: center;
+                 color: #444; font-size: 0.85rem; }
+
+  /* ── 水平線の下: 視聴済み＋おすすめ（左端）⇔ シーズン・全話数（右端） ── */
+  .fav-meta-row { display: flex; align-items: center; justify-content: space-between;
+                    gap: 8px; flex-wrap: wrap; min-width: 0;
+                    margin-top: 4px; padding-top: 8px; border-top: 1px solid #26262f; }
+  .fav-meta-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; min-width: 0; }
+  .fav-meta { flex-shrink: 1; min-width: 0; font-size: 0.72rem; color: #556;
+               white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ── 視聴済み欄／おすすめ情報欄 ── */
+  .notes-group { display: flex; align-items: center; gap: 6px; }
+  .notes-label { font-size: 0.68rem; color: #556; white-space: nowrap; flex-shrink: 0; }
+  .notes-group input[type="number"] { width: 56px; }
+  .notes-group input { padding: 4px 7px; font-size: 0.75rem; background: #14141b;
+                         border: 1px solid #2a2a35; border-radius: 5px; color: #ccc; outline: none; }
+  .notes-group input:focus { border-color: #555; }
+  .fav-recommend { flex-shrink: 0; }
+  .fav-recommend input[type="text"] { width: 8em; }
+  .recommend-date { font-size: 0.65rem; color: #445; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+  <div class="controls">
+    <div id="search-wrap">
+      <span id="search-icon">🔍</span>
+      <input id="search" type="text" placeholder="お気に入りを検索..." autofocus>
+    </div>
+    <div class="view-toggle">
+      <button class="vbtn active" id="btn-edit" onclick="setView('edit')">✎ 編集</button>
+      <button class="vbtn" id="btn-poster" onclick="setView('poster')">🖼 ポスター</button>
+    </div>
+    <button id="btn-shuffle" onclick="reshufflePoster()" style="display:none;">🔀 ランダム</button>
+  </div>
+  <div id="star-legend"></div>
+</div>
+
+<div class="content">
+  <div id="count"></div>
+  <div id="list"></div>
+</div>
+
+<script src="../anime-db/data/anime_guide_data.js"></script>
+<script src="../shared/favorites-data.js"></script>
+<script src="../shared/favorites.js?v=20260915"></script>
+<script src="../shared/anime-notes.js"></script>
+<script src="../shared/image-crop.js"></script>
+<script src="../shared/cropped-images.js"></script>
+<script src="../shared/search-aliases.js"></script>
+<script src="../shared/anime-detail-data.js"></script>
+<script>
+// フィルターON中の状態値（1/2）の集合。空 = フィルターなし（全件表示）
+const STATE_FILTER = new Set();
+// おすすめ（おすすめ欄1・2いずれかに記入あり）のみに絞り込むフィルター
+let RECOMMEND_FILTER = false;
+// 今すぐ見たい（ピン留め）のみに絞り込むフィルター
+let PIN_FILTER = false;
+
+// ピンマーク（今すぐ見たい）。fill="currentColor"のためCSSのcolorで白/グレーを切替できる
+const PIN_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">' +
+  '<path d="M16,9V4h1V2H7v2h1v5c0,1.66-1.34,3-3,3v2h5.97v7l1,1l1-1v-7H19v-2C17.34,12,16,10.66,16,9z"/></svg>';
+
+// 検索: タイトル文字列だけでなく、ローマ字/ひらがな/カタカナ表記のエイリアスも対象にする
+// （例: 「FAIRY TAIL」を「フェアリー」で検索してもヒットする）
+function kataToHira(s) {
+  return s.replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); });
+}
+function hiraToKata(s) {
+  return s.replace(/[ぁ-ゖ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) + 0x60); });
+}
+function matchesSearch(item, q) {
+  if (!q) return true;
+  if ((item.title || "").toLowerCase().includes(q)) return true;
+  const alias = (window.SEARCH_ALIASES || {})[String(item.id)];
+  if (!alias) return false;
+  if (alias.romaji && alias.romaji.includes(q)) return true;
+  const qHira = kataToHira(q), qKata = hiraToKata(q);
+  if (alias.hiragana && alias.hiragana.includes(qHira)) return true;
+  if (alias.katakana && alias.katakana.includes(qKata)) return true;
+  return false;
+}
+
+function isRecommended(id) {
+  const notes = AnimeNotes.get(id);
+  return !!((notes.recommend && notes.recommend.trim()) || (notes.recommend2 && notes.recommend2.trim()));
+}
+
+function makeLegendFilterBtn(state, label) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "legend-filter-btn";
+  const color = AnimeFavorites.STATE_COLOR[state];
+  btn.innerHTML = '<span class="star" style="color:' + color + '">★</span><span>' + label + "</span>";
+  function render() {
+    const active = STATE_FILTER.has(state);
+    btn.classList.toggle("active", active);
+    btn.style.borderColor = active ? color : "transparent";
+  }
+  btn.addEventListener("click", function () {
+    if (STATE_FILTER.has(state)) STATE_FILTER.delete(state);
+    else STATE_FILTER.add(state);
+    render();
+    renderList(document.getElementById("search").value);
+  });
+  render();
+  return btn;
+}
+
+function makeHeartLegendFilterBtn() {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "legend-filter-btn";
+  btn.innerHTML = '<span class="star" style="color:#e0447c">❤</span><span>おすすめ</span>';
+  function render() {
+    btn.classList.toggle("active", RECOMMEND_FILTER);
+    btn.style.borderColor = RECOMMEND_FILTER ? "#e0447c" : "transparent";
+  }
+  btn.addEventListener("click", function () {
+    RECOMMEND_FILTER = !RECOMMEND_FILTER;
+    render();
+    renderList(document.getElementById("search").value);
+  });
+  render();
+  return btn;
+}
+
+function makePinLegendFilterBtn() {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "legend-filter-btn";
+  btn.innerHTML = '<span class="star pin-icon">' + PIN_SVG + '</span><span>今すぐ見たい</span>';
+  function render() {
+    btn.classList.toggle("active", PIN_FILTER);
+    btn.style.borderColor = PIN_FILTER ? "#fff" : "transparent";
+  }
+  btn.addEventListener("click", function () {
+    PIN_FILTER = !PIN_FILTER;
+    render();
+    renderList(document.getElementById("search").value);
+  });
+  render();
+  return btn;
+}
+
+// 表示優先順位: 今すぐ見たい（ピン留め）が最上位、そのON/OFFそれぞれの中で 永久保存版 → お気に入り の順
+function renderLegend() {
+  const el = document.getElementById("star-legend");
+  el.innerHTML = "";
+  el.appendChild(makePinLegendFilterBtn());
+  el.appendChild(makeLegendFilterBtn(2, "永久保存版"));
+  el.appendChild(makeLegendFilterBtn(1, "お気に入り"));
+  el.appendChild(makeHeartLegendFilterBtn());
+
+  // 操作説明はiボタンで開閉（既定は非表示）。おすすめボタンの右に配置する。
+  const note = document.createElement("span");
+  note.className = "legend-note";
+  note.textContent = "クリックで絞り込み／解除。行の📌は今すぐ見たいのON/OFFを切替、☆は お気に入りなし → お気に入り → 永久保存版 の順で切り替わります";
+
+  const infoBtn = document.createElement("button");
+  infoBtn.type = "button";
+  infoBtn.className = "legend-info-btn";
+  infoBtn.textContent = "i";
+  infoBtn.title = "操作説明の表示/非表示";
+  infoBtn.addEventListener("click", function () {
+    const show = note.classList.toggle("show");
+    infoBtn.classList.toggle("active", show);
+  });
+  el.appendChild(infoBtn);
+  el.appendChild(note);
+}
+
+// お気に入り候補の統合リストを作る。
+// 1) FAVORITES_INFO（watch-config.json + nowのみ作品、192件・タイトル/画像を自己完結で保持）をベースにする
+//    → anime_guide_data.js（TVアニメに絞ったサブセットで映画/OVA等は含まれないことがある）に
+//      無い作品でも確実に表示できる（2026-08-14: これが無く192件中58件が表示されない不具合があった）
+// 2) ANIME_GUIDE_DATA側にも同じIDがあれば season/episode/popularity 等の詳細情報で補完する
+// 3) FAVORITES_INFOに無いIDでも、anime-guide.html側で新規にお気に入り登録された作品は
+//    ANIME_GUIDE_DATAから拾って追加する（将来的な任意のお気に入り追加に対応するため）
+function buildCandidates() {
+  const byId = {};
+  Object.keys(window.FAVORITES_INFO || {}).forEach(function (id) {
+    const info = FAVORITES_INFO[id];
+    byId[id] = {
+      id: id,
+      title: info.title,
+      thumbnail: info.thumbnail || null,
+      primary_season: null,
+      episode_text: null,
+      popularity_score: null,
+    };
+  });
+  (ANIME_GUIDE_DATA.anime || []).forEach(function (a) {
+    const id = String(a.id);
+    if (byId[id]) {
+      byId[id].primary_season = a.primary_season;
+      byId[id].episode_text = a.episode_text;
+      byId[id].popularity_score = a.popularity_score;
+      if (!byId[id].thumbnail) byId[id].thumbnail = a.thumbnail;
+    } else if (AnimeFavorites.get(id) > 0) {
+      byId[id] = {
+        id: id,
+        title: a.title,
+        thumbnail: a.thumbnail || null,
+        primary_season: a.primary_season,
+        episode_text: a.episode_text,
+        popularity_score: a.popularity_score,
+      };
+    }
+  });
+  return Object.values(byId);
+}
+
+let CANDIDATES = buildCandidates();
+
+// ── 表示モード（編集 / ポスター） ──
+let VIEW = "edit";
+
+// ポスターモード専用の表示順（ランダム入れ替えボタンでシャッフル）。
+// idのシャッフル順を保持し、検索・フィルター後もその相対順序を維持する。
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+let POSTER_ORDER_IDS = shuffleArray(CANDIDATES.map(function (c) { return c.id; }));
+
+function reshufflePoster() {
+  POSTER_ORDER_IDS = shuffleArray(CANDIDATES.map(function (c) { return c.id; }));
+  renderList(document.getElementById("search").value);
+}
+
+function setView(v) {
+  VIEW = v;
+  document.getElementById("btn-edit").classList.toggle("active", v === "edit");
+  document.getElementById("btn-poster").classList.toggle("active", v === "poster");
+  document.getElementById("btn-shuffle").style.display = v === "poster" ? "" : "none";
+  document.getElementById("list").classList.toggle("poster-mode", v === "poster");
+  renderList(document.getElementById("search").value);
+}
+
+function makeStarBtn(id, onUpdate) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "fav-star";
+  function render() {
+    const state = AnimeFavorites.get(id);
+    btn.textContent = AnimeFavorites.STATE_STAR[state];
+    btn.className = "fav-star state-" + state;
+    btn.style.color = state > 0 ? AnimeFavorites.STATE_COLOR[state] : "";
+    btn.title = AnimeFavorites.STATE_LABEL[state] + "（クリックで切替）";
+  }
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    AnimeFavorites.cycle(id);
+    render();
+    if (onUpdate) onUpdate();
+  });
+  render();
+  return { el: btn, render: render };
+}
+
+function makePinBtn(id, onUpdate) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "fav-pin";
+  btn.innerHTML = PIN_SVG;
+  function render() {
+    const pinned = AnimeFavorites.isPinned(id);
+    btn.classList.toggle("active", pinned);
+    btn.title = pinned ? "今すぐ見たい（クリックで解除）" : "今すぐ見たいに設定（クリックでON）";
+  }
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    AnimeFavorites.togglePin(id);
+    render();
+    if (onUpdate) onUpdate();
+  });
+  render();
+  return { el: btn, render: render };
+}
+
+function makeHeartEl(id) {
+  const el = document.createElement("span");
+  el.className = "fav-heart";
+  el.textContent = "❤";
+  function render() {
+    const active = isRecommended(id);
+    el.classList.toggle("active", active);
+    el.title = active ? "おすすめ登録あり" : "おすすめ未登録（おすすめ欄に記入すると表示されます）";
+  }
+  render();
+  return { el: el, render: render };
+}
+
+// おすすめ情報欄（1件目 slot=1 / 2件目 slot=2）。情報元テキスト＋更新日（編集時に自動記録）
+function makeRecommendGroup(id, notes, slot, onUpdate) {
+  const suffix = slot === 2 ? "2" : "";
+  const recGroup = document.createElement("span");
+  recGroup.className = "notes-group fav-recommend";
+  const recLabel = document.createElement("span");
+  recLabel.className = "notes-label";
+  recLabel.textContent = slot === 2 ? "おすすめ2" : "おすすめ";
+  const recInput = document.createElement("input");
+  recInput.type = "text";
+  recInput.placeholder = "情報元";
+  recInput.title = "おすすめの情報元（誰・どこで見かけたか等）";
+  const curText = notes["recommend" + suffix];
+  if (curText) recInput.value = curText;
+  const recDate = document.createElement("span");
+  recDate.className = "recommend-date";
+  recDate.textContent = notes["recommend" + suffix + "Date"] || "";
+  recInput.addEventListener("change", function () {
+    const saved = AnimeNotes.setRecommend(id, recInput.value, slot);
+    recDate.textContent = saved["recommend" + suffix + "Date"] || "";
+    if (onUpdate) onUpdate();
+  });
+  recGroup.appendChild(recLabel);
+  recGroup.appendChild(recInput);
+  recGroup.appendChild(recDate);
+  return recGroup;
+}
+
+// 詳細ページのURLを作る。ANIME_DETAIL_ALIASがあれば代表IDに解決し（例: シーズン2の
+// カードもシーズン1の詳細ページへ飛ばす）、ANIME_DETAILにslugがあればURLに含める。
+function detailUrl(id) {
+  const alias = window.ANIME_DETAIL_ALIAS || {};
+  const canonicalId = alias[id] || id;
+  // 汎用テンプレートに収まらない作品（話数が非常に多い等）は専用特設ページへ遷移する
+  const special = (window.SPECIAL_DETAIL_PAGES || {})[canonicalId];
+  if (special) return special;
+  const detail = (window.ANIME_DETAIL || {})[canonicalId];
+  let url = "detail.html?id=" + encodeURIComponent(canonicalId);
+  if (detail && detail.slug) url += "&t=" + encodeURIComponent(detail.slug);
+  return url;
+}
+
+function makeRow(item) {
+  const row = document.createElement("div");
+  row.className = "fav-row";
+  row.dataset.id = item.id;
+  row.addEventListener("click", function (e) {
+    // 星ボタン・視聴リンク・入力欄など、行内の操作要素をタップした場合は詳細ページへ遷移しない
+    if (e.target.closest("a, button, input")) return;
+    window.location.href = detailUrl(item.id);
+  });
+
+  const thumb = document.createElement("div");
+  thumb.className = "fav-thumb";
+  if (item.thumbnail) {
+    const img = document.createElement("img");
+    const croppedPath = (window.CROPPED_IMAGES || {})[String(item.id)];
+    if (croppedPath) {
+      img.src = "../shared/" + croppedPath;  // 実際に正方形へクリップ済みの画像ファイル
+    } else {
+      img.src = item.thumbnail;
+      const cropPos = (window.IMAGE_CROP || {})[String(item.id)];
+      if (cropPos) img.style.objectPosition = cropPos;  // クロップ画像が無い場合のフォールバック
+    }
+    img.alt = item.title;
+    img.loading = "lazy";
+    thumb.appendChild(img);
+  } else {
+    thumb.innerHTML = '<div class="no-thumb">📺</div>';
+  }
+  row.appendChild(thumb);
+
+  function applyBorder() {
+    const state = AnimeFavorites.get(item.id);
+    row.style.borderColor = AnimeFavorites.STATE_COLOR[state] || "";
+  }
+  const pin = makePinBtn(item.id, function () {
+    renderList(document.getElementById("search").value);  // ピン留め有無で並び順が変わるため再描画
+  });
+  const star = makeStarBtn(item.id, applyBorder);
+  const heart = makeHeartEl(item.id);
+
+  const info = document.createElement("div");
+  info.className = "fav-info";
+
+  const notes = AnimeNotes.get(item.id);
+
+  const titleRow = document.createElement("div");
+  titleRow.className = "fav-title-row";
+  titleRow.appendChild(pin.el);
+  titleRow.appendChild(star.el);
+  titleRow.appendChild(heart.el);
+  const titleEl = document.createElement("div");
+  titleEl.className = "fav-title";
+  titleEl.title = item.title;   // 1行に収まらない場合はネイティブツールチップで全文表示
+  titleEl.textContent = item.title;
+  titleRow.appendChild(titleEl);
+
+  const linkWrap = document.createElement("div");
+  linkWrap.className = "fav-link-wrap";
+  const site = WATCH_SITES[item.id];
+  if (site) {
+    const a = document.createElement("a");
+    a.href = site.url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.className = "site-btn";
+    a.style.background = site.color;
+    a.textContent = "▶ " + site.label;
+    linkWrap.appendChild(a);
+  } else {
+    linkWrap.innerHTML = '<span class="no-link-note">視聴リンク未登録</span>';
+  }
+  titleRow.appendChild(linkWrap);
+  info.appendChild(titleRow);
+
+  // 水平線の下の行: 視聴済み話数（左端）⇔ シーズン・全話数（右端）
+  const metaRow = document.createElement("div");
+  metaRow.className = "fav-meta-row";
+
+  const leftGroup = document.createElement("span");
+  leftGroup.className = "fav-meta-left";
+
+  const watchGroup = document.createElement("span");
+  watchGroup.className = "notes-group";
+  const watchLabel = document.createElement("span");
+  watchLabel.className = "notes-label";
+  watchLabel.textContent = "視聴済み";
+  const epInput = document.createElement("input");
+  epInput.type = "number";
+  epInput.min = "0";
+  epInput.placeholder = "話数";
+  epInput.title = "視聴済み話数（変更すると記入時点の日付を自動記録）";
+  if (notes.watchEpisode != null) epInput.value = notes.watchEpisode;
+  const watchDate = document.createElement("span");
+  watchDate.className = "recommend-date";
+  watchDate.textContent = notes.watchDate ? `更新: ${notes.watchDate}` : "";
+  epInput.addEventListener("change", function () {
+    const saved = AnimeNotes.setWatch(item.id, epInput.value);
+    watchDate.textContent = saved.watchDate ? `更新: ${saved.watchDate}` : "";
+  });
+  watchGroup.appendChild(watchLabel);
+  watchGroup.appendChild(epInput);
+  watchGroup.appendChild(watchDate);
+  leftGroup.appendChild(watchGroup);
+
+  // おすすめ情報: 視聴済みの隣に配置。入力欄は8文字程度の小さい幅で十分（2欄用意）
+  function onRecommendUpdate() {
+    heart.render();
+    renderList(document.getElementById("search").value);  // おすすめ有無で並び順が変わるため再描画
+  }
+  leftGroup.appendChild(makeRecommendGroup(item.id, notes, 1, onRecommendUpdate));
+  leftGroup.appendChild(makeRecommendGroup(item.id, notes, 2, onRecommendUpdate));
+
+  metaRow.appendChild(leftGroup);
+
+  const metaParts = [];
+  if (item.primary_season) metaParts.push(item.primary_season);
+  if (item.episode_text) metaParts.push(item.episode_text);
+  if (metaParts.length) {
+    const metaEl = document.createElement("span");
+    metaEl.className = "fav-meta";
+    metaEl.textContent = metaParts.join(" ・ ");
+    metaRow.appendChild(metaEl);
+  }
+
+  info.appendChild(metaRow);
+
+  row.appendChild(info);
+
+  applyBorder();
+  return row;
+}
+
+// ポスターモード用カード: 画像＋★状態／❤おすすめはバッジ表示のみ（編集操作は編集モードで行う）。
+// タイトルが長い作品は2〜3行での折り返し表示を許容する。
+function makePosterCard(item) {
+  const card = document.createElement("div");
+  card.className = "poster-card";
+  const state = AnimeFavorites.get(item.id);
+  card.style.borderColor = AnimeFavorites.STATE_COLOR[state] || "#333";
+  card.addEventListener("click", function () {
+    window.location.href = detailUrl(item.id);
+  });
+
+  if (item.thumbnail) {
+    const img = document.createElement("img");
+    img.className = "poster";
+    const croppedPath = (window.CROPPED_IMAGES || {})[String(item.id)];
+    if (croppedPath) {
+      img.src = "../shared/" + croppedPath;
+    } else {
+      img.src = item.thumbnail;
+      const cropPos = (window.IMAGE_CROP || {})[String(item.id)];
+      if (cropPos) img.style.objectPosition = cropPos;
+    }
+    img.alt = item.title;
+    img.loading = "lazy";
+    card.appendChild(img);
+  } else {
+    const ph = document.createElement("div");
+    ph.className = "no-poster";
+    ph.textContent = "📺";
+    card.appendChild(ph);
+  }
+
+  const badgesLeft = document.createElement("span");
+  badgesLeft.className = "poster-badges-left";
+  if (AnimeFavorites.isPinned(item.id)) {
+    const pinBadge = document.createElement("span");
+    pinBadge.className = "badge-pin";
+    pinBadge.innerHTML = PIN_SVG;
+    badgesLeft.appendChild(pinBadge);
+  }
+  const starBadge = document.createElement("span");
+  starBadge.className = "badge-star";
+  starBadge.textContent = AnimeFavorites.STATE_STAR[state];
+  starBadge.style.color = AnimeFavorites.STATE_COLOR[state] || "";
+  badgesLeft.appendChild(starBadge);
+  card.appendChild(badgesLeft);
+
+  if (isRecommended(item.id)) {
+    const heartBadge = document.createElement("span");
+    heartBadge.className = "poster-badge-heart";
+    heartBadge.textContent = "❤";
+    card.appendChild(heartBadge);
+  }
+
+  const tDiv = document.createElement("div");
+  tDiv.className = "ptitle";
+  tDiv.title = item.title;
+  tDiv.textContent = item.title;
+  card.appendChild(tDiv);
+
+  return card;
+}
+
+function renderList(query) {
+  const q = (query || "").trim().toLowerCase();
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  let items = CANDIDATES.filter(function (a) {
+    const state = AnimeFavorites.get(a.id);
+    if (state === 0) return false;
+    if (STATE_FILTER.size > 0 && !STATE_FILTER.has(state)) return false;
+    if (PIN_FILTER && !AnimeFavorites.isPinned(a.id)) return false;
+    if (RECOMMEND_FILTER && !isRecommended(a.id)) return false;
+    return true;
+  });
+  if (q) {
+    items = items.filter(function (a) { return matchesSearch(a, q); });
+  }
+  if (VIEW === "poster") {
+    // ポスターモード: ランダム入れ替えで決めた順序を維持（検索・フィルター後も相対順序は保つ）
+    const orderIndex = {};
+    POSTER_ORDER_IDS.forEach(function (id, i) { orderIndex[id] = i; });
+    items.sort(function (a, b) {
+      const ia = orderIndex[a.id], ib = orderIndex[b.id];
+      return (ia != null ? ia : 1e9) - (ib != null ? ib : 1e9);
+    });
+  } else {
+    // 表示優先順位: 今すぐ見たい（ピン留め）→ その中で 永久保存版 → お気に入り → おすすめ → 人気度
+    items.sort(function (a, b) {
+      const pina = AnimeFavorites.isPinned(a.id) ? 1 : 0, pinb = AnimeFavorites.isPinned(b.id) ? 1 : 0;
+      if (pina !== pinb) return pinb - pina;
+      const sa = AnimeFavorites.get(a.id), sb = AnimeFavorites.get(b.id);
+      if (sa !== sb) return sb - sa;
+      const ra = isRecommended(a.id) ? 1 : 0, rb = isRecommended(b.id) ? 1 : 0;
+      if (ra !== rb) return rb - ra;  // おすすめ登録済みを各状態内で上位に表示
+      const pa = a.popularity_score != null ? a.popularity_score : -1;
+      const pb = b.popularity_score != null ? b.popularity_score : -1;
+      return pb - pa;
+    });
+  }
+
+  document.getElementById("count").textContent = items.length + " 件のお気に入り";
+  if (items.length === 0) {
+    list.innerHTML = '<div class="empty-note">お気に入りがまだありません。アニメガイドの☆をクリックして追加してください。</div>';
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  if (VIEW === "poster") {
+    items.forEach(function (item) { frag.appendChild(makePosterCard(item)); });
+  } else {
+    items.forEach(function (item) { frag.appendChild(makeRow(item)); });
+  }
+  list.appendChild(frag);
+}
+
+document.getElementById("search").addEventListener("input", function (e) { renderList(e.target.value); });
+AnimeFavorites.onChange(function () {
+  CANDIDATES = buildCandidates();
+  // 新規追加分もポスターモードの並び順に反映されるよう順序を作り直す
+  POSTER_ORDER_IDS = shuffleArray(CANDIDATES.map(function (c) { return c.id; }));
+  renderList(document.getElementById("search").value);
+});
+renderLegend();
+renderList("");
+</script>
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<!--
+  [編集者向けメモ] このページはポケットモンスター（テレビアニメ・新シリーズ2023〜）専用特設ページ
+  の年代記（公式サイトのclass="entry"要素をCSSごと再現した一覧）です。表示データは
+  shared/pokemon-anime-data.js の window.POKEMON_ANIME_DATA を共有元とし、そこに含まれる
+  DATA_META（verifiedAt/verifiedThroughEp）が現在のデータ鮮度を保持しています。新しい話数の
+  追加・情報更新の具体的な手順は anime-launcher/pokemon-maintenance.md を参照してください。
+  （このコメントはページの表示上には出力されず、ブラウザの「ページのソースを表示」や
+  開発者ツールのElementsパネルからのみ確認できます。）
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポケットモンスター（テレビアニメ）| 年代記</title>
+<link rel="stylesheet" href="../shared/common.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #eaf5fd; color: #1a2a3a; min-height: 100vh; padding: 0 0 60px; }
+  .content { max-width: min(1200px, 96vw); margin: 0 auto; padding: 0 16px; }
+
+  .back-link { display: inline-block; margin: 14px 0 4px; font-size: 0.8rem; color: #3f7fb8; text-decoration: none; }
+  .back-link:hover { color: #1f6fae; text-decoration: underline; }
+
+  .hero { display: flex; gap: 22px; padding: 24px 26px; align-items: flex-start; flex-wrap: wrap; margin-top: 6px;
+           background: linear-gradient(135deg, #1e8fe0, #57c2f0); border-radius: 14px;
+           box-shadow: 0 6px 20px rgba(30,120,190,0.28); color: #fff; }
+  .hero-thumb { width: 180px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.2);
+                 box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
+  .hero-thumb img { width: 100%; display: block; }
+  .hero-body { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
+  .hero h1 { font-size: 1.3rem; font-weight: 700; text-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  .hero .status-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; color: #14456f;
+                          background: #fff; border-radius: 999px; padding: 3px 12px; align-self: flex-start; }
+
+  section.block { margin-top: 26px; }
+  section.block h2 { font-size: 1rem; color: #14456f; font-weight: 700; margin-bottom: 10px;
+                       padding-bottom: 7px; border-bottom: 2px solid #cbe6fa; }
+
+  /* ── シーズン切替（pokemon-detail.htmlの季節ボタングループと同一実装） ── */
+  .season-controls-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .season-btn-group { display: inline-flex; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(30,110,180,0.1); }
+  .season-btn-group button { position: relative; padding: 8px 15px; font-size: 0.86rem; font-weight: 700;
+                               border: 1px solid var(--sc, #7fa); border-right-width: 0; background: #fff;
+                               color: #2c3446; cursor: pointer; transition: background 0.15s, color 0.15s; }
+  .season-btn-group button:last-child { border-right-width: 1px; }
+  .season-btn-group button:hover { filter: brightness(0.96); z-index: 1; }
+  .season-btn-group button.on { background: var(--sc, #1f7fd1); color: #fff; }
+  .sp-toggle-btn { font-size: 0.8rem; padding: 7px 14px; border-radius: 6px; border: 1px solid #b7b7c2;
+                    background: #fff; color: #556; cursor: pointer; }
+  .sp-toggle-btn.on { background: #888890; color: #fff; border-color: #888890; }
+
+  /* ── 並び替え（昇順/降順）の連結トグルボタン。season-btn-groupと同じ見た目・仕組み。
+       既定は昇順。話数の描画順は変えず、CSSのflex-directionだけで見た目の並びを反転させる ── */
+  .sort-btn-group { display: inline-flex; border-radius: 6px; overflow: hidden;
+                       box-shadow: 0 1px 4px rgba(30,110,180,0.1); margin-left: auto; }
+  .sort-btn-group button { padding: 8px 15px; font-size: 0.8rem; font-weight: 700;
+                              border: 1px solid #b9d9ef; border-right-width: 0; background: #fff;
+                              color: #2c3446; cursor: pointer; transition: background 0.15s, color 0.15s; }
+  .sort-btn-group button:last-child { border-right-width: 1px; }
+  .sort-btn-group button.on { background: #1f7fd1; color: #fff; }
+  .chronicle-list.sort-desc { display: flex; flex-direction: column-reverse; }
+
+  /* ── 年代記タグのフィルター（エピソードフィルタの下に配置。ページ上で自由に追加できる
+       カスタムタグをカテゴリ単位でグループ表示し、ON/OFFで絞り込む。シーズンフィルタとは独立。
+       【仕様】未クリックの初期状態は白抜き＝フィルタOFF（絞り込みに影響しない）。
+       クリックして塗りつぶし＝フィルタON（そのタグが付与された話数だけに絞り込む）。
+       複数タグをONにした場合：同じカテゴリ内はOR（例：舞台＝カントー or パルデア）、
+       異なるカテゴリ間はAND（例：舞台のいずれか、かつ、別カテゴリのいずれか）で絞り込む。 ── */
+  .tag-controls-row { display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 16px;
+                        padding-top: 10px; border-top: 1px dashed #cbe6fa; }
+  .tag-filter-category { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .tag-filter-category-label { font-size: 0.68rem; font-weight: 700; color: #7f93b3; }
+  .tag-filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag-filter-btn { font-size: 0.78rem; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+                      border: 1px solid var(--tc, #b9d9ef); background: #fff; color: #2c3446; cursor: pointer;
+                      transition: background 0.15s, color 0.15s; }
+  .tag-filter-btn.on { background: var(--tc, #1f7fd1); color: #fff; }
+  .tag-filter-empty { font-size: 0.74rem; color: #9db4c6; }
+
+  /* ── 各話トップのシーズンタグ（どの章の話かを一目で示す）。年代記タグ欄（.annot-col）に表示する ── */
+  .season-tag { display: inline-block; font-size: 0.66rem; font-weight: 700; color: #fff;
+                 background: var(--sc, #1f7fd1); border-radius: 4px; padding: 3px 10px; }
+
+  /* ── 各話ロウ（左＝公式サイトのentry要素を再現／右＝年代記の加筆用余白） ── */
+  .chronicle-list { display: flex; flex-direction: column; gap: 16px; }
+  .chronicle-row { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(160px, 0.75fr); gap: 0;
+                     background: #fff; border: 1px solid #cbe6fa; border-radius: 10px; overflow: hidden;
+                     box-shadow: 0 1px 6px rgba(30,110,180,0.08); }
+  @media (max-width: 720px) { .chronicle-row { grid-template-columns: 1fr; } }
+  /* 【重要】.chronicle-row（class、詳細度0,1,0）の`display:grid`は、ブラウザ標準の
+     `[hidden]{display:none}`（属性セレクタ、詳細度0,1,0）と詳細度が同点のため、後勝ちの
+     カスケードでこちらのdisplay:gridが勝ってしまい、hidden属性を立てても実際には非表示に
+     ならない（フィルタで絞り込んだつもりが画面上は消えないバグの原因だった）。
+     `.chronicle-row[hidden]`（詳細度0,2,0）を明示することで確実にdisplay:noneを勝たせる。 */
+  .chronicle-row[hidden] { display: none; }
+
+  /* 公式サイトのentry要素の再現部分。class名（entry/entryttl/date/txtbox/thum）だけでなく、
+     実際のCSS（style_under.css）を詳細度まで確認して再現している。
+     【重要】.entry自体の背景（lower_entry_bg.svgの赤帯＋黒線＋黒白ボタン）は、
+     ベースの`.contents .entry`ルールには存在するが、話数一覧ページの実際のクラス
+     （`class="contents episodes"`、実機のHTMLで確認済み）に対する、より詳細度の高い
+     `.contents.episodes .entry { background: rgba(255,255,255,0.6); }`という上書きルールで
+     打ち消されており、実際のページには表示されない。過去のバージョンではこれを見落として
+     `.entry::before`で誤って追加してしまっていたため削除した（詳しくは進捗記録参照）。
+     公式CSSの構成要素（実際に話数一覧ページで表示される分のみ）：
+       - entryttl（話数＋サブタイトル）は白文字・中央寄せで、背景に赤系の波模様画像
+         （lower_entry_h3_bg.png）、下端に黒の太いボーダー（モンスターボールの中央線）
+       - date（放送日）は黒い薬（カプセル）型のバッジで、緑文字＋左右端に白黒白の
+         小さな丸（lower_entry_date_bg.svg、モンスターボールのボタンを縮小した意匠）が付く。
+         entryttlの下端に食い込むよう負のマージンで重ねて配置される
+     いずれも公式サイトの画像アセットをそのまま参照している（[[feedback_reproduce_with_css]]）。
+     なお、entry本体のborder-radius/box-shadow・各要素のサイズ（横幅いっぱいの公式レイアウト
+     向けの数値を、こちらの2カラムレイアウトに収まるよう比率を保って縮小）はこちらで加えた
+     独自の調整であり、公式CSSの値そのままではない。 */
+  .entry-col { padding: 18px 20px 20px; border-right: 1px dashed #cbe6fa; }
+  @media (max-width: 720px) { .entry-col { border-right: none; border-bottom: 1px dashed #cbe6fa; } }
+  .entry { background: rgba(255,255,255,0.6); border-radius: 8px; overflow: hidden;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08); padding-bottom: 20px; }
+  .entry .entryttl { margin: 0; padding: 16px 20px; color: #fff; text-align: center; font-weight: 700;
+                       font-size: 1rem; line-height: 1.4;
+                       background: url("https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/lower/lower_entry_h3_bg.png")
+                                    no-repeat center center / cover, #f5605f;
+                       border-bottom: 6px solid #000; }
+  .entry .date { width: 150px; height: 26px; margin: -13px auto 16px; position: relative; z-index: 1;
+                   color: #4cf54c; text-align: center; line-height: 26px; font-weight: 700; font-size: 0.7rem;
+                   background: url("https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/lower/lower_entry_date_bg.svg") no-repeat 5px center,
+                               url("https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/lower/lower_entry_date_bg.svg") no-repeat right 5px center,
+                               #000;
+                   background-size: 14px 14px, 14px 14px, auto; border-radius: 100px; }
+  .entry .txtbox { margin: 0 20px; }
+  .entry .txtbox p { font-size: 0.78rem; line-height: 1.8; color: #38495a; }
+  .entry .thum { display: flex; gap: 10px; margin: 14px 20px 0; flex-wrap: wrap; }
+  .entry .thum img { width: 260px; max-width: 100%; border-radius: 6px; border: 1px solid #cbe6fa; display: block; }
+
+  /* 右側：年代記タグ欄（シーズンタグ＋ページ上で追加したカスタムタグを表示・付け外しする） */
+  .annot-col { padding: 18px 20px; background: #f7fbfe; display: flex; flex-direction: column; gap: 10px; }
+  .annot-col .annot-label { font-size: 0.68rem; font-weight: 700; color: #7f93b3; text-transform: uppercase;
+                              letter-spacing: 0.03em; }
+  .annot-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+  .chronicle-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700;
+                     color: #fff; background: var(--tc, #1f7fd1); border-radius: 999px; padding: 3px 6px 3px 10px;
+                     border: 2px solid transparent; cursor: context-menu; }
+  /* Claudeが外部サイトを調査して作成した「未検証」タグ（自分の目で確認済みではない）は
+     枠を灰色にして可視化する。右クリックメニューから承認すると通常表示に戻る。 */
+  .chronicle-tag.unverified { border-color: #9aa3ad; }
+  .chronicle-tag .tag-remove-btn { border: none; background: rgba(255,255,255,0.3); color: #fff;
+                                     border-radius: 50%; width: 15px; height: 15px; font-size: 0.62rem;
+                                     line-height: 1; cursor: pointer; }
+  /* A/Bパートの区切りタグ（type:"divider"）は通常のチップではなく水平線として描画する
+     （ユーザー指示：中間広告の前後でAパート/Bパートを呼び分ける構造を年代記タグでも表現する）。
+     flex-basis:100%で.annot-tagsのflex-wrap行を強制的に折り返し、その位置より前に付けた
+     タグ＝Aパート、後に付けたタグ＝Bパートが線の上下に分かれて見えるようにする。 */
+  .chronicle-tag-divider { flex-basis: 100%; display: flex; align-items: center; gap: 8px;
+                             color: #7f93b3; font-size: 0.66rem; font-weight: 700; margin: 2px 0; }
+  .chronicle-tag-divider::before, .chronicle-tag-divider::after { content: ""; flex: 1; height: 1px; background: #cbe6fa; }
+  .chronicle-tag-divider .tag-remove-btn { border: none; background: #eaf5fd; color: #7f93b3;
+                                              border-radius: 50%; width: 15px; height: 15px; font-size: 0.62rem;
+                                              line-height: 1; cursor: pointer; flex: 0 0 auto; }
+  /* タグ割り当てUI。「既存タグを選んで付与」「新規タグを作成して付与（カテゴリ選択／
+     新規カテゴリ名／タグの値が続けて現れる）」を、境界線を共有した1本の連結ボタングループ
+     （.tag-input-group）として1つにまとめて表示する（ユーザー指示。season-btn-groupと同じ
+     考え方＝個々の要素には角丸を付けず、外側のラッパーのborder-radius+overflow:hiddenだけで
+     見た目上の丸みを出す）。横幅の狭い.annot-col内でも収まるよう折り返し可にしている。 */
+  .tag-assign-row { margin-top: auto; }
+  .tag-input-group { display: flex; flex-wrap: wrap; border: 1px solid #cbe6fa; border-radius: 6px;
+                       overflow: hidden; }
+  .tag-input-group select, .tag-input-group input, .tag-input-group button {
+    border: none; border-radius: 0; border-right: 1px solid #cbe6fa; background: #fff;
+    font-size: 0.74rem; padding: 5px 7px; color: #2c3446; min-width: 0;
+  }
+  .tag-input-group select, .tag-input-group input { flex: 1 1 90px; }
+  .tag-input-group button { flex: 0 0 auto; border-right: none; font-weight: 700; color: #1f6fae; cursor: pointer; }
+  .tag-input-group button:hover { background: #eaf5fd; }
+  /* 新規カテゴリ作成中は、まだ選べる内容が無いため内容ドロップダウンをグレーアウトする */
+  .tag-input-group select:disabled { background: #f3f6f8; color: #aab4c0; cursor: not-allowed; }
+
+  /* タグの右クリックメニュー（承認／編集／削除）。全てのタグ共通の基本操作。 */
+  .tag-context-menu { position: fixed; z-index: 1000; background: #fff; border: 1px solid #cbe6fa;
+                        border-radius: 8px; box-shadow: 0 4px 16px rgba(20,69,111,0.22); padding: 4px;
+                        min-width: 170px; }
+  .tag-context-menu button { display: block; width: 100%; text-align: left; padding: 7px 10px;
+                                font-size: 0.78rem; border: none; background: none; cursor: pointer;
+                                border-radius: 5px; color: #2c3446; }
+  .tag-context-menu button:hover { background: #eaf5fd; }
+  .tag-context-menu button[data-action="delete"] { color: #c0392b; }
+  .tag-context-menu .menu-note { padding: 6px 10px 2px; font-size: 0.66rem; color: #9db4c6; max-width: 260px;
+                                    white-space: normal; line-height: 1.6; }
+
+  .empty-note { margin: 60px auto; text-align: center; color: #5b7085; font-size: 0.95rem; line-height: 2; }
+  .sources-block { margin-top: 40px; font-size: 0.76rem; color: #5b7085; line-height: 1.9;
+                     background: #fff; border: 1px solid #cbe6fa; border-radius: 10px; padding: 14px 18px; }
+  .sources-block h3 { font-size: 0.82rem; color: #14456f; font-weight: 700; margin-bottom: 8px; }
+  .sources-block a { color: #1f7fd1; }
+</style>
+</head>
+<body>
+
+<div class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <script src="../shared/nav.js?v=20260916"></script>
+</div>
+
+<div class="content" id="chronicle-content">
+  <a class="back-link" href="pokemon-detail.html">← ポケットモンスター 作品詳細へ戻る</a>
+
+  <div class="hero" id="chronicle-hero">
+    <div class="hero-thumb">
+      <img src="https://img2.animatetimes.com/2022/12/f341a68df00a26244c14f9390974dbeb69801a56b40a50_16437181_25cc98912c3972e2c38722cbc6a78cda737f0354.jpg" alt="ポケットモンスター" title="出典: アニメイトタイムズ">
+    </div>
+    <div class="hero-body">
+      <div class="status-badge" id="chronicle-badge"><!-- JSで描画（DATA_META/LATEST_AIRED） --></div>
+      <h1>ポケットモンスター 年代記</h1>
+      <!-- [編集者向けメモ]
+        テレビ東京公式サイトのエピソード一覧ページ（class="entry"要素）を、HTML構造だけでなく
+        実際のCSS（背景画像・配色）ごと再現した一覧ページです。公式サイトの実CSSをCSSの詳細度の
+        上書き関係まで確認したところ、話数タイトル（entryttl）の赤い波模様＋黒6pxボーダー、放送日バッジ
+        （date）の黒カプセル＋白黒白の丸という、モンスターボールを意識した装飾が使われていたため、
+        その画像アセットをそのまま使って再現しています。
+        放送済みの全話数を収録し、各話の先頭にはどのシーズン（章）に属するかを示すタグを表示、
+        上部のボタンでシーズン単位の表示切替もできます。新しい話が放送され次第、順次追加していきます。
+        さらにその先、右側の余白部分に「登場キャラの加入時期」「旅した地方」「重要な出来事」などを書き加え、
+        本作の年代記（タイムライン）として発展させる構想です。そのため右側にあらかじめ加筆用の余白を空けています。
+      -->
+    </div>
+  </div>
+
+  <section class="block" id="episode-list-section">
+    <h2>各話一覧</h2>
+    <div class="season-controls-row" id="season-controls-row">
+      <div class="season-btn-group" id="season-btn-group"><!-- JS: 1〜7の連結ボタン（ダブルクリックでその章のみに絞り込み） --></div>
+      <span id="season-sp-toggle-wrap"><!-- JS: 特別編トグル --></span>
+      <div class="sort-btn-group" id="sort-btn-group"><!-- JS: 昇順/降順の連結トグルボタン --></div>
+    </div>
+    <div class="tag-controls-row" id="tag-controls-row">
+      <div class="tag-filter-group" id="tag-filter-group"><!-- JS: 年代記タグのON/OFFボタン --></div>
+    </div>
+    <div class="chronicle-list" id="chronicle-list"><!-- JSで描画（各行は id="chronicle-row-<話数>"） --></div>
+  </section>
+
+  <div class="sources-block" id="sources-block">
+    <h3>情報源</h3>
+    <!-- [編集者向けメモ] データ最終確認日等の鮮度情報はここには表示せず、shared/pokemon-anime-data.js
+         の DATA_META と anime-launcher/pokemon-maintenance.md を参照してください。 -->
+    各話の内容は<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/episodes/" target="_blank" rel="noopener noreferrer">テレビ東京公式サイト エピソード一覧</a>から取得しています。
+    <!-- [編集者向けメモ] 「舞台」「キャラ登場」タグの一部はClaudeが外部サイト（日本語Wikipedia／
+         ポケモンWiki／アニポケ リコロイWiki）を調査して追加したシードデータです（詳細は
+         shared/pokemon-chronicle-tags.jsのSEED_TAGS各項目のnoteを参照）。自分の目で確認した
+         情報ではないため既定で未検証（枠が灰色）としており、右クリックメニューから承認できます。 -->
+  </div>
+
+  <!-- タグの右クリックメニュー（承認／編集／削除）。JSで表示位置・内容を組み立てて使い回す。 -->
+  <div class="tag-context-menu" id="tag-context-menu" hidden></div>
+</div>
+
+<script src="../shared/pokemon-anime-data.js"></script>
+<script src="../shared/pokemon-chronicle-tags.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA = window.POKEMON_ANIME_DATA;
+  var EPISODES = DATA.EPISODES;
+  var SEASONS = DATA.SEASONS;
+  var LATEST_AIRED = DATA.LATEST_AIRED;
+  var seasonOf = DATA.seasonOf;
+  var Tags = window.PokemonChronicleTags;
+
+  function el(tag, className, html) {
+    var e = document.createElement(tag);
+    if (className) e.className = className;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function addOption(select, value, text) {
+    var opt = document.createElement("option");
+    opt.value = value;
+    opt.textContent = text;
+    select.appendChild(opt);
+    return opt;
+  }
+
+  function thumbUrl(ep, n) {
+    var epStr = ep < 10 ? ("0" + ep) : String(ep);
+    return "https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/episodes/" + epStr + "_" + n + ".jpg";
+  }
+
+  // シーズンタグのノード（どの章の話かを一目で示す。特設サイトの色分けと共通）。
+  // 年代記タグ欄（.annot-col）の先頭に表示する（付け外し不可の自動タグ）。
+  function seasonTagNode(ep) {
+    var season = seasonOf(ep);
+    if (!season) return null;
+    var label = season.special ? "特別編「" + season.label + "」" : ("第" + season.no + "章「" + season.label + "」");
+    var tag = el("span", "season-tag", label);
+    tag.style.setProperty("--sc", season.color);
+    return tag;
+  }
+
+  // 公式サイトの class="entry" 要素を再現する（entryttl/date/txtbox/thum のクラス名も踏襲）。
+  // [編集者向けメモ] 公式サイトの class="entry" 要素をCSSごと再現（モンスターボール風の配色）
+  function renderEntryCol(ep, data) {
+    var col = el("div", "entry-col");
+    col.id = "entry-col-" + ep;
+
+    var entry = el("div", "entry");
+    entry.appendChild(el("div", "entryttl", "第" + ep + "話：" + data.subtitle));
+    entry.appendChild(el("div", "date", data.date + " 放送"));
+
+    var txtbox = el("div", "txtbox");
+    var p = document.createElement("p");
+    p.textContent = data.synopsis || "";
+    txtbox.appendChild(p);
+    entry.appendChild(txtbox);
+
+    var thum = el("div", "thum");
+    [1, 2].forEach(function (n) {
+      var img = document.createElement("img");
+      img.src = thumbUrl(ep, n);
+      img.alt = "第" + ep + "話 画像" + n;
+      img.loading = "lazy";
+      img.onerror = function () { img.remove(); };
+      thum.appendChild(img);
+    });
+    entry.appendChild(thum);
+
+    col.appendChild(entry);
+    return col;
+  }
+
+  // 右側：年代記タグ欄。先頭にシーズンタグ（自動・付け外し不可）、続けてページ上で
+  // 追加したカスタムタグ（付与済みのものは×で外せる）、最後に「タグを追加」の割り当てUIを表示する。
+  // 【設計方針】登場キャラ加入／訪れた地方／重要イベントなどは自由記述のテキストではなく、
+  // このタグ付け形式で表現する（shared/pokemon-chronicle-tags.js、このブラウザのlocalStorage保存）。
+  function renderAnnotCol(ep) {
+    var col = el("div", "annot-col");
+    col.id = "annot-col-" + ep;
+    col.appendChild(el("div", "annot-label", "年代記タグ"));
+
+    var tagsWrap = el("div", "annot-tags");
+    tagsWrap.id = "annot-tags-" + ep;
+    col.appendChild(tagsWrap);
+
+    var assignRow = el("div", "tag-assign-row");
+    assignRow.id = "tag-assign-" + ep;
+    col.appendChild(assignRow);
+
+    // 中身の描画はrenderAnnotTags(ep)が担うが、これはdocument.getElementByIdでこの
+    // tagsWrap/assignRowを探すため、colがまだdocumentに入っていないこの時点では呼べない
+    // （見つからず空のまま描画されてしまう）。呼び出し元がDOM挿入後に呼ぶこと。
+    return col;
+  }
+
+  // 話数epの年代記タグ欄（シーズンタグ＋カスタムタグ＋割り当てUI）を再描画する。
+  // タグの追加/削除/付け外しのたびに、影響する話数だけ呼び直せばよい。
+  function renderAnnotTags(ep) {
+    var tagsWrap = document.getElementById("annot-tags-" + ep);
+    var assignRow = document.getElementById("tag-assign-" + ep);
+    if (!tagsWrap || !assignRow) return;
+
+    tagsWrap.innerHTML = "";
+    var seasonTag = seasonTagNode(ep);
+    if (seasonTag) tagsWrap.appendChild(seasonTag);
+
+    var assignedIds = Tags.getEpisodeTagIds(ep);
+    Tags.getEpisodeTags(ep).forEach(function (tag) {
+      // A/Bパートの区切りタグは通常のチップではなく水平線として描画する。付与した順序が
+      // そのまま表示順になる仕様のため、この線より前に付けたタグがAパート・後がBパートとして
+      // 視覚的に分かれる（[[shared/pokemon-chronicle-tags.js]]のtype:"divider"参照）。
+      if (tag.type === "divider") {
+        var divider = el("div", "chronicle-tag-divider");
+        divider.dataset.tagId = tag.id;
+        divider.appendChild(document.createTextNode(tag.value));
+        var dividerRemoveBtn = document.createElement("button");
+        dividerRemoveBtn.type = "button";
+        dividerRemoveBtn.className = "tag-remove-btn";
+        dividerRemoveBtn.textContent = "×";
+        dividerRemoveBtn.title = "A/Bパートの区切りを外す";
+        dividerRemoveBtn.addEventListener("click", function () {
+          Tags.unassignTag(ep, tag.id);
+          renderAnnotTags(ep);
+          applyToggleState();
+        });
+        divider.appendChild(dividerRemoveBtn);
+        tagsWrap.appendChild(divider);
+        return;
+      }
+      var chip = el("span", "chronicle-tag" + (tag.verified ? "" : " unverified"));
+      chip.dataset.tagId = tag.id;
+      chip.style.setProperty("--tc", tag.color);
+      if (!tag.verified) {
+        chip.title = "未検証タグ（Claudeが外部サイトを調査して追加。自分の目では未確認）\n右クリックで承認できます。\n根拠：" + tag.note;
+      }
+      chip.appendChild(document.createTextNode(tag.label));
+      var removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "tag-remove-btn";
+      removeBtn.textContent = "×";
+      removeBtn.title = "「" + tag.label + "」タグを外す";
+      removeBtn.addEventListener("click", function () {
+        Tags.unassignTag(ep, tag.id);
+        renderAnnotTags(ep);
+        applyToggleState(); // 外したタグが現在OFF中だった場合、この話数を再表示する
+      });
+      chip.appendChild(removeBtn);
+      tagsWrap.appendChild(chip);
+    });
+
+    assignRow.innerHTML = "";
+    var allTags = Tags.getTags();
+
+    // タグの新規追加は、ページ上部だとスクロールで隠れてしまうため、各話のこの欄自体を
+    // 入力フォームとしても使えるようにしている。「カテゴリ」と「内容（カテゴリ内の値）」を
+    // それぞれ独立したドロップダウンにし（ユーザー指示：組み合わせは別々で混ざらない＝
+    // 内容の選択肢は選ばれているカテゴリのものだけに絞り込む、いわゆるカスケード方式）、
+    // 1本の連結ボタングループ（.tag-input-group、season-btn-groupと同じ考え方＝個々の
+    // 要素には角丸を付けず、外側のラッパーのborder-radius+overflow:hiddenだけで見た目上の
+    // 丸みを出す）にまとめて表示する。
+    var group = el("div", "tag-input-group");
+
+    var categorySelect = document.createElement("select");
+    Tags.getCategories().forEach(function (c) { addOption(categorySelect, c.id, c.label); });
+    addOption(categorySelect, "__newcat__", "＋ 新規カテゴリを追加…");
+
+    var newCategoryInput = document.createElement("input");
+    newCategoryInput.type = "text";
+    newCategoryInput.placeholder = "新しいカテゴリ名";
+    newCategoryInput.maxLength = 20;
+
+    var contentSelect = document.createElement("select");
+    var newContentInput = document.createElement("input");
+    newContentInput.type = "text";
+    newContentInput.placeholder = "新しい内容（例: カントー）";
+    newContentInput.maxLength = 20;
+
+    // 選択中のカテゴリに属する「内容」（＝そのカテゴリのタグの値のうち、この話数に未付与のもの）
+    // だけを内容ドロップダウンに出す。カテゴリが違えば内容の選択肢も別物になり、混ざらない。
+    function availableTagsInCategory(categoryId) {
+      return allTags.filter(function (t) {
+        return t.categoryId === categoryId && assignedIds.indexOf(t.id) === -1;
+      });
+    }
+
+    // カテゴリの選択状態に応じて、内容ドロップダウンの選択肢自体を作り直す（カスケード）。
+    // 新規カテゴリ作成中（＝そのカテゴリがまだ存在しない）は選べる内容が無いため、
+    // 内容ドロップダウンをグレーアウト（disabled）する。
+    function rebuildContentOptions() {
+      contentSelect.innerHTML = "";
+      if (categorySelect.value === "__newcat__") {
+        contentSelect.disabled = true;
+        addOption(contentSelect, "", "（カテゴリ作成後に選択可）");
+        newContentInput.hidden = true;
+        return;
+      }
+      contentSelect.disabled = false;
+      var avail = availableTagsInCategory(categorySelect.value);
+      avail.forEach(function (t) { addOption(contentSelect, t.id, t.value); });
+      addOption(contentSelect, "__newcontent__", "＋ 新規内容を追加…");
+      if (!avail.length) contentSelect.value = "__newcontent__";
+      newContentInput.hidden = contentSelect.value !== "__newcontent__";
+    }
+
+    var addBtn = document.createElement("button");
+    addBtn.type = "button";
+    function updateAddBtnLabel() {
+      addBtn.textContent = categorySelect.value === "__newcat__" ? "＋ カテゴリを作成" : "＋ 付与";
+    }
+
+    categorySelect.addEventListener("change", function () {
+      newCategoryInput.hidden = categorySelect.value !== "__newcat__";
+      rebuildContentOptions();
+      updateAddBtnLabel();
+      if (categorySelect.value === "__newcat__") newCategoryInput.focus();
+    });
+    contentSelect.addEventListener("change", function () {
+      newContentInput.hidden = contentSelect.value !== "__newcontent__";
+      if (!newContentInput.hidden) newContentInput.focus();
+    });
+
+    newCategoryInput.hidden = categorySelect.value !== "__newcat__";
+    rebuildContentOptions();
+    updateAddBtnLabel();
+
+    function submitAssign() {
+      if (categorySelect.value === "__newcat__") {
+        // 新規カテゴリの作成のみ行う（この時点では内容・タグは選べないため付与はしない）。
+        // 作成後は一覧が更新され、通常のカテゴリとして選び直せば内容の追加・付与に進める。
+        var newCategory = Tags.addCategory(newCategoryInput.value);
+        if (!newCategory) return; // 空文字などは無視
+        refreshAllTagUI();
+        return;
+      }
+      var categoryId = categorySelect.value;
+      if (contentSelect.value === "__newcontent__") {
+        var tag = Tags.addTag(categoryId, newContentInput.value);
+        if (!tag) return; // 空文字などは無視
+        Tags.assignTag(ep, tag.id);
+        refreshAllTagUI(); // 新規タグは全話のドロップダウン・上部フィルタにも反映する必要がある
+      } else if (contentSelect.value) {
+        Tags.assignTag(ep, contentSelect.value);
+        renderAnnotTags(ep);
+        applyToggleState(); // 付与したタグが現在ONで絞り込み中なら即座に反映する
+      }
+    }
+    addBtn.addEventListener("click", submitAssign);
+    newCategoryInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") submitAssign();
+    });
+    newContentInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") submitAssign();
+    });
+
+    group.appendChild(categorySelect);
+    group.appendChild(newCategoryInput);
+    group.appendChild(contentSelect);
+    group.appendChild(newContentInput);
+    group.appendChild(addBtn);
+    assignRow.appendChild(group);
+  }
+
+  // 新しいタグが1つ作られたときに必要な再描画一式（上部フィルタボタン＋全話の
+  // タグ欄・割り当てドロップダウン）をまとめて行う。
+  function refreshAllTagUI() {
+    renderTagFilterGroup();
+    for (var ep = 1; ep <= LATEST_AIRED; ep++) {
+      if (document.getElementById(chronicleRowId(ep))) renderAnnotTags(ep);
+    }
+    applyToggleState();
+  }
+
+  // ── タグの右クリックメニュー（承認／編集／削除）。全タグ共通の基本操作。 ──
+  // 未検証タグ（Claudeが調査して追加したシードタグで、まだユーザーが承認していないもの）にだけ
+  // 「承認する」を出す。編集・削除はどのタグにも常に出す。
+  var contextMenuEl = document.getElementById("tag-context-menu");
+  var contextMenuTagId = null;
+
+  function hideTagContextMenu() {
+    contextMenuEl.hidden = true;
+    contextMenuTagId = null;
+  }
+
+  function showTagContextMenu(x, y, tag) {
+    contextMenuTagId = tag.id;
+    contextMenuEl.innerHTML = "";
+    if (!tag.verified) {
+      var approveBtn = document.createElement("button");
+      approveBtn.type = "button";
+      approveBtn.dataset.action = "approve";
+      approveBtn.textContent = "✓ 承認する（検証済みにする）";
+      contextMenuEl.appendChild(approveBtn);
+    }
+    var editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.dataset.action = "edit";
+    editBtn.textContent = "✎ 編集";
+    contextMenuEl.appendChild(editBtn);
+    var deleteBtn = document.createElement("button");
+    deleteBtn.type = "button";
+    deleteBtn.dataset.action = "delete";
+    deleteBtn.textContent = "🗑 削除";
+    contextMenuEl.appendChild(deleteBtn);
+    if (!tag.verified && tag.note) {
+      contextMenuEl.appendChild(el("div", "menu-note", "根拠：" + tag.note));
+    }
+
+    // 画面外にはみ出さないよう、右端・下端に近い場合は位置を調整する
+    contextMenuEl.hidden = false;
+    contextMenuEl.style.left = x + "px";
+    contextMenuEl.style.top = y + "px";
+    var rect = contextMenuEl.getBoundingClientRect();
+    if (rect.right > window.innerWidth) contextMenuEl.style.left = Math.max(0, window.innerWidth - rect.width - 8) + "px";
+    if (rect.bottom > window.innerHeight) contextMenuEl.style.top = Math.max(0, window.innerHeight - rect.height - 8) + "px";
+  }
+
+  document.addEventListener("contextmenu", function (e) {
+    var chip = e.target.closest(".chronicle-tag");
+    if (!chip) { hideTagContextMenu(); return; }
+    var tag = Tags.getTagById(chip.dataset.tagId);
+    if (!tag) return;
+    e.preventDefault();
+    showTagContextMenu(e.clientX, e.clientY, tag);
+  });
+
+  contextMenuEl.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-action]");
+    if (!btn || !contextMenuTagId) return;
+    var tagId = contextMenuTagId;
+    var action = btn.dataset.action;
+    hideTagContextMenu();
+    if (action === "approve") {
+      Tags.approveTag(tagId);
+      refreshAllTagUI();
+    } else if (action === "edit") {
+      var tag = Tags.getTagById(tagId);
+      if (!tag) return;
+      var newValue = window.prompt("「" + tag.label + "」の内容を編集します。新しい値を入力してください：", tag.value);
+      if (newValue != null && newValue.trim()) {
+        Tags.updateTagValue(tagId, newValue);
+        refreshAllTagUI();
+      }
+    } else if (action === "delete") {
+      var target = Tags.getTagById(tagId);
+      var label = target ? target.label : "このタグ";
+      if (window.confirm("タグ「" + label + "」を削除しますか？（付与されている全ての話数から削除されます）")) {
+        Tags.removeTag(tagId);
+        refreshAllTagUI();
+      }
+    }
+  });
+
+  // メニュー外のクリック・スクロールで閉じる
+  document.addEventListener("click", function (e) {
+    if (!contextMenuEl.hidden && !contextMenuEl.contains(e.target)) hideTagContextMenu();
+  });
+  document.addEventListener("scroll", hideTagContextMenu, true);
+
+  // 話数epの行要素に付与するDOM id。番号（ep）で個別に指定・管理できるようにする。
+  function chronicleRowId(ep) {
+    return "chronicle-row-" + ep;
+  }
+
+  function renderChronicleRow(ep) {
+    var data = EPISODES[ep];
+    if (!data || !data.subtitle) return null;
+    var row = el("div", "chronicle-row");
+    row.id = chronicleRowId(ep);
+    row.dataset.ep = ep;
+    var season = seasonOf(ep);
+    if (season) row.dataset.seasonKey = season.key;
+    row.appendChild(renderEntryCol(ep, data));
+    row.appendChild(renderAnnotCol(ep));
+    return row;
+  }
+
+  // ── シーズン切替（pokemon-detail.htmlのボタングループと同一実装。フィルタ対象は
+  //    テーブルではなく縦積みのdivリストなので、非表示は各行のhiddenを切り替えるだけでよい） ──
+  var hiddenSeasons = {}; // シーズンkey -> true で非表示
+  // 年代記タグid -> true で「絞り込み中（フィルタON＝塗りつぶし）」。
+  // 【仕様】タグは季節フィルタ（OFF＝非表示）と逆の意味で、初期状態は白抜き＝フィルタOFF
+  // （絞り込みに一切影響しない）。クリックして塗りつぶし＝フィルタONにすると、
+  // そのタグが付与された話数だけに絞り込む「選択して絞り込む」方式にしている。
+  // 複数タグをONにした場合は、同じカテゴリ内はOR（例：舞台＝カントー or パルデアのどちらか）、
+  // 異なるカテゴリ間はAND（例：舞台のいずれか、かつ、別カテゴリのいずれか）で判定する。
+  var activeTags = {};
+
+  // 話数epが、現在ONになっている年代記タグの条件を満たすかどうか（タグによる絞り込みが
+  // 一切無ければ常にtrue＝絞り込まない）
+  function matchesTagFilters(ep) {
+    var allTags = Tags.getTags();
+    var activeIds = allTags.filter(function (t) { return activeTags[t.id]; }).map(function (t) { return t.id; });
+    if (!activeIds.length) return true; // ONのタグが無ければタグでは絞り込まない
+    var tagById = {};
+    allTags.forEach(function (t) { tagById[t.id] = t; });
+    var activeByCategory = {};
+    activeIds.forEach(function (id) {
+      var t = tagById[id];
+      if (!t) return;
+      if (!activeByCategory[t.categoryId]) activeByCategory[t.categoryId] = [];
+      activeByCategory[t.categoryId].push(id);
+    });
+    var episodeTagIds = Tags.getEpisodeTagIds(ep);
+    return Object.keys(activeByCategory).every(function (categoryId) {
+      return activeByCategory[categoryId].some(function (id) { return episodeTagIds.indexOf(id) !== -1; });
+    });
+  }
+
+  // 話数epが現在の表示条件（シーズン・年代記タグ）で隠すべきかどうか
+  function isEpHiddenByFilters(ep, seasonKey) {
+    if (seasonKey && hiddenSeasons[seasonKey]) return true;
+    return !matchesTagFilters(ep);
+  }
+
+  // フィルタの適用は「話数（番号）」を主キーに、id（chronicle-row-<ep>）で該当行を直接指定して
+  // 行う。querySelectorAllでDOM全体を舐めるのではなく、1〜LATEST_AIREDの番号で1件ずつ
+  // getElementByIdする方式にすることで、どの話数に対して処理しているかが常に明確になる。
+  function applyToggleState() {
+    for (var ep = 1; ep <= LATEST_AIRED; ep++) {
+      var row = document.getElementById(chronicleRowId(ep));
+      if (!row) continue; // データ未収録などでその話数の行が無い場合はスキップ
+      row.hidden = isEpHiddenByFilters(ep, row.dataset.seasonKey);
+    }
+    SEASONS.forEach(function (s) {
+      var hidden = !!hiddenSeasons[s.key];
+      var groupBtn = document.querySelector('.season-btn-group button[data-key="' + s.key + '"]');
+      if (groupBtn) groupBtn.classList.toggle("on", !hidden);
+      var spBtn = document.querySelector('.sp-toggle-btn[data-key="' + s.key + '"]');
+      if (spBtn) spBtn.classList.toggle("on", !hidden);
+    });
+    Tags.getTags().forEach(function (t) {
+      var btn = document.querySelector('.tag-filter-btn[data-tag-id="' + t.id + '"]');
+      if (btn) btn.classList.toggle("on", !!activeTags[t.id]);
+    });
+  }
+
+  // 年代記タグのフィルターボタン。カテゴリごとに見出しを付けてグループ表示する。
+  // タグ/カテゴリの追加のたびに呼び直す。
+  function renderTagFilterGroup() {
+    var group = document.getElementById("tag-filter-group");
+    group.innerHTML = "";
+    var tags = Tags.getTags();
+    if (!tags.length) {
+      group.appendChild(el("span", "tag-filter-empty", "まだ年代記タグがありません。各話カードの「＋ 新規タグを追加…」から作成できます。"));
+      return;
+    }
+    Tags.getCategories().forEach(function (category) {
+      if (category.type === "divider") return; // A/Bパート区切りは「絞り込む」対象として想定していないため除外
+      var catTags = tags.filter(function (t) { return t.categoryId === category.id; });
+      if (!catTags.length) return; // タグが1つも無いカテゴリは表示しない
+      var catGroup = el("div", "tag-filter-category");
+      catGroup.appendChild(el("span", "tag-filter-category-label", category.label));
+      catTags.forEach(function (t) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tag-filter-btn" + (activeTags[t.id] ? " on" : "");
+        btn.style.setProperty("--tc", t.color);
+        btn.dataset.tagId = t.id;
+        btn.textContent = t.value;
+        btn.title = "「" + t.label + "」で絞り込む/解除する";
+        btn.addEventListener("click", function () {
+          activeTags[t.id] = !activeTags[t.id];
+          applyToggleState();
+        });
+        catGroup.appendChild(btn);
+      });
+      group.appendChild(catGroup);
+    });
+  }
+
+  // シーズン切替ボタン本体（pokemon-detail.htmlと同じBootstrap 5.3ボタングループ参考の連結ボタン）。
+  // ダブルクリックで、そのシーズン（章）だけを表示状態にする（他は全て非表示にする）。
+  function isolateSeason(key) {
+    SEASONS.forEach(function (s) { hiddenSeasons[s.key] = s.key !== key; });
+    applyToggleState();
+  }
+
+  function renderSeasonButtonGroup() {
+    var group = document.getElementById("season-btn-group");
+    group.innerHTML = "";
+    SEASONS.filter(function (s) { return !s.special; }).forEach(function (s) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "on";
+      btn.style.setProperty("--sc", s.color);
+      btn.dataset.key = s.key;
+      btn.textContent = s.no;
+      btn.title = "第" + s.no + "章「" + s.label + "」の表示/非表示（ダブルクリックでこの章だけに絞り込み）";
+      btn.addEventListener("click", function () {
+        hiddenSeasons[s.key] = !hiddenSeasons[s.key];
+        applyToggleState();
+      });
+      btn.addEventListener("dblclick", function () { isolateSeason(s.key); });
+      group.appendChild(btn);
+    });
+
+    var spWrap = document.getElementById("season-sp-toggle-wrap");
+    spWrap.innerHTML = "";
+    var sp = SEASONS.filter(function (s) { return s.special; })[0];
+    if (sp) {
+      var spBtn = document.createElement("button");
+      spBtn.type = "button";
+      spBtn.className = "sp-toggle-btn on";
+      spBtn.dataset.key = sp.key;
+      spBtn.textContent = "特別編";
+      spBtn.title = "特別編「" + sp.label + "」（第" + sp.range[0] + "〜" + sp.range[1] + "話）の表示/非表示（ダブルクリックでこれだけに絞り込み）";
+      spBtn.addEventListener("click", function () {
+        hiddenSeasons[sp.key] = !hiddenSeasons[sp.key];
+        applyToggleState();
+      });
+      spBtn.addEventListener("dblclick", function () { isolateSeason(sp.key); });
+      spWrap.appendChild(spBtn);
+    }
+  }
+
+  // ── 並び替え（昇順/降順）。話数の描画順は変えず、CSSのflex-direction:column-reverseだけで
+  //    見た目の並びを反転させる（フィルタのhidden判定には一切影響しない）。既定は昇順。 ──
+  var sortDescending = false;
+
+  function applySortOrder() {
+    document.getElementById("chronicle-list").classList.toggle("sort-desc", sortDescending);
+    document.querySelectorAll(".sort-btn-group button").forEach(function (btn) {
+      btn.classList.toggle("on", btn.dataset.order === (sortDescending ? "desc" : "asc"));
+    });
+  }
+
+  function renderSortButtonGroup() {
+    var group = document.getElementById("sort-btn-group");
+    group.innerHTML = "";
+    [["asc", "昇順"], ["desc", "降順"]].forEach(function (pair) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.dataset.order = pair[0];
+      btn.textContent = pair[1];
+      btn.title = "話数を" + pair[1] + "で表示";
+      btn.addEventListener("click", function () {
+        sortDescending = pair[0] === "desc";
+        applySortOrder();
+      });
+      group.appendChild(btn);
+    });
+    applySortOrder();
+  }
+
+  // ヒーローのステータスバッジ（試作表記を廃止し、DATA_META/LATEST_AIREDから動的に生成する）
+  function renderChronicleBadge() {
+    var badge = document.getElementById("chronicle-badge");
+    if (!badge) return;
+    badge.textContent = "📖 全" + LATEST_AIRED + "話収録・シーズン別タグ付き";
+  }
+
+  function render() {
+    renderChronicleBadge();
+    renderSeasonButtonGroup();
+    renderSortButtonGroup();
+    renderTagFilterGroup();
+
+    var list = document.getElementById("chronicle-list");
+    // 放送済みの全話（第1話〜LATEST_AIRED）を描画する。新話放送時はLATEST_AIREDの更新（＝
+    // shared/pokemon-anime-data.jsのデータ更新）だけで自動的に追加表示される。
+    for (var ep = 1; ep <= LATEST_AIRED; ep++) {
+      var row = renderChronicleRow(ep);
+      if (row) {
+        list.appendChild(row); // annot-tags/tag-assignの中身はdocument挿入後でないと描画できない
+        renderAnnotTags(ep);
+      }
+    }
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
