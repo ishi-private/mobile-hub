@@ -57,6 +57,8 @@
   .mini-player-label { font-size: 0.66rem; font-weight: 700; color: var(--pk-text-dim); display: block; }
   .mini-player-title { font-size: 0.86rem; font-weight: 700; display: block; overflow: hidden;
                           text-overflow: ellipsis; white-space: nowrap; }
+  .mini-player-work { font-size: 0.7rem; color: var(--pk-text-dim); display: block; overflow: hidden;
+                         text-overflow: ellipsis; white-space: nowrap; }
   .mini-player-media { flex: 0 0 auto; line-height: 0; }
   .mini-player-media iframe { display: block; border-radius: 8px; border: none; }
   .mini-player-nav { display: flex; gap: 4px; flex: 0 0 auto; }
@@ -64,6 +66,9 @@
                           border-radius: 50%; width: 30px; height: 30px; font-size: 0.9rem; cursor: pointer; flex: 0 0 auto; }
   .mini-player-nav button:hover, .mini-player-close:hover { background: var(--pk-panel-border); }
   .mini-player-pos { font-size: 0.68rem; color: var(--pk-text-dim); flex: 0 0 auto; white-space: nowrap; }
+  .mini-player-volume { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; }
+  .mini-player-volume-icon { font-size: 0.9rem; flex: 0 0 auto; }
+  .mini-player-volume input[type="range"] { width: 72px; accent-color: var(--pk-brand-red); cursor: pointer; }
   .song-link-btn.yt, .song-link-btn.sp { cursor: pointer; }
 
   /* ランダム再生ボタン */
@@ -196,11 +201,17 @@
     <div class="mini-player-info">
       <span class="mini-player-label" id="mini-player-label"></span>
       <span class="mini-player-title" id="mini-player-title"></span>
+      <span class="mini-player-work" id="mini-player-work"></span>
     </div>
     <span class="mini-player-pos" id="mini-player-pos" hidden></span>
     <div class="mini-player-nav">
       <button type="button" id="mini-player-prev" title="前の曲" hidden>⏮</button>
+      <button type="button" id="mini-player-playpause" title="再生/一時停止" hidden>⏸</button>
       <button type="button" id="mini-player-next" title="次の曲" hidden>⏭</button>
+    </div>
+    <div class="mini-player-volume" id="mini-player-volume" hidden>
+      <span class="mini-player-volume-icon">🔊</span>
+      <input type="range" id="mini-player-volume-slider" min="0" max="100" value="100" title="音量">
     </div>
     <div class="mini-player-media" id="mini-player-media">
       <div id="yt-player-mount"></div>
@@ -298,11 +309,12 @@
   }
 
   // 曲名+ボーカルから視聴リンクHTMLを組み立てる（YouTube優先、非公式ならSpotifyも併記）
-  function renderSongLinks(title, vocal) {
+  // work: ミニプレイヤーに表示する「登場作品」（このアニメシリーズ名『作品名』）
+  function renderSongLinks(title, vocal, work) {
     if (!title) return "";
     var link = window.SONG_LINKS ? window.SONG_LINKS[title + "|" + vocal] : null;
     if (!link) return "";
-    var titleAttr = ' data-title="' + escapeAttr(title) + '"';
+    var titleAttr = ' data-title="' + escapeAttr(title) + '" data-work="' + escapeAttr(work || "") + '"';
     var html = '<div class="song-links">';
     if (link.youtube) {
       html += '<a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + link.youtube.id + '"' + titleAttr + ' target="_blank" rel="noopener noreferrer">▶ YouTube</a>';
@@ -372,6 +384,7 @@
 
     var opSpans = computeSpans(g.rows, opKey);
     var edSpans = computeSpans(g.rows, edKey);
+    var workLabel = g.series + "『" + g.work + "』";
 
     g.rows.forEach(function (r, ri) {
       var tr = document.createElement("tr");
@@ -379,12 +392,12 @@
       if (opSpans[ri] !== null) {
         var opSpanAttr = opSpans[ri] > 1 ? ' rowspan="' + opSpans[ri] + '"' : "";
         var opKeyAttr = r.opTitle ? ' data-song-key="' + escapeAttr(r.opTitle + "|" + r.opVocal) + '"' : "";
-        tds += '<td class="wrap op-ed-cell"' + opSpanAttr + opKeyAttr + ">" + (r.opTitle ? r.opTitle + "<br><span style=\"color:var(--pk-text-dim);font-size:0.72rem;\">" + r.opVocal + "</span>" + renderSongLinks(r.opTitle, r.opVocal) : "") + "</td>";
+        tds += '<td class="wrap op-ed-cell"' + opSpanAttr + opKeyAttr + ">" + (r.opTitle ? r.opTitle + "<br><span style=\"color:var(--pk-text-dim);font-size:0.72rem;\">" + r.opVocal + "</span>" + renderSongLinks(r.opTitle, r.opVocal, workLabel) : "") + "</td>";
       }
       if (edSpans[ri] !== null) {
         var edSpanAttr = edSpans[ri] > 1 ? ' rowspan="' + edSpans[ri] + '"' : "";
         var edKeyAttr = r.edTitle ? ' data-song-key="' + escapeAttr(r.edTitle + "|" + r.edVocal) + '"' : "";
-        tds += '<td class="wrap op-ed-cell"' + edSpanAttr + edKeyAttr + ">" + (r.edTitle ? r.edTitle + "<br><span style=\"color:var(--pk-text-dim);font-size:0.72rem;\">" + r.edVocal + "</span>" + renderSongLinks(r.edTitle, r.edVocal) : "") + "</td>";
+        tds += '<td class="wrap op-ed-cell"' + edSpanAttr + edKeyAttr + ">" + (r.edTitle ? r.edTitle + "<br><span style=\"color:var(--pk-text-dim);font-size:0.72rem;\">" + r.edVocal + "</span>" + renderSongLinks(r.edTitle, r.edVocal, workLabel) : "") + "</td>";
       }
       tr.innerHTML = tds;
       tbody.appendChild(tr);
@@ -413,11 +426,11 @@
   // データ: data/movie-game-songs-data.js の window.MOVIE_SONGS_DATA
   var movieBody = document.getElementById("movie-body");
 
-  function renderMovieSong(song) {
+  function renderMovieSong(song, work) {
     if (!song) return '<span style="color:var(--pk-text-dim);">なし</span>';
     var html = song.title + '<br><span style="color:var(--pk-text-dim);font-size:0.72rem;">' + song.vocal + "</span>";
     if (song.yt) {
-      html += '<div class="song-links"><a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + song.yt + '" data-title="' + escapeAttr(song.title) + '" target="_blank" rel="noopener noreferrer">▶ YouTube</a>';
+      html += '<div class="song-links"><a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + song.yt + '" data-title="' + escapeAttr(song.title) + '" data-work="' + escapeAttr(work || "") + '" target="_blank" rel="noopener noreferrer">▶ YouTube</a>';
       if (!song.off) html += '<span class="song-unofficial-tag">※非公式</span>';
       html += "</div>";
     } else if (song.off === false) {
@@ -429,14 +442,15 @@
 
   (window.MOVIE_SONGS_DATA || []).forEach(function (m) {
     var tr = document.createElement("tr");
+    var work = "劇場版『" + m.title + "』（" + m.year + "）";
     var titleCell = "第" + m.no + "作『" + m.title + "』";
     if (m.note) titleCell += '<div class="pk-table-note" style="margin-top:4px;">' + m.note + "</div>";
     if (m.main) {
-      titleCell += '<div class="pk-table-note" style="margin-top:4px;">メインテーマ: ' + renderMovieSong(m.main) + "</div>";
+      titleCell += '<div class="pk-table-note" style="margin-top:4px;">メインテーマ: ' + renderMovieSong(m.main, work) + "</div>";
     }
     tr.innerHTML = "<td>" + m.year + "</td><td class=\"wrap\">" + titleCell + "</td>" +
-      '<td class="wrap">' + renderMovieSong(m.op) + "</td>" +
-      '<td class="wrap">' + renderMovieSong(m.ed) + "</td>";
+      '<td class="wrap">' + renderMovieSong(m.op, work) + "</td>" +
+      '<td class="wrap">' + renderMovieSong(m.ed, work) + "</td>";
     movieBody.appendChild(tr);
   });
 
@@ -505,7 +519,7 @@
         // dur: この曲の再生時間（秒）。複数曲が1本の長尺動画にタイムスタンプで収録されているため、
         // 動画自体の終了(onEnded)を待つと後続の別の曲がそのまま流れ続けてしまう。ランダム再生ではdur経過で強制的に次の曲へ進める。
         var durAttr = s.dur ? ' data-dur="' + s.dur + '"' : "";
-        listenCell = '<a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + g.officialVideo.id + '&t=' + timeToSeconds(s.yt) + 's" data-title="' + escapeAttr(s.title) + '"' + durAttr + ' target="_blank" rel="noopener noreferrer">▶ 公式動画で聴く</a>';
+        listenCell = '<a class="song-link-btn yt" href="https://www.youtube.com/watch?v=' + g.officialVideo.id + '&t=' + timeToSeconds(s.yt) + 's" data-title="' + escapeAttr(s.title) + '" data-work="' + escapeAttr(g.title) + '"' + durAttr + ' target="_blank" rel="noopener noreferrer">▶ 公式動画で聴く</a>';
       } else {
         listenCell = '<span style="color:var(--pk-text-dim);font-size:0.76rem;">-</span>';
       }
@@ -557,11 +571,15 @@
   var miniBar = document.getElementById("mini-player-bar");
   var miniLabel = document.getElementById("mini-player-label");
   var miniTitle = document.getElementById("mini-player-title");
+  var miniWork = document.getElementById("mini-player-work");
   var miniPos = document.getElementById("mini-player-pos");
   var miniMedia = document.getElementById("mini-player-media");
   var spotifyWrap = document.getElementById("spotify-frame-wrap");
   var prevBtn = document.getElementById("mini-player-prev");
   var nextBtn = document.getElementById("mini-player-next");
+  var playPauseBtn = document.getElementById("mini-player-playpause");
+  var volumeControl = document.getElementById("mini-player-volume");
+  var volumeSlider = document.getElementById("mini-player-volume-slider");
   var shuffleBtn = document.getElementById("shuffle-play-btn");
 
   function songTitleFromButton(btn) {
@@ -575,6 +593,10 @@
     var note = clone.querySelector(".pk-table-note");
     if (note) note.remove();
     return clone.textContent.replace(/\s+/g, " ").trim();
+  }
+
+  function songWorkFromButton(btn) {
+    return btn.dataset.work || "";
   }
 
   // YouTube/Spotifyの埋め込みプレイヤーはpostMessageベースのAPIでオリジンを検証しており、
@@ -591,11 +613,22 @@
     shuffleBtn.title = "file://で開いているため利用できません（ローカルHTTPサーバー経由で開いてください）";
   }
 
-  function showMiniPlayer(label, title) {
+  function showMiniPlayer(label, title, work) {
     miniLabel.textContent = label;
     miniTitle.textContent = title;
+    miniWork.textContent = work || "";
     miniBar.hidden = false;
     document.body.classList.add("has-mini-player");
+  }
+
+  // 再生/一時停止ボタンと音量バーはYouTube再生時のみ表示する（Spotify埋め込みには専用のコントロールが既にあるため）
+  function showYoutubeControls() {
+    playPauseBtn.hidden = false;
+    volumeControl.hidden = false;
+  }
+  function hideYoutubeControls() {
+    playPauseBtn.hidden = true;
+    volumeControl.hidden = true;
   }
 
   // --- YouTube IFrame Player（ページに1つだけ生成し使い回す） ---
@@ -603,6 +636,10 @@
   var ytReady = false;
   var pendingPlay = null; // プレイヤー準備が間に合わない間にクリックされた場合に保持
   var segmentTimer = null; // 「この曲は何秒で終わりとみなすか」の強制タイマー（下記参照）
+  // 再生/一時停止ボタンの表示は、YouTube側からのonStateChange通知（postMessageの往復）を待たず、
+  // クリック操作の時点で即座にローカルの状態フラグを反転させて更新する。
+  // postMessageの受信が遅延・欠落する環境でも、ボタンの見た目と実際のコマンド送信を確実に一致させるため。
+  var isYtPlaying = false;
 
   window.onYouTubeIframeAPIReady = function () {
     ytPlayer = new YT.Player("yt-player-mount", {
@@ -611,6 +648,7 @@
       events: {
         onReady: function () {
           ytReady = true;
+          volumeSlider.value = ytPlayer.getVolume(); // 既定値100を反映
           if (pendingPlay) {
             var p = pendingPlay;
             pendingPlay = null;
@@ -619,6 +657,9 @@
         },
         onStateChange: function (ev) {
           if (ev.data === YT.PlayerState.ENDED) advanceQueue(1);
+          // 通知が届いた場合はローカル状態と表示もそれに合わせて同期する（保険）
+          if (ev.data === YT.PlayerState.PLAYING) { isYtPlaying = true; playPauseBtn.textContent = "⏸"; }
+          if (ev.data === YT.PlayerState.PAUSED) { isYtPlaying = false; playPauseBtn.textContent = "▶"; }
         },
         onError: function () {
           advanceQueue(1); // 再生できない曲（削除・地域制限等）はスキップして次へ
@@ -642,11 +683,14 @@
     miniMedia.hidden = false;
     spotifyWrap.hidden = true;
     spotifyWrap.innerHTML = "";
+    showYoutubeControls();
     if (!ytReady) {
       pendingPlay = { videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, onSegmentEnd: onSegmentEnd };
       return;
     }
     ytPlayer.loadVideoById({ videoId: videoId, startSeconds: startSeconds || 0 });
+    isYtPlaying = true; // loadVideoByIdは即再生開始するため
+    playPauseBtn.textContent = "⏸";
     if (durationSeconds && onSegmentEnd) {
       segmentTimer = setTimeout(function () {
         segmentTimer = null;
@@ -655,10 +699,31 @@
     }
   }
 
+  playPauseBtn.addEventListener("click", function () {
+    if (!ytPlayer || !ytReady) return;
+    if (isYtPlaying) {
+      ytPlayer.pauseVideo();
+      isYtPlaying = false;
+      playPauseBtn.textContent = "▶";
+    } else {
+      ytPlayer.playVideo();
+      isYtPlaying = true;
+      playPauseBtn.textContent = "⏸";
+    }
+  });
+
+  volumeSlider.addEventListener("input", function () {
+    if (!ytPlayer || !ytReady) return;
+    var v = parseInt(volumeSlider.value, 10);
+    ytPlayer.setVolume(v);
+    if (v <= 0) { ytPlayer.mute(); } else { ytPlayer.unMute(); }
+  });
+
   function playSpotifyTrack(spotifyId) {
     if (ytPlayer && ytReady) ytPlayer.stopVideo();
     miniMedia.hidden = true;
     spotifyWrap.hidden = false;
+    hideYoutubeControls(); // Spotify埋め込み自体に再生/音量コントロールが付いているため
     spotifyWrap.innerHTML = '<iframe width="300" height="80" src="https://open.spotify.com/embed/track/' + spotifyId + '" title="Spotify player" ' +
       'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>';
   }
@@ -681,7 +746,7 @@
       if (seen[key]) return;
       seen[key] = true;
       var durationSeconds = btn.dataset.dur ? parseInt(btn.dataset.dur, 10) : null;
-      pool.push({ videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, title: songTitleFromButton(btn) });
+      pool.push({ videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, title: songTitleFromButton(btn), work: songWorkFromButton(btn) });
     });
     return pool;
   }
@@ -717,7 +782,7 @@
       shuffleIndex = shuffleQueue.length - 1;
     }
     var track = shuffleQueue[shuffleIndex];
-    showMiniPlayer("🔀 ランダム再生中", track.title);
+    showMiniPlayer("🔀 ランダム再生中", track.title, track.work);
     playYouTubeTrack(track.videoId, track.startSeconds, track.durationSeconds, function () { advanceQueue(1); });
     updatePosLabel();
   }
@@ -754,7 +819,9 @@
   document.getElementById("mini-player-close").addEventListener("click", function () {
     stopShuffle();
     if (ytPlayer && ytReady) ytPlayer.stopVideo();
+    isYtPlaying = false;
     spotifyWrap.innerHTML = "";
+    hideYoutubeControls();
     miniBar.hidden = true;
     document.body.classList.remove("has-mini-player");
   });
@@ -772,10 +839,12 @@
       var tParam = url.searchParams.get("t"); // 例: "8337s" または null
       var startSeconds = tParam ? parseInt(tParam, 10) : 0;
       var durationSeconds = yt.dataset.dur ? parseInt(yt.dataset.dur, 10) : null;
-      showMiniPlayer("YouTubeで再生中", songTitleFromButton(yt));
+      showMiniPlayer("YouTubeで再生中", songTitleFromButton(yt), songWorkFromButton(yt));
       // durationSecondsが分かる曲（長尺BGM集動画の一部）は、区間終了時に自動で一時停止する（他の曲へ流れ続けないように）
       playYouTubeTrack(videoId, startSeconds, durationSeconds, function () {
         if (ytPlayer && ytReady) ytPlayer.pauseVideo();
+        isYtPlaying = false;
+        playPauseBtn.textContent = "▶";
       });
       return;
     }
@@ -786,7 +855,7 @@
       stopShuffle();
       var m = sp.href.match(/track\/([A-Za-z0-9]+)/);
       if (!m) return;
-      showMiniPlayer("Spotifyで再生中", songTitleFromButton(sp));
+      showMiniPlayer("Spotifyで再生中", songTitleFromButton(sp), songWorkFromButton(sp));
       playSpotifyTrack(m[1]);
       return;
     }
