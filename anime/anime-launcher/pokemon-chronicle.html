@@ -529,19 +529,22 @@
     applyToggleState();
   }
 
-  // ── タグの右クリックメニュー（承認／編集／削除）。全タグ共通の基本操作。 ──
+  // ── タグの右クリックメニュー（承認／編集／削除／上下移動）。全タグ共通の基本操作。 ──
   // 未検証タグ（Claudeが調査して追加したシードタグで、まだユーザーが承認していないもの）にだけ
-  // 「承認する」を出す。編集・削除はどのタグにも常に出す。
+  // 「承認する」を出す。編集・削除・上下移動はどのタグ（A/Bパートの区切り線タグ含む）にも常に出す。
   var contextMenuEl = document.getElementById("tag-context-menu");
   var contextMenuTagId = null;
+  var contextMenuEp = null;
 
   function hideTagContextMenu() {
     contextMenuEl.hidden = true;
     contextMenuTagId = null;
+    contextMenuEp = null;
   }
 
-  function showTagContextMenu(x, y, tag) {
+  function showTagContextMenu(x, y, tag, ep) {
     contextMenuTagId = tag.id;
+    contextMenuEp = ep;
     contextMenuEl.innerHTML = "";
     if (!tag.verified) {
       var approveBtn = document.createElement("button");
@@ -560,6 +563,25 @@
     deleteBtn.dataset.action = "delete";
     deleteBtn.textContent = "🗑 削除";
     contextMenuEl.appendChild(deleteBtn);
+
+    // 上下移動：この話数でのタグの現在位置を調べ、端に来ている方向のボタンは出さない
+    var order = Tags.getEpisodeTagIds(ep);
+    var idx = order.indexOf(tag.id);
+    if (idx > 0) {
+      var upBtn = document.createElement("button");
+      upBtn.type = "button";
+      upBtn.dataset.action = "move-up";
+      upBtn.textContent = "↑ 上に移動";
+      contextMenuEl.appendChild(upBtn);
+    }
+    if (idx !== -1 && idx < order.length - 1) {
+      var downBtn = document.createElement("button");
+      downBtn.type = "button";
+      downBtn.dataset.action = "move-down";
+      downBtn.textContent = "↓ 下に移動";
+      contextMenuEl.appendChild(downBtn);
+    }
+
     if (!tag.verified && tag.note) {
       contextMenuEl.appendChild(el("div", "menu-note", "根拠：" + tag.note));
     }
@@ -574,18 +596,21 @@
   }
 
   document.addEventListener("contextmenu", function (e) {
-    var chip = e.target.closest(".chronicle-tag");
+    var chip = e.target.closest(".chronicle-tag, .chronicle-tag-divider");
     if (!chip) { hideTagContextMenu(); return; }
+    var row = chip.closest(".chronicle-row");
+    if (!row) return;
     var tag = Tags.getTagById(chip.dataset.tagId);
     if (!tag) return;
     e.preventDefault();
-    showTagContextMenu(e.clientX, e.clientY, tag);
+    showTagContextMenu(e.clientX, e.clientY, tag, row.dataset.ep);
   });
 
   contextMenuEl.addEventListener("click", function (e) {
     var btn = e.target.closest("button[data-action]");
     if (!btn || !contextMenuTagId) return;
     var tagId = contextMenuTagId;
+    var ep = contextMenuEp;
     var action = btn.dataset.action;
     hideTagContextMenu();
     if (action === "approve") {
@@ -606,6 +631,12 @@
         Tags.removeTag(tagId);
         refreshAllTagUI();
       }
+    } else if (action === "move-up") {
+      Tags.moveEpisodeTag(ep, tagId, -1);
+      renderAnnotTags(ep);
+    } else if (action === "move-down") {
+      Tags.moveEpisodeTag(ep, tagId, 1);
+      renderAnnotTags(ep);
     }
   });
 

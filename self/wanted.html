@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>やりたいこと｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  #search { flex: 1; min-width: 160px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+             border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none; }
+  #search:focus { border-color: #4a4a6a; }
+
+  #cat-filter { max-width: var(--page-max-width); margin: 10px auto 0; display: flex; gap: 5px; flex-wrap: wrap; }
+  .cat-btn { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px;
+              font-size: 0.72rem; cursor: pointer; background: #13131c; color: #667; transition: all 0.12s; white-space: nowrap; }
+  .cat-btn:hover { border-color: #3a3a5a; color: #99a; }
+  .cat-btn.active { background: #241c0c; border-color: #6a5020; color: #e0a63c; }
+
+  #count { max-width: var(--page-max-width); margin: 14px auto 8px; font-size: 0.74rem; color: #3a3a4a; }
+  #list { max-width: var(--page-max-width); margin: 0 auto; display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+
+  .card { background: #111119; border: 1px solid #1e1e28; border-left: 3px solid #333; border-radius: 8px;
+           padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+  .card:hover { border-color: #36364a; }
+  .card.pri-high { border-left-color: #ef4444; }
+  .card.pri-mid  { border-left-color: #e0a63c; }
+  .card.pri-low  { border-left-color: #445; }
+  .card-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card-cat { font-size: 0.62rem; padding: 2px 8px; border-radius: 8px; background: #1a1200; color: #997722; border: 1px solid #302200; }
+  .card-title { font-size: 0.92rem; font-weight: 600; color: #e2e2e2; }
+  .card-note { font-size: 0.8rem; color: #99a; line-height: 1.6; white-space: pre-wrap; }
+  .card-foot { display: flex; gap: 10px; align-items: center; font-size: 0.66rem; color: #445; }
+  .card-foot a { color: #6699cc; text-decoration: none; }
+  .card-foot a:hover { text-decoration: underline; }
+
+  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; line-height: 1.8; }
+  #empty code { background: #16161e; padding: 1px 6px; border-radius: 4px; color: #778; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <div class="controls">
+    <input type="text" id="search" placeholder="タイトル・メモで検索…">
+  </div>
+  <div id="cat-filter"></div>
+</header>
+
+<div class="content">
+  <div id="count"></div>
+  <div id="list"></div>
+  <div id="empty" style="display:none;"></div>
+</div>
+
+<script src="shared/nav.js"></script>
+<script src="data/wanted-data.js"></script>
+<script>
+(function () {
+  const data = window.WANTED_DATA || [];
+  const listEl = document.getElementById("list");
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const searchEl = document.getElementById("search");
+  const catFilterEl = document.getElementById("cat-filter");
+  const PRIORITY_ORDER = { high: 0, mid: 1, low: 2 };
+
+  let activeCat = "";
+  let query = "";
+
+  const categories = Array.from(new Set(data.map(function (d) { return d.category; }).filter(Boolean)));
+
+  function buildCatFilter() {
+    catFilterEl.innerHTML = "";
+    if (categories.length === 0) return;
+    const all = document.createElement("button");
+    all.className = "cat-btn" + (activeCat === "" ? " active" : "");
+    all.textContent = "すべて";
+    all.onclick = function () { activeCat = ""; render(); };
+    catFilterEl.appendChild(all);
+    categories.forEach(function (c) {
+      const b = document.createElement("button");
+      b.className = "cat-btn" + (activeCat === c ? " active" : "");
+      b.textContent = c;
+      b.onclick = function () { activeCat = (activeCat === c ? "" : c); render(); };
+      catFilterEl.appendChild(b);
+    });
+  }
+
+  function matches(d) {
+    if (activeCat && d.category !== activeCat) return false;
+    if (!query) return true;
+    return ((d.title || "") + " " + (d.note || "") + " " + (d.category || "")).toLowerCase().includes(query.toLowerCase());
+  }
+
+  function render() {
+    buildCatFilter();
+    listEl.innerHTML = "";
+
+    if (data.length === 0) {
+      countEl.textContent = "";
+      emptyEl.style.display = "block";
+      emptyEl.innerHTML = "まだ登録がありません。<br><code>data/wanted-data.js</code> に項目を追加すると、ここに表示されます。";
+      return;
+    }
+
+    const filtered = data.filter(matches).sort(function (a, b) {
+      const pa = PRIORITY_ORDER[a.priority || "mid"], pb = PRIORITY_ORDER[b.priority || "mid"];
+      if (pa !== pb) return pa - pb;
+      return (b.added || "").localeCompare(a.added || "");
+    });
+    countEl.textContent = filtered.length + " 件" + (filtered.length !== data.length ? "（全" + data.length + "件中）" : "");
+
+    if (filtered.length === 0) {
+      emptyEl.style.display = "block";
+      emptyEl.textContent = "該当する項目がありません。";
+      return;
+    }
+    emptyEl.style.display = "none";
+
+    filtered.forEach(function (d) {
+      const card = document.createElement("div");
+      card.className = "card pri-" + (d.priority || "mid");
+
+      const head = document.createElement("div");
+      head.className = "card-head";
+      if (d.category) {
+        const cat = document.createElement("span");
+        cat.className = "card-cat";
+        cat.textContent = d.category;
+        head.appendChild(cat);
+      }
+      const title = document.createElement("span");
+      title.className = "card-title";
+      title.textContent = d.title || "";
+      head.appendChild(title);
+      card.appendChild(head);
+
+      if (d.note) {
+        const note = document.createElement("div");
+        note.className = "card-note";
+        note.textContent = d.note;
+        card.appendChild(note);
+      }
+
+      if (d.url || d.added) {
+        const foot = document.createElement("div");
+        foot.className = "card-foot";
+        if (d.added) {
+          const added = document.createElement("span");
+          added.textContent = d.added;
+          foot.appendChild(added);
+        }
+        if (d.url) {
+          const a = document.createElement("a");
+          a.href = d.url;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.textContent = "参考リンク →";
+          foot.appendChild(a);
+        }
+        card.appendChild(foot);
+      }
+      listEl.appendChild(card);
+    });
+  }
+
+  searchEl.addEventListener("input", function () { query = searchEl.value; render(); });
+  render();
+})();
+</script>
+</body>
+</html>

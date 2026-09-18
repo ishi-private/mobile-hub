@@ -262,20 +262,52 @@ window.PokemonChronicleTags = (function () {
   }
 
   // ── 話数へのタグ付与（シードの既定付与＋ユーザー独自の付与をマージ） ──
+  // 【並び順の考え方（2026-09-17、上下入れ替え機能の追加に伴い整理）】
+  // 何も並び替えていない話数は、従来どおり「シードの既定付与（SEED_EPISODE_TAGS）→
+  // ユーザーが付与した順」で結合する。一方、ユーザーが一度でも上下入れ替えを行った話数は、
+  // その時点の全タグを`user.episodeTags[ep]`にそのままの順序でスナップショット保存し、
+  // 以後はその配列の並びを唯一の正とする（シード由来かどうかを問わず自由な位置に動かせる
+  // ようにするため）。判定は「現在有効なシードタグが全て`user.episodeTags[ep]`に含まれて
+  // いるか」で行う：含まれていれば「並び替え済み」とみなしその配列順をそのまま採用し、
+  // 含まれていなければ「未着手」とみなし従来の結合ロジックにフォールバックする。
   function getEpisodeTagIds(ep) {
     var user = load();
     var deletedSet = {};
     user.deletedSeedTagIds.forEach(function (id) { deletedSet[id] = true; });
-    var seedIds = (SEED_EPISODE_TAGS[ep] || []).filter(function (id) {
+    var activeSeedIds = (SEED_EPISODE_TAGS[ep] || []).filter(function (id) {
       return !deletedSet[id] && !user.unassignedSeedPairs[pairKey(ep, id)];
     });
-    var userIds = user.episodeTags[ep] || [];
+    var userIds = (user.episodeTags[ep] || []).filter(function (id) { return !deletedSet[id]; });
+
+    var userIdSet = {};
+    userIds.forEach(function (id) { userIdSet[id] = true; });
+    var isReordered = userIds.length > 0 && activeSeedIds.every(function (id) { return userIdSet[id]; });
+    if (isReordered) return userIds.slice();
+
     var seen = {};
     var merged = [];
-    seedIds.concat(userIds).forEach(function (id) {
+    activeSeedIds.concat(userIds).forEach(function (id) {
       if (!seen[id]) { seen[id] = true; merged.push(id); }
     });
     return merged;
+  }
+
+  // 話数epのタグを1つ上/下に入れ替える（右クリックメニュー「上に移動」「下に移動」）。
+  // 直前にgetEpisodeTagIds(ep)で求めた現在の実効順を丸ごとuser.episodeTags[ep]へ保存する
+  // ことで、以後はこの並びを唯一の正として扱うようになる（上記コメント参照）。
+  // direction: -1で1つ上、+1で1つ下。既に端で動かせない場合はfalseを返す。
+  function moveEpisodeTag(ep, tagId, direction) {
+    var ids = getEpisodeTagIds(ep);
+    var idx = ids.indexOf(tagId);
+    if (idx === -1) return false;
+    var newIdx = idx + direction;
+    if (newIdx < 0 || newIdx >= ids.length) return false;
+    var tmp = ids[idx];
+    ids[idx] = ids[newIdx];
+    ids[newIdx] = tmp;
+    var user = load();
+    user.episodeTags[ep] = ids;
+    return save(user);
   }
 
   // 話数epに付与されたタグを「付与した順序」で返す（getEpisodeTagIds(ep)の順序をそのまま使う。
@@ -323,5 +355,6 @@ window.PokemonChronicleTags = (function () {
     getEpisodeTagIds: getEpisodeTagIds,
     assignTag: assignTag,
     unassignTag: unassignTag,
+    moveEpisodeTag: moveEpisodeTag,
   };
 })();

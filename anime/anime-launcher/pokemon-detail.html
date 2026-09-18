@@ -53,13 +53,114 @@
   .sources-block a { color: #1f7fd1; }
   .sources-block a:hover { color: #145a99; }
 
-  /* ── キャラクター紹介 ── */
-  .chara-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
-  .chara-card { text-align: center; }
-  .chara-card img { width: 100%; aspect-ratio: 3/4; object-fit: contain; border-radius: 10px;
-                      background: #fff; border: 1px solid #cbe6fa; box-shadow: 0 1px 6px rgba(30,110,180,0.12); }
-  .chara-card .chara-name { margin-top: 8px; font-size: 0.86rem; font-weight: 700; color: #163c58; }
-  .chara-card .chara-cv { font-size: 0.74rem; color: #5b7085; margin-top: 2px; }
+  /* ── キャラクター紹介（ヘキサタイル） ──
+     メイン画像を六角形にし、1・3・5…列目を基準の高さに、2・4・6…列目を六角形の高さの
+     半分だけ下にずらして敷き詰めることで、隣り合う六角形の斜め辺同士がぴったり接する
+     「ハニカム（蜂の巣）」状のタイル張りにしている。
+     【接するための計算】六角形は「上下が水平な辺、左右が頂点」の向き（.chara-pokemonの
+     小さいポケモンアイコンと同じ形）で、上下の水平な辺は箱の幅の25%〜75%（=中央50%分）。
+     この場合、隣接する列の中心間の横方向の距離は「六角形の幅の75%」、互い違いにする
+     縦方向のズレは「六角形の高さの50%」にすると、六角形の縦横比によらず斜め辺同士が
+     数学的にぴったり重なる（頂点計算で導出済み）。
+     【1行5列固定・横幅いっぱいに拡大】（2026-09-18）ユーザー指示により「1行あたり最大5人」
+     「横幅を大きく」の両方を満たすため、列幅を固定px値ではなく「コンテナ幅の20%
+     （=100%÷5）」という相対値にした。六角形の幅・縦のズレも全て列幅からの比率で計算する
+     ことで、コンテナの横幅いっぱいに5列を敷き詰めつつ、画面が広いほど六角形自体も
+     大きくなる（レスポンシブに拡大する）。6人目以降は`flex-wrap:wrap`で次の行へ折り返す
+     （11人なので5・5・1人の3行になる）。
+     - `--col-w: 20%`（列幅＝コンテナ幅の1/5）
+     - 六角形の幅は列幅の「1÷0.75＝133.33%」（列からはみ出した分だけ隣の列と重なり合う）
+     - 六角形の縦横比は`aspect-ratio`で固定（150:125。正六角形は2:√3≈150:129.9。
+       2026-09-18: 150:188で縦長すぎたため150:130へ縮小、2026-09-19: さらに少し横長に
+       するよう150:125へ変更。画像を表示する内側の枠はpaddingの分だけ約1.2:1になる）
+     - 列のpadding-top・偶数列のmargin-topは、六角形の高さ（`--hex-h`、コンテナ幅基準の%で
+       計算）を使って算出する。padding-top/margin-topの%はCSS仕様上「コンテナ幅」基準で
+       解決されるため、幅ベースで計算した値をそのまま使える。 */
+  /* 六角形は列幅より横に33.3%広い（左右に16.7%ずつはみ出す）ため、各行の一番左・一番右の
+     六角形がコンテナの外にはみ出してページ全体の横スクロールを引き起こさないよう、
+     はみ出し分と同じ3.4%（列幅20%×16.7%）の左右パディングを確保している。 */
+  .chara-hex-strip { display: flex; flex-wrap: wrap; align-items: flex-start; overflow: visible;
+                       padding: 14px 3.4% 24px; row-gap: 24px; }
+  .chara-hex-col { --col-w: 20%; --hex-h: calc(var(--col-w) / 0.75 * 125 / 150);
+                     flex: 0 0 var(--col-w); width: var(--col-w); position: relative;
+                     padding-top: var(--hex-h); text-align: center; }
+  .chara-hex-col:nth-child(even) { margin-top: calc(var(--hex-h) / 2); }
+  .chara-hex { position: absolute; top: 0; left: calc((100% - 100% / 0.75) / 2); width: calc(100% / 0.75);
+                aspect-ratio: 150 / 125; padding: 3%;
+                background: linear-gradient(135deg, #1e8fe0, #57c2f0);
+                clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+                box-shadow: 0 4px 12px rgba(30,110,180,0.25); }
+  .chara-hex-inner { position: relative; width: 100%; height: 100%; background: #fff; overflow: hidden;
+                       clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+  .chara-hex-inner img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  /* 位置調整ツールが画像を実寸（cover寸法×拡大率）で絶対配置するときのモード。拡大率<1でも
+     imgの箱が縮んで縦横の直線でクロップされないよう、切り抜きは六角形(clip-path)だけに任せる。 */
+  .chara-hex-inner img.chara-img-abs { position: absolute; width: auto; max-width: none; object-fit: fill; }
+  .chara-hex-col .chara-name { margin-top: 6px; font-size: 0.86rem; font-weight: 700; color: #163c58; }
+  .chara-hex-col .chara-cv { font-size: 0.72rem; color: #5b7085; margin-top: 2px; }
+  /* 六角形が下側にずれる偶数列は、キャプションを六角形の上（隣り合う奇数列の六角形の間の
+     くぼみ）に置く。上下を反転して名前が六角形に近く、所持ポケモンが一番上になるようにする
+     （くぼみは六角形に近いほど狭いため、幅の広いアイコン列を上に配置）。列の上端から
+     bottom:100%で真上に出す。 */
+  .chara-hex-col:nth-child(even) .chara-caption { position: absolute; left: 0; right: 0; bottom: 100%;
+                                                    display: flex; flex-direction: column-reverse; padding-bottom: 8px; }
+  .chara-hex-col:nth-child(even) .chara-name { margin-top: 0; margin-bottom: 0; }
+  .chara-hex-col:nth-child(even) .chara-cv { margin-top: 0; margin-bottom: 2px; }
+  .chara-hex-col:nth-child(even) .chara-pokemon { margin-top: 0; margin-bottom: 8px; }
+  /* ── [一時ツール] 画像位置調整モード（2026-09-19）──
+     ユーザーがキャラ画像の表示位置（パン）とズームを手元でマウス調整し、最終的な
+     object-position/scale値を書き出すための編集モード。恒久機能ではないため、
+     関連するCSS・HTML・JSは全てこのコメントと対になる目印付きで分離してあり、
+     調整が終わったら値を確定させた上でこの一式（.chara-edit-*系）を削除する想定。 */
+  .chara-edit-toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: -4px 0 14px; }
+  .chara-edit-toolbar button { font-size: 0.74rem; padding: 6px 12px; border-radius: 6px; border: 1px solid #b9d9ef;
+                                  background: #fff; color: #1f6fae; cursor: pointer; font-weight: 600; }
+  .chara-edit-toolbar button:hover { background: #eaf5fd; border-color: #7fbde8; }
+  .chara-edit-toolbar #chara-edit-toggle.on { background: #1f7fd1; color: #fff; border-color: #1f7fd1; }
+  #chara-edit-export-box { width: 100%; box-sizing: border-box; margin-bottom: 14px; font-family: ui-monospace, "Consolas", monospace;
+                             font-size: 0.72rem; padding: 10px; border-radius: 8px; border: 1px solid #b9d9ef;
+                             background: #14456f; color: #eaf6ff; min-height: 140px; }
+  .chara-edit-panel { display: flex; align-items: center; gap: 6px; justify-content: center; margin-top: 6px;
+                        font-size: 0.68rem; color: #5b7085; flex-wrap: wrap; }
+  .chara-edit-panel[hidden] { display: none; }
+  .chara-edit-panel .chara-zoom-range { width: 90px; vertical-align: middle; }
+  .chara-edit-panel .chara-edit-readout { font-family: ui-monospace, "Consolas", monospace; font-size: 0.64rem;
+                                             background: #eaf5fd; border-radius: 4px; padding: 2px 6px; white-space: nowrap; }
+  .chara-edit-panel .chara-reset-btn { font-size: 0.64rem; padding: 2px 8px; border-radius: 4px; border: 1px solid #cbe6fa;
+                                          background: #fff; color: #1f6fae; cursor: pointer; }
+  .chara-hex-strip.chara-edit-active .chara-hex-inner { cursor: grab; }
+  .chara-hex-strip.chara-edit-active .chara-hex-inner.dragging { cursor: grabbing; }
+  .chara-hex-strip.chara-edit-active .chara-hex-inner img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+  /* 「枠外プレビュー」：六角形は上下の頂点に近づくほど左右の表示幅が狭くなる形状のため、
+     フルボディの立ち絵だと拡大率に関係なく頭や足が斜め辺で切れる。通常はclip-pathで
+     切れた部分自体が見えないため気づきにくいので、確認用にclip-pathを外して矩形のまま
+     表示しつつ、本来の六角形の境界線をSVGアウトラインで重ねる。 */
+  .chara-edit-toolbar label.chara-edit-bounds-toggle { font-size: 0.74rem; color: #5b7085; display: inline-flex;
+                                                          align-items: center; gap: 4px; cursor: pointer; }
+  .chara-hex-outline { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
+                         opacity: 0; transition: opacity 0.15s; }
+  .chara-hex-strip.show-bounds .chara-hex-inner { clip-path: none; z-index: 3; }
+  .chara-hex-strip.show-bounds .chara-hex-outline { opacity: 1; }
+
+  /* 各キャラの所持ポケモンを、名前・CVの下に六角形アイコンで並べる。
+     二重のclip-path（外側＝縁取り色の六角形、内側＝白背景の一回り小さい六角形）を
+     paddingで重ねる定番の「六角形フチどり」テクニックで実装している。 */
+  /* 所持ポケモンは最大4匹を必ず横1列（折り返さない）に並べる。アイコン幅は列幅の25%-4px
+     （4匹+隙間3つがちょうど収まる大きさ）を上限55pxとして決める。行を列幅より広げると、
+     隣り合う六角形の間の「くぼみ」からはみ出して隣の六角形に重なるため、列幅内に収める。
+     狭い画面では55pxに届かず縮む（ウィンドウ幅1046pxで約41px）。 */
+  .chara-pokemon { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; margin-top: 8px; }
+  .chara-pokemon .hex-icon { width: min(55px, calc(25% - 4px)); aspect-ratio: 1; flex-shrink: 0; padding: 2px; background: #7fa9d6;
+                               clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%); }
+  .chara-pokemon .hex-icon-inner { width: 100%; height: 100%; background: #fff; display: flex;
+                                     align-items: center; justify-content: center; overflow: hidden;
+                                     clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%); }
+  .chara-pokemon .hex-icon-inner img { width: 88%; height: 88%; object-fit: contain; }
+  .chara-pokemon .hex-icon { position: relative; }
+  .chara-pokemon .hex-icon[title]:hover::after { content: attr(title); position: absolute; bottom: 105%; left: 50%;
+                                                    transform: translateX(-50%); background: #163c58; color: #fff;
+                                                    font-size: 0.62rem; padding: 3px 7px; border-radius: 4px;
+                                                    white-space: nowrap; z-index: 5; pointer-events: none; }
 
   table.info-table { width: 100%; border-collapse: collapse; font-size: 0.85rem;
                        background: #fff; border-radius: 8px; overflow: hidden;
@@ -287,64 +388,132 @@
 
   <section class="block">
     <h2>キャラクター紹介</h2>
-    <div class="chara-grid">
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara01-3.png" alt="リコ">
-        <div class="chara-name">リコ</div>
-        <div class="chara-cv">CV: 鈴木みのり</div>
+    <div class="chara-hex-strip">
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara01-3.png" alt="リコ" style="object-position: 0% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">リコ</div>
+          <div class="chara-cv">CV: 鈴木みのり</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="マスカーニャ"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/908.png" alt="マスカーニャ"></span></span>
+            <span class="hex-icon" title="ブリムオン"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/858.png" alt="ブリムオン"></span></span>
+            <span class="hex-icon" title="テラパゴス"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1024.png" alt="テラパゴス"></span></span>
+            <span class="hex-icon" title="グレンアルマ"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/936.png" alt="グレンアルマ"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara02-4.png" alt="ロイ">
-        <div class="chara-name">ロイ</div>
-        <div class="chara-cv">CV: 寺崎裕香</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara02-4.png" alt="ロイ" style="object-position: 0% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">ロイ</div>
+          <div class="chara-cv">CV: 寺崎裕香</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="ラウドボーン"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/911.png" alt="ラウドボーン"></span></span>
+            <span class="hex-icon" title="タイカイデン"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/941.png" alt="タイカイデン"></span></span>
+            <span class="hex-icon" title="ルカリオ（色違い）"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/448.png" alt="ルカリオ"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara07-5.png" alt="ドット">
-        <div class="chara-name">ドット</div>
-        <div class="chara-cv">CV: 青山吉能</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara07-5.png" alt="ドット" style="object-position: 0% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">ドット</div>
+          <div class="chara-cv">CV: 青山吉能</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="ウェーニバル"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/914.png" alt="ウェーニバル"></span></span>
+            <span class="hex-icon" title="デカヌチャン"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/959.png" alt="デカヌチャン"></span></span>
+            <span class="hex-icon" title="サーフゴー"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1000.png" alt="サーフゴー"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara24.png" alt="ウルト">
-        <div class="chara-name">ウルト</div>
-        <div class="chara-cv">CV: 藤原夏海</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara24.png" alt="ウルト" style="object-position: 0% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">ウルト</div>
+          <div class="chara-cv">CV: 藤原夏海</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="ヤミラミ"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/302.png" alt="ヤミラミ"></span></span>
+            <span class="hex-icon" title="カイリュー"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png" alt="カイリュー"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara28-3.png" alt="ナヴィ">
-        <div class="chara-name">ナヴィ</div>
-        <div class="chara-cv">CV: 芹澤優</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara28-3.png" alt="ナヴィ" data-default-zoom="0.70" style="object-position: 56% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">ナヴィ</div>
+          <div class="chara-cv">CV: 芹澤優</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="メタモン"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" alt="メタモン"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara25.png" alt="フリード">
-        <div class="chara-name">フリード</div>
-        <div class="chara-cv">CV: 八代拓</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara25.png" alt="フリード"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">フリード</div>
+          <div class="chara-cv">CV: 八代拓</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="リザードン"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" alt="リザードン"></span></span>
+            <span class="hex-icon" title="スターミー（教官）"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png" alt="スターミー"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara08-2.png" alt="オリオ">
-        <div class="chara-name">オリオ</div>
-        <div class="chara-cv">CV: 佐倉綾音</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara08-2.png" alt="オリオ" data-default-zoom="0.76" data-default-ty="2" style="object-position: 26% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">オリオ</div>
+          <div class="chara-cv">CV: 佐倉綾音</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="メタグロス"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/376.png" alt="メタグロス"></span></span>
+            <span class="hex-icon" title="エレキッド"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/239.png" alt="エレキッド"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara09-2.png" alt="マードック">
-        <div class="chara-name">マードック</div>
-        <div class="chara-cv">CV: 三宅健太</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara09-2.png" alt="マードック" style="object-position: 0% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">マードック</div>
+          <div class="chara-cv">CV: 三宅健太</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="ルガルガン（まひるのすがた）"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/745.png" alt="ルガルガン"></span></span>
+            <span class="hex-icon" title="マホイップ（ルビーミックス）"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/869.png" alt="マホイップ"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara10-2.png" alt="モリー">
-        <div class="chara-name">モリー</div>
-        <div class="chara-cv">CV: 真堂圭</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara10-2.png" alt="モリー" style="object-position: 0% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">モリー</div>
+          <div class="chara-cv">CV: 真堂圭</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="ラッキー"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/113.png" alt="ラッキー"></span></span>
+            <span class="hex-icon" title="イッカネズミ（4ひきかぞく）"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/925.png" alt="イッカネズミ"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara11-3.png" alt="ランドウ">
-        <div class="chara-name">ランドウ</div>
-        <div class="chara-cv">CV: 塾一久</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara11-3.png" alt="ランドウ" style="object-position: 0% 15%;"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">ランドウ</div>
+          <div class="chara-cv">CV: 塾一久</div>
+          <div class="chara-pokemon">
+            <span class="hex-icon" title="ヌオー"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/195.png" alt="ヌオー"></span></span>
+            <span class="hex-icon" title="サメハダー"><span class="hex-icon-inner"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/319.png" alt="サメハダー"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="chara-card">
-        <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara23.png" alt="キャプテンピカチュウ">
-        <div class="chara-name">キャプテンピカチュウ</div>
-        <div class="chara-cv">CV: 大谷育江</div>
+      <div class="chara-hex-col">
+        <div class="chara-hex"><div class="chara-hex-inner"><img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/chara/chara23.png" alt="キャプテンピカチュウ"></div></div>
+        <div class="chara-caption">
+          <div class="chara-name">キャプテンピカチュウ</div>
+          <div class="chara-cv">CV: 大谷育江</div>
+        </div>
       </div>
     </div>
-    <div class="source-note">出典: <a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/chara/" target="_blank" rel="noopener noreferrer">テレビ東京公式サイト キャラクター紹介</a>（画像）／<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/staff/" target="_blank" rel="noopener noreferrer">同 スタッフ・キャスト</a>（CV）</div>
+    <div class="source-note">
+      出典: <a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/chara/" target="_blank" rel="noopener noreferrer">テレビ東京公式サイト キャラクター紹介</a>（画像）／<a href="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/staff/" target="_blank" rel="noopener noreferrer">同 スタッフ・キャスト</a>（CV）<br>
+      所持ポケモン（六角形アイコン）: <a href="https://ja.wikipedia.org/wiki/%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC_(2023%E5%B9%B4%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%A1)" target="_blank" rel="noopener noreferrer">日本語Wikipedia「ポケットモンスター (2023年のアニメ)」</a>の登場人物節（各キャラの「手持ちポケモン」欄）を基に、2026年9月時点（第149話まで）で判明している最新の進化形・所持個体を掲載。アイコン画像は<a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a>のスプライトを使用。所持ポケモンは物語の進行で変化するため、キャプテンピカチュウ（フリードの相棒）のように既に上記カードで個別紹介済みの個体は重複掲載していません。
+    </div>
   </section>
 
   <div class="sources-block">
@@ -939,5 +1108,261 @@
   init();
 })();
 </script>
+
+<!-- [一時ツール ここから] 画像位置調整モード（2026-09-19導入。調整が終わったら
+     このscriptタグごと削除し、chara-edit-export出力を元にpokemon-detail.htmlの
+     各<img>のobject-position/transformを確定値で書き直す想定） -->
+<script>
+(function(){
+  const STORAGE_KEY = 'pokemonCharaHexEditV1';
+  const strip = document.querySelector('.chara-hex-strip');
+  const heading = strip ? strip.closest('section.block').querySelector('h2') : null;
+  if (!strip || !heading) return;
+  const cols = Array.from(strip.querySelectorAll('.chara-hex-col'));
+
+  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+  // 画像を「coverで枠にぴったり合わせた状態(ox%で横位置指定)を、枠の中心を基準にzoom倍し、
+  // さらに縦にty%ずらした」見た目になるよう、実寸(高さ=zoom×枠高、幅=auto)で絶対配置する。
+  // imgの箱をtransform:scaleで縮める方式だと、zoom<1のとき箱の縁（縦横の直線）で画像が
+  // クロップされてしまい、横の表示範囲も広がらないため、この方式に改めた。
+  // 単位は枠の幅=1・高さ=1。k=cover時の画像幅（枠幅比）。画像読込前はk不明なので従来のcover表示。
+  function imgMetrics(img) {
+    const inner = img.parentElement;
+    const bw = inner.clientWidth, bh = inner.clientHeight;
+    const nw = img.naturalWidth, nh = img.naturalHeight;
+    if (!nw || !nh || !bw || !bh) return null;
+    return { k: (nw / nh) / (bw / bh) };
+  }
+  function layoutCss(img) {
+    const m = imgMetrics(img);
+    if (!m) return null;
+    const ox = parseFloat(img.dataset.ox), ty = parseFloat(img.dataset.ty), z = parseFloat(img.dataset.zoom);
+    const lc = -(m.k - 1) * ox / 100;
+    return { left: (0.5 + (lc - 0.5) * z) * 100, top: (0.5 * (1 - z) + ty / 100) * 100, height: z * 100 };
+  }
+  function applyTransform(img) {
+    const css = layoutCss(img);
+    if (!css) {
+      img.style.objectPosition = img.dataset.ox + '% ' + img.dataset.defaultOy + '%';
+      return;
+    }
+    img.classList.add('chara-img-abs');
+    img.style.objectPosition = '';
+    img.style.transform = '';
+    img.style.left = css.left + '%';
+    img.style.top = css.top + '%';
+    img.style.height = css.height + '%';
+  }
+  // object-position 1%あたりの画像移動量(px)の逆数：cover拡大後の画像幅-枠幅（横の余白）
+  function slackX(inner, img) {
+    const bw = inner.clientWidth, bh = inner.clientHeight;
+    const nw = img.naturalWidth, nh = img.naturalHeight;
+    if (!nw || !nh) return bw * 0.5;
+    const s = Math.max(bw / nw, bh / nh);
+    return Math.max(nw * s - bw, bw * 0.05);
+  }
+  function loadSaved() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; }
+  }
+  function saveAll() {
+    const data = {};
+    cols.forEach(function(col){
+      const img = col.querySelector('.chara-hex-inner img');
+      data[img.alt] = { ox: img.dataset.ox, ty: img.dataset.ty, zoom: img.dataset.zoom };
+    });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+  }
+
+  const saved = loadSaved();
+  let editing = false;
+
+  const toolbar = document.createElement('div');
+  toolbar.className = 'chara-edit-toolbar';
+  toolbar.innerHTML =
+    '<button type="button" id="chara-edit-toggle">🛠 画像位置調整モード（一時ツール）</button>' +
+    '<span id="chara-edit-actions" hidden>' +
+      '<button type="button" id="chara-edit-reset-all">全員リセット</button> ' +
+      '<button type="button" id="chara-edit-export">設定を書き出す（クリップボードにもコピー）</button> ' +
+      '<label class="chara-edit-bounds-toggle"><input type="checkbox" id="chara-edit-bounds">' +
+        '枠外プレビュー（六角形で切れる部分も表示）</label>' +
+    '</span>';
+  heading.insertAdjacentElement('afterend', toolbar);
+
+  const exportBox = document.createElement('textarea');
+  exportBox.id = 'chara-edit-export-box';
+  exportBox.readOnly = true;
+  exportBox.hidden = true;
+  toolbar.insertAdjacentElement('afterend', exportBox);
+
+  cols.forEach(function(col){
+    const inner = col.querySelector('.chara-hex-inner');
+    const img = inner.querySelector('img');
+    const cs = getComputedStyle(img);
+    const parts = cs.objectPosition.split(' ');
+    const defOx = parseFloat(parts[0]);
+    const defOy = parseFloat(parts[1]);
+    const s = saved[img.alt];
+    img.dataset.ox = s ? s.ox : defOx;
+    const defTy = img.dataset.defaultTy ? parseFloat(img.dataset.defaultTy) : 0;
+    img.dataset.ty = (s && s.ty !== undefined) ? s.ty : defTy;
+    img.dataset.defaultTy = defTy;
+    const defZoom = img.dataset.defaultZoom ? parseFloat(img.dataset.defaultZoom) : 1;
+    img.dataset.zoom = s ? s.zoom : defZoom;
+    img.dataset.defaultZoom = defZoom;
+    img.dataset.defaultOx = defOx;
+    img.dataset.defaultOy = defOy;
+    applyTransform(img);
+    if (!img.complete || !img.naturalWidth) img.addEventListener('load', function(){ applyTransform(img); });
+
+    const outlineNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(outlineNS, 'svg');
+    svg.setAttribute('class', 'chara-hex-outline');
+    svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    const poly = document.createElementNS(outlineNS, 'polygon');
+    poly.setAttribute('points', '25,0 75,0 100,50 75,100 25,100 0,50');
+    poly.setAttribute('fill', 'none');
+    poly.setAttribute('stroke', '#ff3b3b');
+    poly.setAttribute('stroke-width', '1.2');
+    poly.setAttribute('vector-effect', 'non-scaling-stroke');
+    svg.appendChild(poly);
+    inner.appendChild(svg);
+
+    const panel = document.createElement('div');
+    panel.className = 'chara-edit-panel';
+    panel.hidden = true;
+    panel.innerHTML =
+      '<label>🔍<input type="range" class="chara-zoom-range" min="0.6" max="3" step="0.01"></label>' +
+      '<span class="chara-edit-readout"></span>' +
+      '<button type="button" class="chara-reset-btn">リセット</button>';
+    col.querySelector('.chara-hex').insertAdjacentElement('afterend', panel);
+    col._charaEditPanel = panel;
+
+    const zoomRange = panel.querySelector('.chara-zoom-range');
+    const readout = panel.querySelector('.chara-edit-readout');
+    zoomRange.value = img.dataset.zoom;
+
+    function updateReadout() {
+      readout.textContent = 'x:' + Math.round(img.dataset.ox) + '% y:' + Math.round(img.dataset.ty) +
+                              '% zoom:' + parseFloat(img.dataset.zoom).toFixed(2);
+    }
+    updateReadout();
+
+    zoomRange.addEventListener('input', function(){
+      img.dataset.zoom = zoomRange.value;
+      applyTransform(img);
+      updateReadout();
+      saveAll();
+    });
+
+    panel.querySelector('.chara-reset-btn').addEventListener('click', function(){
+      img.dataset.ox = img.dataset.defaultOx;
+      img.dataset.ty = img.dataset.defaultTy;
+      img.dataset.zoom = img.dataset.defaultZoom;
+      zoomRange.value = img.dataset.defaultZoom;
+      applyTransform(img);
+      updateReadout();
+      saveAll();
+    });
+
+    // ドラッグ受け皿は.chara-hex-inner（img自体はpointer-events:noneにしてネイティブ画像
+    // ドラッグとの競合を避ける。[[feedback_custom_drag_over_img]]の教訓を踏襲）。
+    let dragging = false, startX = 0, startY = 0, startOx = 0, startTy = 0;
+    inner.addEventListener('pointerdown', function(e){
+      if (!editing) return;
+      e.preventDefault();
+      dragging = true;
+      inner.classList.add('dragging');
+      startX = e.clientX; startY = e.clientY;
+      startOx = parseFloat(img.dataset.ox); startTy = parseFloat(img.dataset.ty);
+      try { inner.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    inner.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      // マウスの移動量と画像の移動量が1:1になるよう換算（横はズーム倍率と余白幅で割る）。
+      // 可動域は枠幅の75%分まで画像の外側（白背景）へ動かせるようにしてある。
+      const zoom = parseFloat(img.dataset.zoom);
+      const slack = slackX(inner, img);
+      const margin = inner.clientWidth * 0.75;
+      img.dataset.ox = clamp(startOx - ((e.clientX - startX) / zoom) / slack * 100,
+                             -margin / slack * 100, 100 + margin / slack * 100);
+      img.dataset.ty = clamp(startTy + (e.clientY - startY) / inner.clientHeight * 100, -100, 100);
+      applyTransform(img);
+      updateReadout();
+    });
+    function endDrag(){
+      if (!dragging) return;
+      dragging = false;
+      inner.classList.remove('dragging');
+      saveAll();
+    }
+    inner.addEventListener('pointerup', endDrag);
+    inner.addEventListener('pointercancel', endDrag);
+    inner.addEventListener('wheel', function(e){
+      if (!editing) return;
+      e.preventDefault();
+      let z = clamp(parseFloat(img.dataset.zoom) - Math.sign(e.deltaY) * 0.05, 0.6, 3);
+      img.dataset.zoom = z;
+      zoomRange.value = z;
+      applyTransform(img);
+      updateReadout();
+      saveAll();
+    }, { passive: false });
+  });
+
+  const toggleBtn = toolbar.querySelector('#chara-edit-toggle');
+  const actionsSpan = toolbar.querySelector('#chara-edit-actions');
+  const boundsCheckbox = toolbar.querySelector('#chara-edit-bounds');
+  toggleBtn.addEventListener('click', function(){
+    editing = !editing;
+    strip.classList.toggle('chara-edit-active', editing);
+    toggleBtn.classList.toggle('on', editing);
+    actionsSpan.hidden = !editing;
+    toggleBtn.textContent = editing ? '✅ 位置調整モードを終了' : '🛠 画像位置調整モード（一時ツール）';
+    cols.forEach(function(col){ col._charaEditPanel.hidden = !editing; });
+    if (!editing) {
+      boundsCheckbox.checked = false;
+      strip.classList.remove('show-bounds');
+    }
+  });
+  boundsCheckbox.addEventListener('change', function(){
+    strip.classList.toggle('show-bounds', boundsCheckbox.checked);
+  });
+
+  toolbar.querySelector('#chara-edit-reset-all').addEventListener('click', function(){
+    cols.forEach(function(col){
+      const img = col.querySelector('.chara-hex-inner img');
+      img.dataset.ox = img.dataset.defaultOx;
+      img.dataset.ty = img.dataset.defaultTy;
+      img.dataset.zoom = img.dataset.defaultZoom;
+      applyTransform(img);
+      const panel = col._charaEditPanel;
+      panel.querySelector('.chara-zoom-range').value = img.dataset.defaultZoom;
+      panel.querySelector('.chara-edit-readout').textContent =
+        'x:' + Math.round(img.dataset.ox) + '% y:' + Math.round(img.dataset.ty) + '% zoom:' + parseFloat(img.dataset.defaultZoom).toFixed(2);
+    });
+    saveAll();
+  });
+
+  toolbar.querySelector('#chara-edit-export').addEventListener('click', function(){
+    const lines = cols.map(function(col){
+      const img = col.querySelector('.chara-hex-inner img');
+      const css = layoutCss(img);
+      const cssText = css ? '  // position:absolute; left:' + css.left.toFixed(2) + '%; top:' + css.top.toFixed(2) +
+                            '%; height:' + css.height.toFixed(2) + '%; width:auto;' : '';
+      return '  "' + img.alt + '": { ox: "' + parseFloat(img.dataset.ox).toFixed(1) + '%", ty: "' +
+             parseFloat(img.dataset.ty).toFixed(1) + '%", zoom: ' + parseFloat(img.dataset.zoom).toFixed(2) + ' },' + cssText;
+    });
+    const text = '{\n' + lines.join('\n') + '\n}';
+    exportBox.value = text;
+    exportBox.hidden = false;
+    exportBox.select();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function(){});
+    }
+  });
+})();
+</script>
+<!-- [一時ツール ここまで] -->
 </body>
 </html>

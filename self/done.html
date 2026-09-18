@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>やったこと｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  #search { flex: 1; min-width: 160px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+             border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none; }
+  #search:focus { border-color: #4a4a6a; }
+
+  #theme-filter { max-width: var(--page-max-width); margin: 10px auto 0; display: flex; gap: 5px; flex-wrap: wrap; }
+  .theme-btn { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px;
+                font-size: 0.72rem; cursor: pointer; background: #13131c; color: #667;
+                transition: all 0.12s; white-space: nowrap; }
+  .theme-btn:hover { border-color: #3a3a5a; color: #99a; }
+  .theme-btn.active { background: #162030; border-color: #305070; color: #6699cc; }
+
+  #count { max-width: var(--page-max-width); margin: 14px auto 8px; font-size: 0.74rem; color: #3a3a4a; }
+  #timeline { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+
+  .date-group { display: flex; flex-direction: column; gap: 8px; }
+  .date-heading { font-size: 0.82rem; color: #7788aa; font-weight: 600;
+                   border-bottom: 1px solid #1c1c28; padding-bottom: 6px; }
+
+  .entry { background: #111119; border: 1px solid #1e1e28; border-radius: 8px; padding: 12px 14px;
+            display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+  .entry:hover { border-color: #36364a; }
+  .entry-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .entry-theme { font-size: 0.64rem; padding: 2px 8px; border-radius: 8px;
+                  background: #0c1824; color: #447799; border: 1px solid #182840; white-space: nowrap; }
+  .entry-title { font-size: 0.92rem; color: #e2e2e2; font-weight: 600; flex: 1; }
+  .entry-status { font-size: 0.62rem; color: #667; white-space: nowrap; }
+  .entry-summary { font-size: 0.8rem; color: #99a; line-height: 1.6; }
+  .entry-link { font-size: 0.68rem; color: #446; text-decoration: none; align-self: flex-start; }
+  .entry-link:hover { color: #789; }
+
+  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <div class="controls">
+    <input type="text" id="search" placeholder="タイトル・概要で検索…">
+  </div>
+  <div id="theme-filter"></div>
+</header>
+
+<div class="content">
+  <div id="count"></div>
+  <div id="timeline"></div>
+  <div id="empty" style="display:none;">該当する作業記録がありません。</div>
+</div>
+
+<script src="shared/nav.js"></script>
+<script src="data/done-log.js"></script>
+<script>
+(function () {
+  const data = window.DONE_LOG || [];
+  const timelineEl = document.getElementById("timeline");
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const searchEl = document.getElementById("search");
+  const themeFilterEl = document.getElementById("theme-filter");
+
+  let activeTheme = "";
+  let query = "";
+
+  // テーマ一覧（件数の多い順）
+  const themeCounts = new Map();
+  data.forEach(function (e) {
+    themeCounts.set(e.themeKey, (themeCounts.get(e.themeKey) || { theme: e.theme, count: 0 }));
+    themeCounts.get(e.themeKey).count++;
+    themeCounts.get(e.themeKey).theme = e.theme;
+  });
+  const themes = Array.from(themeCounts.entries()).sort(function (a, b) { return b[1].count - a[1].count; });
+
+  function buildThemeFilter() {
+    themeFilterEl.innerHTML = "";
+    const allBtn = document.createElement("button");
+    allBtn.className = "theme-btn" + (activeTheme === "" ? " active" : "");
+    allBtn.textContent = "すべて (" + data.length + ")";
+    allBtn.onclick = function () { activeTheme = ""; render(); };
+    themeFilterEl.appendChild(allBtn);
+
+    themes.forEach(function ([key, info]) {
+      const btn = document.createElement("button");
+      btn.className = "theme-btn" + (activeTheme === key ? " active" : "");
+      btn.textContent = info.theme + " (" + info.count + ")";
+      btn.onclick = function () { activeTheme = (activeTheme === key ? "" : key); render(); };
+      themeFilterEl.appendChild(btn);
+    });
+  }
+
+  function matches(e) {
+    if (activeTheme && e.themeKey !== activeTheme) return false;
+    if (!query) return true;
+    const hay = (e.title + " " + e.summary + " " + e.theme).toLowerCase();
+    return hay.includes(query.toLowerCase());
+  }
+
+  function render() {
+    buildThemeFilter();
+    const filtered = data.filter(matches);
+    countEl.textContent = filtered.length + " 件" + (data.length !== filtered.length ? "（全" + data.length + "件中）" : "");
+    timelineEl.innerHTML = "";
+
+    if (filtered.length === 0) {
+      emptyEl.style.display = "block";
+      return;
+    }
+    emptyEl.style.display = "none";
+
+    let currentDate = null;
+    let groupEl = null;
+    filtered.forEach(function (e) {
+      if (e.date !== currentDate) {
+        currentDate = e.date;
+        groupEl = document.createElement("div");
+        groupEl.className = "date-group";
+        const heading = document.createElement("div");
+        heading.className = "date-heading";
+        heading.textContent = e.date;
+        groupEl.appendChild(heading);
+        timelineEl.appendChild(groupEl);
+      }
+      const entry = document.createElement("div");
+      entry.className = "entry";
+
+      const head = document.createElement("div");
+      head.className = "entry-head";
+      const themeSpan = document.createElement("span");
+      themeSpan.className = "entry-theme";
+      themeSpan.textContent = e.theme;
+      const titleSpan = document.createElement("span");
+      titleSpan.className = "entry-title";
+      titleSpan.textContent = e.title;
+      const statusSpan = document.createElement("span");
+      statusSpan.className = "entry-status";
+      statusSpan.textContent = e.status;
+      head.appendChild(themeSpan);
+      head.appendChild(titleSpan);
+      head.appendChild(statusSpan);
+      entry.appendChild(head);
+
+      if (e.summary) {
+        const summary = document.createElement("div");
+        summary.className = "entry-summary";
+        summary.textContent = e.summary;
+        entry.appendChild(summary);
+      }
+
+      if (e.fileUrl) {
+        const link = document.createElement("a");
+        link.className = "entry-link";
+        link.href = e.fileUrl;
+        link.textContent = "レポートを開く →";
+        entry.appendChild(link);
+      }
+
+      groupEl.appendChild(entry);
+    });
+  }
+
+  searchEl.addEventListener("input", function () { query = searchEl.value; render(); });
+
+  render();
+})();
+</script>
+</body>
+</html>

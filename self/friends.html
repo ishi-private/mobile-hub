@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>友達との話題｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  #search { flex: 1; min-width: 160px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+             border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none; }
+  #search:focus { border-color: #4a4a6a; }
+
+  #friend-filter { max-width: var(--page-max-width); margin: 10px auto 0; display: flex; gap: 5px; flex-wrap: wrap; }
+  .friend-btn { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px;
+                 font-size: 0.72rem; cursor: pointer; background: #13131c; color: #667; transition: all 0.12s; white-space: nowrap; }
+  .friend-btn:hover { border-color: #3a3a5a; color: #99a; }
+  .friend-btn.active { background: #241410; border-color: #6a3a20; color: #e0623c; }
+
+  #count { max-width: var(--page-max-width); margin: 14px auto 8px; font-size: 0.74rem; color: #3a3a4a; }
+  #list { max-width: var(--page-max-width); margin: 0 auto; display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+
+  .card { background: #111119; border: 1px solid #1e1e28; border-radius: 8px; overflow: hidden;
+           display: flex; flex-direction: column; transition: border-color 0.15s, transform 0.15s; }
+  .card:hover { border-color: #36364a; transform: translateY(-2px); }
+  .thumb { aspect-ratio: 16/9; background: #0d0d16; overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; }
+  .card-friend { font-size: 0.62rem; padding: 2px 8px; border-radius: 8px; align-self: flex-start;
+                  background: #1c1010; color: #b06040; border: 1px solid #301a10; }
+  .card-title { font-size: 0.92rem; font-weight: 600; color: #e2e2e2; line-height: 1.4; }
+  .card-note { font-size: 0.8rem; color: #99a; line-height: 1.6; white-space: pre-wrap; }
+  .url-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .url-btn { font-size: 0.7rem; padding: 3px 10px; border-radius: 6px; text-decoration: none;
+              background: #0c1824; color: #6699cc; border: 1px solid #182840; }
+  .url-btn:hover { background: #12263a; }
+  .card-added { font-size: 0.64rem; color: #445; }
+
+  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; line-height: 1.8; }
+  #empty code { background: #16161e; padding: 1px 6px; border-radius: 4px; color: #778; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <div class="controls">
+    <input type="text" id="search" placeholder="タイトル・メモで検索…">
+  </div>
+  <div id="friend-filter"></div>
+</header>
+
+<div class="content">
+  <div id="count"></div>
+  <div id="list"></div>
+  <div id="empty" style="display:none;"></div>
+</div>
+
+<script src="shared/nav.js"></script>
+<script src="data/friends-data.js"></script>
+<script>
+(function () {
+  const data = window.FRIENDS_DATA || [];
+  const listEl = document.getElementById("list");
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const searchEl = document.getElementById("search");
+  const friendFilterEl = document.getElementById("friend-filter");
+
+  let activeFriend = "";
+  let query = "";
+
+  const friends = Array.from(new Set(data.map(function (d) { return d.friend; }).filter(Boolean)));
+
+  function buildFriendFilter() {
+    friendFilterEl.innerHTML = "";
+    if (friends.length === 0) return;
+    const all = document.createElement("button");
+    all.className = "friend-btn" + (activeFriend === "" ? " active" : "");
+    all.textContent = "すべて";
+    all.onclick = function () { activeFriend = ""; render(); };
+    friendFilterEl.appendChild(all);
+    friends.forEach(function (f) {
+      const b = document.createElement("button");
+      b.className = "friend-btn" + (activeFriend === f ? " active" : "");
+      b.textContent = f;
+      b.onclick = function () { activeFriend = (activeFriend === f ? "" : f); render(); };
+      friendFilterEl.appendChild(b);
+    });
+  }
+
+  function matches(d) {
+    if (activeFriend && d.friend !== activeFriend) return false;
+    if (!query) return true;
+    return ((d.title || "") + " " + (d.note || "") + " " + (d.friend || "")).toLowerCase().includes(query.toLowerCase());
+  }
+
+  function render() {
+    buildFriendFilter();
+    listEl.innerHTML = "";
+
+    if (data.length === 0) {
+      countEl.textContent = "";
+      emptyEl.style.display = "block";
+      emptyEl.innerHTML = "まだ登録がありません。<br><code>data/friends-data.js</code> に話題を追加すると、ここに表示されます。";
+      return;
+    }
+
+    const filtered = data.filter(matches).sort(function (a, b) { return (b.added || "").localeCompare(a.added || ""); });
+    countEl.textContent = filtered.length + " 件" + (filtered.length !== data.length ? "（全" + data.length + "件中）" : "");
+
+    if (filtered.length === 0) {
+      emptyEl.style.display = "block";
+      emptyEl.textContent = "該当する話題がありません。";
+      return;
+    }
+    emptyEl.style.display = "none";
+
+    filtered.forEach(function (d) {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      if (d.image) {
+        const thumb = document.createElement("div");
+        thumb.className = "thumb";
+        const img = document.createElement("img");
+        img.src = d.image;
+        img.alt = d.title || "";
+        img.referrerPolicy = "no-referrer";
+        thumb.appendChild(img);
+        card.appendChild(thumb);
+      }
+
+      const body = document.createElement("div");
+      body.className = "card-body";
+
+      if (d.friend) {
+        const f = document.createElement("span");
+        f.className = "card-friend";
+        f.textContent = d.friend;
+        body.appendChild(f);
+      }
+      const title = document.createElement("div");
+      title.className = "card-title";
+      title.textContent = d.title || "";
+      body.appendChild(title);
+
+      if (d.note) {
+        const note = document.createElement("div");
+        note.className = "card-note";
+        note.textContent = d.note;
+        body.appendChild(note);
+      }
+
+      if (Array.isArray(d.urls) && d.urls.length) {
+        const urls = document.createElement("div");
+        urls.className = "url-list";
+        d.urls.forEach(function (u) {
+          const a = document.createElement("a");
+          a.className = "url-btn";
+          a.href = u.href;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.textContent = (u.label || u.href) + " ↗";
+          urls.appendChild(a);
+        });
+        body.appendChild(urls);
+      }
+
+      if (d.added) {
+        const added = document.createElement("div");
+        added.className = "card-added";
+        added.textContent = d.added;
+        body.appendChild(added);
+      }
+
+      card.appendChild(body);
+      listEl.appendChild(card);
+    });
+  }
+
+  searchEl.addEventListener("input", function () { query = searchEl.value; render(); });
+  render();
+})();
+</script>
+</body>
+</html>

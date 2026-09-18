@@ -51,33 +51,44 @@
                         background: var(--pk-panel); border-top: 3px solid var(--pk-brand-red);
                         box-shadow: 0 -6px 20px rgba(0,0,0,0.15); }
   #mini-player-bar[hidden] { display: none; }
-  .mini-player-inner { display: flex; align-items: center; gap: 12px; padding: 8px 14px;
-                          max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
-  .mini-player-info { flex: 1 1 120px; min-width: 0; }
+  /* 3カラムグリッド: 左=曲情報 / 中央=再生系コントロール（画面の左右中央付近） / 右=音量・映像・閉じる */
+  .mini-player-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+                          padding: 8px 14px; max-width: 1100px; margin: 0 auto; }
+  .mini-player-info { min-width: 0; }
   .mini-player-label { font-size: 0.66rem; font-weight: 700; color: var(--pk-text-dim); display: block; }
   .mini-player-title { font-size: 0.86rem; font-weight: 700; display: block; overflow: hidden;
                           text-overflow: ellipsis; white-space: nowrap; }
   .mini-player-work { font-size: 0.7rem; color: var(--pk-text-dim); display: block; overflow: hidden;
                          text-overflow: ellipsis; white-space: nowrap; }
-  .mini-player-media { flex: 0 0 auto; line-height: 0; }
-  .mini-player-media iframe { display: block; border-radius: 8px; border: none; }
-  .mini-player-nav { display: flex; gap: 4px; flex: 0 0 auto; }
+  .mini-player-center { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+  .mini-player-pos { font-size: 0.68rem; color: var(--pk-text-dim); white-space: nowrap; }
+  .mini-player-nav { display: flex; gap: 4px; align-items: center; flex: 0 0 auto; }
   .mini-player-nav button, .mini-player-close { border: none; background: var(--pk-bg); color: var(--pk-text);
                           border-radius: 50%; width: 30px; height: 30px; font-size: 0.9rem; cursor: pointer; flex: 0 0 auto; }
+  .mini-player-nav button.mini-player-seek5 { width: 34px; font-size: 0.62rem; font-weight: 700; }
   .mini-player-nav button:hover, .mini-player-close:hover { background: var(--pk-panel-border); }
-  .mini-player-pos { font-size: 0.68rem; color: var(--pk-text-dim); flex: 0 0 auto; white-space: nowrap; }
+  .mini-player-seekbar { display: flex; align-items: center; gap: 6px; width: 100%; min-width: 220px; }
+  .mini-player-seekbar input[type="range"] { flex: 1 1 auto; min-width: 100px; accent-color: var(--pk-brand-red); cursor: pointer; }
+  .mini-player-time { font-size: 0.64rem; color: var(--pk-text-dim); white-space: nowrap; flex: 0 0 auto; }
+  .mini-player-right { display: flex; align-items: center; gap: 10px; justify-content: flex-end; min-width: 0; }
+  .mini-player-media { flex: 0 0 auto; line-height: 0; }
+  .mini-player-media iframe { display: block; border-radius: 8px; border: none; }
   .mini-player-volume { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; }
   .mini-player-volume-icon { font-size: 0.9rem; flex: 0 0 auto; }
   .mini-player-volume input[type="range"] { width: 72px; accent-color: var(--pk-brand-red); cursor: pointer; }
   .song-link-btn.yt, .song-link-btn.sp { cursor: pointer; }
+  @media (max-width: 760px) {
+    .mini-player-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .mini-player-right { justify-content: center; }
+  }
 
   /* ランダム再生ボタン */
   .shuffle-toolbar { margin: 10px 0 0; }
   .shuffle-btn { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 0.85rem;
                    padding: 8px 16px; border-radius: 999px; border: 2px solid var(--pk-brand-red);
                    background: #fff; color: var(--pk-brand-red); cursor: pointer; }
-  .shuffle-btn.active { background: var(--pk-brand-red); color: #fff; }
   .shuffle-btn:disabled { opacity: 0.45; cursor: not-allowed; border-color: var(--pk-panel-border); color: var(--pk-text-dim); }
+  .shuffle-count-group { gap: 8px; flex-wrap: wrap; vertical-align: middle; }
 </style>
 </head>
 <body class="pk-body">
@@ -95,6 +106,13 @@
     </p>
   </div>
 
+  <div class="shuffle-toolbar">
+    <button type="button" class="shuffle-btn" id="shuffle-featured-btn">🌟 人気曲からランダムに10曲追加</button>
+    <span style="font-size:0.76rem; color:var(--pk-text-dim); margin-left:8px;">
+      アニメOP/ED人気ランキング上位15曲と、ゲーム曲でatwiki個別解説ページがある有名曲から、ランダムに10曲をトラック（再生キュー）に追加します。
+    </span>
+  </div>
+
   <div class="btn-toolbar view-toolbar" role="toolbar" aria-label="表示切替ツールバー">
     <div class="btn-group" role="group" aria-label="まとめ表示切替">
       <input type="radio" class="btn-check" name="view-switch" id="view-check-opEd" autocomplete="off" checked>
@@ -107,9 +125,14 @@
   </div>
 
   <div class="shuffle-toolbar">
-    <button type="button" class="shuffle-btn" id="shuffle-play-btn">🔀 ランダム再生</button>
+    <span style="font-size:0.76rem; color:var(--pk-text-dim); margin-right:8px;">現在表示中の曲（開いているタブ・フィルタONのもの）からランダムに追加:</span>
+    <div class="btn-group shuffle-count-group" role="group" aria-label="ランダム追加曲数" id="shuffle-visible-group">
+      <button type="button" class="shuffle-btn" data-count="10">🔀 10曲追加</button>
+      <button type="button" class="shuffle-btn" data-count="5">🔀 5曲追加</button>
+      <button type="button" class="shuffle-btn" data-count="3">🔀 3曲追加</button>
+    </div>
     <span style="font-size:0.76rem; color:var(--pk-text-dim); margin-left:8px;">
-      公式YouTube試聴リンクがある曲（OP/ED・映画曲・ゲーム曲すべて）からランダムに連続再生します。
+      各曲の「▶ YouTube」は右クリックでも「再生」「トラックに追加」を選べます。
     </span>
   </div>
 
@@ -203,21 +226,35 @@
       <span class="mini-player-title" id="mini-player-title"></span>
       <span class="mini-player-work" id="mini-player-work"></span>
     </div>
-    <span class="mini-player-pos" id="mini-player-pos" hidden></span>
-    <div class="mini-player-nav">
-      <button type="button" id="mini-player-prev" title="前の曲" hidden>⏮</button>
-      <button type="button" id="mini-player-playpause" title="再生/一時停止" hidden>⏸</button>
-      <button type="button" id="mini-player-next" title="次の曲" hidden>⏭</button>
+
+    <!-- 再生系コントロール（画面の左右中央付近に配置） -->
+    <div class="mini-player-center">
+      <span class="mini-player-pos" id="mini-player-pos" hidden></span>
+      <div class="mini-player-nav">
+        <button type="button" id="mini-player-prev" title="前の曲" hidden>⏮</button>
+        <button type="button" class="mini-player-seek5" id="mini-player-seek-back" title="5秒戻る" hidden>-5s</button>
+        <button type="button" id="mini-player-playpause" title="再生/一時停止" hidden>⏸</button>
+        <button type="button" class="mini-player-seek5" id="mini-player-seek-fwd" title="5秒進む" hidden>+5s</button>
+        <button type="button" id="mini-player-next" title="次の曲" hidden>⏭</button>
+      </div>
+      <div class="mini-player-seekbar" id="mini-player-seekbar-wrap" hidden>
+        <span class="mini-player-time" id="mini-player-current-time">0:00</span>
+        <input type="range" id="mini-player-seek-slider" min="0" max="1000" value="0" title="再生位置">
+        <span class="mini-player-time" id="mini-player-duration-time">0:00</span>
+      </div>
     </div>
-    <div class="mini-player-volume" id="mini-player-volume" hidden>
-      <span class="mini-player-volume-icon">🔊</span>
-      <input type="range" id="mini-player-volume-slider" min="0" max="100" value="100" title="音量">
+
+    <div class="mini-player-right">
+      <div class="mini-player-volume" id="mini-player-volume" hidden>
+        <span class="mini-player-volume-icon">🔊</span>
+        <input type="range" id="mini-player-volume-slider" min="0" max="100" value="100" title="音量">
+      </div>
+      <div class="mini-player-media" id="mini-player-media">
+        <div id="yt-player-mount"></div>
+      </div>
+      <div class="mini-player-media" id="spotify-frame-wrap" hidden></div>
+      <button type="button" class="mini-player-close" id="mini-player-close" aria-label="プレイヤーを閉じる">✕</button>
     </div>
-    <div class="mini-player-media" id="mini-player-media">
-      <div id="yt-player-mount"></div>
-    </div>
-    <div class="mini-player-media" id="spotify-frame-wrap" hidden></div>
-    <button type="button" class="mini-player-close" id="mini-player-close" aria-label="プレイヤーを閉じる">✕</button>
   </div>
 </div>
 
@@ -257,7 +294,10 @@
     var cell = e.target.closest(".song-title-cell");
     if (!cell) return;
     e.preventDefault();
-    showSongContextMenu(e.clientX, e.clientY, cell.getAttribute("data-song-key"));
+    var songKey = cell.getAttribute("data-song-key");
+    showContextMenu(e.clientX, e.clientY, [
+      { label: "スクロール（該当箇所へ移動）", onClick: function () { scrollToSong(songKey); } }
+    ]);
   });
 
   function escapeAttr(s) {
@@ -274,20 +314,23 @@
   document.addEventListener("click", closeSongContextMenu);
   document.addEventListener("scroll", closeSongContextMenu, true);
 
-  function showSongContextMenu(x, y, songKey) {
+  // 汎用の右クリックメニュー（人気ランキングの「スクロール」・曲リンクの「再生」「トラックに追加」で共用）
+  function showContextMenu(x, y, items) {
     closeSongContextMenu();
     var menu = document.createElement("div");
     menu.className = "song-context-menu";
     menu.style.left = x + "px";
     menu.style.top = y + "px";
-    var btn = document.createElement("button");
-    btn.textContent = "スクロール（該当箇所へ移動）";
-    btn.addEventListener("click", function (ev) {
-      ev.stopPropagation();
-      closeSongContextMenu();
-      scrollToSong(songKey);
+    items.forEach(function (item) {
+      var btn = document.createElement("button");
+      btn.textContent = item.label;
+      btn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        closeSongContextMenu();
+        item.onClick();
+      });
+      menu.appendChild(btn);
     });
-    menu.appendChild(btn);
     document.body.appendChild(menu);
     activeMenu = menu;
   }
@@ -464,6 +507,16 @@
     return sec;
   }
 
+  // Nintendo Music（music.nintendo.com、要NSO加入）の「すべての曲」プレイリスト共有リンク。
+  // タイトル単位のみ対応（個別トラックの固有URLはNintendo Music上に存在しないため不可。詳細はreports/2026-09-16_mini-player-embed.md参照）。
+  // 対象はNintendo Musicに実際に存在するタイトルのみ（15タイトル中この4件、2026-09-18時点で確認）。
+  var NINTENDO_MUSIC_LINKS = {
+    frlg: "https://music.nintendo.com/shared/ja-JP/JP/officialPlaylists/6be8dc77-6efb-4121-9447-8da0501614fc/",
+    swsh: "https://music.nintendo.com/shared/ja-JP/JP/officialPlaylists/7edfe197-5eba-4340-827c-b8a82db6b2e4/",
+    sv: "https://music.nintendo.com/shared/ja-JP/JP/officialPlaylists/71ae660c-9314-4273-b74e-eea8f5b8cbfb/",
+    arceus: "https://music.nintendo.com/shared/ja-JP/JP/officialPlaylists/c970fa40-6f9a-45f9-9b66-be71b1507066/"
+  };
+
   var gameToggleGroup = document.getElementById("game-toggle-group");
   var gameContainer = document.getElementById("game-groups-container");
   var gameEntries = [];
@@ -498,7 +551,10 @@
     note.innerHTML = "作曲: " + g.composers + " ｜ 出典: <a class=\"pk-table-link\" href=\"" + g.atwikiUrl + "\" target=\"_blank\" rel=\"noopener noreferrer\">atwiki該当ページ</a>" +
       (g.officialVideo
         ? " ｜ 公式試聴: <a class=\"pk-table-link\" href=\"https://www.youtube.com/watch?v=" + g.officialVideo.id + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + g.officialVideo.label + "</a>" + (g.officialVideo.note ? "（" + g.officialVideo.note + "）" : "")
-        : " ｜ 公式BGM動画は未対応のため試聴リンクなし");
+        : " ｜ 公式BGM動画は未対応のため試聴リンクなし") +
+      (NINTENDO_MUSIC_LINKS[g.id]
+        ? " ｜ <a class=\"pk-table-link\" href=\"" + NINTENDO_MUSIC_LINKS[g.id] + "\" target=\"_blank\" rel=\"noopener noreferrer\">🎮 Nintendo Musicで聴く</a>（要NSO加入・新しいタブで開きます）"
+        : "");
     section.appendChild(note);
 
     var wrap = document.createElement("div");
@@ -562,12 +618,13 @@
     });
   });
 
-  // --- サイト内ミニプレイヤー（単曲再生＋ランダム連続再生） ---
+  // --- サイト内ミニプレイヤー（単曲再生＋トラック＝再生キュー） ---
   // 各所の「▶ YouTube」「♪ Spotify」ボタン（<a>）のクリックを横取りし、
   // ページ最下部の固定バーにYouTube/Spotifyの公式埋め込みプレイヤーを表示して曲を流す。
-  // 通常クリック=サイト内再生、Ctrl/Cmdクリック・中クリック・右クリック→新しいタブで開くは<a href>のまま機能する。
-  // ランダム再生はYouTube IFrame Player APIで単一のプレイヤーインスタンスを使い回し、
-  // 再生終了(onStateChange=ENDED)・再生エラー(onError)を検知して次の曲へ自動的に進む。
+  // 通常クリック=すぐ再生（右クリックメニューの「▶ 再生」と同じ扱い）、Ctrl/Cmdクリック・中クリックは<a href>のまま新しいタブで開く。
+  // YouTube曲は右クリックで「▶ 再生」「➕ トラックに追加」を選べる（トラック＝再生キュー。追加は常に現在再生中の曲の「すぐ後」に挿入する）。
+  // トラックはYouTube IFrame Player APIで単一のプレイヤーインスタンスを使い回して連続再生し、
+  // 再生終了(onStateChange=ENDED)・再生エラー(onError)を検知して次の曲へ自動的に進む。最後まで再生し終えたら停止する（無限ループはしない）。
   var miniBar = document.getElementById("mini-player-bar");
   var miniLabel = document.getElementById("mini-player-label");
   var miniTitle = document.getElementById("mini-player-title");
@@ -580,7 +637,14 @@
   var playPauseBtn = document.getElementById("mini-player-playpause");
   var volumeControl = document.getElementById("mini-player-volume");
   var volumeSlider = document.getElementById("mini-player-volume-slider");
-  var shuffleBtn = document.getElementById("shuffle-play-btn");
+  var seekBackBtn = document.getElementById("mini-player-seek-back");
+  var seekFwdBtn = document.getElementById("mini-player-seek-fwd");
+  var seekbarWrap = document.getElementById("mini-player-seekbar-wrap");
+  var seekSlider = document.getElementById("mini-player-seek-slider");
+  var currentTimeLabel = document.getElementById("mini-player-current-time");
+  var durationTimeLabel = document.getElementById("mini-player-duration-time");
+  var shuffleFeaturedBtn = document.getElementById("shuffle-featured-btn");
+  var shuffleVisibleGroup = document.getElementById("shuffle-visible-group");
 
   function songTitleFromButton(btn) {
     if (btn.dataset.title) return btn.dataset.title;
@@ -599,6 +663,13 @@
     return btn.dataset.work || "";
   }
 
+  function formatTime(sec) {
+    sec = Math.max(0, Math.floor(sec || 0));
+    var m = Math.floor(sec / 60);
+    var s = sec % 60;
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
   // YouTube/Spotifyの埋め込みプレイヤーはpostMessageベースのAPIでオリジンを検証しており、
   // file://（ローカルファイルを直接開いた場合）には対応していない（YouTube側で「動画プレーヤーの設定エラー エラー153」になる）。
   // このページをローカルファイルとして直接開いている場合は埋め込みを諦め、従来どおり新しいタブで開く動作にフォールバックする。
@@ -609,8 +680,12 @@
       embedNote.textContent = "（このページをローカルファイルとして直接開いているため埋め込み再生・ランダム再生は無効です。今はボタンをクリックすると新しいタブでYouTube/Spotifyが開きます。ローカルHTTPサーバー経由で開くと有効になります）";
       embedNote.style.color = "var(--pk-text-dim)";
     }
-    shuffleBtn.disabled = true;
-    shuffleBtn.title = "file://で開いているため利用できません（ローカルHTTPサーバー経由で開いてください）";
+    shuffleFeaturedBtn.disabled = true;
+    shuffleFeaturedBtn.title = "file://で開いているため利用できません（ローカルHTTPサーバー経由で開いてください）";
+    shuffleVisibleGroup.querySelectorAll("button").forEach(function (b) {
+      b.disabled = true;
+      b.title = "file://で開いているため利用できません（ローカルHTTPサーバー経由で開いてください）";
+    });
   }
 
   function showMiniPlayer(label, title, work) {
@@ -621,14 +696,22 @@
     document.body.classList.add("has-mini-player");
   }
 
-  // 再生/一時停止ボタンと音量バーはYouTube再生時のみ表示する（Spotify埋め込みには専用のコントロールが既にあるため）
+  // 再生/一時停止・±5秒送り・シークバー・音量バーはYouTube再生時のみ表示する
+  // （Spotify埋め込みには専用のコントロールが既にあるため）
   function showYoutubeControls() {
     playPauseBtn.hidden = false;
+    seekBackBtn.hidden = false;
+    seekFwdBtn.hidden = false;
+    seekbarWrap.hidden = false;
     volumeControl.hidden = false;
   }
   function hideYoutubeControls() {
     playPauseBtn.hidden = true;
+    seekBackBtn.hidden = true;
+    seekFwdBtn.hidden = true;
+    seekbarWrap.hidden = true;
     volumeControl.hidden = true;
+    stopProgressPolling();
   }
 
   // --- YouTube IFrame Player（ページに1つだけ生成し使い回す） ---
@@ -640,6 +723,25 @@
   // クリック操作の時点で即座にローカルの状態フラグを反転させて更新する。
   // postMessageの受信が遅延・欠落する環境でも、ボタンの見た目と実際のコマンド送信を確実に一致させるため。
   var isYtPlaying = false;
+  var isScrubbing = false; // シークバーをドラッグ中は自動更新を止める
+  var progressTimer = null; // シークバー・再生時間表示の定期更新
+  // 現在の曲が「1本の長尺BGM集動画の一部（区間指定あり）」かどうかの情報。
+  // シークバー・±5秒ボタンは、この区間の範囲内だけをその曲の再生時間として扱う（動画全体ではなく）。
+  var currentStartSeconds = 0;
+  var currentDurationSeconds = null;
+  var currentOnSegmentEnd = null;
+  // 区間指定が無い曲（動画1本＝1曲）のときだけ使う、動画自体の長さのベストエフォート値。
+  // 曲を切り替えるたびに必ずリセットする（しないと前の曲・前の動画の長さが新しい曲の表示に混入するバグになる）。
+  var lastKnownVideoDuration = 0;
+  // 再生位置（区間内での経過秒数）はYouTube側のgetCurrentTime()往復通知を待たず、
+  // ローカルの壁時計（Date.now）で自前に計算する（play/一時停止アイコンの件と同じ理由：
+  // postMessageの受信が不安定な環境でもシークバー・±5秒が正しく動くようにするため）。
+  var playbackOffset = 0; // 直近で play/シーク した時点での経過秒数
+  var playbackAnchor = null; // playbackOffsetを起点に数え始めた壁時計時刻（Date.now）。nullなら停止中
+  function getElapsedSeconds() {
+    if (playbackAnchor === null) return playbackOffset;
+    return playbackOffset + (Date.now() - playbackAnchor) / 1000;
+  }
 
   window.onYouTubeIframeAPIReady = function () {
     ytPlayer = new YT.Player("yt-player-mount", {
@@ -656,13 +758,13 @@
           }
         },
         onStateChange: function (ev) {
-          if (ev.data === YT.PlayerState.ENDED) advanceQueue(1);
+          if (ev.data === YT.PlayerState.ENDED) advanceTrack(1);
           // 通知が届いた場合はローカル状態と表示もそれに合わせて同期する（保険）
-          if (ev.data === YT.PlayerState.PLAYING) { isYtPlaying = true; playPauseBtn.textContent = "⏸"; }
-          if (ev.data === YT.PlayerState.PAUSED) { isYtPlaying = false; playPauseBtn.textContent = "▶"; }
+          if (ev.data === YT.PlayerState.PLAYING && !isYtPlaying) { isYtPlaying = true; playPauseBtn.textContent = "⏸"; playbackAnchor = Date.now(); }
+          if (ev.data === YT.PlayerState.PAUSED && isYtPlaying) { isYtPlaying = false; playPauseBtn.textContent = "▶"; playbackOffset = getElapsedSeconds(); playbackAnchor = null; }
         },
         onError: function () {
-          advanceQueue(1); // 再生できない曲（削除・地域制限等）はスキップして次へ
+          advanceTrack(1); // 再生できない曲（削除・地域制限等）はスキップして次へ
         }
       }
     });
@@ -680,6 +782,12 @@
   // その時間が経過した時点でonSegmentEndを強制的に呼び出す（ランダム再生なら次の曲へ、単曲再生なら一時停止）。
   function playYouTubeTrack(videoId, startSeconds, durationSeconds, onSegmentEnd) {
     if (segmentTimer) { clearTimeout(segmentTimer); segmentTimer = null; }
+    currentStartSeconds = startSeconds || 0;
+    currentDurationSeconds = durationSeconds || null;
+    currentOnSegmentEnd = onSegmentEnd || null;
+    lastKnownVideoDuration = 0; // 前の曲の動画長が新しい曲の表示に混入しないようリセット
+    playbackOffset = 0;
+    playbackAnchor = Date.now(); // loadVideoByIdは即再生開始するため、ここから経過時間を数え始める
     miniMedia.hidden = false;
     spotifyWrap.hidden = true;
     spotifyWrap.innerHTML = "";
@@ -689,14 +797,57 @@
       return;
     }
     ytPlayer.loadVideoById({ videoId: videoId, startSeconds: startSeconds || 0 });
-    isYtPlaying = true; // loadVideoByIdは即再生開始するため
+    isYtPlaying = true;
     playPauseBtn.textContent = "⏸";
+    seekSlider.value = 0;
+    currentTimeLabel.textContent = "0:00";
+    durationTimeLabel.textContent = durationSeconds ? formatTime(durationSeconds) : "0:00";
     if (durationSeconds && onSegmentEnd) {
       segmentTimer = setTimeout(function () {
         segmentTimer = null;
         onSegmentEnd();
       }, durationSeconds * 1000);
     }
+    startProgressPolling();
+  }
+
+  // 手動シーク（シークバー操作・±5秒ボタン）の後に、区間終了タイマーを新しい再生位置基準で張り直す。
+  // （区間指定のある曲でシークすると、残り時間が変わるため）
+  function rescheduleSegmentTimer() {
+    if (segmentTimer) { clearTimeout(segmentTimer); segmentTimer = null; }
+    if (!currentDurationSeconds || !currentOnSegmentEnd) return;
+    var remaining = Math.max(0.2, currentDurationSeconds - getElapsedSeconds());
+    segmentTimer = setTimeout(function () {
+      segmentTimer = null;
+      currentOnSegmentEnd();
+    }, remaining * 1000);
+  }
+
+  // シークバー・再生時間の定期更新。再生位置はYouTube側のgetCurrentTime()往復通知を待たず、
+  // ローカルの壁時計で計算した値（getElapsedSeconds）を使う（postMessageの受信遅延・欠落に影響されないため）。
+  // 区間指定がある曲は「その区間内での経過時間」を、区間指定が無い曲は動画自体の長さ（分かれば）を上限として扱う。
+  function updateProgressUI() {
+    if (isScrubbing) return;
+    if (ytPlayer && ytReady) {
+      var d = ytPlayer.getDuration();
+      if (d) lastKnownVideoDuration = d; // 分かった時点で以後の表示に反映（取得できない環境でも壊れないようベストエフォート）
+    }
+    var segStart = currentStartSeconds || 0;
+    var segDur = currentDurationSeconds || Math.max(0, lastKnownVideoDuration - segStart);
+    var elapsed = getElapsedSeconds();
+    if (segDur > 0) {
+      elapsed = Math.min(elapsed, segDur);
+      seekSlider.value = Math.min(1000, (elapsed / segDur) * 1000);
+      durationTimeLabel.textContent = formatTime(segDur);
+    }
+    currentTimeLabel.textContent = formatTime(elapsed);
+  }
+  function startProgressPolling() {
+    stopProgressPolling();
+    progressTimer = setInterval(updateProgressUI, 500);
+  }
+  function stopProgressPolling() {
+    if (progressTimer) { clearInterval(progressTimer); progressTimer = null; }
   }
 
   playPauseBtn.addEventListener("click", function () {
@@ -705,10 +856,13 @@
       ytPlayer.pauseVideo();
       isYtPlaying = false;
       playPauseBtn.textContent = "▶";
+      playbackOffset = getElapsedSeconds();
+      playbackAnchor = null; // 停止中は壁時計を進めない
     } else {
       ytPlayer.playVideo();
       isYtPlaying = true;
       playPauseBtn.textContent = "⏸";
+      playbackAnchor = Date.now(); // playbackOffsetから数え直す
     }
   });
 
@@ -717,6 +871,44 @@
     var v = parseInt(volumeSlider.value, 10);
     ytPlayer.setVolume(v);
     if (v <= 0) { ytPlayer.mute(); } else { ytPlayer.unMute(); }
+  });
+
+  // 指定した区間内秒数（0〜segDur）へシークする共通処理。YouTube本体へのseekToに加え、
+  // ローカルのplaybackOffset/Anchorと区間終了タイマーも新しい位置基準で更新する。
+  function seekToOffset(targetOffset) {
+    if (!ytPlayer || !ytReady) return;
+    var segStart = currentStartSeconds || 0;
+    var segDur = currentDurationSeconds || Math.max(0, lastKnownVideoDuration - segStart);
+    var clamped = segDur > 0 ? Math.min(segDur - 0.3, Math.max(0, targetOffset)) : Math.max(0, targetOffset);
+    ytPlayer.seekTo(segStart + clamped, true);
+    playbackOffset = clamped;
+    playbackAnchor = isYtPlaying ? Date.now() : null;
+    rescheduleSegmentTimer();
+    updateProgressUI();
+  }
+
+  // ±5秒送り: 区間指定のある曲は、その区間の範囲内（次の曲にはみ出さない）にクランプする
+  function seekRelative(deltaSeconds) {
+    seekToOffset(getElapsedSeconds() + deltaSeconds);
+  }
+  seekBackBtn.addEventListener("click", function () { seekRelative(-5); });
+  seekFwdBtn.addEventListener("click", function () { seekRelative(5); });
+
+  // シークバー: ドラッグ中は自動更新を止め、離した時点（change）でシークを実行する
+  seekSlider.addEventListener("mousedown", function () { isScrubbing = true; });
+  seekSlider.addEventListener("touchstart", function () { isScrubbing = true; });
+  seekSlider.addEventListener("input", function () {
+    // ドラッグ中は時間ラベルだけ先行更新（シークはまだ行わない）
+    var segStart = currentStartSeconds || 0;
+    var segDur = currentDurationSeconds || Math.max(0, lastKnownVideoDuration - segStart);
+    var elapsed = (parseFloat(seekSlider.value) / 1000) * segDur;
+    currentTimeLabel.textContent = formatTime(elapsed);
+  });
+  seekSlider.addEventListener("change", function () {
+    var segStart = currentStartSeconds || 0;
+    var segDur = currentDurationSeconds || Math.max(0, lastKnownVideoDuration - segStart);
+    seekToOffset((parseFloat(seekSlider.value) / 1000) * segDur);
+    isScrubbing = false;
   });
 
   function playSpotifyTrack(spotifyId) {
@@ -728,15 +920,20 @@
       'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>';
   }
 
-  // --- ランダム再生（シャッフルキュー） ---
-  var shuffleQueue = [];
-  var shuffleIndex = -1;
-  var shuffleActive = false;
+  // --- トラック（再生キュー） ---
+  // track: 再生予定の曲を並べた配列。trackIndex: 現在（直近に）再生した位置（-1 = まだ何も再生していない）。
+  // 追加は常に「現在再生中の曲のすぐ後（trackIndex + 1）」に挿入する。末尾まで再生し終えたら停止する（無限ループしない）。
+  var track = [];
+  var trackIndex = -1;
 
-  function collectAllYoutubeSongs() {
+  // 現在表示中のタブ（OP/ED・映画曲・ゲーム曲のうち開いているもの）で、かつフィルタでONになっている曲だけを集める
+  function collectVisibleYoutubeSongs() {
     var seen = {};
     var pool = [];
-    document.querySelectorAll(".song-link-btn.yt").forEach(function (btn) {
+    var activeView = VIEWS.filter(function (v) { return !document.getElementById("view-" + v).hidden; })[0] || "opEd";
+    var container = document.getElementById("view-" + activeView);
+    container.querySelectorAll(".song-link-btn.yt").forEach(function (btn) {
+      if (btn.offsetParent === null) return; // フィルタでOFFのシリーズ/タイトルは除外
       var url = new URL(btn.href, location.href);
       var videoId = url.searchParams.get("v");
       if (!videoId) return;
@@ -751,6 +948,39 @@
     return pool;
   }
 
+  // アニメOP/ED人気ランキング上位15曲＋ゲーム曲でatwiki個別解説ページがある（＝人気・特徴的とされる）曲
+  function collectFeaturedYoutubeSongs() {
+    var seen = {};
+    var pool = [];
+    (window.POPULARITY_RANKING || []).forEach(function (r) {
+      var cell = document.querySelector('.op-ed-cell[data-song-key="' + CSS.escape(r.title + "|" + r.vocal) + '"]');
+      var btn = cell ? cell.querySelector(".song-link-btn.yt") : null;
+      if (!btn) return; // YouTubeリンクが無い曲（Spotifyのみ・非公式のみ）はキュー対象外
+      var url = new URL(btn.href, location.href);
+      var videoId = url.searchParams.get("v");
+      if (!videoId) return;
+      var tParam = url.searchParams.get("t");
+      var startSeconds = tParam ? parseInt(tParam, 10) : 0;
+      var key = videoId + "|" + startSeconds;
+      if (seen[key]) return;
+      seen[key] = true;
+      var durationSeconds = btn.dataset.dur ? parseInt(btn.dataset.dur, 10) : null;
+      pool.push({ videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, title: songTitleFromButton(btn), work: songWorkFromButton(btn) });
+    });
+    (window.GAME_SONGS_DATA || []).forEach(function (g) {
+      if (!g.officialVideo) return;
+      g.songs.forEach(function (s) {
+        if (!s.detailUrl || !s.yt) return;
+        var startSeconds = timeToSeconds(s.yt);
+        var key = g.officialVideo.id + "|" + startSeconds;
+        if (seen[key]) return;
+        seen[key] = true;
+        pool.push({ videoId: g.officialVideo.id, startSeconds: startSeconds, durationSeconds: s.dur || null, title: s.title, work: g.title });
+      });
+    });
+    return pool;
+  }
+
   function shuffleArray(arr) {
     for (var i = arr.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
@@ -760,8 +990,8 @@
   }
 
   function updatePosLabel() {
-    if (shuffleActive && shuffleQueue.length) {
-      miniPos.textContent = (shuffleIndex + 1) + " / " + shuffleQueue.length;
+    if (track.length) {
+      miniPos.textContent = (trackIndex + 1) + " / " + track.length;
       miniPos.hidden = false;
       prevBtn.hidden = false;
       nextBtn.hidden = false;
@@ -772,54 +1002,103 @@
     }
   }
 
-  function advanceQueue(dir) {
-    if (!shuffleActive || !shuffleQueue.length) return;
-    shuffleIndex += dir;
-    if (shuffleIndex >= shuffleQueue.length) {
-      shuffleQueue = shuffleArray(collectAllYoutubeSongs()); // 一周したら再シャッフルして無限に続ける
-      shuffleIndex = 0;
-    } else if (shuffleIndex < 0) {
-      shuffleIndex = shuffleQueue.length - 1;
+  // トラック内のindex番目の曲を再生する
+  function playTrackAt(index) {
+    trackIndex = index;
+    var song = track[index];
+    showMiniPlayer("🎵 トラック再生中", song.title, song.work);
+    playYouTubeTrack(song.videoId, song.startSeconds, song.durationSeconds, function () { advanceTrack(1); });
+    updatePosLabel();
+  }
+
+  // 前へ/次へ。トラックの先頭・末尾でクランプする（末尾に達したら一時停止して止まる。無限ループしない）
+  function advanceTrack(dir) {
+    if (!track.length) return;
+    var newIndex = trackIndex + dir;
+    if (newIndex < 0) newIndex = 0;
+    if (newIndex >= track.length) {
+      if (ytPlayer && ytReady) ytPlayer.pauseVideo();
+      isYtPlaying = false;
+      playPauseBtn.textContent = "▶";
+      playbackOffset = getElapsedSeconds();
+      playbackAnchor = null;
+      return;
     }
-    var track = shuffleQueue[shuffleIndex];
-    showMiniPlayer("🔀 ランダム再生中", track.title, track.work);
-    playYouTubeTrack(track.videoId, track.startSeconds, track.durationSeconds, function () { advanceQueue(1); });
-    updatePosLabel();
+    playTrackAt(newIndex);
   }
 
-  function startShuffle() {
+  // 曲をトラックへ挿入する。常に「現在再生中の曲のすぐ後（trackIndex + 1）」に挿入する。
+  // playNow=true、または何も再生していない状態（trackIndex === -1）への追加は、追加した曲をそのまま再生開始する。
+  function insertIntoTrack(song, playNow) {
     if (!canEmbed) return;
-    shuffleQueue = shuffleArray(collectAllYoutubeSongs());
-    if (!shuffleQueue.length) return;
-    shuffleIndex = -1;
-    shuffleActive = true;
-    shuffleBtn.textContent = "⏹ ランダム再生を停止";
-    shuffleBtn.classList.add("active");
-    advanceQueue(1);
+    var insertAt = trackIndex + 1;
+    if (insertAt < 0) insertAt = 0;
+    track.splice(insertAt, 0, song);
+    if (playNow || trackIndex < 0) {
+      playTrackAt(insertAt);
+    } else {
+      updatePosLabel();
+    }
   }
 
-  function stopShuffle() {
+  // poolから最大count曲をランダムに選んでトラックに追加する（常に現在の再生位置のすぐ後にまとめて挿入）
+  function addRandomToTrack(pool, count) {
+    if (!canEmbed || !pool.length) return;
+    var picks = shuffleArray(pool.slice()).slice(0, Math.min(count, pool.length));
+    var insertAt = trackIndex + 1;
+    if (insertAt < 0) insertAt = 0;
+    var shouldAutoplay = trackIndex < 0;
+    picks.forEach(function (song, i) { track.splice(insertAt + i, 0, song); });
+    if (shouldAutoplay) {
+      playTrackAt(insertAt);
+    } else {
+      updatePosLabel();
+    }
+  }
+
+  function clearTrack() {
     if (segmentTimer) { clearTimeout(segmentTimer); segmentTimer = null; }
-    if (!shuffleActive) return;
-    shuffleActive = false;
-    shuffleQueue = [];
-    shuffleIndex = -1;
-    shuffleBtn.textContent = "🔀 ランダム再生";
-    shuffleBtn.classList.remove("active");
+    track = [];
+    trackIndex = -1;
     updatePosLabel();
   }
 
-  shuffleBtn.addEventListener("click", function () {
-    if (shuffleActive) stopShuffle(); else startShuffle();
+  shuffleFeaturedBtn.addEventListener("click", function () {
+    addRandomToTrack(collectFeaturedYoutubeSongs(), 10);
   });
-  prevBtn.addEventListener("click", function () { advanceQueue(-1); });
-  nextBtn.addEventListener("click", function () { advanceQueue(1); });
+  shuffleVisibleGroup.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-count]");
+    if (!btn) return;
+    addRandomToTrack(collectVisibleYoutubeSongs(), parseInt(btn.dataset.count, 10));
+  });
+  prevBtn.addEventListener("click", function () { advanceTrack(-1); });
+  nextBtn.addEventListener("click", function () { advanceTrack(1); });
   updatePosLabel();
 
+  // YouTube曲リンクの右クリックメニュー（「▶ 再生」「➕ トラックに追加」）
+  document.addEventListener("contextmenu", function (e) {
+    if (!canEmbed) return;
+    var yt = e.target.closest(".song-link-btn.yt");
+    if (!yt) return;
+    e.preventDefault();
+    var url = new URL(yt.href, location.href);
+    var videoId = url.searchParams.get("v");
+    if (!videoId) return;
+    var tParam = url.searchParams.get("t");
+    var startSeconds = tParam ? parseInt(tParam, 10) : 0;
+    var durationSeconds = yt.dataset.dur ? parseInt(yt.dataset.dur, 10) : null;
+    var songData = { videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, title: songTitleFromButton(yt), work: songWorkFromButton(yt) };
+    showContextMenu(e.clientX, e.clientY, [
+      { label: "▶ 再生", onClick: function () { insertIntoTrack(songData, true); } },
+      { label: "➕ トラックに追加", onClick: function () { insertIntoTrack(songData, false); } }
+    ]);
+  });
+
   document.getElementById("mini-player-close").addEventListener("click", function () {
-    stopShuffle();
+    clearTrack();
     if (ytPlayer && ytReady) ytPlayer.stopVideo();
     isYtPlaying = false;
+    playbackAnchor = null;
     spotifyWrap.innerHTML = "";
     hideYoutubeControls();
     miniBar.hidden = true;
@@ -833,26 +1112,20 @@
     if (yt) {
       if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return; // 新規タブ操作はブラウザ標準動作に任せる
       e.preventDefault();
-      stopShuffle(); // 単曲を選んだらランダム再生は解除
+      // 通常クリック＝右クリックメニューの「▶ 再生」と同じ扱い（現在の再生位置のすぐ後に挿入してすぐ再生。トラックの他の曲は消さない）
       var url = new URL(yt.href, location.href);
       var videoId = url.searchParams.get("v");
       var tParam = url.searchParams.get("t"); // 例: "8337s" または null
       var startSeconds = tParam ? parseInt(tParam, 10) : 0;
       var durationSeconds = yt.dataset.dur ? parseInt(yt.dataset.dur, 10) : null;
-      showMiniPlayer("YouTubeで再生中", songTitleFromButton(yt), songWorkFromButton(yt));
-      // durationSecondsが分かる曲（長尺BGM集動画の一部）は、区間終了時に自動で一時停止する（他の曲へ流れ続けないように）
-      playYouTubeTrack(videoId, startSeconds, durationSeconds, function () {
-        if (ytPlayer && ytReady) ytPlayer.pauseVideo();
-        isYtPlaying = false;
-        playPauseBtn.textContent = "▶";
-      });
+      insertIntoTrack({ videoId: videoId, startSeconds: startSeconds, durationSeconds: durationSeconds, title: songTitleFromButton(yt), work: songWorkFromButton(yt) }, true);
       return;
     }
     var sp = e.target.closest(".song-link-btn.sp");
     if (sp) {
       if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
-      stopShuffle();
+      clearTrack();
       var m = sp.href.match(/track\/([A-Za-z0-9]+)/);
       if (!m) return;
       showMiniPlayer("Spotifyで再生中", songTitleFromButton(sp), songWorkFromButton(sp));
