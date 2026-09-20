@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>まとめ一覧｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .m-wrap { max-width: var(--page-max-width); margin: 0 auto; }
+
+  /* ヒーロー */
+  .m-hero { background: #111119; border: 1px solid #1e1e28; border-radius: 12px; padding: 18px 20px; }
+  .m-hero h1 { font-size: 1.4rem; font-weight: 800; color: #e2e2e2; }
+  .m-hero p { margin-top: 8px; font-size: 0.82rem; color: #778; line-height: 1.9; }
+
+  /* セクション見出し（ポケモンポータルと同じ「英語＋日本語」） */
+  .m-section { margin-top: 30px; }
+  .m-section h2 { display: flex; align-items: baseline; gap: 10px; font-weight: 800; margin: 0 0 6px;
+                   padding-bottom: 10px; border-bottom: 3px solid #1e1e2a; }
+  .m-section h2 .en { font-size: 1.4rem; color: #e2e2e2; letter-spacing: 0.02em; }
+  .m-section h2 .jp { font-size: 0.82rem; color: #667; font-weight: 700; }
+  .m-section .m-note { font-size: 0.76rem; color: #667; line-height: 1.8; margin: 10px 0 16px; }
+
+  /* カードグリッド */
+  .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .m-card { display: flex; flex-direction: column; background: #111119; border: 1px solid #1e1e28; border-radius: 12px;
+             overflow: hidden; transition: border-color 0.15s, transform 0.15s; }
+  .m-card:hover { border-color: #36364a; transform: translateY(-2px); }
+  .m-card-link { display: block; text-decoration: none; color: inherit; }
+  .m-thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0a0a10; }
+  .m-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .m-thumb.collage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 2px; }
+  .m-thumb.collage img { min-width: 0; min-height: 0; }
+  .m-thumb.collage .sw-tile { min-width: 0; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                                font-size: 0.86rem; font-weight: 700; line-height: 1.3; text-align: center; }
+  .m-thumb.collage .sw-tile small { font-size: 0.62rem; font-weight: 400; opacity: 0.85; }
+  .m-thumb-credit { font-size: 0.62rem; color: #445; padding: 4px 14px 0; }
+  .m-card-body { padding: 10px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .m-badge { align-self: flex-start; font-size: 0.64rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
+  .m-badge.active { background: #10261a; color: #4cc27d; }
+  .m-badge.todo   { background: #2a2210; color: #d6a93a; }
+  .m-card-title-link { text-decoration: none; color: inherit; }
+  .m-card-title-link:hover { text-decoration: underline; }
+  .m-card-title { font-size: 0.98rem; font-weight: 700; color: #e2e2e2; }
+  .m-card-desc { font-size: 0.76rem; color: #889; line-height: 1.7; flex: 1; }
+  .m-actions { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .m-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; font-weight: 700; padding: 6px 12px;
+            border-radius: 999px; text-decoration: none; white-space: nowrap; border: 1px solid transparent; transition: opacity 0.15s, background 0.15s; }
+  .m-btn.primary { background: #3c8be0; color: #fff; }
+  .m-btn.primary:hover { opacity: 0.86; }
+
+  /* 空欄プレースホルダー */
+  .m-empty-card { border: 1px dashed #2a2a3a; border-radius: 12px; padding: 20px 16px; text-align: center; font-size: 0.78rem;
+                   color: #556; line-height: 1.8; background: #0e0e16; display: flex; align-items: center; justify-content: center;
+                   min-height: 200px; }
+
+  .m-sources { margin-top: 34px; border-top: 1px solid #1c1c28; padding-top: 12px; font-size: 0.68rem; color: #445; line-height: 1.9; }
+  .m-sources h3 { font-size: 0.72rem; color: #556; margin-bottom: 4px; }
+  .m-sources a { color: #557; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+</header>
+
+<div class="content">
+<div class="m-wrap">
+
+  <div class="m-hero" id="matome-hero">
+    <h1>まとめ一覧</h1>
+    <p>
+      気になるテーマを横断してまとめたページの入口。カードから各まとめページへ移動できる。<br>
+      作曲者や年などの情報は、出典で確認できたものだけを載せる方針。
+    </p>
+  </div>
+
+  <section class="m-section" id="matome-list">
+    <h2><span class="en">MATOME</span><span class="jp">まとめページ</span></h2>
+    <div class="m-note">
+      表・一覧で整理したまとめ。新しいテーマを追加するときは、ここにカードを足す。
+    </div>
+    <div class="m-grid" id="matome-grid">
+
+      <div class="m-card" id="matome-card-game-music">
+        <a class="m-card-link" href="game-music.html">
+          <div class="m-thumb collage">
+            <img src="https://cache-www.dragonquest.jp/img/common/ogp2019.png" alt="ドラゴンクエスト" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://www.jp.square-enix.com/nierautomata/ogimage.png" alt="NieR:Automata" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://www.jp.square-enix.com/chronotrigger/twitter_card.jpg" alt="クロノ・トリガー" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://p5r.jp/resources/img/ogp_20190424.jpg" alt="ペルソナ5" loading="lazy" referrerpolicy="no-referrer">
+          </div>
+        </a>
+        <div class="m-thumb-credit">出典: dragonquest.jp / square-enix.com / p5r.jp（各公式）</div>
+        <div class="m-card-body">
+          <span class="m-badge active">表あり（14作品・66曲）</span>
+          <a class="m-card-title-link" href="game-music.html"><div class="m-card-title">① ゲーム音楽 まとめ</div></a>
+          <div class="m-card-desc">有名ゲーム音楽を、ゲームごとに代表曲・作曲者・場面で一覧化。ゲーム名での絞り込みと検索、YouTubeでの視聴リンク付き。</div>
+          <div class="m-actions">
+            <a class="m-btn primary" href="game-music.html">まとめを見る</a>
+          </div>
+        </div>
+      </div>
+
+<div class="m-empty-card" id="matome-card-next">次のまとめ<br>（テーマ未定）</div>
+
+    </div>
+  </section>
+
+  <div class="m-sources" id="matome-sources">
+    <h3>サムネイル画像の出典</h3>
+    カードの画像は各ゲームの公式サイト（
+    <a href="https://www.dragonquest.jp/" target="_blank" rel="noopener noreferrer">ドラゴンクエスト</a> /
+    <a href="https://www.jp.square-enix.com/nierautomata/" target="_blank" rel="noopener noreferrer">NieR:Automata</a> /
+    <a href="https://www.jp.square-enix.com/chronotrigger/" target="_blank" rel="noopener noreferrer">クロノ・トリガー</a> /
+    <a href="https://p5r.jp/" target="_blank" rel="noopener noreferrer">ペルソナ5 ザ・ロイヤル</a>）から引用（直接参照）しています。権利は各社に帰属します。
+  </div>
+
+</div>
+</div>
+
+<script src="shared/nav.js"></script>
+</body>
+</html>

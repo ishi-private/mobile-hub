@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ゲーム音楽 まとめ｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  #search { flex: 1; min-width: 160px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+             border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none; }
+  #search:focus { border-color: #4a4a6a; }
+  #game-filter { max-width: var(--page-max-width); margin: 10px auto 0; display: flex; gap: 5px; flex-wrap: wrap; }
+  .game-btn { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px; font-size: 0.72rem; cursor: pointer;
+               background: #13131c; color: #667; transition: all 0.12s; white-space: nowrap; }
+  .game-btn:hover { border-color: #3a3a5a; color: #99a; }
+  .game-btn.active { background: #1c1830; border-color: #4a3a80; color: #9a86e0; }
+
+  #intro { max-width: var(--page-max-width); margin: 0 auto 14px; font-size: 0.78rem; color: #778; line-height: 1.8; }
+  #count { max-width: var(--page-max-width); margin: 0 auto 8px; font-size: 0.74rem; color: #3a3a4a; }
+
+  #table-wrap { max-width: var(--page-max-width); margin: 0 auto; overflow-x: auto; }
+  table.gm-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 720px; }
+  .gm-table th { text-align: left; font-size: 0.7rem; font-weight: 600; color: #667; padding: 8px 10px;
+                  border-bottom: 1px solid #2a2a3a; background: #0e0e16; white-space: nowrap; }
+  .gm-table td { padding: 10px; border-bottom: 1px solid #1a1a24; vertical-align: top; color: #c8c8d8; line-height: 1.6; }
+  .gm-table td.game-cell { width: 190px; border-right: 1px solid #1a1a24; background: #0d0d14; }
+  .game-thumb { width: 168px; aspect-ratio: 16/9; background: #050508; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+  .game-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .game-title { font-size: 0.9rem; font-weight: 700; color: #e2e2e2; }
+  .game-meta { font-size: 0.68rem; color: #667; margin-top: 2px; }
+  .game-note { font-size: 0.66rem; color: #556; margin-top: 4px; line-height: 1.5; }
+  .game-credit { font-size: 0.6rem; color: #445; margin-top: 4px; }
+  .track-name { font-weight: 600; color: #e2e2e2; }
+  .composer-cell { white-space: nowrap; }
+  .scene-empty { color: #334; }
+  a.yt-btn { display: inline-block; font-size: 0.68rem; padding: 3px 10px; border-radius: 6px; text-decoration: none; white-space: nowrap;
+              background: #2a1216; color: #e06070; border: 1px solid #4a1e26; }
+  a.yt-btn:hover { background: #3a1a20; }
+  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; }
+
+  #sources { max-width: var(--page-max-width); margin: 28px auto 0; font-size: 0.68rem; color: #445; line-height: 1.9;
+              border-top: 1px solid #1c1c28; padding-top: 12px; }
+  #sources a { color: #557; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <div class="controls">
+    <input type="text" id="search" placeholder="ゲーム名・曲名・作曲者で検索…">
+  </div>
+  <div id="game-filter"></div>
+</header>
+
+<div class="content">
+  <div id="intro">
+    有名ゲーム音楽を、ゲームごとに代表曲・作曲者・場面で一覧化したまとめ（<a href="matome.html" style="color:#6699cc;text-decoration:none;">← まとめ一覧</a>）。
+    作曲者・年・場面は出典（Wikipedia等）で確認できたものだけを載せており、場面の記載がない曲は「—」にしている。
+    視聴ボタンはYouTubeの検索結果へのリンク。
+  </div>
+  <div id="count"></div>
+  <div id="table-wrap">
+    <table class="gm-table" id="gm-table">
+      <thead>
+        <tr><th>ゲーム</th><th>曲名</th><th>作曲者</th><th>場面・備考</th><th>視聴</th></tr>
+      </thead>
+      <tbody id="gm-body"></tbody>
+    </table>
+  </div>
+  <div id="empty" style="display:none;">該当する曲がありません。</div>
+  <div id="sources">
+    <b>出典</b>：作曲者・年・機種・場面は日本語版/英語版Wikipedia（各ゲーム記事・「クロノ・トリガーの音楽」・「Minecraft – Volume Alpha」）で確認。
+    ゼノブレイド（初代・2・イーラ・3）の曲名・作曲者・編曲者は<a href="https://www.procyon-studio.co.jp/special/xbostportal/" target="_blank" rel="noopener noreferrer" style="color:#557;">プロキオンスタジオの公式サントラ曲目ページ</a>から、場面は同ページの作曲者紹介の記述に基づく（記述のない曲の場面は空欄）。ゼノブレイドクロスの曲目は Xeno Series Wiki による（作曲者は日本語版Wikipediaで確認）。
+    サムネイル画像は各ゲームの公式サイト（dragonquest.jp / square-enix.com / nintendo.com / p5r.jp / undertale.com / minecraft.net）から直接引用しており、権利は各社に帰属します。
+    作品によってはシリーズ最新作や後年のリメイク版の公式画像を使用しています。
+  </div>
+</div>
+
+<script src="shared/nav.js"></script>
+<script src="data/game-music-data.js"></script>
+<script>
+(function () {
+  const games = window.GAME_MUSIC_DATA || [];
+  const bodyEl = document.getElementById("gm-body");
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const tableEl = document.getElementById("gm-table");
+  const searchEl = document.getElementById("search");
+  const filterEl = document.getElementById("game-filter");
+
+  let activeGame = "";
+  let query = "";
+
+  function buildFilter() {
+    filterEl.innerHTML = "";
+    const all = document.createElement("button");
+    all.className = "game-btn" + (activeGame === "" ? " active" : "");
+    all.textContent = "すべて (" + games.length + ")";
+    all.onclick = function () { activeGame = ""; render(); };
+    filterEl.appendChild(all);
+    games.forEach(function (g) {
+      const b = document.createElement("button");
+      b.className = "game-btn" + (activeGame === g.id ? " active" : "");
+      b.textContent = g.title;
+      b.onclick = function () { activeGame = (activeGame === g.id ? "" : g.id); render(); };
+      filterEl.appendChild(b);
+    });
+  }
+
+  function trackMatches(g, t) {
+    if (!query) return true;
+    const hay = [g.title, t.name, t.composer, t.scene].join(" ").toLowerCase();
+    return hay.includes(query.toLowerCase());
+  }
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function render() {
+    buildFilter();
+    bodyEl.innerHTML = "";
+    let trackCount = 0, gameCount = 0;
+
+    games.forEach(function (g) {
+      if (activeGame && g.id !== activeGame) return;
+      const tracks = g.tracks.filter(function (t) { return trackMatches(g, t); });
+      if (tracks.length === 0) return;
+      gameCount++;
+      trackCount += tracks.length;
+
+      // 連続して同じ作曲者のセルは rowspan で結合する
+      const composerSpan = tracks.map(function () { return 0; });
+      for (let i = 0; i < tracks.length; ) {
+        let j = i;
+        while (j + 1 < tracks.length && tracks[j + 1].composer === tracks[i].composer) j++;
+        composerSpan[i] = j - i + 1;
+        i = j + 1;
+      }
+
+      tracks.forEach(function (t, idx) {
+        const tr = document.createElement("tr");
+
+        if (idx === 0) {
+          const gc = el("td", "game-cell");
+          gc.rowSpan = tracks.length;
+          const thumb = el("div", "game-thumb");
+          const img = document.createElement("img");
+          img.src = g.image;
+          img.alt = g.title;
+          img.referrerPolicy = "no-referrer";
+          img.loading = "lazy";      // 公式のOGP画像は1枚1〜1.6MBあるため、見える分だけ読み込む
+          img.decoding = "async";
+          thumb.appendChild(img);
+          gc.appendChild(thumb);
+          gc.appendChild(el("div", "game-title", g.title));
+          gc.appendChild(el("div", "game-meta", g.year + "年 / " + g.platform));
+          if (g.note) gc.appendChild(el("div", "game-note", g.note));
+          gc.appendChild(el("div", "game-credit", "画像: " + g.imageCredit));
+          tr.appendChild(gc);
+        }
+
+        tr.appendChild(el("td", "track-name", t.name));
+
+        if (composerSpan[idx] > 0) {
+          const cc = el("td", "composer-cell", t.composer);
+          cc.rowSpan = composerSpan[idx];
+          tr.appendChild(cc);
+        }
+
+        const sc = el("td", t.scene ? "" : "scene-empty", t.scene || "—");
+        tr.appendChild(sc);
+
+        const yt = el("td");
+        const a = el("a", "yt-btn", "▶ YouTube検索");
+        a.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(t.q);
+        a.target = "_blank";
+        a.rel = "noopener";
+        yt.appendChild(a);
+        tr.appendChild(yt);
+
+        bodyEl.appendChild(tr);
+      });
+    });
+
+    countEl.textContent = gameCount + " 作品 / " + trackCount + " 曲";
+    const none = trackCount === 0;
+    tableEl.style.display = none ? "none" : "";
+    emptyEl.style.display = none ? "block" : "none";
+  }
+
+  searchEl.addEventListener("input", function () { query = searchEl.value; render(); });
+  render();
+})();
+</script>
+</body>
+</html>

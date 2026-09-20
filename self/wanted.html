@@ -19,7 +19,7 @@
 
   #count { max-width: var(--page-max-width); margin: 14px auto 8px; font-size: 0.74rem; color: #3a3a4a; }
   #list { max-width: var(--page-max-width); margin: 0 auto; display: grid;
-           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; align-items: start; }
 
   .card { background: #111119; border: 1px solid #1e1e28; border-left: 3px solid #333; border-radius: 8px;
            padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
@@ -34,6 +34,23 @@
   .card-foot { display: flex; gap: 10px; align-items: center; font-size: 0.66rem; color: #445; }
   .card-foot a { color: #6699cc; text-decoration: none; }
   .card-foot a:hover { text-decoration: underline; }
+
+  /* ポスタータイル（F:\anime の favorites.html「ポスター」表示と同じ寸法: 正方形・最小130px・gap10px） */
+  #poster-list { max-width: var(--page-max-width); margin: 0 auto 16px; display: grid;
+                  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+  #poster-list:empty { display: none; }
+  .poster-card { position: relative; display: block; background: #1c1c24; border: 2px solid #333; border-radius: 8px;
+                  overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.15s, border-color 0.15s; }
+  a.poster-card { cursor: pointer; }
+  a.poster-card:hover { transform: translateY(-2px); }
+  .poster-card.pri-high { border-color: #ef4444; }
+  .poster-card.pri-mid  { border-color: #e0a63c; }
+  .poster-card .poster { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; background: #0d0d16; }
+  .poster-card .ptitle { padding: 6px 7px 7px; font-size: 0.72rem; color: #ccc; line-height: 1.35;
+                          overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+
+  #sources { max-width: var(--page-max-width); margin: 24px auto 0; font-size: 0.64rem; color: #445; line-height: 1.8; }
+  #sources:empty { display: none; }
 
   #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; line-height: 1.8; }
   #empty code { background: #16161e; padding: 1px 6px; border-radius: 4px; color: #778; }
@@ -50,8 +67,10 @@
 
 <div class="content">
   <div id="count"></div>
+  <div id="poster-list"></div>
   <div id="list"></div>
   <div id="empty" style="display:none;"></div>
+  <div id="sources"></div>
 </div>
 
 <script src="shared/nav.js"></script>
@@ -60,6 +79,8 @@
 (function () {
   const data = window.WANTED_DATA || [];
   const listEl = document.getElementById("list");
+  const posterEl = document.getElementById("poster-list");
+  const sourcesEl = document.getElementById("sources");
   const countEl = document.getElementById("count");
   const emptyEl = document.getElementById("empty");
   const searchEl = document.getElementById("search");
@@ -97,6 +118,8 @@
   function render() {
     buildCatFilter();
     listEl.innerHTML = "";
+    posterEl.innerHTML = "";
+    sourcesEl.textContent = "";
 
     if (data.length === 0) {
       countEl.textContent = "";
@@ -119,7 +142,32 @@
     }
     emptyEl.style.display = "none";
 
-    filtered.forEach(function (d) {
+    // 画像付きはポスタータイル（クリックで公式サイトへ）、画像なしは従来のテキストカード
+    const credits = [];
+    filtered.filter(function (d) { return d.image; }).forEach(function (d) {
+      const tile = document.createElement(d.url ? "a" : "div");
+      tile.className = "poster-card pri-" + (d.priority || "mid");
+      if (d.url) {
+        tile.href = d.url;
+        tile.target = "_blank";
+        tile.rel = "noopener";
+      }
+      const img = document.createElement("img");
+      img.className = "poster";
+      img.src = d.image;
+      img.alt = d.title || "";
+      img.referrerPolicy = "no-referrer";
+      tile.appendChild(img);
+      const t = document.createElement("div");
+      t.className = "ptitle";
+      t.textContent = d.title || "";
+      tile.appendChild(t);
+      posterEl.appendChild(tile);
+      if (d.imageCredit && credits.indexOf(d.imageCredit) < 0) credits.push(d.imageCredit);
+    });
+    if (credits.length) sourcesEl.textContent = "画像の出典: " + credits.join(" / ") + "（権利は各社に帰属します）";
+
+    filtered.filter(function (d) { return !d.image; }).forEach(function (d) {
       const card = document.createElement("div");
       card.className = "card pri-" + (d.priority || "mid");
 
@@ -157,7 +205,7 @@
           a.href = d.url;
           a.target = "_blank";
           a.rel = "noopener";
-          a.textContent = "参考リンク →";
+          a.textContent = (d.urlLabel || "参考リンク") + " →";
           foot.appendChild(a);
         }
         card.appendChild(foot);
