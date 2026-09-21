@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アニメ OP/ED まとめ｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  #search { flex: 1; min-width: 160px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+             border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none; }
+  #search:focus { border-color: #4a4a6a; }
+  #kind-filter { display: flex; gap: 5px; }
+  #work-filter { flex: 1 1 260px; min-width: 200px; }
+  #work-select { width: 100%; padding: 7px 10px; background: #16161e; border: 1px solid #2a2a3a; border-radius: 7px;
+                  color: #c8c8d8; font-size: 0.82rem; outline: none; }
+  #work-select:focus { border-color: #4a4a6a; }
+  .chip-btn { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px; font-size: 0.72rem; cursor: pointer;
+               background: #13131c; color: #667; transition: all 0.12s; white-space: nowrap; }
+  .chip-btn:hover { border-color: #3a3a5a; color: #99a; }
+  .chip-btn.active { background: #1c1830; border-color: #4a3a80; color: #9a86e0; }
+
+  #intro { max-width: var(--page-max-width); margin: 0 auto 14px; font-size: 0.78rem; color: #778; line-height: 1.8; }
+  #count { max-width: var(--page-max-width); margin: 0 auto 8px; font-size: 0.74rem; color: #3a3a4a; }
+
+  #table-wrap { max-width: var(--page-max-width); margin: 0 auto; overflow-x: auto; }
+  table.ae-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 760px; }
+  .ae-table th { text-align: left; font-size: 0.7rem; font-weight: 600; color: #667; padding: 8px 10px;
+                  border-bottom: 1px solid #2a2a3a; background: #0e0e16; white-space: nowrap; }
+  .ae-table td { padding: 10px; border-bottom: 1px solid #1a1a24; vertical-align: top; color: #c8c8d8; line-height: 1.6; }
+  .ae-table td.work-cell { width: 190px; border-right: 1px solid #1a1a24; background: #0d0d14; }
+  .work-thumb { width: 168px; aspect-ratio: 16/9; background: #050508; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+  .work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .work-thumb.noimg { display: flex; align-items: center; justify-content: center; font-size: 0.66rem; color: #334;
+                       background: linear-gradient(135deg, #0c0c14, #14141e); border: 1px dashed #24243a; }
+  .work-title { font-size: 0.9rem; font-weight: 700; color: #e2e2e2; }
+  .work-meta { font-size: 0.68rem; color: #667; margin-top: 2px; }
+  .work-note { font-size: 0.66rem; color: #556; margin-top: 4px; line-height: 1.5; }
+  .work-credit { font-size: 0.6rem; color: #445; margin-top: 4px; }
+  td.kind-cell { width: 54px; white-space: nowrap; }
+  .kind-chip { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
+  .kind-chip.op { background: #10261a; color: #4cc27d; }
+  .kind-chip.ed { background: #1c1830; color: #9a86e0; }
+  .track-name { font-weight: 600; color: #e2e2e2; }
+  .artist-cell { min-width: 120px; }
+  .empty-mark { color: #334; }
+  .usage-note { font-size: 0.68rem; color: #667; margin-top: 2px; line-height: 1.5; }
+  a.yt-btn { display: inline-block; font-size: 0.68rem; padding: 3px 10px; border-radius: 6px; text-decoration: none; white-space: nowrap;
+              background: #2a1216; color: #e06070; border: 1px solid #4a1e26; }
+  a.yt-btn:hover { background: #3a1a20; }
+  a.yt-btn.official { background: #10261a; color: #4cc27d; border-color: #1e4a30; }
+  a.yt-btn.official:hover { background: #163422; }
+  a.yt-btn.search { background: #14141e; color: #778; border-color: #2a2a3a; }
+  a.yt-btn.search:hover { background: #1a1a28; }
+  .yt-tag { display: block; margin-top: 3px; font-size: 0.62rem; line-height: 1.4; color: #667; }
+  .yt-tag.unofficial { color: #c08a3e; }
+  tr.playing td { background: #16142a; }
+  tr.playing td.work-cell { background: #0d0d14; }
+  a.yt-btn.now { outline: 2px solid #9a86e0; outline-offset: 1px; }
+  #intro-mobile { display: none; color: #9a86e0; }
+  body.mobile-hub #intro-mobile { display: block; }
+
+  /* サイト内プレイヤー（mobile-hub公開版のみ。build.ps1 が window.MOBILE_HUB_PLAYER を注入したときだけ表示） */
+  #ae-player { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; background: #0e0e16; border-top: 1px solid #2a2a3a;
+                box-shadow: 0 -4px 18px rgba(0,0,0,0.5); padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); }
+  #ae-player[hidden] { display: none; }
+  .pl-inner { max-width: var(--page-max-width); margin: 0 auto; display: flex; gap: 12px; align-items: flex-start; }
+  .pl-video { flex: 0 0 auto; width: 192px; aspect-ratio: 16/9; background: #000; border-radius: 6px; overflow: hidden; }
+  #ae-player.big .pl-video { width: min(100%, 400px); }
+  .pl-video iframe { width: 100%; height: 100%; display: block; border: none; }
+  .pl-side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .pl-title { font-size: 0.86rem; font-weight: 700; color: #e2e2e2; line-height: 1.4; }
+  .pl-work { font-size: 0.7rem; color: #778; line-height: 1.4; }
+  .pl-badge { font-size: 0.64rem; color: #4cc27d; }
+  .pl-badge.unofficial { color: #c08a3e; }
+  .pl-msg { font-size: 0.7rem; color: #e0a060; min-height: 1em; }
+  .pl-ctrl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .pl-ctrl button, .pl-ctrl a { border: none; background: #1c1c2a; color: #c8c8d8; border-radius: 6px; min-width: 38px; height: 34px; padding: 0 10px;
+                                  font-size: 0.85rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+  .pl-ctrl button:hover, .pl-ctrl a:hover { background: #2a2a40; }
+  .pl-ctrl a.pl-open { font-size: 0.7rem; color: #e06070; }
+  @media (max-width: 560px) {
+    .pl-inner { flex-direction: column; gap: 6px; }
+    .pl-video { width: 176px; }
+    #ae-player.big .pl-video { width: 100%; }
+    .pl-inner { align-items: stretch; }
+    .pl-head { display: flex; gap: 10px; align-items: flex-start; }
+  }
+  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; }
+
+  #sources { max-width: var(--page-max-width); margin: 28px auto 0; font-size: 0.68rem; color: #445; line-height: 1.9;
+              border-top: 1px solid #1c1c28; padding-top: 12px; }
+  #sources a { color: #557; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky" id="page-header">
+  <nav id="site-nav" class="page-nav"></nav>
+  <div class="controls">
+    <input type="text" id="search" placeholder="作品名・曲名・歌手で検索…">
+    <div id="work-filter"></div>
+    <div id="kind-filter"></div>
+  </div>
+</header>
+
+<div class="content">
+  <div id="intro">
+    お気に入りに入れているアニメ（放送済みのTVシリーズ）のOP（オープニング）・ED（エンディング）主題歌を、作品ごとに歌手・使用話数で一覧化したまとめ（<a href="matome.html" style="color:#6699cc;text-decoration:none;">← まとめ一覧</a>）。
+    曲名・歌手・使用話数は日本語版Wikipediaの各作品記事で確認できたものだけを載せており、記載のない項目は「—」にしている。
+    記事に載っているTV放送分のOP/EDを載せている（挿入歌・劇中歌・劇場版/OVAの主題歌は除く）。原作記事にアニメの主題歌が載っていない作品は未掲載。
+    視聴ボタンは曲ごとのYouTube動画へ直接リンクしている。<b style="color:#4cc27d;">公式チャンネルのノンクレジットOP/ED映像</b>を優先し、無い曲は公式のOP/ED映像・MV・音源（YouTube Music の Topic 含む）、それも無い曲は「<span style="color:#c08a3e;">※非公式</span>」のアップロードを付けている。動画が見つからなかった曲は従来どおりYouTube検索へのリンク。
+  </div>
+  <div id="intro-mobile" style="max-width: var(--page-max-width); margin: -6px auto 14px; font-size: 0.78rem; line-height: 1.8;">
+    ▶ を押すとYouTubeへは移動せず、画面下のプレイヤーでそのまま再生します（続けて次の曲も自動再生）。サイト内で再生できない動画だけYouTubeが開きます。
+  </div>
+  <div id="count"></div>
+  <div id="table-wrap">
+    <table class="ae-table" id="ae-table">
+      <thead>
+        <tr><th>作品</th><th>種別</th><th>曲名</th><th>歌手</th><th>使用話数・備考</th><th>視聴</th></tr>
+      </thead>
+      <tbody id="ae-body"></tbody>
+    </table>
+  </div>
+  <div id="empty" style="display:none;">該当する曲がありません。</div>
+  <div id="sources"></div>
+</div>
+
+<div id="ae-player" hidden>
+  <div class="pl-inner">
+    <div class="pl-video"><div id="pl-mount"></div></div>
+    <div class="pl-side">
+      <div class="pl-head">
+        <div>
+          <div class="pl-title" id="pl-title"></div>
+          <div class="pl-work" id="pl-work"></div>
+          <div class="pl-badge" id="pl-badge"></div>
+        </div>
+      </div>
+      <div class="pl-msg" id="pl-msg"></div>
+      <div class="pl-ctrl">
+        <button type="button" id="pl-prev" title="前の曲" aria-label="前の曲">⏮</button>
+        <button type="button" id="pl-toggle" title="再生/一時停止" aria-label="再生/一時停止">⏸</button>
+        <button type="button" id="pl-next" title="次の曲" aria-label="次の曲">⏭</button>
+        <button type="button" id="pl-size" title="プレイヤーの大きさ" aria-label="プレイヤーの大きさ">⤢</button>
+        <a id="pl-open" class="pl-open" href="#" target="_blank" rel="noopener noreferrer">YouTubeで開く</a>
+        <button type="button" id="pl-close" title="閉じる" aria-label="閉じる">✕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>window.MOBILE_HUB_PLAYER = true;</script>
+<script src="shared/nav.js"></script>
+<script src="data/anime-op-ed-data.js"></script>
+<script>
+(function () {
+  const works = window.ANIME_OP_ED_DATA || [];
+  const bodyEl = document.getElementById("ae-body");
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const tableEl = document.getElementById("ae-table");
+  const searchEl = document.getElementById("search");
+  const kindFilterEl = document.getElementById("kind-filter");
+  const workFilterEl = document.getElementById("work-filter");
+
+  let activeWork = "";
+  let activeKind = "";   // "" | "OP" | "ED"
+  let query = "";
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function chip(label, active, onclick) {
+    const b = el("button", "chip-btn" + (active ? " active" : ""), label);
+    b.onclick = onclick;
+    return b;
+  }
+
+  function buildFilters() {
+    kindFilterEl.innerHTML = "";
+    [["", "すべて"], ["OP", "OP"], ["ED", "ED"]].forEach(function (k) {
+      kindFilterEl.appendChild(chip(k[1], activeKind === k[0], function () { activeKind = k[0]; render(); }));
+    });
+    // 作品は数が多いのでプルダウンにする（一度だけ作り、以後は選択値だけ合わせる）
+    let sel = document.getElementById("work-select");
+    if (!sel) {
+      sel = document.createElement("select");
+      sel.id = "work-select";
+      const all = document.createElement("option");
+      all.value = "";
+      all.textContent = "全作品 (" + works.length + ")";
+      sel.appendChild(all);
+      works.forEach(function (w) {
+        const o = document.createElement("option");
+        o.value = w.id;
+        o.textContent = w.title + "（" + w.year + "）";
+        sel.appendChild(o);
+      });
+      sel.onchange = function () { activeWork = sel.value; render(); };
+      workFilterEl.appendChild(sel);
+    }
+    sel.value = activeWork;
+  }
+
+  function trackMatches(w, t) {
+    if (activeKind && t.kind !== activeKind) return false;
+    if (!query) return true;
+    const hay = [w.title, t.name, t.artist, t.usage, t.note].join(" ").toLowerCase();
+    return hay.includes(query.toLowerCase());
+  }
+
+  // 連続して同じ値のセルを rowspan で結合するためのスパン配列（先頭行に長さ、それ以外は0）
+  function spans(list, keyOf) {
+    const s = list.map(function () { return 0; });
+    for (let i = 0; i < list.length; ) {
+      let j = i;
+      while (j + 1 < list.length && keyOf(list[j + 1]) === keyOf(list[i])) j++;
+      s[i] = j - i + 1;
+      i = j + 1;
+    }
+    return s;
+  }
+
+  function workCell(w, n) {
+    const wc = el("td", "work-cell");
+    wc.id = "work-" + w.id;
+    wc.rowSpan = n;
+    if (w.image) {
+      const thumb = el("div", "work-thumb");
+      const img = document.createElement("img");
+      img.src = w.image;
+      img.alt = w.title;
+      img.referrerPolicy = "no-referrer";
+      img.loading = "lazy";
+      img.decoding = "async";
+      thumb.appendChild(img);
+      wc.appendChild(thumb);
+    } else {
+      wc.appendChild(el("div", "work-thumb noimg", "画像なし"));
+    }
+    wc.appendChild(el("div", "work-title", w.title));
+    wc.appendChild(el("div", "work-meta", w.year + "年〜"));
+    if (w.note) wc.appendChild(el("div", "work-note", w.note));
+    if (w.image) wc.appendChild(el("div", "work-credit", "画像: " + w.imageCredit));
+    return wc;
+  }
+
+  function render() {
+    buildFilters();
+    bodyEl.innerHTML = "";
+    queue = [];
+    let trackCount = 0, workCount = 0, officialCount = 0, unofficialCount = 0;
+
+    works.forEach(function (w) {
+      if (activeWork && w.id !== activeWork) return;
+      const tracks = w.tracks.filter(function (t) { return trackMatches(w, t); });
+      if (tracks.length === 0) return;
+      workCount++;
+      trackCount += tracks.length;
+      tracks.forEach(function (t) { if (t.yt) { if (t.yt.o) officialCount++; else unofficialCount++; } });
+
+      const kindSpan = spans(tracks, function (t) { return t.kind; });
+      const artistSpan = spans(tracks, function (t) { return t.kind + "|" + t.artist; });   // 種別をまたいで結合しない
+
+      tracks.forEach(function (t, idx) {
+        const tr = document.createElement("tr");
+        tr.id = "song-" + w.id + "-" + w.tracks.indexOf(t);
+
+        if (idx === 0) tr.appendChild(workCell(w, tracks.length));
+
+        if (kindSpan[idx] > 0) {
+          const kc = el("td", "kind-cell");
+          kc.rowSpan = kindSpan[idx];
+          kc.appendChild(el("span", "kind-chip " + t.kind.toLowerCase(), t.kind));
+          tr.appendChild(kc);
+        }
+
+        tr.appendChild(el("td", "track-name", t.name));
+
+        if (artistSpan[idx] > 0) {
+          const ac = el("td", "artist-cell" + (t.artist ? "" : " empty-mark"), t.artist || "—");
+          ac.rowSpan = artistSpan[idx];
+          tr.appendChild(ac);
+        }
+
+        const uc = el("td");
+        uc.appendChild(el("div", t.usage ? "" : "empty-mark", t.usage || "—"));
+        if (t.note) uc.appendChild(el("div", "usage-note", t.note));
+        tr.appendChild(uc);
+
+        tr.appendChild(watchCell(t, tr));
+
+        bodyEl.appendChild(tr);
+      });
+    });
+
+    countEl.textContent = workCount + " 作品 / " + trackCount + " 曲（動画リンク: 公式 " + officialCount + " / 非公式 " + unofficialCount +
+      " / 検索のみ " + (trackCount - officialCount - unofficialCount) + "）";
+    applyPlaying();
+    const none = trackCount === 0;
+    tableEl.style.display = none ? "none" : "";
+    emptyEl.style.display = none ? "block" : "none";
+  }
+
+  function buildSources() {
+    const box = document.getElementById("sources");
+    box.appendChild(el("b", null, "出典"));
+    box.appendChild(document.createTextNode("：曲名・歌手・使用話数は日本語版Wikipediaの各作品記事（"));
+    works.forEach(function (w, i) {
+      if (i > 0) box.appendChild(document.createTextNode(" / "));
+      const a = el("a", null, w.wiki);
+      a.href = "https://ja.wikipedia.org/wiki/" + encodeURIComponent(w.wiki.replace(/ /g, "_"));
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      box.appendChild(a);
+    });
+    box.appendChild(document.createTextNode(
+      "）の「主題歌」節・OP/ED表から転記した（取得: 2026-09-21）。記載が更新されている場合がある。" +
+      "サムネイル画像はお気に入りページと同じもの（myanimelist.net / animatetimes.com）を直接参照しており、権利は各社に帰属します。" +
+      "曲名・歌手の表記は記事のままで、作品内で同名の曲が複数の期に使われている場合は使用話数欄で区別している。"));
+  }
+
+
+  // ---- 視聴ボタン ----
+  // t.yt があれば動画へ直接リンク（公式チャンネルのノンクレ映像 > 公式OP/ED映像 > 公式MV/音源 > 非公式）。無ければYouTube検索リンク。
+  // mobile-hub公開版（build.ps1 が window.MOBILE_HUB_PLAYER を注入）では、YouTubeへ移動せず画面下のプレイヤーで再生する。
+  const IN_SITE = window.MOBILE_HUB_PLAYER === true;
+  if (IN_SITE) document.body.classList.add("mobile-hub");
+  let queue = [];          // 現在の表示順で、サイト内再生できる曲 [{id(行id), t, src}]
+  let curId = null;        // 再生中の行id
+
+  function ytLabel(t) {
+    const y = t.yt;
+    if (!y.o) return "YouTube";
+    if (y.k === "nc") return "公式ノンクレ";
+    if (y.k === "op") return "公式" + t.kind + "映像";
+    if (y.k === "au") return "公式音源";
+    return "公式MV";
+  }
+  // サイト内再生に使う動画（埋め込み不可の動画は、埋め込める代替があればそれ。無ければ null＝YouTubeで開く）
+  function playSource(y) {
+    if (y.e === 0) return y.alt ? y.alt : null;
+    return { id: y.id, k: y.k, o: y.o };
+  }
+  function ytUrl(id) { return "https://www.youtube.com/watch?v=" + id; }
+
+  function watchCell(t, tr) {
+    const td = el("td");
+    const y = t.yt;
+    if (!y) {
+      const a = el("a", "yt-btn search", "▶ YouTube検索");
+      a.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(t.q);
+      a.target = "_blank";
+      a.rel = "noopener";
+      td.appendChild(a);
+      return td;
+    }
+    const src = IN_SITE ? playSource(y) : null;
+    const a = el("a", "yt-btn" + (y.o ? " official" : ""), "▶ " + ytLabel(t) + (IN_SITE && !src ? " ↗" : ""));
+    a.href = ytUrl(y.id);
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.title = (y.ch ? "チャンネル: " + y.ch : "") + (IN_SITE && !src ? "（この動画は埋め込み再生できないためYouTubeで開きます）" : "");
+    if (src) {
+      queue.push({ id: tr.id, t: t, src: src });
+      a.addEventListener("click", function (ev) {
+        if (ev.button !== 0 || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.altKey) return;   // 修飾キー付きは通常どおり新しいタブ
+        ev.preventDefault();
+        play(queue.findIndex(function (q) { return q.id === tr.id; }));
+      });
+    }
+    td.appendChild(a);
+    if (!y.o) td.appendChild(el("span", "yt-tag unofficial", "※非公式"));
+    return td;
+  }
+
+  // ---- サイト内プレイヤー（YouTube IFrame Player API） ----
+  const barEl = document.getElementById("ae-player");
+  const plTitle = document.getElementById("pl-title");
+  const plWork = document.getElementById("pl-work");
+  const plBadge = document.getElementById("pl-badge");
+  const plMsg = document.getElementById("pl-msg");
+  const plOpen = document.getElementById("pl-open");
+  const plToggle = document.getElementById("pl-toggle");
+  let ytPlayer = null, apiLoading = false, apiReady = false, waiting = null, errStreak = 0, skipTimer = null;
+
+  function fitPadding() {
+    document.body.style.paddingBottom = barEl.hidden ? "" : (barEl.offsetHeight + 12) + "px";
+  }
+  if (window.ResizeObserver) new ResizeObserver(fitPadding).observe(barEl);
+  window.addEventListener("resize", fitPadding);
+
+  function applyPlaying() {
+    const prev = bodyEl.querySelectorAll("tr.playing, a.yt-btn.now");
+    for (let i = 0; i < prev.length; i++) prev[i].classList.remove("playing", "now");
+    if (!curId) return;
+    const tr = document.getElementById(curId);
+    if (tr) {
+      tr.classList.add("playing");
+      const b = tr.querySelector("a.yt-btn");
+      if (b) b.classList.add("now");
+    }
+  }
+
+  function loadApi(cb) {
+    if (apiReady) return cb();
+    waiting = cb;
+    if (apiLoading) return;
+    apiLoading = true;
+    window.onYouTubeIframeAPIReady = function () {
+      apiReady = true;
+      if (waiting) { const f = waiting; waiting = null; f(); }
+    };
+    const sc = document.createElement("script");
+    sc.src = "https://www.youtube.com/iframe_api";
+    sc.onerror = function () { apiLoading = false; plMsg.textContent = "プレイヤーを読み込めませんでした。「YouTubeで開く」から再生してください。"; };
+    document.head.appendChild(sc);
+  }
+
+  function workOf(rowId) {
+    // 行idは "song-{作品id}-{曲番号}"
+    const m = /^song-(.+)-(\d+)$/.exec(rowId);
+    return m ? works.find(function (w) { return w.id === m[1]; }) : null;
+  }
+
+  function play(i) {
+    if (i < 0 || i >= queue.length) return;
+    const q = queue[i];
+    curId = q.id;
+    const w = workOf(q.id);
+    clearTimeout(skipTimer);
+    plTitle.textContent = q.t.kind + "：" + q.t.name;
+    plWork.textContent = (w ? w.title : "") + (q.t.artist ? " ／ " + q.t.artist : "");
+    const alt = q.src.id !== q.t.yt.id;
+    plBadge.className = "pl-badge" + (q.src.o ? "" : " unofficial");
+    plBadge.textContent = (q.src.o ? "公式" : "※非公式") + (alt ? "（元の動画は埋め込み不可のため代替動画）" : "");
+    plOpen.href = ytUrl(q.src.id);
+    plMsg.textContent = "";
+    barEl.hidden = false;
+    fitPadding();
+    applyPlaying();
+    const row = document.getElementById(q.id);
+    if (row && row.scrollIntoView) row.scrollIntoView({ block: "center", behavior: "smooth" });
+    loadApi(function () {
+      if (!ytPlayer) {
+        ytPlayer = new YT.Player("pl-mount", {
+          width: "100%", height: "100%", videoId: q.src.id,
+          playerVars: { autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1 },
+          events: {
+            onStateChange: function (e) {
+              if (e.data === 1) { plToggle.textContent = "⏸"; errStreak = 0; plMsg.textContent = ""; }
+              else if (e.data === 2) plToggle.textContent = "▶";
+              else if (e.data === 0) step(1);
+            },
+            onError: function () {
+              errStreak++;
+              plMsg.textContent = "この動画はサイト内で再生できません" + (errStreak < 3 ? "。次の曲へ進みます…" : "。「YouTubeで開く」から再生してください。");
+              if (errStreak < 3) skipTimer = setTimeout(function () { step(1); }, 1500);
+            }
+          }
+        });
+      } else {
+        ytPlayer.loadVideoById(q.src.id);
+      }
+    });
+  }
+
+  function step(d) {
+    if (!queue.length) return;
+    const i = queue.findIndex(function (q) { return q.id === curId; });
+    const n = i < 0 ? (d > 0 ? 0 : queue.length - 1) : i + d;
+    if (n < 0 || n >= queue.length) { plMsg.textContent = d > 0 ? "最後の曲です" : "最初の曲です"; return; }
+    play(n);
+  }
+
+  document.getElementById("pl-prev").onclick = function () { step(-1); };
+  document.getElementById("pl-next").onclick = function () { step(1); };
+  plToggle.onclick = function () {
+    if (!ytPlayer || !ytPlayer.getPlayerState) return;
+    if (ytPlayer.getPlayerState() === 1) ytPlayer.pauseVideo(); else ytPlayer.playVideo();
+  };
+  document.getElementById("pl-size").onclick = function () { barEl.classList.toggle("big"); fitPadding(); };
+  document.getElementById("pl-close").onclick = function () {
+    if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+    clearTimeout(skipTimer);
+    barEl.hidden = true;
+    curId = null;
+    applyPlaying();
+    fitPadding();
+  };
+
+  searchEl.addEventListener("input", function () { query = searchEl.value; render(); });
+  buildSources();
+  render();
+})();
+</script>
+</body>
+</html>

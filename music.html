@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>曲再生｜mobile-hub</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0;
+    padding: 20px 16px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f4f4f6;
+    color: #222;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  .back { display: inline-block; font-size: 0.82rem; color: #4a6fa5; text-decoration: none; margin-bottom: 10px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  .sub { color: #777; font-size: 0.85rem; line-height: 1.6; margin-bottom: 20px; }
+  .posters { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 640px) { .posters { grid-template-columns: 1fr 1fr; } }
+  .poster { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e5ea; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .poster-link { display: block; text-decoration: none; color: inherit; }
+  .thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0a0a10; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb.collage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 2px; }
+  .thumb.collage img { min-width: 0; min-height: 0; }
+  .play-mark { position: absolute; right: 10px; bottom: 10px; width: 44px; height: 44px; border-radius: 50%;
+               background: rgba(0,0,0,0.62); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; padding-left: 3px; box-sizing: border-box; }
+  .credit { font-size: 0.62rem; color: #999; padding: 4px 14px 0; }
+  .body { padding: 10px 16px 16px; }
+  .title { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+  .desc { font-size: 0.82rem; color: #666; line-height: 1.6; }
+  .note { margin-top: 20px; font-size: 0.72rem; color: #888; line-height: 1.7; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #16161a; color: #eee; }
+    .back { color: #8fb1e6; }
+    .poster { background: #1f1f24; border-color: #2b2b31; }
+    .desc { color: #aaa; }
+    .sub { color: #999; }
+    .credit { color: #778; }
+    .note { color: #889; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← mobile-hub トップ</a>
+  <h1>曲再生</h1>
+  <div class="sub">曲まとめの入口です。ポスターを押すと表が開き、曲の「▶」を押すとYouTubeへ移動せず、このサイト内のプレイヤーで再生できます。</div>
+
+  <div class="posters" id="posters">
+    <div class="poster" id="poster-pokemon">
+      <a class="poster-link" href="pokemon/Matome/op-ed.html">
+        <div class="thumb">
+          <img src="https://www.tv-tokyo.co.jp/anime/pocketmonster2023/images/top/kv8.jpg" alt="ポケモン 曲まとめ" style="object-position: center 22%;">
+          <span class="play-mark">▶</span>
+        </div>
+      </a>
+      <div class="credit">出典: tv-tokyo.co.jp（アニメ公式）</div>
+      <div class="body">
+        <a class="poster-link" href="pokemon/Matome/op-ed.html"><div class="title">ポケモン 曲まとめ</div></a>
+        <div class="desc">TVアニメOP/ED（全8シリーズ）・劇場版映画曲・ゲーム本編楽曲を切替表示。人気ランキング付き。ミニプレイヤーで連続再生・🔀ランダム再生もできます。</div>
+      </div>
+    </div>
+
+    <div class="poster" id="poster-anime-op-ed">
+      <a class="poster-link" href="self/anime-op-ed.html">
+        <div class="thumb collage">
+          <img src="https://cdn.myanimelist.net/images/anime/1208/94745l.jpg" alt="鋼の錬金術師 FULLMETAL ALCHEMIST" referrerpolicy="no-referrer">
+          <img src="https://cdn.myanimelist.net/images/anime/1441/122795l.jpg" alt="SPY×FAMILY" referrerpolicy="no-referrer">
+          <img src="https://cdn.myanimelist.net/images/anime/1908/135431l.jpg" alt="BLEACH 千年血戦篇" referrerpolicy="no-referrer">
+          <img src="https://cdn.myanimelist.net/images/anime/1522/128039l.jpg" alt="Re:ゼロから始める異世界生活" referrerpolicy="no-referrer">
+          <span class="play-mark">▶</span>
+        </div>
+      </a>
+      <div class="credit">出典: myanimelist.net（お気に入りページと同じ画像）</div>
+      <div class="body">
+        <a class="poster-link" href="self/anime-op-ed.html"><div class="title">アニメ OP/ED まとめ</div></a>
+        <div class="desc">お気に入りアニメ（放送済みのTVシリーズ）のOP・ED主題歌を作品ごとに一覧。公式ノンクレジット映像を優先して、曲ごとにサイト内で再生できます。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">動画はYouTubeの埋め込みプレイヤーで再生します。サイト内で再生できない動画だけYouTubeが開きます。ポスター画像の権利は各社に帰属します。</div>
+</div>
+</body>
+</html>

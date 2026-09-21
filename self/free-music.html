@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フリー音楽 まとめ｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .wrap { max-width: var(--page-max-width); margin: 0 auto; }
+  #intro { font-size: 0.8rem; color: #778; line-height: 1.9; margin-bottom: 14px; }
+  #intro b { color: #aab; }
+  .notice { background: #1a1608; border: 1px solid #3a3210; border-radius: 10px; padding: 10px 14px; font-size: 0.74rem; color: #b8a878; line-height: 1.8; margin-bottom: 18px; }
+  h2.sec { font-size: 1rem; color: #ccd; margin: 26px 0 12px; padding-left: 10px; border-left: 4px solid #4a3a80; }
+  .lead { font-size: 0.75rem; color: #667; line-height: 1.8; margin: -4px 0 12px; }
+
+  /* サイト別カード */
+  .site-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 18px; }
+  .site-card { background: #111119; border: 1px solid #1e1e28; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .site-thumb { aspect-ratio: 16 / 9; background: #0a0a10; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .site-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .site-thumb .noimg { font-size: 1.05rem; font-weight: 700; color: #778; text-align: center; padding: 0 16px; line-height: 1.5; }
+  .thumb-credit { font-size: 0.62rem; color: #445; padding: 4px 14px 0; }
+  .site-body { padding: 10px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .site-name { font-size: 1rem; font-weight: 700; color: #e2e2e2; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 0.64rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
+  .badge.manual { background: #2a2210; color: #d6a93a; } .badge.excluded { background: #221618; color: #d06a6a; }
+  .badge.credit-yes { background: #1c1830; color: #a898e8; } .badge.credit-no { background: #10261a; color: #4cc27d; }
+  dl.facts { display: grid; grid-template-columns: 78px minmax(0, 1fr); gap: 4px 10px; font-size: 0.72rem; line-height: 1.65; }
+  dl.facts dt { color: #667; } dl.facts dd { color: #aab; margin: 0; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
+  .btn { display: inline-flex; align-items: center; font-size: 0.72rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; text-decoration: none; border: 1px solid transparent; }
+  .btn.primary { background: #3c8be0; color: #fff; } .btn.primary:hover { opacity: 0.86; }
+  .btn.outline { color: #7fb4ea; border-color: #26405c; } .btn.outline:hover { background: #12263a; }
+
+  /* 表 */
+  .table-wrap { overflow-x: auto; }
+  table.ft { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 760px; }
+  table.ft th { text-align: left; font-size: 0.68rem; color: #667; padding: 8px 10px; border-bottom: 1px solid #2a2a3a; background: #0e0e16; white-space: nowrap; }
+  table.ft td { padding: 9px 10px; border-bottom: 1px solid #1a1a24; vertical-align: top; color: #bbc; line-height: 1.65; }
+  table.ft td.merged { background: #0d0d14; border-right: 1px solid #1a1a24; font-weight: 600; color: #99a; }
+  .tr-title { font-weight: 600; color: #e2e2e2; } .tr-meta { font-size: 0.68rem; color: #667; }
+  .fp { font-size: 0.66rem; padding: 1px 8px; border-radius: 999px; border: 1px solid #2a2a3a; color: #778; white-space: nowrap; }
+  .fp.ok { color: #4cc27d; border-color: #1f4a30; }
+
+  #det { background: #111119; border: 1px solid #1e1e28; border-radius: 12px; padding: 14px 16px; font-size: 0.78rem; color: #99a; line-height: 1.85; }
+  #det b { color: #ccd; }
+  #sources { margin-top: 28px; border-top: 1px solid #1c1c28; padding-top: 12px; font-size: 0.68rem; color: #445; line-height: 1.9; }
+  #sources a { color: #557; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky" id="site-header">
+  <nav id="site-nav" class="page-nav"></nav>
+</header>
+
+<div class="content">
+<div class="wrap">
+  <div id="intro">
+    YouTube動画のBGMとしてよく使われる<b>フリー音楽</b>を、サイト・音楽家・利用条件でまとめたページ（<a href="matome.html" style="color:#6699cc;text-decoration:none;">← まとめ一覧</a>）。
+    データは、楽曲検知システム（<code style="color:#a8b4e0;">F:\Tools\Music\music-detect</code>）の曲カタログから<b>自動生成</b>しており、規約は各公式ページを実際に取得して転記した（確認日: <span id="verified-at"></span>）。
+    「よく使われる」の根拠は、サイト自身のダウンロード数ランキングなど<b>出典を明記できるもの</b>だけを載せている。
+  </div>
+  <div class="notice" id="notice">
+    ⚠ 規約は予告なく変わる。使う前に必ず各公式ページで最新の条件を確認すること（特にクレジットの要否）。
+    ここに載せた条件は、確認日時点の公式ページの記載を要約したもので、権利の判断や法的助言ではない。
+    検知システムの結果も「候補」であり、権利判定ではない。
+  </div>
+
+  <h2 class="sec" id="sec-sites">サイト別</h2>
+  <div class="lead">画像は各公式サイトから直接引用（公式にOGP画像のないサイトは文字表示）。「システム上の取得」は、検知システムの参照DBに音源を入れるときの方法（規約に基づく）。</div>
+  <div class="site-grid" id="site-grid"></div>
+
+  <h2 class="sec" id="sec-composers">音楽家別（代表曲）</h2>
+  <div class="lead">人気の根拠と値は、取得した公式ページ・Wikipediaの記載のとおり。曲数が少ないのは、根拠を確認できた代表曲だけを載せているため。</div>
+  <div class="table-wrap"><table class="ft" id="composer-table"><thead><tr><th>音楽家</th><th>サイト</th><th>代表曲</th><th>人気の根拠</th><th>検知DB</th></tr></thead><tbody id="composer-body"></tbody></table></div>
+
+  <h2 class="sec" id="sec-compare">利用条件の比較</h2>
+  <div class="table-wrap"><table class="ft" id="compare-table"><thead><tr><th>サイト</th><th>商用</th><th>クレジット</th><th>Content ID</th><th>再配布</th><th>AI学習</th></tr></thead><tbody id="compare-body"></tbody></table></div>
+
+  <h2 class="sec" id="sec-detection">検知システムでの状況</h2>
+  <div id="det"></div>
+
+  <div id="sources">
+    <b>出典</b>：各サイトの公式ページ（利用規約・ライセンス・ヘルプ）、OpenTracksの「DL数順素材一覧」（2026-09-20取得）、英語版Wikipedia「Kevin MacLeod」。
+    サムネイル画像は各公式サイトから直接引用しており、権利は各社に帰属します。
+  </div>
+</div>
+</div>
+
+<script src="shared/nav.js"></script>
+<script src="data/free-music-data.js"></script>
+<script>
+(function () {
+  var D = window.FREE_MUSIC_DATA || { sites: [], composers: [], detection: {} };
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  var siteById = {}; D.sites.forEach(function (s) { siteById[s.id] = s; });
+  document.getElementById("verified-at").textContent = D.verifiedAt || "";
+
+  var ACQ = { manual_only: ["manual", "手動のみ（人手でDL→inbox）"], excluded_initial: ["excluded", "初期は対象外"], throttled_script_ok: ["manual", "低頻度スクリプトで取得（許可済み）"] };
+  function credBadge(s) { var yes = /^(必要|必須|クリエイティブ)/.test(s.credit_required); return yes ? ["credit-yes", "クレジット必要"] : /不要|必須ではない/.test(s.credit_required) ? ["credit-no", "クレジット不要/任意"] : ["credit-yes", "クレジット条件あり"]; }
+
+  var grid = document.getElementById("site-grid");
+  D.sites.forEach(function (s) {
+    var card = el("div", "site-card"); card.id = "site-" + s.id;
+    var th = el("div", "site-thumb");
+    if (s.image) { var img = document.createElement("img"); img.src = s.image; img.alt = s.name; img.referrerPolicy = "no-referrer"; img.loading = "lazy"; th.appendChild(img); }
+    else th.appendChild(el("div", "noimg", s.name));
+    card.appendChild(th);
+    card.appendChild(el("div", "thumb-credit", s.image ? "画像: " + s.image_credit : "画像なし（公式ページに使える画像が無いため）"));
+    var body = el("div", "site-body");
+    body.appendChild(el("div", "site-name", s.name));
+    var bd = el("div", "badges"); var a = ACQ[s.acquisition] || ["manual", s.acquisition]; var cb = credBadge(s);
+    bd.appendChild(el("span", "badge " + a[0], "システム上の取得: " + a[1])); bd.appendChild(el("span", "badge " + cb[0], cb[1])); body.appendChild(bd);
+    var dl = el("dl", "facts");
+    [["規模", s.catalog_size], ["商用", s.commercial], ["クレジット", s.credit_required], ["Content ID", s.content_id], ["再配布", s.redistribution], ["AI学習", s.ai_training], ["取得の注意", s.acquisition_note], ["関連機能", s.related_features], ["名称", s.renamed]].forEach(function (p) {
+      if (!p[1]) return; dl.appendChild(el("dt", null, p[0])); dl.appendChild(el("dd", null, p[1]));
+    });
+    body.appendChild(dl);
+    var act = el("div", "actions");
+    var o = el("a", "btn primary", "公式サイト ↗"); o.href = s.url; o.target = "_blank"; o.rel = "noopener noreferrer"; act.appendChild(o);
+    s.terms_urls.forEach(function (u, i) { var t = el("a", "btn outline", "規約 " + (s.terms_urls.length > 1 ? (i + 1) + " " : "") + "↗"); t.href = u; t.target = "_blank"; t.rel = "noopener noreferrer"; act.appendChild(t); });
+    body.appendChild(act); card.appendChild(body); grid.appendChild(card);
+  });
+
+  // 音楽家別（サイト・音楽家が同じ行を結合）
+  var cb = document.getElementById("composer-body"); var rows = [];
+  D.composers.forEach(function (c) { c.tracks.forEach(function (t, i) { rows.push({ c: c, t: t, first: i === 0, n: c.tracks.length }); }); });
+  rows.forEach(function (r, i) {
+    var tr = document.createElement("tr"); tr.id = "composer-row-" + i;
+    if (r.first) {
+      var c1 = el("td", "merged", r.c.composer); c1.rowSpan = r.n; tr.appendChild(c1);
+      var st = siteById[r.c.site_id]; c1 = el("td", "merged", st ? st.name : r.c.site_id); c1.rowSpan = r.n; tr.appendChild(c1);
+    }
+    var td = el("td"); td.appendChild(el("div", "tr-title", r.t.title)); tr.appendChild(td);
+    var ev = el("td"); ev.appendChild(el("div", null, r.t.metric || "—"));
+    if (r.t.value != null) ev.appendChild(el("div", "tr-meta", "DL数 " + r.t.value.toLocaleString("ja-JP") + "（" + r.t.rank + "位）"));
+    tr.appendChild(ev);
+    var fp = el("td"); fp.appendChild(el("span", "fp" + (r.t.fp_status === "ok" ? " ok" : ""), r.t.fp_status === "ok" ? "指紋DB化済み" : "未登録")); tr.appendChild(fp);
+    cb.appendChild(tr);
+  });
+
+  // 条件比較
+  var cmp = document.getElementById("compare-body");
+  D.sites.forEach(function (s, i) {
+    var tr = document.createElement("tr"); tr.id = "compare-row-" + i; tr.appendChild(el("td", "merged", s.name));
+    [s.commercial, s.credit_required, s.content_id, s.redistribution, s.ai_training].forEach(function (v) { tr.appendChild(el("td", null, v || "—")); });
+    cmp.appendChild(tr);
+  });
+
+  // 検知システムの状況
+  var d = D.detection || {}, fs = d.fpStatus || {}, det = document.getElementById("det");
+  det.innerHTML = "";
+  function line(label, text) { var p = el("div"); p.appendChild(el("b", null, label + ": ")); p.appendChild(document.createTextNode(text)); det.appendChild(p); }
+  line("曲カタログ", (d.catalogTracks || 0) + "曲（うち代表曲 " + (d.featuredTracks || 0) + "曲）");
+  line("指紋DB化済み", (fs.ok || 0) + "曲（未登録 " + (fs.none || 0) + "曲）");
+  var bs = d.bySite || {};
+  var parts = D.sites.map(function (s) { var x = bs[s.id]; return s.name.split("（")[0] + " " + (x ? x.fpOk + "/" + x.tracks : "0/0") + "曲"; });
+  line("サイト別（指紋DB化済み/カタログ）", parts.join("、"));
+  line("状態", "実BGMの検知は試験段階。音源は各サイトの規約に従って取り込む（甘茶の音楽工房は許可を得て低頻度のスクリプトで取得、他は人手のダウンロード）。");
+  line("方針", "YouTube動画（または録画ファイル）の音声から、登録した曲を検知し、曲名・音楽家・サイトをタイムラインで返す。結果は候補であり権利判定ではない。");
+})();
+</script>
+</body>
+</html>

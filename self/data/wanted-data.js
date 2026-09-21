@@ -24,5 +24,21 @@ window.WANTED_DATA = [
     image: "https://www.monsterhunter.com/wilds/assets/img/switch2/main_art.webp",
     imageCredit: "monsterhunter.com（モンスターハンターワイルズ公式）",
     added: "2026-09-20"
+  },
+  {
+    title: "POKÉTOON",
+    category: "アニメ",
+    url: "https://www.youtube.com/playlist?list=PLBE2D9BnJJUoFiRz8ZjF2KToAirHYn1Ru",
+    image: "https://i.ytimg.com/vi/u909_O6CqYc/hqdefault.jpg",
+    imageCredit: "YouTube（POKÉTOON公式動画サムネイル）",
+    added: "2026-09-21"
+  },
+  {
+    title: "楽曲検索",
+    category: "開発",
+    url: "free-music.html",
+    image: "images/music-detect-poster.png",
+    imageCredit: "自作イメージ画像（楽曲検知システム。scrape/19_make_poster_music_detect.py で生成）",
+    added: "2026-09-21"
   }
 ];
