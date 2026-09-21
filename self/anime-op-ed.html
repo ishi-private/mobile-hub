@@ -7,60 +7,116 @@
 <link rel="stylesheet" href="shared/common.css">
 <style>
   .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  #search { flex: 1; min-width: 160px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+  #search { flex: 1; min-width: 150px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
              border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none; }
   #search:focus { border-color: #4a4a6a; }
-  #kind-filter { display: flex; gap: 5px; }
-  #work-filter { flex: 1 1 260px; min-width: 200px; }
-  #work-select { width: 100%; padding: 7px 10px; background: #16161e; border: 1px solid #2a2a3a; border-radius: 7px;
-                  color: #c8c8d8; font-size: 0.82rem; outline: none; }
-  #work-select:focus { border-color: #4a4a6a; }
-  .chip-btn { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px; font-size: 0.72rem; cursor: pointer;
-               background: #13131c; color: #667; transition: all 0.12s; white-space: nowrap; }
+  .chip-btn { padding: 4px 12px; border: 1px solid #242434; border-radius: 12px; font-size: 0.72rem; cursor: pointer;
+               background: #13131c; color: #778; transition: all 0.12s; white-space: nowrap; }
   .chip-btn:hover { border-color: #3a3a5a; color: #99a; }
   .chip-btn.active { background: #1c1830; border-color: #4a3a80; color: #9a86e0; }
+  .chip-btn.rnd { background: #2a1a10; border-color: #6a3a1a; color: #f0a060; font-weight: 700; }
+  .chip-btn.rnd:hover { background: #3a2415; }
+  .chip-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+  .ctl-group { display: flex; gap: 5px; align-items: center; }
+  .ctl-label { font-size: 0.66rem; color: #556; }
 
-  #intro { max-width: var(--page-max-width); margin: 0 auto 14px; font-size: 0.78rem; color: #778; line-height: 1.8; }
-  #count { max-width: var(--page-max-width); margin: 0 auto 8px; font-size: 0.74rem; color: #3a3a4a; }
+  #intro { max-width: var(--page-max-width); margin: 0 auto 10px; font-size: 0.78rem; color: #778; line-height: 1.8; }
+  #intro b { color: #c8c8d8; }
+  #notice { max-width: var(--page-max-width); margin: 0 auto 10px; font-size: 0.72rem; color: #c08a3e; line-height: 1.7; display: none; }
+  #count { max-width: var(--page-max-width); margin: 0 auto 8px; font-size: 0.74rem; color: #445; }
 
+  /* ポスター表示 */
+  #poster-wrap { max-width: var(--page-max-width); margin: 0 auto; }
+  .poster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .poster { position: relative; cursor: pointer; border-radius: 8px; overflow: hidden; background: #0d0d14; border: 1px solid #1e1e2c; }
+  .poster:hover { border-color: #4a3a80; }
+  .poster .p-img { aspect-ratio: 2 / 3; background: #050508; display: flex; align-items: center; justify-content: center; }
+  .poster .p-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .poster .p-img.noimg { font-size: 0.7rem; color: #445; padding: 8px; text-align: center; background: linear-gradient(135deg, #0c0c14, #14141e); }
+  .poster .p-title { font-size: 0.74rem; font-weight: 700; color: #e2e2e2; padding: 6px 8px 2px; line-height: 1.35;
+                      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.7em; }
+  .poster .p-meta { font-size: 0.62rem; color: #667; padding: 0 8px 7px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .poster .p-star { position: absolute; top: 6px; right: 6px; font-size: 0.95rem; color: #eab308; text-shadow: 0 0 4px #000; }
+  .poster .p-star.s2 { color: #ef4444; }
+  .poster .p-new { position: absolute; top: 6px; left: 6px; font-size: 0.6rem; background: #2a1a10; color: #f0a060; border: 1px solid #6a3a1a; border-radius: 8px; padding: 1px 6px; }
+
+  /* 一覧表示・作品パネル共通の表 */
   #table-wrap { max-width: var(--page-max-width); margin: 0 auto; overflow-x: auto; }
-  table.ae-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 760px; }
-  .ae-table th { text-align: left; font-size: 0.7rem; font-weight: 600; color: #667; padding: 8px 10px;
+  table.ae-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 900px; }
+  .ae-table th { text-align: left; font-size: 0.7rem; font-weight: 600; color: #667; padding: 8px 8px;
                   border-bottom: 1px solid #2a2a3a; background: #0e0e16; white-space: nowrap; }
-  .ae-table td { padding: 10px; border-bottom: 1px solid #1a1a24; vertical-align: top; color: #c8c8d8; line-height: 1.6; }
-  .ae-table td.work-cell { width: 190px; border-right: 1px solid #1a1a24; background: #0d0d14; }
-  .work-thumb { width: 168px; aspect-ratio: 16/9; background: #050508; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+  .ae-table td { padding: 8px; border-bottom: 1px solid #1a1a24; vertical-align: middle; color: #c8c8d8; line-height: 1.55; }
+  .ae-table td.work-cell { width: 180px; border-right: 1px solid #1a1a24; background: #0d0d14; vertical-align: top; }
+  .work-thumb { width: 160px; aspect-ratio: 16/9; background: #050508; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
   .work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .work-thumb.noimg { display: flex; align-items: center; justify-content: center; font-size: 0.66rem; color: #334;
                        background: linear-gradient(135deg, #0c0c14, #14141e); border: 1px dashed #24243a; }
-  .work-title { font-size: 0.9rem; font-weight: 700; color: #e2e2e2; }
+  .work-title { font-size: 0.88rem; font-weight: 700; color: #e2e2e2; }
   .work-meta { font-size: 0.68rem; color: #667; margin-top: 2px; }
   .work-note { font-size: 0.66rem; color: #556; margin-top: 4px; line-height: 1.5; }
   .work-credit { font-size: 0.6rem; color: #445; margin-top: 4px; }
-  td.kind-cell { width: 54px; white-space: nowrap; }
-  .kind-chip { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
+  td.kind-cell { width: 48px; white-space: nowrap; }
+  .kind-chip { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
   .kind-chip.op { background: #10261a; color: #4cc27d; }
   .kind-chip.ed { background: #1c1830; color: #9a86e0; }
+  .kind-chip.med { background: #1c1c26; color: #889; }
   .track-name { font-weight: 600; color: #e2e2e2; }
-  .artist-cell { min-width: 120px; }
+  .artist-cell { min-width: 110px; }
   .empty-mark { color: #334; }
-  .usage-note { font-size: 0.68rem; color: #667; margin-top: 2px; line-height: 1.5; }
-  a.yt-btn { display: inline-block; font-size: 0.68rem; padding: 3px 10px; border-radius: 6px; text-decoration: none; white-space: nowrap;
-              background: #2a1216; color: #e06070; border: 1px solid #4a1e26; }
-  a.yt-btn:hover { background: #3a1a20; }
+  .usage-note { font-size: 0.66rem; color: #667; margin-top: 2px; line-height: 1.5; }
+  tr.playing td { background: #16142a; }
+  tr.playing td.work-cell { background: #0d0d14; }
+  td.sabi-cell, td.play-cell { width: 84px; white-space: nowrap; }
+  td.rate-cell { width: 92px; white-space: nowrap; }
+  td.mood-cell { width: 98px; }
+
+  a.yt-btn, button.yt-btn { display: inline-block; font-size: 0.68rem; padding: 3px 10px; border-radius: 6px; text-decoration: none; white-space: nowrap; cursor: pointer;
+              background: #2a1216; color: #e06070; border: 1px solid #4a1e26; font-family: inherit; }
+  a.yt-btn:hover, button.yt-btn:hover { background: #3a1a20; }
   a.yt-btn.official { background: #10261a; color: #4cc27d; border-color: #1e4a30; }
   a.yt-btn.official:hover { background: #163422; }
   a.yt-btn.search { background: #14141e; color: #778; border-color: #2a2a3a; }
-  a.yt-btn.search:hover { background: #1a1a28; }
+  button.yt-btn.sabi { background: #1c1830; color: #b9a8ff; border-color: #3a2f70; }
+  button.yt-btn.sabi:hover { background: #2a2050; }
+  button.yt-btn[disabled] { opacity: 0.35; cursor: not-allowed; }
+  a.yt-btn.now, button.yt-btn.now { outline: 2px solid #9a86e0; outline-offset: 1px; }
   .yt-tag { display: block; margin-top: 3px; font-size: 0.62rem; line-height: 1.4; color: #667; }
   .yt-tag.unofficial { color: #c08a3e; }
-  tr.playing td { background: #16142a; }
-  tr.playing td.work-cell { background: #0d0d14; }
-  a.yt-btn.now { outline: 2px solid #9a86e0; outline-offset: 1px; }
-  #intro-mobile { display: none; color: #9a86e0; }
-  body.mobile-hub #intro-mobile { display: block; }
 
-  /* サイト内プレイヤー（mobile-hub公開版のみ。build.ps1 が window.MOBILE_HUB_PLAYER を注入したときだけ表示） */
+  /* 評価（お気に入り／ふつう／微妙）と気分（盛り上がる／安らぐ） */
+  .rate-set { display: inline-flex; gap: 3px; }
+  .rate-btn, .mood-btn { border: 1px solid #2a2a3a; background: #13131c; color: #667; border-radius: 6px; cursor: pointer; font-size: 0.74rem; line-height: 1;
+                          padding: 4px 6px; font-family: inherit; }
+  .rate-btn:hover, .mood-btn:hover { border-color: #4a4a6a; color: #aab; }
+  .rate-btn.on[data-val="fav"] { background: #3a2f08; border-color: #eab308; color: #facc15; }
+  .rate-btn.on[data-val="ok"] { background: #12281c; border-color: #3c8c5c; color: #6fd39a; }
+  .rate-btn.on[data-val="meh"] { background: #2a1620; border-color: #8c3c5c; color: #e07a9a; }
+  .mood-set { display: inline-flex; flex-direction: column; gap: 3px; }
+  .mood-btn { text-align: left; white-space: nowrap; }
+  .mood-btn.on[data-val="up"] { background: #3a1a10; border-color: #e0703a; color: #ff9a60; }
+  .mood-btn.on[data-val="calm"] { background: #10283a; border-color: #3a8ce0; color: #7ac0ff; }
+  .prompt-rate .rate-btn { animation: rate-pulse 1.4s ease-in-out infinite; }
+  @keyframes rate-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(234,179,8,0); } 50% { box-shadow: 0 0 0 3px rgba(234,179,8,0.45); } }
+
+  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; display: none; }
+  #sources { max-width: var(--page-max-width); margin: 28px auto 0; font-size: 0.68rem; color: #445; line-height: 1.9;
+              border-top: 1px solid #1c1c28; padding-top: 12px; }
+  #sources a { color: #557; }
+  #prefs-row { max-width: var(--page-max-width); margin: 14px auto 0; font-size: 0.7rem; color: #556; }
+
+  /* 作品パネル（ポスターを押すと開く） */
+  #work-modal { position: fixed; inset: 0; z-index: 800; background: rgba(0,0,0,0.72); display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 24px 10px 300px; }
+  #work-modal[hidden] { display: none; }
+  .wm-box { width: min(1100px, 100%); background: #0b0b12; border: 1px solid #2a2a3a; border-radius: 10px; padding: 12px 14px 14px; }
+  .wm-head { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+  .wm-head h2 { font-size: 1rem; margin: 0; color: #e8e8f0; flex: 1 1 200px; }
+  .wm-body { overflow-x: auto; }
+  #prefs-modal { position: fixed; inset: 0; z-index: 850; background: rgba(0,0,0,0.72); display: flex; align-items: center; justify-content: center; padding: 16px; }
+  #prefs-modal[hidden] { display: none; }
+  #prefs-modal .box { width: min(640px, 100%); background: #0b0b12; border: 1px solid #2a2a3a; border-radius: 10px; padding: 14px; }
+  #prefs-text { width: 100%; height: 180px; background: #13131c; color: #c8c8d8; border: 1px solid #2a2a3a; border-radius: 6px; font-size: 0.7rem; box-sizing: border-box; }
+
+  /* 再生バー（画面下に固定） */
   #ae-player { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; background: #0e0e16; border-top: 1px solid #2a2a3a;
                 box-shadow: 0 -4px 18px rgba(0,0,0,0.5); padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); }
   #ae-player[hidden] { display: none; }
@@ -68,29 +124,35 @@
   .pl-video { flex: 0 0 auto; width: 192px; aspect-ratio: 16/9; background: #000; border-radius: 6px; overflow: hidden; }
   #ae-player.big .pl-video { width: min(100%, 400px); }
   .pl-video iframe { width: 100%; height: 100%; display: block; border: none; }
-  .pl-side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-  .pl-title { font-size: 0.86rem; font-weight: 700; color: #e2e2e2; line-height: 1.4; }
+  .pl-side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+  .pl-title { font-size: 0.88rem; font-weight: 700; color: #e2e2e2; line-height: 1.35; }
   .pl-work { font-size: 0.7rem; color: #778; line-height: 1.4; }
   .pl-badge { font-size: 0.64rem; color: #4cc27d; }
   .pl-badge.unofficial { color: #c08a3e; }
   .pl-msg { font-size: 0.7rem; color: #e0a060; min-height: 1em; }
+  .pl-seek { display: flex; align-items: center; gap: 8px; }
+  .pl-seek input[type=range] { flex: 1 1 auto; min-width: 80px; accent-color: #9a86e0; }
+  .pl-time { font-size: 0.66rem; color: #778; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pl-vol { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; }
+  .pl-vol input[type=range] { width: 84px; accent-color: #9a86e0; }
   .pl-ctrl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-  .pl-ctrl button, .pl-ctrl a { border: none; background: #1c1c2a; color: #c8c8d8; border-radius: 6px; min-width: 38px; height: 34px; padding: 0 10px;
-                                  font-size: 0.85rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
-  .pl-ctrl button:hover, .pl-ctrl a:hover { background: #2a2a40; }
-  .pl-ctrl a.pl-open { font-size: 0.7rem; color: #e06070; }
-  @media (max-width: 560px) {
-    .pl-inner { flex-direction: column; gap: 6px; }
+  .pl-ctrl > button, .pl-ctrl > a { border: none; background: #1c1c2a; color: #c8c8d8; border-radius: 6px; min-width: 36px; height: 32px; padding: 0 10px;
+                                  font-size: 0.82rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-family: inherit; }
+  .pl-ctrl > button:hover, .pl-ctrl > a:hover { background: #2a2a40; }
+  .pl-ctrl > button.on { background: #2a2050; color: #b9a8ff; }
+  .pl-ctrl > button.rnd.on { background: #3a2415; color: #f0a060; }
+  .pl-ctrl > button[disabled] { opacity: 0.4; cursor: not-allowed; }
+  .pl-ctrl > button.fav-anime { font-size: 0.72rem; }
+  .pl-ctrl > button.fav-anime.on { background: #3a2f08; color: #facc15; }
+  .pl-ctrl > a.pl-open { font-size: 0.7rem; color: #e06070; }
+  .pl-rate { display: inline-flex; align-items: center; gap: 6px; }
+  .pl-rate .mood-set { flex-direction: row; }
+  @media (max-width: 640px) {
+    .pl-inner { flex-direction: column; gap: 6px; align-items: stretch; }
     .pl-video { width: 176px; }
     #ae-player.big .pl-video { width: 100%; }
-    .pl-inner { align-items: stretch; }
-    .pl-head { display: flex; gap: 10px; align-items: flex-start; }
+    .poster-grid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
   }
-  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; }
-
-  #sources { max-width: var(--page-max-width); margin: 28px auto 0; font-size: 0.68rem; color: #445; line-height: 1.9;
-              border-top: 1px solid #1c1c28; padding-top: 12px; }
-  #sources a { color: #557; }
 </style>
 </head>
 <body>
@@ -98,50 +160,102 @@
   <nav id="site-nav" class="page-nav"></nav>
   <div class="controls">
     <input type="text" id="search" placeholder="作品名・曲名・歌手で検索…">
-    <div id="work-filter"></div>
-    <div id="kind-filter"></div>
+    <div class="ctl-group" id="view-switch">
+      <button type="button" class="chip-btn active" id="view-poster">ポスター</button>
+      <button type="button" class="chip-btn" id="view-list">一覧</button>
+    </div>
+    <div class="ctl-group" id="random-group">
+      <button type="button" class="chip-btn rnd" id="btn-random" title="評価を少しだけ反映してランダムに流す">🔀 ランダム再生</button>
+      <button type="button" class="chip-btn active" id="mood-all">気分:すべて</button>
+      <button type="button" class="chip-btn" id="mood-up">🔥盛り上がる</button>
+      <button type="button" class="chip-btn" id="mood-calm">🌿安らぐ</button>
+      <button type="button" class="chip-btn" id="btn-chorus-mode" title="各曲のサビ部分だけを流す">サビだけ</button>
+    </div>
   </div>
 </header>
 
 <div class="content">
   <div id="intro">
-    お気に入りに入れているアニメ（放送済みのTVシリーズ）のOP（オープニング）・ED（エンディング）主題歌を、作品ごとに歌手・使用話数で一覧化したまとめ（<a href="matome.html" style="color:#6699cc;text-decoration:none;">← まとめ一覧</a>）。
-    曲名・歌手・使用話数は日本語版Wikipediaの各作品記事で確認できたものだけを載せており、記載のない項目は「—」にしている。
-    記事に載っているTV放送分のOP/EDを載せている（挿入歌・劇中歌・劇場版/OVAの主題歌は除く）。原作記事にアニメの主題歌が載っていない作品は未掲載。
-    視聴ボタンは曲ごとのYouTube動画へ直接リンクしている。<b style="color:#4cc27d;">公式チャンネルのノンクレジットOP/ED映像</b>を優先し、無い曲は公式のOP/ED映像・MV・音源（YouTube Music の Topic 含む）、それも無い曲は「<span style="color:#c08a3e;">※非公式</span>」のアップロードを付けている。動画が見つからなかった曲は従来どおりYouTube検索へのリンク。
+    お気に入りに入れているアニメ（放送済みのTVシリーズ）のOP・ED主題歌と、「アニソンメドレー250曲」の各曲を、曲ごとの動画で聴けるまとめ（<a href="matome.html" style="color:#6699cc;text-decoration:none;">← まとめ一覧</a>）。
+    曲名・歌手・使用話数は日本語版Wikipediaの各作品記事で確認できたものだけ、メドレーの曲名は投稿者本人のセットリストのとおりで、記載のない項目は「—」にしている（作品不明の曲は歌手なし）。
+    動画は<b style="color:#4cc27d;">公式チャンネルのノンクレジット映像</b>を優先し、無い曲は公式のOP/ED映像・MV・音源、それも無い曲は「<span style="color:#c08a3e;">※非公式</span>」のアップロード。
+    <b>サビ</b>は音声の繰り返し構造と音量から<b>推定</b>したもので、外れる曲がある。
+    <b>評価</b>（★お気に入り／○ふつう／△微妙）と<b>気分</b>（🔥盛り上がる／🌿安らぐ）は曲ごとに付けられ、🔀ランダム再生では、評価の高い曲が少し多め・微妙な曲が少し少なめに流れる（差は最大でも約4倍まで）。評価が1回も付いていない作品も時々流れるので、気に入ったら評価を付けてほしい。
   </div>
-  <div id="intro-mobile" style="max-width: var(--page-max-width); margin: -6px auto 14px; font-size: 0.78rem; line-height: 1.8;">
-    ▶ を押すとYouTubeへは移動せず、画面下のプレイヤーでそのまま再生します（続けて次の曲も自動再生）。サイト内で再生できない動画だけYouTubeが開きます。
-  </div>
+  <div id="notice"></div>
   <div id="count"></div>
-  <div id="table-wrap">
+  <div id="poster-wrap"><div class="poster-grid" id="poster-grid"></div></div>
+  <div id="table-wrap" hidden>
     <table class="ae-table" id="ae-table">
       <thead>
-        <tr><th>作品</th><th>種別</th><th>曲名</th><th>歌手</th><th>使用話数・備考</th><th>視聴</th></tr>
+        <tr><th>作品</th><th>種別</th><th>曲名</th><th>歌手</th><th>使用話数・備考</th><th>サビ</th><th>視聴</th><th>評価</th><th>気分</th></tr>
       </thead>
       <tbody id="ae-body"></tbody>
     </table>
   </div>
-  <div id="empty" style="display:none;">該当する曲がありません。</div>
+  <div id="empty">該当する曲がありません。</div>
+  <div id="prefs-row"><button type="button" class="chip-btn" id="btn-prefs">評価データの書き出し・読み込み</button>
+    <span>評価・気分はこの端末のブラウザに保存されます（他の端末には引き継がれません）。</span></div>
   <div id="sources"></div>
+</div>
+
+<div id="work-modal" hidden>
+  <div class="wm-box">
+    <div class="wm-head">
+      <h2 id="wm-title"></h2>
+      <button type="button" class="chip-btn" id="wm-fav"></button>
+      <button type="button" class="chip-btn" id="wm-close">✕ 閉じる</button>
+    </div>
+    <div class="wm-body">
+      <table class="ae-table" id="wm-table">
+        <thead>
+          <tr><th>種別</th><th>曲名</th><th>歌手</th><th>使用話数・備考</th><th>サビ</th><th>視聴</th><th>評価</th><th>気分</th></tr>
+        </thead>
+        <tbody id="wm-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="prefs-modal" hidden>
+  <div class="box">
+    <div style="font-size:0.8rem;color:#c8c8d8;margin-bottom:6px;">評価・気分のデータ（JSON）。別の端末に移すときは、ここをコピーして向こうで貼り付け→読み込む。</div>
+    <textarea id="prefs-text" spellcheck="false"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px;">
+      <button type="button" class="chip-btn" id="prefs-load">この内容を読み込む（今のデータに上書き）</button>
+      <button type="button" class="chip-btn" id="prefs-close">閉じる</button>
+    </div>
+    <div id="prefs-msg" style="font-size:0.7rem;color:#e0a060;margin-top:6px;min-height:1em;"></div>
+  </div>
 </div>
 
 <div id="ae-player" hidden>
   <div class="pl-inner">
     <div class="pl-video"><div id="pl-mount"></div></div>
     <div class="pl-side">
-      <div class="pl-head">
-        <div>
-          <div class="pl-title" id="pl-title"></div>
-          <div class="pl-work" id="pl-work"></div>
-          <div class="pl-badge" id="pl-badge"></div>
-        </div>
+      <div>
+        <div class="pl-title" id="pl-title"></div>
+        <div class="pl-work" id="pl-work"></div>
+        <div class="pl-badge" id="pl-badge"></div>
+      </div>
+      <div class="pl-seek">
+        <span class="pl-time" id="pl-cur">0:00</span>
+        <input type="range" id="pl-seek" min="0" max="1000" value="0" title="再生位置" aria-label="再生位置">
+        <span class="pl-time" id="pl-dur">0:00</span>
+        <span class="pl-vol"><span aria-hidden="true">🔊</span><input type="range" id="pl-vol" min="0" max="100" value="100" title="音量" aria-label="音量"></span>
       </div>
       <div class="pl-msg" id="pl-msg"></div>
       <div class="pl-ctrl">
         <button type="button" id="pl-prev" title="前の曲" aria-label="前の曲">⏮</button>
         <button type="button" id="pl-toggle" title="再生/一時停止" aria-label="再生/一時停止">⏸</button>
         <button type="button" id="pl-next" title="次の曲" aria-label="次の曲">⏭</button>
+        <button type="button" id="pl-rand" class="rnd" title="ランダム再生の切替">🔀</button>
+        <button type="button" id="pl-sabi" title="サビだけ再生の切替">サビだけ</button>
+        <span class="pl-rate" id="pl-rate">
+          <span class="rate-set" id="pl-rate-set"></span>
+          <span class="mood-set" id="pl-mood-set"></span>
+        </span>
+        <button type="button" id="pl-favanime" class="fav-anime" title="この曲のアニメをお気に入りに登録">♡ アニメをお気に入りに</button>
         <button type="button" id="pl-size" title="プレイヤーの大きさ" aria-label="プレイヤーの大きさ">⤢</button>
         <a id="pl-open" class="pl-open" href="#" target="_blank" rel="noopener noreferrer">YouTubeで開く</a>
         <button type="button" id="pl-close" title="閉じる" aria-label="閉じる">✕</button>
@@ -153,68 +267,206 @@
 <script>window.MOBILE_HUB_PLAYER = true;</script>
 <script src="shared/nav.js"></script>
 <script src="data/anime-op-ed-data.js"></script>
+<script src="data/anime-song-chorus-data.js"></script>
 <script>
 (function () {
+  "use strict";
   const works = window.ANIME_OP_ED_DATA || [];
-  const bodyEl = document.getElementById("ae-body");
-  const countEl = document.getElementById("count");
-  const emptyEl = document.getElementById("empty");
-  const tableEl = document.getElementById("ae-table");
-  const searchEl = document.getElementById("search");
-  const kindFilterEl = document.getElementById("kind-filter");
-  const workFilterEl = document.getElementById("work-filter");
+  const CH = window.ANIME_SONG_CHORUS || {};     // 動画ID → [開始秒, 終了秒, "high"|"low"]  （サビの推定）
+  // サイト内で再生できるのは http(s) で開いたとき（file:// では YouTube の埋め込みが動かない）
+  const EMBED_OK = window.MOBILE_HUB_PLAYER === true || location.protocol === "http:" || location.protocol === "https:";
+  if (window.MOBILE_HUB_PLAYER === true) document.body.classList.add("mobile-hub");
 
-  let activeWork = "";
-  let activeKind = "";   // "" | "OP" | "ED"
-  let query = "";
-
+  // ---- 小道具 ----
   function el(tag, cls, text) {
     const e = document.createElement(tag);
     if (cls) e.className = cls;
     if (text != null) e.textContent = text;
     return e;
   }
-
-  function chip(label, active, onclick) {
-    const b = el("button", "chip-btn" + (active ? " active" : ""), label);
-    b.onclick = onclick;
-    return b;
+  function fmt(sec) {
+    sec = Math.max(0, Math.floor(sec || 0));
+    return Math.floor(sec / 60) + ":" + String(sec % 60).padStart(2, "0");
   }
+  function norm(s) { return String(s || "").normalize("NFKC").toLowerCase(); }
+  function ytUrl(id, t) { return "https://www.youtube.com/watch?v=" + id + (t ? "&t=" + Math.floor(t) + "s" : ""); }
 
-  function buildFilters() {
-    kindFilterEl.innerHTML = "";
-    [["", "すべて"], ["OP", "OP"], ["ED", "ED"]].forEach(function (k) {
-      kindFilterEl.appendChild(chip(k[1], activeKind === k[0], function () { activeKind = k[0]; render(); }));
+  // ---- 端末に保存する評価・気分（localStorage。使えない環境でも動く） ----
+  const PREF_KEY = "anime-songs-prefs-v1";
+  let prefs = { rating: {}, mood: {}, bad: {}, vol: 100, view: "poster" };
+  try { const r = JSON.parse(localStorage.getItem(PREF_KEY) || "null"); if (r) prefs = Object.assign(prefs, r); } catch (e) { /* 使えなくても続行 */ }
+  function savePrefs() { try { localStorage.setItem(PREF_KEY, JSON.stringify(prefs)); } catch (e) { /* 保存できなくても続行 */ } }
+
+  // ---- アニメのお気に入り（F:\anime の shared/favorites.js と同じ localStorage キー "anime-favorites"） ----
+  const FAV_KEY = "anime-favorites";
+  function favOverrides() { try { return JSON.parse(localStorage.getItem(FAV_KEY) || "{}"); } catch (e) { return {}; } }
+  function favGet(id) {
+    if (window.AnimeFavorites) return window.AnimeFavorites.get(id);
+    const o = favOverrides();
+    if (Object.prototype.hasOwnProperty.call(o, String(id))) return o[String(id)];
+    return (window.FAVORITES_SEED || {})[String(id)] || 0;
+  }
+  function favSet(id, state) {
+    if (window.AnimeFavorites) return window.AnimeFavorites.set(id, state);
+    const o = favOverrides(); o[String(id)] = state;
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(o)); } catch (e) { /* 保存できなくても続行 */ }
+    return state;
+  }
+  function workFavState(w) {
+    let m = 0;
+    (w.favs || []).forEach(function (id) { m = Math.max(m, favGet(id)); });
+    return m;
+  }
+  // お気に入りのデータ（favorites-data.js / favorites.js）は F:\anime 側にある。同じ階層構成（../anime/shared/）のときだけ読む
+  ["../anime/shared/favorites-data.js", "../anime/shared/favorites.js"].reduce(function (p, src) {
+    return p.then(function () {
+      return new Promise(function (res) { const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = res; document.head.appendChild(s); });
     });
-    // 作品は数が多いのでプルダウンにする（一度だけ作り、以後は選択値だけ合わせる）
-    let sel = document.getElementById("work-select");
-    if (!sel) {
-      sel = document.createElement("select");
-      sel.id = "work-select";
-      const all = document.createElement("option");
-      all.value = "";
-      all.textContent = "全作品 (" + works.length + ")";
-      sel.appendChild(all);
-      works.forEach(function (w) {
-        const o = document.createElement("option");
-        o.value = w.id;
-        o.textContent = w.title + "（" + w.year + "）";
-        sel.appendChild(o);
-      });
-      sel.onchange = function () { activeWork = sel.value; render(); };
-      workFilterEl.appendChild(sel);
-    }
-    sel.value = activeWork;
+  }, Promise.resolve()).then(function () { refreshUi(); });
+
+  // ---- 曲の識別・評価・気分 ----
+  function songKey(w, t) { return w.id + "#" + (t.kind || "") + "|" + t.name; }
+  function rateOf(key) { return prefs.rating[key] || ""; }
+  function moodOf(key) { return prefs.mood[key] || ""; }
+  function isBad(id) { return !!prefs.bad[id]; }
+
+  // 再生に使う動画（埋め込み不可・再生失敗の動画は代替。無ければ null）
+  function playSource(t) {
+    const y = t.yt;
+    if (!y) return null;
+    const cands = [{ id: y.id, k: y.k, o: y.o, ok: y.e !== 0 }];
+    if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: true });
+    for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id)) return cands[i];
+    return null;
+  }
+  function chorusOf(t) {
+    const s = playSource(t);
+    if (!s || !CH[s.id]) return null;
+    return CH[s.id];
+  }
+  function ytLabel(t) {
+    const y = t.yt;
+    if (!y.o) return "YouTube";
+    if (y.k === "nc") return "公式ノンクレ";
+    if (y.k === "op") return "公式" + (t.kind || "OP") + "映像";
+    if (y.k === "au") return "公式音源";
+    return "公式MV";
   }
 
-  function trackMatches(w, t) {
-    if (activeKind && t.kind !== activeKind) return false;
+  // ---- 状態 ----
+  let view = prefs.view === "list" ? "list" : "poster";
+  let query = "";
+  let moodFilter = "";          // "" | "up" | "calm"
+  let chorusMode = false;
+  let randomMode = false;
+  let cur = null;               // { w, t, key, src, sabi }
+  let playedStack = [];         // ランダム再生で「前の曲」に戻るための履歴
+  let recent = [];              // 直近に流した曲のキー（ランダムで避ける）
+  let listCtx = [];             // 順送りの対象（[{w,t}]。開いている一覧・作品パネル）
+  let promptedWorks = {};       // 評価を促した作品
+
+  const allSongs = [];          // [{w, t, key}]
+  works.forEach(function (w) { w.tracks.forEach(function (t, i) { t._i = i; allSongs.push({ w: w, t: t, key: songKey(w, t) }); }); });
+
+  function songMatches(w, t) {
     if (!query) return true;
-    const hay = [w.title, t.name, t.artist, t.usage, t.note].join(" ").toLowerCase();
-    return hay.includes(query.toLowerCase());
+    const hay = norm([w.title, w.note, t.name, t.artist, t.usage, t.note].join(" "));
+    return hay.includes(norm(query));
+  }
+  function workRatedCount(w) { return w.tracks.filter(function (t) { return rateOf(songKey(w, t)); }).length; }
+
+  // ---- 表（一覧・作品パネル共通）----
+  function controlCells(w, t, key) {
+    const cells = [];
+    // サビ（ボタン）
+    const sabi = el("td", "sabi-cell");
+    const c = EMBED_OK ? chorusOf(t) : null;
+    const b = el("button", "yt-btn sabi", "サビ▶");
+    b.type = "button";
+    b.dataset.key = key;
+    if (!c) { b.disabled = true; b.title = EMBED_OK ? "この曲はサビ位置がまだありません／サイト内で再生できません" : "サイト内再生は http で開いたときだけ使えます"; }
+    else { b.title = "推定したサビ " + fmt(c[0]) + "〜" + fmt(c[1]) + (c[2] === "low" ? "（自信低）" : ""); }
+    b.addEventListener("click", function (ev) { ev.stopPropagation(); randomMode = false; setChorusMode(true); playSong(w, t); });
+    sabi.appendChild(b);
+    cells.push(sabi);
+    // 視聴
+    const pc = el("td", "play-cell");
+    const y = t.yt;
+    if (!y) {
+      const a = el("a", "yt-btn search", "▶ YouTube検索");
+      a.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(t.q || t.name);
+      a.target = "_blank"; a.rel = "noopener";
+      pc.appendChild(a);
+    } else {
+      const src = EMBED_OK ? playSource(t) : null;
+      const a = el("a", "yt-btn" + (y.o ? " official" : ""), "▶ " + ytLabel(t) + (EMBED_OK && !src ? " ↗" : ""));
+      a.href = ytUrl(y.id);
+      a.target = "_blank"; a.rel = "noopener noreferrer";
+      a.dataset.key = key;
+      a.title = (y.ch ? "チャンネル: " + y.ch : "") + (EMBED_OK && !src ? "（サイト内で再生できないためYouTubeで開きます）" : "");
+      if (src) {
+        a.addEventListener("click", function (ev) {
+          if (ev.button !== 0 || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.altKey) return;
+          ev.preventDefault(); ev.stopPropagation();
+          randomMode = false; playSong(w, t);
+        });
+      }
+      pc.appendChild(a);
+      if (!y.o) pc.appendChild(el("span", "yt-tag unofficial", "※非公式"));
+    }
+    cells.push(pc);
+    // 評価
+    const rc = el("td", "rate-cell");
+    rc.appendChild(rateSet(key));
+    cells.push(rc);
+    // 気分
+    const mc = el("td", "mood-cell");
+    mc.appendChild(moodSet(key));
+    cells.push(mc);
+    return cells;
   }
 
-  // 連続して同じ値のセルを rowspan で結合するためのスパン配列（先頭行に長さ、それ以外は0）
+  const RATES = [["fav", "★", "お気に入り"], ["ok", "○", "ふつう"], ["meh", "△", "微妙"]];
+  function rateSet(key) {
+    const s = el("span", "rate-set");
+    RATES.forEach(function (r) {
+      const b = el("button", "rate-btn", r[1]);
+      b.type = "button"; b.dataset.key = key; b.dataset.val = r[0]; b.title = "曲の評価: " + r[2];
+      if (rateOf(key) === r[0]) b.classList.add("on");
+      b.addEventListener("click", function (ev) { ev.stopPropagation(); setRate(key, r[0]); });
+      s.appendChild(b);
+    });
+    return s;
+  }
+  function moodSet(key) {
+    const s = el("span", "mood-set");
+    [["up", "🔥盛り上がる"], ["calm", "🌿安らぐ"]].forEach(function (m) {     // 盛り上がるが上
+      const b = el("button", "mood-btn", m[1]);
+      b.type = "button"; b.dataset.key = key; b.dataset.val = m[0]; b.title = "気分を設定（もう一度押すと解除）";
+      if (moodOf(key) === m[0]) b.classList.add("on");
+      b.addEventListener("click", function (ev) { ev.stopPropagation(); setMood(key, m[0]); });
+      s.appendChild(b);
+    });
+    return s;
+  }
+  function setRate(key, v) {
+    if (prefs.rating[key] === v) delete prefs.rating[key]; else prefs.rating[key] = v;
+    savePrefs(); syncControls();
+  }
+  function setMood(key, v) {
+    if (prefs.mood[key] === v) delete prefs.mood[key]; else prefs.mood[key] = v;
+    savePrefs(); syncControls();
+  }
+  // 画面のすべての評価・気分ボタンの見た目を、保存された値に合わせる
+  function syncControls() {
+    const rb = document.querySelectorAll(".rate-btn");
+    for (let i = 0; i < rb.length; i++) rb[i].classList.toggle("on", rateOf(rb[i].dataset.key) === rb[i].dataset.val);
+    const mb = document.querySelectorAll(".mood-btn");
+    for (let i = 0; i < mb.length; i++) mb[i].classList.toggle("on", moodOf(mb[i].dataset.key) === mb[i].dataset.val);
+    if (cur) plRatePrompt();
+    if (view === "poster") renderPosters();
+  }
+
   function spans(list, keyOf) {
     const s = list.map(function () { return 0; });
     for (let i = 0; i < list.length; ) {
@@ -233,270 +485,494 @@
     if (w.image) {
       const thumb = el("div", "work-thumb");
       const img = document.createElement("img");
-      img.src = w.image;
-      img.alt = w.title;
-      img.referrerPolicy = "no-referrer";
-      img.loading = "lazy";
-      img.decoding = "async";
+      img.src = w.image; img.alt = w.title; img.referrerPolicy = "no-referrer"; img.loading = "lazy"; img.decoding = "async";
       thumb.appendChild(img);
       wc.appendChild(thumb);
     } else {
       wc.appendChild(el("div", "work-thumb noimg", "画像なし"));
     }
     wc.appendChild(el("div", "work-title", w.title));
-    wc.appendChild(el("div", "work-meta", w.year + "年〜"));
+    if (w.year) wc.appendChild(el("div", "work-meta", w.year + "年〜"));
     if (w.note) wc.appendChild(el("div", "work-note", w.note));
     if (w.image) wc.appendChild(el("div", "work-credit", "画像: " + w.imageCredit));
     return wc;
   }
 
-  function render() {
-    buildFilters();
-    bodyEl.innerHTML = "";
-    queue = [];
-    let trackCount = 0, workCount = 0, officialCount = 0, unofficialCount = 0;
-
-    works.forEach(function (w) {
-      if (activeWork && w.id !== activeWork) return;
-      const tracks = w.tracks.filter(function (t) { return trackMatches(w, t); });
-      if (tracks.length === 0) return;
-      workCount++;
-      trackCount += tracks.length;
-      tracks.forEach(function (t) { if (t.yt) { if (t.yt.o) officialCount++; else unofficialCount++; } });
-
+  // works の曲を表に出す。withWork=false は作品パネル（作品セルなし）
+  function fillTable(tbody, wlist, withWork) {
+    tbody.innerHTML = "";
+    let songs = 0, ws = 0;
+    wlist.forEach(function (w) {
+      const tracks = w.tracks.filter(function (t) { return songMatches(w, t); });
+      if (!tracks.length) return;
+      ws++; songs += tracks.length;
       const kindSpan = spans(tracks, function (t) { return t.kind; });
-      const artistSpan = spans(tracks, function (t) { return t.kind + "|" + t.artist; });   // 種別をまたいで結合しない
-
+      const artistSpan = spans(tracks, function (t) { return t.kind + "|" + t.artist; });
       tracks.forEach(function (t, idx) {
+        const key = songKey(w, t);
         const tr = document.createElement("tr");
-        tr.id = "song-" + w.id + "-" + w.tracks.indexOf(t);
-
-        if (idx === 0) tr.appendChild(workCell(w, tracks.length));
-
+        tr.id = (withWork ? "song-" : "wm-song-") + w.id + "-" + t._i;
+        tr.dataset.key = key;
+        if (withWork && idx === 0) tr.appendChild(workCell(w, tracks.length));
         if (kindSpan[idx] > 0) {
-          const kc = el("td", "kind-cell");
-          kc.rowSpan = kindSpan[idx];
-          kc.appendChild(el("span", "kind-chip " + t.kind.toLowerCase(), t.kind));
+          const kc = el("td", "kind-cell"); kc.rowSpan = kindSpan[idx];
+          kc.appendChild(el("span", "kind-chip " + (t.kind ? t.kind.toLowerCase() : "med"), t.kind || "—"));
           tr.appendChild(kc);
         }
-
         tr.appendChild(el("td", "track-name", t.name));
-
         if (artistSpan[idx] > 0) {
           const ac = el("td", "artist-cell" + (t.artist ? "" : " empty-mark"), t.artist || "—");
           ac.rowSpan = artistSpan[idx];
           tr.appendChild(ac);
         }
-
         const uc = el("td");
         uc.appendChild(el("div", t.usage ? "" : "empty-mark", t.usage || "—"));
         if (t.note) uc.appendChild(el("div", "usage-note", t.note));
         tr.appendChild(uc);
-
-        tr.appendChild(watchCell(t, tr));
-
-        bodyEl.appendChild(tr);
+        controlCells(w, t, key).forEach(function (c) { tr.appendChild(c); });
+        tr.addEventListener("click", function (ev) { if (ev.target.closest("a,button")) return; if (EMBED_OK) { randomMode = false; playSong(w, t); } });
+        tbody.appendChild(tr);
       });
     });
+    return { songs: songs, works: ws };
+  }
 
-    countEl.textContent = workCount + " 作品 / " + trackCount + " 曲（動画リンク: 公式 " + officialCount + " / 非公式 " + unofficialCount +
-      " / 検索のみ " + (trackCount - officialCount - unofficialCount) + "）";
+  // ---- ポスター表示 ----
+  function renderPosters() {
+    const grid = document.getElementById("poster-grid");
+    grid.innerHTML = "";
+    let ws = 0, songs = 0;
+    works.forEach(function (w) {
+      const n = w.tracks.filter(function (t) { return songMatches(w, t); }).length;
+      if (!n) return;
+      ws++; songs += n;
+      const p = el("div", "poster");
+      p.id = "poster-" + w.id;
+      const img = el("div", "p-img");
+      if (w.image) {
+        const im = document.createElement("img");
+        im.src = w.image; im.alt = w.title; im.referrerPolicy = "no-referrer"; im.loading = "lazy"; im.decoding = "async";
+        img.appendChild(im);
+      } else { img.className = "p-img noimg"; img.textContent = w.title; }
+      p.appendChild(img);
+      const fs = workFavState(w);
+      if (fs > 0) p.appendChild(el("span", "p-star" + (fs === 2 ? " s2" : ""), "★"));
+      if (!workRatedCount(w)) p.appendChild(el("span", "p-new", "未評価"));
+      p.appendChild(el("div", "p-title", w.title));
+      const meta = el("div", "p-meta");
+      meta.appendChild(el("span", null, n + "曲"));
+      const rc = workRatedCount(w);
+      if (rc) meta.appendChild(el("span", null, "評価 " + rc));
+      p.appendChild(meta);
+      p.addEventListener("click", function () { openWork(w); });
+      grid.appendChild(p);
+    });
+    return { songs: songs, works: ws };
+  }
+
+  // ---- 作品パネル ----
+  let openWorkObj = null;
+  function openWork(w) {
+    openWorkObj = w;
+    document.getElementById("wm-title").textContent = w.title + (w.year ? "（" + w.year + "年〜）" : "");
+    fillTable(document.getElementById("wm-body"), [w], false);
+    updateWmFav();
+    document.getElementById("work-modal").hidden = false;
     applyPlaying();
-    const none = trackCount === 0;
-    tableEl.style.display = none ? "none" : "";
-    emptyEl.style.display = none ? "block" : "none";
+    try { history.replaceState(null, "", "#work-" + w.id); } catch (e) { /* 履歴が使えなくても続行 */ }
+  }
+  function closeWork() {
+    document.getElementById("work-modal").hidden = true;
+    openWorkObj = null;
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* 続行 */ }
+  }
+  document.getElementById("wm-close").onclick = closeWork;
+  document.getElementById("work-modal").addEventListener("click", function (ev) { if (ev.target.id === "work-modal") closeWork(); });
+
+  function updateWmFav() {
+    const b = document.getElementById("wm-fav");
+    const w = openWorkObj;
+    if (!w) return;
+    setFavButton(b, w);
+    b.onclick = function () { toggleFavAnime(w); updateWmFav(); };
+  }
+  function setFavButton(b, w) {
+    b.disabled = false;
+    if (!(w.favs && w.favs.length)) { b.textContent = "♡ 作品不明のためお気に入り登録できません"; b.disabled = true; b.classList.remove("on"); return; }
+    const fs = workFavState(w);
+    b.classList.toggle("on", fs > 0);
+    b.textContent = fs === 2 ? "★ 永久保存版（アニメのお気に入り）" : fs === 1 ? "★ アニメをお気に入り登録済み" : "♡ このアニメをお気に入りに登録";
+  }
+  // アニメのお気に入り（F:\anime のお気に入りページと共有）を 0↔1 で切り替える。永久保存版(2)は下げない
+  function toggleFavAnime(w) {
+    if (!(w.favs && w.favs.length)) return;
+    const fs = workFavState(w);
+    if (fs >= 1) { if (fs === 2) return; w.favs.forEach(function (id) { if (favGet(id) === 1) favSet(id, 0); }); }
+    else w.favs.forEach(function (id) { if (favGet(id) === 0) favSet(id, 1); });
+    refreshUi();
   }
 
-  function buildSources() {
-    const box = document.getElementById("sources");
-    box.appendChild(el("b", null, "出典"));
-    box.appendChild(document.createTextNode("：曲名・歌手・使用話数は日本語版Wikipediaの各作品記事（"));
-    works.forEach(function (w, i) {
-      if (i > 0) box.appendChild(document.createTextNode(" / "));
-      const a = el("a", null, w.wiki);
-      a.href = "https://ja.wikipedia.org/wiki/" + encodeURIComponent(w.wiki.replace(/ /g, "_"));
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      box.appendChild(a);
-    });
-    box.appendChild(document.createTextNode(
-      "）の「主題歌」節・OP/ED表から転記した（取得: 2026-09-21）。記載が更新されている場合がある。" +
-      "サムネイル画像はお気に入りページと同じもの（myanimelist.net / animatetimes.com）を直接参照しており、権利は各社に帰属します。" +
-      "曲名・歌手の表記は記事のままで、作品内で同名の曲が複数の期に使われている場合は使用話数欄で区別している。"));
+  // ---- 全体の描画 ----
+  function refreshUi() {
+    render();
+    if (openWorkObj) { fillTable(document.getElementById("wm-body"), [openWorkObj], false); updateWmFav(); }
+    if (cur) plUpdateFav();
   }
 
-
-  // ---- 視聴ボタン ----
-  // t.yt があれば動画へ直接リンク（公式チャンネルのノンクレ映像 > 公式OP/ED映像 > 公式MV/音源 > 非公式）。無ければYouTube検索リンク。
-  // mobile-hub公開版（build.ps1 が window.MOBILE_HUB_PLAYER を注入）では、YouTubeへ移動せず画面下のプレイヤーで再生する。
-  const IN_SITE = window.MOBILE_HUB_PLAYER === true;
-  if (IN_SITE) document.body.classList.add("mobile-hub");
-  let queue = [];          // 現在の表示順で、サイト内再生できる曲 [{id(行id), t, src}]
-  let curId = null;        // 再生中の行id
-
-  function ytLabel(t) {
-    const y = t.yt;
-    if (!y.o) return "YouTube";
-    if (y.k === "nc") return "公式ノンクレ";
-    if (y.k === "op") return "公式" + t.kind + "映像";
-    if (y.k === "au") return "公式音源";
-    return "公式MV";
+  function render() {
+    document.getElementById("poster-wrap").hidden = view !== "poster";
+    document.getElementById("table-wrap").hidden = view !== "list";
+    document.getElementById("view-poster").classList.toggle("active", view === "poster");
+    document.getElementById("view-list").classList.toggle("active", view === "list");
+    let st;
+    if (view === "poster") st = renderPosters();
+    else st = fillTable(document.getElementById("ae-body"), works, true);
+    const rated = allSongs.filter(function (s) { return rateOf(s.key); }).length;
+    let nOff = 0, nOn = 0, nNone = 0, nCh = 0;
+    allSongs.forEach(function (s) { if (s.t.yt) { if (s.t.yt.o) nOn++; else nOff++; } else nNone++; if (chorusOf(s.t)) nCh++; });
+    document.getElementById("count").textContent = st.works + " 作品 / " + st.songs + " 曲（全" + allSongs.length + "曲）　動画: 公式 " + nOn + " / 非公式 " + nOff + " / 検索のみ " + nNone +
+      "　サビ推定あり " + nCh + "　評価済み " + rated;
+    const none = st.songs === 0;
+    document.getElementById("empty").style.display = none ? "block" : "none";
+    if (view === "list") document.getElementById("ae-table").style.display = none ? "none" : "";
+    applyPlaying();
   }
-  // サイト内再生に使う動画（埋め込み不可の動画は、埋め込める代替があればそれ。無ければ null＝YouTubeで開く）
-  function playSource(y) {
-    if (y.e === 0) return y.alt ? y.alt : null;
-    return { id: y.id, k: y.k, o: y.o };
-  }
-  function ytUrl(id) { return "https://www.youtube.com/watch?v=" + id; }
-
-  function watchCell(t, tr) {
-    const td = el("td");
-    const y = t.yt;
-    if (!y) {
-      const a = el("a", "yt-btn search", "▶ YouTube検索");
-      a.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(t.q);
-      a.target = "_blank";
-      a.rel = "noopener";
-      td.appendChild(a);
-      return td;
-    }
-    const src = IN_SITE ? playSource(y) : null;
-    const a = el("a", "yt-btn" + (y.o ? " official" : ""), "▶ " + ytLabel(t) + (IN_SITE && !src ? " ↗" : ""));
-    a.href = ytUrl(y.id);
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.title = (y.ch ? "チャンネル: " + y.ch : "") + (IN_SITE && !src ? "（この動画は埋め込み再生できないためYouTubeで開きます）" : "");
-    if (src) {
-      queue.push({ id: tr.id, t: t, src: src });
-      a.addEventListener("click", function (ev) {
-        if (ev.button !== 0 || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.altKey) return;   // 修飾キー付きは通常どおり新しいタブ
-        ev.preventDefault();
-        play(queue.findIndex(function (q) { return q.id === tr.id; }));
-      });
-    }
-    td.appendChild(a);
-    if (!y.o) td.appendChild(el("span", "yt-tag unofficial", "※非公式"));
-    return td;
-  }
-
-  // ---- サイト内プレイヤー（YouTube IFrame Player API） ----
-  const barEl = document.getElementById("ae-player");
-  const plTitle = document.getElementById("pl-title");
-  const plWork = document.getElementById("pl-work");
-  const plBadge = document.getElementById("pl-badge");
-  const plMsg = document.getElementById("pl-msg");
-  const plOpen = document.getElementById("pl-open");
-  const plToggle = document.getElementById("pl-toggle");
-  let ytPlayer = null, apiLoading = false, apiReady = false, waiting = null, errStreak = 0, skipTimer = null;
-
-  function fitPadding() {
-    document.body.style.paddingBottom = barEl.hidden ? "" : (barEl.offsetHeight + 12) + "px";
-  }
-  if (window.ResizeObserver) new ResizeObserver(fitPadding).observe(barEl);
-  window.addEventListener("resize", fitPadding);
 
   function applyPlaying() {
-    const prev = bodyEl.querySelectorAll("tr.playing, a.yt-btn.now");
+    const prev = document.querySelectorAll("tr.playing, .yt-btn.now");
     for (let i = 0; i < prev.length; i++) prev[i].classList.remove("playing", "now");
-    if (!curId) return;
-    const tr = document.getElementById(curId);
-    if (tr) {
-      tr.classList.add("playing");
-      const b = tr.querySelector("a.yt-btn");
-      if (b) b.classList.add("now");
+    if (!cur) return;
+    const trs = document.querySelectorAll("tr[data-key]");
+    for (let i = 0; i < trs.length; i++) {
+      if (trs[i].dataset.key === cur.key) {
+        trs[i].classList.add("playing");
+        const b = trs[i].querySelector("a.yt-btn");
+        if (b) b.classList.add("now");
+      }
     }
   }
+
+  // ---- 表示切替・検索・気分フィルタ ----
+  document.getElementById("view-poster").onclick = function () { view = "poster"; prefs.view = view; savePrefs(); render(); };
+  document.getElementById("view-list").onclick = function () { view = "list"; prefs.view = view; savePrefs(); render(); };
+  document.getElementById("search").addEventListener("input", function (e) { query = e.target.value; render(); if (openWorkObj) fillTable(document.getElementById("wm-body"), [openWorkObj], false); });
+  function setMoodFilter(v) {
+    moodFilter = v;
+    document.getElementById("mood-all").classList.toggle("active", v === "");
+    document.getElementById("mood-up").classList.toggle("active", v === "up");
+    document.getElementById("mood-calm").classList.toggle("active", v === "calm");
+  }
+  document.getElementById("mood-all").onclick = function () { setMoodFilter(""); };
+  document.getElementById("mood-up").onclick = function () { setMoodFilter("up"); };
+  document.getElementById("mood-calm").onclick = function () { setMoodFilter("calm"); };
+
+  function setChorusMode(on) {
+    chorusMode = on;
+    document.getElementById("btn-chorus-mode").classList.toggle("active", on);
+    document.getElementById("pl-sabi").classList.toggle("on", on);
+  }
+  document.getElementById("btn-chorus-mode").onclick = function () { setChorusMode(!chorusMode); if (cur) playSong(cur.w, cur.t); };
+  document.getElementById("pl-sabi").onclick = function () { setChorusMode(!chorusMode); if (cur) playSong(cur.w, cur.t); };
+
+  // ---- ランダム再生（評価を反映するが、偏りを抑える） ----
+  // 曲の重み: お気に入り1.8 / ふつう1.0 / 微妙0.6 / 未評価1.0。アニメがお気に入りなら×1.15（永久保存版×1.3）。範囲は0.5〜2.5（最大差は約4倍）
+  // さらに15%は「評価が1回も付いていない作品」からの探索枠（作品は曲数の平方根で重み付けして選び、その中の曲を等確率で選ぶ）。直近20曲は避ける
+  // 模擬（20万回・評価をランダムに付与）では、お気に入りの曲は平均の約1.5倍、微妙は約0.5倍、曲ごとの最大でも平均の約2.4倍に収まる
+  const W_RATE = { fav: 1.8, ok: 1.0, meh: 0.6, "": 1.0 };
+  const EXPLORE_P = 0.15, RECENT_N = 20, W_MIN = 0.5, W_MAX = 2.5;
+  function songWeight(s) {
+    const fs = workFavState(s.w);
+    const fw = fs >= 2 ? 1.3 : fs >= 1 ? 1.15 : 1.0;
+    return Math.min(W_MAX, Math.max(W_MIN, W_RATE[rateOf(s.key)] * fw));
+  }
+  function playable(s) {
+    if (!EMBED_OK || !playSource(s.t)) return false;
+    if (chorusMode && !chorusOf(s.t)) return false;
+    return true;
+  }
+  function pickRandom() {
+    let pool = allSongs.filter(playable);
+    let note = "";
+    if (moodFilter) {
+      const m = pool.filter(function (s) { return moodOf(s.key) === moodFilter; });
+      if (m.length) pool = m; else note = "気分「" + (moodFilter === "up" ? "盛り上がる" : "安らぐ") + "」を設定した曲がまだ無いので、すべての曲から選んでいます";
+    }
+    if (!pool.length) return null;
+    const fresh = pool.filter(function (s) { return recent.indexOf(s.key) < 0; });
+    const use = fresh.length >= Math.min(10, pool.length) ? fresh : pool;
+    let pick = null, explore = false;
+    if (Math.random() < EXPLORE_P) {
+      const byWork = {};
+      use.forEach(function (s) { if (!workRatedCount(s.w)) (byWork[s.w.id] = byWork[s.w.id] || []).push(s); });
+      const ids = Object.keys(byWork);
+      if (ids.length) {
+        // 作品は曲数の平方根で重み付けして選ぶ（曲数の少ない作品の曲だけが極端に多く流れないように）→ その中の曲は等確率
+        let tw = 0; const kw = ids.map(function (k) { const x = Math.sqrt(byWork[k].length); tw += x; return x; });
+        let rr = Math.random() * tw, ki = ids.length - 1;
+        for (let q = 0; q < ids.length; q++) { rr -= kw[q]; if (rr <= 0) { ki = q; break; } }
+        const list = byWork[ids[ki]]; pick = list[Math.floor(Math.random() * list.length)]; explore = true;
+      }
+    }
+    if (!pick) {
+      let sum = 0;
+      const ws = use.map(function (s) { const x = songWeight(s); sum += x; return x; });
+      let r = Math.random() * sum;
+      for (let i = 0; i < use.length; i++) { r -= ws[i]; if (r <= 0) { pick = use[i]; break; } }
+      if (!pick) pick = use[use.length - 1];
+    }
+    return { s: pick, explore: explore, note: note };
+  }
+  function playRandom(fromNext) {
+    const r = pickRandom();
+    if (!r) { plMsg("ランダムで流せる曲がありません（サイト内で再生できる曲・サビ位置のある曲が必要です）"); return; }
+    if (cur && fromNext !== false) playedStack.push({ w: cur.w, t: cur.t });
+    if (playedStack.length > 50) playedStack.shift();
+    randomMode = true;
+    playSong(r.s.w, r.s.t, { explore: r.explore, note: r.note });
+  }
+  document.getElementById("btn-random").onclick = function () { playRandom(true); };
+  document.getElementById("pl-rand").onclick = function () { if (randomMode) { randomMode = false; syncModeButtons(); } else { playRandom(true); } };
+  function syncModeButtons() {
+    document.getElementById("pl-rand").classList.toggle("on", randomMode);
+  }
+
+  // ---- プレイヤー（YouTube IFrame Player API）----
+  const barEl = document.getElementById("ae-player");
+  const plToggle = document.getElementById("pl-toggle");
+  const seekEl = document.getElementById("pl-seek");
+  const volEl = document.getElementById("pl-vol");
+  let ytPlayer = null, apiLoading = false, apiReady = false, waiting = null, errStreak = 0, pollTimer = null, seeking = false, skipTimer = null;
+
+  function plMsg(t) { document.getElementById("pl-msg").textContent = t || ""; }
+  function fitPadding() { document.body.style.paddingBottom = barEl.hidden ? "" : (barEl.offsetHeight + 12) + "px"; }
+  if (window.ResizeObserver) new ResizeObserver(fitPadding).observe(barEl);
+  window.addEventListener("resize", fitPadding);
 
   function loadApi(cb) {
     if (apiReady) return cb();
     waiting = cb;
     if (apiLoading) return;
     apiLoading = true;
-    window.onYouTubeIframeAPIReady = function () {
-      apiReady = true;
-      if (waiting) { const f = waiting; waiting = null; f(); }
-    };
+    window.onYouTubeIframeAPIReady = function () { apiReady = true; if (waiting) { const f = waiting; waiting = null; f(); } };
     const sc = document.createElement("script");
     sc.src = "https://www.youtube.com/iframe_api";
-    sc.onerror = function () { apiLoading = false; plMsg.textContent = "プレイヤーを読み込めませんでした。「YouTubeで開く」から再生してください。"; };
+    sc.onerror = function () { apiLoading = false; plMsg("プレイヤーを読み込めませんでした。「YouTubeで開く」から再生してください。"); };
     document.head.appendChild(sc);
   }
 
-  function workOf(rowId) {
-    // 行idは "song-{作品id}-{曲番号}"
-    const m = /^song-(.+)-(\d+)$/.exec(rowId);
-    return m ? works.find(function (w) { return w.id === m[1]; }) : null;
-  }
-
-  function play(i) {
-    if (i < 0 || i >= queue.length) return;
-    const q = queue[i];
-    curId = q.id;
-    const w = workOf(q.id);
-    clearTimeout(skipTimer);
-    plTitle.textContent = q.t.kind + "：" + q.t.name;
-    plWork.textContent = (w ? w.title : "") + (q.t.artist ? " ／ " + q.t.artist : "");
-    const alt = q.src.id !== q.t.yt.id;
-    plBadge.className = "pl-badge" + (q.src.o ? "" : " unofficial");
-    plBadge.textContent = (q.src.o ? "公式" : "※非公式") + (alt ? "（元の動画は埋め込み不可のため代替動画）" : "");
-    plOpen.href = ytUrl(q.src.id);
-    plMsg.textContent = "";
-    barEl.hidden = false;
-    fitPadding();
-    applyPlaying();
-    const row = document.getElementById(q.id);
-    if (row && row.scrollIntoView) row.scrollIntoView({ block: "center", behavior: "smooth" });
-    loadApi(function () {
-      if (!ytPlayer) {
-        ytPlayer = new YT.Player("pl-mount", {
-          width: "100%", height: "100%", videoId: q.src.id,
-          playerVars: { autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1 },
-          events: {
-            onStateChange: function (e) {
-              if (e.data === 1) { plToggle.textContent = "⏸"; errStreak = 0; plMsg.textContent = ""; }
-              else if (e.data === 2) plToggle.textContent = "▶";
-              else if (e.data === 0) step(1);
-            },
-            onError: function () {
-              errStreak++;
-              plMsg.textContent = "この動画はサイト内で再生できません" + (errStreak < 3 ? "。次の曲へ進みます…" : "。「YouTubeで開く」から再生してください。");
-              if (errStreak < 3) skipTimer = setTimeout(function () { step(1); }, 1500);
-            }
-          }
-        });
-      } else {
-        ytPlayer.loadVideoById(q.src.id);
-      }
+  function plRatePrompt() {
+    if (!cur) return;
+    const box = document.getElementById("pl-rate");
+    const unrated = !workRatedCount(cur.w);
+    box.classList.toggle("prompt-rate", unrated);
+    if (unrated && !promptedWorks[cur.w.id] && cur.w.id !== "medley250") { promptedWorks[cur.w.id] = 1; plMsg("この作品はまだ評価がありません。曲の評価（★○△）を付けてみませんか？"); }
+    const rs = document.getElementById("pl-rate-set"), ms = document.getElementById("pl-mood-set");
+    rs.innerHTML = ""; ms.innerHTML = "";
+    rateSet(cur.key).childNodes.forEach(function (n) { rs.appendChild(n.cloneNode(true)); });
+    // cloneNode ではリスナーが付かないので付け直す
+    const rb = rs.querySelectorAll(".rate-btn");
+    for (let i = 0; i < rb.length; i++) (function (b) { b.addEventListener("click", function () { setRate(cur.key, b.dataset.val); }); })(rb[i]);
+    [["up", "🔥盛り上がる"], ["calm", "🌿安らぐ"]].forEach(function (m) {
+      const b = el("button", "mood-btn" + (moodOf(cur.key) === m[0] ? " on" : ""), m[1]);
+      b.type = "button"; b.dataset.key = cur.key; b.dataset.val = m[0]; b.title = "気分を設定（もう一度押すと解除）";
+      b.addEventListener("click", function () { setMood(cur.key, m[0]); });
+      ms.appendChild(b);
     });
   }
-
-  function step(d) {
-    if (!queue.length) return;
-    const i = queue.findIndex(function (q) { return q.id === curId; });
-    const n = i < 0 ? (d > 0 ? 0 : queue.length - 1) : i + d;
-    if (n < 0 || n >= queue.length) { plMsg.textContent = d > 0 ? "最後の曲です" : "最初の曲です"; return; }
-    play(n);
+  function plUpdateFav() {
+    const b = document.getElementById("pl-favanime");
+    if (!cur) return;
+    setFavButton(b, cur.w);
+    b.textContent = b.textContent.replace("このアニメをお気に入りに登録", "アニメをお気に入りに");
+    b.onclick = function () { toggleFavAnime(cur.w); };
   }
 
-  document.getElementById("pl-prev").onclick = function () { step(-1); };
-  document.getElementById("pl-next").onclick = function () { step(1); };
-  plToggle.onclick = function () {
-    if (!ytPlayer || !ytPlayer.getPlayerState) return;
-    if (ytPlayer.getPlayerState() === 1) ytPlayer.pauseVideo(); else ytPlayer.playVideo();
-  };
+  function playSong(w, t, opts) {
+    opts = opts || {};
+    const src = EMBED_OK ? playSource(t) : null;
+    if (!src) {
+      if (t.yt) window.open(ytUrl(t.yt.id), "_blank", "noopener");
+      return;
+    }
+    clearTimeout(skipTimer);
+    const key = songKey(w, t);
+    const c = chorusMode ? CH[src.id] : null;
+    if (chorusMode && !c) { plMsg("この曲はサビ位置がまだ無いので、頭から流します"); }
+    cur = { w: w, t: t, key: key, src: src, sabi: c };
+    recent.push(key); if (recent.length > RECENT_N) recent.shift();
+    document.getElementById("pl-title").textContent = (t.kind ? t.kind + "：" : "") + t.name;
+    document.getElementById("pl-work").textContent = w.title + (t.artist ? " ／ " + t.artist : "");
+    const badge = document.getElementById("pl-badge");
+    badge.className = "pl-badge" + (src.o ? "" : " unofficial");
+    badge.textContent = (src.o ? "公式" : "※非公式") + (src.id !== t.yt.id ? "（代替動画）" : "") + (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : "");
+    document.getElementById("pl-open").href = ytUrl(src.id, c ? c[0] : 0);
+    if (opts.explore) plMsg("まだ評価のない作品です。気に入ったら評価を付けてください");
+    else if (opts.note) plMsg(opts.note);
+    else if (!(chorusMode && !c)) plMsg("");
+    barEl.hidden = false;
+    plRatePrompt(); plUpdateFav(); syncModeButtons();
+    fitPadding(); applyPlaying();
+    const row = document.querySelector("tr[data-key=\"" + key.replace(/"/g, "\\\"") + "\"]");
+    if (row && row.scrollIntoView && view === "list") row.scrollIntoView({ block: "center", behavior: "smooth" });
+    const start = c ? c[0] : 0, end = c ? c[1] : undefined;
+    const o = { videoId: src.id, startSeconds: start };
+    if (end) o.endSeconds = end;
+    // プレイヤーはページを開いたときに先に用意してある（クリックの瞬間に再生を始めないと、ブラウザの自動再生制限で止まるため）
+    if (playerReady) { startLoaded(o); } else { pending = o; initPlayer(); }
+  }
+
+  let playerReady = false, pending = null, hintTimer = null;
+  function startLoaded(o) {
+    ytPlayer.loadVideoById(o);
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(function () {
+      const st = ytPlayer.getPlayerState ? ytPlayer.getPlayerState() : -2;
+      if (st !== 1 && st !== 3) plMsg("再生が始まらないときは ▶ を押してください（ブラウザの自動再生制限）");
+    }, 3000);
+  }
+  function initPlayer() {
+    if (ytPlayer || !EMBED_OK) return;
+    loadApi(function () {
+      if (ytPlayer) return;
+      ytPlayer = new YT.Player("pl-mount", {
+        width: "100%", height: "100%", playerVars: { playsinline: 1, rel: 0, modestbranding: 1 },
+        events: {
+          onReady: function () {
+            playerReady = true; ytPlayer.setVolume(prefs.vol); startPoll();
+            if (pending) { const o = pending; pending = null; startLoaded(o); }
+          },
+          onStateChange: onState,
+          onError: onErr
+        }
+      });
+    });
+  }
+  if (EMBED_OK) initPlayer();
+
+  function onState(e) {
+    if (e.data === 1) { plToggle.textContent = "⏸"; errStreak = 0; }
+    else if (e.data === 2) plToggle.textContent = "▶";
+    else if (e.data === 0) next();
+  }
+  // 再生エラー: 150/101=投稿者が埋め込みを許可していない、100=削除/非公開。その動画は以後使わず、代替があればそれ、無ければ次へ
+  function onErr(e) {
+    errStreak++;
+    if (cur) {
+      // 恒久的な失敗（100=削除/非公開、101・150=埋め込み禁止）だけ「再生不可」として記録する。2・5などは一時的なので記録しない
+      const code = e && e.data;
+      if (code === 100 || code === 101 || code === 150) { prefs.bad[cur.src.id] = 1; savePrefs(); }
+      const alt = code === 100 || code === 101 || code === 150 ? playSource(cur.t) : null;
+      if (alt && alt.id !== cur.src.id) { plMsg("この動画は再生できなかったので、代替動画に切り替えます（エラー " + (e && e.data) + "）"); playSong(cur.w, cur.t); return; }
+    }
+    plMsg("この動画はサイト内で再生できません（エラー " + (e && e.data) + "）。" + (errStreak < 3 ? "次の曲へ進みます…" : "「YouTubeで開く」から再生してください。"));
+    if (errStreak < 3) skipTimer = setTimeout(next, 1500);
+    refreshUi();
+  }
+
+  function startPoll() {
+    clearInterval(pollTimer);
+    pollTimer = setInterval(function () {
+      if (!ytPlayer || !ytPlayer.getCurrentTime || barEl.hidden) return;
+      const dur = ytPlayer.getDuration ? ytPlayer.getDuration() : 0;
+      const now = ytPlayer.getCurrentTime();
+      document.getElementById("pl-cur").textContent = fmt(now);
+      document.getElementById("pl-dur").textContent = fmt(dur);
+      if (!seeking && dur > 0) seekEl.value = Math.round(now / dur * 1000);
+    }, 250);
+  }
+  seekEl.addEventListener("input", function () { seeking = true; if (ytPlayer && ytPlayer.getDuration) document.getElementById("pl-cur").textContent = fmt(seekEl.value / 1000 * ytPlayer.getDuration()); });
+  seekEl.addEventListener("change", function () {
+    if (ytPlayer && ytPlayer.getDuration) ytPlayer.seekTo(seekEl.value / 1000 * ytPlayer.getDuration(), true);
+    seeking = false;
+  });
+  volEl.value = prefs.vol;
+  volEl.addEventListener("input", function () { prefs.vol = +volEl.value; savePrefs(); if (ytPlayer && ytPlayer.setVolume) ytPlayer.setVolume(prefs.vol); });
+
+  function neighbors(dir) {
+    // 順送りは、いま見ている一覧（作品パネルが開いていればその作品、無ければ表示中の作品）の並び
+    const ctx = [];
+    const wl = openWorkObj ? [openWorkObj] : works;
+    wl.forEach(function (w) { w.tracks.forEach(function (t) { if (songMatches(w, t)) ctx.push({ w: w, t: t }); }); });
+    let i = cur ? ctx.findIndex(function (x) { return x.t === cur.t; }) : -1;
+    for (let k = i + dir; k >= 0 && k < ctx.length; k += dir) {
+      const s = { w: ctx[k].w, t: ctx[k].t };
+      if (playSource(s.t) && (!chorusMode || chorusOf(s.t))) return s;
+    }
+    return null;
+  }
+  function next() {
+    if (randomMode) { playRandom(true); return; }
+    const s = neighbors(1);
+    if (s) playSong(s.w, s.t); else plMsg("最後の曲です");
+  }
+  function prev() {
+    if (randomMode) {
+      const p = playedStack.pop();
+      if (p) { playSong(p.w, p.t); return; }
+      plMsg("これより前の履歴はありません"); return;
+    }
+    const s = neighbors(-1);
+    if (s) playSong(s.w, s.t); else plMsg("最初の曲です");
+  }
+  document.getElementById("pl-prev").onclick = prev;
+  document.getElementById("pl-next").onclick = next;
+  plToggle.onclick = function () { if (!ytPlayer || !ytPlayer.getPlayerState) return; if (ytPlayer.getPlayerState() === 1) ytPlayer.pauseVideo(); else ytPlayer.playVideo(); };
   document.getElementById("pl-size").onclick = function () { barEl.classList.toggle("big"); fitPadding(); };
   document.getElementById("pl-close").onclick = function () {
     if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
-    clearTimeout(skipTimer);
-    barEl.hidden = true;
-    curId = null;
-    applyPlaying();
-    fitPadding();
+    clearTimeout(skipTimer); barEl.hidden = true; cur = null; randomMode = false; applyPlaying(); fitPadding();
   };
 
-  searchEl.addEventListener("input", function () { query = searchEl.value; render(); });
+  // ---- 評価データの書き出し・読み込み ----
+  const pm = document.getElementById("prefs-modal"), pt = document.getElementById("prefs-text"), pmsg = document.getElementById("prefs-msg");
+  document.getElementById("btn-prefs").onclick = function () {
+    pt.value = JSON.stringify({ rating: prefs.rating, mood: prefs.mood }, null, 1); pmsg.textContent = ""; pm.hidden = false;
+  };
+  document.getElementById("prefs-close").onclick = function () { pm.hidden = true; };
+  document.getElementById("prefs-load").onclick = function () {
+    try {
+      const o = JSON.parse(pt.value);
+      if (!o || typeof o !== "object") throw new Error("形式が違います");
+      prefs.rating = o.rating || {}; prefs.mood = o.mood || {}; savePrefs(); syncControls(); refreshUi();
+      pmsg.textContent = "読み込みました（評価 " + Object.keys(prefs.rating).length + " 曲、気分 " + Object.keys(prefs.mood).length + " 曲）";
+    } catch (err) { pmsg.textContent = "読み込めませんでした: " + err.message; }
+  };
+
+  // ---- 出典・注意書き ----
+  function buildSources() {
+    const box = document.getElementById("sources");
+    box.appendChild(el("b", null, "出典"));
+    box.appendChild(document.createTextNode("：曲名・歌手・使用話数は日本語版Wikipediaの各作品記事（"));
+    works.filter(function (w) { return w.wiki; }).forEach(function (w, i) {
+      if (i > 0) box.appendChild(document.createTextNode(" / "));
+      const a = el("a", null, w.wiki);
+      a.href = "https://ja.wikipedia.org/wiki/" + encodeURIComponent(w.wiki.replace(/ /g, "_"));
+      a.target = "_blank"; a.rel = "noopener noreferrer";
+      box.appendChild(a);
+    });
+    box.appendChild(document.createTextNode(
+      "）の「主題歌」節・OP/ED表から転記した（取得: 2026-09-21）。メドレー250曲の曲名は、動画「【250曲】何度でも繰り返し聴ける！名曲アニソンメドレー」（あつき）の投稿者本人によるコメント欄のセットリストのとおり。" +
+      "動画・サムネイル画像は各権利者のもので、YouTubeの埋め込みプレイヤー／画像を直接参照している（画像: myanimelist.net / animatetimes.com / YouTube）。" +
+      "サビの位置は音声の解析による推定で、外れる曲がある。"));
+  }
+
+  if (!EMBED_OK) {
+    const n = document.getElementById("notice");
+    n.style.display = "block";
+    n.textContent = "※このページを file:// で開いているため、サイト内の再生・サビだけ再生・ランダム再生は使えません（視聴ボタンはYouTubeを開きます）。ローカルHTTPサーバー経由、または公開版（mobile-hub）で開くと使えます。";
+    ["btn-random", "btn-chorus-mode", "mood-all", "mood-up", "mood-calm"].forEach(function (id) { document.getElementById(id).disabled = true; });
+  }
+
+  // 動作確認用（コンソールから AE_DEBUG.state() でプレイヤーの状態を見られる）
+  window.AE_DEBUG = { state: function () {
+    return ytPlayer && ytPlayer.getPlayerState ? { state: ytPlayer.getPlayerState(), t: ytPlayer.getCurrentTime(), dur: ytPlayer.getDuration(), vid: (ytPlayer.getVideoData() || {}).video_id, cur: cur && cur.key, chorus: cur && cur.sabi } : null;
+  } };
+
   buildSources();
   render();
+  // #work-ID で開いたら、その作品パネルを出す
+  const hm = /^#work-(.+)$/.exec(location.hash);
+  if (hm) { const w = works.find(function (x) { return x.id === hm[1]; }); if (w) openWork(w); }
 })();
 </script>
 </body>

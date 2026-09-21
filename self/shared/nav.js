@@ -24,7 +24,7 @@
   function detectParent() {
     if (window.NAV_PARENT) return window.NAV_PARENT;
     const href = window.location.href;
-    if (href.includes("/game-music.html") || href.includes("/design-templates.html") || href.includes("/free-music.html") || href.includes("/anime-op-ed.html")) return "matome";
+    if (href.includes("/game-music.html") || href.includes("/design-templates.html") || href.includes("/free-music.html") || href.includes("/anime-op-ed.html") || href.includes("/anime-medley.html")) return "matome";
     return "";
   }
 

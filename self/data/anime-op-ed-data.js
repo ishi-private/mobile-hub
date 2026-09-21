@@ -259,6 +259,12 @@ window.ANIME_OP_ED_DATA = [
           "ch": "アニプレックス チャンネル"
         }
       }
+    ],
+    "favs": [
+      "16661",
+      "14052",
+      "23245",
+      "25726"
     ]
   },
   {
@@ -558,6 +564,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Saboten - Topic"
         }
       }
+    ],
+    "favs": [
+      "1695"
     ]
   },
   {
@@ -677,6 +686,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Sowelu - Topic"
         }
       }
+    ],
+    "favs": [
+      "384"
     ]
   },
   {
@@ -805,6 +817,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "FlyingDog"
         }
       }
+    ],
+    "favs": [
+      "15065",
+      "12745"
     ]
   },
   {
@@ -933,6 +949,12 @@ window.ANIME_OP_ED_DATA = [
           "ch": "crashyu"
         }
       }
+    ],
+    "favs": [
+      "210",
+      "14481",
+      "14482",
+      "14350"
     ]
   },
   {
@@ -1072,6 +1094,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Shoko Nakagawa OFFICIAL YouTube CHANNEL"
         }
       }
+    ],
+    "favs": [
+      "15347"
     ]
   },
   {
@@ -1310,6 +1335,11 @@ window.ANIME_OP_ED_DATA = [
           "ch": "obratoto"
         }
       }
+    ],
+    "favs": [
+      "2149",
+      "13976",
+      "14850"
     ]
   },
   {
@@ -1413,6 +1443,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "yuzuofficial"
         }
       }
+    ],
+    "favs": [
+      "2420"
     ]
   },
   {
@@ -1489,6 +1522,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Kalafina Official YouTube Channel"
         }
       }
+    ],
+    "favs": [
+      "2297"
     ]
   },
   {
@@ -1552,6 +1588,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "PAGE - Topic"
         }
       }
+    ],
+    "favs": [
+      "14060"
     ]
   },
   {
@@ -1614,6 +1653,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KADOKAWAanime"
         }
       }
+    ],
+    "favs": [
+      "2780"
     ]
   },
   {
@@ -1689,6 +1731,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "NBCUniversal Anime/Music"
         }
       }
+    ],
+    "favs": [
+      "3587"
     ]
   },
   {
@@ -1726,6 +1771,9 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3話、第8話",
         "q": "RDG レッドデータガール ED 予感（泉水子バージョン） 鈴原泉水子"
       }
+    ],
+    "favs": [
+      "3186"
     ]
   },
   {
@@ -1859,6 +1907,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "上坂すみれ YouTube OFFICIAL CHANNEL"
         }
       }
+    ],
+    "favs": [
+      "3402",
+      "15263"
     ]
   },
   {
@@ -1949,6 +2001,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "tsuyo iri"
         }
       }
+    ],
+    "favs": [
+      "5142"
     ]
   },
   {
@@ -2038,6 +2093,11 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KITAUJI QUARTET - Topic"
         }
       }
+    ],
+    "favs": [
+      "5405",
+      "15585",
+      "15617"
     ]
   },
   {
@@ -2140,6 +2200,11 @@ window.ANIME_OP_ED_DATA = [
           "ch": "バンダイナムコフィルムワークス チャンネル"
         }
       }
+    ],
+    "favs": [
+      "26848",
+      "13525",
+      "16772"
     ]
   },
   {
@@ -2333,6 +2398,13 @@ window.ANIME_OP_ED_DATA = [
           "ch": "渕上 舞Official Channel"
         }
       }
+    ],
+    "favs": [
+      "5273",
+      "15600",
+      "15601",
+      "14158",
+      "14159"
     ]
   },
   {
@@ -2475,6 +2547,13 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Lantis Channel"
         }
       }
+    ],
+    "favs": [
+      "13611",
+      "13610",
+      "13612",
+      "13647",
+      "20445"
     ]
   },
   {
@@ -2524,6 +2603,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Crepity"
         }
       }
+    ],
+    "favs": [
+      "5312"
     ]
   },
   {
@@ -2599,6 +2681,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "ClariS Official YouTube Channel"
         }
       }
+    ],
+    "favs": [
+      "5964"
     ]
   },
   {
@@ -2792,6 +2877,12 @@ window.ANIME_OP_ED_DATA = [
           "ch": "「Re:ゼロから始める異世界生活」チャンネル【公式】 and 2 more"
         }
       }
+    ],
+    "favs": [
+      "12013",
+      "15099",
+      "20420",
+      "25741"
     ]
   },
   {
@@ -2922,6 +3013,12 @@ window.ANIME_OP_ED_DATA = [
           "ch": "ShoProアニメチャンネル"
         }
       }
+    ],
+    "favs": [
+      "6140",
+      "14141",
+      "14142",
+      "14143"
     ]
   },
   {
@@ -2959,6 +3056,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "安月名莉子 ちゃんねる"
         }
       }
+    ],
+    "favs": [
+      "6534",
+      "13762"
     ]
   },
   {
@@ -2996,6 +3097,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Victor Entertainment"
         }
       }
+    ],
+    "favs": [
+      "6430"
     ]
   },
   {
@@ -3032,6 +3136,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "鹿乃まほろ / Kano Mahoro"
         }
       }
+    ],
+    "favs": [
+      "6027"
     ]
   },
   {
@@ -3095,6 +3202,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "山田タマル -YAMADA TAMARU/山田珠露-"
         }
       }
+    ],
+    "favs": [
+      "6677"
     ]
   },
   {
@@ -3171,6 +3281,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KADOKAWAanime"
         }
       }
+    ],
+    "favs": [
+      "5321",
+      "14369"
     ]
   },
   {
@@ -3207,6 +3321,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "パルタロボット"
         }
       }
+    ],
+    "favs": [
+      "7022"
     ]
   },
   {
@@ -3296,6 +3413,12 @@ window.ANIME_OP_ED_DATA = [
           "ch": "亜咲花公式チャンネル"
         }
       }
+    ],
+    "favs": [
+      "13963",
+      "13964",
+      "18164",
+      "25171"
     ]
   },
   {
@@ -3346,6 +3469,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "ASCA Official YouTube Channel"
         }
       }
+    ],
+    "favs": [
+      "7764",
+      "14078"
     ]
   },
   {
@@ -3474,6 +3601,11 @@ window.ANIME_OP_ED_DATA = [
           "ch": "MAYU MAESHIMA YouTube Official Channel"
         }
       }
+    ],
+    "favs": [
+      "7502",
+      "14858",
+      "26210"
     ]
   },
   {
@@ -3536,6 +3668,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "けものフレンズプロジェクト公式"
         }
       }
+    ],
+    "favs": [
+      "14382"
     ]
   },
   {
@@ -3593,6 +3728,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Myuk"
         }
       }
+    ],
+    "favs": [
+      "7270",
+      "13526"
     ]
   },
   {
@@ -3696,6 +3835,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "アニプレックス チャンネル"
         }
       }
+    ],
+    "favs": [
+      "13541"
     ]
   },
   {
@@ -3864,6 +4006,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "とあるプロジェクト公式toaru.project"
         }
       }
+    ],
+    "favs": [
+      "14984"
     ]
   },
   {
@@ -4148,6 +4293,11 @@ window.ANIME_OP_ED_DATA = [
           "ch": "大原ゆい子Official YouTube"
         }
       }
+    ],
+    "favs": [
+      "9105",
+      "14665",
+      "24285"
     ]
   },
   {
@@ -4263,6 +4413,11 @@ window.ANIME_OP_ED_DATA = [
           "ch": "ReoNa official YouTube channel"
         }
       }
+    ],
+    "favs": [
+      "9490",
+      "19116",
+      "24010"
     ]
   },
   {
@@ -4405,6 +4560,12 @@ window.ANIME_OP_ED_DATA = [
           "ch": "9Lana"
         }
       }
+    ],
+    "favs": [
+      "14033",
+      "19244",
+      "22787",
+      "25417"
     ]
   },
   {
@@ -4448,6 +4609,9 @@ window.ANIME_OP_ED_DATA = [
         "usage": "メイベル（悠木碧）による第12話挿入歌。作詞・作曲はササキトモコ",
         "q": "異世界おじさん ED DREAMS DREAMS<nowiki>:</nowiki>Mabel Ver"
       }
+    ],
+    "favs": [
+      "12470"
     ]
   },
   {
@@ -4511,6 +4675,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "「虚構推理」公式"
         }
       }
+    ],
+    "favs": [
+      "7780",
+      "13645"
     ]
   },
   {
@@ -4633,6 +4801,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "TWIN ENGINE"
         }
       }
+    ],
+    "favs": [
+      "6033",
+      "17152"
     ]
   },
   {
@@ -4708,6 +4880,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "『シャインポスト』公式"
         }
       }
+    ],
+    "favs": [
+      "13567"
     ]
   },
   {
@@ -4823,6 +4998,11 @@ window.ANIME_OP_ED_DATA = [
           "ch": "TOHO animation チャンネル"
         }
       }
+    ],
+    "favs": [
+      "24167",
+      "19101",
+      "24157"
     ]
   },
   {
@@ -4925,6 +5105,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "TOHO animation チャンネル"
         }
       }
+    ],
+    "favs": [
+      "28093",
+      "24971"
     ]
   },
   {
@@ -4961,6 +5145,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "NBCUniversal Anime/Music"
         }
       }
+    ],
+    "favs": [
+      "19323"
     ]
   },
   {
@@ -5089,6 +5276,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "TOHO animation チャンネル"
         }
       }
+    ],
+    "favs": [
+      "14205",
+      "22824"
     ]
   },
   {
@@ -5277,6 +5468,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "CUTIE STREET"
         }
       }
+    ],
+    "favs": [
+      "19097"
     ]
   },
   {
@@ -5386,6 +5580,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "TVアニメ「シャングリラ・フロンティア」公式"
         }
       }
+    ],
+    "favs": [
+      "16199",
+      "23827"
     ]
   },
   {
@@ -5422,6 +5620,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KADOKAWAanime"
         }
       }
+    ],
+    "favs": [
+      "16663"
     ]
   },
   {
@@ -5505,6 +5706,9 @@ window.ANIME_OP_ED_DATA = [
         "usage": "Season2",
         "q": "アオのハコ ED blue in エルスウェア紀行"
       }
+    ],
+    "favs": [
+      "23082"
     ]
   },
   {
@@ -5568,6 +5772,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "isekai channel @バンダイナムコフィルムワークス"
         }
       }
+    ],
+    "favs": [
+      "18329",
+      "24211"
     ]
   },
   {
@@ -5630,6 +5838,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "TVアニメ FAIRY TAIL 100年クエスト 公式"
         }
       }
+    ],
+    "favs": [
+      "13374"
     ]
   },
   {
@@ -5693,6 +5904,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KADOKAWAanime"
         }
       }
+    ],
+    "favs": [
+      "19734",
+      "23788"
     ]
   },
   {
@@ -5749,6 +5964,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KADOKAWAanime"
         }
       }
+    ],
+    "favs": [
+      "23518"
     ]
   },
   {
@@ -5812,6 +6030,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "アニプレックス チャンネル and 2 more"
         }
       }
+    ],
+    "favs": [
+      "11641",
+      "25034"
     ]
   },
   {
@@ -5875,6 +6097,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "tv asahi  animation YouTubeチャンネル"
         }
       }
+    ],
+    "favs": [
+      "23391",
+      "24876"
     ]
   },
   {
@@ -5911,6 +6137,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KADOKAWAanime"
         }
       }
+    ],
+    "favs": [
+      "18000"
     ]
   },
   {
@@ -6065,6 +6294,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "バンダイナムコフィルムワークス チャンネル"
         }
       }
+    ],
+    "favs": [
+      "23256"
     ]
   },
   {
@@ -6142,6 +6374,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "JXS_BP Official"
         }
       }
+    ],
+    "favs": [
+      "16625"
     ]
   },
   {
@@ -6205,6 +6440,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "isekai channel @バンダイナムコフィルムワークス and 3 more"
         }
       }
+    ],
+    "favs": [
+      "23571",
+      "24972"
     ]
   },
   {
@@ -6241,6 +6480,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "KADOKAWAanime"
         }
       }
+    ],
+    "favs": [
+      "25474"
     ]
   },
   {
@@ -6277,6 +6519,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "aruma"
         }
       }
+    ],
+    "favs": [
+      "25709",
+      "20979"
     ]
   },
   {
@@ -6315,6 +6561,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "アニプレックス チャンネル"
         }
       }
+    ],
+    "favs": [
+      "19735",
+      "19780"
     ]
   },
   {
@@ -6351,6 +6601,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Aoi Teshima"
         }
       }
+    ],
+    "favs": [
+      "24291"
     ]
   },
   {
@@ -6387,6 +6640,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "アニプレックス チャンネル"
         }
       }
+    ],
+    "favs": [
+      "24836"
     ]
   },
   {
@@ -6463,6 +6719,10 @@ window.ANIME_OP_ED_DATA = [
           "ch": "TMSアニメ公式チャンネル"
         }
       }
+    ],
+    "favs": [
+      "24107",
+      "26834"
     ]
   },
   {
@@ -6512,6 +6772,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Kenichiro Suehiro - Topic"
         }
       }
+    ],
+    "favs": [
+      "25582"
     ]
   },
   {
@@ -6548,6 +6811,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "アニプレックス チャンネル"
         }
       }
+    ],
+    "favs": [
+      "24600"
     ]
   },
   {
@@ -6598,6 +6864,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "Hana Hope"
         }
       }
+    ],
+    "favs": [
+      "26302"
     ]
   },
   {
@@ -6648,6 +6917,9 @@ window.ANIME_OP_ED_DATA = [
           "ch": "フジファブリック Official Channel"
         }
       }
+    ],
+    "favs": [
+      "25671"
     ]
   },
   {
@@ -6683,6 +6955,3594 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "ぽにきゃん-Anime PONY CANYON"
         }
+      }
+    ],
+    "favs": [
+      "25422"
+    ]
+  },
+  {
+    "id": "medley250",
+    "title": "アニソンメドレー250曲（作品不明の曲）",
+    "note": "YouTube「【250曲】何度でも繰り返し聴ける！名曲アニソンメドレー」（あつき）の曲。作品・歌手は投稿者のセットリストに無いため不明",
+    "image": "https://i.ytimg.com/vi/4YJ6bUYr2Ys/maxresdefault.jpg",
+    "imageCredit": "YouTube（あつき）",
+    "favs": [],
+    "tracks": [
+      {
+        "kind": "",
+        "name": "eternal reality",
+        "artist": "",
+        "usage": "メドレー #1（0:17〜）",
+        "q": "eternal reality アニメ 主題歌",
+        "yt": {
+          "id": "MVIR22baorw",
+          "k": "ot",
+          "o": 1,
+          "ch": "fripSide OfficiAL YouTube Channnel"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "sister's noise",
+        "artist": "",
+        "usage": "メドレー #2（1:05〜）",
+        "q": "sister's noise アニメ 主題歌",
+        "yt": {
+          "id": "rCtc-9EVE_c",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "KXTVKGsPXz8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "final phase",
+        "artist": "",
+        "usage": "メドレー #3（1:33〜）",
+        "q": "final phase アニメ 主題歌",
+        "yt": {
+          "id": "R33q3f7Xpiw",
+          "k": "op",
+          "o": 1,
+          "ch": "とあるプロジェクト公式toaru.project",
+          "alt": {
+            "id": "gQ91NaeO2To",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "LEVEL5-judgelight-",
+        "artist": "",
+        "usage": "メドレー #4（2:00〜）",
+        "q": "LEVEL5-judgelight- アニメ 主題歌",
+        "yt": {
+          "id": "mK2R8vQzojM",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "a4deMm8soGA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "flower of bravery",
+        "artist": "",
+        "usage": "メドレー #5（2:28〜）",
+        "q": "flower of bravery アニメ 主題歌",
+        "yt": {
+          "id": "Zgoz5erWZow",
+          "k": "ot",
+          "o": 0,
+          "ch": "木風 _ 采彡",
+          "alt": {
+            "id": "q3U_5E6eyYQ",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "black bullet",
+        "artist": "",
+        "usage": "メドレー #6（2:58〜）",
+        "q": "black bullet アニメ 主題歌",
+        "yt": {
+          "id": "5rKArAGGMwM",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "3YXOL7seziA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "killing bites",
+        "artist": "",
+        "usage": "メドレー #7（3:31〜）",
+        "q": "killing bites アニメ 主題歌",
+        "yt": {
+          "id": "oEjBn9sBZKg",
+          "k": "mv",
+          "o": 1,
+          "ch": "fripSide OfficiAL YouTube Channnel",
+          "alt": {
+            "id": "gY5YHQ0fcfQ",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Two souls toward the truth",
+        "artist": "",
+        "usage": "メドレー #8（3:55〜）",
+        "q": "Two souls toward the truth アニメ 主題歌",
+        "yt": {
+          "id": "BJ2VFg6L1hA",
+          "k": "mv",
+          "o": 1,
+          "ch": "fripSide OfficiAL YouTube Channnel",
+          "alt": {
+            "id": "ouXUP0VwW4c",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "STRAIGHT JET",
+        "artist": "",
+        "usage": "メドレー #9（4:20〜）",
+        "q": "STRAIGHT JET アニメ 主題歌",
+        "yt": {
+          "id": "2oK45vJ3Jq4",
+          "k": "mv",
+          "o": 1,
+          "ch": "Minami Kuribayashi - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "リトルチャームファング",
+        "artist": "",
+        "usage": "メドレー #10（4:49〜）",
+        "q": "リトルチャームファング アニメ 主題歌",
+        "yt": {
+          "id": "2eV7PPZ_Rdw",
+          "k": "ot",
+          "o": 0,
+          "ch": "。擬"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "DreamRiser",
+        "artist": "",
+        "usage": "メドレー #11（5:16〜）",
+        "q": "DreamRiser アニメ 主題歌",
+        "yt": {
+          "id": "5cey4Lyy2sw",
+          "k": "mv",
+          "o": 1,
+          "ch": "ChouCho Official Channel",
+          "alt": {
+            "id": "GsgPApB3_fE",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Grand symphony",
+        "artist": "",
+        "usage": "メドレー #12（5:45〜）",
+        "q": "Grand symphony アニメ 主題歌",
+        "yt": {
+          "id": "-PIWr5Xyue8",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Channel",
+          "alt": {
+            "id": "Fi1_XMELpCc",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "DREAM SOLISTER",
+        "artist": "",
+        "usage": "メドレー #13（6:07〜）",
+        "q": "DREAM SOLISTER アニメ 主題歌",
+        "yt": {
+          "id": "Gf_jJ9dpcVk",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Channel",
+          "alt": {
+            "id": "teJN1BC1FRE",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "宝箱 TREASURE BOX",
+        "artist": "",
+        "usage": "メドレー #14（6:36〜）",
+        "q": "宝箱 TREASURE BOX アニメ 主題歌",
+        "yt": {
+          "id": "VrFMv_uzH2Y",
+          "k": "nc",
+          "o": 1,
+          "ch": "株式会社インフィニット",
+          "alt": {
+            "id": "a4E0y8ABC0c",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "COLORFUL BOX",
+        "artist": "",
+        "usage": "メドレー #15（7:01〜）",
+        "q": "COLORFUL BOX アニメ 主題歌",
+        "yt": {
+          "id": "Tv8yJbgnxz0",
+          "k": "nc",
+          "o": 1,
+          "ch": "株式会社インフィニット",
+          "alt": {
+            "id": "l1z3PzO2hZU",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Check my soul",
+        "artist": "",
+        "usage": "メドレー #16（7:28〜）",
+        "q": "Check my soul アニメ 主題歌",
+        "yt": {
+          "id": "fXT6tiZmqm8",
+          "k": "mv",
+          "o": 1,
+          "ch": "azusa - Topic",
+          "alt": {
+            "id": "bxQGocf4Dcc",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "キミの花",
+        "artist": "",
+        "usage": "メドレー #17（7:55〜）",
+        "q": "キミの花 アニメ 主題歌",
+        "yt": {
+          "id": "UByj6Web-ws",
+          "k": "mv",
+          "o": 1,
+          "ch": "奥華子 Official YouTube Channel",
+          "alt": {
+            "id": "HTeE72XrkZE",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "君のままで",
+        "artist": "",
+        "usage": "メドレー #18（8:20〜）",
+        "q": "君のままで アニメ 主題歌",
+        "yt": {
+          "id": "VeV-9HaTlIA",
+          "k": "mv",
+          "o": 1,
+          "ch": "azusa - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "届かない恋 Live at Campus Fes(TV anime ver.)",
+        "artist": "",
+        "usage": "メドレー #19（8:50〜）",
+        "q": "届かない恋 Live at Campus Fes(TV anime ver.) アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ツナグキズナ",
+        "artist": "",
+        "usage": "メドレー #20（9:23〜）",
+        "q": "ツナグキズナ アニメ 主題歌",
+        "yt": {
+          "id": "NAGTD9S4XN4",
+          "k": "mv",
+          "o": 1,
+          "ch": "Release - Topic",
+          "alt": {
+            "id": "GNFPfdE4Tbg",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "colorless wind",
+        "artist": "",
+        "usage": "メドレー #21（9:51〜）",
+        "q": "colorless wind アニメ 主題歌",
+        "yt": {
+          "id": "fLiwf4ZFgkI",
+          "k": "mv",
+          "o": 1,
+          "ch": "結城アイラ Official Channel",
+          "alt": {
+            "id": "D1MJfEKjEaA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Higher's High",
+        "artist": "",
+        "usage": "メドレー #22（10:20〜）",
+        "q": "Higher's High アニメ 主題歌",
+        "yt": {
+          "id": "Rp-y_R1SbX8",
+          "k": "mv",
+          "o": 1,
+          "ch": "ナナヲアカリ OFFICIAL",
+          "alt": {
+            "id": "CN4QnE_14Y8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "コレカラ",
+        "artist": "",
+        "usage": "メドレー #23（10:54〜）",
+        "q": "コレカラ アニメ 主題歌",
+        "yt": {
+          "id": "ajV8lTk8onI",
+          "k": "mv",
+          "o": 1,
+          "ch": "日本コロムビア 公式YouTubeチャンネル"
+        }
+      },
+      {
+        "kind": "",
+        "name": "せーのっ！",
+        "artist": "",
+        "usage": "メドレー #24（11:19〜）",
+        "q": "せーのっ！ アニメ 主題歌",
+        "yt": {
+          "id": "8yX1a1PD11s",
+          "k": "mv",
+          "o": 1,
+          "ch": "野々原 ゆずこ(CV.大久保瑠美) - Topic",
+          "alt": {
+            "id": "iLEfnRUgY_c",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "スリピス",
+        "artist": "",
+        "usage": "メドレー #25（11:36〜）",
+        "q": "スリピス アニメ 主題歌",
+        "yt": {
+          "id": "lyB3eWB5Txk",
+          "k": "mv",
+          "o": 1,
+          "ch": "KADOKAWAanime",
+          "alt": {
+            "id": "E03DoMoyHRg",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Super Driver",
+        "artist": "",
+        "usage": "メドレー #26（11:59〜）",
+        "q": "Super Driver アニメ 主題歌",
+        "yt": {
+          "id": "BV-dtWAnp-M",
+          "k": "mv",
+          "o": 1,
+          "ch": "Aya Hirano - Topic",
+          "alt": {
+            "id": "Ihhn06aSKxA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Naked Drive",
+        "artist": "",
+        "usage": "メドレー #27（12:27〜）",
+        "q": "Naked Drive アニメ 主題歌",
+        "yt": {
+          "id": "yzPhDK1iDpQ",
+          "k": "ot",
+          "o": 0,
+          "ch": "TORIC MASTER",
+          "alt": {
+            "id": "tyxqNrxDMGw",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "VOICE",
+        "artist": "",
+        "usage": "メドレー #28（12:52〜）",
+        "q": "VOICE アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "優しさの理由",
+        "artist": "",
+        "usage": "メドレー #29（13:28〜）",
+        "q": "優しさの理由 アニメ 主題歌",
+        "yt": {
+          "id": "0hJiMN4Csjw",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Global Channel"
+        }
+      },
+      {
+        "kind": "",
+        "name": "サウンドスケープ",
+        "artist": "",
+        "usage": "メドレー #30（13:55〜）",
+        "q": "サウンドスケープ アニメ 主題歌",
+        "yt": {
+          "id": "URLFJdofCqY",
+          "k": "mv",
+          "o": 1,
+          "ch": "TRUE Lantis Official Channel",
+          "alt": {
+            "id": "yEZy6cgmuSM",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "ドラマチックマーケットライド",
+        "artist": "",
+        "usage": "メドレー #31（14:19〜）",
+        "q": "ドラマチックマーケットライド アニメ 主題歌",
+        "yt": {
+          "id": "h8sjg6M0iGg",
+          "k": "mv",
+          "o": 1,
+          "ch": "北白川たまこ(cv:洲崎 綾) - Topic",
+          "alt": {
+            "id": "NS_QhuUUuTY",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Cagayake!GIRLS",
+        "artist": "",
+        "usage": "メドレー #32（14:42〜）",
+        "q": "Cagayake!GIRLS アニメ 主題歌",
+        "yt": {
+          "id": "ua02dloykJ4",
+          "k": "mv",
+          "o": 1,
+          "ch": "Release - Topic",
+          "alt": {
+            "id": "Gw8cCYdykOg",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Don't say\"lazy\"",
+        "artist": "",
+        "usage": "メドレー #33（15:06〜）",
+        "q": "Don't say\"lazy\" アニメ 主題歌",
+        "yt": {
+          "id": "5CSNv9MNEC4",
+          "k": "mv",
+          "o": 1,
+          "ch": "Release - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "境界の彼方",
+        "artist": "",
+        "usage": "メドレー #34（15:30〜）",
+        "q": "境界の彼方 アニメ 主題歌",
+        "yt": {
+          "id": "C3XQi3kIgYw",
+          "k": "ot",
+          "o": 1,
+          "ch": "Meiris - Topic"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "南風",
+        "artist": "",
+        "usage": "メドレー #35（15:53〜）",
+        "q": "南風 アニメ 主題歌",
+        "yt": {
+          "id": "f8Nv-5wIlbg",
+          "k": "mv",
+          "o": 1,
+          "ch": "Mikuni Shimokawa - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "FLYING FAFNIR",
+        "artist": "",
+        "usage": "メドレー #36（16:23〜）",
+        "q": "FLYING FAFNIR アニメ 主題歌",
+        "yt": {
+          "id": "1e-nYtDMhpA",
+          "k": "mv",
+          "o": 1,
+          "ch": "Trustrick - Topic",
+          "alt": {
+            "id": "5Iggu9eiA5k",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "はっぴぃ にゅう にゃあ",
+        "artist": "",
+        "usage": "メドレー #37（16:45〜）",
+        "q": "はっぴぃ にゅう にゃあ アニメ 主題歌",
+        "yt": {
+          "id": "4LgPyEhzP0w",
+          "k": "ot",
+          "o": 0,
+          "ch": "AZUNYAN2gonyan",
+          "alt": {
+            "id": "z7VAaK7py0o",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "にゃんだふる!",
+        "artist": "",
+        "usage": "メドレー #38（17:00〜）",
+        "q": "にゃんだふる! アニメ 主題歌",
+        "yt": {
+          "id": "oLKJhtEZsvE",
+          "k": "mv",
+          "o": 1,
+          "ch": "Yui Sakakibara - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "侵略ノススメ☆",
+        "artist": "",
+        "usage": "メドレー #39（17:25〜）",
+        "q": "侵略ノススメ☆ アニメ 主題歌",
+        "yt": {
+          "id": "x4AekOcIJ3E",
+          "k": "ot",
+          "o": 0,
+          "ch": "alanracious",
+          "alt": {
+            "id": "KW1D94S2CP8",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "HIGH POWERED",
+        "artist": "",
+        "usage": "メドレー #40（17:55〜）",
+        "q": "HIGH POWERED アニメ 主題歌",
+        "yt": {
+          "id": "iK6av4QT9lE",
+          "k": "mv",
+          "o": 1,
+          "ch": "Sphere - Topic",
+          "alt": {
+            "id": "5f5jNobHPAs",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "星屑のインターリュード",
+        "artist": "",
+        "usage": "メドレー #41（18:30〜）",
+        "q": "星屑のインターリュード アニメ 主題歌",
+        "yt": {
+          "id": "fu2LrpHQATY",
+          "k": "nc",
+          "o": 1,
+          "ch": "株式会社インフィニット",
+          "alt": {
+            "id": "z5CtuHeTA6s",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "コメット・ルシファー ～The Seed and the Sower～",
+        "artist": "",
+        "usage": "メドレー #42（18:49〜）",
+        "q": "コメット・ルシファー ～The Seed and the Sower～ アニメ 主題歌",
+        "yt": {
+          "id": "_cYkpih_nDE",
+          "k": "mv",
+          "o": 1,
+          "ch": "バンダイナムコフィルムワークス チャンネル",
+          "alt": {
+            "id": "dBv-jcNv7IA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "いつかの、いくつかのきみとのせかい",
+        "artist": "",
+        "usage": "メドレー #43（19:12〜）",
+        "q": "いつかの、いくつかのきみとのせかい アニメ 主題歌",
+        "yt": {
+          "id": "MqBsLtindR0",
+          "k": "mv",
+          "o": 1,
+          "ch": "fhána Official Channel",
+          "alt": {
+            "id": "8n5iT3gbFjY",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "tiny lamp",
+        "artist": "",
+        "usage": "メドレー #44（19:42〜）",
+        "q": "tiny lamp アニメ 主題歌",
+        "yt": {
+          "id": "B38sOOPEBKA",
+          "k": "mv",
+          "o": 1,
+          "ch": "fhána Official Channel",
+          "alt": {
+            "id": "AMmHvsFrLEk",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "My secret",
+        "artist": "",
+        "usage": "メドレー #45（20:11〜）",
+        "q": "My secret アニメ 主題歌",
+        "yt": {
+          "id": "eQ6WkAAr19s",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "NV5Esvj5-6s",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "今日に恋色",
+        "artist": "",
+        "usage": "メドレー #46（20:36〜）",
+        "q": "今日に恋色 アニメ 主題歌",
+        "yt": {
+          "id": "yzoYTAuR29U",
+          "k": "mv",
+          "o": 1,
+          "ch": "FlyingDog",
+          "alt": {
+            "id": "CpsdxltCgG0",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "カワルミライ",
+        "artist": "",
+        "usage": "メドレー #47（21:00〜）",
+        "q": "カワルミライ アニメ 主題歌",
+        "yt": {
+          "id": "d2UtKpZKWMM",
+          "k": "mv",
+          "o": 1,
+          "ch": "ChouCho Official Channel",
+          "alt": {
+            "id": "Un9UiVL6Dms",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "1000%SPARKING!",
+        "artist": "",
+        "usage": "メドレー #48（21:32〜）",
+        "q": "1000%SPARKING! アニメ 主題歌",
+        "yt": {
+          "id": "vgA7kahrD4o",
+          "k": "mv",
+          "o": 1,
+          "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "alt": {
+            "id": "PU99eFWwqjc",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "お願い！シンデレラ",
+        "artist": "",
+        "usage": "メドレー #49（21:58〜）",
+        "q": "お願い！シンデレラ アニメ 主題歌",
+        "yt": {
+          "id": "wquiL5qNrH0",
+          "k": "mv",
+          "o": 1,
+          "ch": "Release - Topic",
+          "alt": {
+            "id": "sfaKw_A9ZSc",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "READY!!&CHANGE!!!SPECIAL EDITION",
+        "artist": "",
+        "usage": "メドレー #50（22:33〜）",
+        "q": "READY!!&CHANGE!!!SPECIAL EDITION アニメ 主題歌",
+        "yt": {
+          "id": "dE1HUE5tTjk",
+          "k": "ot",
+          "o": 0,
+          "ch": "あべしうわらば"
+        }
+      },
+      {
+        "kind": "",
+        "name": "Invisible Date",
+        "artist": "",
+        "usage": "メドレー #51（24:55〜）",
+        "q": "Invisible Date アニメ 主題歌",
+        "yt": {
+          "id": "0K3IPbQzCys",
+          "k": "mv",
+          "o": 1,
+          "ch": "sweet ARMS - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "Birth",
+        "artist": "",
+        "usage": "メドレー #52（25:40〜）",
+        "q": "Birth アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Alchemy",
+        "artist": "",
+        "usage": "メドレー #53（26:07〜）",
+        "q": "Alchemy アニメ 主題歌",
+        "yt": {
+          "id": "jQ7fkobjpDs",
+          "k": "mv",
+          "o": 1,
+          "ch": "Marina - Topic",
+          "alt": {
+            "id": "668Zpt1Bq5o",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Bravely you",
+        "artist": "",
+        "usage": "メドレー #54（26:30〜）",
+        "q": "Bravely you アニメ 主題歌",
+        "yt": {
+          "id": "oDdysk3bDdw",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lia Official YouTube",
+          "alt": {
+            "id": "OYWM6tcFxwc",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "360°星のオーケストラ",
+        "artist": "",
+        "usage": "メドレー #55（26:56〜）",
+        "q": "360°星のオーケストラ アニメ 主題歌",
+        "yt": {
+          "id": "ap6jVHxTzJ4",
+          "k": "mv",
+          "o": 1,
+          "ch": "ZERO-A Official Channel",
+          "alt": {
+            "id": "ip7hBYS57wU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Checmate!?",
+        "artist": "",
+        "usage": "メドレー #56（27:23〜）",
+        "q": "Checmate!? アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ネ！コ！",
+        "artist": "",
+        "usage": "メドレー #57（27:46〜）",
+        "q": "ネ！コ！ アニメ 主題歌",
+        "yt": {
+          "id": "nDrRMLsAB6I",
+          "k": "mv",
+          "o": 1,
+          "ch": "Harukaze official",
+          "alt": {
+            "id": "ueSjTcBLMRQ",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "SAKURAスキップ",
+        "artist": "",
+        "usage": "メドレー #58（28:03〜）",
+        "q": "SAKURAスキップ アニメ 主題歌",
+        "yt": {
+          "id": "eUYPGRjpqhc",
+          "k": "mv",
+          "o": 1,
+          "ch": "fourfolium - Topic",
+          "alt": {
+            "id": "NRbg54cT-aQ",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Save you Save me",
+        "artist": "",
+        "usage": "メドレー #59（28:30〜）",
+        "q": "Save you Save me アニメ 主題歌",
+        "yt": {
+          "id": "Zyj0mwT-hm8",
+          "k": "mv",
+          "o": 1,
+          "ch": "KADOKAWAanime",
+          "alt": {
+            "id": "0iInOkuTFZI",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "刹那の果実",
+        "artist": "",
+        "usage": "メドレー #60（28:55〜）",
+        "q": "刹那の果実 アニメ 主題歌",
+        "yt": {
+          "id": "t-BpXrYzoQM",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "iflX2Y-wBSk",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "SAVIOR OF SONG",
+        "artist": "",
+        "usage": "メドレー #61（29:21〜）",
+        "q": "SAVIOR OF SONG アニメ 主題歌",
+        "yt": {
+          "id": "D2uqpqrYmMY",
+          "k": "mv",
+          "o": 1,
+          "ch": "FlyingDog",
+          "alt": {
+            "id": "Ryjfjhi6cuU",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "star*frost",
+        "artist": "",
+        "usage": "メドレー #62（29:33〜）",
+        "q": "star*frost アニメ 主題歌",
+        "yt": {
+          "id": "QK_62EgzF7o",
+          "k": "mv",
+          "o": 1,
+          "ch": "KADOKAWAanime",
+          "alt": {
+            "id": "mna7Ly90YLk",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "創傷イノセンス",
+        "artist": "",
+        "usage": "メドレー #63（30:01〜）",
+        "q": "創傷イノセンス アニメ 主題歌",
+        "yt": {
+          "id": "9NnzDFc9x2I",
+          "k": "mv",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "alt": {
+            "id": "wKyIXi48g1c",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "海色",
+        "artist": "",
+        "usage": "メドレー #64（30:27〜）",
+        "q": "海色 アニメ 主題歌",
+        "yt": {
+          "id": "IZ5UB9abD-c",
+          "k": "mv",
+          "o": 1,
+          "ch": "FlyingDog",
+          "alt": {
+            "id": "W6zK9jCf5sM",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "graphite/diamond",
+        "artist": "",
+        "usage": "メドレー #65（30:54〜）",
+        "q": "graphite/diamond アニメ 主題歌",
+        "yt": {
+          "id": "Uxfei0GmZlQ",
+          "k": "nc",
+          "o": 1,
+          "ch": "TOHO animation チャンネル",
+          "alt": {
+            "id": "jgLbu5vTo0I",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "LIVE for LIFE ～狼たちの夜～",
+        "artist": "",
+        "usage": "メドレー #66（31:18〜）",
+        "q": "LIVE for LIFE ～狼たちの夜～ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Hacking to the Gate",
+        "artist": "",
+        "usage": "メドレー #67（31:39〜）",
+        "q": "Hacking to the Gate アニメ 主題歌",
+        "yt": {
+          "id": "3TADlbgAXHY",
+          "k": "mv",
+          "o": 1,
+          "ch": "Ito Kanako - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "Amadeus",
+        "artist": "",
+        "usage": "メドレー #68（31:56〜）",
+        "q": "Amadeus アニメ 主題歌",
+        "yt": {
+          "id": "I012yI2Kzqg",
+          "k": "ot",
+          "o": 0,
+          "ch": "Harlequin"
+        }
+      },
+      {
+        "kind": "",
+        "name": "ANGEL",
+        "artist": "",
+        "usage": "メドレー #69（32:22〜）",
+        "q": "ANGEL アニメ 主題歌",
+        "yt": {
+          "id": "hxfDuJp9R3U",
+          "k": "mv",
+          "o": 1,
+          "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "alt": {
+            "id": "fxpiktN19ho",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "楽園の翼",
+        "artist": "",
+        "usage": "メドレー #70（32:42〜）",
+        "q": "楽園の翼 アニメ 主題歌",
+        "yt": {
+          "id": "LXht5Pdv1Uk",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "qYRt3ntQnVs",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Contrail～軌跡～",
+        "artist": "",
+        "usage": "メドレー #71（33:08〜）",
+        "q": "Contrail～軌跡～ アニメ 主題歌",
+        "yt": {
+          "id": "xUDHfflIK8A",
+          "k": "mv",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "uYZzYxaGIzs",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "See visionS",
+        "artist": "",
+        "usage": "メドレー #72（33:34〜）",
+        "q": "See visionS アニメ 主題歌",
+        "yt": {
+          "id": "hcZQ2B6axV4",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "yU5_cA5PHA8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "No buts!",
+        "artist": "",
+        "usage": "メドレー #73（34:03〜）",
+        "q": "No buts! アニメ 主題歌",
+        "yt": {
+          "id": "QIU044tsV2Q",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music"
+        }
+      },
+      {
+        "kind": "",
+        "name": "PSI-missing",
+        "artist": "",
+        "usage": "メドレー #74（34:30〜）",
+        "q": "PSI-missing アニメ 主題歌",
+        "yt": {
+          "id": "JwnGaYtQnjU",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "E3hRBdvM58M",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Break a spell",
+        "artist": "",
+        "usage": "メドレー #75（34:58〜）",
+        "q": "Break a spell アニメ 主題歌",
+        "yt": {
+          "id": "Azp1dry5Tns",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "AnOCYDyeD8w",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "JOINT",
+        "artist": "",
+        "usage": "メドレー #76（35:23〜）",
+        "q": "JOINT アニメ 主題歌",
+        "yt": {
+          "id": "VSOnIahWAs4",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "8EiX4LkUPaU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "FAITH",
+        "artist": "",
+        "usage": "メドレー #77（35:47〜）",
+        "q": "FAITH アニメ 主題歌",
+        "yt": {
+          "id": "MKBEaATNe48",
+          "k": "op",
+          "o": 1,
+          "ch": "KADOKAWAanime",
+          "alt": {
+            "id": "A0iJkPbU7yA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "イツカノキオク",
+        "artist": "",
+        "usage": "メドレー #78（36:11〜）",
+        "q": "イツカノキオク アニメ 主題歌",
+        "yt": {
+          "id": "_C22KZcyZaU",
+          "k": "ot",
+          "o": 0,
+          "ch": "和氣あず未 Music Channel"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "あの日タイムマシン",
+        "artist": "",
+        "usage": "メドレー #79（36:27〜）",
+        "q": "あの日タイムマシン アニメ 主題歌",
+        "yt": {
+          "id": "4uhbx-cf_4I",
+          "k": "ot",
+          "o": 0,
+          "ch": "アニメソングコレクション",
+          "alt": {
+            "id": "q_z_5dO7eik",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "一斉の声",
+        "artist": "",
+        "usage": "メドレー #80（36:47〜）",
+        "q": "一斉の声 アニメ 主題歌",
+        "yt": {
+          "id": "XGCurOIuSBU",
+          "k": "mv",
+          "o": 1,
+          "ch": "喜多修平 Official Channel",
+          "alt": {
+            "id": "aewwbcAW_8g",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "MIRACLE kRUSH",
+        "artist": "",
+        "usage": "メドレー #81（37:21〜）",
+        "q": "MIRACLE kRUSH アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "New SPARKS!",
+        "artist": "",
+        "usage": "メドレー #82（37:46〜）",
+        "q": "New SPARKS! アニメ 主題歌",
+        "yt": {
+          "id": "B2k5Ce-Bj9g",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "alt": {
+            "id": "n3EWlrHY9fc",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Futuristic Player",
+        "artist": "",
+        "usage": "メドレー #83（38:10〜）",
+        "q": "Futuristic Player アニメ 主題歌",
+        "yt": {
+          "id": "FG79YzKAxic",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "alt": {
+            "id": "dANRWJmX8fE",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Treasure",
+        "artist": "",
+        "usage": "メドレー #84（38:42〜）",
+        "q": "Treasure アニメ 主題歌",
+        "yt": {
+          "id": "Klxz9U5niCc",
+          "k": "mv",
+          "o": 1,
+          "ch": "碧陽学園生徒会 - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "ミライファンファーレ",
+        "artist": "",
+        "usage": "メドレー #85（39:13〜）",
+        "q": "ミライファンファーレ アニメ 主題歌",
+        "yt": {
+          "id": "9wf9-FujVOM",
+          "k": "ot",
+          "o": 0,
+          "ch": "akitoshi hayami a",
+          "alt": {
+            "id": "kO_7WdgwJBU",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "君が夢を連れてきた",
+        "artist": "",
+        "usage": "メドレー #86（39:42〜）",
+        "q": "君が夢を連れてきた アニメ 主題歌",
+        "yt": {
+          "id": "IUrmsHyipho",
+          "k": "ot",
+          "o": 0,
+          "ch": "白翊廷",
+          "alt": {
+            "id": "E5jvhb_Fctw",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "ハナノイロ",
+        "artist": "",
+        "usage": "メドレー #87（40:08〜）",
+        "q": "ハナノイロ アニメ 主題歌",
+        "yt": {
+          "id": "B0Po_B_d_Uw",
+          "k": "nc",
+          "o": 1,
+          "ch": "株式会社インフィニット",
+          "alt": {
+            "id": "TQMWfybOdCU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "面影ワープ",
+        "artist": "",
+        "usage": "メドレー #88（40:41〜）",
+        "q": "面影ワープ アニメ 主題歌",
+        "yt": {
+          "id": "h63-1MWMbBo",
+          "k": "nc",
+          "o": 1,
+          "ch": "株式会社インフィニット",
+          "alt": {
+            "id": "UlVWqFi60Bc",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "なないろびより",
+        "artist": "",
+        "usage": "メドレー #89（41:07〜）",
+        "q": "なないろびより アニメ 主題歌",
+        "yt": {
+          "id": "PVxY8Cay--E",
+          "k": "mv",
+          "o": 1,
+          "ch": "nano. RIPE Official Channel",
+          "alt": {
+            "id": "j6WuUAuD8JU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "エキストラレボリューション",
+        "artist": "",
+        "usage": "メドレー #90（41:34〜）",
+        "q": "エキストラレボリューション アニメ 主題歌",
+        "yt": {
+          "id": "Gdj7PUhUGWA",
+          "k": "mv",
+          "o": 1,
+          "ch": "ZAQ Official Channel",
+          "alt": {
+            "id": "GPdxlHPc4BI",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "ZERO!!",
+        "artist": "",
+        "usage": "メドレー #91（42:08〜）",
+        "q": "ZERO!! アニメ 主題歌",
+        "yt": {
+          "id": "se4VTu6SK4E",
+          "k": "mv",
+          "o": 1,
+          "ch": "Minami Kuribayashi - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "愛のシュプリーム！",
+        "artist": "",
+        "usage": "メドレー #92（42:42〜）",
+        "q": "愛のシュプリーム！ アニメ 主題歌",
+        "yt": {
+          "id": "XCs7FacjHQY",
+          "k": "mv",
+          "o": 1,
+          "ch": "fhána Official Channel",
+          "alt": {
+            "id": "xiCdLC6bWU4",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "とまどい→レシピ",
+        "artist": "",
+        "usage": "メドレー #93（43:18〜）",
+        "q": "とまどい→レシピ アニメ 主題歌",
+        "yt": {
+          "id": "fQ_m5VLhqNg",
+          "k": "nc",
+          "o": 1,
+          "ch": "TOHO animation チャンネル",
+          "alt": {
+            "id": "hH5d3riIHN4",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Baby→Lady LOVE",
+        "artist": "",
+        "usage": "メドレー #94（43:44〜）",
+        "q": "Baby→Lady LOVE アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "W:Wonder tale",
+        "artist": "",
+        "usage": "メドレー #95（44:08〜）",
+        "q": "W:Wonder tale アニメ 主題歌",
+        "yt": {
+          "id": "mcty1jm1z7I",
+          "k": "mv",
+          "o": 1,
+          "ch": "KING RECORDS",
+          "alt": {
+            "id": "b6Gu-GHXouk",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "すーぱー☆あふぇくしょん",
+        "artist": "",
+        "usage": "メドレー #96（44:39〜）",
+        "q": "すーぱー☆あふぇくしょん アニメ 主題歌",
+        "yt": {
+          "id": "mj3S8FL7whI",
+          "k": "mv",
+          "o": 1,
+          "ch": "Release - Topic",
+          "alt": {
+            "id": "4iXenMW9nHA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Fantastic future",
+        "artist": "",
+        "usage": "メドレー #97（45:06〜）",
+        "q": "Fantastic future アニメ 主題歌",
+        "yt": {
+          "id": "JKBQTZyLfyw",
+          "k": "mv",
+          "o": 1,
+          "ch": "Music Anime {Official}",
+          "alt": {
+            "id": "JZYTuTUBfFk",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Shiny Happy Days",
+        "artist": "",
+        "usage": "メドレー #98（45:28〜）",
+        "q": "Shiny Happy Days アニメ 主題歌",
+        "yt": {
+          "id": "RGWNUzkbt7Q",
+          "k": "mv",
+          "o": 1,
+          "ch": "Release - Topic",
+          "alt": {
+            "id": "5POmdt-P03M",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Seredipty",
+        "artist": "",
+        "usage": "メドレー #99（45:53〜）",
+        "q": "Seredipty アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "SOUND OF DESTINY",
+        "artist": "",
+        "usage": "メドレー #100（46:32〜）",
+        "q": "SOUND OF DESTINY アニメ 主題歌",
+        "yt": {
+          "id": "Iv5YEjIMInY",
+          "k": "ot",
+          "o": 0,
+          "ch": "rd5850",
+          "alt": {
+            "id": "ulp3Z0lVz6M",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "プラチナ",
+        "artist": "",
+        "usage": "メドレー #101（47:16〜）",
+        "q": "プラチナ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ギミー！レボリューション",
+        "artist": "",
+        "usage": "メドレー #102（47:59〜）",
+        "q": "ギミー！レボリューション アニメ 主題歌",
+        "yt": {
+          "id": "Q73Hee1b4Ds",
+          "k": "mv",
+          "o": 1,
+          "ch": "内田真礼（UCHIDA MAAYA）Official Channel",
+          "alt": {
+            "id": "XxgwzIAWT0Q",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "ホシトハナ",
+        "artist": "",
+        "usage": "メドレー #103（48:26〜）",
+        "q": "ホシトハナ アニメ 主題歌",
+        "yt": {
+          "id": "EjOhpzbY4_4",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "alt": {
+            "id": "yA7BzjINVlI",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "明日の君さえいればいい。",
+        "artist": "",
+        "usage": "メドレー #104（48:56〜）",
+        "q": "明日の君さえいればいい。 アニメ 主題歌",
+        "yt": {
+          "id": "t0nJRInmr0I",
+          "k": "mv",
+          "o": 1,
+          "ch": "ChouCho Official Channel",
+          "alt": {
+            "id": "Icpi7-whh3Q",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "BINKAN♡あてんしょん",
+        "artist": "",
+        "usage": "メドレー #105（49:33〜）",
+        "q": "BINKAN♡あてんしょん アニメ 主題歌",
+        "yt": {
+          "id": "somL1iSk0M4",
+          "k": "ot",
+          "o": 0,
+          "ch": "Yayoi"
+        }
+      },
+      {
+        "kind": "",
+        "name": "ひだまりデイズ",
+        "artist": "",
+        "usage": "メドレー #106（50:01〜）",
+        "q": "ひだまりデイズ アニメ 主題歌",
+        "yt": {
+          "id": "9BF4I20Wgzw",
+          "k": "mv",
+          "o": 1,
+          "ch": "妹S(シスターズ)[土間うまる(CV:田中あいみ)/海老名菜々(CV:影山 灯)/本場切絵(CV:白石晴香)/橘・シルフィンフォード(CV... - Topic",
+          "alt": {
+            "id": "SQvpK1eIlWk",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Blade of Hope",
+        "artist": "",
+        "usage": "メドレー #107（50:27〜）",
+        "q": "Blade of Hope アニメ 主題歌",
+        "yt": {
+          "id": "qBV7C0s-42c",
+          "k": "ot",
+          "o": 0,
+          "ch": "Baptiste Shin'Fonem"
+        }
+      },
+      {
+        "kind": "",
+        "name": "Ring My Bell",
+        "artist": "",
+        "usage": "メドレー #108（50:54〜）",
+        "q": "Ring My Bell アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "もうそう★こうかんにっき",
+        "artist": "",
+        "usage": "メドレー #109（51:24〜）",
+        "q": "もうそう★こうかんにっき アニメ 主題歌",
+        "yt": {
+          "id": "twLdWkJ20tk",
+          "k": "mv",
+          "o": 1,
+          "ch": "Otome Shinto - Topic",
+          "alt": {
+            "id": "LA0H1sT8XvU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Destin Histoire",
+        "artist": "",
+        "usage": "メドレー #110（51:48〜）",
+        "q": "Destin Histoire アニメ 主題歌",
+        "yt": {
+          "id": "o6LMdQDAGv8",
+          "k": "mv",
+          "o": 1,
+          "ch": "Nurcantika Official",
+          "alt": {
+            "id": "ty9F3qkwUhM",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "INSIDE IDENTITY",
+        "artist": "",
+        "usage": "メドレー #111（52:14〜）",
+        "q": "INSIDE IDENTITY アニメ 主題歌",
+        "yt": {
+          "id": "zO67ZJpUvwQ",
+          "k": "ot",
+          "o": 0,
+          "ch": "Anime OP & ED",
+          "alt": {
+            "id": "314bWYDGKjk",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "エガオノキミヘ",
+        "artist": "",
+        "usage": "メドレー #112（52:46〜）",
+        "q": "エガオノキミヘ アニメ 主題歌",
+        "yt": {
+          "id": "43aB09vrnTc",
+          "k": "ot",
+          "o": 0,
+          "ch": "GJ SGC2020"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "片翼のイカロス",
+        "artist": "",
+        "usage": "メドレー #113（53:25〜）",
+        "q": "片翼のイカロス アニメ 主題歌",
+        "yt": {
+          "id": "IXw7R3KPTbo",
+          "k": "mv",
+          "o": 1,
+          "ch": "Yui Sakakibara - Topic",
+          "alt": {
+            "id": "IapRvEFssb0",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "On my Sheep",
+        "artist": "",
+        "usage": "メドレー #114（53:49〜）",
+        "q": "On my Sheep アニメ 主題歌",
+        "yt": {
+          "id": "KaxSBkJxM7c",
+          "k": "ot",
+          "o": 0,
+          "ch": "中恵光城 -Mitsuki Nakae-",
+          "alt": {
+            "id": "-pLlbuq3M88",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "NEVERLAND",
+        "artist": "",
+        "usage": "メドレー #115（54:18〜）",
+        "q": "NEVERLAND アニメ 主題歌",
+        "yt": {
+          "id": "1cUDJ4I771g",
+          "k": "mv",
+          "o": 1,
+          "ch": "橋本みゆき Official Channel",
+          "alt": {
+            "id": "skpDT24x2gs",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "euphoric field",
+        "artist": "",
+        "usage": "メドレー #116（54:45〜）",
+        "q": "euphoric field アニメ 主題歌",
+        "yt": {
+          "id": "4oczlUGLmgw",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "3RrkKAcYlbU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "絆 kizunairo 色",
+        "artist": "",
+        "usage": "メドレー #117（55:08〜）",
+        "q": "絆 kizunairo 色 アニメ 主題歌",
+        "yt": {
+          "id": "Hs_rIBPgTn8",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lia Official YouTube",
+          "alt": {
+            "id": "GqlBJoQw1BU",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Spread Wings.",
+        "artist": "",
+        "usage": "メドレー #118（55:41〜）",
+        "q": "Spread Wings. アニメ 主題歌",
+        "yt": {
+          "id": "IoZ8uKQ19F4",
+          "k": "ot",
+          "o": 1,
+          "ch": "Aki Misato - Topic"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "The fine every day",
+        "artist": "",
+        "usage": "メドレー #119（56:20〜）",
+        "q": "The fine every day アニメ 主題歌",
+        "yt": {
+          "id": "OtfV19x5biE",
+          "k": "ot",
+          "o": 0,
+          "ch": "kamimaezu",
+          "alt": {
+            "id": "stt1-AvqNGo",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "The Other Side of the Wall",
+        "artist": "",
+        "usage": "メドレー #120（57:00〜）",
+        "q": "The Other Side of the Wall アニメ 主題歌",
+        "yt": {
+          "id": "72_Z-JCxacY",
+          "k": "ot",
+          "o": 0,
+          "ch": "Void_Chords a.k.a. Ryo Takahashi"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "Red fraction",
+        "artist": "",
+        "usage": "メドレー #121（57:45〜）",
+        "q": "Red fraction アニメ 主題歌",
+        "yt": {
+          "id": "dqczAWZUKjk",
+          "k": "mv",
+          "o": 1,
+          "ch": "MELL - Topic",
+          "alt": {
+            "id": "FM3JRDvthok",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "mind as Judgment",
+        "artist": "",
+        "usage": "メドレー #122（58:11〜）",
+        "q": "mind as Judgment アニメ 主題歌",
+        "yt": {
+          "id": "ucN_5ahgkEQ",
+          "k": "mv",
+          "o": 1,
+          "ch": "Faylan - Topic",
+          "alt": {
+            "id": "90KqR5KSB4g",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "End of the World",
+        "artist": "",
+        "usage": "メドレー #123（58:37〜）",
+        "q": "End of the World アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ハートの確率",
+        "artist": "",
+        "usage": "メドレー #124（59:04〜）",
+        "q": "ハートの確率 アニメ 主題歌",
+        "yt": {
+          "id": "Jy0_ju4i2VA",
+          "k": "ot",
+          "o": 0,
+          "ch": "ZXHTR"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "Day to Story",
+        "artist": "",
+        "usage": "メドレー #125（59:30〜）",
+        "q": "Day to Story アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Philosophyz～TV animation ver.～",
+        "artist": "",
+        "usage": "メドレー #126（60:02〜）",
+        "q": "Philosophyz～TV animation ver.～ アニメ 主題歌",
+        "yt": {
+          "id": "WEExs_Dpwds",
+          "k": "mv",
+          "o": 1,
+          "ch": "Release - Topic",
+          "alt": {
+            "id": "9cswQ1M9P-U",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "サンプライト",
+        "artist": "",
+        "usage": "メドレー #127（60:33〜）",
+        "q": "サンプライト アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "lull～そして僕らは～",
+        "artist": "",
+        "usage": "メドレー #128（61:04〜）",
+        "q": "lull～そして僕らは～ アニメ 主題歌",
+        "yt": {
+          "id": "fZ0UsDLs_zw",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "GQgXPByTaIA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "ebb and flow",
+        "artist": "",
+        "usage": "メドレー #129（61:34〜）",
+        "q": "ebb and flow アニメ 主題歌",
+        "yt": {
+          "id": "F1Ee5VxoApI",
+          "k": "mv",
+          "o": 1,
+          "ch": "Ray - Topic",
+          "alt": {
+            "id": "3LjKx9Ikp8w",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Rainy veil",
+        "artist": "",
+        "usage": "メドレー #130（62:37〜）",
+        "q": "Rainy veil アニメ 主題歌",
+        "yt": {
+          "id": "Ds2zm8N4-9U",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "kjulACVyOXg",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "夢の続き",
+        "artist": "",
+        "usage": "メドレー #131（63:09〜）",
+        "q": "夢の続き アニメ 主題歌",
+        "yt": {
+          "id": "NPc__cmzLL8",
+          "k": "mv",
+          "o": 1,
+          "ch": "Konomi Suzuki Official"
+        }
+      },
+      {
+        "kind": "",
+        "name": "オオカミハート",
+        "artist": "",
+        "usage": "メドレー #132（63:40〜）",
+        "q": "オオカミハート アニメ 主題歌",
+        "yt": {
+          "id": "FBQQ24fuzfc",
+          "k": "mv",
+          "o": 1,
+          "ch": "ORESAMA Official Channel",
+          "alt": {
+            "id": "PwAgOqNvFGA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Q&Aリサイタル!",
+        "artist": "",
+        "usage": "メドレー #133（64:08〜）",
+        "q": "Q&Aリサイタル! アニメ 主題歌",
+        "yt": {
+          "id": "we1WnfLpY4I",
+          "k": "mv",
+          "o": 1,
+          "ch": "Sony Music (Japan)",
+          "alt": {
+            "id": "1d4Ko0SpO74",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Youthful Dreamer",
+        "artist": "",
+        "usage": "メドレー #134（64:34〜）",
+        "q": "Youthful Dreamer アニメ 主題歌",
+        "yt": {
+          "id": "_xwINNH6kBQ",
+          "k": "mv",
+          "o": 1,
+          "ch": "TrySail（麻倉もも・雨宮天・夏川椎菜）official YouTube channel",
+          "alt": {
+            "id": "QcwbRf_VRRw",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "センチメンタルラブ",
+        "artist": "",
+        "usage": "メドレー #135（64:59〜）",
+        "q": "センチメンタルラブ アニメ 主題歌",
+        "yt": {
+          "id": "ulCPyOiw12k",
+          "k": "ot",
+          "o": 0,
+          "ch": "Dorayaki",
+          "alt": {
+            "id": "VWROj0mCkVA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Climber's High!",
+        "artist": "",
+        "usage": "メドレー #136（65:29〜）",
+        "q": "Climber's High! アニメ 主題歌",
+        "yt": {
+          "id": "FU21xtlEUKw",
+          "k": "mv",
+          "o": 1,
+          "ch": "FlyingDog",
+          "alt": {
+            "id": "OjeX5FbVX0k",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "ボタン",
+        "artist": "",
+        "usage": "メドレー #137（65:56〜）",
+        "q": "ボタン アニメ 主題歌",
+        "yt": {
+          "id": "EIwY6L2VDPY",
+          "k": "mv",
+          "o": 1,
+          "ch": "PENGUIN RESEARCH Official Channel",
+          "alt": {
+            "id": "MYKyRRkOQS8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "未来形Answer",
+        "artist": "",
+        "usage": "メドレー #138（66:36〜）",
+        "q": "未来形Answer アニメ 主題歌",
+        "yt": {
+          "id": "WrlC6WbpjLg",
+          "k": "mv",
+          "o": 1,
+          "ch": "Trustrick - Topic",
+          "alt": {
+            "id": "_ng2Hg1DE88",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "恋のマホウ",
+        "artist": "",
+        "usage": "メドレー #139（67:02〜）",
+        "q": "恋のマホウ アニメ 主題歌",
+        "yt": {
+          "id": "t3bNZfxwem8",
+          "k": "ot",
+          "o": 0,
+          "ch": "nagisa2929"
+        }
+      },
+      {
+        "kind": "",
+        "name": "リフレクティア",
+        "artist": "",
+        "usage": "メドレー #140（67:33〜）",
+        "q": "リフレクティア アニメ 主題歌",
+        "yt": {
+          "id": "bPuCsWhFjLY",
+          "k": "mv",
+          "o": 1,
+          "ch": "eufonius - Topic",
+          "alt": {
+            "id": "E5SkAXJISuU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "いちばん星",
+        "artist": "",
+        "usage": "メドレー #141（68:05〜）",
+        "q": "いちばん星 アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "セカイノナミダ",
+        "artist": "",
+        "usage": "メドレー #142（68:43〜）",
+        "q": "セカイノナミダ アニメ 主題歌",
+        "yt": {
+          "id": "ExhOKzxvRgQ",
+          "k": "mv",
+          "o": 1,
+          "ch": "結城アイラ Official Channel",
+          "alt": {
+            "id": "bj30KnwvQKU",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "風のなかのプリムローズ",
+        "artist": "",
+        "usage": "メドレー #143（69:17〜）",
+        "q": "風のなかのプリムローズ アニメ 主題歌",
+        "yt": {
+          "id": "j-3CjHYnSyU",
+          "k": "ot",
+          "o": 0,
+          "ch": "Sunny Yamada",
+          "alt": {
+            "id": "2xHFLZ-DgpA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Brave Shine",
+        "artist": "",
+        "usage": "メドレー #144（69:54〜）",
+        "q": "Brave Shine アニメ 主題歌",
+        "yt": {
+          "id": "VQ2D8rZljwU",
+          "k": "mv",
+          "o": 1,
+          "ch": "Aimer Official YouTube Channel",
+          "alt": {
+            "id": "GVSEg3kWv4A",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Realize",
+        "artist": "",
+        "usage": "メドレー #145（70:19〜）",
+        "q": "Realize アニメ 主題歌",
+        "yt": {
+          "id": "67LVBH1dv5k",
+          "k": "mv",
+          "o": 1,
+          "ch": "Konomi Suzuki Official",
+          "alt": {
+            "id": "V7ZEEymq0DQ",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "TIT FOR TAT",
+        "artist": "",
+        "usage": "メドレー #146（70:46〜）",
+        "q": "TIT FOR TAT アニメ 主題歌",
+        "yt": {
+          "id": "wvBmjhnr2Po",
+          "k": "ot",
+          "o": 1,
+          "ch": "MYTH & ROID Official Channel"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "VORACITY",
+        "artist": "",
+        "usage": "メドレー #147（71:14〜）",
+        "q": "VORACITY アニメ 主題歌",
+        "yt": {
+          "id": "njBp4VBFMBU",
+          "k": "nc",
+          "o": 1,
+          "ch": "KADOKAWAanime",
+          "alt": {
+            "id": "UhazA6PvjHA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Seven Doors",
+        "artist": "",
+        "usage": "メドレー #148（71:36〜）",
+        "q": "Seven Doors アニメ 主題歌",
+        "yt": {
+          "id": "a7FPdVNdhvs",
+          "k": "mv",
+          "o": 1,
+          "ch": "ZAQ Official Channel",
+          "alt": {
+            "id": "EtZn__7l6dM",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Link",
+        "artist": "",
+        "usage": "メドレー #149（72:01〜）",
+        "q": "Link アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "DeCIDE",
+        "artist": "",
+        "usage": "メドレー #150（72:28〜）",
+        "q": "DeCIDE アニメ 主題歌",
+        "yt": {
+          "id": "Hu2zZcBONF0",
+          "k": "mv",
+          "o": 1,
+          "ch": "SUMMONERS 2 plus - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "Trip innocent of D",
+        "artist": "",
+        "usage": "メドレー #151（72:53〜）",
+        "q": "Trip innocent of D アニメ 主題歌",
+        "yt": {
+          "id": "2dun6sN5bBA",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Channel",
+          "alt": {
+            "id": "Nlfb1icel-k",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "miele paradiso",
+        "artist": "",
+        "usage": "メドレー #152（73:20〜）",
+        "q": "miele paradiso アニメ 主題歌",
+        "yt": {
+          "id": "7SyN5_YAnl0",
+          "k": "mv",
+          "o": 1,
+          "ch": "Iori Nomizu - Topic"
+        }
+      },
+      {
+        "kind": "",
+        "name": "REALOVE:REALIFE",
+        "artist": "",
+        "usage": "メドレー #153（73:51〜）",
+        "q": "REALOVE:REALIFE アニメ 主題歌",
+        "yt": {
+          "id": "6EHQWY2avjQ",
+          "k": "mv",
+          "o": 1,
+          "ch": "Sphere - Topic",
+          "alt": {
+            "id": "-LlCBeVEXHU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "BLOODRED",
+        "artist": "",
+        "usage": "メドレー #154（74:24〜）",
+        "q": "BLOODRED アニメ 主題歌",
+        "yt": {
+          "id": "S57BfN3RHAM",
+          "k": "mv",
+          "o": 1,
+          "ch": "D-selections - Topic",
+          "alt": {
+            "id": "H2rmqzZs7ao",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "True Blue Traveler",
+        "artist": "",
+        "usage": "メドレー #155（74:48〜）",
+        "q": "True Blue Traveler アニメ 主題歌",
+        "yt": {
+          "id": "M9asnx95Zvc",
+          "k": "mv",
+          "o": 1,
+          "ch": "Minami Kuribayashi - Topic",
+          "alt": {
+            "id": "uVx6oYWWpk8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "BEAUTIFUL SKY",
+        "artist": "",
+        "usage": "メドレー #156（75:11〜）",
+        "q": "BEAUTIFUL SKY アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "DISCOTHEQUE",
+        "artist": "",
+        "usage": "メドレー #157（75:33〜）",
+        "q": "DISCOTHEQUE アニメ 主題歌",
+        "yt": {
+          "id": "pQ6oN4Auwdw",
+          "k": "ot",
+          "o": 0,
+          "ch": "水樹奈々"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "innocent starter",
+        "artist": "",
+        "usage": "メドレー #158（75:57〜）",
+        "q": "innocent starter アニメ 主題歌",
+        "yt": {
+          "id": "dYVftmni4rw",
+          "k": "mv",
+          "o": 1,
+          "ch": "魔法少女リリカルなのは YouTube OFFICIAL CHANNEL and 水樹奈々",
+          "alt": {
+            "id": "ct6WuBF1w0Q",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Synchrogazer",
+        "artist": "",
+        "usage": "メドレー #159（76:23〜）",
+        "q": "Synchrogazer アニメ 主題歌",
+        "yt": {
+          "id": "2DKCoLZAGvQ",
+          "k": "ot",
+          "o": 0,
+          "ch": "水樹奈々",
+          "alt": {
+            "id": "pJzNzllwNUI",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "深愛",
+        "artist": "",
+        "usage": "メドレー #160（76:54〜）",
+        "q": "深愛 アニメ 主題歌",
+        "yt": {
+          "id": "ePVJdev77Gw",
+          "k": "mv",
+          "o": 1,
+          "ch": "KING RECORDS",
+          "alt": {
+            "id": "A_PtfjzETUo",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Golden Time",
+        "artist": "",
+        "usage": "メドレー #161（77:30〜）",
+        "q": "Golden Time アニメ 主題歌",
+        "yt": {
+          "id": "sJuwHqm0xoc",
+          "k": "mv",
+          "o": 1,
+          "ch": "堀江由衣 Official Channel",
+          "alt": {
+            "id": "ZWre4Mde13I",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "silky heart",
+        "artist": "",
+        "usage": "メドレー #162（77:58〜）",
+        "q": "silky heart アニメ 主題歌",
+        "yt": {
+          "id": "3W7eWwNqFGo",
+          "k": "mv",
+          "o": 1,
+          "ch": "堀江由衣 Official Channel",
+          "alt": {
+            "id": "LVh_hUxm-0A",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "虹のかけら",
+        "artist": "",
+        "usage": "メドレー #163（78:28〜）",
+        "q": "虹のかけら アニメ 主題歌",
+        "yt": {
+          "id": "D4JXy4kYfIY",
+          "k": "nc",
+          "o": 1,
+          "ch": "TOHO animation チャンネル",
+          "alt": {
+            "id": "hl_gd6tmAQg",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "over and over",
+        "artist": "",
+        "usage": "メドレー #164（78:57〜）",
+        "q": "over and over アニメ 主題歌",
+        "yt": {
+          "id": "yqhoYkw-lrg",
+          "k": "op",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "tmJibXSG4_U",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "CANDY MAGIC",
+        "artist": "",
+        "usage": "メドレー #165（79:25〜）",
+        "q": "CANDY MAGIC アニメ 主題歌",
+        "yt": {
+          "id": "oVuze_0sT14",
+          "k": "ot",
+          "o": 0,
+          "ch": "みみめめMIMI",
+          "alt": {
+            "id": "d-LRe-FdjWo",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "くちづけDiamond",
+        "artist": "",
+        "usage": "メドレー #166（79:56〜）",
+        "q": "くちづけDiamond アニメ 主題歌",
+        "yt": {
+          "id": "ZLBCrRWLMXU",
+          "k": "ot",
+          "o": 0,
+          "ch": "AniSoL",
+          "alt": {
+            "id": "E3NO2Ytx434",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Wonder Wind",
+        "artist": "",
+        "usage": "メドレー #167（80:33〜）",
+        "q": "Wonder Wind アニメ 主題歌",
+        "yt": {
+          "id": "yUQZyFjMmd4",
+          "k": "mv",
+          "o": 1,
+          "ch": "NBCUniversal Music Channel",
+          "alt": {
+            "id": "gBHJBCdz3Zs",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "I SAY YES",
+        "artist": "",
+        "usage": "メドレー #168（81:00〜）",
+        "q": "I SAY YES アニメ 主題歌",
+        "yt": {
+          "id": "nn808-3SbVk",
+          "k": "ot",
+          "o": 0,
+          "ch": "UN1212",
+          "alt": {
+            "id": "bbHPnDG8IiA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "コイノシルシ",
+        "artist": "",
+        "usage": "メドレー #169（81:24〜）",
+        "q": "コイノシルシ アニメ 主題歌",
+        "yt": {
+          "id": "0esUbeigC6s",
+          "k": "mv",
+          "o": 1,
+          "ch": "Kami nomi zo shiri-Tai - Topic",
+          "alt": {
+            "id": "4xDGTCY3wLA",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "I'LL BE THERE FOR YOU",
+        "artist": "",
+        "usage": "メドレー #170（81:49〜）",
+        "q": "I'LL BE THERE FOR YOU アニメ 主題歌",
+        "yt": {
+          "id": "pimvPProU0w",
+          "k": "ot",
+          "o": 0,
+          "ch": "zeroneki6"
+        }
+      },
+      {
+        "kind": "",
+        "name": "Cherish",
+        "artist": "",
+        "usage": "メドレー #171（82:17〜）",
+        "q": "Cherish アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "LOVE × HEAVEN",
+        "artist": "",
+        "usage": "メドレー #172（82:45〜）",
+        "q": "LOVE × HEAVEN アニメ 主題歌",
+        "yt": {
+          "id": "SAXKoKjVRlk",
+          "k": "ot",
+          "o": 0,
+          "ch": "大庭蓮實"
+        }
+      },
+      {
+        "kind": "",
+        "name": "恋する☆ひよこ",
+        "artist": "",
+        "usage": "メドレー #173（83:12〜）",
+        "q": "恋する☆ひよこ アニメ 主題歌",
+        "yt": {
+          "id": "IeecCWSN6AI",
+          "k": "ot",
+          "o": 0,
+          "ch": "砂肝さん"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "Fly Away",
+        "artist": "",
+        "usage": "メドレー #174（83:35〜）",
+        "q": "Fly Away アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Choose me♡ダーリン",
+        "artist": "",
+        "usage": "メドレー #175（84:00〜）",
+        "q": "Choose me♡ダーリン アニメ 主題歌",
+        "yt": {
+          "id": "WVgsmlTLAKk",
+          "k": "mv",
+          "o": 1,
+          "ch": "StylipS - Topic",
+          "alt": {
+            "id": "BcQYOrzbrmY",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "SELF PRODUCER",
+        "artist": "",
+        "usage": "メドレー #176（84:29〜）",
+        "q": "SELF PRODUCER アニメ 主題歌",
+        "yt": {
+          "id": "FjQy6QyxpdE",
+          "k": "ot",
+          "o": 0,
+          "ch": "Minori Chihara / minorhythm",
+          "alt": {
+            "id": "MiGkTVycmMc",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "U-n-d-e-r--STANDING!",
+        "artist": "",
+        "usage": "メドレー #177（84:57〜）",
+        "q": "U-n-d-e-r--STANDING! アニメ 主題歌",
+        "yt": {
+          "id": "k7h-SBU16eo",
+          "k": "ot",
+          "o": 0,
+          "ch": "REDshoma",
+          "alt": {
+            "id": "ApbbwH9pWnY",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Arrival of Tears",
+        "artist": "",
+        "usage": "メドレー #178（85:30〜）",
+        "q": "Arrival of Tears アニメ 主題歌",
+        "yt": {
+          "id": "eoV7GAMCxMg",
+          "k": "ot",
+          "o": 1,
+          "ch": "彩音 -Ayane Official YouTube Channel-"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "Be mine!",
+        "artist": "",
+        "usage": "メドレー #179（86:13〜）",
+        "q": "Be mine! アニメ 主題歌",
+        "yt": {
+          "id": "HEDoirg99hU",
+          "k": "ot",
+          "o": 0,
+          "ch": "The Guy",
+          "alt": {
+            "id": "Jk2bnP1dWLI",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "CHOIR JAIL",
+        "artist": "",
+        "usage": "メドレー #180（86:36〜）",
+        "q": "CHOIR JAIL アニメ 主題歌",
+        "yt": {
+          "id": "lyDAsYdNtt0",
+          "k": "mv",
+          "o": 1,
+          "ch": "Konomi Suzuki Official",
+          "alt": {
+            "id": "Jr13UYJEads",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "CHAIN",
+        "artist": "",
+        "usage": "メドレー #181（86:58〜）",
+        "q": "CHAIN アニメ 主題歌",
+        "yt": {
+          "id": "4qQZZbYykdg",
+          "k": "mv",
+          "o": 1,
+          "ch": "ASCA Official YouTube Channel",
+          "alt": {
+            "id": "FjdvgI_jVP8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Ray of bullet",
+        "artist": "",
+        "usage": "メドレー #182（87:23〜）",
+        "q": "Ray of bullet アニメ 主題歌",
+        "yt": {
+          "id": "tjR_HsR4sDY",
+          "k": "ot",
+          "o": 0,
+          "ch": "大庭蓮實",
+          "alt": {
+            "id": "yQXYhAyqoxU",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "最高速Fall in Love",
+        "artist": "",
+        "usage": "メドレー #183（87:58〜）",
+        "q": "最高速Fall in Love アニメ 主題歌",
+        "yt": {
+          "id": "JWfemp8fYuM",
+          "k": "mv",
+          "o": 1,
+          "ch": "ミーア、パピ、セントレア、スー、メロ、ラクネラ - Topic",
+          "alt": {
+            "id": "0O_ReJPDYTQ",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "BURST THE GRAVITY",
+        "artist": "",
+        "usage": "メドレー #184（88:20〜）",
+        "q": "BURST THE GRAVITY アニメ 主題歌",
+        "yt": {
+          "id": "RH8pmvO_d4Q",
+          "k": "mv",
+          "o": 1,
+          "ch": "ALTIMA - Topic",
+          "alt": {
+            "id": "7YcMeVt1W_g",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Tears Infection",
+        "artist": "",
+        "usage": "メドレー #185（88:48〜）",
+        "q": "Tears Infection アニメ 主題歌",
+        "yt": {
+          "id": "3iEGrBdV89o",
+          "k": "ot",
+          "o": 0,
+          "ch": "江戶川柯南",
+          "alt": {
+            "id": "bGZ8Top7W7I",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "カラフル",
+        "artist": "",
+        "usage": "メドレー #186（89:19〜）",
+        "q": "カラフル アニメ 主題歌",
+        "yt": {
+          "id": "UGXSscY5hn8",
+          "k": "mv",
+          "o": 1,
+          "ch": "ClariS Official YouTube Channel"
+        }
+      },
+      {
+        "kind": "",
+        "name": "キミシニタモウコトナカレ",
+        "artist": "",
+        "usage": "メドレー #187（89:48〜）",
+        "q": "キミシニタモウコトナカレ アニメ 主題歌",
+        "yt": {
+          "id": "JBcNYaw8NOo",
+          "k": "mv",
+          "o": 1,
+          "ch": "FlyingDog",
+          "alt": {
+            "id": "VkocqRBwk3U",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "射手座☆午後九時Don't be late",
+        "artist": "",
+        "usage": "メドレー #188（90:15〜）",
+        "q": "射手座☆午後九時Don't be late アニメ 主題歌",
+        "yt": {
+          "id": "5sKSCRuKLHo",
+          "k": "ot",
+          "o": 0,
+          "ch": "May'n",
+          "alt": {
+            "id": "i93FwE8W_Oo",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Distance",
+        "artist": "",
+        "usage": "メドレー #189（90:46〜）",
+        "q": "Distance アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "No pain, No game",
+        "artist": "",
+        "usage": "メドレー #190（91:16〜）",
+        "q": "No pain, No game アニメ 主題歌",
+        "yt": {
+          "id": "Tq2RFOvf3Tk",
+          "k": "ot",
+          "o": 0,
+          "ch": "ナノ / NANO",
+          "alt": {
+            "id": "H--aFiuOV4g",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Bull's Eye",
+        "artist": "",
+        "usage": "メドレー #191（91:41〜）",
+        "q": "Bull's Eye アニメ 主題歌",
+        "yt": {
+          "id": "WzoIvqVpO-k",
+          "k": "mv",
+          "o": 1,
+          "ch": "FlyingDog",
+          "alt": {
+            "id": "26rGp61lmHw",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "ROUGH DIAMONDS",
+        "artist": "",
+        "usage": "メドレー #192（92:06〜）",
+        "q": "ROUGH DIAMONDS アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ライムツリー",
+        "artist": "",
+        "usage": "メドレー #193（92:35〜）",
+        "q": "ライムツリー アニメ 主題歌",
+        "yt": {
+          "id": "qTjMzo62uRI",
+          "k": "mv",
+          "o": 1,
+          "ch": "nano. RIPE Official Channel"
+        }
+      },
+      {
+        "kind": "",
+        "name": "1st Love Story",
+        "artist": "",
+        "usage": "メドレー #194（93:03〜）",
+        "q": "1st Love Story アニメ 主題歌",
+        "yt": {
+          "id": "A3fyvdU6U30",
+          "k": "mv",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "alt": {
+            "id": "_N8LKyZT0Lw",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "セイシュンゼミナール",
+        "artist": "",
+        "usage": "メドレー #195（93:41〜）",
+        "q": "セイシュンゼミナール アニメ 主題歌",
+        "yt": {
+          "id": "Qk1gxobARdE",
+          "k": "mv",
+          "o": 1,
+          "ch": "アニプレックス チャンネル",
+          "alt": {
+            "id": "N-YDJV8GuC0",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "TERMINATED",
+        "artist": "",
+        "usage": "メドレー #196（94:17〜）",
+        "q": "TERMINATED アニメ 主題歌",
+        "yt": {
+          "id": "B_eRJiiLPCU",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Channel",
+          "alt": {
+            "id": "e2yHprLk6No",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "暁の華",
+        "artist": "",
+        "usage": "メドレー #197（94:43〜）",
+        "q": "暁の華 アニメ 主題歌",
+        "yt": {
+          "id": "PbTDo1bWgms",
+          "k": "mv",
+          "o": 1,
+          "ch": "アニメ 音楽 2.5次元舞台 - マーベラス公式チャンネル"
+        }
+      },
+      {
+        "kind": "",
+        "name": "Last Proof",
+        "artist": "",
+        "usage": "メドレー #198（95:13〜）",
+        "q": "Last Proof アニメ 主題歌",
+        "yt": {
+          "id": "cb__kDI7PKQ",
+          "k": "mv",
+          "o": 1,
+          "ch": "ZAQ Official Channel",
+          "alt": {
+            "id": "dFRjHo2o04U",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Black Rover",
+        "artist": "",
+        "usage": "メドレー #199（95:40〜）",
+        "q": "Black Rover アニメ 主題歌",
+        "yt": {
+          "id": "8RSfSxkN0ek",
+          "k": "ot",
+          "o": 0,
+          "ch": "VK Blanka ",
+          "alt": {
+            "id": "yIlBb1Jvjbk",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "700,000,000,000,000,000,000,000の空で",
+        "artist": "",
+        "usage": "メドレー #200（96:20〜）",
+        "q": "700,000,000,000,000,000,000,000の空で アニメ 主題歌",
+        "yt": {
+          "id": "1uYnW64BvPA",
+          "k": "mv",
+          "o": 1,
+          "ch": "LiGHTs - Topic",
+          "alt": {
+            "id": "v5XVk4x_amw",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "この世界は僕らを待っていた",
+        "artist": "",
+        "usage": "メドレー #201（97:51〜）",
+        "q": "この世界は僕らを待っていた アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "starlog",
+        "artist": "",
+        "usage": "メドレー #202（98:28〜）",
+        "q": "starlog アニメ 主題歌",
+        "yt": {
+          "id": "4hnn9BywgTQ",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Global Channel",
+          "alt": {
+            "id": "CGz2I_5ikI4",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "",
+        "name": "Scarlet Ballet",
+        "artist": "",
+        "usage": "メドレー #203（98:52〜）",
+        "q": "Scarlet Ballet アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "あんりある♡パラダイス",
+        "artist": "",
+        "usage": "メドレー #204（99:25〜）",
+        "q": "あんりある♡パラダイス アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Shiny Ray",
+        "artist": "",
+        "usage": "メドレー #205（99:58〜）",
+        "q": "Shiny Ray アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "シャンランランfeat.96猫",
+        "artist": "",
+        "usage": "メドレー #206（100:20〜）",
+        "q": "シャンランランfeat.96猫 アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "アンチテーゼ・エスケイプ",
+        "artist": "",
+        "usage": "メドレー #207（100:50〜）",
+        "q": "アンチテーゼ・エスケイプ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Blue Bud Blue",
+        "artist": "",
+        "usage": "メドレー #208（101:11〜）",
+        "q": "Blue Bud Blue アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "メニメニマニマニ",
+        "artist": "",
+        "usage": "メドレー #209（101:40〜）",
+        "q": "メニメニマニマニ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "secret arms",
+        "artist": "",
+        "usage": "メドレー #210（102:09〜）",
+        "q": "secret arms アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Authentic symphony",
+        "artist": "",
+        "usage": "メドレー #211（102:41〜）",
+        "q": "Authentic symphony アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "初恋パラシュート",
+        "artist": "",
+        "usage": "メドレー #212（103:11〜）",
+        "q": "初恋パラシュート アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "BEAM my BEAM",
+        "artist": "",
+        "usage": "メドレー #213（103:39〜）",
+        "q": "BEAM my BEAM アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Precious Memories",
+        "artist": "",
+        "usage": "メドレー #214（104:00〜）",
+        "q": "Precious Memories アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "サクラサクミライコイユメ",
+        "artist": "",
+        "usage": "メドレー #215（104:29〜）",
+        "q": "サクラサクミライコイユメ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "サクラハッピーイノベーション",
+        "artist": "",
+        "usage": "メドレー #216（105:03〜）",
+        "q": "サクラハッピーイノベーション アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Endless Story",
+        "artist": "",
+        "usage": "メドレー #217（105:28〜）",
+        "q": "Endless Story アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "トゥッティ！",
+        "artist": "",
+        "usage": "メドレー #218（105:49〜）",
+        "q": "トゥッティ！ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ここから、ここから",
+        "artist": "",
+        "usage": "メドレー #219（106:14〜）",
+        "q": "ここから、ここから アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "花雪",
+        "artist": "",
+        "usage": "メドレー #220（106:58〜）",
+        "q": "花雪 アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Bursty Greedy Spider",
+        "artist": "",
+        "usage": "メドレー #221（107:27〜）",
+        "q": "Bursty Greedy Spider アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Crow Song",
+        "artist": "",
+        "usage": "メドレー #222（107:59〜）",
+        "q": "Crow Song アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "鳥の詩",
+        "artist": "",
+        "usage": "メドレー #223（108:31〜）",
+        "q": "鳥の詩 アニメ 主題歌",
+        "yt": {
+          "id": "3dbuqZIc_3g",
+          "k": "ot",
+          "o": 1,
+          "ch": "森口博子 オフィシャル YouTube チャンネル"
+        },
+        "note": "動画の照合が弱い（別の音源の可能性）"
+      },
+      {
+        "kind": "",
+        "name": "YOU",
+        "artist": "",
+        "usage": "メドレー #224（109:07〜）",
+        "q": "YOU アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ヒカリ",
+        "artist": "",
+        "usage": "メドレー #225（109:39〜）",
+        "q": "ヒカリ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "正解はひとつ！じゃない！！",
+        "artist": "",
+        "usage": "メドレー #226（110:05〜）",
+        "q": "正解はひとつ！じゃない！！ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "BEAUTIFUL≒SENTENCE",
+        "artist": "",
+        "usage": "メドレー #227（110:33〜）",
+        "q": "BEAUTIFUL≒SENTENCE アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Lostorage",
+        "artist": "",
+        "usage": "メドレー #228（111:00〜）",
+        "q": "Lostorage アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Evidence",
+        "artist": "",
+        "usage": "メドレー #229（111:26〜）",
+        "q": "Evidence アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Ring of Fortune",
+        "artist": "",
+        "usage": "メドレー #230（111:50〜）",
+        "q": "Ring of Fortune アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "乙女どもよ。",
+        "artist": "",
+        "usage": "メドレー #231（112:20〜）",
+        "q": "乙女どもよ。 アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "やさしい希望",
+        "artist": "",
+        "usage": "メドレー #232（112:43〜）",
+        "q": "やさしい希望 アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Deal with the devil",
+        "artist": "",
+        "usage": "メドレー #233（113:09〜）",
+        "q": "Deal with the devil アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Black White",
+        "artist": "",
+        "usage": "メドレー #234（113:42〜）",
+        "q": "Black White アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Strike my soul",
+        "artist": "",
+        "usage": "メドレー #235（114:07〜）",
+        "q": "Strike my soul アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "signal",
+        "artist": "",
+        "usage": "メドレー #236（114:34〜）",
+        "q": "signal アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Alicemagic",
+        "artist": "",
+        "usage": "メドレー #237（115:03〜）",
+        "q": "Alicemagic アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Eternal Star",
+        "artist": "",
+        "usage": "メドレー #238（115:28〜）",
+        "q": "Eternal Star アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "君へ",
+        "artist": "",
+        "usage": "メドレー #239（115:53〜）",
+        "q": "君へ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ebullient future",
+        "artist": "",
+        "usage": "メドレー #240（116:32〜）",
+        "q": "ebullient future アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "アフターグロウ",
+        "artist": "",
+        "usage": "メドレー #241（117:11〜）",
+        "q": "アフターグロウ アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Beautiful Soldier",
+        "artist": "",
+        "usage": "メドレー #242（117:52〜）",
+        "q": "Beautiful Soldier アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "ビードロ模様",
+        "artist": "",
+        "usage": "メドレー #243（118:26〜）",
+        "q": "ビードロ模様 アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "THERE IS A REASON",
+        "artist": "",
+        "usage": "メドレー #244（118:56〜）",
+        "q": "THERE IS A REASON アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Harvest",
+        "artist": "",
+        "usage": "メドレー #245（119:27〜）",
+        "q": "Harvest アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "たましい",
+        "artist": "",
+        "usage": "メドレー #246（119:53〜）",
+        "q": "たましい アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "メグメル",
+        "artist": "",
+        "usage": "メドレー #247（120:33〜）",
+        "q": "メグメル アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Brave Song",
+        "artist": "",
+        "usage": "メドレー #248（121:10〜）",
+        "q": "Brave Song アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "behind",
+        "artist": "",
+        "usage": "メドレー #249（121:49〜）",
+        "q": "behind アニメ 主題歌"
+      },
+      {
+        "kind": "",
+        "name": "Sincerely",
+        "artist": "",
+        "usage": "メドレー #250（122:28〜）",
+        "q": "Sincerely アニメ 主題歌"
       }
     ]
   }

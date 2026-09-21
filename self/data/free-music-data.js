@@ -1,7 +1,7 @@
 // 自動生成ファイル - F:\Tools\Music\music-detect\tools\export_free_music_js.py（カタログJSONから生成）。手編集しないこと。
-// 生成日: 2026-09-21 / 規約の確認日: 2026-09-21
+// 生成日: 2026-09-22 / 規約の確認日: 2026-09-21
 window.FREE_MUSIC_DATA = {
-  "generatedAt": "2026-09-21",
+  "generatedAt": "2026-09-22",
   "verifiedAt": "2026-09-21",
   "sites": [
     {
@@ -47,7 +47,7 @@ window.FREE_MUSIC_DATA = {
       "url": "https://maou.audio/",
       "image": "https://maou.audio/wp-content/themes/jks_maoudamashii/img/twitter_card.png",
       "image_credit": "maou.audio（公式）",
-      "catalog_size": "BGM 約400曲（BGMカテゴリのページ表示『1/401』、2026-09-20）。全曲 作曲：森田交一（同ページ）",
+      "catalog_size": "BGM 約400曲（BGMカテゴリのページ表示『1/401』、2026-09-20）。全曲 作曲：森田交一（同ページ）／取得済み: BGM 全9カテゴリ360曲＋旧ゲーム音楽300曲（maou_game.zip、2026-09-22）＋公式YouTube（Koichi Morita Channel）の曲名付きの曲",
       "terms_urls": [
         "https://maou.audio/rule/"
       ],
@@ -57,7 +57,7 @@ window.FREE_MUSIC_DATA = {
       "redistribution": "曲単品の再配布は不可。二次配布は著作表記とリンクが必要",
       "ai_training": "禁止（生成AIに学習させる行為はいかなる場合でも違反。作曲システムへの組み込みも禁止）",
       "acquisition": "manual_only",
-      "acquisition_note": "個別ダウンロードと『一括ダウンロード』が公式に提供されている。ファイルURLはスクリプトからも、ブラウザでURLを直接開いても403（サイトのページ上のリンクからのみ）。2026-09-21 にユーザーの許可を得て、Chromeで https://maou.audio/all/ のリンクをクリックし、ネオロックのZIP（85曲・153MB）を取得して指紋化した。2本目以降は Google の全面広告がクリックを横取りして中断（残り8カテゴリは人手で取得）。規約に自動取得の禁止規定は見当たらないが、Referer偽装などでの回避はしない。音源は mp3/ogg/m4a",
+      "acquisition_note": "個別ダウンロードと『一括ダウンロード』が公式に提供されている。ファイルURLはスクリプトからも、ブラウザでURLを直接開いても403（サイトのページ上のリンクからのみ）。2026-09-21 にユーザーの許可を得て、Chromeで https://maou.audio/all/ のリンクをクリックし、ネオロックのZIP（85曲・153MB）を取得して指紋化した。2本目以降は Google の全面広告がクリックを横取りして中断（残り8カテゴリは人手で取得）。規約に自動取得の禁止規定は見当たらないが、Referer偽装などでの回避はしない。音源は mp3/ogg/m4a 2026-09-22: 旧ゲーム音楽ZIP（maou_game.zip、300曲）もChromeの新しいタブで取得。曲名付きの曲（シャイニングスター・12345 等）はZIPになく、公式YouTube『Koichi Morita Channel』の『【魔王魂公式】曲名』から取得した",
       "popularity_evidence": "未取得（人気順の根拠は今後）"
     },
     {
@@ -189,6 +189,25 @@ window.FREE_MUSIC_DATA = {
       "acquisition": "official_youtube",
       "acquisition_note": "サイトはJSアプリ（ログイン連携あり）のためスクリプトでは取得しない。公式YouTube（M-Studio Official Channel の H/MIX GALLERY 紹介61秒クリップ68本、BGM channel by h/mix 秋山裕和 の曲集2本）の音声から指紋を作る（2026-09-21）。全302曲は網羅していない",
       "popularity_evidence": "未取得"
+    },
+    {
+      "id": "bgmer",
+      "name": "BGMer",
+      "url": "https://bgmer.net/",
+      "image": null,
+      "image_credit": null,
+      "catalog_size": "543曲（曲一覧ページ、2026-09-22）",
+      "terms_urls": [
+        "https://bgmer.net/terms/"
+      ],
+      "commercial": "可（個人・商用とも無料。動画サイト・放送・ゲーム・イベントなど）",
+      "credit_required": "不要（あればありがたい）。BGM紹介動画・転載動画は概要欄にクレジット必須",
+      "content_id": "音源を無断で YouTube Content ID のフィンガープリントや著作権管理団体に登録することは禁止（規約）",
+      "redistribution": "禁止していない（自分の作品と偽る・許可なく販売する等は禁止）",
+      "ai_training": "可（規約に『AI学習への利用もOKです』）",
+      "acquisition": "throttled_script_ok",
+      "acquisition_note": "規約に自動アクセスの禁止規定が無く、robots.txt は /wp-admin/ 以外を許可（2026-09-22 確認）。ベンチマーク動画（ねこぴーのIT活用の200曲・50曲）に使われている配布サイトとして、全曲を取り込む対象にした（ユーザーの依頼）。曲一覧ページ（/song-list/）を2秒間隔で読み、mp3（長い版）を5〜10秒間隔で1曲ずつ保存（tools/bgmer.py）。個人の指紋DBのみ・再配布しない",
+      "popularity_evidence": "ベンチマーク動画（YouTubeでよく使われるBGM）に掲載"
     }
   ],
   "composers": [
@@ -327,16 +346,16 @@ window.FREE_MUSIC_DATA = {
     }
   ],
   "detection": {
-    "catalogTracks": 1813,
+    "catalogTracks": 2806,
     "featuredTracks": 13,
     "fpStatus": {
-      "none": 6,
-      "ok": 1807
+      "none": 107,
+      "ok": 2699
     },
     "bySite": {
       "opentracks": {
-        "tracks": 592,
-        "fpOk": 590
+        "tracks": 719,
+        "fpOk": 616
       },
       "incompetech": {
         "tracks": 2,
@@ -347,8 +366,8 @@ window.FREE_MUSIC_DATA = {
         "fpOk": 543
       },
       "youtube_audio_library": {
-        "tracks": 5,
-        "fpOk": 5
+        "tracks": 18,
+        "fpOk": 18
       },
       "musmus": {
         "tracks": 216,
@@ -363,12 +382,16 @@ window.FREE_MUSIC_DATA = {
         "fpOk": 15
       },
       "maoudamashii": {
-        "tracks": 360,
-        "fpOk": 360
+        "tracks": 669,
+        "fpOk": 669
       },
       "hmix": {
         "tracks": 70,
         "fpOk": 70
+      },
+      "bgmer": {
+        "tracks": 544,
+        "fpOk": 544
       }
     }
   }
