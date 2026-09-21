@@ -141,6 +141,20 @@
   .pl-msg { font-size: 0.7rem; color: #e0a060; min-height: 1em; }
   .pl-seek { display: flex; align-items: center; gap: 8px; }
   .pl-seek input[type=range] { flex: 1 1 auto; min-width: 80px; accent-color: #9a86e0; }
+  .pl-struct { position: relative; height: 22px; background: #15151f; border-radius: 4px; overflow: hidden; cursor: pointer; }
+  .pl-struct[hidden] { display: none; }
+  .pl-struct .seg { position: absolute; top: 0; bottom: 0; border: none; padding: 0 2px; font-size: 0.6rem; color: #fff; overflow: hidden; white-space: nowrap;
+                    border-right: 1px solid #0e0e16; cursor: pointer; font-family: inherit; opacity: 0.85; text-align: left; }
+  .pl-struct .seg:hover { opacity: 1; }
+  .pl-struct .seg.sel { outline: 2px solid #fff; outline-offset: -2px; opacity: 1; }
+  .pl-struct .seg.chorus { box-shadow: inset 0 -3px 0 #ffd54a; }
+  .pl-struct .seg[data-r=I], .pl-struct .seg[data-r=O] { background: #5a5a70; }
+  .pl-struct .seg[data-r=A] { background: #2f6fb8; }
+  .pl-struct .seg[data-r=B] { background: #a8892a; }
+  .pl-struct .seg[data-r=S] { background: #c8425a; }
+  .pl-struct .seg[data-r=M] { background: #3a9a70; }
+  .pl-struct .seg[data-r=C] { background: #8a55c0; }
+  .pl-struct .head { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; pointer-events: none; }
   .pl-time { font-size: 0.66rem; color: #778; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .pl-vol { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; }
   .pl-vol input[type=range] { width: 84px; accent-color: #9a86e0; }
@@ -266,12 +280,14 @@
         <span class="pl-time" id="pl-dur">0:00</span>
         <span class="pl-vol"><span aria-hidden="true">🔊</span><input type="range" id="pl-vol" min="0" max="100" value="100" title="音量" aria-label="音量"></span>
       </div>
+      <div class="pl-struct" id="pl-struct" hidden title="曲の構成（推定）。区間を押すとそこから再生"></div>
       <div class="pl-msg" id="pl-msg"></div>
       <div class="pl-adj" id="pl-adj" hidden>
         <span class="pl-adj-label">サビ位置の微調整</span>
         <span>頭 <button type="button" data-adj="s-" title="サビの頭を0.5秒早める">−0.5s</button><button type="button" data-adj="s+" title="サビの頭を0.5秒遅らせる">+0.5s</button></span>
         <span>終わり <button type="button" data-adj="e-" title="サビの終わりを0.5秒早める">−0.5s</button><button type="button" data-adj="e+" title="サビの終わりを0.5秒遅らせる">+0.5s</button></span>
         <button type="button" data-adj="alt" id="pl-alt" title="別のサビの候補に切り替え（押すたびに次の候補）" hidden>別の候補</button>
+        <button type="button" data-adj="sec" id="pl-sec" title="構成バーで選んだ区間を、この曲のサビにする" hidden>選んだ区間をサビに</button>
         <button type="button" data-adj="reset" title="推定の位置に戻す">戻す</button>
         <span class="pl-adj-info" id="pl-adj-info"></span>
       </div>
@@ -295,11 +311,15 @@
 <script src="shared/nav.js"></script>
 <script src="data/anime-op-ed-data.js"></script>
 <script src="data/anime-song-chorus-data.js"></script>
+<script src="data/anime-song-struct-data.js"></script>
 <!--PERSONAL_DATA-->
 <script>
 (function () {
   "use strict";
   const works = window.ANIME_OP_ED_DATA || [];
+  const ST = window.ANIME_SONG_STRUCT || {};     // 動画ID → [全体秒, [[開始秒, 終了秒, 役割 I|A|B|S|M|C|O], ...]]  （曲の構成の推定）
+  const ROLE_JA = { I: "イントロ", A: "Aメロ", B: "Bメロ", S: "サビ", M: "間奏", C: "Cメロ", O: "アウトロ" };
+  let selSec = null;
   const CH = window.ANIME_SONG_CHORUS || {};     // 動画ID → [開始秒, 終了秒, "high"|"low"]  （サビの推定）
   // サイト内で再生できるのは http(s) で開いたとき（file:// では YouTube の埋め込みが動かない）
   // 個人用モード（Cloudflare の非公開配信）: 個人用ビルドだけが data/personal-audio-data.js（動画ID→音源の長さ）を持つ。
@@ -977,7 +997,7 @@
   function startFade() {
     clearInterval(fadeTimer);
     fadeTimer = setInterval(function () {
-      if (!ytPlayer || !ytPlayer.getCurrentTime || !cur || !cur.sabi || barEl.hidden) return;
+      if (!ytPlayer || !ytPlayer.getCurrentTime || !cur || !cur.sabi || cur.free || barEl.hidden) return;
       if (ytPlayer.getPlayerState() !== 1) return;
       const now = ytPlayer.getCurrentTime(), s = cur.sabi[0], e = cur.sabi[1];
       if (now >= e - 0.05 && !cur.ended) { cur.ended = true; next(); return; }      // サビの終わりで次の曲へ
@@ -986,11 +1006,44 @@
     }, 100);
   }
 
+  // ---- 曲の構成バー（イントロ/Aメロ/Bメロ/サビ/間奏…の推定）。押すとその区間から再生。「選んだ区間をサビに」で保存 ----
+  function renderStruct() {
+    const box = document.getElementById("pl-struct");
+    selSec = null;
+    document.getElementById("pl-sec").hidden = true;
+    const d = cur && ST[cur.src.id];
+    if (!d) { box.hidden = true; box.innerHTML = ""; return; }
+    const T = d[0];
+    box.hidden = false;
+    box.innerHTML = d[1].map(function (g, i) {
+      const isCh = cur.sabi && g[0] < cur.sabi[1] - 0.5 && g[1] > cur.sabi[0] + 0.5;
+      return '<button type="button" class="seg' + (isCh ? " chorus" : "") + '" data-i="' + i + '" data-r="' + g[2] + '" style="left:' + (g[0] / T * 100).toFixed(2) + '%;width:' +
+        ((g[1] - g[0]) / T * 100).toFixed(2) + '%" title="' + ROLE_JA[g[2]] + " " + fmt(g[0]) + "〜" + fmt(g[1]) + '">' + ROLE_JA[g[2]] + '</button>';
+    }).join("") + '<span class="head" id="pl-struct-head"></span>';
+  }
+  document.getElementById("pl-struct").addEventListener("click", function (ev) {
+    const b = ev.target.closest("button.seg");
+    if (!b || !cur) return;
+    const g = ST[cur.src.id][1][+b.dataset.i];
+    selSec = g;
+    document.querySelectorAll("#pl-struct .seg.sel").forEach(function (x) { x.classList.remove("sel"); });
+    b.classList.add("sel");
+    document.getElementById("pl-sec").hidden = false;
+    plMsg(ROLE_JA[g[2]] + " " + fmt(g[0]) + "〜" + fmt(g[1]) + "（推定）");
+    if (ytPlayer && ytPlayer.seekTo) { cur.free = true; ytPlayer.seekTo(g[0], true); if (ytPlayer.setVolume) ytPlayer.setVolume(prefs.vol); }   // 区間の試聴中はサビの終わりで次へ進めない
+  });
+  function moveHead() {
+    const h = document.getElementById("pl-struct-head");
+    if (!h || !cur || !ST[cur.src.id] || !ytPlayer || !ytPlayer.getCurrentTime) return;
+    h.style.left = (ytPlayer.getCurrentTime() / ST[cur.src.id][0] * 100).toFixed(2) + "%";
+  }
+
   // ---- サビ位置の微調整（頭・終わりを0.5秒ずつ。端末に保存され、次からその位置で流れる）----
   function updateSabiUi() {
     const box = document.getElementById("pl-adj");
-    if (!cur || !cur.sabi) { box.hidden = true; return; }
+    if (!cur || !cur.sabi) { box.hidden = true; renderStruct(); return; }
     box.hidden = false;
+    renderStruct();
     const c = cur.sabi;
     document.getElementById("pl-alt").hidden = altsOf(cur.src.id).length === 0;
     document.getElementById("pl-adj-info").textContent = fmt(c[0]) + "〜" + fmt(c[1]) + "（" + (c[2] === "manual" ? "調整済み" : c[2] === "low" ? "推定・自信低" : "推定") + "）";
@@ -1002,6 +1055,7 @@
   function altsOf(id) { return (CH[id] && CH[id][3]) || []; }
   function adjustSabi(kind) {
     if (!cur || !cur.sabi) return;
+    cur.free = false;
     const id = cur.src.id;
     if (kind === "alt") {
       const base = CH[id];
@@ -1016,6 +1070,17 @@
       if (ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(c[0], true);
       savePrefs(); updateSabiUi();
       plMsg("サビの候補 " + (i + 1) + " / " + cands.length);
+      return;
+    }
+    if (kind === "sec") {
+      if (!selSec) return;
+      const e = Math.min(selSec[1], selSec[0] + 26);          // 長い区間は26秒まで
+      prefs.chorusAdj[id] = [Math.round(selSec[0] * 10) / 10, Math.round(e * 10) / 10];
+      cur.sabi = [prefs.chorusAdj[id][0], prefs.chorusAdj[id][1], "manual"];
+      cur.ended = false; cur.free = false;
+      if (ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(cur.sabi[0], true);
+      savePrefs(); updateSabiUi();
+      plMsg("選んだ区間をこの曲のサビにしました");
       return;
     }
     if (kind === "reset") {
@@ -1048,6 +1113,7 @@
       const dur = ytPlayer.getDuration ? ytPlayer.getDuration() : 0;
       const now = ytPlayer.getCurrentTime();
       document.getElementById("pl-cur").textContent = fmt(now);
+      moveHead();
       document.getElementById("pl-dur").textContent = fmt(dur);
       if (!seeking && dur > 0) seekEl.value = Math.round(now / dur * 1000);
     }, 250);
