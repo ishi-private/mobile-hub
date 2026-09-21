@@ -271,6 +271,7 @@
         <span class="pl-adj-label">サビ位置の微調整</span>
         <span>頭 <button type="button" data-adj="s-" title="サビの頭を0.5秒早める">−0.5s</button><button type="button" data-adj="s+" title="サビの頭を0.5秒遅らせる">+0.5s</button></span>
         <span>終わり <button type="button" data-adj="e-" title="サビの終わりを0.5秒早める">−0.5s</button><button type="button" data-adj="e+" title="サビの終わりを0.5秒遅らせる">+0.5s</button></span>
+        <button type="button" data-adj="alt" id="pl-alt" title="別のサビの候補に切り替え（押すたびに次の候補）" hidden>別の候補</button>
         <button type="button" data-adj="reset" title="推定の位置に戻す">戻す</button>
         <span class="pl-adj-info" id="pl-adj-info"></span>
       </div>
@@ -294,13 +295,18 @@
 <script src="shared/nav.js"></script>
 <script src="data/anime-op-ed-data.js"></script>
 <script src="data/anime-song-chorus-data.js"></script>
+<!--PERSONAL_DATA-->
 <script>
 (function () {
   "use strict";
   const works = window.ANIME_OP_ED_DATA || [];
   const CH = window.ANIME_SONG_CHORUS || {};     // 動画ID → [開始秒, 終了秒, "high"|"low"]  （サビの推定）
   // サイト内で再生できるのは http(s) で開いたとき（file:// では YouTube の埋め込みが動かない）
-  const EMBED_OK = window.MOBILE_HUB_PLAYER === true || location.protocol === "http:" || location.protocol === "https:";
+  // 個人用モード（Cloudflare の非公開配信）: 個人用ビルドだけが data/personal-audio-data.js（動画ID→音源の長さ）を持つ。
+  // このとき再生は YouTube ではなく自分の音源ファイル（audio/{動画ID}.m4a）を <audio> で流す。公開版（mobile-hub）には音源も一覧も無い
+  const PERSONAL_AUDIO = window.PERSONAL_AUDIO || null;
+  const PERSONAL = !!PERSONAL_AUDIO;
+  const EMBED_OK = PERSONAL || window.MOBILE_HUB_PLAYER === true || location.protocol === "http:" || location.protocol === "https:";
   if (window.MOBILE_HUB_PLAYER === true) document.body.classList.add("mobile-hub");
 
   // ---- 小道具 ----
@@ -360,8 +366,9 @@
   function playSource(t) {
     const y = t.yt;
     if (!y) return null;
-    const cands = [{ id: y.id, k: y.k, o: y.o, ok: y.e !== 0 }];
-    if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: true });
+    // 個人用モードでは、埋め込み可否は関係なく「音源ファイルがある動画」を使う
+    const cands = [{ id: y.id, k: y.k, o: y.o, ok: PERSONAL ? !!PERSONAL_AUDIO[y.id] : y.e !== 0 }];
+    if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: PERSONAL ? !!PERSONAL_AUDIO[y.alt.id] : true });
     for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id)) return cands[i];
     return null;
   }
@@ -663,7 +670,8 @@
     let nOff = 0, nOn = 0, nNone = 0, nCh = 0;
     allSongs.forEach(function (s) { if (s.t.yt) { if (s.t.yt.o) nOn++; else nOff++; } else nNone++; if (chorusOf(s.t)) nCh++; });
     document.getElementById("count").textContent = st.works + " 作品 / " + st.songs + " 曲（全" + allSongs.length + "曲）　動画: 公式 " + nOn + " / 非公式 " + nOff + " / 検索のみ " + nNone +
-      "　サビ推定あり " + nCh + "　評価済み " + rated;
+      "　サビ推定あり " + nCh + "　評価済み " + rated +
+      (PERSONAL ? "　【個人用モード】音源あり " + allSongs.filter(function (s) { return playSource(s.t); }).length + " / " + allSongs.length + " 曲" : "");
     const none = st.songs === 0;
     document.getElementById("empty").style.display = none ? "block" : "none";
     if (view === "list") document.getElementById("ae-table").style.display = none ? "none" : "";
@@ -773,7 +781,7 @@
   const plToggle = document.getElementById("pl-toggle");
   const seekEl = document.getElementById("pl-seek");
   const volEl = document.getElementById("pl-vol");
-  let ytPlayer = null, apiLoading = false, apiReady = false, waiting = null, errStreak = 0, pollTimer = null, seeking = false, skipTimer = null;
+  let ytPlayer = null, apiLoading = false, apiReady = false, waiting = null, errStreak = 0, pollTimer = null, seeking = false, skipTimer = null, fadeTimer = null;
 
   function plMsg(t) { document.getElementById("pl-msg").textContent = t || ""; }
   function fitPadding() { document.body.style.paddingBottom = barEl.hidden ? "" : (barEl.offsetHeight + 12) + "px"; }
@@ -833,6 +841,7 @@
     if (chorusMode && !c) { plMsg("この曲はサビ位置がまだ無いので、頭から流します"); }
     cur = { w: w, t: t, key: key, src: src, sabi: c, ended: false };
     recent.push(key); if (recent.length > RECENT_N) recent.shift();
+    setMediaSession(w, t);
     document.getElementById("pl-title").textContent = (t.kind ? t.kind + "：" : "") + t.name;
     document.getElementById("pl-work").textContent = w.title + (t.artist ? " ／ " + t.artist : "");
     const badge = document.getElementById("pl-badge");
@@ -865,8 +874,69 @@
       if (st !== 1 && st !== 3) plMsg("再生が始まらないときは ▶ を押してください（ブラウザの自動再生制限）");
     }, 3000);
   }
+  // ---- 個人用モードの再生エンジン: YouTube プレイヤーと同じメソッド名の <audio> ラッパー（以降のコードはそのまま使える） ----
+  function makeLocalPlayer() {
+    const a = new Audio();
+    a.preload = "auto";
+    a.setAttribute("playsinline", "");
+    let vid = null;
+    // iPhone/iPad の Safari は audio.volume を変えられない（端末の音量ボタンのみ）。その場合は音量バーとフェードを使わない
+    a.volume = 0.5;
+    const volumeOk = Math.abs(a.volume - 0.5) < 0.01;
+    a.volume = 1;
+    const api = {
+      _a: a,          // 動作確認用（AE_DEBUG が状態を読む）
+      volumeSupported: volumeOk,
+      getPlayerState: function () { return a.error ? -1 : a.ended ? 0 : a.paused ? (a.currentTime > 0 ? 2 : 5) : (a.readyState < 3 ? 3 : 1); },
+      getCurrentTime: function () { return a.currentTime || 0; },
+      getDuration: function () { return isFinite(a.duration) ? a.duration : 0; },
+      seekTo: function (s) { try { a.currentTime = Math.max(0, s); } catch (e) { /* メタデータ前は無視 */ } },
+      playVideo: function () { const p = a.play(); if (p && p.catch) p.catch(function () { /* 自動再生制限。▶を押してもらう */ }); },
+      pauseVideo: function () { a.pause(); },
+      setVolume: function (v) { if (volumeOk) a.volume = Math.max(0, Math.min(1, v / 100)); },
+      getVideoData: function () { return { video_id: vid }; },
+      loadVideoById: function (o) {
+        vid = o.videoId;
+        const st = o.startSeconds || 0;
+        a.src = "audio/" + encodeURIComponent(vid) + ".m4a";
+        const onMeta = function () { a.removeEventListener("loadedmetadata", onMeta); if (st) a.currentTime = st; };
+        a.addEventListener("loadedmetadata", onMeta);
+        a.load();
+        api.playVideo();
+      }
+    };
+    a.addEventListener("playing", function () { onState({ data: 1 }); });
+    a.addEventListener("pause", function () { if (!a.ended) onState({ data: 2 }); });
+    a.addEventListener("ended", function () { onState({ data: 0 }); });
+    a.addEventListener("waiting", function () { onState({ data: 3 }); });
+    a.addEventListener("error", function () { onErr({ data: 5 }); });     // 5 = 一時的な失敗扱い（再生不可として保存しない）
+    return api;
+  }
+  function initPersonalPlayer() {
+    ytPlayer = makeLocalPlayer();
+    playerReady = true;
+    document.querySelector(".pl-video").style.display = "none";           // 映像は無い
+    document.getElementById("pl-size").style.display = "none";
+    if (!ytPlayer.volumeSupported) { document.querySelector(".pl-vol").style.display = "none"; }
+    ytPlayer.setVolume(prefs.vol);
+    startPoll();
+  }
+  // ロック画面・イヤホンからの操作（メディアセッション）
+  function setMediaSession(w, t) {
+    if (!PERSONAL || !("mediaSession" in navigator)) return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({ title: t.name, artist: t.artist || "", album: w.title });
+      navigator.mediaSession.setActionHandler("play", function () { ytPlayer.playVideo(); });
+      navigator.mediaSession.setActionHandler("pause", function () { ytPlayer.pauseVideo(); });
+      navigator.mediaSession.setActionHandler("previoustrack", prev);
+      navigator.mediaSession.setActionHandler("nexttrack", next);
+      navigator.mediaSession.setActionHandler("seekto", function (d) { if (d && d.seekTime != null) ytPlayer.seekTo(d.seekTime); });
+    } catch (e) { /* 非対応のブラウザは無視 */ }
+  }
+
   function initPlayer() {
     if (ytPlayer || !EMBED_OK) return;
+    if (PERSONAL) { initPersonalPlayer(); return; }
     loadApi(function () {
       if (ytPlayer) return;
       ytPlayer = new YT.Player("pl-mount", {
@@ -904,7 +974,6 @@
     refreshUi();
   }
 
-  let fadeTimer = null;
   function startFade() {
     clearInterval(fadeTimer);
     fadeTimer = setInterval(function () {
@@ -923,14 +992,32 @@
     if (!cur || !cur.sabi) { box.hidden = true; return; }
     box.hidden = false;
     const c = cur.sabi;
+    document.getElementById("pl-alt").hidden = altsOf(cur.src.id).length === 0;
     document.getElementById("pl-adj-info").textContent = fmt(c[0]) + "〜" + fmt(c[1]) + "（" + (c[2] === "manual" ? "調整済み" : c[2] === "low" ? "推定・自信低" : "推定") + "）";
     const badge = document.getElementById("pl-badge");
     if (badge.textContent.indexOf("サビ") >= 0) badge.textContent = badge.textContent.replace(/　サビ.*$/, "") + "　サビ" + fmt(c[0]) + "〜" + fmt(c[1]);
     document.getElementById("pl-open").href = ytUrl(cur.src.id, c[0]);
   }
+  // 推定した「別のサビ候補」（サビらしさの高い別の山。data の4番目の要素）
+  function altsOf(id) { return (CH[id] && CH[id][3]) || []; }
   function adjustSabi(kind) {
     if (!cur || !cur.sabi) return;
     const id = cur.src.id;
+    if (kind === "alt") {
+      const base = CH[id];
+      if (!base) return;
+      const cands = [[base[0], base[1]]].concat(altsOf(id));
+      let i = cands.findIndex(function (c) { return Math.abs(c[0] - cur.sabi[0]) < 0.6; });
+      i = (i + 1) % cands.length;
+      const c = cands[i];
+      if (i === 0) delete prefs.chorusAdj[id]; else prefs.chorusAdj[id] = [c[0], c[1]];
+      cur.sabi = [c[0], c[1], i === 0 ? base[2] : "manual"];
+      cur.ended = false;
+      if (ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(c[0], true);
+      savePrefs(); updateSabiUi();
+      plMsg("サビの候補 " + (i + 1) + " / " + cands.length);
+      return;
+    }
     if (kind === "reset") {
       delete prefs.chorusAdj[id];
       const c = CH[id];
@@ -1050,7 +1137,8 @@
 
   // 動作確認用（コンソールから AE_DEBUG.state() でプレイヤーの状態を見られる）
   window.AE_DEBUG = { state: function () {
-    return ytPlayer && ytPlayer.getPlayerState ? { state: ytPlayer.getPlayerState(), t: ytPlayer.getCurrentTime(), dur: ytPlayer.getDuration(), vid: (ytPlayer.getVideoData() || {}).video_id, cur: cur && cur.key, chorus: cur && cur.sabi } : null;
+    const au = ytPlayer && ytPlayer._a ? { src: ytPlayer._a.currentSrc, ready: ytPlayer._a.readyState, net: ytPlayer._a.networkState, paused: ytPlayer._a.paused, err: ytPlayer._a.error && ytPlayer._a.error.code, msg: ytPlayer._a.error && ytPlayer._a.error.message } : undefined;
+    return ytPlayer && ytPlayer.getPlayerState ? { state: ytPlayer.getPlayerState(), t: ytPlayer.getCurrentTime(), dur: ytPlayer.getDuration(), vid: (ytPlayer.getVideoData() || {}).video_id, cur: cur && cur.key, chorus: cur && cur.sabi, audio: au } : null;
   } };
 
   buildSources();
