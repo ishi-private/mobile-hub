@@ -32,6 +32,7 @@
     if (window.NAV_CURRENT) return window.NAV_CURRENT;
     const href = window.location.href;
     if (href.includes("/matome.html"))  return "matome";
+    if (href.includes("/tools.html"))   return "tools";
     if (href.includes("/wanted.html"))  return "wanted";
     if (href.includes("/friends.html")) return "friends";
     if (href.includes("/done.html"))    return "done";

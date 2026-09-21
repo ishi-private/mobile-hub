@@ -124,7 +124,16 @@
   .pl-video { flex: 0 0 auto; width: 192px; aspect-ratio: 16/9; background: #000; border-radius: 6px; overflow: hidden; }
   #ae-player.big .pl-video { width: min(100%, 400px); }
   .pl-video iframe { width: 100%; height: 100%; display: block; border: none; }
-  .pl-side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+  .pl-side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px; position: relative; }
+  /* 作品のお気に入り登録・YouTubeで開く・閉じる は右上に置く */
+  .pl-topright { position: absolute; top: 0; right: 0; display: flex; gap: 6px; align-items: center; z-index: 1; }
+  .pl-topright > button, .pl-topright > a { border: none; background: #1c1c2a; color: #c8c8d8; border-radius: 6px; min-width: 34px; height: 30px; padding: 0 10px;
+                                  font-size: 0.72rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-family: inherit; white-space: nowrap; }
+  .pl-topright > button:hover, .pl-topright > a:hover { background: #2a2a40; }
+  .pl-topright > button.fav-anime.on { background: #3a2f08; color: #facc15; }
+  .pl-topright > button[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .pl-topright > a.pl-open { color: #e06070; }
+  .pl-head { padding-right: 400px; min-height: 30px; }
   .pl-title { font-size: 0.88rem; font-weight: 700; color: #e2e2e2; line-height: 1.35; }
   .pl-work { font-size: 0.7rem; color: #778; line-height: 1.4; }
   .pl-badge { font-size: 0.64rem; color: #4cc27d; }
@@ -135,6 +144,12 @@
   .pl-time { font-size: 0.66rem; color: #778; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .pl-vol { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; }
   .pl-vol input[type=range] { width: 84px; accent-color: #9a86e0; }
+  .pl-adj { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 0.68rem; color: #778; }
+  .pl-adj[hidden] { display: none; }
+  .pl-adj button { border: 1px solid #2a2a3a; background: #13131c; color: #b9a8ff; border-radius: 5px; padding: 3px 7px; font-size: 0.68rem; cursor: pointer; font-family: inherit; margin-left: 3px; }
+  .pl-adj button:hover { background: #22203a; }
+  .pl-adj-label { color: #9a86e0; }
+  .pl-adj-info { color: #889; }
   .pl-ctrl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
   .pl-ctrl > button, .pl-ctrl > a { border: none; background: #1c1c2a; color: #c8c8d8; border-radius: 6px; min-width: 36px; height: 32px; padding: 0 10px;
                                   font-size: 0.82rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-family: inherit; }
@@ -149,6 +164,8 @@
   .pl-rate .mood-set { flex-direction: row; }
   @media (max-width: 640px) {
     .pl-inner { flex-direction: column; gap: 6px; align-items: stretch; }
+    .pl-topright { position: static; justify-content: flex-end; flex-wrap: wrap; }
+    .pl-head { padding-right: 0; min-height: 0; }
     .pl-video { width: 176px; }
     #ae-player.big .pl-video { width: 100%; }
     .poster-grid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
@@ -233,7 +250,12 @@
   <div class="pl-inner">
     <div class="pl-video"><div id="pl-mount"></div></div>
     <div class="pl-side">
-      <div>
+      <div class="pl-topright" id="pl-topright">
+        <button type="button" id="pl-favanime" class="fav-anime" title="この曲のアニメをお気に入りに登録">♡ アニメをお気に入りに</button>
+        <a id="pl-open" class="pl-open" href="#" target="_blank" rel="noopener noreferrer">YouTubeで開く</a>
+        <button type="button" id="pl-close" title="閉じる" aria-label="閉じる">✕</button>
+      </div>
+      <div class="pl-head">
         <div class="pl-title" id="pl-title"></div>
         <div class="pl-work" id="pl-work"></div>
         <div class="pl-badge" id="pl-badge"></div>
@@ -245,6 +267,13 @@
         <span class="pl-vol"><span aria-hidden="true">🔊</span><input type="range" id="pl-vol" min="0" max="100" value="100" title="音量" aria-label="音量"></span>
       </div>
       <div class="pl-msg" id="pl-msg"></div>
+      <div class="pl-adj" id="pl-adj" hidden>
+        <span class="pl-adj-label">サビ位置の微調整</span>
+        <span>頭 <button type="button" data-adj="s-" title="サビの頭を0.5秒早める">−0.5s</button><button type="button" data-adj="s+" title="サビの頭を0.5秒遅らせる">+0.5s</button></span>
+        <span>終わり <button type="button" data-adj="e-" title="サビの終わりを0.5秒早める">−0.5s</button><button type="button" data-adj="e+" title="サビの終わりを0.5秒遅らせる">+0.5s</button></span>
+        <button type="button" data-adj="reset" title="推定の位置に戻す">戻す</button>
+        <span class="pl-adj-info" id="pl-adj-info"></span>
+      </div>
       <div class="pl-ctrl">
         <button type="button" id="pl-prev" title="前の曲" aria-label="前の曲">⏮</button>
         <button type="button" id="pl-toggle" title="再生/一時停止" aria-label="再生/一時停止">⏸</button>
@@ -255,10 +284,7 @@
           <span class="rate-set" id="pl-rate-set"></span>
           <span class="mood-set" id="pl-mood-set"></span>
         </span>
-        <button type="button" id="pl-favanime" class="fav-anime" title="この曲のアニメをお気に入りに登録">♡ アニメをお気に入りに</button>
         <button type="button" id="pl-size" title="プレイヤーの大きさ" aria-label="プレイヤーの大きさ">⤢</button>
-        <a id="pl-open" class="pl-open" href="#" target="_blank" rel="noopener noreferrer">YouTubeで開く</a>
-        <button type="button" id="pl-close" title="閉じる" aria-label="閉じる">✕</button>
       </div>
     </div>
   </div>
@@ -293,7 +319,7 @@
 
   // ---- 端末に保存する評価・気分（localStorage。使えない環境でも動く） ----
   const PREF_KEY = "anime-songs-prefs-v1";
-  let prefs = { rating: {}, mood: {}, bad: {}, vol: 100, view: "poster" };
+  let prefs = { rating: {}, mood: {}, bad: {}, chorusAdj: {}, vol: 100, view: "poster" };
   try { const r = JSON.parse(localStorage.getItem(PREF_KEY) || "null"); if (r) prefs = Object.assign(prefs, r); } catch (e) { /* 使えなくても続行 */ }
   function savePrefs() { try { localStorage.setItem(PREF_KEY, JSON.stringify(prefs)); } catch (e) { /* 保存できなくても続行 */ } }
 
@@ -339,10 +365,16 @@
     for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id)) return cands[i];
     return null;
   }
+  // サビ位置: 端末で微調整した値（prefs.chorusAdj）があればそれ、無ければ推定値（CH）
+  function chorusFor(id) {
+    const a = prefs.chorusAdj && prefs.chorusAdj[id];
+    if (a) return [a[0], a[1], "manual"];
+    return CH[id] || null;
+  }
   function chorusOf(t) {
     const s = playSource(t);
-    if (!s || !CH[s.id]) return null;
-    return CH[s.id];
+    if (!s) return null;
+    return chorusFor(s.id);
   }
   function ytLabel(t) {
     const y = t.yt;
@@ -796,9 +828,10 @@
     }
     clearTimeout(skipTimer);
     const key = songKey(w, t);
-    const c = chorusMode ? CH[src.id] : null;
+    const c0 = chorusMode ? chorusFor(src.id) : null;
+    const c = c0 ? [c0[0], c0[1], c0[2]] : null;
     if (chorusMode && !c) { plMsg("この曲はサビ位置がまだ無いので、頭から流します"); }
-    cur = { w: w, t: t, key: key, src: src, sabi: c };
+    cur = { w: w, t: t, key: key, src: src, sabi: c, ended: false };
     recent.push(key); if (recent.length > RECENT_N) recent.shift();
     document.getElementById("pl-title").textContent = (t.kind ? t.kind + "：" : "") + t.name;
     document.getElementById("pl-work").textContent = w.title + (t.artist ? " ／ " + t.artist : "");
@@ -814,15 +847,17 @@
     fitPadding(); applyPlaying();
     const row = document.querySelector("tr[data-key=\"" + key.replace(/"/g, "\\\"") + "\"]");
     if (row && row.scrollIntoView && view === "list") row.scrollIntoView({ block: "center", behavior: "smooth" });
-    const start = c ? c[0] : 0, end = c ? c[1] : undefined;
-    const o = { videoId: src.id, startSeconds: start };
-    if (end) o.endSeconds = end;
+    const start = c ? c[0] : 0;
+    const o = { videoId: src.id, startSeconds: start };      // サビの終わりは動画側の endSeconds ではなく、下のタイマーで監視する（微調整で動かせるように）
+    updateSabiUi();
     // プレイヤーはページを開いたときに先に用意してある（クリックの瞬間に再生を始めないと、ブラウザの自動再生制限で止まるため）
     if (playerReady) { startLoaded(o); } else { pending = o; initPlayer(); }
   }
 
   let playerReady = false, pending = null, hintTimer = null;
   function startLoaded(o) {
+    // サビ再生は、頭で音量を0から上げ（0.5秒）、終わりの0.7秒で下げる（ぶつ切りに聞こえないように）。通常再生はユーザーの音量のまま
+    ytPlayer.setVolume(cur && cur.sabi ? 0 : prefs.vol);
     ytPlayer.loadVideoById(o);
     clearTimeout(hintTimer);
     hintTimer = setTimeout(function () {
@@ -869,7 +904,57 @@
     refreshUi();
   }
 
+  let fadeTimer = null;
+  function startFade() {
+    clearInterval(fadeTimer);
+    fadeTimer = setInterval(function () {
+      if (!ytPlayer || !ytPlayer.getCurrentTime || !cur || !cur.sabi || barEl.hidden) return;
+      if (ytPlayer.getPlayerState() !== 1) return;
+      const now = ytPlayer.getCurrentTime(), s = cur.sabi[0], e = cur.sabi[1];
+      if (now >= e - 0.05 && !cur.ended) { cur.ended = true; next(); return; }      // サビの終わりで次の曲へ
+      const f = Math.max(0, Math.min(1, (now - s) / 0.5, (e - now) / 0.7));
+      ytPlayer.setVolume(Math.round(prefs.vol * f));
+    }, 100);
+  }
+
+  // ---- サビ位置の微調整（頭・終わりを0.5秒ずつ。端末に保存され、次からその位置で流れる）----
+  function updateSabiUi() {
+    const box = document.getElementById("pl-adj");
+    if (!cur || !cur.sabi) { box.hidden = true; return; }
+    box.hidden = false;
+    const c = cur.sabi;
+    document.getElementById("pl-adj-info").textContent = fmt(c[0]) + "〜" + fmt(c[1]) + "（" + (c[2] === "manual" ? "調整済み" : c[2] === "low" ? "推定・自信低" : "推定") + "）";
+    const badge = document.getElementById("pl-badge");
+    if (badge.textContent.indexOf("サビ") >= 0) badge.textContent = badge.textContent.replace(/　サビ.*$/, "") + "　サビ" + fmt(c[0]) + "〜" + fmt(c[1]);
+    document.getElementById("pl-open").href = ytUrl(cur.src.id, c[0]);
+  }
+  function adjustSabi(kind) {
+    if (!cur || !cur.sabi) return;
+    const id = cur.src.id;
+    if (kind === "reset") {
+      delete prefs.chorusAdj[id];
+      const c = CH[id];
+      cur.sabi = c ? [c[0], c[1], c[2]] : null;
+      if (cur.sabi && ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(cur.sabi[0], true);
+    } else {
+      let s = cur.sabi[0], e = cur.sabi[1];
+      const d = kind.charAt(1) === "+" ? 0.5 : -0.5;
+      if (kind.charAt(0) === "s") s = Math.max(0, s + d); else e = Math.max(0, e + d);
+      if (e - s < 3) { plMsg("サビが短くなりすぎます（3秒以上）"); return; }
+      prefs.chorusAdj[id] = [Math.round(s * 10) / 10, Math.round(e * 10) / 10];
+      cur.sabi = [prefs.chorusAdj[id][0], prefs.chorusAdj[id][1], "manual"];
+      cur.ended = false;
+      if (kind.charAt(0) === "s" && ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(s, true);        // 頭を動かしたら、その位置から聴き直す
+      else if (ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(Math.max(cur.sabi[0], e - 3), true);   // 終わりを動かしたら、終わりの3秒前から聴き直す
+    }
+    savePrefs(); updateSabiUi();
+  }
+  document.getElementById("pl-adj").addEventListener("click", function (ev) {
+    const b = ev.target.closest("button[data-adj]");
+    if (b) adjustSabi(b.dataset.adj);
+  });
   function startPoll() {
+    startFade();
     clearInterval(pollTimer);
     pollTimer = setInterval(function () {
       if (!ytPlayer || !ytPlayer.getCurrentTime || barEl.hidden) return;
@@ -926,14 +1011,14 @@
   // ---- 評価データの書き出し・読み込み ----
   const pm = document.getElementById("prefs-modal"), pt = document.getElementById("prefs-text"), pmsg = document.getElementById("prefs-msg");
   document.getElementById("btn-prefs").onclick = function () {
-    pt.value = JSON.stringify({ rating: prefs.rating, mood: prefs.mood }, null, 1); pmsg.textContent = ""; pm.hidden = false;
+    pt.value = JSON.stringify({ rating: prefs.rating, mood: prefs.mood, chorusAdj: prefs.chorusAdj }, null, 1); pmsg.textContent = ""; pm.hidden = false;
   };
   document.getElementById("prefs-close").onclick = function () { pm.hidden = true; };
   document.getElementById("prefs-load").onclick = function () {
     try {
       const o = JSON.parse(pt.value);
       if (!o || typeof o !== "object") throw new Error("形式が違います");
-      prefs.rating = o.rating || {}; prefs.mood = o.mood || {}; savePrefs(); syncControls(); refreshUi();
+      prefs.rating = o.rating || {}; prefs.mood = o.mood || {}; prefs.chorusAdj = o.chorusAdj || {}; savePrefs(); syncControls(); refreshUi();
       pmsg.textContent = "読み込みました（評価 " + Object.keys(prefs.rating).length + " 曲、気分 " + Object.keys(prefs.mood).length + " 曲）";
     } catch (err) { pmsg.textContent = "読み込めませんでした: " + err.message; }
   };
