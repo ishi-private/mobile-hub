@@ -387,7 +387,10 @@
     const y = t.yt;
     if (!y) return null;
     // 個人用モードでは、埋め込み可否は関係なく「音源ファイルがある動画」を使う
-    const cands = [{ id: y.id, k: y.k, o: y.o, ok: PERSONAL ? !!PERSONAL_AUDIO[y.id] : y.e !== 0 }];
+    const cands = [];
+    // 個人用モードで、TVサイズしか無い曲にフルサイズ音源（y.fa。TVサイズの音が中に見つかった同じ録音）があれば、それを最優先で使う
+    if (PERSONAL && y.fa && PERSONAL_AUDIO[y.fa.id]) cands.push({ id: y.fa.id, k: y.fa.k, o: y.fa.o, ok: true, full: true });
+    cands.push({ id: y.id, k: y.k, o: y.o, ok: PERSONAL ? !!PERSONAL_AUDIO[y.id] : y.e !== 0 });
     if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: PERSONAL ? !!PERSONAL_AUDIO[y.alt.id] : true });
     for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id)) return cands[i];
     return null;
@@ -866,7 +869,7 @@
     document.getElementById("pl-work").textContent = w.title + (t.artist ? " ／ " + t.artist : "");
     const badge = document.getElementById("pl-badge");
     badge.className = "pl-badge" + (src.o ? "" : " unofficial");
-    badge.textContent = (src.o ? "公式" : "※非公式") + (src.id !== t.yt.id ? "（代替動画）" : "") + (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : "");
+    badge.textContent = (src.o ? "公式" : "※非公式") + (src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") + (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : "");
     document.getElementById("pl-open").href = ytUrl(src.id, c ? c[0] : 0);
     if (opts.explore) plMsg("まだ評価のない作品です。気に入ったら評価を付けてください");
     else if (opts.note) plMsg(opts.note);
