@@ -3623,6 +3623,97 @@ window.ANIME_OP_ED_DATA = [
     ]
   },
   {
+    "id": "violet",
+    "title": "ヴァイオレット・エヴァーガーデン",
+    "year": 2018,
+    "wiki": "ヴァイオレット・エヴァーガーデン",
+    "image": "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg",
+    "imageCredit": "myanimelist.net",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "Sincerely",
+        "artist": "TRUE",
+        "usage": "第3・4・6〜8・11・12話、Extra",
+        "q": "ヴァイオレット・エヴァーガーデン OP Sincerely TRUE",
+        "yt": {
+          "id": "uwph0dv9E6U",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Channel"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "みちしるべ",
+        "artist": "茅原実里",
+        "usage": "",
+        "q": "ヴァイオレット・エヴァーガーデン ED みちしるべ 茅原実里",
+        "yt": {
+          "id": "UKU4B05fPck",
+          "k": "mv",
+          "o": 1,
+          "ch": "Lantis Channel"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Believe in...",
+        "artist": "結城アイラ",
+        "usage": "第9話",
+        "q": "ヴァイオレット・エヴァーガーデン ED Believe in... 結城アイラ",
+        "yt": {
+          "id": "tWEw-gd_L1c",
+          "k": "au",
+          "o": 1,
+          "ch": "結城アイラ Official Channel"
+        }
+      }
+    ],
+    "favs": [
+      "6170"
+    ]
+  },
+  {
+    "id": "yagakimi",
+    "title": "やがて君になる",
+    "year": 2018,
+    "wiki": "やがて君になる",
+    "image": "https://cdn.myanimelist.net/images/anime/1783/96153l.jpg",
+    "imageCredit": "myanimelist.net",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "君にふれて",
+        "artist": "安月名莉子",
+        "usage": "",
+        "q": "やがて君になる OP 君にふれて 安月名莉子",
+        "yt": {
+          "id": "TxWJPjaXbLk",
+          "k": "au",
+          "o": 1,
+          "ch": "安月名莉子 ちゃんねる"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "hectopascal",
+        "artist": "高田憂希、寿美菜子",
+        "usage": "",
+        "q": "やがて君になる ED hectopascal 高田憂希",
+        "yt": {
+          "id": "Q-1fKFEqL1Y",
+          "k": "mv",
+          "o": 1,
+          "ch": "KADOKAWAanime"
+        }
+      }
+    ],
+    "favs": [
+      "7240"
+    ]
+  },
+  {
     "id": "yurucamp",
     "title": "ゆるキャン△",
     "year": 2018,
@@ -7181,6 +7272,73 @@ window.ANIME_OP_ED_DATA = [
     ]
   },
   {
+    "id": "spice",
+    "title": "狼と香辛料",
+    "year": 2024,
+    "wiki": "狼と香辛料",
+    "note": "MERCHANT MEETS THE WISE WOLF",
+    "image": "https://cdn.myanimelist.net/images/anime/1059/142414l.jpg",
+    "imageCredit": "myanimelist.net",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "旅のゆくえ",
+        "artist": "Hana Hope",
+        "usage": "第1期第1クール",
+        "q": "狼と香辛料 OP 旅のゆくえ Hana Hope",
+        "yt": {
+          "id": "XdOdSE_CGmI",
+          "k": "mv",
+          "o": 1,
+          "ch": "TOHO animation チャンネル"
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Sign",
+        "artist": "Aimer",
+        "usage": "第1期第2クール",
+        "q": "狼と香辛料 OP Sign Aimer",
+        "yt": {
+          "id": "OnEKOt2RtR8",
+          "k": "mv",
+          "o": 1,
+          "ch": "Aimer Official YouTube Channel"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "アンダンテ",
+        "artist": "ClariS",
+        "usage": "第1期第1クール",
+        "q": "狼と香辛料 ED アンダンテ ClariS",
+        "yt": {
+          "id": "f7274Gemjkk",
+          "k": "mv",
+          "o": 1,
+          "ch": "TOHO animation チャンネル"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "りんごと君",
+        "artist": "音莉飴",
+        "usage": "第1期第2クール",
+        "q": "狼と香辛料 ED りんごと君 音莉飴",
+        "yt": {
+          "id": "QvD21SnQHxU",
+          "k": "mv",
+          "o": 1,
+          "ch": "TOHO animation チャンネル"
+        }
+      }
+    ],
+    "favs": [
+      "14624",
+      "24930"
+    ]
+  },
+  {
     "id": "tower",
     "title": "神之塔 -Tower of God-",
     "year": 2024,
@@ -7535,6 +7693,73 @@ window.ANIME_OP_ED_DATA = [
     ],
     "favs": [
       "24291"
+    ]
+  },
+  {
+    "id": "medalist",
+    "title": "メダリスト",
+    "year": 2025,
+    "wiki": "メダリスト",
+    "note": "1〜2期",
+    "image": "https://cdn.myanimelist.net/images/anime/1029/146850l.jpg",
+    "imageCredit": "myanimelist.net",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "BOW AND ARROW",
+        "artist": "米津玄師",
+        "usage": "第1期",
+        "q": "メダリスト OP BOW AND ARROW 米津玄師",
+        "yt": {
+          "id": "H3SUAiwfyp0",
+          "k": "nc",
+          "o": 1,
+          "ch": "アニメ『メダリスト』公式チャンネル"
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Cold Night",
+        "artist": "HANA",
+        "usage": "第2期",
+        "q": "メダリスト OP Cold Night HANA",
+        "yt": {
+          "id": "-hPpXrlgncE",
+          "k": "nc",
+          "o": 1,
+          "ch": "アニメ『メダリスト』公式チャンネル and HANA official"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "アタシのドレス",
+        "artist": "ねぐせ。",
+        "usage": "第1期",
+        "q": "メダリスト ED アタシのドレス ねぐせ。",
+        "yt": {
+          "id": "2R8GebiQcds",
+          "k": "nc",
+          "o": 1,
+          "ch": "アニメ『メダリスト』公式チャンネル"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Rookies",
+        "artist": "Conton Candy",
+        "usage": "第2期",
+        "q": "メダリスト ED Rookies Conton Candy",
+        "yt": {
+          "id": "o076YrFjZsA",
+          "k": "nc",
+          "o": 1,
+          "ch": "アニメ『メダリスト』公式チャンネル and Conton Candy"
+        }
+      }
+    ],
+    "favs": [
+      "21115",
+      "25754"
     ]
   },
   {

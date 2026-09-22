@@ -418,12 +418,13 @@
   function playSource(t) {
     const y = t.yt;
     if (!y) return null;
-    // 個人用モードでは、埋め込み可否は関係なく「音源ファイルがある動画」を使う
+    // 個人用モードでも、まず動画（ノンクレジット映像）での再生を試みる（makeHybridPlayer）。ダウンロード済み音源が無い曲でも
+    // 埋め込みさえできれば再生できるので、ok はダウンロード済みかどうかを問わない（無くても動画がダメなときだけ音声側で失敗する）
     const cands = [];
     // 個人用モードで、TVサイズしか無い曲にフルサイズ音源（y.fa。TVサイズの音が中に見つかった同じ録音）があれば、それを最優先で使う
-    if (PERSONAL && y.fa && PERSONAL_AUDIO[y.fa.id]) cands.push({ id: y.fa.id, k: y.fa.k, o: y.fa.o, ok: true, full: true });
-    cands.push({ id: y.id, k: y.k, o: y.o, ok: PERSONAL ? !!PERSONAL_AUDIO[y.id] : y.e !== 0 });
-    if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: PERSONAL ? !!PERSONAL_AUDIO[y.alt.id] : true });
+    if (PERSONAL && y.fa) cands.push({ id: y.fa.id, k: y.fa.k, o: y.fa.o, ok: true, full: true });
+    cands.push({ id: y.id, k: y.k, o: y.o, ok: PERSONAL ? true : y.e !== 0 });
+    if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: true });
     for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id)) return cands[i];
     return null;
   }
