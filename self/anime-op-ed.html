@@ -406,6 +406,15 @@
     if (!s) return null;
     return chorusFor(s.id);
   }
+  // 通常再生（サビだけモードでない時）の開始位置: イントロ（構成バーの「I」区間）を飛ばし、本編（Aメロ/Bメロなど）の頭から流す。
+  // TVサイズしか無い曲でも、短い再生時間の大半をイントロに使わずに済む。構成データが無い曲は0秒（先頭）から
+  function mainStartOf(id) {
+    const d = ST[id];
+    if (!d) return 0;
+    const g = d[1].find(function (x) { return x[2] !== "I"; });
+    if (!g) return 0;
+    return Math.min(g[0], 30, d[0] * 0.4);      // 誤検出でイントロが長すぎる時のための安全キャップ
+  }
   function ytLabel(t) {
     const y = t.yt;
     if (!y.o) return "YouTube";
@@ -861,7 +870,7 @@
     const key = songKey(w, t);
     const c0 = chorusMode ? chorusFor(src.id) : null;
     const c = c0 ? [c0[0], c0[1], c0[2]] : null;
-    if (chorusMode && !c) { plMsg("この曲はサビ位置がまだ無いので、頭から流します"); }
+    if (chorusMode && !c) { plMsg("この曲はサビ位置がまだ無いので、メイン部分から流します"); }
     cur = { w: w, t: t, key: key, src: src, sabi: c, ended: false };
     recent.push(key); if (recent.length > RECENT_N) recent.shift();
     setMediaSession(w, t);
@@ -869,8 +878,10 @@
     document.getElementById("pl-work").textContent = w.title + (t.artist ? " ／ " + t.artist : "");
     const badge = document.getElementById("pl-badge");
     badge.className = "pl-badge" + (src.o ? "" : " unofficial");
-    badge.textContent = (src.o ? "公式" : "※非公式") + (src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") + (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : "");
-    document.getElementById("pl-open").href = ytUrl(src.id, c ? c[0] : 0);
+    const mst = c ? 0 : mainStartOf(src.id);
+    badge.textContent = (src.o ? "公式" : "※非公式") + (src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") +
+      (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : mst > 1 ? "　イントロを省略（" + fmt(mst) + "〜）" : "");
+    document.getElementById("pl-open").href = ytUrl(src.id, c ? c[0] : mst);
     if (opts.explore) plMsg("まだ評価のない作品です。気に入ったら評価を付けてください");
     else if (opts.note) plMsg(opts.note);
     else if (!(chorusMode && !c)) plMsg("");
@@ -879,7 +890,7 @@
     fitPadding(); applyPlaying();
     const row = document.querySelector("tr[data-key=\"" + key.replace(/"/g, "\\\"") + "\"]");
     if (row && row.scrollIntoView && view === "list") row.scrollIntoView({ block: "center", behavior: "smooth" });
-    const start = c ? c[0] : 0;
+    const start = c ? c[0] : mainStartOf(src.id);
     const o = { videoId: src.id, startSeconds: start };      // サビの終わりは動画側の endSeconds ではなく、下のタイマーで監視する（微調整で動かせるように）
     updateSabiUi();
     // プレイヤーはページを開いたときに先に用意してある（クリックの瞬間に再生を始めないと、ブラウザの自動再生制限で止まるため）
