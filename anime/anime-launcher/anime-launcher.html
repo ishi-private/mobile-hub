@@ -648,14 +648,29 @@ function makeSeasonMenu(items) {
 function makeGroupCoverCard(seriesName, items) {
   const wrap = document.createElement('div');
   wrap.className = 'poster-group-wrap';
+  wrap._groupItems = items;
+  wrap._seriesName = seriesName;
   const isOpen = OPEN_MENUS.has(seriesName);
 
-  // 代表画像・枠線色は「idが最も若い（＝最初のシーズンに近い）」エントリのものを使う
+  // 代表画像・枠線色・★📌❤の対象は「idが最も若い（＝最初のシーズンに近い）」エントリのものを使う
   const rep = items.slice().sort(function (a, b) { return a.anime_db_id - b.anime_db_id; })[0];
 
   const card = document.createElement('div');
+  card.dataset.id = rep.anime_db_id;
   card.className = 'poster-card';
+  applyStateBorder(card, rep.anime_db_id);
   card.appendChild(makePosterImg({ mal_image_url: rep.mal_image_url, short_title: seriesName }));
+
+  const ctrl = document.createElement('span');
+  ctrl.className = 'poster-ctrl';
+  const ctrlLeft = document.createElement('span');
+  ctrlLeft.className = 'poster-ctrl-left';
+  ctrlLeft.appendChild(makeStarBtn(rep.anime_db_id, function () { applyStateBorder(card, rep.anime_db_id); }));
+  ctrlLeft.appendChild(makePinBtn(rep.anime_db_id));
+  ctrl.appendChild(ctrlLeft);
+  ctrl.appendChild(makeHeartBtn(rep.anime_db_id));
+  card.appendChild(ctrl);
+
   const tDiv = document.createElement('div');
   tDiv.className = 'ptitle';
   tDiv.textContent = seriesName;
@@ -718,6 +733,14 @@ function refreshItemInPlace(id) {
   if (!anime) return;
   const old = document.querySelector('[data-id="' + id + '"]');
   if (!old) return;
+  if (VIEW === 'poster') {
+    const groupWrap = old.closest('.poster-group-wrap');
+    if (groupWrap && groupWrap._groupItems) {
+      const fresh = makeGroupCoverCard(groupWrap._seriesName, groupWrap._groupItems);
+      groupWrap.replaceWith(fresh);
+      return;
+    }
+  }
   const fresh = VIEW === 'text' ? makeTextRow(anime) : VIEW === 'image' ? makeImgCard(anime) : makePosterCard(anime);
   old.replaceWith(fresh);
 }
@@ -764,6 +787,26 @@ document.addEventListener('click', function (e) {
 });
 document.getElementById('list').addEventListener('scroll', hideCtxMenu, true);
 window.addEventListener('scroll', hideCtxMenu, true);
+
+// iPhone等タッチ端末は右クリックがないため、同じカードを素早く2回タップしたらコンテキストメニューを開く
+let _lastTapTime = 0;
+let _lastTapTarget = null;
+document.getElementById('list').addEventListener('touchend', function (e) {
+  const target = e.target.closest('[data-id]');
+  if (!target) { _lastTapTarget = null; return; }
+  const now = Date.now();
+  if (_lastTapTarget === target && (now - _lastTapTime) < 400) {
+    e.preventDefault();
+    e.stopPropagation();
+    const touch = e.changedTouches[0];
+    showCtxMenu(touch.clientX, touch.clientY, target.dataset.id);
+    _lastTapTime = 0;
+    _lastTapTarget = null;
+  } else {
+    _lastTapTime = now;
+    _lastTapTarget = target;
+  }
+}, { passive: false });
 
 // ── フィルター（検索語 + 上部フィルタ） ──
 // 2026-09-24: データセット統合（全カタログ表示）に伴い、検索していない通常のブラウズ時は
