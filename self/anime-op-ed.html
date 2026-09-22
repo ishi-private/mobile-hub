@@ -123,6 +123,7 @@
   .pl-inner { max-width: var(--page-max-width); margin: 0 auto; display: flex; gap: 12px; align-items: flex-start; }
   .pl-video { flex: 0 0 auto; width: 192px; aspect-ratio: 16/9; background: #000; border-radius: 6px; overflow: hidden; }
   #ae-player.big .pl-video { width: min(100%, 400px); }
+  .pl-video:fullscreen, .pl-video:-webkit-full-screen { width: 100vw !important; height: 100vh !important; aspect-ratio: auto; }
   .pl-video iframe { width: 100%; height: 100%; display: block; border: none; }
   .pl-side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px; position: relative; }
   /* 作品のお気に入り登録・YouTubeで開く・閉じる は右上に置く */
@@ -219,9 +220,7 @@
     </div>
     <div class="ctl-group" id="random-group">
       <button type="button" class="chip-btn rnd" id="btn-random" title="評価を少しだけ反映してランダムに流す">🔀 ランダム再生</button>
-      <button type="button" class="chip-btn active" id="mood-all">気分:すべて</button>
-      <button type="button" class="chip-btn" id="mood-up">🔥盛り上がる</button>
-      <button type="button" class="chip-btn" id="mood-calm">🌿安らぐ</button>
+      <button type="button" class="chip-btn rnd" id="btn-random-chorus" title="評価を少しだけ反映し、各曲のサビだけをランダムに流す">🔀 サビだけランダム</button>
       <button type="button" class="chip-btn" id="btn-chorus-mode" title="各曲のサビ部分だけを流す">サビだけ</button>
     </div>
   </div>
@@ -324,12 +323,12 @@
         <button type="button" id="pl-rand" class="rnd" title="ランダム再生の切替">🔀</button>
         <button type="button" id="pl-sabi" title="サビだけ再生の切替">サビだけ</button>
         <button type="button" id="pl-playlist-btn" title="再生する曲のプレイリストを表示">📋</button>
-        <button type="button" id="pl-fullscreen" title="全画面表示（ノンクレジット映像）">⛶</button>
         <span class="pl-rate" id="pl-rate">
           <span class="rate-set" id="pl-rate-set"></span>
           <span class="mood-set" id="pl-mood-set"></span>
         </span>
         <button type="button" id="pl-size" title="プレイヤーの大きさ" aria-label="プレイヤーの大きさ">⤢</button>
+        <button type="button" id="pl-fullscreen" title="全画面表示（ノンクレジット映像）">⛶</button>
       </div>
     </div>
   </div>
@@ -460,7 +459,6 @@
   // ---- 状態 ----
   let view = prefs.view === "list" ? "list" : "poster";
   let query = "";
-  let moodFilter = "";          // "" | "up" | "calm"
   let chorusMode = false;
   let randomMode = false;
   let cur = null;               // { w, t, key, src, sabi }
@@ -766,15 +764,6 @@
   document.getElementById("view-poster").onclick = function () { view = "poster"; prefs.view = view; savePrefs(); render(); };
   document.getElementById("view-list").onclick = function () { view = "list"; prefs.view = view; savePrefs(); render(); };
   document.getElementById("search").addEventListener("input", function (e) { query = e.target.value; render(); if (openWorkObj) fillTable(document.getElementById("wm-body"), [openWorkObj], false); });
-  function setMoodFilter(v) {
-    moodFilter = v;
-    document.getElementById("mood-all").classList.toggle("active", v === "");
-    document.getElementById("mood-up").classList.toggle("active", v === "up");
-    document.getElementById("mood-calm").classList.toggle("active", v === "calm");
-  }
-  document.getElementById("mood-all").onclick = function () { setMoodFilter(""); };
-  document.getElementById("mood-up").onclick = function () { setMoodFilter("up"); };
-  document.getElementById("mood-calm").onclick = function () { setMoodFilter("calm"); };
 
   function setChorusMode(on) {
     chorusMode = on;
@@ -803,10 +792,6 @@
   function pickRandom() {
     let pool = allSongs.filter(playable);
     let note = "";
-    if (moodFilter) {
-      const m = pool.filter(function (s) { return moodOf(s.key) === moodFilter; });
-      if (m.length) pool = m; else note = "気分「" + (moodFilter === "up" ? "盛り上がる" : "安らぐ") + "」を設定した曲がまだ無いので、すべての曲から選んでいます";
-    }
     if (!pool.length) return null;
     const fresh = pool.filter(function (s) { return recent.indexOf(s.key) < 0; });
     const use = fresh.length >= Math.min(10, pool.length) ? fresh : pool;
@@ -841,6 +826,7 @@
     playSong(r.s.w, r.s.t, { explore: r.explore, note: r.note });
   }
   document.getElementById("btn-random").onclick = function () { playRandom(true); };
+  document.getElementById("btn-random-chorus").onclick = function () { setChorusMode(true); playRandom(true); };
   document.getElementById("pl-rand").onclick = function () { if (randomMode) { randomMode = false; syncModeButtons(); } else { playRandom(true); } };
   function syncModeButtons() {
     document.getElementById("pl-rand").classList.toggle("on", randomMode);
@@ -1027,12 +1013,57 @@
     a.addEventListener("error", function () { onErr({ data: 5 }); });     // 5 = 一時的な失敗扱い（再生不可として保存しない）
     return api;
   }
+  // 個人用モードでも、まず実際のYouTube動画（ノンクレジット映像）での再生を試み、埋め込み不可の曲だけダウンロード済みの音声にフォールバックする
+  // （2026-09-22ユーザー指示: バックグラウンド再生も動画のものにし、全画面表示は「元々再生していた動画を確認できるようになるだけ」にする）
+  let lastLoadReq = null;
+  function makeHybridPlayer() {
+    const localApi = makeLocalPlayer();
+    let mode = "video", vp = null;
+    function showVideo(show) { document.querySelector(".pl-video").style.display = show ? "" : "none"; }
+    function fallbackToAudio(o) {
+      mode = "audio";
+      showVideo(false);
+      localApi.loadVideoById(o);
+    }
+    return {
+      isVideoMode: function () { return mode === "video"; },
+      volumeSupported: true,
+      getPlayerState: function () { return mode === "video" ? (vp && vp.getPlayerState ? vp.getPlayerState() : -1) : localApi.getPlayerState(); },
+      getCurrentTime: function () { return mode === "video" ? (vp && vp.getCurrentTime ? vp.getCurrentTime() : 0) : localApi.getCurrentTime(); },
+      getDuration: function () { return mode === "video" ? (vp && vp.getDuration ? vp.getDuration() : 0) : localApi.getDuration(); },
+      seekTo: function (s) { if (mode === "video" && vp && vp.seekTo) vp.seekTo(s, true); else localApi.seekTo(s); },
+      playVideo: function () { if (mode === "video" && vp && vp.playVideo) vp.playVideo(); else localApi.playVideo(); },
+      pauseVideo: function () { if (mode === "video" && vp && vp.pauseVideo) vp.pauseVideo(); else localApi.pauseVideo(); },
+      setVolume: function (v) { if (vp && vp.setVolume) vp.setVolume(v); localApi.setVolume(v); },
+      getVideoData: function () { return mode === "video" && vp && vp.getVideoData ? vp.getVideoData() : localApi.getVideoData(); },
+      loadVideoById: function (o) {
+        lastLoadReq = o;
+        mode = "video";
+        showVideo(true);
+        loadApi(function () {
+          if (lastLoadReq !== o) return;                 // 読み込み待ちの間に別の曲へ切り替わった
+          if (!vp) {
+            // onReady/onError は動画プレイヤーの生成時に一度だけ登録され、以後すべての曲の読み込みで使い回される。
+            // そのためハンドラの中では、生成時の o ではなく常に「今の」lastLoadReq を参照する（さもないと2曲目以降でエラー時の音声フォールバックが効かない）
+            vp = new YT.Player("pl-mount", {
+              width: "100%", height: "100%", videoId: o.videoId,
+              playerVars: { playsinline: 1, rel: 0, modestbranding: 1, autoplay: 1 },
+              events: {
+                onReady: function () { vp.seekTo(lastLoadReq.startSeconds || 0, true); vp.playVideo(); },
+                onStateChange: function (e) { if (mode === "video") onState(e); },
+                onError: function () { if (mode === "video") fallbackToAudio(lastLoadReq); }
+              }
+            });
+          } else {
+            vp.loadVideoById(o);
+          }
+        });
+      }
+    };
+  }
   function initPersonalPlayer() {
-    ytPlayer = makeLocalPlayer();
+    ytPlayer = makeHybridPlayer();
     playerReady = true;
-    document.querySelector(".pl-video").style.display = "none";           // 映像は無い
-    document.getElementById("pl-size").style.display = "none";
-    if (!ytPlayer.volumeSupported) { document.querySelector(".pl-vol").style.display = "none"; }
     ytPlayer.setVolume(prefs.vol);
     startPoll();
   }
@@ -1267,6 +1298,13 @@
   }
   function openFullscreen() {
     if (!cur) return;
+    // 動画で再生中（非個人用モード、または個人用モードでも埋め込みに成功している曲）は、いま流れているその動画をそのまま全画面にするだけ
+    if (!PERSONAL || (ytPlayer && ytPlayer.isVideoMode && ytPlayer.isVideoMode())) {
+      const box = document.querySelector(".pl-video");
+      if (box.requestFullscreen) box.requestFullscreen().catch(function () { /* ブロックされても再生は続く */ });
+      return;
+    }
+    // 個人用モードでこの曲が埋め込みできず音声のみにフォールバック済みの場合だけ、別途動画を読み込んで全画面表示する
     fsWasPlaying = !!(ytPlayer && ytPlayer.getPlayerState && ytPlayer.getPlayerState() === 1);
     if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
     const t0 = ytPlayer && ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : 0;
@@ -1338,13 +1376,13 @@
     const n = document.getElementById("notice");
     n.style.display = "block";
     n.textContent = "※このページを file:// で開いているため、サイト内の再生・サビだけ再生・ランダム再生は使えません（視聴ボタンはYouTubeを開きます）。ローカルHTTPサーバー経由、または公開版（mobile-hub）で開くと使えます。";
-    ["btn-random", "btn-chorus-mode", "mood-all", "mood-up", "mood-calm"].forEach(function (id) { document.getElementById(id).disabled = true; });
+    ["btn-random", "btn-random-chorus", "btn-chorus-mode"].forEach(function (id) { document.getElementById(id).disabled = true; });
   }
 
   // 動作確認用（コンソールから AE_DEBUG.state() でプレイヤーの状態を見られる）
   window.AE_DEBUG = { state: function () {
     const au = ytPlayer && ytPlayer._a ? { src: ytPlayer._a.currentSrc, ready: ytPlayer._a.readyState, net: ytPlayer._a.networkState, paused: ytPlayer._a.paused, err: ytPlayer._a.error && ytPlayer._a.error.code, msg: ytPlayer._a.error && ytPlayer._a.error.message } : undefined;
-    return ytPlayer && ytPlayer.getPlayerState ? { state: ytPlayer.getPlayerState(), t: ytPlayer.getCurrentTime(), dur: ytPlayer.getDuration(), vid: (ytPlayer.getVideoData() || {}).video_id, cur: cur && cur.key, chorus: cur && cur.sabi, audio: au } : null;
+    return ytPlayer && ytPlayer.getPlayerState ? { state: ytPlayer.getPlayerState(), t: ytPlayer.getCurrentTime(), dur: ytPlayer.getDuration(), vid: (ytPlayer.getVideoData() || {}).video_id, cur: cur && cur.key, chorus: cur && cur.sabi, audio: au, videoMode: ytPlayer.isVideoMode ? ytPlayer.isVideoMode() : (!PERSONAL) } : null;
   } };
 
   buildSources();
