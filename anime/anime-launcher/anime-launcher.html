@@ -157,6 +157,19 @@
   .ctx-menu-item:hover { background: #262632; }
   .ctx-menu-item .ico { font-size: 1rem; width: 18px; text-align: center; flex-shrink: 0; }
 
+  /* ── 複数シーズン作品: 代表ポスタータップでシーズン選択メニュー ── */
+  .poster-group-wrap { position: relative; }
+  .season-menu { position: absolute; top: 100%; left: 0; right: 0; margin-top: 4px;
+                   background: #1c1c24; border: 1px solid #3a3a4a; border-radius: 8px;
+                   box-shadow: 0 8px 24px rgba(0,0,0,0.5); z-index: 20; overflow: hidden; }
+  .season-menu-item { display: flex; align-items: center; gap: 7px; padding: 8px 10px;
+                        font-size: 0.72rem; color: #ccc; text-decoration: none;
+                        border-bottom: 1px solid #26262f; transition: background 0.1s; }
+  .season-menu-item:last-child { border-bottom: none; }
+  .season-menu-item:hover { background: #262632; }
+  .season-menu-item .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .season-menu-item.no-link { color: #555; cursor: default; }
+
   /* ── 分類セクション区切り（劇場版・webアニメ） ── */
   .tier-divider { max-width: var(--page-max-width); margin: 22px auto 14px;
                     display: flex; align-items: center; gap: 12px; }
@@ -172,6 +185,7 @@
   <script src="../shared/nav.js?v=20260924"></script>
   <script src="../anime-db/data/anime_guide_data.js"></script>
   <script src="../anime-db/data/anime_guide_sites.js"></script>
+  <script src="../anime-db/data/series_groups.js"></script>
   <script src="../shared/favorites-data.js"></script>
   <script src="../shared/favorites.js?v=20260923"></script>
   <div class="controls">
@@ -219,7 +233,7 @@ function pickBestSite(sites) {
 }
 
 const ANIME = (ANIME_GUIDE_DATA.anime || []).map(function (a) {
-  const sites = (window.ANIME_GUIDE_SITES || {})[String(a.id)] || [];
+  const sites = (typeof ANIME_GUIDE_SITES !== 'undefined' ? ANIME_GUIDE_SITES : {})[String(a.id)] || [];
   return {
     anime_db_id: a.id,
     title: a.title,
@@ -232,6 +246,17 @@ const ANIME = (ANIME_GUIDE_DATA.anime || []).map(function (a) {
 });
 const ANIME_BY_ID = {};
 ANIME.forEach(function (a) { ANIME_BY_ID[String(a.anime_db_id)] = a; });
+
+// ── 複数シーズン作品のグルーピング（series_groups.js。id → シリーズ名） ──
+// 2026-09-24: データ統合前にあった「代表ポスターをタップするとシーズン選択メニューが開く」機能を、
+// series_groups.js（シリーズ名 → 該当id一覧、step15_series_grouping.pyの出力）を使って復活させる。
+// ポスタービューのみ・検索していない時のみ有効（検索時はグループ化せず個別に表示する）。
+const SERIES_OF_ID = {};
+Object.keys(window.SERIES_GROUPS || {}).forEach(function (seriesName) {
+  (SERIES_GROUPS[seriesName] || []).forEach(function (e) {
+    SERIES_OF_ID[String(e.id)] = seriesName;
+  });
+});
 
 // ── ★お気に入り/永久保存版（サブ分類）・📌今期見たいページへの登録ゲート・❤おすすめ ──
 // favorites.html（今期見たい）と同じ shared/favorites.js の AnimeFavorites（localStorageベース）を
@@ -589,6 +614,85 @@ function makePosterCard(anime) {
   return card;
 }
 
+// ── 複数シーズン: 代表カード＋クリックで選択メニュー（ポスタービュー専用） ──
+const OPEN_MENUS = new Set();
+
+function toggleSeasonMenu(seriesName) {
+  if (OPEN_MENUS.has(seriesName)) OPEN_MENUS.delete(seriesName);
+  else OPEN_MENUS.add(seriesName);
+  renderList(document.getElementById('search').value);
+}
+
+function makeSeasonMenu(items) {
+  const menu = document.createElement('div');
+  menu.className = 'season-menu';
+  items.forEach(function (a) {
+    const best = a.best_site;
+    const item = document.createElement(best ? 'a' : 'div');
+    item.className = 'season-menu-item' + (best ? '' : ' no-link');
+    if (best) {
+      item.href = best.url;
+      item.target = '_blank';
+      item.rel = 'noopener noreferrer';
+    }
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.style.background = best ? (best.color || '#555') : '#333';
+    item.appendChild(dot);
+    item.appendChild(document.createTextNode(a.title_ja || a.title));
+    menu.appendChild(item);
+  });
+  return menu;
+}
+
+function makeGroupCoverCard(seriesName, items) {
+  const wrap = document.createElement('div');
+  wrap.className = 'poster-group-wrap';
+  const isOpen = OPEN_MENUS.has(seriesName);
+
+  // 代表画像・枠線色は「idが最も若い（＝最初のシーズンに近い）」エントリのものを使う
+  const rep = items.slice().sort(function (a, b) { return a.anime_db_id - b.anime_db_id; })[0];
+
+  const card = document.createElement('div');
+  card.className = 'poster-card';
+  card.appendChild(makePosterImg({ mal_image_url: rep.mal_image_url, short_title: seriesName }));
+  const tDiv = document.createElement('div');
+  tDiv.className = 'ptitle';
+  tDiv.textContent = seriesName;
+  card.appendChild(tDiv);
+  card.addEventListener('click', function () { toggleSeasonMenu(seriesName); });
+  wrap.appendChild(card);
+
+  if (isOpen) {
+    wrap.appendChild(makeSeasonMenu(items));
+  }
+  return wrap;
+}
+
+// フィルター後の作品配列を、複数シーズン作品は1枚の代表カードにまとめた「表示ノード」列に変換する。
+// ポスタービューの通常ブラウズ時（検索していない時）だけ使う。
+function groupForPoster(items) {
+  const bySeries = {};
+  const nodes = [];
+  items.forEach(function (a) {
+    const seriesName = SERIES_OF_ID[String(a.anime_db_id)];
+    if (!seriesName) {
+      nodes.push({ kind: 'single', item: a });
+      return;
+    }
+    if (!bySeries[seriesName]) {
+      bySeries[seriesName] = { kind: 'group', seriesName: seriesName, items: [] };
+      nodes.push(bySeries[seriesName]);
+    }
+    bySeries[seriesName].items.push(a);
+  });
+  // 該当シーズンが1件しか残っていないグループは個別カード表示に落とす
+  return nodes.map(function (n) {
+    if (n.kind === 'group' && n.items.length === 1) return { kind: 'single', item: n.items[0] };
+    return n;
+  });
+}
+
 function makeTierDivider(label) {
   const div = document.createElement('div');
   div.className = 'tier-divider';
@@ -717,6 +821,12 @@ function ensureGrid(gridClass) {
   return grid;
 }
 
+// ポスタービューは「単独カード」と「複数シーズンの代表カード」が混在するノード列を受け取る
+function appendPosterNode(grid, node) {
+  if (node.kind === 'group') grid.appendChild(makeGroupCoverCard(node.seriesName, node.items));
+  else grid.appendChild(makePosterCard(node.item));
+}
+
 function appendSection(items, label) {
   if (!items || items.length === 0) return;
   const container = document.getElementById('list');
@@ -729,7 +839,7 @@ function appendSection(items, label) {
     const grid = document.createElement('div');
     grid.className = VIEW === 'poster' ? 'poster-flat-grid' : 'flat-grid';
     container.appendChild(grid);
-    items.forEach(function (a) { grid.appendChild(VIEW === 'poster' ? makePosterCard(a) : makeImgCard(a)); });
+    items.forEach(function (n) { VIEW === 'poster' ? appendPosterNode(grid, n) : grid.appendChild(makeImgCard(n)); });
   }
 }
 
@@ -743,7 +853,7 @@ function appendBatch() {
     batch.forEach(function (a) { tbody.appendChild(makeTextRow(a)); });
   } else {
     const grid = ensureGrid(VIEW === 'poster' ? 'poster-flat-grid' : 'flat-grid');
-    batch.forEach(function (a) { grid.appendChild(VIEW === 'poster' ? makePosterCard(a) : makeImgCard(a)); });
+    batch.forEach(function (n) { VIEW === 'poster' ? appendPosterNode(grid, n) : grid.appendChild(makeImgCard(n)); });
   }
 
   if (_pending.normal.length > 0) {
@@ -801,7 +911,13 @@ function renderList(query) {
     container.className = 'text';
   }
 
-  _pending = { normal: normal, web: web, movie: movie };
+  if (VIEW === 'poster') {
+    // 検索中はグループ化せず個別に表示する（絞り込んだ結果をそのまま見たいため）
+    const toNodes = q ? function (list) { return list.map(function (a) { return { kind: 'single', item: a }; }); } : groupForPoster;
+    _pending = { normal: toNodes(normal), web: toNodes(web), movie: toNodes(movie) };
+  } else {
+    _pending = { normal: normal, web: web, movie: movie };
+  }
   appendBatch();
 }
 function makeStateLegendBtn(state, label) {
