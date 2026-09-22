@@ -47,6 +47,18 @@
                transition: opacity 0.15s; line-height: 1.4; }
   .site-btn:hover { opacity: 0.82; }
 
+  /* ── HD/SD 左右分割（動画が確認できたサイトのみ。HD=左／SDのみ・画質不明=右） ── */
+  .quality-cols { display: flex; gap: 14px; flex-wrap: wrap; }
+  .quality-col { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 6px; }
+  .quality-col-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em; }
+  .quality-col-label.hd { color: #4ade80; }
+  .quality-col-label.sd { color: #778; }
+  .quality-col.empty { display: none; }
+  .info-row { font-size: 0.72rem; color: #667; display: flex; align-items: center; gap: 8px; }
+  .info-row a { color: #889; text-decoration: none; }
+  .info-row a:hover { color: #bbb; }
+  .not-aired-note { font-size: 0.78rem; color: #776; font-style: italic; }
+
   /* ── シリーズグループ ── */
   .series-group { background: #13131e; border: 1px solid #28283a;
                    border-radius: 10px; overflow: hidden; }
@@ -78,7 +90,7 @@
 <body>
 <div class="site-header-sticky">
   <nav id="site-nav" class="page-nav"></nav>
-  <script src="../shared/nav.js?v=20260923"></script>
+  <script src="../shared/nav.js?v=20260924"></script>
   <div class="controls">
     <div id="search-wrap">
       <span id="search-icon">&#128269;</span>
@@ -114,218 +126,126 @@ const SITE_LABELS = {
   nyaa:         "Nyaa",
 };
 
-// ── サイト分類 ────────────────────────────────────────────────────────────
-const STREAMING_SITES = ["gogoanimes", "animegg", "animeflv", "monoschinos", "miruro"];
-const OTHER_SITES     = ["animatetimes", "nyaa"];  // この順で AT が常に左端
-
 // ── アニメデータ ───────────────────────────────────────────────────────────
+// 2026-09-23: お気に入り（favorites.html、❤登録済み）7作品をベンチマークに全面更新。
+// 各サイトのリンクは quality:"hd" / "sd" を持つ。"hd" = HD版の存在を確認できたリンク
+// （GogoAnimeはMegaサーバー有無、Nyaaはトレント名の1080p/720p表記で判定。それ以外の
+// サイトはページに画質情報が出ない＝確認不能なため "sd" 側に保守的に分類）。
+// AnimeFlv (www4.animeflv.net) は2026-09-23時点でサイト自体がCloudflare 522エラーで
+// 停止中のため全作品で除外。MonosChinos/Miruroは検索スクリプトが無いため、既存データの
+// あるタイトルのみ再確認して掲載（新規タイトルは未掲載）。
 const ANIME = [
-  // ╔══ FAIRY TAIL 100年クエスト ══╗
   {
-    title:     "Fairy Tail: 100 Years Quest",
+    id: 13374,
+    title:     "FAIRY TAIL: 100 Years Quest",
     title_ja:  "FAIRY TAIL 100年クエスト",
-    slug:      "fairy-tail-100-years-quest",
-    sites:     ["animatetimes", "gogoanimes", "animegg", "animeflv", "monoschinos", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=13374",
-    gogoanimes_url:   "https://gogoanimes.fi/category/fairy-tail-100-years-quest",
-    animegg_url:      "https://www.animegg.org/fairy-tail-100-years-quest-episode-25",
-    animeflv_url:     "https://www4.animeflv.net/anime/fairy-tail-100nen-quest",
-    monoschinos_url:  "https://monoschinos.st/anime/fairy-tail-100-nen-quest-sub-espanol",
-    miruro_url:       "https://www.miruro.tv/watch/139095/fairy-tail-100-years-quest",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=fairy+tail+100+years+quest",
     note: "FTシリーズ続編 · 2024夏 · 全25話",
+    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=13374",
+    links: [
+      { site: "nyaa",        url: "https://nyaa.si/?f=0&c=1_0&q=FAIRY+TAIL+100+Years+Quest", quality: "hd" },
+      { site: "gogoanimes",  url: "https://gogoanime.by/fairy-tail-100-nen-quest-episode-1-english-subbed/", quality: "sd" },
+      { site: "animegg",     url: "https://www.animegg.org/series/fairy-tail-100-years-quest", quality: "sd" },
+      { site: "monoschinos", url: "https://monoschinos.st/anime/fairy-tail-100-nen-quest-sub-espanol", quality: "sd" },
+      { site: "miruro",      url: "https://www.miruro.tv/watch/139095/fairy-tail-100-years-quest", quality: "sd" },
+    ],
   },
-  // ╔══ 杖と剣のウィストリア S1 ══╗
   {
-    title:     "Tsue To Tsurugi No Wistoria",
-    title_ja:  "杖と剣のウィストリア",
-    slug:      "tsue-to-tsurugi-no-wistoria",
-    sites:     ["animatetimes", "gogoanimes", "animegg", "animeflv", "monoschinos", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=23571",
-    gogoanimes_url:   "https://gogoanimes.fi/category/wistoria-wand-and-sword",
-    animegg_url:      "https://www.animegg.org/tsue-to-tsurugi-no-wistoria-episode-12",
-    animeflv_url:     "https://www4.animeflv.net/anime/tsue-to-tsurugi-no-wistoria",
-    monoschinos_url:  "https://monoschinos.st/anime/tsue-to-tsurugi-no-wistoria-sub-espanol",
-    miruro_url:       "https://www.miruro.tv/watch/174576/wistoria-wand-and-sword",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=wistoria+s01",
-    note: "Season 1 · 全12話",
-  },
-  // ╔══ 杖と剣のウィストリア S2 ══╗
-  {
-    title:     "Wistoria Wand And Sword Season 2",
+    id: 24972,
+    title:     "Wistoria: Wand and Sword Season 2",
     title_ja:  "杖と剣のウィストリア Season 2",
-    slug:      "wistoria-wand-and-sword-season-2",
-    sites:     ["animatetimes", "gogoanimes", "animegg", "animeflv", "monoschinos", "miruro", "nyaa"],
+    note: "Season 2 · 放送中",
     animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=24972",
-    gogoanimes_url:   "https://gogoanimes.fi/category/wistoria-wand-and-sword-season-2",
-    animegg_url:      "https://www.animegg.org/wistoria-wand-and-sword-season-2-episode-8",
-    animeflv_url:     "https://www4.animeflv.net/anime/tsue-to-tsurugi-no-wistoria-season-2",
-    monoschinos_url:  "https://monoschinos.st/anime/tsue-to-tsurugi-no-wistoria-season-2-sub-espanol",
-    miruro_url:       "https://www.miruro.tv/watch/182300/wistoria-wand-and-sword-season-2",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=wistoria+s2",
-    note: "Season 2 · 放送中 (8話)",
+    links: [
+      { site: "gogoanimes",  url: "https://gogoanime.by/tsue-to-tsurugi-no-wistoria-season-2-episode-1-english-subbed/", quality: "hd" },
+      { site: "nyaa",        url: "https://nyaa.si/?f=0&c=1_0&q=Tsue+to+Tsurugi+no+Wistoria+Season+2", quality: "hd" },
+      { site: "animegg",     url: "https://www.animegg.org/series/wistoria-wand-and-sword-season-2", quality: "sd" },
+      { site: "monoschinos", url: "https://monoschinos.st/anime/tsue-to-tsurugi-no-wistoria-season-2-sub-espanol", quality: "sd" },
+      { site: "miruro",      url: "https://www.miruro.tv/watch/182300/wistoria-wand-and-sword-season-2", quality: "sd" },
+    ],
   },
-  // ╔══ 上伊那ぼたん ══╗
   {
-    title:     "Botan Kamiina Fully Blossoms When Drunk",
-    title_ja:  "上伊那ぼたん、酔えば都の夢を見る",
-    slug:      "botan-kamiina-fully-blossoms-when-drunk",
-    sites:     ["animatetimes", "gogoanimes", "animegg", "animeflv", "monoschinos", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=25671",
-    gogoanimes_url:   "https://gogoanimes.fi/category/botan-kamiina-fully-blossoms-when-drunk",
-    animegg_url:      "https://www.animegg.org/botan-kamiina-fully-blossoms-when-drunk-episode-7",
-    animeflv_url:     "https://www4.animeflv.net/anime/kamiina-botan-yoeru-sugata-wa-yuri-no-hana",
-    monoschinos_url:  "https://monoschinos.st/anime/kamiina-botan-yoheru-sugata-wa-yuri-no-hana-sub-espanol",
-    miruro_url:       "https://www.miruro.tv/watch/187869/botan-kamiina-fully-blossoms-when-drunk",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=kamiina+botan",
-    note: "百合 · 放送中 (7話)",
-  },
-  // ╔══ 終末なにしてますか？ ══╗
-  {
-    title:     "Shuumatsu Nani Shitemasu Ka Isogashii Desu Ka Sukutte Moratte Ii Desu Ka",
+    id: 6677,
+    title:     "Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?",
     title_ja:  "終末なにしてますか？ 忙しいですか？ 救ってもらっていいですか？",
-    slug:      "shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka",
-    sites:     ["animatetimes", "animeflv", "monoschinos", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=6677",
-    animeflv_url:     "https://www4.animeflv.net/anime/shuumatsu-nani-shitemasu-ka",
-    monoschinos_url:  "https://monoschinos.st/anime/sukasuka-sub-espanol",
-    miruro_url:       "https://www.miruro.tv/watch/21860/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=sukasuka",
     note: "SukaSuka · 2017 · 全12話",
+    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=6677",
+    links: [
+      { site: "nyaa",        url: "https://nyaa.si/?f=0&c=1_0&q=Shuumatsu+Nani+Shitemasu", quality: "hd" },
+      { site: "animegg",     url: "https://www.animegg.org/series/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka", quality: "sd" },
+      { site: "monoschinos", url: "https://monoschinos.st/anime/sukasuka-sub-espanol", quality: "sd" },
+      { site: "miruro",      url: "https://www.miruro.tv/watch/21860/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka", quality: "sd" },
+    ],
   },
-  // ╔══ ダンまち外伝 ソード・オラトリア ══╗
   {
-    title:     "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou Ka Gaiden: Sword Oratoria",
+    id: 6027,
+    title:     "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria",
     title_ja:  "ダンジョンに出会いを求めるのは間違っているだろうか外伝 ソード・オラトリア",
-    slug:      "sword-oratoria",
-    sites:     ["animatetimes", "animegg", "animeflv", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=6027",
-    animegg_url:      "https://www.animegg.org/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-gaiden-sword-oratoria-episode-12",
-    animeflv_url:     "https://www4.animeflv.net/anime/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru",
-    miruro_url:       "https://www.miruro.tv/watch/21676/sword-oratoria-is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-on-the-side",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=sword+oratoria",
     note: "DanMachi外伝 · 2017 · 全12話",
+    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=6027",
+    links: [
+      { site: "nyaa",   url: "https://nyaa.si/?f=0&c=1_0&q=DanMachi+Sword+Oratoria", quality: "hd" },
+      { site: "animegg", url: "https://www.animegg.org/series/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-gaiden-sword-oratoria", quality: "sd" },
+      { site: "miruro", url: "https://www.miruro.tv/watch/21676/sword-oratoria-is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-on-the-side", quality: "sd" },
+    ],
   },
-  // ╔══ みなみけ ══╗
   {
+    id: 210,
     title:     "Minami-ke",
     title_ja:  "みなみけ",
-    slug:      "minami-ke",
-    sites:     ["animatetimes", "animegg", "animeflv", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=210",
-    animegg_url:      "https://www.animegg.org/minami-ke-episode-13",
-    animeflv_url:     "https://www4.animeflv.net/anime/minami-ke",
-    miruro_url:       "https://www.miruro.tv/watch/2963/minami-ke",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=minami-ke",
     note: "日常ギャグ · 2007秋 · 全13話",
+    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=210",
+    links: [
+      { site: "nyaa",   url: "https://nyaa.si/?f=0&c=1_0&q=Minami-ke", quality: "hd" },
+      { site: "animegg", url: "https://www.animegg.org/series/minami-ke", quality: "sd" },
+      { site: "miruro", url: "https://www.miruro.tv/watch/2963/minami-ke", quality: "sd" },
+    ],
   },
   {
-    title:     "Minami-ke Okawari",
-    title_ja:  "みなみけ〜おかわり〜",
-    slug:      "minami-ke-okawari",
-    sites:     ["animatetimes", "animegg", "animeflv", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=14481",
-    animegg_url:      "https://www.animegg.org/minami-ke-okawari-episode-13",
-    animeflv_url:     "https://www4.animeflv.net/anime/minami-ke-okawari",
-    miruro_url:       "https://www.miruro.tv/watch/3225/minami-ke-okawari",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=minami-ke+okawari",
-    note: "Season 2 · 2008冬 · 全13話",
+    id: 19097,
+    title:     "Pokemon (2023)",
+    title_ja:  "ポケットモンスター（新シリーズ）",
+    note: "2023 · 全275話（放送中）",
+    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=19097",
+    links: [
+      { site: "nyaa",   url: "https://nyaa.si/?f=0&c=1_0&q=Pokemon+Horizons", quality: "hd" },
+      { site: "animegg", url: "https://www.animegg.org/series/pokemon-2023", quality: "sd" },
+    ],
   },
   {
-    title:     "Minami-ke Okaeri",
-    title_ja:  "みなみけ おかえり",
-    slug:      "minami-ke-okaeri",
-    sites:     ["animatetimes", "animegg", "animeflv", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=14482",
-    animegg_url:      "https://www.animegg.org/minami-ke-okaeri-episode-13",
-    animeflv_url:     "https://www4.animeflv.net/anime/minami-ke-okaeri",
-    miruro_url:       "https://www.miruro.tv/watch/5162/minami-ke-okaeri",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=minami-ke+okaeri",
-    note: "Season 3 · 2009冬 · 全13話",
-  },
-  {
-    title:     "Minami-ke Tadaima",
-    title_ja:  "みなみけ ただいま",
-    slug:      "minami-ke-tadaima",
-    sites:     ["animegg", "animeflv", "miruro", "nyaa"],
-    animegg_url:      "https://www.animegg.org/minami-ke-tadaima-episode-13",
-    animeflv_url:     "https://www4.animeflv.net/anime/minami-ke-tadaima",
-    miruro_url:       "https://www.miruro.tv/watch/14511/minami-ke-tadaima",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=minami-ke+tadaima",
-    note: "Season 4 · 2013冬 · 全13話",
-  },
-  // ╔══ けものフレンズ ══╗
-  {
-    title:     "Kemono Friends",
-    title_ja:  "けものフレンズ",
-    slug:      "kemono-friends",
-    sites:     ["animatetimes", "animegg", "animeflv", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=6430",
-    animegg_url:      "https://www.animegg.org/kemono-friends-episode-12",
-    animeflv_url:     "https://www4.animeflv.net/anime/kemono-friends",
-    miruro_url:       "https://www.miruro.tv/watch/87496/kemono-friends",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=kemono+friends",
-    note: "2017冬 · 全12話",
-  },
-  {
-    title:     "Kemono Friends 2",
-    title_ja:  "けものフレンズ2",
-    slug:      "kemono-friends-2",
-    sites:     ["animatetimes", "animegg", "animeflv", "miruro", "nyaa"],
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=14382",
-    animegg_url:      "https://www.animegg.org/kemono-friends-2-episode-12",
-    animeflv_url:     "https://www4.animeflv.net/anime/kemono-friends-2",
-    miruro_url:       "https://www.miruro.tv/watch/99624/kemono-friends-2",
-    nyaa_url:         "https://nyaa.si/?f=0&c=1_0&q=kemono+friends+2",
-    note: "Season 2 · 2019冬 · 全12話",
+    id: 25671,
+    title:     "Kamiina Botan, Yoeru Sugata wa Yuri no Hana",
+    title_ja:  "上伊那ぼたん、酔へる姿は百合の花",
+    note: "2026秋 放送予定（未放送のため動画リンクなし）",
+    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=25671",
+    links: [],
   },
 ];
-
-const SERIES = [
-  {
-    id:       "wistoria",
-    title_ja: "杖と剣のウィストリア",
-    title_en: "Wistoria: Wand and Sword",
-    slugs:    ["tsue-to-tsurugi-no-wistoria", "wistoria-wand-and-sword-season-2"],
-  },
-  {
-    id:       "minami-ke",
-    title_ja: "みなみけ",
-    title_en: "Minami-ke",
-    slugs:    ["minami-ke", "minami-ke-okawari", "minami-ke-okaeri", "minami-ke-tadaima"],
-  },
-  {
-    id:       "kemono-friends",
-    title_ja: "けものフレンズ",
-    title_en: "Kemono Friends",
-    slugs:    ["kemono-friends", "kemono-friends-2"],
-  },
-];
-
-// ── URL 構築 ──────────────────────────────────────────────────────────────
-function buildUrl(anime, site) {
-  return anime[site + "_url"] || "#";
-}
 
 // ── UI 部品 ───────────────────────────────────────────────────────────────
-function makeBtnRow(anime, siteIds) {
+function makeSiteBtn(link) {
+  const color = SITE_COLORS[link.site];
+  const btn = document.createElement("a");
+  btn.href      = link.url;
+  btn.target    = "_blank";
+  btn.rel       = "noopener noreferrer";
+  btn.className = "site-btn";
+  btn.style.background = color || "#555";
+  btn.textContent = "▶ " + (SITE_LABELS[link.site] || link.site);
+  return btn;
+}
+
+function makeQualityCol(label, cls, links) {
+  const col = document.createElement("div");
+  col.className = "quality-col" + (links.length === 0 ? " empty" : "");
+  const lbl = document.createElement("div");
+  lbl.className = "quality-col-label " + cls;
+  lbl.textContent = label;
+  col.appendChild(lbl);
   const row = document.createElement("div");
   row.className = "btn-group";
-  siteIds.forEach(site => {
-    const color = SITE_COLORS[site];
-    if (!color) return;
-    const url = buildUrl(anime, site);
-    if (url === "#") return;
-    const btn = document.createElement("a");
-    btn.href      = url;
-    btn.target    = "_blank";
-    btn.rel       = "noopener noreferrer";
-    btn.className = "site-btn";
-    btn.style.background = color;
-    btn.textContent = "▶ " + (SITE_LABELS[site] || site);
-    row.appendChild(btn);
-  });
-  return row;
+  links.forEach(l => row.appendChild(makeSiteBtn(l)));
+  col.appendChild(row);
+  return col;
 }
 
 function makeCard(anime) {
@@ -338,38 +258,30 @@ function makeCard(anime) {
     `<div class="ja" title="${anime.title_ja}">${anime.title_ja}</div>` +
     `<div class="en">${anime.title}</div>` +
     (anime.note ? `<div class="note">${anime.note}</div>` : "");
-
-  // streaming 上段 / その他（AT・Nyaa）下段
-  const streamingRow = makeBtnRow(anime, anime.sites.filter(s => STREAMING_SITES.includes(s)));
-  const otherRow     = makeBtnRow(anime, OTHER_SITES.filter(s => anime.sites.includes(s)));
-
   card.appendChild(titleDiv);
-  if (streamingRow.children.length > 0) card.appendChild(streamingRow);
-  if (otherRow.children.length     > 0) card.appendChild(otherRow);
+
+  if (anime.links.length > 0) {
+    const hdLinks = anime.links.filter(l => l.quality === "hd");
+    const sdLinks = anime.links.filter(l => l.quality !== "hd");
+    const cols = document.createElement("div");
+    cols.className = "quality-cols";
+    cols.appendChild(makeQualityCol("HD", "hd", hdLinks));
+    cols.appendChild(makeQualityCol("SD / 画質未確認", "sd", sdLinks));
+    card.appendChild(cols);
+  } else {
+    const note = document.createElement("div");
+    note.className = "not-aired-note";
+    note.textContent = "まだ視聴できるサイトが見つかっていません";
+    card.appendChild(note);
+  }
+
+  const infoRow = document.createElement("div");
+  infoRow.className = "info-row";
+  infoRow.innerHTML = `<span style="color:${SITE_COLORS.animatetimes}">●</span> ` +
+    `<a href="${anime.animatetimes_url}" target="_blank" rel="noopener noreferrer">AnimateTimes（作品情報）</a>`;
+  card.appendChild(infoRow);
+
   return card;
-}
-
-function makeSeriesGroup(series, animeList) {
-  const details = document.createElement("details");
-  details.className = "series-group";
-  details.open = true;
-
-  const summary = document.createElement("summary");
-  summary.className = "series-summary";
-  const enSpan = series.title_en !== series.title_ja
-    ? `<span class="series-en">${series.title_en}</span>` : "";
-  summary.innerHTML =
-    `<span class="series-icon">&#9658;</span>` +
-    `<span class="series-name">${series.title_ja}${enSpan}</span>` +
-    `<span class="series-badge">${animeList.length}</span>`;
-
-  const body = document.createElement("div");
-  body.className = "series-body";
-  animeList.forEach(a => body.appendChild(makeCard(a)));
-
-  details.appendChild(summary);
-  details.appendChild(body);
-  return details;
 }
 
 function renderList(query) {
@@ -377,33 +289,16 @@ function renderList(query) {
   const container = document.getElementById("list");
   container.innerHTML = "";
 
-  if (q) {
-    const filtered = ANIME.filter(a =>
-      a.title.toLowerCase().includes(q) ||
-      a.title_ja.toLowerCase().includes(q) ||
-      (a.note || "").toLowerCase().includes(q)
-    );
-    document.getElementById("count").textContent =
-      `${filtered.length} / ${ANIME.length} 作品`;
-    filtered.forEach(a => container.appendChild(makeCard(a)));
-    return;
-  }
+  const filtered = q
+    ? ANIME.filter(a =>
+        a.title.toLowerCase().includes(q) ||
+        a.title_ja.toLowerCase().includes(q) ||
+        (a.note || "").toLowerCase().includes(q))
+    : ANIME;
 
-  document.getElementById("count").textContent = `${ANIME.length} 作品`;
-
-  const slugToAnime = {};
-  ANIME.forEach(a => { slugToAnime[a.slug] = a; });
-
-  const inSeries = new Set();
-  SERIES.forEach(series => {
-    const animeList = series.slugs.map(s => slugToAnime[s]).filter(Boolean);
-    if (animeList.length === 0) return;
-    animeList.forEach(a => inSeries.add(a.slug));
-    container.appendChild(makeSeriesGroup(series, animeList));
-  });
-
-  ANIME.filter(a => !inSeries.has(a.slug))
-       .forEach(a => container.appendChild(makeCard(a)));
+  document.getElementById("count").textContent =
+    q ? `${filtered.length} / ${ANIME.length} 作品` : `${ANIME.length} 作品`;
+  filtered.forEach(a => container.appendChild(makeCard(a)));
 }
 
 // ── 凡例 ──────────────────────────────────────────────────────────────────
@@ -413,7 +308,7 @@ function renderLegend() {
     animatetimes: "news / AT記事",
     gogoanimes:   "streaming",
     animegg:      "streaming",
-    animeflv:     "streaming (ES)",
+    animeflv:     "streaming (ES) · 2026-09-23時点サイト停止中(522)のため掲載なし",
     monoschinos:  "streaming (ES)",
     miruro:       "streaming",
     nyaa:         "torrent",

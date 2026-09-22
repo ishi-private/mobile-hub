@@ -22,25 +22,13 @@
     },
     {
       id:    "launcher",
-      label: "all",
+      label: "興味あり",
       href:  "../anime-launcher/anime-launcher.html",
       category: "video",
     },
     {
-      id:    "now",
-      label: "now",
-      href:  "../anime-launcher/anime-launcher-now.html",
-      category: "video",
-    },
-    {
-      id:    "sites",
-      label: "サイト状況",
-      href:  "../site-monitor/sites.html",
-      category: "sites",
-    },
-    {
       id:    "favorites",
-      label: "お気に入り",
+      label: "今期見たい",
       href:  "../anime-launcher/favorites.html",
       category: "works",
     },
@@ -49,6 +37,18 @@
       label: "アニメガイド",
       href:  "../anime-launcher/anime-guide.html",
       category: "works",
+    },
+    {
+      id:    "sites",
+      label: "サイト状況",
+      href:  "../site-monitor/sites.html",
+      category: "sites",
+    },
+    {
+      id:    "now",
+      label: "サイト確認",
+      href:  "../anime-launcher/anime-launcher-now.html",
+      category: "sites",
     },
   ];
 
