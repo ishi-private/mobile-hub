@@ -47,9 +47,23 @@
   .anime-table tbody tr.anime-row:hover td { border-color: #444; }
   .anime-table tbody tr.anime-row.indented td:first-child { padding-left: 30px; }
   .title-cell { min-width: 0; }
+  .anime-table tbody tr.anime-row td.title-cell.has-state {
+    border-left: 3px solid var(--row-state-color, transparent); }
+  .title-cell-inner { display: flex; align-items: center; gap: 4px; min-width: 0; }
+  .title-cell .title-text { min-width: 0; flex: 1; }
   .title-cell .primary { color: #e2e2e2; font-size: 0.93rem; line-height: 1.3; }
   .title-cell .secondary { font-size: 0.73rem; color: #555; margin-top: 2px; overflow: hidden;
                              white-space: nowrap; text-overflow: ellipsis; }
+  /* ── 興味あり登録（★お気に入り/永久保存版）・❤お気に入り登録・♡おすすめ 共通ボタン ──
+     いずれも枠付きの丸チップにして、ポスター画像の上に重ねても位置・タップ範囲が分かるようにする。 */
+  .ls-chip { flex-shrink: 0; width: 24px; height: 24px; border: 1px solid #333; border-radius: 50%;
+              background: rgba(10,10,14,0.55); cursor: pointer; padding: 0;
+              display: flex; align-items: center; justify-content: center;
+              font-size: 1rem; line-height: 1; color: #555; transition: transform 0.1s, border-color 0.15s; }
+  .ls-chip:hover { transform: scale(1.15); border-color: #666; }
+  .ls-star.active { border-color: currentColor; }
+  .ls-heart.active { color: #e0447c; border-color: #e0447c; }
+  .ls-recommend.active { color: #f5a623; border-color: #f5a623; }
   .domain-cell { text-align: center; white-space: nowrap; width: 1%; }
   .site-btn { padding: 5px 11px; border: none; border-radius: 5px;
                font-size: 0.76rem; font-weight: 600; cursor: pointer;
@@ -102,6 +116,7 @@
   .img-card.src-mal:hover { border-color: #77bbff; }
   .img-card.src-other { border-color: #4caf50; }
   .img-card.src-other:hover { border-color: #7dcf7d; }
+  .img-card.has-state { box-shadow: 0 0 0 2px var(--row-state-color); }
   .img-card .poster { width: 100%; aspect-ratio: 2/3; object-fit: cover;
                        display: block; background: #1a1a22; }
   .img-card .no-poster { width: 100%; aspect-ratio: 2/3; display: flex;
@@ -110,6 +125,7 @@
   .img-card .ititle { padding: 6px 7px 4px; font-size: 0.7rem; color: #ccc;
                        line-height: 1.35; overflow: hidden;
                        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+  .img-card .ictrl { padding: 5px 7px 0; display: flex; align-items: center; gap: 3px; }
   .img-card .ibtns { padding: 4px 7px 8px; display: flex; gap: 3px; flex-wrap: wrap; }
   .img-btn { padding: 3px 7px; border: none; border-radius: 4px; font-size: 0.62rem;
               font-weight: 700; color: #fff; text-decoration: none; cursor: pointer;
@@ -136,11 +152,12 @@
   .poster-flat-grid { display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
                 gap: 10px; }
-  .poster-card { display: block; background: #1c1c24; border: 2px solid #333;
+  .poster-card { position: relative; display: block; background: #1c1c24; border: 2px solid #333;
                   border-radius: 8px; overflow: hidden; text-decoration: none;
                   transition: transform 0.15s, border-color 0.15s; cursor: pointer; }
   .poster-card:hover { transform: translateY(-2px); }
   .poster-card.no-link { cursor: default; border-color: #2a2a35; opacity: 0.6; }
+  .poster-card.has-state { box-shadow: 0 0 0 2px var(--row-state-color); }
   .poster-card .poster { width: 100%; aspect-ratio: 1/1; object-fit: cover;
                        object-position: top; display: block; background: #1a1a22; }
   .poster-card .no-poster { width: 100%; aspect-ratio: 1/1; display: flex;
@@ -149,12 +166,27 @@
   .poster-card .ptitle { padding: 6px 7px 7px; font-size: 0.7rem; color: #ccc;
                        line-height: 1.35; overflow: hidden;
                        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  /* ── 興味あり登録操作（ポスター画像に重ねる丸チップボタン）。★・♡は左上、❤は右上 ── */
+  .poster-ctrl { position: absolute; top: 5px; left: 5px; right: 5px; z-index: 2;
+                  display: flex; align-items: center; justify-content: space-between; }
+  .poster-ctrl-left { display: flex; align-items: center; gap: 4px; }
+  .poster-ctrl .ls-chip { width: 22px; height: 22px; font-size: 0.85rem; }
 
   /* ── サイト凡例 ── */
   #site-legend { max-width: var(--page-max-width); margin: 0 auto 12px; display: flex;
                      align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.7rem; color: #777; }
   #site-legend .legend-item { display: flex; align-items: center; gap: 5px; }
   #site-legend .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+  /* ── 上部フィルタ（★・❤・♡） ── */
+  #interest-legend { max-width: var(--page-max-width); margin: 0 auto 12px; display: flex;
+                       align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.72rem; color: #777; }
+  .legend-filter-btn { display: flex; align-items: center; gap: 5px; padding: 4px 12px;
+                         border: 1px solid transparent; border-radius: 14px; background: none;
+                         cursor: pointer; font-size: 0.72rem; color: #888; transition: all 0.15s; }
+  .legend-filter-btn:hover { background: #1c1c24; }
+  .legend-filter-btn .ico { font-size: 0.95rem; }
+  .legend-filter-btn.active { background: #1c1c24; color: #ddd; font-weight: 600; }
 
   /* ── 複数シーズン: 代表カード＋選択メニュー ── */
   .poster-group-wrap { position: relative; }
@@ -181,7 +213,9 @@
 <body>
 <div class="site-header-sticky">
   <nav id="site-nav" class="page-nav"></nav>
-  <script src="../shared/nav.js?v=20260916"></script>
+  <script src="../shared/nav.js?v=20260923"></script>
+  <script src="../shared/favorites-data.js"></script>
+  <script src="../shared/favorites.js?v=20260923"></script>
   <div class="controls">
     <div id="search-wrap">
       <span id="search-icon">🔍</span>
@@ -194,6 +228,7 @@
     </div>
     <button id="btn-shuffle" onclick="reshufflePoster()">🔀 ランダム</button>
   </div>
+  <div id="interest-legend"></div>
   <div id="site-legend"></div>
 </div>
 <div class="main">
@@ -5287,6 +5322,77 @@ const GROUPS = [
 ];
 const ANIME  = GROUPS.flatMap(g => g.entries);
 
+// ── ★お気に入り/永久保存版（サブ分類）・❤お気に入りページへの登録ゲート・♡おすすめ ──
+// favorites.html と同じ shared/favorites.js の AnimeFavorites（localStorageベース）をそのまま使う。
+// ID空間（anime_db_id）が共通のため、favorites.htmlで登録済みの状態はここにも自動で反映される。
+// ❤を付けた作品だけが favorites.html（お気に入り）に表示される。★・♡おすすめはfavorites.html内での
+// サブ分類。3つとも★/❤/♡すべてのビュー（テキスト・画像・ポスター）でクリック操作できる。
+// 📌今すぐ見たい（favorites.html側で表示順を上げる用途）はこのページには置かない。
+
+function makeStarBtn(id, onUpdate) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'ls-chip ls-star';
+  function render() {
+    const state = AnimeFavorites.get(id);
+    btn.textContent = AnimeFavorites.STATE_STAR[state];
+    btn.classList.toggle('active', state > 0);
+    btn.style.color = state > 0 ? AnimeFavorites.STATE_COLOR[state] : '';
+    btn.title = AnimeFavorites.STATE_LABEL[state] + '（クリックで切替）';
+  }
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    AnimeFavorites.cycle(id);
+    render();
+    if (onUpdate) onUpdate();
+  });
+  render();
+  return btn;
+}
+
+function makeHeartBtn(id, onUpdate) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'ls-chip ls-heart';
+  btn.textContent = '❤';
+  function render() {
+    const hearted = AnimeFavorites.isHearted(id);
+    btn.classList.toggle('active', hearted);
+    btn.title = hearted ? 'お気に入りに登録済み（クリックで解除）' : 'お気に入りに登録（クリックでON）';
+  }
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    AnimeFavorites.toggleHeart(id);
+    render();
+    if (onUpdate) onUpdate();
+  });
+  render();
+  return btn;
+}
+
+function makeRecommendBtn(id, onUpdate) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'ls-chip ls-recommend';
+  btn.textContent = '♡';
+  function render() {
+    const rec = AnimeFavorites.isRecommendedFlag(id);
+    btn.classList.toggle('active', rec);
+    btn.title = rec ? 'おすすめ登録済み（クリックで解除）' : 'おすすめに登録';
+  }
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    AnimeFavorites.toggleRecommendedFlag(id);
+    render();
+    if (onUpdate) onUpdate();
+  });
+  render();
+  return btn;
+}
+
 // ── 分類分離: 劇場版・webアニメ は通常リストから外し、最下部に別セクションとして表示する ──
 const WEB_ANIME_IDS = new Set([7022]); // 衛宮さんちの今日のごはん（webアニメで特殊なため分離）
 function isMovieEntry(a) { return /劇場版|^映画/.test(a.title || ''); }
@@ -5318,6 +5424,21 @@ const TIERS = splitGroupsByTier(GROUPS);
 
 let VIEW = 'poster';
 const EXPANDED = new Set();   // デフォルト: 全シリーズ折りたたみ
+
+// ── 上部フィルタ（★永久保存版/お気に入り・❤お気に入り登録・♡おすすめ） ──
+const STATE_FILTER = new Set();  // 1=お気に入り, 2=永久保存版。空=フィルターなし
+let HEART_FILTER = false;
+let RECOMMEND_FILTER = false;
+function anyStateFilterActive() {
+  return STATE_FILTER.size > 0 || HEART_FILTER || RECOMMEND_FILTER;
+}
+function matchesStateFilters(a) {
+  const id = a.anime_db_id;
+  if (STATE_FILTER.size > 0 && !STATE_FILTER.has(AnimeFavorites.get(id))) return false;
+  if (HEART_FILTER && !AnimeFavorites.isHearted(id)) return false;
+  if (RECOMMEND_FILTER && !AnimeFavorites.isRecommendedFlag(id)) return false;
+  return true;
+}
 
 // ポスタービュー専用の表示順（グループ単位でシャッフル）。デフォルトでシャッフル済みの状態で表示する。
 function shuffleArray(arr) {
@@ -5440,15 +5561,32 @@ function makeDomainCell(sites, domain) {
   return td;
 }
 
+// ★の状態を枠線の色として要素に反映する（favorites.htmlのapplyBorderと同様の考え方）
+function applyStateBorder(el, id) {
+  const state = AnimeFavorites.get(id);
+  el.classList.toggle('has-state', state > 0);
+  el.style.setProperty('--row-state-color', AnimeFavorites.STATE_COLOR[state] || 'transparent');
+}
+
 function makeTextRow(anime, indented) {
   const tr = document.createElement('tr');
   tr.className = 'anime-row' + (indented ? ' indented' : '');
   const titleTd = document.createElement('td');
   titleTd.className = 'title-cell';
+  applyStateBorder(titleTd, anime.anime_db_id);
+  const inner = document.createElement('div');
+  inner.className = 'title-cell-inner';
+  inner.appendChild(makeStarBtn(anime.anime_db_id, function () { applyStateBorder(titleTd, anime.anime_db_id); }));
+  inner.appendChild(makeHeartBtn(anime.anime_db_id));
+  inner.appendChild(makeRecommendBtn(anime.anime_db_id));
+  const textWrap = document.createElement('div');
+  textWrap.className = 'title-text';
   const primary = anime.title_ja || anime.title;
   const secondary = anime.title_ja && anime.title && anime.title !== primary ? anime.title : '';
-  titleTd.innerHTML = `<div class="primary">${primary}</div>` +
+  textWrap.innerHTML = `<div class="primary">${primary}</div>` +
     (secondary ? `<div class="secondary">${secondary}</div>` : '');
+  inner.appendChild(textWrap);
+  titleTd.appendChild(inner);
   tr.appendChild(titleTd);
   DOMAINS.forEach(d => tr.appendChild(makeDomainCell(anime.sites, d)));
   return tr;
@@ -5470,6 +5608,7 @@ function makeImgCard(anime) {
   const hasAlt = !!anime.image_url;
   const srcClass = hasMal ? 'src-mal' : hasAlt ? 'src-other' : '';
   card.className = 'img-card' + (srcClass ? ' ' + srcClass : '');
+  applyStateBorder(card, anime.anime_db_id);
   const imgUrl = hasMal ? anime.mal_image_url : anime.image_url;
   if (imgUrl) {
     const img = document.createElement('img');
@@ -5484,6 +5623,12 @@ function makeImgCard(anime) {
     ph.textContent = (anime.title_ja || anime.title || '?')[0];
     card.appendChild(ph);
   }
+  const cDiv = document.createElement('div');
+  cDiv.className = 'ictrl';
+  cDiv.appendChild(makeStarBtn(anime.anime_db_id, function () { applyStateBorder(card, anime.anime_db_id); }));
+  cDiv.appendChild(makeHeartBtn(anime.anime_db_id));
+  cDiv.appendChild(makeRecommendBtn(anime.anime_db_id));
+  card.appendChild(cDiv);
   const tDiv = document.createElement('div');
   tDiv.className = 'ititle';
   tDiv.textContent = anime.title_ja || anime.title;
@@ -5563,7 +5708,19 @@ function makePosterCard(anime) {
     card.rel = 'noopener noreferrer';
     card.style.borderColor = best.color || '#333';
   }
+  applyStateBorder(card, anime.anime_db_id);
   card.appendChild(makePosterImg(anime));
+
+  const ctrl = document.createElement('span');
+  ctrl.className = 'poster-ctrl';
+  const ctrlLeft = document.createElement('span');
+  ctrlLeft.className = 'poster-ctrl-left';
+  ctrlLeft.appendChild(makeStarBtn(anime.anime_db_id, function () { applyStateBorder(card, anime.anime_db_id); }));
+  ctrlLeft.appendChild(makeRecommendBtn(anime.anime_db_id));
+  ctrl.appendChild(ctrlLeft);
+  ctrl.appendChild(makeHeartBtn(anime.anime_db_id));
+  card.appendChild(ctrl);
+
   const tDiv = document.createElement('div');
   tDiv.className = 'ptitle';
   tDiv.textContent = anime.short_title || anime.title_ja || anime.title;
@@ -5624,12 +5781,12 @@ function makeGroupCoverCard(g) {
 }
 
 function filterGroupList(list, q) {
-  if (!q) return list;
+  if (!q && !anyStateFilterActive()) return list;
   return list.map(g => ({
     ...g,
     entries: g.entries.filter(a =>
-      (a.title || '').toLowerCase().includes(q) ||
-      (a.title_ja || '').toLowerCase().includes(q)
+      (!q || (a.title || '').toLowerCase().includes(q) || (a.title_ja || '').toLowerCase().includes(q)) &&
+      matchesStateFilters(a)
     )
   })).filter(g => g.entries.length > 0);
 }
@@ -5654,10 +5811,11 @@ function makeTierDividerRow(label) {
 }
 
 function buildPosterGrid(groups, q) {
+  const flatten = !!q || anyStateFilterActive();
   const grid = document.createElement('div');
   grid.className = 'poster-flat-grid';
   groups.forEach(g => {
-    if (g.entries.length > 1 && !(q && g.entries.length === 1)) {
+    if (g.entries.length > 1 && !(flatten && g.entries.length === 1)) {
       grid.appendChild(makeGroupCoverCard(g));
     } else {
       g.entries.forEach(a => grid.appendChild(makePosterCard(a)));
@@ -5667,8 +5825,9 @@ function buildPosterGrid(groups, q) {
 }
 
 function buildImageSection(groups, q) {
+  const flatten = !!q || anyStateFilterActive();
   const frag = document.createDocumentFragment();
-  if (q) {
+  if (flatten) {
     const grid = document.createElement('div');
     grid.className = 'flat-grid';
     groups.forEach(g => g.entries.forEach(a => grid.appendChild(makeImgCard(a))));
@@ -5703,8 +5862,9 @@ function buildImageSection(groups, q) {
 }
 
 function appendTextRows(tbody, groups, q) {
+  const flatten = !!q || anyStateFilterActive();
   groups.forEach(g => {
-    if (g.entries.length > 1 && !q) {
+    if (g.entries.length > 1 && !flatten) {
       const isOpen = EXPANDED.has(g.base);
       tbody.appendChild(makeGroupRow(g));
       if (isOpen) {
@@ -5793,7 +5953,74 @@ function renderList(query) {
   }
 }
 
+function makeStateLegendBtn(state, label) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'legend-filter-btn';
+  const color = AnimeFavorites.STATE_COLOR[state];
+  btn.innerHTML = '<span class="ico" style="color:' + color + '">★</span><span>' + label + '</span>';
+  function render() {
+    const active = STATE_FILTER.has(state);
+    btn.classList.toggle('active', active);
+    btn.style.borderColor = active ? color : 'transparent';
+  }
+  btn.addEventListener('click', function () {
+    if (STATE_FILTER.has(state)) STATE_FILTER.delete(state);
+    else STATE_FILTER.add(state);
+    render();
+    renderList(document.getElementById('search').value);
+  });
+  render();
+  return btn;
+}
+
+function makeHeartLegendBtn() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'legend-filter-btn';
+  btn.innerHTML = '<span class="ico" style="color:#e0447c">❤</span><span>お気に入り登録</span>';
+  function render() {
+    btn.classList.toggle('active', HEART_FILTER);
+    btn.style.borderColor = HEART_FILTER ? '#e0447c' : 'transparent';
+  }
+  btn.addEventListener('click', function () {
+    HEART_FILTER = !HEART_FILTER;
+    render();
+    renderList(document.getElementById('search').value);
+  });
+  render();
+  return btn;
+}
+
+function makeRecommendLegendBtn() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'legend-filter-btn';
+  btn.innerHTML = '<span class="ico" style="color:#f5a623">♡</span><span>おすすめ</span>';
+  function render() {
+    btn.classList.toggle('active', RECOMMEND_FILTER);
+    btn.style.borderColor = RECOMMEND_FILTER ? '#f5a623' : 'transparent';
+  }
+  btn.addEventListener('click', function () {
+    RECOMMEND_FILTER = !RECOMMEND_FILTER;
+    render();
+    renderList(document.getElementById('search').value);
+  });
+  render();
+  return btn;
+}
+
+function renderInterestLegend() {
+  const el = document.getElementById('interest-legend');
+  el.innerHTML = '';
+  el.appendChild(makeStateLegendBtn(2, '永久保存版'));
+  el.appendChild(makeStateLegendBtn(1, 'お気に入り'));
+  el.appendChild(makeHeartLegendBtn());
+  el.appendChild(makeRecommendLegendBtn());
+}
+
 document.getElementById('search').addEventListener('input', e => renderList(e.target.value));
+renderInterestLegend();
 renderList('');
 </script>
 </body>

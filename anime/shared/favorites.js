@@ -1,7 +1,8 @@
 /**
  * shared/favorites.js
- * お気に入り状態（0:なし / 1:お気に入り / 2:永久保存版）と、それとは独立な
- * ピン留め状態（今すぐ見たい）をlocalStorageで管理する。
+ * お気に入り状態（0:なし / 1:お気に入り / 2:永久保存版）、それとは独立な
+ * ピン留め状態（今すぐ見たい）、さらに独立なハート状態（興味あり→お気に入り登録）を
+ * localStorageで管理する。
  *
  * Chromeはfile://ページ間でlocalStorageのoriginを共有するため、別々のHTMLファイル
  * （anime-guide.html / favorites.html等）をfile://で開いていても、この機構だけで
@@ -15,7 +16,12 @@
  *   AnimeFavorites.cycle(id)      → 0→1→2→0 と進めてlocalStorageに書き込み、新しい状態を返す
  *   AnimeFavorites.isPinned(id)   → 今すぐ見たい（ピン留め）のON/OFF。☆とは独立なフラグ
  *   AnimeFavorites.togglePin(id)  → ピン留めをON/OFF反転してlocalStorageに書き込み、新しい状態を返す
- *   AnimeFavorites.onChange(cb)   → 他タブでの☆/ピン留め変更を検知（同一タブでの変更では発火しない仕様）
+ *   AnimeFavorites.isHearted(id)  → ❤（興味あり→お気に入り登録）のON/OFF。☆・ピンとは独立なフラグ
+ *   AnimeFavorites.toggleHeart(id) → ❤をON/OFF反転してlocalStorageに書き込み、新しい状態を返す
+ *   AnimeFavorites.isRecommendedFlag(id)   → ワンクリックのおすすめフラグのON/OFF（notes.recommendの
+ *                                              テキスト記入とは別。表示上の「おすすめ」判定は両者のOR）
+ *   AnimeFavorites.toggleRecommendedFlag(id) → 上記フラグをON/OFF反転
+ *   AnimeFavorites.onChange(cb)   → 他タブでの☆/ピン留め/❤/おすすめフラグ変更を検知（同一タブでの変更では発火しない仕様）
  *
  * IDは常に文字列として扱う（watch-config.jsonのanime_db_id、anime-guide側のidは
  * どちらも同じID空間＝animatetimesタグID由来のため、数値/文字列表記のゆれだけ吸収する）。
@@ -25,12 +31,20 @@
  * 白いピンマークによる独立したON/OFFフラグ（PIN_STORAGE_KEY）に付け替えた。
  * 旧state 2だったIDは初回ロード時に一度だけピン留めへ自動移行する（_migratePinFromOldPriority、
  * MIGRATION_KEYで再実行防止。★の状態自体は変更しない）。
+ *
+ * 2026-09-23: 興味あり(anime-launcher.html)→お気に入り(favorites.html)の登録ゲートを
+ * 「☆/ピンの有無」から独立の❤フラグ（HEART_STORAGE_KEY）に変更。favorites.htmlの表示条件は
+ * 「❤あり」のみになり、ピンはお気に入り内での並び順（上に表示）専用に用途が変わった。
+ * 移行時点で既にピン留めされていたIDは初回ロード時に一度だけ❤へ自動移行する
+ * （_migrateHeartFromPin、HEART_MIGRATION_KEYで再実行防止。ピン自体の状態は変更しない）。
  */
 (function () {
   "use strict";
 
   const STORAGE_KEY = "anime-favorites";
   const PIN_STORAGE_KEY = "anime-favorites-pinned";
+  const HEART_STORAGE_KEY = "anime-favorites-hearted";
+  const RECOMMEND_STORAGE_KEY = "anime-favorites-recommended";
 
   // shared/common.cssの --color-favorite / --color-favorite-priority と同じ値にすること
   const STATE_COLOR = { 0: null, 1: "#eab308", 2: "#ef4444" };
@@ -95,9 +109,61 @@
     return !!pins[key];
   }
 
+  function _readHearts() {
+    try {
+      return JSON.parse(localStorage.getItem(HEART_STORAGE_KEY) || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function _writeHearts(obj) {
+    localStorage.setItem(HEART_STORAGE_KEY, JSON.stringify(obj));
+  }
+
+  function isHearted(id) {
+    return !!_readHearts()[String(id)];
+  }
+
+  function toggleHeart(id) {
+    const key = String(id);
+    const hearts = _readHearts();
+    if (hearts[key]) delete hearts[key];
+    else hearts[key] = true;
+    _writeHearts(hearts);
+    return !!hearts[key];
+  }
+
+  function _readRecommends() {
+    try {
+      return JSON.parse(localStorage.getItem(RECOMMEND_STORAGE_KEY) || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function _writeRecommends(obj) {
+    localStorage.setItem(RECOMMEND_STORAGE_KEY, JSON.stringify(obj));
+  }
+
+  // notes.recommend欄への記入とは別の、ワンクリックで付けられる簡易おすすめフラグ。
+  // favorites.htmlの「おすすめ」判定はこのフラグとnotes.recommendテキストのOR。
+  function isRecommendedFlag(id) {
+    return !!_readRecommends()[String(id)];
+  }
+
+  function toggleRecommendedFlag(id) {
+    const key = String(id);
+    const rec = _readRecommends();
+    if (rec[key]) delete rec[key];
+    else rec[key] = true;
+    _writeRecommends(rec);
+    return !!rec[key];
+  }
+
   function onChange(callback) {
     window.addEventListener("storage", function (e) {
-      if (e.key === STORAGE_KEY || e.key === PIN_STORAGE_KEY) callback();
+      if (e.key === STORAGE_KEY || e.key === PIN_STORAGE_KEY || e.key === HEART_STORAGE_KEY || e.key === RECOMMEND_STORAGE_KEY) callback();
     });
   }
 
@@ -134,12 +200,45 @@
   }
   _migratePinFromOldPriority();
 
+  // 2026-09-23の用途変更に伴う一度きりの移行処理:
+  // favorites.htmlの表示ゲートが「☆/ピンの有無」から独立の❤フラグに変わったため、
+  // 何もしないと今までピン留めしていた作品が一見お気に入りから消えたように見えてしまう。
+  // そこで初回ロード時のみ、現在ピン留め済みの全IDを❤登録済みに引き継ぐ（ピン自体は変更しない）。
+  const HEART_MIGRATION_KEY = "anime-favorites-heart-migrated-v1";
+  function _migrateHeartFromPin() {
+    try {
+      if (localStorage.getItem(HEART_MIGRATION_KEY)) return;
+    } catch (e) {
+      return;
+    }
+    const pins = _readPins();
+    const hearts = _readHearts();
+    let changed = false;
+    Object.keys(pins).forEach(function (id) {
+      if (pins[id] && !hearts[id]) {
+        hearts[id] = true;
+        changed = true;
+      }
+    });
+    if (changed) _writeHearts(hearts);
+    try {
+      localStorage.setItem(HEART_MIGRATION_KEY, "1");
+    } catch (e) {
+      // 書き込めなくても実害はない（次回ロード時に再実行されるだけ）
+    }
+  }
+  _migrateHeartFromPin();
+
   window.AnimeFavorites = {
     get: get,
     set: set,
     cycle: cycle,
     isPinned: isPinned,
     togglePin: togglePin,
+    isHearted: isHearted,
+    toggleHeart: toggleHeart,
+    isRecommendedFlag: isRecommendedFlag,
+    toggleRecommendedFlag: toggleRecommendedFlag,
     onChange: onChange,
     STATE_COLOR: STATE_COLOR,
     STATE_LABEL: STATE_LABEL,

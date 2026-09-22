@@ -101,6 +101,12 @@
   .fav-pin.active { color: #fff; }
   .fav-heart { flex-shrink: 0; font-size: 1.05rem; line-height: 1; color: #333; }
   .fav-heart.active { color: #e0447c; }
+  .fav-interest-heart { flex-shrink: 0; width: 26px; height: 26px; border: none; background: none;
+                          cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 0;
+                          display: flex; align-items: center; justify-content: center;
+                          color: #333; transition: transform 0.1s; }
+  .fav-interest-heart:hover { transform: scale(1.15); }
+  .fav-interest-heart.active { color: #e0447c; }
 
   /* ── タイトル行（1行目：タイトル＋リンク） ── */
   .fav-info { flex: 1; min-width: 0; display: flex; flex-direction: column;
@@ -142,7 +148,7 @@
 
 <div class="site-header-sticky">
   <nav id="site-nav" class="page-nav"></nav>
-  <script src="../shared/nav.js?v=20260916"></script>
+  <script src="../shared/nav.js?v=20260923"></script>
   <div class="controls">
     <div id="search-wrap">
       <span id="search-icon">🔍</span>
@@ -164,7 +170,7 @@
 
 <script src="../anime-db/data/anime_guide_data.js"></script>
 <script src="../shared/favorites-data.js"></script>
-<script src="../shared/favorites.js?v=20260915"></script>
+<script src="../shared/favorites.js?v=20260923"></script>
 <script src="../shared/anime-notes.js"></script>
 <script src="../shared/image-crop.js"></script>
 <script src="../shared/cropped-images.js"></script>
@@ -203,6 +209,7 @@ function matchesSearch(item, q) {
 }
 
 function isRecommended(id) {
+  if (AnimeFavorites.isRecommendedFlag(id)) return true;
   const notes = AnimeNotes.get(id);
   return !!((notes.recommend && notes.recommend.trim()) || (notes.recommend2 && notes.recommend2.trim()));
 }
@@ -276,7 +283,7 @@ function renderLegend() {
   // 操作説明はiボタンで開閉（既定は非表示）。おすすめボタンの右に配置する。
   const note = document.createElement("span");
   note.className = "legend-note";
-  note.textContent = "クリックで絞り込み／解除。行の📌は今すぐ見たいのON/OFFを切替、☆は お気に入りなし → お気に入り → 永久保存版 の順で切り替わります";
+  note.textContent = "一覧は❤登録済みの作品のみ表示します（❤の登録・解除は「興味あり」ページでもこの行の❤ボタンでも可能）。📌は一覧内で上に表示する並び替え用、★はお気に入り/永久保存版のサブ分類です。クリックで絞り込み／解除";
 
   const infoBtn = document.createElement("button");
   infoBtn.type = "button";
@@ -296,8 +303,8 @@ function renderLegend() {
 //    → anime_guide_data.js（TVアニメに絞ったサブセットで映画/OVA等は含まれないことがある）に
 //      無い作品でも確実に表示できる（2026-08-14: これが無く192件中58件が表示されない不具合があった）
 // 2) ANIME_GUIDE_DATA側にも同じIDがあれば season/episode/popularity 等の詳細情報で補完する
-// 3) FAVORITES_INFOに無いIDでも、anime-guide.html側で新規にお気に入り登録された作品は
-//    ANIME_GUIDE_DATAから拾って追加する（将来的な任意のお気に入り追加に対応するため）
+// 3) FAVORITES_INFOに無いIDでも、❤（お気に入り登録）が付いた作品は、「興味あり」ページ等
+//    どこから登録されたものでも ANIME_GUIDE_DATAから拾って追加する
 function buildCandidates() {
   const byId = {};
   Object.keys(window.FAVORITES_INFO || {}).forEach(function (id) {
@@ -318,7 +325,7 @@ function buildCandidates() {
       byId[id].episode_text = a.episode_text;
       byId[id].popularity_score = a.popularity_score;
       if (!byId[id].thumbnail) byId[id].thumbnail = a.thumbnail;
-    } else if (AnimeFavorites.get(id) > 0) {
+    } else if (AnimeFavorites.isHearted(id)) {
       byId[id] = {
         id: id,
         title: a.title,
@@ -419,6 +426,29 @@ function makeHeartEl(id) {
   return { el: el, render: render };
 }
 
+// お気に入り登録ゲート（❤）。「興味あり」ページの❤と同じフラグをこの行からも切替できる。
+// OFFにするとこの一覧から消える（makeHeartEl のおすすめ❤とは別物）。
+function makeInterestHeartBtn(id, onUpdate) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "fav-interest-heart";
+  btn.textContent = "❤";
+  function render() {
+    const hearted = AnimeFavorites.isHearted(id);
+    btn.classList.toggle("active", hearted);
+    btn.title = hearted ? "お気に入りに登録済み（クリックで解除するとこの一覧から消えます）" : "お気に入りに登録";
+  }
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    AnimeFavorites.toggleHeart(id);
+    render();
+    if (onUpdate) onUpdate();
+  });
+  render();
+  return { el: btn, render: render };
+}
+
 // おすすめ情報欄（1件目 slot=1 / 2件目 slot=2）。情報元テキスト＋更新日（編集時に自動記録）
 function makeRecommendGroup(id, notes, slot, onUpdate) {
   const suffix = slot === 2 ? "2" : "";
@@ -495,6 +525,9 @@ function makeRow(item) {
     const state = AnimeFavorites.get(item.id);
     row.style.borderColor = AnimeFavorites.STATE_COLOR[state] || "";
   }
+  const interestHeart = makeInterestHeartBtn(item.id, function () {
+    renderList(document.getElementById("search").value);  // ❤解除でこの一覧から消えるため再描画
+  });
   const pin = makePinBtn(item.id, function () {
     renderList(document.getElementById("search").value);  // ピン留め有無で並び順が変わるため再描画
   });
@@ -508,6 +541,7 @@ function makeRow(item) {
 
   const titleRow = document.createElement("div");
   titleRow.className = "fav-title-row";
+  titleRow.appendChild(interestHeart.el);
   titleRow.appendChild(pin.el);
   titleRow.appendChild(star.el);
   titleRow.appendChild(heart.el);
@@ -662,8 +696,8 @@ function renderList(query) {
   list.innerHTML = "";
 
   let items = CANDIDATES.filter(function (a) {
+    if (!AnimeFavorites.isHearted(a.id)) return false;
     const state = AnimeFavorites.get(a.id);
-    if (state === 0) return false;
     if (STATE_FILTER.size > 0 && !STATE_FILTER.has(state)) return false;
     if (PIN_FILTER && !AnimeFavorites.isPinned(a.id)) return false;
     if (RECOMMEND_FILTER && !isRecommended(a.id)) return false;
@@ -697,7 +731,7 @@ function renderList(query) {
 
   document.getElementById("count").textContent = items.length + " 件のお気に入り";
   if (items.length === 0) {
-    list.innerHTML = '<div class="empty-note">お気に入りがまだありません。アニメガイドの☆をクリックして追加してください。</div>';
+    list.innerHTML = '<div class="empty-note">お気に入りがまだありません。「興味あり」ページの❤をクリックして追加してください。</div>';
     return;
   }
   const frag = document.createDocumentFragment();
