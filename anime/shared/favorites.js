@@ -53,10 +53,12 @@
  * localMutatedSincePullで検知し、代わりにローカルの最新状態をpushする。
  * 旧来のfavorites-local-sync.js（ビルド時焼き込みスナップショット、step23_sync_local_favorites.py）は
  * クラウド疎通不可時のフォールバック初期値として引き続き残す。
- * WRITE_SECRETをクライアントJSに埋め込んでいるため書き込みAPIは事実上公開されるが、
- * お気に入り情報自体の公開は既にユーザー承認済み。書き込みも第三者に知られたURLから
- * 上書きされうる点は許容し、必要ならF:\anime\anime-db\scrape\step23_sync_local_favorites.pyの
- * ローカルLevelDBスナップショットから復元できる。
+ * 書き込みAPIの認証は固定シークレットではなくOrigin許可リスト方式（cloud-sync/worker.js側）。
+ * クライアントJSに平文シークレットを埋め込むと、mobile-hubへのpush時に公開GitHubリポジトリの
+ * git履歴に残ってしまう（credential-leakage検知でブロックされた実例あり）ため、ブラウザが
+ * 偽装できないOriginヘッダでの軽量な制限に切り替えた。お気に入り情報自体の公開は
+ * 既にユーザー承認済みで、必要ならF:\anime\anime-db\scrape\step23_sync_local_favorites.pyの
+ * ローカルLevelDBスナップショットからも復元できる。
  */
 (function () {
   "use strict";
@@ -69,7 +71,6 @@
 
   // 端末非依存の常時同期バックエンド（F:\anime\cloud-sync\）。詳細はファイル先頭のコメント参照
   const CLOUD_SYNC_URL = "https://anime-favorites-sync.kazitayoshiki.workers.dev/favorites";
-  const CLOUD_WRITE_SECRET = "aZGdPKYvYFJTRrB1SASHvfNbGwRXQfAcKHQK6HZPVWM";
   const CLOUD_SYNC_EVENT = "anime-favorites-cloud-sync";
   let _localMutatedSincePull = false;
   let _cloudPushTimer = null;
@@ -234,7 +235,7 @@
       };
       fetch(CLOUD_SYNC_URL, {
         method: "PUT",
-        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + CLOUD_WRITE_SECRET },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       }).catch(function () {
         // オフライン等でも実害はない（次回の操作時に再度pushを試みる）
