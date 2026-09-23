@@ -712,12 +712,14 @@ function renderList(query) {
 }
 
 document.getElementById("search").addEventListener("input", function (e) { renderList(e.target.value); });
-AnimeFavorites.onChange(function () {
+function _refreshFromFavoritesChange() {
   CANDIDATES = buildCandidates();
   // 新規追加分もポスターモードの並び順に反映されるよう順序を作り直す
   POSTER_ORDER_IDS = shuffleArray(CANDIDATES.map(function (c) { return c.id; }));
   renderList(document.getElementById("search").value);
-});
+}
+AnimeFavorites.onChange(_refreshFromFavoritesChange);
+AnimeFavorites.onCloudSync(_refreshFromFavoritesChange);
 renderLegend();
 renderList("");
 </script>

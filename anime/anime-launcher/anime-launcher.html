@@ -1033,6 +1033,10 @@ function renderInterestLegend() {
 document.getElementById('search').addEventListener('input', e => renderList(e.target.value));
 renderInterestLegend();
 renderList('');
+AnimeFavorites.onCloudSync(function () {
+  renderInterestLegend();
+  renderList(document.getElementById('search').value);
+});
 </script>
 </body>
 </html>

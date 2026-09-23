@@ -41,6 +41,22 @@
  * 「興味あり」側のピンと「お気に入り」側のピンは同じ「ピン」という名前でも完全に独立したフラグ。
  * 旧❤（お気に入り登録）が付いていたIDは初回ロード時に一度だけ興味ありピンへ自動移行する
  * （_migrateInterestPinFromOldHeart、INTEREST_PIN_MIGRATION_KEYで再実行防止）。
+ *
+ * 2026-09-24: 端末非依存の常時同期を追加。Cloudflare Worker + KV（F:\anime\cloud-sync\）を
+ * 共有バックエンドとし、ページ読み込み時に非同期でGET /favoritesし4キーぶんlocalStorageへ
+ * 上書き反映（完了時にwindowへ "anime-favorites-cloud-sync" イベントを発火するので、
+ * 各ページはonCloudSync(cb)でUIの再描画をフックできる）。set/togglePin/toggleInterestPinned/
+ * toggleRecommendedFlagの各書き込み操作後は、ローカル書き込みに続けてデバウンスしたPUTで
+ * クラウド側にも反映する。これにより同一ブラウザ内（file://）に閉じていた従来のlocalStorage同期を
+ * 越えて、PC（Edge/Chrome）とmobile-hub公開サイトなど別オリジン・別端末間でも同じ状態を共有する。
+ * cloud pullが完了する前にローカルで操作された場合は、pull側が古いデータで上書きしないよう
+ * localMutatedSincePullで検知し、代わりにローカルの最新状態をpushする。
+ * 旧来のfavorites-local-sync.js（ビルド時焼き込みスナップショット、step23_sync_local_favorites.py）は
+ * クラウド疎通不可時のフォールバック初期値として引き続き残す。
+ * WRITE_SECRETをクライアントJSに埋め込んでいるため書き込みAPIは事実上公開されるが、
+ * お気に入り情報自体の公開は既にユーザー承認済み。書き込みも第三者に知られたURLから
+ * 上書きされうる点は許容し、必要ならF:\anime\anime-db\scrape\step23_sync_local_favorites.pyの
+ * ローカルLevelDBスナップショットから復元できる。
  */
 (function () {
   "use strict";
@@ -50,6 +66,13 @@
   const INTEREST_PIN_STORAGE_KEY = "anime-favorites-interest-pinned"; // 興味ありページのピン（表示ゲート）
   const OLD_HEART_STORAGE_KEY = "anime-favorites-hearted";           // 廃止済み旧「お気に入り登録」。移行専用で読むだけ
   const RECOMMEND_STORAGE_KEY = "anime-favorites-recommended";
+
+  // 端末非依存の常時同期バックエンド（F:\anime\cloud-sync\）。詳細はファイル先頭のコメント参照
+  const CLOUD_SYNC_URL = "https://anime-favorites-sync.kazitayoshiki.workers.dev/favorites";
+  const CLOUD_WRITE_SECRET = "aZGdPKYvYFJTRrB1SASHvfNbGwRXQfAcKHQK6HZPVWM";
+  const CLOUD_SYNC_EVENT = "anime-favorites-cloud-sync";
+  let _localMutatedSincePull = false;
+  let _cloudPushTimer = null;
 
   // shared/common.cssの --color-favorite / --color-favorite-priority と同じ値にすること
   const STATE_COLOR = { 0: null, 1: "#eab308", 2: "#ef4444" };
@@ -92,6 +115,8 @@
     const overrides = _readOverrides();
     overrides[key] = state;
     _writeOverrides(overrides);
+    _localMutatedSincePull = true;
+    _cloudPush();
     return state;
   }
 
@@ -127,6 +152,8 @@
     if (pins[key]) delete pins[key];
     else pins[key] = true;
     _writePins(pins);
+    _localMutatedSincePull = true;
+    _cloudPush();
     return !!pins[key];
   }
 
@@ -157,6 +184,8 @@
     if (pins[key]) delete pins[key];
     else pins[key] = true;
     _writeInterestPins(pins);
+    _localMutatedSincePull = true;
+    _cloudPush();
     return !!pins[key];
   }
 
@@ -189,7 +218,55 @@
     if (rec[key]) delete rec[key];
     else rec[key] = true;
     _writeRecommends(rec);
+    _localMutatedSincePull = true;
+    _cloudPush();
     return !!rec[key];
+  }
+
+  function _cloudPush() {
+    if (_cloudPushTimer) clearTimeout(_cloudPushTimer);
+    _cloudPushTimer = setTimeout(function () {
+      const payload = {
+        star: _readOverrides(),
+        pinned: _readPins(),
+        interestPinned: _readInterestPins(),
+        recommended: _readRecommends(),
+      };
+      fetch(CLOUD_SYNC_URL, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + CLOUD_WRITE_SECRET },
+        body: JSON.stringify(payload),
+      }).catch(function () {
+        // オフライン等でも実害はない（次回の操作時に再度pushを試みる）
+      });
+    }, 400);
+  }
+
+  function _cloudPull() {
+    fetch(CLOUD_SYNC_URL, { cache: "no-store" })
+      .then(function (res) {
+        return res.ok ? res.json() : null;
+      })
+      .then(function (data) {
+        if (!data) return;
+        if (_localMutatedSincePull) {
+          // pull実行中にローカルで操作された場合、古いクラウドデータで上書きせずローカルを優先してpushする
+          _cloudPush();
+          return;
+        }
+        _writeOverrides(data.star || {});
+        _writePins(data.pinned || {});
+        _writeInterestPins(data.interestPinned || {});
+        _writeRecommends(data.recommended || {});
+        window.dispatchEvent(new CustomEvent(CLOUD_SYNC_EVENT));
+      })
+      .catch(function () {
+        // クラウド疎通不可時はfavorites-local-sync.js等の既存フォールバックのまま動作する
+      });
+  }
+
+  function onCloudSync(callback) {
+    window.addEventListener(CLOUD_SYNC_EVENT, callback);
   }
 
   function onChange(callback) {
@@ -266,6 +343,9 @@
   }
   _migrateInterestPinFromOldHeart();
 
+  // 端末非依存の常時同期: ページ読み込みのたびにクラウドから最新状態を取得する
+  _cloudPull();
+
   window.AnimeFavorites = {
     get: get,
     set: set,
@@ -277,6 +357,7 @@
     isRecommendedFlag: isRecommendedFlag,
     toggleRecommendedFlag: toggleRecommendedFlag,
     onChange: onChange,
+    onCloudSync: onCloudSync,
     STATE_COLOR: STATE_COLOR,
     STATE_LABEL: STATE_LABEL,
     STATE_STAR: STATE_STAR,
