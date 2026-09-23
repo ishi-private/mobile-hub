@@ -9,82 +9,64 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
           background: #0f0f13; color: #e2e2e2; min-height: 100vh; padding: 0 0 32px; }
-  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; gap: 10px; align-items: center; }
-  #search-wrap { flex: 1; position: relative; }
-  #search { width: 100%; padding: 12px 16px 12px 40px; font-size: 1rem;
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; gap: 10px;
+               align-items: center; flex-wrap: wrap; }
+  #search-wrap { flex: 1; min-width: 180px; position: relative; }
+  #search { width: 100%; padding: 10px 14px 10px 36px; font-size: 0.92rem;
              background: #1c1c24; border: 1px solid #333; border-radius: 8px;
              color: #e2e2e2; outline: none; }
   #search:focus { border-color: #555; }
-  #search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
-                  color: #666; font-size: 1rem; pointer-events: none; }
+  #search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+                  color: #666; font-size: 0.92rem; pointer-events: none; }
+
+  .toggle-item { display: flex; align-items: center; gap: 6px; cursor: pointer;
+                  font-size: 0.74rem; color: #667; user-select: none; white-space: nowrap; }
+  .toggle-item input { accent-color: #4ade80; }
 
   /* ── サイト凡例 ── */
-  #site-legend { max-width: var(--page-max-width); margin: 0 auto 12px;
+  #site-legend { max-width: var(--page-max-width); margin: 10px auto 12px;
                   display: flex; flex-wrap: wrap; gap: 8px; }
   #site-legend .legend-item { display: flex; align-items: center; gap: 5px;
-                                font-size: 0.72rem; color: #888; }
+                                font-size: 0.7rem; color: #888; }
   #site-legend .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-  #site-legend .legend-sub { color: #555; font-size: 0.68rem; }
 
-  #count { text-align: center; font-size: 0.8rem; color: #555; margin-bottom: 16px; }
-  #list { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+  #count { max-width: var(--page-max-width); margin: 0 auto 6px; font-size: 0.74rem; color: #555; }
+  #unmatched-note { max-width: var(--page-max-width); margin: 0 auto 10px; font-size: 0.68rem; color: #665533; }
+  #list { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 8px;
+           padding: 0 16px; }
 
   /* ── カード ── */
   .card { background: #1c1c24; border: 1px solid #2a2a35; border-radius: 8px;
-           padding: 12px 14px; display: flex; flex-direction: column;
-           gap: 8px; transition: border-color 0.15s; }
+           padding: 10px 12px; display: flex; gap: 12px; align-items: flex-start;
+           transition: border-color 0.15s; }
   .card:hover { border-color: #444; }
-  .card-title { font-size: 0.95rem; line-height: 1.4; min-width: 0; }
-  .card-title .ja { color: #c8c8d8; font-size: 0.88rem; white-space: nowrap;
-                     overflow: hidden; text-overflow: ellipsis; }
-  .card-title .en { color: #e2e2e2; }
-  .card-title .note { font-size: 0.72rem; color: #666; margin-top: 2px; }
-  .btn-group { display: flex; gap: 5px; flex-wrap: wrap;
-                justify-content: flex-start; align-items: center; }
-  .site-btn { padding: 5px 10px; border: none; border-radius: 5px;
-               font-size: 0.75rem; font-weight: 600; cursor: pointer;
-               color: #fff; text-decoration: none; white-space: nowrap;
-               transition: opacity 0.15s; line-height: 1.4; }
-  .site-btn:hover { opacity: 0.82; }
+  .card-thumb { width: 56px; height: 56px; border-radius: 6px; object-fit: cover;
+                 background: #12121a; flex-shrink: 0; }
+  .card-thumb.no-img { display: flex; align-items: center; justify-content: center;
+                         color: #333; font-size: 1.3rem; }
+  .card-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .card-title { font-size: 0.9rem; line-height: 1.35; }
+  .card-title .ja { color: #c8c8d8; }
+  .card-title .en { color: #667; font-size: 0.74rem; }
 
-  /* ── HD/SD 左右分割（動画が確認できたサイトのみ。HD=左／SDのみ・画質不明=右） ── */
-  .quality-cols { display: flex; gap: 14px; flex-wrap: wrap; }
-  .quality-col { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 6px; }
-  .quality-col-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em; }
-  .quality-col-label.hd { color: #4ade80; }
-  .quality-col-label.sd { color: #778; }
-  .quality-col.empty { display: none; }
-  .info-row { font-size: 0.72rem; color: #667; display: flex; align-items: center; gap: 8px; }
-  .info-row a { color: #889; text-decoration: none; }
-  .info-row a:hover { color: #bbb; }
-  .not-aired-note { font-size: 0.78rem; color: #776; font-style: italic; }
+  .site-row { display: flex; flex-wrap: wrap; gap: 5px; }
+  .site-pill { display: inline-flex; align-items: center; gap: 4px;
+                padding: 3px 9px; border-radius: 5px; font-size: 0.7rem; font-weight: 600;
+                text-decoration: none; color: #fff; white-space: nowrap; transition: opacity 0.15s; }
+  .site-pill:hover { opacity: 0.85; }
+  .site-pill.q-hd   { }
+  .site-pill.q-sd   { opacity: 0.88; }
+  .site-pill.q-unknown { opacity: 0.75; }
+  .site-pill.q-unchecked { opacity: 0.55; }
+  .site-pill.q-fail { background: #3a1414 !important; color: #d88; opacity: 0.8; }
+  .site-pill.manual { background: transparent !important; border: 1px dashed currentColor; color: #999; }
+  .site-pill .qtag { font-size: 0.62rem; font-weight: 700; padding: 0 4px; border-radius: 3px;
+                       background: rgba(0,0,0,0.28); }
 
-  /* ── シリーズグループ ── */
-  .series-group { background: #13131e; border: 1px solid #28283a;
-                   border-radius: 10px; overflow: hidden; }
-  .series-summary { display: flex; align-items: center; gap: 10px;
-                     padding: 12px 14px; cursor: pointer; list-style: none;
-                     user-select: none; }
-  .series-summary::-webkit-details-marker { display: none; }
-  .series-summary::marker { display: none; }
-  .series-summary:hover { background: #191928; }
-  .series-icon { font-size: 0.65rem; color: #556; transition: transform 0.2s;
-                  flex-shrink: 0; display: inline-block; }
-  details[open] > .series-summary .series-icon { transform: rotate(90deg); }
-  .series-name { flex: 1; font-size: 0.97rem; color: #b8b8d4; font-weight: 500; }
-  .series-en { font-size: 0.72rem; color: #556; margin-left: 6px; }
-  .series-badge { font-size: 0.72rem; background: #22223a; color: #778;
-                   padding: 2px 8px; border-radius: 10px; flex-shrink: 0; }
-  .series-body { padding: 0 8px 8px; display: flex; flex-direction: column; gap: 6px; }
-  .series-body .card { border-radius: 6px; }
-
-  /* ── ページナビ ── */
-  .page-nav { max-width: var(--page-max-width); margin: 0 auto 12px; display: flex; align-items: center;
-               gap: 8px; font-size: 0.72rem; }
-  .page-nav a { color: #556; text-decoration: none; }
-  .page-nav a:hover { color: #999; }
-  .page-nav .sep { color: #2a2a35; }
-  .page-nav .current { color: #bbb; font-weight: 600; }
+  .no-link-note { font-size: 0.74rem; color: #665; font-style: italic; }
+  .info-row { font-size: 0.68rem; color: #556; }
+  .info-row a { color: #778; text-decoration: none; }
+  .info-row a:hover { color: #aab; }
 </style>
 </head>
 <body>
@@ -93,241 +75,141 @@
   <script src="../shared/nav.js?v=20260924"></script>
   <div class="controls">
     <div id="search-wrap">
-      <span id="search-icon">&#128269;</span>
+      <span id="search-icon">🔍</span>
       <input id="search" type="text" placeholder="アニメを検索..." autofocus>
     </div>
+    <label class="toggle-item">
+      <input type="checkbox" id="toggle-hide-nolink"> リンク無しを隠す
+    </label>
   </div>
   <div id="site-legend"></div>
 </div>
 
-<div class="page-content">
 <div id="count"></div>
+<div id="unmatched-note"></div>
 <div id="list"></div>
-</div>
 
+<script src="../site-monitor/data/now_page_data.js"></script>
 <script>
-// ── サイト定義 ─────────────────────────────────────────────────────────────
-const SITE_COLORS = {
-  animatetimes: "#e55c2a",  // AT オレンジ
-  gogoanimes:   "#3c8be0",  // 採用サイト共通色（shared/common.css --color-gogoanime と同期）
-  animegg:      "#c026d3",  // 採用サイト共通色（shared/common.css --color-animegg と同期）
-  animeflv:     "#b84c00",  // オレンジ（スペイン語サイト）
-  monoschinos:  "#a21caf",  // マゼンタ（スペイン語サイト、AnimeGGの共通色と衝突しないよう濃色に変更）
-  miruro:       "#0891b2",  // シアンブルー
-  nyaa:         "#1f6e4c",  // グリーン（トレント）
-};
-const SITE_LABELS = {
-  animatetimes: "AnimateTimes",
-  gogoanimes:   "GogoAnimes",
-  animegg:      "AnimeGG",
-  animeflv:     "AnimeFlv (ES)",
-  monoschinos:  "MonosChinos (ES)",
-  miruro:       "Miruro",
-  nyaa:         "Nyaa",
-};
+const DATA = window.NOW_PAGE_DATA || [];
+const SITE_META = window.NOW_PAGE_SITE_META || {};
 
-// ── アニメデータ ───────────────────────────────────────────────────────────
-// 2026-09-23: お気に入り（favorites.html、❤登録済み）7作品をベンチマークに全面更新。
-// 各サイトのリンクは quality:"hd" / "sd" を持つ。"hd" = HD版の存在を確認できたリンク
-// （GogoAnimeはMegaサーバー有無、Nyaaはトレント名の1080p/720p表記で判定。それ以外の
-// サイトはページに画質情報が出ない＝確認不能なため "sd" 側に保守的に分類）。
-// AnimeFlv (www4.animeflv.net) は2026-09-23時点でサイト自体がCloudflare 522エラーで
-// 停止中のため全作品で除外。MonosChinos/Miruroは検索スクリプトが無いため、既存データの
-// あるタイトルのみ再確認して掲載（新規タイトルは未掲載）。
-const ANIME = [
-  {
-    id: 13374,
-    title:     "FAIRY TAIL: 100 Years Quest",
-    title_ja:  "FAIRY TAIL 100年クエスト",
-    note: "FTシリーズ続編 · 2024夏 · 全25話",
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=13374",
-    links: [
-      { site: "nyaa",        url: "https://nyaa.si/?f=0&c=1_0&q=FAIRY+TAIL+100+Years+Quest", quality: "hd" },
-      { site: "gogoanimes",  url: "https://gogoanime.by/fairy-tail-100-nen-quest-episode-1-english-subbed/", quality: "sd" },
-      { site: "animegg",     url: "https://www.animegg.org/series/fairy-tail-100-years-quest", quality: "sd" },
-      { site: "monoschinos", url: "https://monoschinos.st/anime/fairy-tail-100-nen-quest-sub-espanol", quality: "sd" },
-      { site: "miruro",      url: "https://www.miruro.tv/watch/139095/fairy-tail-100-years-quest", quality: "sd" },
-    ],
-  },
-  {
-    id: 24972,
-    title:     "Wistoria: Wand and Sword Season 2",
-    title_ja:  "杖と剣のウィストリア Season 2",
-    note: "Season 2 · 放送中",
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=24972",
-    links: [
-      { site: "gogoanimes",  url: "https://gogoanime.by/tsue-to-tsurugi-no-wistoria-season-2-episode-1-english-subbed/", quality: "hd" },
-      { site: "nyaa",        url: "https://nyaa.si/?f=0&c=1_0&q=Tsue+to+Tsurugi+no+Wistoria+Season+2", quality: "hd" },
-      { site: "animegg",     url: "https://www.animegg.org/series/wistoria-wand-and-sword-season-2", quality: "sd" },
-      { site: "monoschinos", url: "https://monoschinos.st/anime/tsue-to-tsurugi-no-wistoria-season-2-sub-espanol", quality: "sd" },
-      { site: "miruro",      url: "https://www.miruro.tv/watch/182300/wistoria-wand-and-sword-season-2", quality: "sd" },
-    ],
-  },
-  {
-    id: 6677,
-    title:     "Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?",
-    title_ja:  "終末なにしてますか？ 忙しいですか？ 救ってもらっていいですか？",
-    note: "SukaSuka · 2017 · 全12話",
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=6677",
-    links: [
-      { site: "nyaa",        url: "https://nyaa.si/?f=0&c=1_0&q=Shuumatsu+Nani+Shitemasu", quality: "hd" },
-      { site: "animegg",     url: "https://www.animegg.org/series/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka", quality: "sd" },
-      { site: "monoschinos", url: "https://monoschinos.st/anime/sukasuka-sub-espanol", quality: "sd" },
-      { site: "miruro",      url: "https://www.miruro.tv/watch/21860/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka", quality: "sd" },
-    ],
-  },
-  {
-    id: 6027,
-    title:     "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria",
-    title_ja:  "ダンジョンに出会いを求めるのは間違っているだろうか外伝 ソード・オラトリア",
-    note: "DanMachi外伝 · 2017 · 全12話",
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=6027",
-    links: [
-      { site: "nyaa",   url: "https://nyaa.si/?f=0&c=1_0&q=DanMachi+Sword+Oratoria", quality: "hd" },
-      { site: "animegg", url: "https://www.animegg.org/series/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-gaiden-sword-oratoria", quality: "sd" },
-      { site: "miruro", url: "https://www.miruro.tv/watch/21676/sword-oratoria-is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-on-the-side", quality: "sd" },
-    ],
-  },
-  {
-    id: 210,
-    title:     "Minami-ke",
-    title_ja:  "みなみけ",
-    note: "日常ギャグ · 2007秋 · 全13話",
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=210",
-    links: [
-      { site: "nyaa",   url: "https://nyaa.si/?f=0&c=1_0&q=Minami-ke", quality: "hd" },
-      { site: "animegg", url: "https://www.animegg.org/series/minami-ke", quality: "sd" },
-      { site: "miruro", url: "https://www.miruro.tv/watch/2963/minami-ke", quality: "sd" },
-    ],
-  },
-  {
-    id: 19097,
-    title:     "Pokemon (2023)",
-    title_ja:  "ポケットモンスター（新シリーズ）",
-    note: "2023 · 全275話（放送中）",
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=19097",
-    links: [
-      { site: "nyaa",   url: "https://nyaa.si/?f=0&c=1_0&q=Pokemon+Horizons", quality: "hd" },
-      { site: "animegg", url: "https://www.animegg.org/series/pokemon-2023", quality: "sd" },
-    ],
-  },
-  {
-    id: 25671,
-    title:     "Kamiina Botan, Yoeru Sugata wa Yuri no Hana",
-    title_ja:  "上伊那ぼたん、酔へる姿は百合の花",
-    note: "2026秋 放送予定（未放送のため動画リンクなし）",
-    animatetimes_url: "https://www.animatetimes.com/tag/details.php?id=25671",
-    links: [],
-  },
-];
+const QUALITY_LABEL = { hd: "HD", sd: "SD", unknown: "?", unchecked: "", manual: "手動" };
 
-// ── UI 部品 ───────────────────────────────────────────────────────────────
-function makeSiteBtn(link) {
-  const color = SITE_COLORS[link.site];
-  const btn = document.createElement("a");
-  btn.href      = link.url;
-  btn.target    = "_blank";
-  btn.rel       = "noopener noreferrer";
-  btn.className = "site-btn";
-  btn.style.background = color || "#555";
-  btn.textContent = "▶ " + (SITE_LABELS[link.site] || link.site);
-  return btn;
+function qualityClass(site) {
+  if (site.manual) return "manual";
+  if (site.quality === "unchecked") return "q-unchecked";
+  if (site.playable === false) return "q-fail";
+  if (site.quality === "hd") return "q-hd";
+  if (site.quality === "sd") return "q-sd";
+  return "q-unknown";
 }
 
-function makeQualityCol(label, cls, links) {
-  const col = document.createElement("div");
-  col.className = "quality-col" + (links.length === 0 ? " empty" : "");
-  const lbl = document.createElement("div");
-  lbl.className = "quality-col-label " + cls;
-  lbl.textContent = label;
-  col.appendChild(lbl);
-  const row = document.createElement("div");
-  row.className = "btn-group";
-  links.forEach(l => row.appendChild(makeSiteBtn(l)));
-  col.appendChild(row);
-  return col;
+function makeSitePill(site) {
+  const a = document.createElement("a");
+  a.href = site.url;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.className = "site-pill " + qualityClass(site);
+  if (!site.manual) a.style.background = site.color;
+  else a.style.color = site.color;
+  const qtag = site.manual ? "手動" :
+    site.quality === "unchecked" ? "" :
+    (site.playable === false ? "✕" : QUALITY_LABEL[site.quality] || "");
+  a.innerHTML = `▶ ${site.label}` + (qtag ? ` <span class="qtag">${qtag}</span>` : "");
+  a.title = site.manual ? "手動確認済みリンク（自動検証対象外）" :
+    site.quality === "unchecked" ? "リンク発見済み・再生確認は未実施" :
+    site.playable === false ? "再生確認に失敗しました" :
+    site.quality === "hd" ? "実測: 再生可・HD画質" :
+    site.quality === "sd" ? "実測: 再生可・SD画質" :
+    "実測: 再生可・画質は不明";
+  return a;
 }
 
-function makeCard(anime) {
+function makeCard(a) {
   const card = document.createElement("div");
   card.className = "card";
 
+  if (a.thumbnail) {
+    const img = document.createElement("img");
+    img.className = "card-thumb";
+    img.src = a.thumbnail;
+    img.alt = a.title_ja;
+    img.onerror = () => { img.outerHTML = '<div class="card-thumb no-img">📺</div>'; };
+    card.appendChild(img);
+  } else {
+    const ph = document.createElement("div");
+    ph.className = "card-thumb no-img";
+    ph.textContent = "📺";
+    card.appendChild(ph);
+  }
+
+  const body = document.createElement("div");
+  body.className = "card-body";
+
   const titleDiv = document.createElement("div");
   titleDiv.className = "card-title";
-  titleDiv.innerHTML =
-    `<div class="ja" title="${anime.title_ja}">${anime.title_ja}</div>` +
-    `<div class="en">${anime.title}</div>` +
-    (anime.note ? `<div class="note">${anime.note}</div>` : "");
-  card.appendChild(titleDiv);
+  titleDiv.innerHTML = `<div class="ja">${a.title_ja}</div>` +
+    (a.title && a.title !== a.title_ja ? `<div class="en">${a.title}</div>` : "");
+  body.appendChild(titleDiv);
 
-  if (anime.links.length > 0) {
-    const hdLinks = anime.links.filter(l => l.quality === "hd");
-    const sdLinks = anime.links.filter(l => l.quality !== "hd");
-    const cols = document.createElement("div");
-    cols.className = "quality-cols";
-    cols.appendChild(makeQualityCol("HD", "hd", hdLinks));
-    cols.appendChild(makeQualityCol("SD / 画質未確認", "sd", sdLinks));
-    card.appendChild(cols);
+  if (a.sites.length > 0) {
+    const row = document.createElement("div");
+    row.className = "site-row";
+    a.sites.forEach(s => row.appendChild(makeSitePill(s)));
+    body.appendChild(row);
   } else {
     const note = document.createElement("div");
-    note.className = "not-aired-note";
-    note.textContent = "まだ視聴できるサイトが見つかっていません";
-    card.appendChild(note);
+    note.className = "no-link-note";
+    note.textContent = "視聴できるサイトが見つかっていません";
+    body.appendChild(note);
   }
 
   const infoRow = document.createElement("div");
   infoRow.className = "info-row";
-  infoRow.innerHTML = `<span style="color:${SITE_COLORS.animatetimes}">●</span> ` +
-    `<a href="${anime.animatetimes_url}" target="_blank" rel="noopener noreferrer">AnimateTimes（作品情報）</a>`;
-  card.appendChild(infoRow);
+  infoRow.innerHTML = `<a href="${a.animatetimes_url}" target="_blank" rel="noopener noreferrer">AnimateTimes（作品情報）</a>`;
+  body.appendChild(infoRow);
 
+  card.appendChild(body);
   return card;
 }
 
-function renderList(query) {
-  const q = query.trim().toLowerCase();
+function renderList() {
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const hideNoLink = document.getElementById("toggle-hide-nolink").checked;
   const container = document.getElementById("list");
   container.innerHTML = "";
 
-  const filtered = q
-    ? ANIME.filter(a =>
-        a.title.toLowerCase().includes(q) ||
-        a.title_ja.toLowerCase().includes(q) ||
-        (a.note || "").toLowerCase().includes(q))
-    : ANIME;
+  let items = DATA;
+  if (q) {
+    items = items.filter(a =>
+      (a.title_ja || "").toLowerCase().includes(q) ||
+      (a.title || "").toLowerCase().includes(q));
+  }
+  if (hideNoLink) {
+    items = items.filter(a => a.sites.length > 0);
+  }
 
-  document.getElementById("count").textContent =
-    q ? `${filtered.length} / ${ANIME.length} 作品` : `${ANIME.length} 作品`;
-  filtered.forEach(a => container.appendChild(makeCard(a)));
+  document.getElementById("count").textContent = `${items.length} / ${DATA.length} 作品`;
+  const frag = document.createDocumentFragment();
+  items.forEach(a => frag.appendChild(makeCard(a)));
+  container.appendChild(frag);
 }
 
-// ── 凡例 ──────────────────────────────────────────────────────────────────
 function renderLegend() {
   const el = document.getElementById("site-legend");
-  const meta = {
-    animatetimes: "news / AT記事",
-    gogoanimes:   "streaming",
-    animegg:      "streaming",
-    animeflv:     "streaming (ES) · 2026-09-23時点サイト停止中(522)のため掲載なし",
-    monoschinos:  "streaming (ES)",
-    miruro:       "streaming",
-    nyaa:         "torrent",
-  };
-  Object.entries(SITE_COLORS).forEach(([id, color]) => {
+  Object.entries(SITE_META).forEach(([id, meta]) => {
     const item = document.createElement("div");
     item.className = "legend-item";
-    item.innerHTML =
-      `<div class="legend-dot" style="background:${color}"></div>` +
-      `<span>${SITE_LABELS[id]}</span>` +
-      `<span class="legend-sub">${meta[id] || ""}</span>`;
+    item.innerHTML = `<div class="legend-dot" style="background:${meta.color}"></div><span>${meta.label}</span>`;
     el.appendChild(item);
   });
 }
 
-// ── 初期化 ────────────────────────────────────────────────────────────────
-document.getElementById("search").addEventListener("input", e => renderList(e.target.value));
+document.getElementById("search").addEventListener("input", renderList);
+document.getElementById("toggle-hide-nolink").addEventListener("change", renderList);
 renderLegend();
-renderList("");
+renderList();
 </script>
 </body>
 </html>

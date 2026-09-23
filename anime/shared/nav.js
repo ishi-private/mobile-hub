@@ -9,6 +9,9 @@
  *   - planner へのリンクは公開済みの https://ishi-private.github.io/planner/ に変更
  *
  * F:\運用\mobile-hub\build.ps1 が元のnav.jsの代わりにこのファイルをコピーする。
+ *
+ * 2026-09-24: 元のnav.jsのカテゴリ再編（選ぶ/ガイド/履歴/サイトの4段階、劇場版ガイド追加）に
+ * あわせて更新。history.html（視聴履歴）は現状mobile-hub未公開のためここには含めない。
  */
 (function () {
   "use strict";
@@ -24,19 +27,25 @@
       id:    "launcher",
       label: "興味あり",
       href:  "../anime-launcher/anime-launcher.html",
-      category: "video",
+      category: "picks",
     },
     {
       id:    "favorites",
       label: "今期見たい",
       href:  "../anime-launcher/favorites.html",
-      category: "works",
+      category: "picks",
     },
     {
       id:    "guide",
       label: "アニメガイド",
       href:  "../anime-launcher/anime-guide.html",
-      category: "works",
+      category: "guide",
+    },
+    {
+      id:    "movieguide",
+      label: "劇場版ガイド",
+      href:  "../anime-launcher/movie-guide.html",
+      category: "guide",
     },
     {
       id:    "sites",
@@ -56,6 +65,7 @@
     if (window.NAV_CURRENT) return window.NAV_CURRENT;
     const href = window.location.href;
     if (href.includes("/anime-guide.html"))         return "guide";
+    if (href.includes("/movie-guide.html"))         return "movieguide";
     if (href.includes("/favorites.html"))           return "favorites";
     if (href.includes("/anime-launcher-now.html"))  return "now";
     if (href.includes("/anime-launcher.html"))      return "launcher";

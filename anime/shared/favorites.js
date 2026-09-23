@@ -56,9 +56,20 @@
   const STATE_LABEL = { 0: "お気に入りなし", 1: "お気に入り", 2: "永久保存版" };
   const STATE_STAR  = { 0: "☆", 1: "★", 2: "★" };
 
+  // 2026-09-24: mobile-hub（GitHub Pages、file://とは別オリジン）ではlocalStorageが
+  // 空から始まるため、ローカルで登録した状態が反映されない。localStorageキーが
+  // まだ一度も書き込まれていない（＝null）場合に限り、ビルド時に焼き込んだ
+  // FAVORITES_LOCAL_SYNCを初期値として使う（favorites-local-sync.js、
+  // step23_sync_local_favorites.pyが生成）。ローカル(file://)側は既に実データが
+  // localStorageに入っているため、この分岐は通常通らず動作に影響しない。
   function _readOverrides() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw === null) {
+      const sync = (window.FAVORITES_LOCAL_SYNC || {}).star;
+      if (sync) return sync;
+    }
     try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      return JSON.parse(raw || "{}");
     } catch (e) {
       return {};
     }
@@ -90,8 +101,13 @@
   }
 
   function _readPins() {
+    const raw = localStorage.getItem(PIN_STORAGE_KEY);
+    if (raw === null) {
+      const sync = (window.FAVORITES_LOCAL_SYNC || {}).pinned;
+      if (sync) return sync;
+    }
     try {
-      return JSON.parse(localStorage.getItem(PIN_STORAGE_KEY) || "{}");
+      return JSON.parse(raw || "{}");
     } catch (e) {
       return {};
     }
@@ -115,8 +131,13 @@
   }
 
   function _readInterestPins() {
+    const raw = localStorage.getItem(INTEREST_PIN_STORAGE_KEY);
+    if (raw === null) {
+      const sync = (window.FAVORITES_LOCAL_SYNC || {}).interestPinned;
+      if (sync) return sync;
+    }
     try {
-      return JSON.parse(localStorage.getItem(INTEREST_PIN_STORAGE_KEY) || "{}");
+      return JSON.parse(raw || "{}");
     } catch (e) {
       return {};
     }
@@ -140,8 +161,13 @@
   }
 
   function _readRecommends() {
+    const raw = localStorage.getItem(RECOMMEND_STORAGE_KEY);
+    if (raw === null) {
+      const sync = (window.FAVORITES_LOCAL_SYNC || {}).recommended;
+      if (sync) return sync;
+    }
     try {
-      return JSON.parse(localStorage.getItem(RECOMMEND_STORAGE_KEY) || "{}");
+      return JSON.parse(raw || "{}");
     } catch (e) {
       return {};
     }

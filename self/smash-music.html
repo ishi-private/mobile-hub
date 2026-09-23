@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スマブラSP 音楽一覧｜自己管理</title>
+<link rel="stylesheet" href="shared/common.css">
+<style>
+  .controls { max-width: var(--page-max-width); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  #search { flex: 1; min-width: 160px; padding: 7px 11px; background: #16161e; border: 1px solid #2a2a3a;
+             border-radius: 7px; color: #c8c8d8; font-size: 0.85rem; outline: none; }
+  #search:focus { border-color: #4a4a6a; }
+
+  #intro { max-width: var(--page-max-width); margin: 0 auto 14px; font-size: 0.78rem; color: #778; line-height: 1.8; }
+  #intro a { color: #6699cc; text-decoration: none; }
+  #count { max-width: var(--page-max-width); margin: 0 auto 10px; font-size: 0.74rem; color: #3a3a4a; }
+
+  #jump { max-width: var(--page-max-width); margin: 0 auto 20px; display: flex; gap: 5px; flex-wrap: wrap; }
+  #jump a { padding: 3px 12px; border: 1px solid #242434; border-radius: 12px; font-size: 0.72rem;
+             background: #13131c; color: #778; text-decoration: none; white-space: nowrap; transition: all 0.12s; }
+  #jump a:hover { border-color: #4a3a80; color: #9a86e0; }
+  #jump a[hidden] { display: none; }
+
+  .fr-section { max-width: var(--page-max-width); margin: 0 auto 30px; scroll-margin-top: 130px; }
+  .fr-section[hidden] { display: none; }
+  h2.fr-head { font-size: 1rem; color: #ccd; margin: 0 0 10px; padding-left: 10px; border-left: 4px solid #4a3a80;
+                display: flex; align-items: baseline; gap: 8px; }
+  h2.fr-head .fr-count { font-size: 0.7rem; color: #556; font-weight: 400; }
+
+  table.sm-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  .sm-table th { text-align: left; font-size: 0.68rem; font-weight: 600; color: #667; padding: 6px 9px;
+                  border-bottom: 1px solid #2a2a3a; background: #0e0e16; white-space: nowrap; }
+  .sm-table td { padding: 7px 9px; border-bottom: 1px solid #1a1a24; vertical-align: top; color: #c8c8d8; line-height: 1.55; }
+  .sm-table tr[hidden] { display: none; }
+  .title-cell { font-weight: 600; color: #e2e2e2; }
+  .arr-cell, .usage-cell { color: #889; white-space: nowrap; font-size: 0.76rem; }
+  .composer-cell { white-space: nowrap; }
+  .composer-empty { color: #334; }
+  .source-cell { color: #99a; background: #0d0d14; border-right: 1px solid #1a1a24; }
+
+  #empty { max-width: var(--page-max-width); margin: 40px auto; text-align: center; color: #445; font-size: 0.85rem; }
+
+  #sources { max-width: var(--page-max-width); margin: 28px auto 0; font-size: 0.68rem; color: #445; line-height: 1.9;
+              border-top: 1px solid #1c1c28; padding-top: 12px; }
+  #sources a { color: #557; }
+</style>
+</head>
+<body>
+<header class="site-header-sticky">
+  <nav id="site-nav" class="page-nav"></nav>
+  <div class="controls">
+    <input type="text" id="search" placeholder="曲名・作曲者・出典で検索…">
+  </div>
+</header>
+
+<div class="content">
+  <div id="intro">
+    『大乱闘スマッシュブラザーズ SPECIAL』の収録曲一覧（<a href="matome.html">← まとめ一覧</a>）。
+    <a href="https://smashwiki.info/%E9%9F%B3%E6%A5%BD_(SP)" target="_blank" rel="noopener noreferrer">smashwiki.info『音楽 (SP)』</a>の曲名・アレンジ種別・担当者・出典・使用箇所を一覧化したテキストデータのみで、
+    <b>音源・動画は一切含まない</b>（収録曲の大半は任天堂および多数の第三者が権利を持つ商用のゲーム音楽のため）。
+  </div>
+  <div id="count"></div>
+  <div id="jump"></div>
+  <div id="sections"></div>
+  <div id="empty" style="display:none;">該当する曲がありません。</div>
+  <div id="sources">
+    <b>出典</b>：<a href="https://smashwiki.info/%E9%9F%B3%E6%A5%BD_(SP)" target="_blank" rel="noopener noreferrer">smashwiki.info『音楽 (SP)』</a>（2026-09-23取得）。
+    収録曲は任天堂のほか多数の第三者（各原作ゲームの発売元）が著作権を持つ商用のゲーム音楽であり、権利は各社に帰属します。
+  </div>
+</div>
+
+<script src="shared/nav.js"></script>
+<script src="data/smash-music-data.js"></script>
+<script>
+(function () {
+  const rows = window.SMASH_MUSIC_DATA || [];
+  const sectionsEl = document.getElementById("sections");
+  const jumpEl = document.getElementById("jump");
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const searchEl = document.getElementById("search");
+
+  // 作品（franchise）の出現順を保ったままグルーピングする
+  const order = [];
+  const byFranchise = new Map();
+  rows.forEach(function (r) {
+    if (!byFranchise.has(r.franchise)) { byFranchise.set(r.franchise, []); order.push(r.franchise); }
+    byFranchise.get(r.franchise).push(r);
+  });
+
+  function slug(s) {
+    return "fr-" + Array.from(s).map(function (c) { return c.codePointAt(0).toString(36); }).join("");
+  }
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  // 静的なDOM（全行）を一度だけ作り、検索時は表示/非表示の切替のみ行う
+  const sectionMeta = []; // { franchise, id, sectionEl, headEl, rowEls: [{tr, hay}], jumpA }
+
+  order.forEach(function (franchise) {
+    const tracks = byFranchise.get(franchise);
+    const id = slug(franchise);
+
+    const jumpA = document.createElement("a");
+    jumpA.href = "#" + id;
+    jumpA.textContent = franchise + " (" + tracks.length + ")";
+    jumpEl.appendChild(jumpA);
+
+    const section = el("section", "fr-section");
+    section.id = id;
+    const head = el("h2", "fr-head");
+    head.appendChild(document.createTextNode(franchise));
+    const cnt = el("span", "fr-count");
+    head.appendChild(cnt);
+    section.appendChild(head);
+
+    const table = document.createElement("table");
+    table.className = "sm-table";
+    const thead = document.createElement("thead");
+    thead.innerHTML = "<tr><th>出典</th><th>曲名</th><th>アレンジ</th><th>担当者</th><th>使用箇所</th></tr>";
+    table.appendChild(thead);
+    const tbody = document.createElement("tbody");
+    table.appendChild(tbody);
+    section.appendChild(table);
+    sectionsEl.appendChild(section);
+
+    // 連続して同じ出典（原作ゲーム）のセルは rowspan で結合する
+    const sourceSpan = tracks.map(function () { return 0; });
+    for (let i = 0; i < tracks.length; ) {
+      let j = i;
+      while (j + 1 < tracks.length && tracks[j + 1].source === tracks[i].source) j++;
+      sourceSpan[i] = j - i + 1;
+      i = j + 1;
+    }
+
+    const rowEls = [];
+    tracks.forEach(function (t, idx) {
+      const tr = document.createElement("tr");
+      if (sourceSpan[idx] > 0) {
+        const sc = el("td", "source-cell", t.source || "—");
+        sc.rowSpan = sourceSpan[idx];
+        tr.appendChild(sc);
+      }
+      tr.appendChild(el("td", "title-cell", t.title));
+      tr.appendChild(el("td", "arr-cell", t.arrangement || "—"));
+      tr.appendChild(el("td", t.composer ? "composer-cell" : "composer-cell composer-empty", t.composer || "—"));
+      tr.appendChild(el("td", "usage-cell", t.usage || "—"));
+      tbody.appendChild(tr);
+      const hay = [t.title, t.composer, t.source, t.arrangement].join(" ").toLowerCase();
+      rowEls.push({ tr: tr, hay: hay });
+    });
+
+    sectionMeta.push({ franchise: franchise, section: section, jumpA: jumpA, cnt: cnt, rowEls: rowEls });
+  });
+
+  function render() {
+    const q = searchEl.value.trim().toLowerCase();
+    let visibleTracks = 0, visibleFranchises = 0;
+    sectionMeta.forEach(function (m) {
+      let shown = 0;
+      m.rowEls.forEach(function (r) {
+        const match = !q || r.hay.includes(q);
+        r.tr.hidden = !match;
+        if (match) shown++;
+      });
+      m.section.hidden = shown === 0;
+      m.jumpA.hidden = shown === 0;
+      m.cnt.textContent = q ? "(" + shown + " / " + m.rowEls.length + ")" : "(" + m.rowEls.length + ")";
+      if (shown > 0) visibleFranchises++;
+      visibleTracks += shown;
+    });
+    countEl.textContent = visibleFranchises + " 作品 / " + visibleTracks + " 曲" + (q ? "（全" + rows.length + "曲中）" : "");
+    emptyEl.style.display = visibleTracks === 0 ? "block" : "none";
+  }
+
+  searchEl.addEventListener("input", render);
+  render();
+})();
+</script>
+</body>
+</html>

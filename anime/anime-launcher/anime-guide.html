@@ -154,6 +154,7 @@
   .tag-ep    { background: #181826; color: #556; border: 1px solid #262636; }
   .tag-genre { background: #0c1824; color: #447799; border: 1px solid #182840; }
   .tag-sc    { background: #1a1200; color: #997722; border: 1px solid #302200; }
+  .tag-movie { background: #1a0c24; color: #a066cc; border: 1px solid #301840; }
 
   .at-area { display: none; }
   .at-btn { display: block; text-align: center; text-decoration: none;
@@ -285,6 +286,18 @@
           <span class="sw-track"></span><span class="sw-thumb"></span>
         </span>全期間
       </label>
+      <label class="toggle-item" title="主要ファンサブサイト(AnimeHeaven/Anikoto/Miruro)のいずれにも掲載が確認できなかった作品も表示する">
+        <span class="sw">
+          <input type="checkbox" id="toggle-lowcoverage">
+          <span class="sw-track"></span><span class="sw-thumb"></span>
+        </span>配信未確認も表示
+      </label>
+      <label class="toggle-item" title="劇場版アニメも作品として表示する">
+        <span class="sw">
+          <input type="checkbox" id="toggle-includemovies" checked>
+          <span class="sw-track"></span><span class="sw-thumb"></span>
+        </span>🎬 劇場版を含む
+      </label>
     </div>
   </div>
   <div id="genre-wrap"></div>
@@ -331,7 +344,8 @@
 
 <script src="../anime-db/data/anime_guide_data.js"></script>
 <script src="../shared/favorites-data.js"></script>
-<script src="../shared/favorites.js?v=20260923"></script>
+<script src="../shared/favorites-local-sync.js"></script>
+<script src="../shared/favorites.js?v=20260924"></script>
 <script src="../shared/search-aliases.js"></script>
 <script>
 if (typeof ANIME_GUIDE_DATA === "undefined") {
@@ -348,6 +362,8 @@ let popThreshold  = null;   // null=ALL, number=最小スコア
 let eraThreshold  = null;   // null=ALL, number=最小年
 let viewMode      = "grid";    // "grid" | "list"
 let filterMode    = "season";  // "season" | "all"
+let showLowCoverage = false;   // false=配信未確認(low_site_coverage)作品を非表示（デフォルト）
+let includeMovies = true;      // true=劇場版(is_movie)も表示（デフォルト）
 let _flatItems    = [];
 let _renderOffset = 0;
 const RENDER_BATCH = 100;
@@ -534,6 +550,16 @@ document.getElementById("toggle-allperiod").addEventListener("change", e => {
   render();
 });
 
+document.getElementById("toggle-lowcoverage").addEventListener("change", e => {
+  showLowCoverage = e.target.checked;
+  render();
+});
+
+document.getElementById("toggle-includemovies").addEventListener("change", e => {
+  includeMovies = e.target.checked;
+  render();
+});
+
 // ── ジャンルボタン ────────────────────────────────────────────────────────────
 function buildGenreButtons(season) {
   const wrap = document.getElementById("genre-wrap");
@@ -656,6 +682,12 @@ function makeCard(a) {
 
   const metaArea = document.createElement("div");
   metaArea.className = "meta-area tag-row";
+  if (a.is_movie) {
+    const t = document.createElement("span");
+    t.className = "tag tag-movie";
+    t.textContent = "🎬 映画";
+    metaArea.appendChild(t);
+  }
   if (a.episode_text) {
     const t = document.createElement("span");
     t.className = "tag tag-ep";
@@ -828,6 +860,8 @@ function render() {
   document.body.classList.toggle("cross-mode", isAllSeasons);
 
   let items = ANIME_GUIDE_DATA.anime.filter(a => {
+    if (!showLowCoverage && a.low_site_coverage) return false;
+    if (!includeMovies && a.is_movie) return false;
     // 検索語がある場合はシーズン絞り込みを無視し、全作品を対象に検索する
     if (!isAllSeasons && !q && a.primary_season !== currentSeason) return false;
     if (popThreshold !== null && (a.popularity_score == null || a.popularity_score < popThreshold)) return false;

@@ -124,7 +124,13 @@
   .pl-video { flex: 0 0 auto; width: 192px; aspect-ratio: 16/9; background: #000; border-radius: 6px; overflow: hidden; }
   #ae-player.big .pl-video { width: min(100%, 400px); }
   .pl-video:fullscreen, .pl-video:-webkit-full-screen { width: 100vw !important; height: 100vh !important; aspect-ratio: auto; }
-  .pl-video iframe { width: 100%; height: 100%; display: block; border: none; }
+  .pl-video iframe, .pl-video video { width: 100%; height: 100%; display: block; border: none; background: #000; object-fit: contain; }
+  .pl-video video[hidden] { display: none; }
+  /* 拡大表示（2026-09-22ユーザー指示: ブラウザの全画面ではなく、画面の8割ほどの大きさに広げるだけ） */
+  #ae-player.enlarged .pl-video { position: fixed; z-index: 1500; left: 50%; top: 46%; transform: translate(-50%, -50%);
+                                   width: min(80vw, 142vh); aspect-ratio: 16/9; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+  #ae-player.enlarged::before { content: ""; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1400; pointer-events: none; }
+  #ae-player.enlarged .pl-side, #ae-player.enlarged .pl-ctrl { position: relative; z-index: 1600; }
   .pl-side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px; position: relative; }
   /* 作品のお気に入り登録・YouTubeで開く・閉じる は右上に置く */
   .pl-topright { position: absolute; top: 0; right: 0; display: flex; gap: 6px; align-items: center; z-index: 1; }
@@ -167,7 +173,9 @@
   .pl-adj-info { color: #889; }
   .pl-ctrl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
   .pl-ctrl > button, .pl-ctrl > a { border: none; background: #1c1c2a; color: #c8c8d8; border-radius: 6px; min-width: 36px; height: 32px; padding: 0 10px;
-                                  font-size: 0.82rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-family: inherit; }
+                                  font-size: 0.82rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-family: inherit;
+                                  /* iPhoneで▶⏸等の記号が絵文字色付きの丸背景で表示されるのを防ぐ（2026-09-23ユーザー指摘） */
+                                  font-variant-emoji: text; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
   .pl-ctrl > button:hover, .pl-ctrl > a:hover { background: #2a2a40; }
   .pl-ctrl > button.on { background: #2a2050; color: #b9a8ff; }
   .pl-ctrl > button.rnd.on { background: #3a2415; color: #f0a060; }
@@ -183,6 +191,7 @@
   .pl-playlist-head { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 6px 4px; background: #0e0e16; color: #9a86e0; font-size: 0.72rem; font-weight: 700; }
   .pl-playlist-head button { border: none; background: transparent; color: #889; font-size: 0.9rem; cursor: pointer; padding: 2px 6px; }
   .pl-playlist-empty { padding: 14px 4px; color: #667; font-size: 0.75rem; }
+  .pl-playlist-sep { padding: 6px 4px 4px; color: #667; font-size: 0.66rem; border-top: 1px solid #2a2a3a; margin-top: 4px; }
   .pl-row { display: flex; gap: 10px; align-items: center; padding: 6px 4px; border-top: 1px solid #1c1c2a; cursor: pointer; }
   .pl-row:hover { background: #171724; }
   .pl-row.cur { background: #201c38; }
@@ -190,15 +199,6 @@
   .pl-row-info { min-width: 0; flex: 1 1 auto; }
   .pl-row-title { font-size: 0.78rem; color: #e2e2e2; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .pl-row-sub { font-size: 0.66rem; color: #889; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  /* 全画面表示（ノンクレジット映像。ボタン式YouTubeプレイヤーを画面いっぱいに表示） */
-  .pl-full[hidden] { display: none; }
-  .pl-full { position: fixed; inset: 0; z-index: 3000; background: #000; }
-  .pl-full-frame { width: 100%; height: 100%; }
-  .pl-full-frame iframe { width: 100%; height: 100%; border: none; display: block; }
-  .pl-full-close { position: absolute; top: 10px; right: 14px; z-index: 3001; background: rgba(0,0,0,0.6); color: #fff; border: none; border-radius: 6px; width: 36px; height: 36px; font-size: 1.05rem; cursor: pointer; }
-  .pl-full-msg[hidden] { display: none; }
-  .pl-full-msg { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; color: #ddd; font-size: 0.85rem; text-align: center; padding: 20px; }
-  .pl-full-msg a { color: #e06070; }
   @media (max-width: 640px) {
     .pl-inner { flex-direction: column; gap: 6px; align-items: stretch; }
     .pl-topright { position: static; justify-content: flex-end; flex-wrap: wrap; }
@@ -281,13 +281,13 @@
   </div>
 </div>
 
-<div id="ae-player" hidden>
+<div id="ae-player" class="big" hidden>
   <div class="pl-playlist" id="pl-playlist" hidden>
-    <div class="pl-playlist-head"><span>プレイリスト</span><button type="button" id="pl-playlist-close" aria-label="閉じる">✕</button></div>
+    <div class="pl-playlist-head"><span id="pl-playlist-title">プレイリスト</span><button type="button" id="pl-playlist-close" aria-label="閉じる">✕</button></div>
     <div class="pl-playlist-body" id="pl-playlist-body"></div>
   </div>
   <div class="pl-inner">
-    <div class="pl-video"><div id="pl-mount"></div></div>
+    <div class="pl-video"><div id="pl-mount"></div><video id="pl-video-el" playsinline hidden></video></div>
     <div class="pl-side">
       <div class="pl-topright" id="pl-topright">
         <button type="button" id="pl-favanime" class="fav-anime" title="この曲のアニメをお気に入りに登録">♡ アニメをお気に入りに</button>
@@ -317,26 +317,20 @@
         <span class="pl-adj-info" id="pl-adj-info"></span>
       </div>
       <div class="pl-ctrl">
-        <button type="button" id="pl-prev" title="前の曲" aria-label="前の曲">⏮</button>
-        <button type="button" id="pl-toggle" title="再生/一時停止" aria-label="再生/一時停止">⏸</button>
-        <button type="button" id="pl-next" title="次の曲" aria-label="次の曲">⏭</button>
-        <button type="button" id="pl-rand" class="rnd" title="ランダム再生の切替">🔀</button>
+        <button type="button" id="pl-prev" title="前の曲" aria-label="前の曲">◀◀</button>
+        <button type="button" id="pl-toggle" title="再生/一時停止" aria-label="再生/一時停止">❚❚</button>
+        <button type="button" id="pl-next" title="次の曲" aria-label="次の曲">▶▶</button>
+        <button type="button" id="pl-rand" class="rnd" title="ランダム再生の切替">⇄</button>
         <button type="button" id="pl-sabi" title="サビだけ再生の切替">サビだけ</button>
-        <button type="button" id="pl-playlist-btn" title="再生する曲のプレイリストを表示">📋</button>
+        <button type="button" id="pl-playlist-btn" title="再生キューを表示">▼</button>
         <span class="pl-rate" id="pl-rate">
           <span class="rate-set" id="pl-rate-set"></span>
           <span class="mood-set" id="pl-mood-set"></span>
         </span>
-        <button type="button" id="pl-size" title="プレイヤーの大きさ" aria-label="プレイヤーの大きさ">⤢</button>
-        <button type="button" id="pl-fullscreen" title="全画面表示（ノンクレジット映像）">⛶</button>
+        <button type="button" id="pl-fullscreen" title="拡大表示の切替">⛶</button>
       </div>
     </div>
   </div>
-</div>
-<div class="pl-full" id="pl-full" hidden>
-  <button type="button" class="pl-full-close" id="pl-full-close" aria-label="全画面を閉じる">✕</button>
-  <div class="pl-full-frame" id="pl-full-frame"></div>
-  <div class="pl-full-msg" id="pl-full-msg" hidden></div>
 </div>
 
 <script>window.MOBILE_HUB_PLAYER = true;</script>
@@ -357,6 +351,7 @@
   // 個人用モード（Cloudflare の非公開配信）: 個人用ビルドだけが data/personal-audio-data.js（動画ID→音源の長さ）を持つ。
   // このとき再生は YouTube ではなく自分の音源ファイル（audio/{動画ID}.m4a）を <audio> で流す。公開版（mobile-hub）には音源も一覧も無い
   const PERSONAL_AUDIO = window.PERSONAL_AUDIO || null;
+  const PERSONAL_VIDEO = window.PERSONAL_VIDEO || null;
   const PERSONAL = !!PERSONAL_AUDIO;
   const EMBED_OK = PERSONAL || window.MOBILE_HUB_PLAYER === true || location.protocol === "http:" || location.protocol === "https:";
   if (window.MOBILE_HUB_PLAYER === true) document.body.classList.add("mobile-hub");
@@ -421,12 +416,22 @@
     // 個人用モードでも、まず動画（ノンクレジット映像）での再生を試みる（makeHybridPlayer）。ダウンロード済み音源が無い曲でも
     // 埋め込みさえできれば再生できるので、ok はダウンロード済みかどうかを問わない（無くても動画がダメなときだけ音声側で失敗する）
     const cands = [];
-    // 個人用モードで、TVサイズしか無い曲にフルサイズ音源（y.fa。TVサイズの音が中に見つかった同じ録音）があれば、それを最優先で使う
+    // 再生はTVサイズ版を基本にする（2026-09-23ユーザー指示）。y.id（従来の総合1位）がTVサイズ版と別ならその後に控える
+    if (y.tv) cands.push({ id: y.tv.id, k: y.tv.k, o: y.tv.o, ok: true });
+    // 個人用モードで、TVサイズしか無い曲にフルサイズ音源（y.fa。TVサイズの音が中に見つかった同じ録音）があれば、それも使う
     if (PERSONAL && y.fa) cands.push({ id: y.fa.id, k: y.fa.k, o: y.fa.o, ok: true, full: true });
     cands.push({ id: y.id, k: y.k, o: y.o, ok: PERSONAL ? true : y.e !== 0 });
     if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: true });
+    // TVサイズ版が無くフル尺版しか無い曲は、フル尺を1:30に切って代用する（ランダム再生の対象外＝isTrimmedOnly()で判定）
+    if (!y.tv && y.full) cands.push({ id: y.full.id, k: y.full.k, o: y.full.o, ok: true, full: true, trimmed: true });
     for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id)) return cands[i];
     return null;
+  }
+  const TRIM_LEN = 90;                 // フル尺のみの曲を代用する長さ（TVサイズの典型的な長さに合わせる）
+  // 実際に再生する動画がフル尺の代用（trimmed）かどうか。ランダム再生から除く判定に使う
+  function isTrimmedOnly(t) {
+    const s = playSource(t);
+    return !!(s && s.trimmed);
   }
   // サビ位置: 端末で微調整した値（prefs.chorusAdj）があればそれ、無ければ推定値（CH）
   function chorusFor(id) {
@@ -783,23 +788,26 @@
   function songWeight(s) {
     const fs = workFavState(s.w);
     const fw = fs >= 2 ? 1.3 : fs >= 1 ? 1.15 : 1.0;
-    return Math.min(W_MAX, Math.max(W_MIN, W_RATE[rateOf(s.key)] * fw));
+    const tw = s.t.yt && s.t.yt.tv ? 1.3 : 1.0;    // TVサイズ版が用意されている曲を優先（2026-09-23ユーザー指示）
+    return Math.min(W_MAX, Math.max(W_MIN, W_RATE[rateOf(s.key)] * fw * tw));
   }
   function playable(s) {
     if (!EMBED_OK || !playSource(s.t)) return false;
     if (chorusMode && !chorusOf(s.t)) return false;
+    if (isTrimmedOnly(s.t)) return false;    // フル尺を1:30に切った代用曲はランダム再生の対象外（2026-09-23ユーザー指示）
     return true;
   }
-  function pickRandom() {
-    let pool = allSongs.filter(playable);
-    let note = "";
+  // ---- ランダム再生キュー（2026-09-23ユーザー指示: 次に流す曲を10曲までシャッフルして持ち、残り3曲以下で10曲まで補充する） ----
+  let randomQueue = [];       // [{s,explore}, ...]（先頭が次に流す曲）
+  const QUEUE_MAX = 10, QUEUE_REFILL_AT = 3;
+  function drawOne(excludeKeys) {
+    let pool = allSongs.filter(playable).filter(function (s) { return excludeKeys.indexOf(s.key) < 0; });
+    if (!pool.length) pool = allSongs.filter(playable);        // 除外しすぎて空になったら除外なしで選び直す
     if (!pool.length) return null;
-    const fresh = pool.filter(function (s) { return recent.indexOf(s.key) < 0; });
-    const use = fresh.length >= Math.min(10, pool.length) ? fresh : pool;
     let pick = null, explore = false;
     if (Math.random() < EXPLORE_P) {
       const byWork = {};
-      use.forEach(function (s) { if (!workRatedCount(s.w)) (byWork[s.w.id] = byWork[s.w.id] || []).push(s); });
+      pool.forEach(function (s) { if (!workRatedCount(s.w)) (byWork[s.w.id] = byWork[s.w.id] || []).push(s); });
       const ids = Object.keys(byWork);
       if (ids.length) {
         // 作品は曲数の平方根で重み付けして選ぶ（曲数の少ない作品の曲だけが極端に多く流れないように）→ その中の曲は等確率
@@ -811,24 +819,45 @@
     }
     if (!pick) {
       let sum = 0;
-      const ws = use.map(function (s) { const x = songWeight(s); sum += x; return x; });
+      const ws = pool.map(function (s) { const x = songWeight(s); sum += x; return x; });
       let r = Math.random() * sum;
-      for (let i = 0; i < use.length; i++) { r -= ws[i]; if (r <= 0) { pick = use[i]; break; } }
-      if (!pick) pick = use[use.length - 1];
+      for (let i = 0; i < pool.length; i++) { r -= ws[i]; if (r <= 0) { pick = pool[i]; break; } }
+      if (!pick) pick = pool[pool.length - 1];
     }
-    return { s: pick, explore: explore, note: note };
+    return { s: pick, explore: explore };
   }
-  function playRandom(fromNext) {
-    const r = pickRandom();
+  function fillQueue(force) {
+    if (force) randomQueue = [];
+    const excl = recent.concat(randomQueue.map(function (x) { return x.s.key; }));
+    while (randomQueue.length < QUEUE_MAX) {
+      const r = drawOne(excl);
+      if (!r) break;
+      randomQueue.push(r);
+      excl.push(r.s.key);
+    }
+    if (playlistOpen) renderPlaylist();
+  }
+  function playRandom(fromNext, restart) {
+    if (restart || randomQueue.length <= QUEUE_REFILL_AT) fillQueue(!!restart);
+    const r = randomQueue.shift();
     if (!r) { plMsg("ランダムで流せる曲がありません（サイト内で再生できる曲・サビ位置のある曲が必要です）"); return; }
     if (cur && fromNext !== false) playedStack.push({ w: cur.w, t: cur.t });
     if (playedStack.length > 50) playedStack.shift();
     randomMode = true;
-    playSong(r.s.w, r.s.t, { explore: r.explore, note: r.note });
+    playSong(r.s.w, r.s.t, { explore: r.explore });
+    if (randomQueue.length <= QUEUE_REFILL_AT) fillQueue(false);   // 再生した曲を除いた後、残りが少なければ即座に補充
   }
-  document.getElementById("btn-random").onclick = function () { playRandom(true); };
-  document.getElementById("btn-random-chorus").onclick = function () { setChorusMode(true); playRandom(true); };
-  document.getElementById("pl-rand").onclick = function () { if (randomMode) { randomMode = false; syncModeButtons(); } else { playRandom(true); } };
+  // ランダム再生キューだけをシャッフルし直す（2026-09-23ユーザー指示: 今流れている曲は変更しない）。
+  // btn-random(🔀 ランダム再生)・pl-rand(⇄)はどちらもこの関数を呼ぶ共通ボタンとする。
+  function randomizeQueue() {
+    fillQueue(true);
+    randomMode = true;
+    syncModeButtons();
+    if (playlistOpen) renderPlaylist();
+  }
+  document.getElementById("btn-random").onclick = randomizeQueue;
+  document.getElementById("btn-random-chorus").onclick = function () { setChorusMode(true); playRandom(true, true); };
+  document.getElementById("pl-rand").onclick = randomizeQueue;
   function syncModeButtons() {
     document.getElementById("pl-rand").classList.toggle("on", randomMode);
   }
@@ -839,7 +868,8 @@
   function playlistItems() {
     if (randomMode) {
       const seen = {};
-      return recent.map(function (k) { return allSongs.find(function (s) { return s.key === k; }); }).filter(function (s) { return s && !seen[s.key] && (seen[s.key] = 1); });
+      // ランダム再生中は「次に流れるキュー」だけを表示する（2026-09-23ユーザー指示: キューリストを表示）
+      return randomQueue.map(function (r) { return r.s; }).filter(function (s) { return !seen[s.key] && (seen[s.key] = 1); });
     }
     const wl = openWorkObj ? [openWorkObj] : works;
     const ctx = [];
@@ -849,9 +879,12 @@
   function renderPlaylist() {
     const body = document.getElementById("pl-playlist-body");
     const items = playlistItems();
+    document.getElementById("pl-playlist-title").textContent = randomMode ? "再生キュー" : "プレイリスト";
     body.innerHTML = "";
     if (!items.length) { body.appendChild(el("div", "pl-playlist-empty", randomMode ? "まだ何も流れていません" : "曲がありません")); return; }
-    items.forEach(function (s) {
+    const upcomingStart = randomMode ? items.length - randomQueue.length : -1;
+    items.forEach(function (s, i) {
+      if (i === upcomingStart && upcomingStart > 0) body.appendChild(el("div", "pl-playlist-sep", "次に流れる曲"));
       const row = el("div", "pl-row" + (cur && cur.key === s.key ? " cur" : ""));
       const img = document.createElement("img");
       img.className = "pl-row-img"; img.loading = "lazy"; img.decoding = "async"; img.referrerPolicy = "no-referrer"; img.alt = s.w.title;
@@ -861,14 +894,29 @@
       info.appendChild(el("div", "pl-row-title", (s.t.kind ? s.t.kind + "：" : "") + s.t.name));
       info.appendChild(el("div", "pl-row-sub", s.w.title + (s.t.artist ? " ／ " + s.t.artist : "") + (s.t.usage ? "・" + s.t.usage : "")));
       row.appendChild(info);
-      row.addEventListener("click", function () { randomMode = false; syncModeButtons(); playSong(s.w, s.t); });
+      row.addEventListener("click", function () {
+        // キュー（ランダム再生中の「次に流れる曲」画面）から曲をタップした場合は、ランダムモードを
+        // 解除せずそのまま先出し再生する（2026-09-23ユーザー指示: 全曲プレイリスト画面に切り替わってしまう不具合修正）。
+        if (randomMode) {
+          const idx = randomQueue.findIndex(function (r) { return r.s.key === s.key; });
+          if (idx >= 0) randomQueue.splice(idx, 1);
+          if (cur) playedStack.push({ w: cur.w, t: cur.t });
+          if (playedStack.length > 50) playedStack.shift();
+          playSong(s.w, s.t);
+          if (randomQueue.length <= QUEUE_REFILL_AT) fillQueue(false);
+        } else {
+          playSong(s.w, s.t);
+        }
+      });
       body.appendChild(row);
     });
   }
   function togglePlaylist(force) {
     playlistOpen = typeof force === "boolean" ? force : !playlistOpen;
     document.getElementById("pl-playlist").hidden = !playlistOpen;
-    document.getElementById("pl-playlist-btn").classList.toggle("on", playlistOpen);
+    const btn = document.getElementById("pl-playlist-btn");
+    btn.classList.toggle("on", playlistOpen);
+    btn.textContent = playlistOpen ? "▲" : "▼";
     if (playlistOpen) renderPlaylist();
     fitPadding();
   }
@@ -938,7 +986,7 @@
     const c0 = chorusMode ? chorusFor(src.id) : null;
     const c = c0 ? [c0[0], c0[1], c0[2]] : null;
     if (chorusMode && !c) { plMsg("この曲はサビ位置がまだ無いので、メイン部分から流します"); }
-    cur = { w: w, t: t, key: key, src: src, sabi: c, ended: false };
+    cur = { w: w, t: t, key: key, src: src, sabi: c, ended: false, trimEnd: src.trimmed ? TRIM_LEN : null };
     recent.push(key); if (recent.length > RECENT_N) recent.shift();
     setMediaSession(w, t);
     document.getElementById("pl-title").textContent = (t.kind ? t.kind + "：" : "") + t.name;
@@ -946,7 +994,7 @@
     const badge = document.getElementById("pl-badge");
     badge.className = "pl-badge" + (src.o ? "" : " unofficial");
     const mst = c ? 0 : mainStartOf(src.id);
-    badge.textContent = (src.o ? "公式" : "※非公式") + (src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") +
+    badge.textContent = (src.o ? "公式" : "※非公式") + (src.trimmed ? "（フル尺を1:30に短縮・ランダム対象外）" : src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") +
       (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : mst > 1 ? "　イントロを省略（" + fmt(mst) + "〜）" : "");
     document.getElementById("pl-open").href = ytUrl(src.id, c ? c[0] : mst);
     if (opts.explore) plMsg("まだ評価のない作品です。気に入ったら評価を付けてください");
@@ -1014,56 +1062,108 @@
     a.addEventListener("error", function () { onErr({ data: 5 }); });     // 5 = 一時的な失敗扱い（再生不可として保存しない）
     return api;
   }
-  // 個人用モードでも、まず実際のYouTube動画（ノンクレジット映像）での再生を試み、埋め込み不可の曲だけダウンロード済みの音声にフォールバックする
-  // （2026-09-22ユーザー指示: バックグラウンド再生も動画のものにし、全画面表示は「元々再生していた動画を確認できるようになるだけ」にする）
+  // 個人用モードの動画ファイル再生（Cloudflareに保存した動画そのもの。2026-09-22ユーザー指示: 曲の再生は全て動画の再生で行う）。
+  // makeLocalPlayer（音声のみ）と同じ構成の <video> ラッパー
+  function makeVideoFilePlayer() {
+    const v = document.getElementById("pl-video-el");
+    v.preload = "auto";
+    let vid = null;
+    const api = {
+      _v: v,
+      getPlayerState: function () { return v.error ? -1 : v.ended ? 0 : v.paused ? (v.currentTime > 0 ? 2 : 5) : (v.readyState < 3 ? 3 : 1); },
+      getCurrentTime: function () { return v.currentTime || 0; },
+      getDuration: function () { return isFinite(v.duration) ? v.duration : 0; },
+      seekTo: function (s) { try { v.currentTime = Math.max(0, s); } catch (e) { /* メタデータ前は無視 */ } },
+      playVideo: function () { const p = v.play(); if (p && p.catch) p.catch(function () { /* 自動再生制限。▶を押してもらう */ }); },
+      pauseVideo: function () { v.pause(); },
+      setVolume: function (vol) { v.volume = Math.max(0, Math.min(1, vol / 100)); },
+      getVideoData: function () { return { video_id: vid }; },
+      loadVideoById: function (o) {
+        vid = o.videoId;
+        const st = o.startSeconds || 0;
+        v.src = "video/" + encodeURIComponent(vid) + ".mp4";
+        const onMeta = function () { v.removeEventListener("loadedmetadata", onMeta); if (st) v.currentTime = st; };
+        v.addEventListener("loadedmetadata", onMeta);
+        v.load();
+        api.playVideo();
+      }
+    };
+    return api;
+  }
+  // 個人用モードの3段構え: ①この曲の動画ファイルを確保済みなら、それを再生（映像・音声とも自前。広告も埋め込み制限も無い）
+  // ②未確保ならYouTube埋め込みでの再生を試み ③埋め込みも失敗したらダウンロード済みの音声（無ければ再生不可）
+  // （2026-09-22ユーザー指示: 曲の再生は全て動画の再生で行う。動画ファイルの確保が進むまでの間の暫定フォールバック）
   let lastLoadReq = null;
-  function makeHybridPlayer() {
+  function makeTieredPlayer() {
     const localApi = makeLocalPlayer();
+    const videoApi = makeVideoFilePlayer();
     let mode = "video", vp = null;
-    function showVideo(show) { document.querySelector(".pl-video").style.display = show ? "" : "none"; }
+    function show(which) {
+      document.getElementById("pl-mount").style.display = which === "embed" ? "" : "none";
+      videoApi._v.hidden = which !== "file";
+      document.querySelector(".pl-video").style.display = which === "audio" ? "none" : "";
+    }
     function fallbackToAudio(o) {
       mode = "audio";
-      showVideo(false);
+      show("audio");
       localApi.loadVideoById(o);
     }
+    function fallbackToEmbed(o) {
+      mode = "embed";
+      show("embed");
+      loadApi(function () {
+        if (lastLoadReq !== o) return;
+        if (!vp) {
+          // onReady/onError は動画プレイヤーの生成時に一度だけ登録され、以後すべての曲の読み込みで使い回される。
+          // そのためハンドラの中では、生成時の o ではなく常に「今の」lastLoadReq を参照する（さもないと2曲目以降でエラー時のフォールバックが効かない）
+          vp = new YT.Player("pl-mount", {
+            width: "100%", height: "100%", videoId: o.videoId,
+            playerVars: { playsinline: 1, rel: 0, modestbranding: 1, autoplay: 1 },
+            events: {
+              onReady: function () { vp.seekTo(lastLoadReq.startSeconds || 0, true); vp.playVideo(); },
+              onStateChange: function (e) { if (mode === "embed") onState(e); },
+              onError: function () { if (mode === "embed") fallbackToAudio(lastLoadReq); }
+            }
+          });
+        } else {
+          vp.loadVideoById(o);
+        }
+      });
+    }
+    function api(which) { return which === "file" ? videoApi : which === "embed" ? vp : localApi; }
     return {
-      isVideoMode: function () { return mode === "video"; },
+      isVideoMode: function () { return mode === "file" || mode === "embed"; },
       volumeSupported: true,
-      getPlayerState: function () { return mode === "video" ? (vp && vp.getPlayerState ? vp.getPlayerState() : -1) : localApi.getPlayerState(); },
-      getCurrentTime: function () { return mode === "video" ? (vp && vp.getCurrentTime ? vp.getCurrentTime() : 0) : localApi.getCurrentTime(); },
-      getDuration: function () { return mode === "video" ? (vp && vp.getDuration ? vp.getDuration() : 0) : localApi.getDuration(); },
-      seekTo: function (s) { if (mode === "video" && vp && vp.seekTo) vp.seekTo(s, true); else localApi.seekTo(s); },
-      playVideo: function () { if (mode === "video" && vp && vp.playVideo) vp.playVideo(); else localApi.playVideo(); },
-      pauseVideo: function () { if (mode === "video" && vp && vp.pauseVideo) vp.pauseVideo(); else localApi.pauseVideo(); },
-      setVolume: function (v) { if (vp && vp.setVolume) vp.setVolume(v); localApi.setVolume(v); },
-      getVideoData: function () { return mode === "video" && vp && vp.getVideoData ? vp.getVideoData() : localApi.getVideoData(); },
+      getPlayerState: function () { const p = api(mode); return p && p.getPlayerState ? p.getPlayerState() : -1; },
+      getCurrentTime: function () { const p = api(mode); return p && p.getCurrentTime ? p.getCurrentTime() : 0; },
+      getDuration: function () { const p = api(mode); return p && p.getDuration ? p.getDuration() : 0; },
+      seekTo: function (s) { const p = api(mode); if (p && p.seekTo) p.seekTo(s, true); },
+      playVideo: function () { const p = api(mode); if (p && p.playVideo) p.playVideo(); },
+      pauseVideo: function () { const p = api(mode); if (p && p.pauseVideo) p.pauseVideo(); },
+      setVolume: function (v) { [videoApi, vp, localApi].forEach(function (p) { if (p && p.setVolume) p.setVolume(v); }); },
+      getVideoData: function () { const p = api(mode); return p && p.getVideoData ? p.getVideoData() : { video_id: null }; },
       loadVideoById: function (o) {
         lastLoadReq = o;
-        mode = "video";
-        showVideo(true);
-        loadApi(function () {
-          if (lastLoadReq !== o) return;                 // 読み込み待ちの間に別の曲へ切り替わった
-          if (!vp) {
-            // onReady/onError は動画プレイヤーの生成時に一度だけ登録され、以後すべての曲の読み込みで使い回される。
-            // そのためハンドラの中では、生成時の o ではなく常に「今の」lastLoadReq を参照する（さもないと2曲目以降でエラー時の音声フォールバックが効かない）
-            vp = new YT.Player("pl-mount", {
-              width: "100%", height: "100%", videoId: o.videoId,
-              playerVars: { playsinline: 1, rel: 0, modestbranding: 1, autoplay: 1 },
-              events: {
-                onReady: function () { vp.seekTo(lastLoadReq.startSeconds || 0, true); vp.playVideo(); },
-                onStateChange: function (e) { if (mode === "video") onState(e); },
-                onError: function () { if (mode === "video") fallbackToAudio(lastLoadReq); }
-              }
-            });
-          } else {
-            vp.loadVideoById(o);
-          }
-        });
+        if (PERSONAL_VIDEO && PERSONAL_VIDEO[o.videoId] != null) {
+          mode = "file";
+          show("file");
+          videoApi.loadVideoById(o);
+        } else {
+          fallbackToEmbed(o);
+        }
       }
     };
   }
+  (function () {
+    const v = document.getElementById("pl-video-el");
+    v.addEventListener("playing", function () { onState({ data: 1 }); });
+    v.addEventListener("pause", function () { if (!v.ended) onState({ data: 2 }); });
+    v.addEventListener("ended", function () { onState({ data: 0 }); });
+    v.addEventListener("waiting", function () { onState({ data: 3 }); });
+    v.addEventListener("error", function () { onErr({ data: 5 }); });
+  })();
   function initPersonalPlayer() {
-    ytPlayer = makeHybridPlayer();
+    ytPlayer = makeTieredPlayer();
     playerReady = true;
     ytPlayer.setVolume(prefs.vol);
     startPoll();
@@ -1102,7 +1202,7 @@
   if (EMBED_OK) initPlayer();
 
   function onState(e) {
-    if (e.data === 1) { plToggle.textContent = "⏸"; errStreak = 0; }
+    if (e.data === 1) { plToggle.textContent = "❚❚"; errStreak = 0; }
     else if (e.data === 2) plToggle.textContent = "▶";
     else if (e.data === 0) next();
   }
@@ -1241,6 +1341,7 @@
       const now = ytPlayer.getCurrentTime();
       document.getElementById("pl-cur").textContent = fmt(now);
       moveHead();
+      if (cur && cur.trimEnd && now >= cur.trimEnd && !cur.ended) { cur.ended = true; next(); }
       document.getElementById("pl-dur").textContent = fmt(dur);
       if (!seeking && dur > 0) seekEl.value = Math.round(now / dur * 1000);
     }, 250);
@@ -1282,62 +1383,17 @@
   document.getElementById("pl-prev").onclick = prev;
   document.getElementById("pl-next").onclick = next;
   plToggle.onclick = function () { if (!ytPlayer || !ytPlayer.getPlayerState) return; if (ytPlayer.getPlayerState() === 1) ytPlayer.pauseVideo(); else ytPlayer.playVideo(); };
-  document.getElementById("pl-size").onclick = function () { barEl.classList.toggle("big"); fitPadding(); };
 
-  // ---- 全画面表示（ノンクレジット映像）: 個人用モード（音声のみ）でも、全画面のときだけ実際のYouTube動画を埋め込んで映像を流す ----
-  const fullEl = document.getElementById("pl-full");
-  const fullMsgEl = document.getElementById("pl-full-msg");
-  let fsPlayer = null, fsWasPlaying = false;
-  function fsShowMsg(html) { fullMsgEl.innerHTML = html; fullMsgEl.hidden = false; }
-  function fsPlayerReady() {
-    fullMsgEl.hidden = true;
-    if (fsPlayer.playVideo) fsPlayer.playVideo();
-  }
-  function fsPlayerError(e) {
-    const code = e && e.data;
-    fsShowMsg("この動画は全画面では再生できません（埋め込み不可・エラー " + code + "）。<br><a href=\"" + ytUrl(cur ? cur.src.id : "") + "\" target=\"_blank\" rel=\"noopener noreferrer\">YouTubeで開く</a>");
-  }
-  function openFullscreen() {
+  // ---- 拡大表示（2026-09-23ユーザー指示: 全画面モードは廃止。動画は左下に表示するのを既定にし、
+  //      このボタンで画面の8割ほどの大きさに広げる／戻すだけのトグルにする。2026-09-24: プレイヤーの
+  //      大きさ切替(pl-size、"big"クラス)は廃止し常時ON化。このボタンの拡大/縮小トグル機能を継承） ----
+  document.getElementById("pl-fullscreen").addEventListener("click", function () {
     if (!cur) return;
-    // 動画で再生中（非個人用モード、または個人用モードでも埋め込みに成功している曲）は、いま流れているその動画をそのまま全画面にするだけ
-    if (!PERSONAL || (ytPlayer && ytPlayer.isVideoMode && ytPlayer.isVideoMode())) {
-      const box = document.querySelector(".pl-video");
-      if (box.requestFullscreen) box.requestFullscreen().catch(function () { /* ブロックされても再生は続く */ });
-      return;
-    }
-    // 個人用モードでこの曲が埋め込みできず音声のみにフォールバック済みの場合だけ、別途動画を読み込んで全画面表示する
-    fsWasPlaying = !!(ytPlayer && ytPlayer.getPlayerState && ytPlayer.getPlayerState() === 1);
-    if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
-    const t0 = ytPlayer && ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : 0;
-    const id = cur.src.id;
-    fullMsgEl.hidden = true;
-    fullEl.hidden = false;
-    if (fullEl.requestFullscreen) fullEl.requestFullscreen().catch(function () { /* 全画面がブロックされても、オーバーレイ表示のまま続ける */ });
-    loadApi(function () {
-      if (fsPlayer && fsPlayer.loadVideoById) { fsPlayer.loadVideoById({ videoId: id, startSeconds: t0 }); return; }
-      fsPlayer = new YT.Player("pl-full-frame", {
-        width: "100%", height: "100%", videoId: id,
-        playerVars: { playsinline: 1, rel: 0, modestbranding: 1, autoplay: 1, start: Math.floor(t0) },
-        events: { onReady: fsPlayerReady, onError: fsPlayerError }
-      });
-    });
-  }
-  function closeFullscreen() {
-    if (document.fullscreenElement) document.exitFullscreen().catch(function () { /* 無視 */ });
-    const t = fsPlayer && fsPlayer.getCurrentTime ? fsPlayer.getCurrentTime() : null;
-    if (fsPlayer && fsPlayer.pauseVideo) fsPlayer.pauseVideo();
-    fullEl.hidden = true;
-    if (ytPlayer) {
-      if (t != null && ytPlayer.seekTo) ytPlayer.seekTo(t, true);
-      if (fsWasPlaying && ytPlayer.playVideo) ytPlayer.playVideo();
-    }
-  }
-  document.getElementById("pl-fullscreen").addEventListener("click", openFullscreen);
-  document.getElementById("pl-full-close").addEventListener("click", closeFullscreen);
-  document.addEventListener("fullscreenchange", function () { if (!document.fullscreenElement && !fullEl.hidden) closeFullscreen(); });
+    barEl.classList.toggle("enlarged");
+  });
   document.getElementById("pl-close").onclick = function () {
     if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
-    clearTimeout(skipTimer); barEl.hidden = true; cur = null; randomMode = false; applyPlaying(); fitPadding();
+    clearTimeout(skipTimer); barEl.hidden = true; barEl.classList.remove("enlarged"); cur = null; randomMode = false; applyPlaying(); fitPadding();
   };
 
   // ---- 評価データの書き出し・読み込み ----
