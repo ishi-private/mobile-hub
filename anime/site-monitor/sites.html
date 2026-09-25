@@ -175,20 +175,20 @@
   <table>
     <thead><tr><th>サイト</th><th>確認方式</th><th>精度</th></tr></thead>
     <tbody>
-      <tr><td><a class="site-link" href="https://animeheaven.me/" target="_blank" rel="noopener noreferrer">AnimeHeaven</a></td><td>今年は<code>animeheaven.me/</code>ホーム、過去は<code>{year}{season}.php</code>。原題(ローマ字)も併記されるため照合精度が高い</td><td>高</td></tr>
+      <tr><td><a class="site-link" href="https://animeheaven.me/" target="_blank" rel="noopener noreferrer">AnimeHeaven</a></td><td>2026-09-25更新: <code>search.php?s=&lt;2文字&gt;</code>の全組合せ(26×26+数字10=686クエリ)でDB全件(7599件)と突き合わせ。カタログ1616件抽出、確信一致191件(2.5%)</td><td>中（原題データなし・カタログ自体が小さい）</td></tr>
       <tr><td><a class="site-link" href="https://anikoto.net/az-list/" target="_blank" rel="noopener noreferrer">Anikoto</a></td><td><code>/filter?year[]={year}&amp;page=N</code>。<code>data-jp</code>属性で原題を別取得できる</td><td>高</td></tr>
       <tr><td><a class="site-link" href="https://www.miruro.tv/trending" target="_blank" rel="noopener noreferrer">Miruro</a></td><td>SPAのためPlaywright必須。<code>?season=X&amp;year=Y&amp;page=N</code>。原題(ローマ字)も併記</td><td>高</td></tr>
       <tr><td><a class="site-link" href="https://animepahe.ch/series/" target="_blank" rel="noopener noreferrer">AnimePahe</a></td><td><code>/series/?season[]={season}-{year}</code>。検索ボックスのAPIのみCloudflare保護だが、この一覧ページはrequestsで取得可</td><td>低（原題データなし）</td></tr>
       <tr><td><a class="site-link" href="https://animenosub.to/anime/" target="_blank" rel="noopener noreferrer">AnimeNoSub</a></td><td><code>/anime/?season[]={season}-{year}</code></td><td>低（原題データなし）</td></tr>
       <tr><td><a class="site-link" href="https://monoschinos.st/animes" target="_blank" rel="noopener noreferrer">MonosChinos</a></td><td><code>/animes?fecha={year}&amp;p=N</code></td><td>低（原題データなし・2025年は取得数が少なく要注意）</td></tr>
-      <tr><td><a class="site-link" href="https://aniwatchtv.ro/az-list/" target="_blank" rel="noopener noreferrer">AniWatch.tv</a></td><td>年代/シーズン絞り込みなし。<code>/az-list/</code>の全件をDB全体と突き合わせる方式（年代別ではない）</td><td>未実装</td></tr>
-      <tr><td><a class="site-link" href="https://gogoanime.by/series/" target="_blank" rel="noopener noreferrer">GogoAnime</a></td><td>季節フィルターに2025/2026年の選択肢自体が無いため年代別チェック不可。個別作品の存在確認のみ</td><td>対象外</td></tr>
-      <tr><td><a class="site-link" href="https://www.animegg.org/" target="_blank" rel="noopener noreferrer">AnimeGG</a></td><td>絞り込み手段が一切無いため年代別チェック不可（検索用ページ無し→ホームページへリンク）。個別作品の存在確認のみ</td><td>対象外</td></tr>
+      <tr><td><a class="site-link" href="https://aniwatchtv.ro/az-list/" target="_blank" rel="noopener noreferrer">AniWatch.tv</a></td><td>2026-09-25実装: 年代/シーズン絞り込みが無いため、<code>/az-list/?anime-page=N</code>の全ページ(40ページ)を辿ってカタログ化しDB全件と突き合わせ（年代別ではない）。カタログ1089件抽出、確信一致109件(1.4%)</td><td>低（原題データなし・カタログ自体が小さい）</td></tr>
+      <tr><td><a class="site-link" href="https://gogoanime.by/series/" target="_blank" rel="noopener noreferrer">GogoAnime</a></td><td>2026-09-25更新: 季節フィルターに2025/2026年の選択肢が無いため、代わりに<code>?s=&lt;2文字&gt;</code>の全組合せ検索(ページング対応)でDB全件と突き合わせ。カタログ859件抽出、確信一致464件(6.1%)</td><td>中（原題データなし・カタログ自体が小さい）</td></tr>
+      <tr><td><a class="site-link" href="https://www.animegg.org/" target="_blank" rel="noopener noreferrer">AnimeGG</a></td><td>2026-09-25更新: 絞り込み手段が無いため、代わりに<code>/search/?q=&lt;2文字&gt;</code>の全組合せ検索でDB全件と突き合わせ。カタログ7780件抽出、確信一致1749件(23.0%)</td><td>中（原題データなし、他3サイトよりカタログが大きく実質的な網羅率も高め）</td></tr>
       <tr><td><a class="site-link" href="https://www4.animeflv.net/" target="_blank" rel="noopener noreferrer">AnimeFlv</a></td><td>2026-09-23時点で接続不可（requests/実ブラウザとも）。復旧まで対象外（検索用ページ未確立→ホームページへリンク）</td><td>対象外</td></tr>
       <tr><td><a class="site-link" href="https://nyaa.si/" target="_blank" rel="noopener noreferrer">Nyaa</a> / <a class="site-link" href="https://new.anidl.org/" target="_blank" rel="noopener noreferrer">AniDL</a> / <a class="site-link" href="https://www.animatetimes.com/" target="_blank" rel="noopener noreferrer">AnimateTimes</a></td><td>トレント検索・DL専用・自DBの一次情報源のため、カタログ網羅性チェックの対象外（いずれもホームページへリンク）</td><td>対象外</td></tr>
     </tbody>
   </table>
-  <p class="section-footnote">「精度」低＝サイト側の一覧に原題/ローマ字表記が無く、DB側のローマ字表記との文字列類似度マッチングが構造的に機能しにくいことを指す（英題翻訳との一致は原理的に判定困難）。詳細は site-monitor/scrape/16_check_year_coverage.py・17_build_low_coverage_list.py を参照。</p>
+  <p class="section-footnote">「精度」低・中＝いずれもサイト側の一覧に原題/ローマ字表記が無く、DB側のローマ字表記との文字列類似度マッチングが構造的に機能しにくいことを指す（英題翻訳との一致は原理的に判定困難）。「中」は「低」よりカタログ件数自体が大きく、実質的な網羅率（確信一致率）が高めに出る傾向がある区分。詳細は site-monitor/scrape/16_check_year_coverage.py・22_extra_sites_az_coverage.py を参照。</p>
   </div>
 </details>
 </section>
@@ -215,7 +215,7 @@
 
 <script>
 const COVERAGE = {
-  "generated_at": "2026-09-23 21:39",
+  "generated_at": "2026-09-25 09:47",
   "total_anime": 182,
   "with_any_link": 174,
   "zero_link": 8,
