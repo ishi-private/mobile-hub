@@ -243,6 +243,7 @@ const ANIME = (ANIME_GUIDE_DATA.anime || []).map(function (a) {
     mal_image_url: a.thumbnail,
     short_title: a.title,
     best_site: pickBestSite(sites),
+    is_movie: !!a.is_movie,
   };
 });
 const ANIME_BY_ID = {};
@@ -339,7 +340,9 @@ function makeHeartBtn(id, onUpdate) {
 
 // ── 分類分離: 劇場版・webアニメ は通常リストから外し、最下部に別セクションとして表示する ──
 const WEB_ANIME_IDS = new Set([7022]); // 衛宮さんちの今日のごはん（webアニメで特殊なため分離）
-function isMovieEntry(a) { return /劇場版|^映画/.test(a.title || ''); }
+// 2026-09-25: タイトルの「劇場版」「映画」正規表現からDB側の is_movie フラグ判定に変更
+// （「違国日記」「SAKAMOTO DAYS」等、接頭辞の無い劇場版タイトルを正規表現では拾えなかったため）
+function isMovieEntry(a) { return !!a.is_movie; }
 function isWebAnimeEntry(a) { return WEB_ANIME_IDS.has(a.anime_db_id); }
 
 const TIERS = { normal: [], web: [], movie: [] };
@@ -355,14 +358,16 @@ let VIEW = 'poster';
 const STATE_FILTER = new Set();  // 1=お気に入り, 2=永久保存版。空=フィルターなし
 let PIN_FILTER = false;
 let RECOMMEND_FILTER = false;
+let MOVIE_ONLY_FILTER = false;
 function anyStateFilterActive() {
-  return STATE_FILTER.size > 0 || PIN_FILTER || RECOMMEND_FILTER;
+  return STATE_FILTER.size > 0 || PIN_FILTER || RECOMMEND_FILTER || MOVIE_ONLY_FILTER;
 }
 function matchesStateFilters(a) {
   const id = a.anime_db_id;
   if (STATE_FILTER.size > 0 && !STATE_FILTER.has(AnimeFavorites.get(id))) return false;
   if (PIN_FILTER && !AnimeFavorites.isInterestPinned(id)) return false;
   if (RECOMMEND_FILTER && !AnimeFavorites.isRecommendedFlag(id)) return false;
+  if (MOVIE_ONLY_FILTER && !a.is_movie) return false;
   return true;
 }
 
@@ -1021,6 +1026,24 @@ function makeRecommendLegendBtn() {
   return btn;
 }
 
+function makeMovieOnlyLegendBtn() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'legend-filter-btn';
+  btn.innerHTML = '<span class="ico">🎬</span><span>劇場版のみ</span>';
+  function render() {
+    btn.classList.toggle('active', MOVIE_ONLY_FILTER);
+    btn.style.borderColor = MOVIE_ONLY_FILTER ? '#fff' : 'transparent';
+  }
+  btn.addEventListener('click', function () {
+    MOVIE_ONLY_FILTER = !MOVIE_ONLY_FILTER;
+    render();
+    renderList(document.getElementById('search').value);
+  });
+  render();
+  return btn;
+}
+
 function renderInterestLegend() {
   const el = document.getElementById('interest-legend');
   el.innerHTML = '';
@@ -1028,6 +1051,7 @@ function renderInterestLegend() {
   el.appendChild(makeStateLegendBtn(1, 'お気に入り'));
   el.appendChild(makePinLegendBtn());
   el.appendChild(makeRecommendLegendBtn());
+  el.appendChild(makeMovieOnlyLegendBtn());
 }
 
 document.getElementById('search').addEventListener('input', e => renderList(e.target.value));

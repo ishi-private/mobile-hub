@@ -178,6 +178,8 @@ const STATE_FILTER = new Set();
 let RECOMMEND_FILTER = false;
 // 今すぐ見たい（ピン留め）のみに絞り込むフィルター
 let PIN_FILTER = false;
+// 劇場版のみに絞り込むフィルター
+let MOVIE_ONLY_FILTER = false;
 
 // ピンマーク（今すぐ見たい）。fill="currentColor"のためCSSのcolorで白/グレーを切替できる
 const PIN_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">' +
@@ -266,6 +268,24 @@ function makePinLegendFilterBtn() {
   return btn;
 }
 
+function makeMovieOnlyLegendFilterBtn() {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "legend-filter-btn";
+  btn.innerHTML = '<span class="star">🎬</span><span>劇場版のみ</span>';
+  function render() {
+    btn.classList.toggle("active", MOVIE_ONLY_FILTER);
+    btn.style.borderColor = MOVIE_ONLY_FILTER ? "#fff" : "transparent";
+  }
+  btn.addEventListener("click", function () {
+    MOVIE_ONLY_FILTER = !MOVIE_ONLY_FILTER;
+    render();
+    renderList(document.getElementById("search").value);
+  });
+  render();
+  return btn;
+}
+
 // 表示優先順位: 今すぐ見たい（ピン留め）が最上位、そのON/OFFそれぞれの中で 永久保存版 → お気に入り の順
 function renderLegend() {
   const el = document.getElementById("star-legend");
@@ -274,6 +294,7 @@ function renderLegend() {
   el.appendChild(makeLegendFilterBtn(2, "永久保存版"));
   el.appendChild(makeLegendFilterBtn(1, "お気に入り"));
   el.appendChild(makeHeartLegendFilterBtn());
+  el.appendChild(makeMovieOnlyLegendFilterBtn());
 
   // 操作説明はiボタンで開閉（既定は非表示）。おすすめボタンの右に配置する。
   const note = document.createElement("span");
@@ -311,6 +332,7 @@ function buildCandidates() {
       primary_season: null,
       episode_text: null,
       popularity_score: null,
+      is_movie: false,
     };
   });
   (ANIME_GUIDE_DATA.anime || []).forEach(function (a) {
@@ -319,6 +341,7 @@ function buildCandidates() {
       byId[id].primary_season = a.primary_season;
       byId[id].episode_text = a.episode_text;
       byId[id].popularity_score = a.popularity_score;
+      byId[id].is_movie = !!a.is_movie;
       if (!byId[id].thumbnail) byId[id].thumbnail = a.thumbnail;
     } else if (AnimeFavorites.isInterestPinned(id)) {
       byId[id] = {
@@ -328,6 +351,7 @@ function buildCandidates() {
         primary_season: a.primary_season,
         episode_text: a.episode_text,
         popularity_score: a.popularity_score,
+        is_movie: !!a.is_movie,
       };
     }
   });
@@ -669,6 +693,7 @@ function renderList(query) {
     if (STATE_FILTER.size > 0 && !STATE_FILTER.has(state)) return false;
     if (PIN_FILTER && !AnimeFavorites.isPinned(a.id)) return false;
     if (RECOMMEND_FILTER && !isRecommended(a.id)) return false;
+    if (MOVIE_ONLY_FILTER && !a.is_movie) return false;
     return true;
   });
   if (q) {
