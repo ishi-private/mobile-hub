@@ -2,9 +2,7 @@
 // 手編集しないこと。再生成: python anime-db/scrape/step23_sync_local_favorites.py
 // ローカルEdgeのlocalStorage(file://)のスナップショット。mobile-hub公開版のみで使用
 // （favorites.jsが、localStorageキーが未設定の場合のみこれを初期値として使う）。
-// 2026-09-24T04:44頃、Edge側file://ストレージから理由不明の消失が発生したため、
-// クラウド(Cloudflare KV, https://anime-favorites-sync.kazitayoshiki.workers.dev/favorites)の
-// バックアップから手動復元。以後はstep23実行時に4キー全0件なら上書きしない安全策を追加済み。
+// 生成日時: 2026-09-25T21:09:24
 window.FAVORITES_LOCAL_SYNC = {
   "star": {
     "210": 1,
