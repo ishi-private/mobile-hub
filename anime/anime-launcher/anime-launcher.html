@@ -156,6 +156,7 @@
                      font-size: 0.8rem; color: #ccc; cursor: pointer; white-space: nowrap; }
   .ctx-menu-item:hover { background: #262632; }
   .ctx-menu-item .ico { font-size: 1rem; width: 18px; text-align: center; flex-shrink: 0; }
+  .ctx-menu-sep { height: 1px; background: #333; margin: 4px 0; }
 
   /* ── 複数シーズン作品: 代表ポスタータップでシーズン選択メニュー ── */
   .poster-group-wrap { position: relative; }
@@ -776,7 +777,29 @@ function showCtxMenu(x, y, id) {
     });
     ctxMenu.appendChild(el);
   });
-  const menuW = 220, menuH = 130;
+
+  // 2026-09-25: 同一作品に複数サイトのリンクが登録されている場合、通常クリックでは
+  // best_site（優先順位1位）しか開けないため、右クリックメニューから全リンクを選べるようにする
+  const anime = ANIME_BY_ID[String(id)];
+  const linkSites = (anime && anime.sites || []).filter(function (s) { return s.url; });
+  if (linkSites.length > 0) {
+    const sep = document.createElement('div');
+    sep.className = 'ctx-menu-sep';
+    ctxMenu.appendChild(sep);
+    linkSites.forEach(function (s) {
+      const el = document.createElement('div');
+      el.className = 'ctx-menu-item';
+      const icoSpan = s.confirmed === false ? '？' : '▶';
+      el.innerHTML = '<span class="ico" style="color:' + (s.color || '#888') + '">' + icoSpan + '</span><span>' + s.label + 'で開く</span>';
+      el.addEventListener('click', function () {
+        window.open(s.url, '_blank', 'noopener,noreferrer');
+        hideCtxMenu();
+      });
+      ctxMenu.appendChild(el);
+    });
+  }
+
+  const menuW = 220, menuH = 130 + linkSites.length * 38;
   ctxMenu.style.left = Math.min(x, window.innerWidth - menuW) + 'px';
   ctxMenu.style.top = Math.min(y, window.innerHeight - menuH) + 'px';
   ctxMenu.style.display = 'block';

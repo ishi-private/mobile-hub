@@ -118,6 +118,16 @@
   .empty-note { max-width: var(--page-max-width); margin: 40px auto; text-align: center;
                  color: #444; font-size: 0.85rem; }
 
+  /* ── 右クリックのコンテキストメニュー（複数サイトのURLを選んで開く） ── */
+  .ctx-menu { position: fixed; z-index: 1000; background: #1c1c24; border: 1px solid #3a3a4a;
+               border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); overflow: hidden;
+               min-width: 200px; display: none; }
+  .ctx-menu-item { display: flex; align-items: center; gap: 9px; padding: 10px 14px;
+                     font-size: 0.8rem; color: #ccc; cursor: pointer; white-space: nowrap; }
+  .ctx-menu-item:hover { background: #262632; }
+  .ctx-menu-item .ico { font-size: 1rem; width: 18px; text-align: center; flex-shrink: 0; }
+  .ctx-menu-header { padding: 8px 14px 4px; font-size: 0.68rem; color: #556; }
+
   /* ── 水平線の下: 視聴済み＋おすすめ（左端）⇔ シーズン・全話数（右端） ── */
   .fav-meta-row { display: flex; align-items: center; justify-content: space-between;
                     gap: 8px; flex-wrap: wrap; min-width: 0;
@@ -163,6 +173,7 @@
 </div>
 
 <script src="../anime-db/data/anime_guide_data.js"></script>
+<script src="../anime-db/data/anime_guide_sites.js"></script>
 <script src="../shared/favorites-data.js"></script>
 <script src="../shared/favorites-local-sync.js"></script>
 <script src="../shared/favorites.js?v=20260924"></script>
@@ -624,6 +635,7 @@ function makeRow(item) {
 function makePosterCard(item) {
   const card = document.createElement("div");
   card.className = "poster-card";
+  card.dataset.id = item.id;
   const state = AnimeFavorites.get(item.id);
   card.style.borderColor = AnimeFavorites.STATE_COLOR[state] || "#333";
   card.addEventListener("click", function () {
@@ -735,6 +747,60 @@ function renderList(query) {
   }
   list.appendChild(frag);
 }
+
+// ── 右クリックのコンテキストメニュー（同一作品に複数サイトのリンクがある場合、全て選んで開ける） ──
+function getAllSitesForId(id) {
+  const fromGuide = (window.ANIME_GUIDE_SITES || {})[String(id)];
+  if (fromGuide && fromGuide.length) return fromGuide;
+  const single = WATCH_SITES[id];
+  return single ? [single] : [];
+}
+
+const ctxMenu = document.createElement("div");
+ctxMenu.className = "ctx-menu";
+document.body.appendChild(ctxMenu);
+function hideCtxMenu() { ctxMenu.style.display = "none"; }
+
+function showCtxMenu(x, y, id) {
+  ctxMenu.innerHTML = "";
+  const sites = getAllSitesForId(id).filter(function (s) { return s.url; });
+  if (sites.length === 0) {
+    const el = document.createElement("div");
+    el.className = "ctx-menu-item";
+    el.innerHTML = '<span class="ico">－</span><span>視聴リンク未登録</span>';
+    ctxMenu.appendChild(el);
+  } else {
+    const header = document.createElement("div");
+    header.className = "ctx-menu-header";
+    header.textContent = "視聴リンクを選んで開く";
+    ctxMenu.appendChild(header);
+    sites.forEach(function (s) {
+      const el = document.createElement("div");
+      el.className = "ctx-menu-item";
+      const icoSpan = s.confirmed === false ? "？" : "▶";
+      el.innerHTML = '<span class="ico" style="color:' + (s.color || "#888") + '">' + icoSpan + "</span><span>" + s.label + "で開く</span>";
+      el.addEventListener("click", function () {
+        window.open(s.url, "_blank", "noopener,noreferrer");
+        hideCtxMenu();
+      });
+      ctxMenu.appendChild(el);
+    });
+  }
+  const menuW = 220, menuH = 40 + sites.length * 38;
+  ctxMenu.style.left = Math.min(x, window.innerWidth - menuW) + "px";
+  ctxMenu.style.top = Math.min(y, window.innerHeight - menuH) + "px";
+  ctxMenu.style.display = "block";
+}
+
+document.getElementById("list").addEventListener("contextmenu", function (e) {
+  const target = e.target.closest("[data-id]");
+  if (!target) return;
+  e.preventDefault();
+  showCtxMenu(e.clientX, e.clientY, target.dataset.id);
+});
+document.addEventListener("click", function (e) {
+  if (!ctxMenu.contains(e.target)) hideCtxMenu();
+});
 
 document.getElementById("search").addEventListener("input", function (e) { renderList(e.target.value); });
 function _refreshFromFavoritesChange() {
