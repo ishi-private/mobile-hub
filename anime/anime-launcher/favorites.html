@@ -556,7 +556,11 @@ function makeRow(item) {
 
   const linkWrap = document.createElement("div");
   linkWrap.className = "fav-link-wrap";
-  const site = WATCH_SITES[item.id];
+  // 2026-09-26: WATCH_SITES単体だとwatch-config.json収録の厳選182作品にしか無く、
+  // 劇場版等フルカタログの作品はここで「視聴リンク未登録」誤表示になっていたため、
+  // getAllSitesForId()（ANIME_GUIDE_SITES優先→WATCH_SITESにフォールバック）に統一
+  const allSites = getAllSitesForId(item.id).filter(function (s) { return s.url; });
+  const site = allSites[0];
   if (site) {
     const a = document.createElement("a");
     a.href = site.url;

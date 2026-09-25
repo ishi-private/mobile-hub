@@ -219,7 +219,11 @@ if (typeof ANIME_GUIDE_DATA === 'undefined') {
   throw new Error('no data');
 }
 
-const _SITE_PRIORITY = ['AnimeHeaven', 'GogoAnime', 'AnimeGG'];
+// 2026-09-26: 網羅性チェックで対応サイトを9サイトに拡張した際、このリストの更新が漏れていた
+// （Anikoto/Miruro/AniWatch.tv等しかリンクが無い作品でbest_siteがnullになりカードが
+// 非リンク化される事故があったため修正。優先順位はanime-db/server.pyの_SITE_PRIORITYと同期）
+const _SITE_PRIORITY = ['Anikoto', 'Miruro', 'AnimeHeaven', 'GogoAnime', 'AniWatch.tv',
+                         'AnimeGG', 'MonosChinos', 'AnimePahe', 'AnimeNoSub'];
 function pickBestSite(sites) {
   const byLabel = {};
   (sites || []).forEach(function (s) { byLabel[s.label] = s; });
