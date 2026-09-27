@@ -79,10 +79,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "2023年版 第1期 第1クール",
         "q": "るろうに剣心 -明治剣客浪漫譚- OP 飛天 Ayase",
         "yt": {
-          "id": "IpTLWGfDrX0",
-          "k": "ot",
-          "o": 0,
-          "ch": "RE:SONG UNIVERSE",
+          "id": "vAKBZeQklQw",
+          "k": "op",
+          "o": 1,
+          "ch": "アニプレックス チャンネル",
           "tv": {
             "id": "vAKBZeQklQw",
             "k": "op",
@@ -446,10 +446,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第104〜128話",
         "q": "NARUTO -ナルト- OP 青春狂騒曲 サンボマスター",
         "yt": {
-          "id": "ma3kps5AHOE",
+          "id": "QbJi8ajOduw",
           "k": "au",
           "o": 1,
           "ch": "サンボマスター",
+          "tv": {
+            "id": "QbJi8ajOduw",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "ma3kps5AHOE",
             "k": "au",
@@ -904,10 +909,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 第1クール（STAGE 1〜12）",
         "q": "コードギアス 反逆のルルーシュ OP COLORS FLOW",
         "yt": {
-          "id": "H7cykKMpp_I",
+          "id": "ny3Mh1fojl0",
           "k": "mv",
           "o": 1,
-          "ch": "FLOW Official YouTube Channel",
+          "ch": "コードギアスチャンネル CODEGEASS Channel",
+          "tv": {
+            "id": "ny3Mh1fojl0",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "H7cykKMpp_I",
             "k": "mv",
@@ -926,6 +936,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "コードギアスチャンネル CODEGEASS Channel",
+          "tv": {
+            "id": "piT9VI2zy5o",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "piT9VI2zy5o",
             "k": "mv",
@@ -940,10 +955,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 STAGE 24・25、SPECIAL EDITION",
         "q": "コードギアス 反逆のルルーシュ OP 瞳ノ翼 access",
         "yt": {
-          "id": "hp-ooLHwq_g",
-          "k": "au",
+          "id": "a8QjQCEiz4g",
+          "k": "mv",
           "o": 1,
-          "ch": "accessofficial",
+          "ch": "Sony Music (Japan)",
+          "tv": {
+            "id": "a8QjQCEiz4g",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "hp-ooLHwq_g",
             "k": "au",
@@ -958,10 +978,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "R2 第1クール（TURN 01〜12）",
         "q": "コードギアス 反逆のルルーシュ OP O2 ORANGE RANGE",
         "yt": {
-          "id": "n-3SrDQiFU4",
+          "id": "HgGcePdMsDY",
           "k": "mv",
           "o": 1,
-          "ch": "ORANGE RANGE",
+          "ch": "コードギアスチャンネル CODEGEASS Channel",
+          "tv": {
+            "id": "HgGcePdMsDY",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "n-3SrDQiFU4",
             "k": "mv",
@@ -980,6 +1005,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "コードギアスチャンネル CODEGEASS Channel",
+          "tv": {
+            "id": "yySkwG-reF4",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "yySkwG-reF4",
             "k": "mv",
@@ -999,10 +1029,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 第1クール（STAGE 1〜12）",
         "q": "コードギアス 反逆のルルーシュ ED 勇侠青春謳 ALI PROJECT",
         "yt": {
-          "id": "b2SxY0zYNRM",
+          "id": "rq692c0Pi1E",
           "k": "mv",
           "o": 1,
-          "ch": "FlyingDog",
+          "ch": "コードギアスチャンネル CODEGEASS Channel",
+          "tv": {
+            "id": "rq692c0Pi1E",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "b2SxY0zYNRM",
             "k": "mv",
@@ -1017,10 +1052,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 第2クール（STAGE 13〜25）、スペシャル",
         "q": "コードギアス 反逆のルルーシュ ED モザイクカケラ SunSet Swish",
         "yt": {
-          "id": "ked9t2AlGTA",
+          "id": "2HeZZIWDwvI",
           "k": "mv",
           "o": 1,
-          "ch": "SunSet Swish Official",
+          "ch": "コードギアスチャンネル CODEGEASS Channel",
+          "tv": {
+            "id": "2HeZZIWDwvI",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "ked9t2AlGTA",
             "k": "mv",
@@ -1039,6 +1079,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "コードギアスチャンネル CODEGEASS Channel",
+          "tv": {
+            "id": "e7k0SUrxhSQ",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "e7k0SUrxhSQ",
             "k": "mv",
@@ -1095,6 +1140,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "dVBVs64xihM",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "dVBVs64xihM",
             "k": "mv",
@@ -1118,6 +1168,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "P9ck5hD47SM",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "P9ck5hD47SM",
             "k": "mv",
@@ -1141,6 +1196,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "hOpRssVsQjc",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "hOpRssVsQjc",
             "k": "mv",
@@ -1172,6 +1232,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "yMu577MgCvw",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "yMu577MgCvw",
             "k": "mv",
@@ -1195,6 +1260,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "LGbjqampSg4",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "LGbjqampSg4",
             "k": "mv",
@@ -1218,6 +1288,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "j0rVanDshhQ",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "j0rVanDshhQ",
             "k": "mv",
@@ -1474,6 +1549,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
+          "tv": {
+            "id": "rQ9pakYRuf4",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "rQ9pakYRuf4",
             "k": "mv",
@@ -1497,6 +1577,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
+          "tv": {
+            "id": "TKF8Sjj3lyw",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "TKF8Sjj3lyw",
             "k": "mv",
@@ -1520,6 +1605,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
+          "tv": {
+            "id": "wTeQL_Cd9r4",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "wTeQL_Cd9r4",
             "k": "mv",
@@ -1631,10 +1721,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 第1話〜第24話",
         "q": "ダンボール戦機 ED 僕の貯金箱 前川紘毅",
         "yt": {
-          "id": "oO0qAJb-YoU",
+          "id": "nIWDYjEzVZA",
           "k": "au",
           "o": 1,
           "ch": "前川紘毅 - Topic",
+          "tv": {
+            "id": "nIWDYjEzVZA",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "oO0qAJb-YoU",
             "k": "au",
@@ -1649,10 +1744,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 第25話〜第44話",
         "q": "ダンボール戦機 ED ヒミツキチ 前川紘毅",
         "yt": {
-          "id": "21WVFTGqes4",
+          "id": "DK4FtbCRPQI",
           "k": "au",
           "o": 1,
           "ch": "前川紘毅 - Topic",
+          "tv": {
+            "id": "DK4FtbCRPQI",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "21WVFTGqes4",
             "k": "au",
@@ -1734,10 +1834,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3期 第2話〜第21話",
         "q": "ダンボール戦機 ED 神様 ヤーヤーヤー Dream5",
         "yt": {
-          "id": "cXXHPJ0wbMI",
+          "id": "QM11jjqf7KU",
           "k": "au",
           "o": 1,
           "ch": "dream5go",
+          "tv": {
+            "id": "QM11jjqf7KU",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "cXXHPJ0wbMI",
             "k": "au",
@@ -1805,10 +1910,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1話〜第26話、第50話〜第52話、第62話〜第75話、第137話〜第147話",
         "q": "HUNTER×HUNTER（2011） OP departure! 小野正利",
         "yt": {
-          "id": "sYv4fgtQRfY",
-          "k": "au",
+          "id": "9tRLoe50tw4",
+          "k": "mv",
           "o": 1,
           "ch": "小野正利",
+          "tv": {
+            "id": "9tRLoe50tw4",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "sYv4fgtQRfY",
             "k": "au",
@@ -1841,6 +1951,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "Fear, and Loathing in Las Vegas",
+          "tv": {
+            "id": "9TzEsDYuiyI",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "9TzEsDYuiyI",
             "k": "au",
@@ -1860,10 +1975,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第27話〜第50話、第52話〜第58話",
         "q": "HUNTER×HUNTER（2011） ED HUNTING FOR YOUR DREAM GALNERYUS",
         "yt": {
-          "id": "6FhmyWT-_0U",
+          "id": "DgEItnnaSxg",
           "k": "mv",
           "o": 1,
           "ch": "GALNERYUS",
+          "tv": {
+            "id": "DgEItnnaSxg",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "6FhmyWT-_0U",
             "k": "mv",
@@ -1959,10 +2079,15 @@ window.ANIME_OP_ED_DATA = [
         "note": "「Remix II」のエンディングテーマとしても使用",
         "q": "Fate/Zero OP to the beginning Kalafina",
         "yt": {
-          "id": "QproZ4l8yqo",
-          "k": "au",
+          "id": "29NR161Bmd4",
+          "k": "mv",
           "o": 1,
           "ch": "Kalafina Official YouTube Channel",
+          "tv": {
+            "id": "29NR161Bmd4",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "QproZ4l8yqo",
             "k": "au",
@@ -2439,6 +2564,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "ePSz2NODsdc",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "ePSz2NODsdc",
             "k": "mv",
@@ -2458,6 +2588,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "usdr-lYmrzY",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "usdr-lYmrzY",
             "k": "mv",
@@ -2505,10 +2640,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第壱期 第2〜7話、第9〜13話",
         "q": "鬼灯の冷徹 ED パララックス・ビュー 上坂すみれ",
         "yt": {
-          "id": "E8DkIwMYzt4",
+          "id": "NivKJZx7CuQ",
           "k": "mv",
           "o": 1,
-          "ch": "KING RECORDS",
+          "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "NivKJZx7CuQ",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "E8DkIwMYzt4",
             "k": "mv",
@@ -2541,10 +2681,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第弐期 第1〜12話",
         "q": "鬼灯の冷徹 ED リバーサイド・ラヴァーズ（奈落の恋） 上坂すみれ",
         "yt": {
-          "id": "PZD2A5mQZSI",
+          "id": "eDSme_tnMRM",
           "k": "mv",
           "o": 1,
-          "ch": "KING RECORDS",
+          "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "eDSme_tnMRM",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "PZD2A5mQZSI",
             "k": "mv",
@@ -2564,6 +2709,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "「KING AMUSEMENT CREATIVE」公式チャンネル",
+          "tv": {
+            "id": "ePSz2NODsdc",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "ePSz2NODsdc",
             "k": "mv",
@@ -2578,10 +2728,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第弐期 第14〜26話",
         "q": "鬼灯の冷徹 ED 地獄でホットケーキ 上坂すみれ",
         "yt": {
-          "id": "tQxgUxGUkWU",
-          "k": "au",
+          "id": "LLrVKklqwNk",
+          "k": "mv",
           "o": 1,
           "ch": "上坂すみれ YouTube OFFICIAL CHANNEL",
+          "tv": {
+            "id": "LLrVKklqwNk",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "tQxgUxGUkWU",
             "k": "au",
@@ -3070,10 +3225,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "食戟のソーマ 前期",
         "q": "食戟のソーマ OP 希望の唄 ウルトラタワー",
         "yt": {
-          "id": "mFYK47afoSY",
+          "id": "SANXp5PQyTU",
           "k": "mv",
           "o": 1,
           "ch": "avex",
+          "tv": {
+            "id": "SANXp5PQyTU",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "mFYK47afoSY",
             "k": "mv",
@@ -3178,10 +3338,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "食戟のソーマ 豪ノ皿",
         "q": "食戟のソーマ OP ラストチャプター nano.RIPE",
         "yt": {
-          "id": "Jr3IWAqvDDs",
-          "k": "au",
+          "id": "x5mDp8V15ug",
+          "k": "mv",
           "o": 1,
-          "ch": "nano. RIPE Official Channel",
+          "ch": "Lantis Channel",
+          "tv": {
+            "id": "x5mDp8V15ug",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "Jr3IWAqvDDs",
             "k": "au",
@@ -3340,10 +3505,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1シーズン",
         "q": "文豪ストレイドッグス OP TRASH CANDY GRANRODEO",
         "yt": {
-          "id": "-e119C6VGHA",
-          "k": "mv",
+          "id": "Dw71FNH0InE",
+          "k": "au",
           "o": 1,
           "ch": "GRANRODEO",
+          "tv": {
+            "id": "Dw71FNH0InE",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "-e119C6VGHA",
             "k": "mv",
@@ -3376,10 +3546,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3シーズン",
         "q": "文豪ストレイドッグス OP セツナの愛 GRANRODEO",
         "yt": {
-          "id": "sV4BmFw2oiM",
-          "k": "au",
+          "id": "oz57du3fQFE",
+          "k": "mv",
           "o": 1,
           "ch": "GRANRODEO",
+          "tv": {
+            "id": "oz57du3fQFE",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "sV4BmFw2oiM",
             "k": "au",
@@ -3412,10 +3587,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第5シーズン",
         "q": "文豪ストレイドッグス OP 鉄の檻 GRANRODEO",
         "yt": {
-          "id": "kMrYDrwM2K8",
-          "k": "au",
+          "id": "rnz1K-DP_6s",
+          "k": "mv",
           "o": 1,
           "ch": "GRANRODEO",
+          "tv": {
+            "id": "rnz1K-DP_6s",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "kMrYDrwM2K8",
             "k": "au",
@@ -3467,10 +3647,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3シーズン",
         "q": "文豪ストレイドッグス ED Lily ラックライフ",
         "yt": {
-          "id": "bxbXUMy4kok",
+          "id": "cnAmQI7m4HA",
           "k": "mv",
           "o": 1,
-          "ch": "Lantis Channel",
+          "ch": "ラックライフ",
+          "tv": {
+            "id": "cnAmQI7m4HA",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "bxbXUMy4kok",
             "k": "mv",
@@ -3485,10 +3670,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第4シーズン",
         "q": "文豪ストレイドッグス ED しるし ラックライフ",
         "yt": {
-          "id": "YbFSOlLemak",
+          "id": "U1gr6jtR19s",
           "k": "mv",
           "o": 1,
-          "ch": "Lantis Channel",
+          "ch": "ラックライフ",
+          "tv": {
+            "id": "U1gr6jtR19s",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "YbFSOlLemak",
             "k": "mv",
@@ -3667,10 +3857,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第8〜12話",
         "q": "クオリディア・コード ED clever ClariS",
         "yt": {
-          "id": "Mde6d0d0Dw8",
+          "id": "z0PbzrCLn_Q",
           "k": "mv",
           "o": 1,
           "ch": "ClariS Official YouTube Channel",
+          "tv": {
+            "id": "z0PbzrCLn_Q",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "Mde6d0d0Dw8",
             "k": "mv",
@@ -3735,10 +3930,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期 第27話・30話・33話・41話",
         "q": "Re:ゼロから始める異世界生活 OP Realize 鈴木このみ",
         "yt": {
-          "id": "uaRnwnmqrws",
+          "id": "V7ZEEymq0DQ",
           "k": "mv",
           "o": 1,
           "ch": "KADOKAWAanime",
+          "tv": {
+            "id": "V7ZEEymq0DQ",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "uaRnwnmqrws",
             "k": "mv",
@@ -3753,10 +3953,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期 第44話・46話・50話",
         "q": "Re:ゼロから始める異世界生活 OP Long shot 前島麻由",
         "yt": {
-          "id": "p8X5hG51jbA",
+          "id": "uQfd61IZjMM",
           "k": "mv",
           "o": 1,
           "ch": "KADOKAWAanime",
+          "tv": {
+            "id": "uQfd61IZjMM",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "p8X5hG51jbA",
             "k": "mv",
@@ -3863,10 +4068,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期 第28話・29話・31話・32話、第34〜36話・38話・39話・41話",
         "q": "Re:ゼロから始める異世界生活 ED Memento nonoc",
         "yt": {
-          "id": "jfvB3DPJ4FU",
+          "id": "PN0Nu9oDAJw",
           "k": "mv",
           "o": 1,
           "ch": "KADOKAWAanime",
+          "tv": {
+            "id": "PN0Nu9oDAJw",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "jfvB3DPJ4FU",
             "k": "mv",
@@ -3881,10 +4091,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期 第42〜47話、49話",
         "q": "Re:ゼロから始める異世界生活 ED Believe in you nonoc",
         "yt": {
-          "id": "zVMdd9GCs9s",
-          "k": "au",
+          "id": "z63zCfGJ-Mc",
+          "k": "mv",
           "o": 1,
-          "ch": "nonoc Official",
+          "ch": "KADOKAWAanime",
+          "tv": {
+            "id": "z63zCfGJ-Mc",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "zVMdd9GCs9s",
             "k": "au",
@@ -4300,12 +4515,22 @@ window.ANIME_OP_ED_DATA = [
         "usage": "",
         "q": "けものフレンズ OP ようこそジャパリパークへ どうぶつビスケッツ",
         "yt": {
-          "id": "Zk9iH-nunro",
-          "k": "au",
+          "id": "xkMdLcB_vNU",
+          "k": "mv",
           "o": 1,
-          "ch": "Doubutsu Biscuits - Topic",
+          "ch": "けものフレンズプロジェクト公式",
+          "tv": {
+            "id": "xkMdLcB_vNU",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "Zk9iH-nunro",
+            "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "g67QKrSg8RY",
             "k": "au",
             "o": 1
           }
@@ -4322,6 +4547,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "Victor Entertainment",
+          "tv": {
+            "id": "LOKM9Gl3cA4",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "LOKM9Gl3cA4",
             "k": "mv",
@@ -4358,6 +4588,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "ワーナー ブラザース 公式チャンネル",
+          "tv": {
+            "id": "611DTfoxAsQ",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "611DTfoxAsQ",
             "k": "mv",
@@ -4403,10 +4638,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "",
         "q": "終末なにしてますか？ 忙しいですか？ 救ってもらっていいですか？ OP DEAREST DROP 田所あずさ",
         "yt": {
-          "id": "94W5nENM0iM",
+          "id": "Vt-7NTj80PY",
           "k": "mv",
           "o": 1,
-          "ch": "Lantis Channel",
+          "ch": "田所あずさ Official Channel",
+          "tv": {
+            "id": "Vt-7NTj80PY",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "94W5nENM0iM",
             "k": "mv",
@@ -4422,10 +4662,15 @@ window.ANIME_OP_ED_DATA = [
         "note": "第6話は「キネマ」、第12話は「Ever be my love」に代わった",
         "q": "終末なにしてますか？ 忙しいですか？ 救ってもらっていいですか？ ED フロム TRUE",
         "yt": {
-          "id": "yCTpG52bFQA",
+          "id": "LPqKcqeFWyg",
           "k": "mv",
           "o": 1,
-          "ch": "Lantis Channel",
+          "ch": "TRUE Lantis Official Channel",
+          "tv": {
+            "id": "LPqKcqeFWyg",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "yCTpG52bFQA",
             "k": "mv",
@@ -4485,8 +4730,8 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期",
         "q": "幼女戦記 OP JINGO JUNGLE MYTH",
         "yt": {
-          "id": "5VRyiaszGtA",
-          "k": "mv",
+          "id": "IVyvkwvsqW0",
+          "k": "nc",
           "o": 1,
           "ch": "KADOKAWAanime",
           "tv": {
@@ -4496,6 +4741,11 @@ window.ANIME_OP_ED_DATA = [
           },
           "full": {
             "id": "5VRyiaszGtA",
+            "k": "mv",
+            "o": 1
+          },
+          "fa": {
+            "id": "QDcB5PBXyJ8",
             "k": "mv",
             "o": 1
           }
@@ -4770,10 +5020,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期",
         "q": "ゆるキャン△ OP SHINY DAYS 亜咲花",
         "yt": {
-          "id": "rFMo9PULMtk",
-          "k": "au",
+          "id": "SvTb43SY460",
+          "k": "nc",
           "o": 1,
-          "ch": "亜咲花公式チャンネル",
+          "ch": "FURYU Pictures Channel",
           "tv": {
             "id": "SvTb43SY460",
             "k": "nc",
@@ -4782,6 +5032,11 @@ window.ANIME_OP_ED_DATA = [
           "full": {
             "id": "rFMo9PULMtk",
             "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "-yRQJdj04ZE",
+            "k": "mv",
             "o": 1
           }
         }
@@ -4821,10 +5076,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3期",
         "q": "ゆるキャン△ OP レイドバックジャーニー キミのね",
         "yt": {
-          "id": "_SXLsH7LSAY",
-          "k": "mv",
+          "id": "4XNlrYDYn7E",
+          "k": "au",
           "o": 1,
           "ch": "キミのね official channel",
+          "tv": {
+            "id": "4XNlrYDYn7E",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "_SXLsH7LSAY",
             "k": "mv",
@@ -4890,10 +5150,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3期",
         "q": "ゆるキャン△ ED So Precious 亜咲花",
         "yt": {
-          "id": "vYuvUKc1XPM",
-          "k": "au",
+          "id": "SvTb43SY460",
+          "k": "nc",
           "o": 1,
-          "ch": "亜咲花公式チャンネル",
+          "ch": "FURYU Pictures Channel",
           "tv": {
             "id": "SvTb43SY460",
             "k": "nc",
@@ -4902,6 +5162,11 @@ window.ANIME_OP_ED_DATA = [
           "full": {
             "id": "vYuvUKc1XPM",
             "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "-yRQJdj04ZE",
+            "k": "mv",
             "o": 1
           }
         }
@@ -4934,6 +5199,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "梶浦由記 / Yuki Kajiura Official",
+          "tv": {
+            "id": "XgLdHaQLD6c",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "XgLdHaQLD6c",
             "k": "au",
@@ -4952,6 +5222,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "ASCA Official YouTube Channel",
+          "tv": {
+            "id": "Dl7OdUUX4kc",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "Dl7OdUUX4kc",
             "k": "mv",
@@ -5171,10 +5446,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "",
         "q": "けものフレンズ2 OP 乗ってけ！ジャパリビート どうぶつビスケッツ",
         "yt": {
-          "id": "vOX_UsdM_uc",
+          "id": "rKsubao1ir8",
           "k": "mv",
           "o": 1,
           "ch": "けものフレンズプロジェクト公式",
+          "tv": {
+            "id": "rKsubao1ir8",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "vOX_UsdM_uc",
             "k": "mv",
@@ -5189,18 +5469,18 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1話から第5話",
         "q": "けものフレンズ2 ED 星をつなげて Gothic",
         "yt": {
-          "id": "cVPERtPy-kM",
-          "k": "mv",
+          "id": "jBaZGOrMtNk",
+          "k": "au",
           "o": 1,
-          "ch": "けものフレンズプロジェクト公式",
+          "ch": "Gothic x Luck - Topic",
+          "tv": {
+            "id": "jBaZGOrMtNk",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "cVPERtPy-kM",
             "k": "mv",
-            "o": 1
-          },
-          "fa": {
-            "id": "3w8uhEhM5oY",
-            "k": "au",
             "o": 1
           }
         }
@@ -5216,6 +5496,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "けものフレンズプロジェクト公式",
+          "tv": {
+            "id": "h-v-pL74MSs",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "h-v-pL74MSs",
             "k": "mv",
@@ -5239,6 +5524,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "けものフレンズプロジェクト公式",
+          "tv": {
+            "id": "xkMdLcB_vNU",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "xkMdLcB_vNU",
             "k": "mv",
@@ -5315,10 +5605,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期",
         "q": "約束のネバーランド ED 魔法 Myuk",
         "yt": {
-          "id": "l5MOVg9eMe4",
+          "id": "euCCroA-pDw",
           "k": "mv",
           "o": 1,
           "ch": "Myuk",
+          "tv": {
+            "id": "euCCroA-pDw",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "l5MOVg9eMe4",
             "k": "mv",
@@ -6301,10 +6596,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期 第0話",
         "q": "無職転生 ED Clover 大原ゆい子",
         "yt": {
-          "id": "DisOzS-ZjPQ",
-          "k": "au",
+          "id": "3mLWoJF17U4",
+          "k": "nc",
           "o": 1,
-          "ch": "大原ゆい子Official YouTube",
+          "ch": "TOHO animation チャンネル",
           "tv": {
             "id": "3mLWoJF17U4",
             "k": "nc",
@@ -6312,6 +6607,11 @@ window.ANIME_OP_ED_DATA = [
           },
           "full": {
             "id": "DisOzS-ZjPQ",
+            "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "ebaaWokWIo4",
             "k": "au",
             "o": 1
           }
@@ -6360,10 +6660,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期 第24話",
         "q": "無職転生 ED かげくらべの唄 大原ゆい子",
         "yt": {
-          "id": "fDcufjgMoSA",
-          "k": "au",
+          "id": "1C_cjVx66PE",
+          "k": "nc",
           "o": 1,
-          "ch": "大原ゆい子Official YouTube",
+          "ch": "TOHO animation チャンネル",
           "tv": {
             "id": "1C_cjVx66PE",
             "k": "nc",
@@ -6371,6 +6671,11 @@ window.ANIME_OP_ED_DATA = [
           },
           "full": {
             "id": "fDcufjgMoSA",
+            "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "v7FApIxb4Y8",
             "k": "au",
             "o": 1
           }
@@ -6411,10 +6716,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3期 第13話",
         "q": "無職転生 ED 一縷 大原ゆい子",
         "yt": {
-          "id": "r5DeWy_TxXs",
-          "k": "au",
+          "id": "PINgF6rCuME",
+          "k": "nc",
           "o": 1,
-          "ch": "大原ゆい子Official YouTube",
+          "ch": "TOHO animation チャンネル",
           "tv": {
             "id": "PINgF6rCuME",
             "k": "nc",
@@ -6422,6 +6727,11 @@ window.ANIME_OP_ED_DATA = [
           },
           "full": {
             "id": "r5DeWy_TxXs",
+            "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "mUZEnAeUvgA",
             "k": "au",
             "o": 1
           }
@@ -6506,10 +6816,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3期",
         "q": "アークナイツ OP End of Days ReoNa",
         "yt": {
-          "id": "xYCvpdigzUA",
-          "k": "mv",
+          "id": "1XKJqBrhyeE",
+          "k": "nc",
           "o": 1,
-          "ch": "ReoNa official YouTube channel",
+          "ch": "アークナイツ 公式チャンネル",
           "tv": {
             "id": "1XKJqBrhyeE",
             "k": "nc",
@@ -6517,6 +6827,11 @@ window.ANIME_OP_ED_DATA = [
           },
           "full": {
             "id": "xYCvpdigzUA",
+            "k": "mv",
+            "o": 1
+          },
+          "fa": {
+            "id": "7jqVuqVQvvA",
             "k": "mv",
             "o": 1
           }
@@ -6621,10 +6936,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第26話",
         "q": "アークナイツ ED 生命換装 ReoNa",
         "yt": {
-          "id": "5Wr5315DxxM",
-          "k": "au",
+          "id": "1XKJqBrhyeE",
+          "k": "nc",
           "o": 1,
-          "ch": "ReoNa official YouTube channel",
+          "ch": "アークナイツ 公式チャンネル",
           "tv": {
             "id": "1XKJqBrhyeE",
             "k": "nc",
@@ -6633,6 +6948,11 @@ window.ANIME_OP_ED_DATA = [
           "full": {
             "id": "5Wr5315DxxM",
             "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "7jqVuqVQvvA",
+            "k": "mv",
             "o": 1
           }
         }
@@ -6782,10 +7102,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3クール『-相剋譚-』",
         "q": "BLEACH 千年血戦篇 ED MONOCHROME 水槽",
         "yt": {
-          "id": "PvEz-mDsQeI",
+          "id": "Xn9RtodWqrA",
           "k": "mv",
           "o": 1,
-          "ch": "suisoh",
+          "ch": "『BLEACH』アニメ公式チャンネル",
+          "tv": {
+            "id": "Xn9RtodWqrA",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "PvEz-mDsQeI",
             "k": "mv",
@@ -7041,10 +7366,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "SEASON1 第1クール",
         "q": "魔法使いの嫁 OP Here JUNNA",
         "yt": {
-          "id": "SNUOYgeuwso",
-          "k": "mv",
+          "id": "Q3QPWINIX_g",
+          "k": "nc",
           "o": 1,
-          "ch": "Junna_Official",
+          "ch": "TWIN ENGINE",
           "tv": {
             "id": "Q3QPWINIX_g",
             "k": "nc",
@@ -7052,6 +7377,11 @@ window.ANIME_OP_ED_DATA = [
           },
           "full": {
             "id": "SNUOYgeuwso",
+            "k": "mv",
+            "o": 1
+          },
+          "fa": {
+            "id": "rPxKKC_GI2Q",
             "k": "mv",
             "o": 1
           }
@@ -7161,10 +7491,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "SEASON1 第2クール",
         "q": "魔法使いの嫁 ED 月のもう半分 AIKI",
         "yt": {
-          "id": "PWavjarfaK8",
+          "id": "4EETfYfAXb4",
           "k": "au",
           "o": 1,
           "ch": "AIKI ＆ AKINO from bless4 - Topic",
+          "tv": {
+            "id": "4EETfYfAXb4",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "PWavjarfaK8",
             "k": "au",
@@ -7183,6 +7518,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "Jessica - Topic",
+          "tv": {
+            "id": "wwH4bAck5L4",
+            "k": "au",
+            "o": 1
+          },
           "full": {
             "id": "wwH4bAck5L4",
             "k": "au",
@@ -7330,8 +7670,8 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第4話",
         "q": "シャインポスト ED 一歩前ノセカイ TiNgS",
         "yt": {
-          "id": "SJUvkubL-Ts",
-          "k": "mv",
+          "id": "pHemM_8IOrY",
+          "k": "nc",
           "o": 1,
           "ch": "『シャインポスト』公式",
           "tv": {
@@ -7343,6 +7683,11 @@ window.ANIME_OP_ED_DATA = [
             "id": "SJUvkubL-Ts",
             "k": "mv",
             "o": 1
+          },
+          "fa": {
+            "id": "qX8j_HsXrHI",
+            "k": "au",
+            "o": 1
           }
         }
       },
@@ -7353,8 +7698,8 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第6話",
         "q": "シャインポスト ED Yellow Rose TiNgS",
         "yt": {
-          "id": "N3Lp8yYewWU",
-          "k": "mv",
+          "id": "pLiV9zTDC08",
+          "k": "nc",
           "o": 1,
           "ch": "『シャインポスト』公式",
           "tv": {
@@ -7365,6 +7710,11 @@ window.ANIME_OP_ED_DATA = [
           "full": {
             "id": "N3Lp8yYewWU",
             "k": "mv",
+            "o": 1
+          },
+          "fa": {
+            "id": "zrXA4nx9bMo",
+            "k": "au",
             "o": 1
           }
         }
@@ -7934,8 +8284,8 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期第7話",
         "q": "お隣の天使様にいつの間にか駄目人間にされていた件 ED 愛唄 椎名真昼",
         "yt": {
-          "id": "o84W3uu0EbI",
-          "k": "mv",
+          "id": "sZRWkXpekDE",
+          "k": "nc",
           "o": 1,
           "ch": "TOHO animation チャンネル",
           "tv": {
@@ -7949,7 +8299,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "fa": {
-            "id": "SGd9dllIbyY",
+            "id": "nuB6ggYhC1w",
             "k": "ot",
             "o": 0
           }
@@ -7962,8 +8312,8 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期第12話",
         "q": "お隣の天使様にいつの間にか駄目人間にされていた件 ED 君に届け 椎名真昼",
         "yt": {
-          "id": "xdcGceVvuYY",
-          "k": "mv",
+          "id": "sZRWkXpekDE",
+          "k": "nc",
           "o": 1,
           "ch": "TOHO animation チャンネル",
           "tv": {
@@ -7977,7 +8327,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "fa": {
-            "id": "3a3iAC2nuYo",
+            "id": "nuB6ggYhC1w",
             "k": "ot",
             "o": 0
           }
@@ -8013,8 +8363,8 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第2期第5話",
         "q": "お隣の天使様にいつの間にか駄目人間にされていた件 ED 夏祭り 椎名真昼",
         "yt": {
-          "id": "pOfUSptOHmk",
-          "k": "mv",
+          "id": "sZRWkXpekDE",
+          "k": "nc",
           "o": 1,
           "ch": "TOHO animation チャンネル",
           "tv": {
@@ -8028,7 +8378,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "fa": {
-            "id": "AZn4DjPVkwE",
+            "id": "nuB6ggYhC1w",
             "k": "ot",
             "o": 0
           }
@@ -8097,10 +8447,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「リコとロイの旅立ち」編",
         "q": "ポケットモンスター（2023） OP ドキメキダイアリー asmi",
         "yt": {
-          "id": "UtN-Wjuqu8U",
-          "k": "au",
+          "id": "d66nA8nRUZc",
+          "k": "mv",
           "o": 1,
-          "ch": "asmi Official Channel",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "d66nA8nRUZc",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "UtN-Wjuqu8U",
             "k": "au",
@@ -8151,10 +8506,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「レックウザ ライジング」編",
         "q": "ポケットモンスター（2023） OP Only One Story ZEROBASEONE",
         "yt": {
-          "id": "pR92uGTGb0g",
+          "id": "tsBmIw4OuSs",
           "k": "mv",
           "o": 1,
-          "ch": "JXS_BP Official",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "tsBmIw4OuSs",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "pR92uGTGb0g",
             "k": "mv",
@@ -8169,10 +8529,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「メガボルテージ」編",
         "q": "ポケットモンスター（2023） OP GET BACK ゆず",
         "yt": {
-          "id": "-vclKjpof9Q",
+          "id": "sbCcNWLIar0",
           "k": "mv",
           "o": 1,
-          "ch": "yuzuofficial",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "sbCcNWLIar0",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "-vclKjpof9Q",
             "k": "mv",
@@ -8187,10 +8552,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ライジングアゲイン」編",
         "q": "ポケットモンスター（2023） OP アイオライト Eve",
         "yt": {
-          "id": "l96CCKCktOU",
+          "id": "Tq96N_RzpFE",
           "k": "mv",
           "o": 1,
-          "ch": "Eve",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "Tq96N_RzpFE",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "l96CCKCktOU",
             "k": "mv",
@@ -8205,10 +8575,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ワンダーボヤージュ」編",
         "q": "ポケットモンスター（2023） OP セカイツナガレ リコ",
         "yt": {
-          "id": "GeOp4mK6dG8",
+          "id": "FqQL3VegxrM",
           "k": "mv",
           "o": 1,
-          "ch": "HoneyWorks OFFICIAL and ポケモン公式YouTubeチャンネル",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "FqQL3VegxrM",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "GeOp4mK6dG8",
             "k": "mv",
@@ -8227,6 +8602,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "oqfZr98LY2E",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "oqfZr98LY2E",
             "k": "mv",
@@ -8241,10 +8621,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「テラスタルデビュー」編",
         "q": "ポケットモンスター（2023） ED Let me battle 9Lana",
         "yt": {
-          "id": "whTcBozYrOo",
+          "id": "G28TiFWlXgs",
           "k": "mv",
           "o": 1,
-          "ch": "9Lana",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "G28TiFWlXgs",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "whTcBozYrOo",
             "k": "mv",
@@ -8259,10 +8644,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「レックウザ ライジング」編",
         "q": "ポケットモンスター（2023） ED ピッカーン! Giga",
         "yt": {
-          "id": "mmg24yw9VQE",
-          "k": "au",
+          "id": "iKuLBnTU1dE",
+          "k": "mv",
           "o": 1,
-          "ch": "Giga",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "iKuLBnTU1dE",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "mmg24yw9VQE",
             "k": "au",
@@ -8277,10 +8667,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「メガボルテージ」編",
         "q": "ポケットモンスター（2023） ED Ready Go ME:I",
         "yt": {
-          "id": "VfWvzhxg2rc",
+          "id": "xjW9Wkfa_ao",
           "k": "mv",
           "o": 1,
-          "ch": "ME:I",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "xjW9Wkfa_ao",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "VfWvzhxg2rc",
             "k": "mv",
@@ -8303,10 +8698,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ライジングアゲイン」編",
         "q": "ポケットモンスター（2023） ED ねてもさめても ポルカドットスティングレイ",
         "yt": {
-          "id": "PVyKHNdV8SU",
+          "id": "btD1zmUANaw",
           "k": "mv",
           "o": 1,
-          "ch": "POLKADOT STINGRAY and ポケモン公式YouTubeチャンネル",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "btD1zmUANaw",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "PVyKHNdV8SU",
             "k": "mv",
@@ -8321,10 +8721,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ワンダーボヤージュ」編",
         "q": "ポケットモンスター（2023） ED キュートなキューたい CUTIE STREET",
         "yt": {
-          "id": "hlM4oELwVR8",
-          "k": "au",
+          "id": "O8xd6OWzJZY",
+          "k": "mv",
           "o": 1,
-          "ch": "CUTIE STREET",
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "tv": {
+            "id": "O8xd6OWzJZY",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "hlM4oELwVR8",
             "k": "au",
@@ -9174,8 +9579,8 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第4話",
         "q": "真夜中ぱんチ ED 君へ 譜風",
         "yt": {
-          "id": "I6wp76bJKv8",
-          "k": "mv",
+          "id": "Ayc7sfRrQRg",
+          "k": "nc",
           "o": 1,
           "ch": "KADOKAWAanime",
           "tv": {
@@ -9189,7 +9594,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "fa": {
-            "id": "FEM1CwT_0iA",
+            "id": "2atWQpPbwts",
             "k": "ot",
             "o": 0
           }
@@ -9206,6 +9611,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "KADOKAWAanime",
+          "tv": {
+            "id": "EbFjnm9jE8E",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "EbFjnm9jE8E",
             "k": "mv",
@@ -9848,10 +10258,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期第2クール",
         "q": "狼と香辛料 ED りんごと君 音莉飴",
         "yt": {
-          "id": "QvD21SnQHxU",
+          "id": "RleRKPPun7Q",
           "k": "mv",
           "o": 1,
-          "ch": "TOHO animation チャンネル",
+          "ch": "〚 音莉飴 〛official",
+          "tv": {
+            "id": "RleRKPPun7Q",
+            "k": "mv",
+            "o": 1
+          },
           "full": {
             "id": "QvD21SnQHxU",
             "k": "mv",
@@ -10181,14 +10596,14 @@ window.ANIME_OP_ED_DATA = [
         "usage": "",
         "q": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す OP Quest 秋山黄色",
         "yt": {
-          "id": "PE-__2gG4kE",
-          "k": "au",
+          "id": "DS_SxUGLs8k",
+          "k": "nc",
           "o": 1,
-          "ch": "秋山黄色",
+          "ch": "CyberAgent ANIME",
           "tv": {
             "id": "DS_SxUGLs8k",
             "k": "nc",
-            "o": 0
+            "o": 1
           },
           "full": {
             "id": "PE-__2gG4kE",
@@ -10204,14 +10619,14 @@ window.ANIME_OP_ED_DATA = [
         "usage": "",
         "q": "味方が弱すぎて補助魔法に徹していた宮廷魔法師、追放されて最強を目指す ED 欠片 aruma",
         "yt": {
-          "id": "muzUEsLY5A4",
-          "k": "mv",
+          "id": "G9blq2RvhOo",
+          "k": "nc",
           "o": 1,
-          "ch": "aruma",
+          "ch": "CyberAgent ANIME",
           "tv": {
             "id": "G9blq2RvhOo",
             "k": "nc",
-            "o": 0
+            "o": 1
           },
           "full": {
             "id": "muzUEsLY5A4",
@@ -10628,10 +11043,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第7話",
         "q": "SAKAMOTO DAYS ED Somebody help us Vaundy",
         "yt": {
-          "id": "f9oTHp0GIQE",
-          "k": "au",
+          "id": "zkOYWw0u8as",
+          "k": "nc",
           "o": 1,
-          "ch": "Vaundy",
+          "ch": "TMSアニメ公式チャンネル",
           "tv": {
             "id": "zkOYWw0u8as",
             "k": "nc",
@@ -10640,6 +11055,11 @@ window.ANIME_OP_ED_DATA = [
           "full": {
             "id": "f9oTHp0GIQE",
             "k": "au",
+            "o": 1
+          },
+          "fa": {
+            "id": "9SfUmSi358Q",
+            "k": "mv",
             "o": 1
           }
         }
@@ -10876,10 +11296,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第0話・第9話",
         "q": "永久のユウグレ ED 星紡ぎ Hana Hope",
         "yt": {
-          "id": "3TxMhdfABdM",
-          "k": "au",
+          "id": "gSzBX2LXNjw",
+          "k": "nc",
           "o": 1,
-          "ch": "Hana Hope",
+          "ch": "MBS animation 公式チャンネル",
           "tv": {
             "id": "gSzBX2LXNjw",
             "k": "nc",
@@ -10889,6 +11309,11 @@ window.ANIME_OP_ED_DATA = [
             "id": "3TxMhdfABdM",
             "k": "au",
             "o": 1
+          },
+          "fa": {
+            "id": "lY5iBCVugIU",
+            "k": "ot",
+            "o": 0
           }
         }
       }

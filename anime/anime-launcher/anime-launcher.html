@@ -517,7 +517,30 @@ function makeTextRow(anime) {
   titleTd.appendChild(inner);
   tr.appendChild(titleTd);
   DOMAINS.forEach(d => tr.appendChild(makeDomainCell(anime.sites, d)));
+  tr.appendChild(makeOtherSitesCell(anime.sites));
   return tr;
+}
+
+// 2026-09-28: DOMAINSは表の列幅を固定するため主要3サイトのみに絞っているが、
+// Anikoto/Miruro/AniWatch.tv等それ以外のサイトのリンクが完全に非表示になっていたため、
+// 「他サイト」列を追加してまとめて表示する（列自体は増やさず1列に集約）
+function makeOtherSitesCell(sites) {
+  const td = document.createElement('td');
+  td.className = 'domain-cell other-sites-cell';
+  const domainLabels = new Set(DOMAINS.map(d => d.label));
+  const others = (sites || []).filter(s => !domainLabels.has(s.label) && s.url);
+  others.forEach(s => {
+    const a = document.createElement('a');
+    a.href = s.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.className = 'site-btn' + (s.confirmed === false ? ' pending' : '');
+    a.style.background = s.color || '#555';
+    a.textContent = s.confirmed === false ? '？' : '▶';
+    a.title = s.label + (s.confirmed === false ? ': 動画再生未確認 - クリックして確認' : '');
+    td.appendChild(a);
+  });
+  return td;
 }
 
 function makeImgCard(anime) {
@@ -732,7 +755,7 @@ function makeTierDividerRow(label) {
   const tr = document.createElement('tr');
   tr.className = 'tier-divider-row';
   const td = document.createElement('td');
-  td.colSpan = DOMAINS.length + 1;
+  td.colSpan = DOMAINS.length + 2;
   td.appendChild(makeTierDivider(label));
   tr.appendChild(td);
   return tr;
@@ -879,6 +902,10 @@ function ensureTextTbody() {
     th.textContent = d.label;
     headRow.appendChild(th);
   });
+  const otherTh = document.createElement('th');
+  otherTh.className = 'domain-th';
+  otherTh.textContent = '他サイト';
+  headRow.appendChild(otherTh);
   thead.appendChild(headRow);
   table.appendChild(thead);
   const tbody = document.createElement('tbody');
