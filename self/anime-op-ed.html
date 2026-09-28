@@ -352,6 +352,12 @@
   // このとき再生は YouTube ではなく自分の音源ファイル（audio/{動画ID}.m4a）を <audio> で流す。公開版（mobile-hub）には音源も一覧も無い
   const PERSONAL_AUDIO = window.PERSONAL_AUDIO || null;
   const PERSONAL_VIDEO = window.PERSONAL_VIDEO || null;
+  // サイト内（YouTube埋め込み）で再生できないと実測済みの動画（データの e:0。scrape/45_iframe_embed_check.py）。個人用モードでは埋め込みを試さず音源へ
+  const NO_EMBED = {};
+  works.forEach(function (w) { w.tracks.forEach(function (t) {
+    const y = t.yt; if (!y) return;
+    [y, y.tv, y.full].forEach(function (x) { if (x && x.e === 0) NO_EMBED[x.id] = 1; });
+  }); });
   const PERSONAL = !!PERSONAL_AUDIO;
   const EMBED_OK = PERSONAL || window.MOBILE_HUB_PLAYER === true || location.protocol === "http:" || location.protocol === "https:";
   if (window.MOBILE_HUB_PLAYER === true) document.body.classList.add("mobile-hub");
@@ -1157,6 +1163,8 @@
           mode = "file";
           show("file");
           videoApi.loadVideoById(o);
+        } else if (NO_EMBED[o.videoId] && PERSONAL_AUDIO[o.videoId] != null) {
+          fallbackToAudio(o);          // 埋め込み禁止と分かっている動画は、埋め込みのエラーを待たずに音源で再生（2026-09-28）
         } else {
           fallbackToEmbed(o);
         }
