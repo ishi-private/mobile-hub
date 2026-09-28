@@ -86,12 +86,20 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "vAKBZeQklQw",
             "k": "op",
-            "o": 1
+            "o": 1,
+            "e": 0
           },
           "full": {
             "id": "G9pt5O0Qu-0",
             "k": "mv",
-            "o": 1
+            "o": 1,
+            "e": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "IpTLWGfDrX0",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -190,11 +198,7 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "THE YELLOW MONKEY",
-          "full": {
-            "id": "2PgNo41p91Q",
-            "k": "au",
-            "o": 1
-          }
+          "e": 0
         }
       },
       {
@@ -257,10 +261,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "ponycanyon",
-          "full": {
-            "id": "knigdXm-woA",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "--BE4gjwISU",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -331,10 +336,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "ツミキ / NOMELON NOLEMON",
-          "full": {
-            "id": "j4x3m8Pp56A",
-            "k": "au",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "nL8dsUtsHCk",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -652,7 +658,13 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "ガガガSP オフィシャルYouTubeチャンネル",
           "full": {
-            "id": "xGtCZQVa2sg",
+            "id": "MnYR-MO7JgY",
+            "k": "au",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "MnYR-MO7JgY",
             "k": "au",
             "o": 1
           }
@@ -729,10 +741,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "Saboten - Topic",
-          "full": {
-            "id": "UShGn4SJTf8",
-            "k": "au",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "JyoUpRFtb4w",
+            "k": "ot",
+            "o": 0
           }
         }
       }
@@ -1218,7 +1231,13 @@ window.ANIME_OP_ED_DATA = [
           "id": "aBy9QERq_lQ",
           "k": "ot",
           "o": 0,
-          "ch": "Haruka Minami(CV:Rina Satoh) - Topic"
+          "ch": "Haruka Minami(CV:Rina Satoh) - Topic",
+          "e": 0,
+          "alt": {
+            "id": "Vp1usIFPNIg",
+            "k": "ot",
+            "o": 0
+          }
         }
       },
       {
@@ -1310,7 +1329,13 @@ window.ANIME_OP_ED_DATA = [
           "id": "bk0cXQ-9sfA",
           "k": "ot",
           "o": 0,
-          "ch": "cino."
+          "ch": "cino.",
+          "e": 0,
+          "alt": {
+            "id": "HamIcAxlI7c",
+            "k": "ot",
+            "o": 0
+          }
         }
       },
       {
@@ -1391,11 +1416,7 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "スキマスイッチ / SUKIMASWITCH",
-          "full": {
-            "id": "0iAF8TJAqp4",
-            "k": "mv",
-            "o": 1
-          }
+          "e": 0
         }
       },
       {
@@ -1531,10 +1552,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "full": {
-            "id": "-mo64M6sa-E",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "gKoP6M9UhlU",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -1549,18 +1571,14 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "tv": {
-            "id": "rQ9pakYRuf4",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "rQ9pakYRuf4",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "oG3oP2Px5S4",
+            "k": "ot",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "NnlTZZATT1o",
             "k": "ot",
             "o": 0
           }
@@ -1577,18 +1595,14 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "tv": {
-            "id": "TKF8Sjj3lyw",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "TKF8Sjj3lyw",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "qEqljMsCcLE",
+            "k": "ot",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "PAtVNYTm0o4",
             "k": "ot",
             "o": 0
           }
@@ -1605,18 +1619,14 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "tv": {
-            "id": "wTeQL_Cd9r4",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "wTeQL_Cd9r4",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "oFqMmJmR3y4",
+            "k": "ot",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "bvQtrHf9OB8",
             "k": "ot",
             "o": 0
           }
@@ -1633,13 +1643,14 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "full": {
-            "id": "wBe2CeacwV0",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "x9w7hY9UeZ0",
+            "k": "ot",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "khm5sWJxMVU",
             "k": "ot",
             "o": 0
           }
@@ -1656,13 +1667,14 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "full": {
-            "id": "CGZvBJ3xlSc",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "Wn7DfzaxZwE",
+            "k": "ot",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "1FRfHjc2VlE",
             "k": "ot",
             "o": 0
           }
@@ -1679,16 +1691,12 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "full": {
-            "id": "DpxdKqrzqBY",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "XkmMuz5oZos",
             "k": "ot",
             "o": 0
-          }
+          },
+          "e": 0
         }
       },
       {
@@ -1702,13 +1710,14 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "full": {
-            "id": "eT1lmJWrbr4",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "yvUHHXEdaI8",
+            "k": "ot",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "WBuor9Ntx58",
             "k": "ot",
             "o": 0
           }
@@ -1721,20 +1730,11 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 第1話〜第24話",
         "q": "ダンボール戦機 ED 僕の貯金箱 前川紘毅",
         "yt": {
-          "id": "nIWDYjEzVZA",
+          "id": "oO0qAJb-YoU",
           "k": "au",
           "o": 1,
           "ch": "前川紘毅 - Topic",
-          "tv": {
-            "id": "nIWDYjEzVZA",
-            "k": "au",
-            "o": 1
-          },
-          "full": {
-            "id": "oO0qAJb-YoU",
-            "k": "au",
-            "o": 1
-          }
+          "e": 0
         }
       },
       {
@@ -1744,18 +1744,19 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1期 第25話〜第44話",
         "q": "ダンボール戦機 ED ヒミツキチ 前川紘毅",
         "yt": {
-          "id": "DK4FtbCRPQI",
+          "id": "21WVFTGqes4",
           "k": "au",
           "o": 1,
           "ch": "前川紘毅 - Topic",
-          "tv": {
-            "id": "DK4FtbCRPQI",
-            "k": "au",
+          "full": {
+            "id": "Jr0N6o2dcpE",
+            "k": "mv",
             "o": 1
           },
-          "full": {
-            "id": "21WVFTGqes4",
-            "k": "au",
+          "e": 0,
+          "alt": {
+            "id": "Jr0N6o2dcpE",
+            "k": "mv",
             "o": 1
           }
         }
@@ -1771,11 +1772,7 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "前川紘毅 - Topic",
-          "full": {
-            "id": "90VSb3uPwsM",
-            "k": "au",
-            "o": 1
-          }
+          "e": 0
         }
       },
       {
@@ -1790,8 +1787,14 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "前川紘毅 - Topic",
           "full": {
-            "id": "C5jhCndZgJs",
-            "k": "au",
+            "id": "Y0gJCKxdCkg",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "Y0gJCKxdCkg",
+            "k": "mv",
             "o": 1
           }
         }
@@ -1807,10 +1810,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "前川紘毅 - Topic",
-          "full": {
-            "id": "kAuBpFQ0Hos",
-            "k": "au",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "lcezLSsOU08",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -1824,7 +1828,8 @@ window.ANIME_OP_ED_DATA = [
           "id": "e_iXV5Dr1TU",
           "k": "ot",
           "o": 0,
-          "ch": "神田実来"
+          "ch": "神田実来",
+          "e": 0
         }
       },
       {
@@ -1834,20 +1839,11 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第3期 第2話〜第21話",
         "q": "ダンボール戦機 ED 神様 ヤーヤーヤー Dream5",
         "yt": {
-          "id": "QM11jjqf7KU",
+          "id": "cXXHPJ0wbMI",
           "k": "au",
           "o": 1,
           "ch": "dream5go",
-          "tv": {
-            "id": "QM11jjqf7KU",
-            "k": "au",
-            "o": 1
-          },
-          "full": {
-            "id": "cXXHPJ0wbMI",
-            "k": "au",
-            "o": 1
-          }
+          "e": 0
         }
       },
       {
@@ -1866,12 +1862,7 @@ window.ANIME_OP_ED_DATA = [
             "k": "ot",
             "o": 0
           },
-          "e": 0,
-          "alt": {
-            "id": "XJoggcbHKrc",
-            "k": "ot",
-            "o": 0
-          }
+          "e": 0
         }
       },
       {
@@ -1884,7 +1875,8 @@ window.ANIME_OP_ED_DATA = [
           "id": "AIP_p_GxLv4",
           "k": "ot",
           "o": 0,
-          "ch": "obratoto"
+          "ch": "obratoto",
+          "e": 0
         }
       }
     ],
@@ -1910,19 +1902,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第1話〜第26話、第50話〜第52話、第62話〜第75話、第137話〜第147話",
         "q": "HUNTER×HUNTER（2011） OP departure! 小野正利",
         "yt": {
-          "id": "9tRLoe50tw4",
-          "k": "mv",
+          "id": "sYv4fgtQRfY",
+          "k": "au",
           "o": 1,
           "ch": "小野正利",
-          "tv": {
-            "id": "9tRLoe50tw4",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "sYv4fgtQRfY",
-            "k": "au",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "B-ZuM-5hHt0",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -1951,21 +1939,12 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "Fear, and Loathing in Las Vegas",
-          "tv": {
-            "id": "9TzEsDYuiyI",
-            "k": "au",
-            "o": 1
-          },
-          "full": {
-            "id": "9TzEsDYuiyI",
-            "k": "au",
-            "o": 1
-          },
           "fa": {
             "id": "6ocwpTMyBbE",
             "k": "ot",
             "o": 0
-          }
+          },
+          "e": 0
         }
       },
       {
@@ -1975,19 +1954,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第27話〜第50話、第52話〜第58話",
         "q": "HUNTER×HUNTER（2011） ED HUNTING FOR YOUR DREAM GALNERYUS",
         "yt": {
-          "id": "DgEItnnaSxg",
+          "id": "6FhmyWT-_0U",
           "k": "mv",
           "o": 1,
           "ch": "GALNERYUS",
-          "tv": {
-            "id": "DgEItnnaSxg",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "6FhmyWT-_0U",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "pNqRWYGx41w",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -2378,11 +2353,6 @@ window.ANIME_OP_ED_DATA = [
             "id": "INV83XSs6A4",
             "k": "op",
             "o": 1
-          },
-          "full": {
-            "id": "hHw3I1ryrBY",
-            "k": "mv",
-            "o": 1
           }
         }
       },
@@ -2400,11 +2370,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "RCcKHjjaqeY",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "3LjKx9Ikp8w",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -2430,11 +2395,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "op",
             "o": 1
           },
-          "full": {
-            "id": "QHSrcqwLJL0",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "lepWytvmIzw",
             "k": "mv",
@@ -2458,11 +2418,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "op",
             "o": 1
           },
-          "full": {
-            "id": "aJCIO0SR2P0",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "aJCIO0SR2P0",
             "k": "mv",
@@ -2484,11 +2439,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "INV83XSs6A4",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "hHw3I1ryrBY",
-            "k": "mv",
             "o": 1
           }
         }
@@ -2650,7 +2600,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "E8DkIwMYzt4",
+            "id": "NivKJZx7CuQ",
             "k": "mv",
             "o": 1
           }
@@ -2667,10 +2617,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "KING RECORDS",
-          "full": {
-            "id": "F1BocfX1TSY",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "VDTeuXcIjkg",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -2691,7 +2642,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "PZD2A5mQZSI",
+            "id": "eDSme_tnMRM",
             "k": "mv",
             "o": 1
           }
@@ -2728,20 +2679,11 @@ window.ANIME_OP_ED_DATA = [
         "usage": "第弐期 第14〜26話",
         "q": "鬼灯の冷徹 ED 地獄でホットケーキ 上坂すみれ",
         "yt": {
-          "id": "LLrVKklqwNk",
-          "k": "mv",
+          "id": "tQxgUxGUkWU",
+          "k": "au",
           "o": 1,
           "ch": "上坂すみれ YouTube OFFICIAL CHANNEL",
-          "tv": {
-            "id": "LLrVKklqwNk",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "tQxgUxGUkWU",
-            "k": "au",
-            "o": 1
-          }
+          "e": 0
         }
       }
     ],
@@ -3060,11 +3002,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "nc",
             "o": 1
           },
-          "full": {
-            "id": "sZ3meON6yrY",
-            "k": "au",
-            "o": 1
-          },
           "fa": {
             "id": "sZ3meON6yrY",
             "k": "au",
@@ -3117,7 +3054,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "ykk1j9PfbBs",
+            "id": "7pd5YTER_tQ",
             "k": "au",
             "o": 1
           },
@@ -3140,7 +3077,13 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "森口博子 オフィシャル YouTube チャンネル",
           "full": {
-            "id": "yIUnJScUGnI",
+            "id": "yfKRC9L2b4k",
+            "k": "au",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "yfKRC9L2b4k",
             "k": "au",
             "o": 1
           }
@@ -3225,19 +3168,15 @@ window.ANIME_OP_ED_DATA = [
         "usage": "食戟のソーマ 前期",
         "q": "食戟のソーマ OP 希望の唄 ウルトラタワー",
         "yt": {
-          "id": "SANXp5PQyTU",
+          "id": "mFYK47afoSY",
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "tv": {
-            "id": "SANXp5PQyTU",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "mFYK47afoSY",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "gJQolcac1w0",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -3252,11 +3191,7 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "full": {
-            "id": "xE0KsfXT9mo",
-            "k": "mv",
-            "o": 1
-          }
+          "e": 0
         }
       },
       {
@@ -3338,17 +3273,18 @@ window.ANIME_OP_ED_DATA = [
         "usage": "食戟のソーマ 豪ノ皿",
         "q": "食戟のソーマ OP ラストチャプター nano.RIPE",
         "yt": {
-          "id": "x5mDp8V15ug",
-          "k": "mv",
+          "id": "Jr3IWAqvDDs",
+          "k": "au",
           "o": 1,
-          "ch": "Lantis Channel",
-          "tv": {
-            "id": "x5mDp8V15ug",
-            "k": "mv",
+          "ch": "nano. RIPE Official Channel",
+          "full": {
+            "id": "I9bXbD-TpnU",
+            "k": "au",
             "o": 1
           },
-          "full": {
-            "id": "Jr3IWAqvDDs",
+          "e": 0,
+          "alt": {
+            "id": "I9bXbD-TpnU",
             "k": "au",
             "o": 1
           }
@@ -3365,10 +3301,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "avex",
-          "full": {
-            "id": "C9EVYcUGZ14",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "TdCpx96d9fw",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -3383,10 +3320,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "大森靖子 Youtube Channel",
-          "full": {
-            "id": "U4LR7ZJUwxs",
-            "k": "au",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "a0grpMcb29Y",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -3402,8 +3340,14 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "nano. RIPE Official Channel",
           "full": {
-            "id": "LIGrbQUHGkE",
-            "k": "au",
+            "id": "gnuIzQ8TaLc",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "gnuIzQ8TaLc",
+            "k": "mv",
             "o": 1
           }
         }
@@ -3438,8 +3382,14 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "Fo'xTails - Topic",
           "full": {
-            "id": "HLJ8EEabNWM",
-            "k": "au",
+            "id": "Q_zL3piyt9A",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "Q_zL3piyt9A",
+            "k": "mv",
             "o": 1
           }
         }
@@ -3456,8 +3406,14 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "nano. RIPE Official Channel",
           "full": {
-            "id": "iMdhHKLZ1kI",
-            "k": "au",
+            "id": "uppN_qusT8k",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "uppN_qusT8k",
+            "k": "mv",
             "o": 1
           }
         }
@@ -3547,12 +3503,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "文豪ストレイドッグス OP セツナの愛 GRANRODEO",
         "yt": {
           "id": "oz57du3fQFE",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "GRANRODEO",
           "tv": {
             "id": "oz57du3fQFE",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -3588,12 +3544,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "文豪ストレイドッグス OP 鉄の檻 GRANRODEO",
         "yt": {
           "id": "rnz1K-DP_6s",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "GRANRODEO",
           "tv": {
             "id": "rnz1K-DP_6s",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -3648,12 +3604,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "文豪ストレイドッグス ED Lily ラックライフ",
         "yt": {
           "id": "cnAmQI7m4HA",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "ラックライフ",
           "tv": {
             "id": "cnAmQI7m4HA",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -3671,12 +3627,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "文豪ストレイドッグス ED しるし ラックライフ",
         "yt": {
           "id": "U1gr6jtR19s",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "ラックライフ",
           "tv": {
             "id": "U1gr6jtR19s",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -4055,7 +4011,13 @@ window.ANIME_OP_ED_DATA = [
           "o": 1,
           "ch": "エミリア（CV：高橋李依） - Topic",
           "full": {
-            "id": "84YBqfpCGW8",
+            "id": "yEnJ57zM12A",
+            "k": "au",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "yEnJ57zM12A",
             "k": "au",
             "o": 1
           }
@@ -4639,12 +4601,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "終末なにしてますか？ 忙しいですか？ 救ってもらっていいですか？ OP DEAREST DROP 田所あずさ",
         "yt": {
           "id": "Vt-7NTj80PY",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "田所あずさ Official Channel",
           "tv": {
             "id": "Vt-7NTj80PY",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -4663,12 +4625,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "終末なにしてますか？ 忙しいですか？ 救ってもらっていいですか？ ED フロム TRUE",
         "yt": {
           "id": "LPqKcqeFWyg",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "TRUE Lantis Official Channel",
           "tv": {
             "id": "LPqKcqeFWyg",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -5606,12 +5568,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "約束のネバーランド ED 魔法 Myuk",
         "yt": {
           "id": "euCCroA-pDw",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "Myuk",
           "tv": {
             "id": "euCCroA-pDw",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -5764,11 +5726,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "op",
             "o": 1
           },
-          "full": {
-            "id": "ncnHddqNqhM",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "ncnHddqNqhM",
             "k": "mv",
@@ -5854,7 +5811,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "cFqaN3vgxLc",
+            "id": "j0_XFjoZTWg",
             "k": "mv",
             "o": 1
           },
@@ -5881,11 +5838,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "op",
             "o": 1
           },
-          "full": {
-            "id": "1Cxn1gBfhRg",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "W4YbIxlfw8k",
             "k": "mv",
@@ -5907,11 +5859,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "rCtc-9EVE_c",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "e6g3mkqhFzo",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -5937,11 +5884,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "op",
             "o": 1
           },
-          "full": {
-            "id": "UrWat71YxLA",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "AJ7zMdz0OBs",
             "k": "mv",
@@ -5956,23 +5898,13 @@ window.ANIME_OP_ED_DATA = [
         "usage": "T 前期",
         "q": "とある科学の超電磁砲 OP final phase fripSide",
         "yt": {
-          "id": "R33q3f7Xpiw",
+          "id": "jPq5elJBwmo",
           "k": "op",
           "o": 1,
-          "ch": "とあるプロジェクト公式toaru.project",
+          "ch": "NBCUniversal Anime/Music",
           "tv": {
-            "id": "R33q3f7Xpiw",
+            "id": "jPq5elJBwmo",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "gQ91NaeO2To",
-            "k": "mv",
-            "o": 1
-          },
-          "fa": {
-            "id": "gQ91NaeO2To",
-            "k": "mv",
             "o": 1
           }
         }
@@ -5984,23 +5916,13 @@ window.ANIME_OP_ED_DATA = [
         "usage": "T 後期",
         "q": "とある科学の超電磁砲 OP dual existence fripSide",
         "yt": {
-          "id": "Ud8muRt82kI",
+          "id": "djwxLXJvgbQ",
           "k": "op",
           "o": 1,
-          "ch": "とあるプロジェクト公式toaru.project",
+          "ch": "NBCUniversal Anime/Music",
           "tv": {
-            "id": "Ud8muRt82kI",
+            "id": "djwxLXJvgbQ",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "mtBGt4ghlxk",
-            "k": "mv",
-            "o": 1
-          },
-          "fa": {
-            "id": "mtBGt4ghlxk",
-            "k": "mv",
             "o": 1
           }
         }
@@ -6022,7 +5944,8 @@ window.ANIME_OP_ED_DATA = [
           "id": "1-dGAS8MgsU",
           "k": "ot",
           "o": 0,
-          "ch": "Different world"
+          "ch": "Different world",
+          "e": 0
         }
       },
       {
@@ -6039,11 +5962,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "APmjN__YU4s",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "3GurBUaU3ms",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -6067,11 +5985,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "O7oFmGCvgbs",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "Ph2Mq1T8xGc",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -6848,21 +6761,12 @@ window.ANIME_OP_ED_DATA = [
           "k": "nc",
           "o": 1,
           "ch": "アークナイツ 公式チャンネル",
-          "tv": {
-            "id": "wEjfXC5er5Q",
-            "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "XA-D0jY0Z9w",
-            "k": "au",
-            "o": 1
-          },
           "fa": {
             "id": "XA-D0jY0Z9w",
             "k": "au",
             "o": 1
-          }
+          },
+          "e": 0
         }
       },
       {
@@ -7332,11 +7236,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "nc",
             "o": 1
           },
-          "full": {
-            "id": "lgifQ2dBqqI",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "lgifQ2dBqqI",
             "k": "mv",
@@ -7623,11 +7522,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "nc",
             "o": 1
           },
-          "full": {
-            "id": "zrXA4nx9bMo",
-            "k": "au",
-            "o": 1
-          },
           "fa": {
             "id": "zrXA4nx9bMo",
             "k": "au",
@@ -7744,10 +7638,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "OFFICIAL HIGE DANDISM",
-          "full": {
-            "id": "CbH2F0kXgTY",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "ipRdQTB1aOs",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -7783,11 +7678,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "gz--GkzpAf8",
             "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "W_fHWaoQwkw",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -7911,7 +7801,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "fH8hLLww2JI",
+            "id": "krBIotNcC2w",
             "k": "mv",
             "o": 1
           },
@@ -7955,8 +7845,8 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "M4-XU0a2hf0",
-            "k": "au",
+            "id": "tR8YH0G67Rk",
+            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -7983,7 +7873,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "CkvWJNt77mU",
+            "id": "E0d2uEQJbXs",
             "k": "mv",
             "o": 1
           },
@@ -8011,7 +7901,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "MjeiIal1ZR0",
+            "id": "RH-FcW94z00",
             "k": "mv",
             "o": 1
           },
@@ -8159,11 +8049,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "nc",
             "o": 1
           },
-          "full": {
-            "id": "d62GvsOTaio",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "d62GvsOTaio",
             "k": "mv",
@@ -8245,11 +8130,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "SNISFSVUuL0",
             "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "mG0qU4B6YtI",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -8447,15 +8327,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「リコとロイの旅立ち」編",
         "q": "ポケットモンスター（2023） OP ドキメキダイアリー asmi",
         "yt": {
-          "id": "d66nA8nRUZc",
-          "k": "mv",
+          "id": "UtN-Wjuqu8U",
+          "k": "au",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "d66nA8nRUZc",
-            "k": "mv",
-            "o": 1
-          },
+          "ch": "asmi Official Channel",
           "full": {
             "id": "UtN-Wjuqu8U",
             "k": "au",
@@ -8529,15 +8404,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「メガボルテージ」編",
         "q": "ポケットモンスター（2023） OP GET BACK ゆず",
         "yt": {
-          "id": "sbCcNWLIar0",
+          "id": "-vclKjpof9Q",
           "k": "mv",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "sbCcNWLIar0",
-            "k": "mv",
-            "o": 1
-          },
+          "ch": "yuzuofficial",
           "full": {
             "id": "-vclKjpof9Q",
             "k": "mv",
@@ -8552,15 +8422,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ライジングアゲイン」編",
         "q": "ポケットモンスター（2023） OP アイオライト Eve",
         "yt": {
-          "id": "Tq96N_RzpFE",
+          "id": "l96CCKCktOU",
           "k": "mv",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "Tq96N_RzpFE",
-            "k": "mv",
-            "o": 1
-          },
+          "ch": "Eve",
           "full": {
             "id": "l96CCKCktOU",
             "k": "mv",
@@ -8575,15 +8440,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ワンダーボヤージュ」編",
         "q": "ポケットモンスター（2023） OP セカイツナガレ リコ",
         "yt": {
-          "id": "FqQL3VegxrM",
+          "id": "GeOp4mK6dG8",
           "k": "mv",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "FqQL3VegxrM",
-            "k": "mv",
-            "o": 1
-          },
+          "ch": "HoneyWorks OFFICIAL and ポケモン公式YouTubeチャンネル",
           "full": {
             "id": "GeOp4mK6dG8",
             "k": "mv",
@@ -8602,15 +8462,11 @@ window.ANIME_OP_ED_DATA = [
           "k": "mv",
           "o": 1,
           "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "oqfZr98LY2E",
-            "k": "mv",
-            "o": 1
-          },
-          "full": {
-            "id": "oqfZr98LY2E",
-            "k": "mv",
-            "o": 1
+          "e": 0,
+          "alt": {
+            "id": "EdsydMirwhM",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -8621,15 +8477,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「テラスタルデビュー」編",
         "q": "ポケットモンスター（2023） ED Let me battle 9Lana",
         "yt": {
-          "id": "G28TiFWlXgs",
+          "id": "whTcBozYrOo",
           "k": "mv",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "G28TiFWlXgs",
-            "k": "mv",
-            "o": 1
-          },
+          "ch": "9Lana",
           "full": {
             "id": "whTcBozYrOo",
             "k": "mv",
@@ -8667,15 +8518,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「メガボルテージ」編",
         "q": "ポケットモンスター（2023） ED Ready Go ME:I",
         "yt": {
-          "id": "xjW9Wkfa_ao",
+          "id": "VfWvzhxg2rc",
           "k": "mv",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "xjW9Wkfa_ao",
-            "k": "mv",
-            "o": 1
-          },
+          "ch": "ME:I",
           "full": {
             "id": "VfWvzhxg2rc",
             "k": "mv",
@@ -8698,15 +8544,10 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ライジングアゲイン」編",
         "q": "ポケットモンスター（2023） ED ねてもさめても ポルカドットスティングレイ",
         "yt": {
-          "id": "btD1zmUANaw",
+          "id": "PVyKHNdV8SU",
           "k": "mv",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
-          "tv": {
-            "id": "btD1zmUANaw",
-            "k": "mv",
-            "o": 1
-          },
+          "ch": "POLKADOT STINGRAY and ポケモン公式YouTubeチャンネル",
           "full": {
             "id": "PVyKHNdV8SU",
             "k": "mv",
@@ -8721,18 +8562,18 @@ window.ANIME_OP_ED_DATA = [
         "usage": "「ワンダーボヤージュ」編",
         "q": "ポケットモンスター（2023） ED キュートなキューたい CUTIE STREET",
         "yt": {
-          "id": "O8xd6OWzJZY",
+          "id": "wkKbv1DNQOo",
           "k": "mv",
           "o": 1,
-          "ch": "ポケモン公式YouTubeチャンネル",
+          "ch": "CUTIE STREET",
           "tv": {
-            "id": "O8xd6OWzJZY",
+            "id": "wkKbv1DNQOo",
             "k": "mv",
             "o": 1
           },
           "full": {
-            "id": "hlM4oELwVR8",
-            "k": "au",
+            "id": "rnISiUxV_kQ",
+            "k": "mv",
             "o": 1
           }
         }
@@ -9054,11 +8895,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "nc",
             "o": 1
           },
-          "full": {
-            "id": "A7cp6OVa0Qc",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "A7cp6OVa0Qc",
             "k": "mv",
@@ -9306,21 +9142,12 @@ window.ANIME_OP_ED_DATA = [
           "k": "nc",
           "o": 1,
           "ch": "TVアニメ FAIRY TAIL 100年クエスト 公式",
-          "tv": {
-            "id": "NhGC9GDzmxQ",
-            "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "FsUYmOyiDCs",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "FsUYmOyiDCs",
             "k": "mv",
             "o": 1
-          }
+          },
+          "e": 0
         }
       },
       {
@@ -9337,11 +9164,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "ZeIneHTb1l8",
             "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "8iLoUobwuG0",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -9365,11 +9187,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "plFrzmWj5co",
             "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "GWvnFpIr5MM",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -9710,8 +9527,8 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "ikzBo9_Qdnk",
-            "k": "mv",
+            "id": "5e9lFkrJbU0",
+            "k": "au",
             "o": 1
           },
           "fa": {
@@ -9803,11 +9620,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "op",
             "o": 1
           },
-          "full": {
-            "id": "OLRbIc8KZ_8",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "OLRbIc8KZ_8",
             "k": "mv",
@@ -9857,11 +9669,6 @@ window.ANIME_OP_ED_DATA = [
           "tv": {
             "id": "P4jTLEnAUEs",
             "k": "op",
-            "o": 1
-          },
-          "full": {
-            "id": "vtawKP7hqgk",
-            "k": "mv",
             "o": 1
           },
           "fa": {
@@ -10259,12 +10066,12 @@ window.ANIME_OP_ED_DATA = [
         "q": "狼と香辛料 ED りんごと君 音莉飴",
         "yt": {
           "id": "RleRKPPun7Q",
-          "k": "mv",
+          "k": "au",
           "o": 1,
           "ch": "〚 音莉飴 〛official",
           "tv": {
             "id": "RleRKPPun7Q",
-            "k": "mv",
+            "k": "au",
             "o": 1
           },
           "full": {
@@ -10438,20 +10245,16 @@ window.ANIME_OP_ED_DATA = [
           "k": "nc",
           "o": 1,
           "ch": "isekai channel @バンダイナムコフィルムワークス and 2 more",
-          "tv": {
-            "id": "I5u5gNcKVfk",
-            "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "tAbbeN47Ttk",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "tAbbeN47Ttk",
             "k": "mv",
             "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "K2JRon6yDsg",
+            "k": "ot",
+            "o": 0
           }
         }
       },
@@ -10997,7 +10800,7 @@ window.ANIME_OP_ED_DATA = [
             "o": 1
           },
           "full": {
-            "id": "oioOfrRKhrI",
+            "id": "VuLIn8ZHgxw",
             "k": "mv",
             "o": 1
           },
@@ -11409,11 +11212,6 @@ window.ANIME_OP_ED_DATA = [
             "k": "nc",
             "o": 1
           },
-          "full": {
-            "id": "szTRoNp3cAg",
-            "k": "mv",
-            "o": 1
-          },
           "fa": {
             "id": "szTRoNp3cAg",
             "k": "mv",
@@ -11473,16 +11271,7 @@ window.ANIME_OP_ED_DATA = [
           "k": "nc",
           "o": 1,
           "ch": "魔法少女リリカルなのは YouTube OFFICIAL CHANNEL and 2 more",
-          "tv": {
-            "id": "_gBcPnxRXDY",
-            "k": "nc",
-            "o": 1
-          },
-          "full": {
-            "id": "Jt_D4crUC0w",
-            "k": "mv",
-            "o": 1
-          }
+          "e": 0
         }
       },
       {

@@ -410,22 +410,26 @@
   function isBad(id) { return !!prefs.bad[id]; }
 
   // 再生に使う動画（埋め込み不可・再生失敗の動画は代替。無ければ null）
-  function playSource(t) {
+  // forChorus: サビを流すとき用。サビ位置（推定）のある動画だけを選び、TVサイズ版にサビ位置が無い曲（音声を解析できない動画）は
+  // サビ位置のあるフル尺版（y.full）で流す（2026-09-28）
+  function playSource(t, forChorus) {
     const y = t.yt;
     if (!y) return null;
     // 個人用モードでも、まず動画（ノンクレジット映像）での再生を試みる（makeHybridPlayer）。ダウンロード済み音源が無い曲でも
     // 埋め込みさえできれば再生できるので、ok はダウンロード済みかどうかを問わない（無くても動画がダメなときだけ音声側で失敗する）
     const cands = [];
     // 再生はTVサイズ版を基本にする（2026-09-23ユーザー指示）。y.id（従来の総合1位）がTVサイズ版と別ならその後に控える
-    if (y.tv) cands.push({ id: y.tv.id, k: y.tv.k, o: y.tv.o, ok: true });
+    if (y.tv) cands.push({ id: y.tv.id, k: y.tv.k, o: y.tv.o, ok: PERSONAL ? true : y.tv.e !== 0 });
     // 個人用モードで、TVサイズしか無い曲にフルサイズ音源（y.fa。TVサイズの音が中に見つかった同じ録音）があれば、それも使う
     if (PERSONAL && y.fa) cands.push({ id: y.fa.id, k: y.fa.k, o: y.fa.o, ok: true, full: true });
     // TVサイズ版が無い曲の公式フル尺（MV・音源）は、サビを含む約1:30に短縮して再生する（2026-09-28ユーザー指示: 曲はTVサイズをメインに）
     cands.push({ id: y.id, k: y.k, o: y.o, ok: PERSONAL ? true : y.e !== 0, trimmed: !y.tv && (y.k === "mv" || y.k === "au") });
-    if (y.alt) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: true });
-    // TVサイズ版が無くフル尺版しか無い曲は、フル尺を1:30に切って代用する（ランダム再生の対象外＝isTrimmedOnly()で判定）
-    if (!y.tv && y.full) cands.push({ id: y.full.id, k: y.full.k, o: y.full.o, ok: true, full: true, trimmed: true });
-    for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id)) return cands[i];
+    // 代替: 公式の代替動画 → 公式フル尺を1:30に短縮（TVサイズ版・メインがサイト内で再生できない曲も含む）
+    // → 非公式の代替動画、の順（2026-09-28: 非公式より公式フル尺の短縮を優先）
+    if (y.alt && y.alt.o) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: true });
+    if (y.full) cands.push({ id: y.full.id, k: y.full.k, o: y.full.o, ok: PERSONAL ? true : y.full.e !== 0, full: true, trimmed: !forChorus });
+    if (y.alt && !y.alt.o) cands.push({ id: y.alt.id, k: y.alt.k, o: y.alt.o, ok: true });
+    for (let i = 0; i < cands.length; i++) if (cands[i].ok && !isBad(cands[i].id) && (!forChorus || chorusFor(cands[i].id))) return cands[i];
     return null;
   }
   const TRIM_LEN = 90;                 // フル尺のみの曲を代用する長さ（TVサイズの典型的な長さに合わせる）
@@ -437,11 +441,6 @@
     if (ch && ch[1] > en) { st = Math.max(st, ch[1] - TRIM_LEN); en = ch[1]; }
     return [st, en];
   }
-  // 実際に再生する動画がフル尺の代用（trimmed）かどうか。ランダム再生から除く判定に使う
-  function isTrimmedOnly(t) {
-    const s = playSource(t);
-    return !!(s && s.trimmed);
-  }
   // サビ位置: 端末で微調整した値（prefs.chorusAdj）があればそれ、無ければ推定値（CH）
   function chorusFor(id) {
     const a = prefs.chorusAdj && prefs.chorusAdj[id];
@@ -449,7 +448,7 @@
     return CH[id] || null;
   }
   function chorusOf(t) {
-    const s = playSource(t);
+    const s = playSource(t, true);
     if (!s) return null;
     return chorusFor(s.id);
   }
@@ -803,7 +802,7 @@
   function playable(s) {
     if (!EMBED_OK || !playSource(s.t)) return false;
     if (chorusMode && !chorusOf(s.t)) return false;
-    if (isTrimmedOnly(s.t)) return false;    // フル尺を1:30に切った代用曲はランダム再生の対象外（2026-09-23ユーザー指示）
+    // フル尺を1:30に短縮して流す曲もランダム再生の対象（2026-09-28ユーザー指示。2026-09-23〜は対象外だった）
     return true;
   }
   // ---- ランダム再生キュー（2026-09-23ユーザー指示: 次に流す曲を10曲までシャッフルして持ち、残り3曲以下で10曲まで補充する） ----
@@ -985,7 +984,7 @@
 
   function playSong(w, t, opts) {
     opts = opts || {};
-    const src = EMBED_OK ? playSource(t) : null;
+    const src = EMBED_OK ? (chorusMode && playSource(t, true)) || playSource(t) : null;
     if (!src) {
       if (t.yt) window.open(ytUrl(t.yt.id), "_blank", "noopener");
       return;
@@ -1004,7 +1003,7 @@
     const badge = document.getElementById("pl-badge");
     badge.className = "pl-badge" + (src.o ? "" : " unofficial");
     const mst = c ? 0 : win ? win[0] : mainStartOf(src.id);
-    badge.textContent = (src.o ? "公式" : "※非公式") + (src.trimmed ? "（フル尺をサビを含む約1:30に短縮・ランダム対象外）" : src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") +
+    badge.textContent = (src.o ? "公式" : "※非公式") + (src.trimmed ? "（フル尺をサビを含む約1:30に短縮）" : src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") +
       (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : win ? "　" + fmt(win[0]) + "〜" + fmt(win[1]) : mst > 1 ? "　イントロを省略（" + fmt(mst) + "〜）" : "");
     document.getElementById("pl-open").href = ytUrl(src.id, c ? c[0] : mst);
     if (opts.explore) plMsg("まだ評価のない作品です。気に入ったら評価を付けてください");
@@ -1223,7 +1222,7 @@
       // 恒久的な失敗（100=削除/非公開、101・150=埋め込み禁止）だけ「再生不可」として記録する。2・5などは一時的なので記録しない
       const code = e && e.data;
       if (code === 100 || code === 101 || code === 150) { prefs.bad[cur.src.id] = 1; savePrefs(); }
-      const alt = code === 100 || code === 101 || code === 150 ? playSource(cur.t) : null;
+      const alt = code === 100 || code === 101 || code === 150 ? (cur.sabi && playSource(cur.t, true)) || playSource(cur.t) : null;
       if (alt && alt.id !== cur.src.id) { plMsg("この動画は再生できなかったので、代替動画に切り替えます（エラー " + (e && e.data) + "）"); playSong(cur.w, cur.t); return; }
     }
     plMsg("この動画はサイト内で再生できません（エラー " + (e && e.data) + "）。" + (errStreak < 3 ? "次の曲へ進みます…" : "「YouTubeで開く」から再生してください。"));
