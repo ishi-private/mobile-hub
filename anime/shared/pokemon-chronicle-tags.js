@@ -62,6 +62,8 @@ window.PokemonChronicleTags = (function () {
       note: "アニポケ リコロイWikiに「第22〜23話ではガラル地方でのバトル修行が描かれる」との記載。日本語Wikipediaでは第24話ダイアナ登場後に「ガラル地方の捜索を続ける」という記述はあるが具体的な話数の明記がなく、単独ソースでの確認にとどまるため要検証度が高い。" },
     { id: "seed-stage-unova", categoryId: "cat-stage", value: "イッシュ（ブルーベリー学園）",
       note: "日本語Wikipediaに「第115話からリコらが訪問し…」とブルーベリー学園（イッシュ地方）への留学が明記。WebSearchでも「第111話でブルーベリー学園への留学が決定」という記述が見つかり、決定と実際の訪問開始で話数がズレている可能性がある（決定=111話、訪問開始=115話、と解釈）。" },
+    { id: "seed-stage-kitakami", categoryId: "cat-stage", value: "キタカミの里",
+      note: "第151話の公式あらすじに「キタカミの里のお祭りにやってきたライジングボルテッカーズ」と明記。2026-09-28に公式YouTube見逃し配信（t5hhMrB6JpU）で、ほぼ全編がキタカミの里のお祭り会場と周辺の森であることを確認（shared/pokemon-episode-details.js）。"},
     { id: "seed-debut-roy", categoryId: "cat-debut", value: "ロイ登場",
       note: "日本語Wikipediaに「第3話で初登場し、第4話でリコと初対面」と明記。一方アニポケ リコロイWikiは「初登場は第4話」としており、初登場話数の解釈に幅がある（第3話＝画面に映る、第4話＝リコと出会う、という区別と思われる）。ここではリコとの出会いという物語上の節目である第4話を採用した。" },
     { id: "seed-debut-diana", categoryId: "cat-debut", value: "ダイアナ登場",
@@ -88,6 +90,7 @@ window.PokemonChronicleTags = (function () {
     90: ["seed-debut-uruto"],
     115: ["seed-stage-unova"],
     126: ["seed-debut-nemo-botan"],
+    151: ["seed-stage-kitakami"],
   };
 
   function load() {

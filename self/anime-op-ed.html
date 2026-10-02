@@ -207,6 +207,18 @@
     #ae-player.big .pl-video { width: 100%; }
     .poster-grid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
   }
+  /* 右クリック（スマホは長押し）のメニュー。曲（一覧・作品パネル・プレイリスト）とポスターで使う */
+  .ctx-menu { position: fixed; z-index: 3000; min-width: 210px; max-width: calc(100vw - 16px); background: #1c1c24; border: 1px solid #3a3a4a; border-radius: 8px; padding: 4px 0; box-shadow: 0 6px 20px rgba(0,0,0,0.55); font-size: 0.82rem; }
+  .ctx-menu[hidden] { display: none; }
+  .ctx-head { padding: 6px 14px 4px; font-size: 0.68rem; color: #778; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; }
+  .ctx-item { display: flex; align-items: center; gap: 9px; width: 100%; padding: 10px 14px; border: none; background: none; color: #ddd; font: inherit; text-align: left; cursor: pointer; }
+  .ctx-item:hover { background: #262632; }
+  .ctx-item:disabled { color: #555; cursor: default; background: none; }
+  .ctx-item .ico { width: 18px; text-align: center; flex: 0 0 auto; }
+  .ctx-sep { height: 1px; background: #2e2e3a; margin: 4px 0; }
+  .ctx-row { display: flex; align-items: center; gap: 6px; padding: 6px 14px; }
+  .ctx-row-label { font-size: 0.68rem; color: #778; width: 30px; flex: 0 0 auto; }
+  .ctx-row .rate-btn, .ctx-row .mood-btn { flex: 0 0 auto; }
 </style>
 </head>
 <body>
@@ -338,6 +350,7 @@
 <script src="data/anime-op-ed-data.js"></script>
 <script src="data/anime-song-chorus-data.js"></script>
 <script src="data/anime-song-struct-data.js"></script>
+<script src="shared/touch-contextmenu.js"></script>
 <!--PERSONAL_DATA-->
 <script>
 (function () {
@@ -345,6 +358,8 @@
   const works = window.ANIME_OP_ED_DATA || [];
   const ST = window.ANIME_SONG_STRUCT || {};     // 動画ID → [全体秒, [[開始秒, 終了秒, 役割 I|A|B|S|M|C|O], ...]]  （曲の構成の推定）
   const ROLE_JA = { I: "イントロ", A: "Aメロ", B: "Bメロ", S: "サビ", M: "間奏", C: "Cメロ", O: "アウトロ" };
+  // 区間の名前: v5（2026-10-02）は4番目に細かいラベル（頭サビ・1番Aメロ・2番サビ・落ちサビ・Cメロ（大サビ）・ラスサビ（転調）等）を持つ。無ければ役割名
+  function segName(g) { return g[3] || ROLE_JA[g[2]]; }
   let selSec = null;
   const CH = window.ANIME_SONG_CHORUS || {};     // 動画ID → [開始秒, 終了秒, "high"|"low"]  （サビの推定）
   // サイト内で再生できるのは http(s) で開いたとき（file:// では YouTube の埋め込みが動かない）
@@ -675,6 +690,7 @@
       ws++; songs += n;
       const p = el("div", "poster");
       p.id = "poster-" + w.id;
+      p.dataset.work = w.id;
       const img = el("div", "p-img");
       if (w.image) {
         const im = document.createElement("img");
@@ -869,7 +885,12 @@
     syncModeButtons();
     if (playlistOpen) renderPlaylist();
   }
-  document.getElementById("btn-random").onclick = randomizeQueue;
+  // 🔀 ランダム再生: 何も流れていなければ、その場でキューの先頭から再生を始める（2026-10-01修正: 以前はキューを作るだけで再生されなかった）。
+  // サビだけランダムの後に押したときは、サビだけモードを解除して曲を通して流す
+  document.getElementById("btn-random").onclick = function () {
+    setChorusMode(false);
+    if (!cur || barEl.hidden) playRandom(false, true); else randomizeQueue();
+  };
   document.getElementById("btn-random-chorus").onclick = function () { setChorusMode(true); playRandom(true, true); };
   document.getElementById("pl-rand").onclick = randomizeQueue;
   function syncModeButtons() {
@@ -900,6 +921,7 @@
     items.forEach(function (s, i) {
       if (i === upcomingStart && upcomingStart > 0) body.appendChild(el("div", "pl-playlist-sep", "次に流れる曲"));
       const row = el("div", "pl-row" + (cur && cur.key === s.key ? " cur" : ""));
+      row.dataset.key = s.key;
       const img = document.createElement("img");
       img.className = "pl-row-img"; img.loading = "lazy"; img.decoding = "async"; img.referrerPolicy = "no-referrer"; img.alt = s.w.title;
       if (s.w.image) img.src = s.w.image;
@@ -1002,6 +1024,7 @@
     if (chorusMode && !c) { plMsg("この曲はサビ位置がまだ無いので、メイン部分から流します"); }
     const win = src.trimmed ? trimWindow(src.id) : null;
     cur = { w: w, t: t, key: key, src: src, sabi: c, ended: false, trimEnd: win ? win[1] : null };
+    userPaused = false;
     recent.push(key); if (recent.length > RECENT_N) recent.shift();
     setMediaSession(w, t);
     document.getElementById("pl-title").textContent = (t.kind ? t.kind + "：" : "") + t.name;
@@ -1070,11 +1093,23 @@
         api.playVideo();
       }
     };
-    a.addEventListener("playing", function () { onState({ data: 1 }); });
-    a.addEventListener("pause", function () { if (!a.ended) onState({ data: 2 }); });
-    a.addEventListener("ended", function () { onState({ data: 0 }); });
-    a.addEventListener("waiting", function () { onState({ data: 3 }); });
-    a.addEventListener("error", function () { onErr({ data: 5 }); });     // 5 = 一時的な失敗扱い（再生不可として保存しない）
+    // vid が無い間（下の unlock の無音再生）はイベントを無視する
+    a.addEventListener("playing", function () { if (vid) onState({ data: 1 }); });
+    a.addEventListener("pause", function () { if (vid && !a.ended) onState({ data: 2 }); });
+    a.addEventListener("ended", function () { if (vid) onState({ data: 0 }); });
+    a.addEventListener("waiting", function () { if (vid) onState({ data: 3 }); });
+    a.addEventListener("error", function () { if (vid) onErr({ data: 5 }); });     // 5 = 一時的な失敗扱い（再生不可として保存しない）
+    // 裏ではタイマー（setInterval）が間引かれるので、サビのフェード・終わりの判定は音声の timeupdate でも行う
+    a.addEventListener("timeupdate", function () { if (vid && document.hidden) { fadeTick(); checkEnd(); } });
+    // iPhone の Safari は、ユーザーの操作中に一度再生した <audio> でないと後から（裏に回ったときに）再生できない。最初の操作で無音を一瞬流して許可を取っておく
+    const unlock = function () {
+      document.removeEventListener("pointerdown", unlock, true);
+      if (a.src) return;
+      a.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+      const p = a.play();
+      if (p && p.then) p.then(function () { if (!vid) a.pause(); }, function () { /* 無視 */ });
+    };
+    document.addEventListener("pointerdown", unlock, true);
     return api;
   }
   // 個人用モードの動画ファイル再生（Cloudflareに保存した動画そのもの。2026-09-22ユーザー指示: 曲の再生は全て動画の再生で行う）。
@@ -1145,40 +1180,110 @@
         }
       });
     }
+    // sync: 音は音源（<audio>）が鳴らし、動画ファイルは消音で音源の再生位置に合わせて同時に流す（2026-10-01ユーザー指示）。
+    // 裏に回ってもブラウザが止めるのは消音の動画だけなので、音は途切れない。画面に戻ったら動画の位置を音に合わせ直すだけ
     function api(which) { return which === "file" ? videoApi : which === "embed" ? vp : localApi; }
+    let bgAudio = false;      // 埋め込み再生の曲を、裏に回ったため音声へ切り替えている間 true（画面に戻ったら埋め込みへ戻す）
+    function hasAudio(id) { return PERSONAL_AUDIO && PERSONAL_AUDIO[id] != null; }
+    function hasVideo(id) { return PERSONAL_VIDEO && PERSONAL_VIDEO[id] != null; }
+    // 動画の <video> のイベントは、動画が音も鳴らしているとき（file）だけ再生状態として扱う（sync では音源側のイベントを使う）
+    (function () {
+      const v = videoApi._v;
+      v.addEventListener("playing", function () { if (mode === "file") onState({ data: 1 }); });
+      v.addEventListener("pause", function () { if (mode === "file" && !v.ended) onState({ data: 2 }); });
+      v.addEventListener("ended", function () { if (mode === "file") onState({ data: 0 }); });
+      v.addEventListener("waiting", function () { if (mode === "file") onState({ data: 3 }); });
+      v.addEventListener("error", function () { if (mode === "file") onErr({ data: 5 }); });
+    })();
+    // 消音の動画を音源の位置に合わせる。少しのずれは再生速度で寄せ、大きくずれたら（読み込み待ちなど）位置を飛ばす
+    let lastJump = 0;
+    function syncTick() {
+      if (mode !== "sync" || document.hidden) return;
+      const au = localApi._a, v = videoApi._v;
+      if (!v.currentSrc || v.readyState < 1 || v.seeking) return;
+      if (au.paused || au.readyState < 3) { if (!v.paused) v.pause(); return; }
+      // 再生速度を細かく切り替えると映像がかくつくので、ずれが0.12秒を超えたときだけ緩やかに（±3%）寄せ、0.04秒以内に戻ったら等速に戻す。
+      // 位置を飛ばすのは1秒を超えてずれたとき（読み込み待ちなど）だけ（2026-10-01ユーザー指摘: 動画が少しかくかくする）
+      const d = v.currentTime - au.currentTime, ad = Math.abs(d), now = Date.now();
+      if (ad > 1 && now - lastJump > 3000) { lastJump = now; v.playbackRate = 1; v.currentTime = au.currentTime + 0.05; }
+      else if (ad > 0.12) { const r = d > 0 ? 0.97 : 1.03; if (v.playbackRate !== r) v.playbackRate = r; }
+      else if (ad < 0.04 && v.playbackRate !== 1) v.playbackRate = 1;
+      if (v.paused) videoApi.playVideo();
+    }
+    // 次の曲へ移るとき、今回使わない再生エンジンは止めておく（前の曲が鳴り続けないように）
+    function stopOthers(next) {
+      if (next !== "audio" && next !== "sync" && !localApi._a.paused) localApi.pauseVideo();
+      if (next !== "file" && next !== "sync" && !videoApi._v.paused) videoApi.pauseVideo();
+      if (next !== "embed" && vp && vp.pauseVideo) vp.pauseVideo();
+    }
     return {
-      isVideoMode: function () { return mode === "file" || mode === "embed"; },
+      isVideoMode: function () { return mode === "file" || mode === "embed" || mode === "sync"; },
       volumeSupported: true,
       getPlayerState: function () { const p = api(mode); return p && p.getPlayerState ? p.getPlayerState() : -1; },
       getCurrentTime: function () { const p = api(mode); return p && p.getCurrentTime ? p.getCurrentTime() : 0; },
       getDuration: function () { const p = api(mode); return p && p.getDuration ? p.getDuration() : 0; },
-      seekTo: function (s) { const p = api(mode); if (p && p.seekTo) p.seekTo(s, true); },
-      playVideo: function () { const p = api(mode); if (p && p.playVideo) p.playVideo(); },
-      pauseVideo: function () { const p = api(mode); if (p && p.pauseVideo) p.pauseVideo(); },
+      seekTo: function (s) { const p = api(mode); if (p && p.seekTo) p.seekTo(s, true); if (mode === "sync") { videoApi.seekTo(s); lastJump = Date.now(); } },
+      playVideo: function () { const p = api(mode); if (p && p.playVideo) p.playVideo(); if (mode === "sync") syncTick(); },
+      pauseVideo: function () { const p = api(mode); if (p && p.pauseVideo) p.pauseVideo(); if (mode === "sync") videoApi.pauseVideo(); },
       setVolume: function (v) { [videoApi, vp, localApi].forEach(function (p) { if (p && p.setVolume) p.setVolume(v); }); },
       getVideoData: function () { const p = api(mode); return p && p.getVideoData ? p.getVideoData() : { video_id: null }; },
+      syncTick: syncTick,
+      _a: localApi._a,          // 動作確認用（AE_DEBUG が音源の状態を読む）
+      getMode: function () { return mode; },
+      // モバイルでは画面を消す・別アプリへ切り替えると、ブラウザが動画（<video>・YouTube埋め込み）を止める。音声（<audio>）は止まらない。
+      // sync の曲は消音の動画を止めるだけ（音はそのまま）。埋め込みで流している曲は、音源があれば同じ位置から音源へ切り替える
+      toBackground: function () {
+        if (mode === "sync") { videoApi.pauseVideo(); return; }
+        if (mode === "audio" || !lastLoadReq || !hasAudio(lastLoadReq.videoId)) return;
+        const p = api(mode), t = p && p.getCurrentTime ? p.getCurrentTime() : 0;
+        if (p && p.pauseVideo) p.pauseVideo();
+        bgAudio = true;
+        fallbackToAudio({ videoId: lastLoadReq.videoId, startSeconds: t });
+      },
+      toForeground: function (resume) {
+        if (mode === "sync") { lastJump = 0; syncTick(); return; }
+        if (!bgAudio) return;
+        bgAudio = false;
+        if (mode !== "audio" || !lastLoadReq) return;
+        const id = (localApi.getVideoData() || {}).video_id || lastLoadReq.videoId;
+        if (NO_EMBED[id]) return;      // 戻しても動画で流せない曲は音声のまま
+        const t = localApi.getCurrentTime();
+        if (!resume) return;            // 一時停止中なら音声のまま（次の曲から動画に戻る）
+        localApi.pauseVideo();
+        this.loadVideoById({ videoId: id, startSeconds: t });
+      },
       loadVideoById: function (o) {
         lastLoadReq = o;
-        if (PERSONAL_VIDEO && PERSONAL_VIDEO[o.videoId] != null) {
+        const id = o.videoId;
+        if (hasVideo(id) && hasAudio(id)) {
+          stopOthers("sync");
+          mode = "sync";
+          show("file");
+          localApi.loadVideoById(o);
+          videoApi._v.muted = true;
+          videoApi.loadVideoById(o);
+          lastJump = Date.now();
+          if (document.hidden) videoApi.pauseVideo();
+        } else if (document.hidden && hasAudio(id)) {
+          stopOthers("audio");
+          bgAudio = true;               // 裏で次の曲へ進んだときは、最初から音声で流す
+          fallbackToAudio(o);
+        } else if (hasVideo(id)) {
+          stopOthers("file");
           mode = "file";
           show("file");
+          videoApi._v.muted = false;
           videoApi.loadVideoById(o);
-        } else if (NO_EMBED[o.videoId] && PERSONAL_AUDIO[o.videoId] != null) {
+        } else if (NO_EMBED[id] && hasAudio(id)) {
+          stopOthers("audio");
           fallbackToAudio(o);          // 埋め込み禁止と分かっている動画は、埋め込みのエラーを待たずに音源で再生（2026-09-28）
         } else {
+          stopOthers("embed");
           fallbackToEmbed(o);
         }
       }
     };
   }
-  (function () {
-    const v = document.getElementById("pl-video-el");
-    v.addEventListener("playing", function () { onState({ data: 1 }); });
-    v.addEventListener("pause", function () { if (!v.ended) onState({ data: 2 }); });
-    v.addEventListener("ended", function () { onState({ data: 0 }); });
-    v.addEventListener("waiting", function () { onState({ data: 3 }); });
-    v.addEventListener("error", function () { onErr({ data: 5 }); });
-  })();
   function initPersonalPlayer() {
     ytPlayer = makeTieredPlayer();
     playerReady = true;
@@ -1190,8 +1295,8 @@
     if (!PERSONAL || !("mediaSession" in navigator)) return;
     try {
       navigator.mediaSession.metadata = new MediaMetadata({ title: t.name, artist: t.artist || "", album: w.title });
-      navigator.mediaSession.setActionHandler("play", function () { ytPlayer.playVideo(); });
-      navigator.mediaSession.setActionHandler("pause", function () { ytPlayer.pauseVideo(); });
+      navigator.mediaSession.setActionHandler("play", function () { userPaused = false; ytPlayer.playVideo(); });
+      navigator.mediaSession.setActionHandler("pause", function () { userPaused = true; ytPlayer.pauseVideo(); });
       navigator.mediaSession.setActionHandler("previoustrack", prev);
       navigator.mediaSession.setActionHandler("nexttrack", next);
       navigator.mediaSession.setActionHandler("seekto", function (d) { if (d && d.seekTime != null) ytPlayer.seekTo(d.seekTime); });
@@ -1238,16 +1343,31 @@
     refreshUi();
   }
 
+  // サビの終わり・短縮再生の終わりで次の曲へ
+  function checkEnd(now) {
+    if (!cur || cur.ended || !ytPlayer || !ytPlayer.getCurrentTime) return;
+    if (now == null) now = ytPlayer.getCurrentTime();
+    if ((cur.trimEnd && now >= cur.trimEnd) || (cur.sabi && !cur.free && now >= cur.sabi[1] - 0.05 && ytPlayer.getPlayerState() === 1)) { cur.ended = true; next(); }
+  }
+  // 個人用モード: 画面が裏に回った／戻ったときの切り替え（userPaused: ユーザーが一時停止した状態なら裏で再生を始めない）
+  let userPaused = false;
+  document.addEventListener("visibilitychange", function () {
+    if (!PERSONAL || !ytPlayer || !ytPlayer.toBackground || !cur || barEl.hidden) return;
+    if (document.hidden) { if (!userPaused) ytPlayer.toBackground(); }
+    else ytPlayer.toForeground(!userPaused);
+  });
+
   function startFade() {
     clearInterval(fadeTimer);
-    fadeTimer = setInterval(function () {
-      if (!ytPlayer || !ytPlayer.getCurrentTime || !cur || !cur.sabi || cur.free || barEl.hidden) return;
-      if (ytPlayer.getPlayerState() !== 1) return;
-      const now = ytPlayer.getCurrentTime(), s = cur.sabi[0], e = cur.sabi[1];
-      if (now >= e - 0.05 && !cur.ended) { cur.ended = true; next(); return; }      // サビの終わりで次の曲へ
-      const f = Math.max(0, Math.min(1, (now - s) / 0.5, (e - now) / 0.7));
-      ytPlayer.setVolume(Math.round(prefs.vol * f));
-    }, 100);
+    fadeTimer = setInterval(fadeTick, 100);
+  }
+  function fadeTick() {
+    if (!ytPlayer || !ytPlayer.getCurrentTime || !cur || !cur.sabi || cur.free || barEl.hidden) return;
+    if (ytPlayer.getPlayerState() !== 1) return;
+    const now = ytPlayer.getCurrentTime(), s = cur.sabi[0], e = cur.sabi[1];
+    if (now >= e - 0.05 && !cur.ended) { cur.ended = true; next(); return; }      // サビの終わりで次の曲へ
+    const f = Math.max(0, Math.min(1, (now - s) / 0.5, (e - now) / 0.7));
+    ytPlayer.setVolume(Math.round(prefs.vol * f));
   }
 
   // ---- 曲の構成バー（イントロ/Aメロ/Bメロ/サビ/間奏…の推定）。押すとその区間から再生。「選んだ区間をサビに」で保存 ----
@@ -1262,7 +1382,7 @@
     box.innerHTML = d[1].map(function (g, i) {
       const isCh = cur.sabi && g[0] < cur.sabi[1] - 0.5 && g[1] > cur.sabi[0] + 0.5;
       return '<button type="button" class="seg' + (isCh ? " chorus" : "") + '" data-i="' + i + '" data-r="' + g[2] + '" style="left:' + (g[0] / T * 100).toFixed(2) + '%;width:' +
-        ((g[1] - g[0]) / T * 100).toFixed(2) + '%" title="' + ROLE_JA[g[2]] + " " + fmt(g[0]) + "〜" + fmt(g[1]) + '">' + ROLE_JA[g[2]] + '</button>';
+        ((g[1] - g[0]) / T * 100).toFixed(2) + '%" title="' + segName(g) + " " + fmt(g[0]) + "〜" + fmt(g[1]) + '">' + segName(g) + '</button>';
     }).join("") + '<span class="head" id="pl-struct-head"></span>';
   }
   document.getElementById("pl-struct").addEventListener("click", function (ev) {
@@ -1273,7 +1393,7 @@
     document.querySelectorAll("#pl-struct .seg.sel").forEach(function (x) { x.classList.remove("sel"); });
     b.classList.add("sel");
     document.getElementById("pl-sec").hidden = false;
-    plMsg(ROLE_JA[g[2]] + " " + fmt(g[0]) + "〜" + fmt(g[1]) + "（推定）");
+    plMsg(segName(g) + " " + fmt(g[0]) + "〜" + fmt(g[1]) + "（推定）");
     if (ytPlayer && ytPlayer.seekTo) { cur.free = true; ytPlayer.seekTo(g[0], true); if (ytPlayer.setVolume) ytPlayer.setVolume(prefs.vol); }   // 区間の試聴中はサビの終わりで次へ進めない
   });
   function moveHead() {
@@ -1358,7 +1478,8 @@
       const now = ytPlayer.getCurrentTime();
       document.getElementById("pl-cur").textContent = fmt(now);
       moveHead();
-      if (cur && cur.trimEnd && now >= cur.trimEnd && !cur.ended) { cur.ended = true; next(); }
+      checkEnd(now);
+      if (ytPlayer.syncTick) ytPlayer.syncTick();
       document.getElementById("pl-dur").textContent = fmt(dur);
       if (!seeking && dur > 0) seekEl.value = Math.round(now / dur * 1000);
     }, 250);
@@ -1384,6 +1505,13 @@
     return null;
   }
   function next() {
+    if (upNext.length) {
+      const u = upNext.shift();
+      if (cur) playedStack.push({ w: cur.w, t: cur.t });
+      if (playedStack.length > 50) playedStack.shift();
+      playSong(u.w, u.t);
+      return;
+    }
     if (randomMode) { playRandom(true); return; }
     const s = neighbors(1);
     if (s) playSong(s.w, s.t); else plMsg("最後の曲です");
@@ -1399,7 +1527,7 @@
   }
   document.getElementById("pl-prev").onclick = prev;
   document.getElementById("pl-next").onclick = next;
-  plToggle.onclick = function () { if (!ytPlayer || !ytPlayer.getPlayerState) return; if (ytPlayer.getPlayerState() === 1) ytPlayer.pauseVideo(); else ytPlayer.playVideo(); };
+  plToggle.onclick = function () { if (!ytPlayer || !ytPlayer.getPlayerState) return; if (ytPlayer.getPlayerState() === 1) { userPaused = true; ytPlayer.pauseVideo(); } else { userPaused = false; ytPlayer.playVideo(); } };
 
   // ---- 拡大表示（2026-09-23ユーザー指示: 全画面モードは廃止。動画は左下に表示するのを既定にし、
   //      このボタンで画面の8割ほどの大きさに広げる／戻すだけのトグルにする。2026-09-24: プレイヤーの
@@ -1458,6 +1586,89 @@
     const au = ytPlayer && ytPlayer._a ? { src: ytPlayer._a.currentSrc, ready: ytPlayer._a.readyState, net: ytPlayer._a.networkState, paused: ytPlayer._a.paused, err: ytPlayer._a.error && ytPlayer._a.error.code, msg: ytPlayer._a.error && ytPlayer._a.error.message } : undefined;
     return ytPlayer && ytPlayer.getPlayerState ? { state: ytPlayer.getPlayerState(), t: ytPlayer.getCurrentTime(), dur: ytPlayer.getDuration(), vid: (ytPlayer.getVideoData() || {}).video_id, cur: cur && cur.key, chorus: cur && cur.sabi, audio: au, videoMode: ytPlayer.isVideoMode ? ytPlayer.isVideoMode() : (!PERSONAL) } : null;
   } };
+
+  // ---- 右クリック（スマホは長押し）メニュー（2026-10-02） ----
+  // 曲（一覧・作品パネル・プレイリストの行）: 再生／サビから再生／次に再生／YouTubeで開く／評価・気分／アニメのお気に入り／曲一覧
+  // ポスター: 曲一覧を開く／最初の曲から再生／アニメのお気に入り
+  // iPhone の Safari は長押しで contextmenu を出さないため、shared/touch-contextmenu.js が長押しを contextmenu に変換する
+  const upNext = [];          // 「次に再生」で予約した曲（ランダム再生中でも先に流す）
+  const songByKey = {};
+  allSongs.forEach(function (s) { songByKey[s.key] = s; });
+  const worksById = {};
+  works.forEach(function (w) { worksById[w.id] = w; });
+  const ctxEl = el("div", "ctx-menu");
+  ctxEl.id = "ctx-menu"; ctxEl.hidden = true;
+  document.body.appendChild(ctxEl);
+  function hideCtx() { ctxEl.hidden = true; }
+  function ctxItem(ico, label, fn, disabled) {
+    const b = el("button", "ctx-item");
+    b.type = "button";
+    b.appendChild(el("span", "ico", ico));
+    b.appendChild(document.createTextNode(label));
+    if (disabled) b.disabled = true;
+    else b.addEventListener("click", function () { hideCtx(); fn(); });
+    ctxEl.appendChild(b);
+  }
+  function ctxSep() { ctxEl.appendChild(el("div", "ctx-sep")); }
+  function ctxFav(w) {
+    if (!(w.favs && w.favs.length)) return;
+    const fs = workFavState(w);
+    ctxItem(fs > 0 ? "★" : "♡", fs === 2 ? "永久保存版（解除はお気に入りページで）" : fs === 1 ? "アニメのお気に入りを解除" : "アニメをお気に入りに登録",
+      function () { toggleFavAnime(w); }, fs === 2);
+  }
+  function showCtxAt(x, y) {
+    ctxEl.hidden = false;
+    ctxEl.style.left = "0px"; ctxEl.style.top = "0px";
+    const r = ctxEl.getBoundingClientRect();
+    ctxEl.style.left = Math.max(4, Math.min(x, window.innerWidth - r.width - 4)) + "px";
+    ctxEl.style.top = Math.max(4, Math.min(y, window.innerHeight - r.height - 4)) + "px";
+  }
+  function songMenu(s, inPanel) {
+    const w = s.w, t = s.t, key = s.key;
+    ctxEl.innerHTML = "";
+    ctxEl.appendChild(el("div", "ctx-head", (t.kind ? t.kind + "：" : "") + t.name + "（" + w.title + "）"));
+    const src = EMBED_OK ? playSource(t) : null;
+    ctxItem("▶", "再生", function () { randomMode = false; playSong(w, t); }, !src);
+    ctxItem("♪", "サビから再生", function () { randomMode = false; setChorusMode(true); playSong(w, t); }, !(EMBED_OK && chorusOf(t)));
+    ctxItem("⏭", "次に再生", function () {
+      upNext.push({ w: w, t: t });
+      if (!cur || barEl.hidden) { next(); return; }
+      plMsg("次に再生: " + t.name + (upNext.length > 1 ? "（予約 " + upNext.length + " 曲）" : ""));
+    }, !src);
+    if (t.yt) ctxItem("↗", "YouTubeで開く", function () { window.open(ytUrl(t.yt.id), "_blank", "noopener"); });
+    else ctxItem("🔍", "YouTubeで検索", function () { window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(t.q || t.name), "_blank", "noopener"); });
+    ctxSep();
+    const rr = el("div", "ctx-row"); rr.appendChild(el("span", "ctx-row-label", "評価")); rr.appendChild(rateSet(key)); ctxEl.appendChild(rr);
+    const mr = el("div", "ctx-row"); mr.appendChild(el("span", "ctx-row-label", "気分")); mr.appendChild(moodSet(key)); ctxEl.appendChild(mr);
+    if ((w.favs && w.favs.length) || !inPanel) ctxSep();
+    ctxFav(w);
+    if (!inPanel) ctxItem("📂", "この作品の曲一覧を開く", function () { openWork(w); });
+  }
+  function posterMenu(w) {
+    ctxEl.innerHTML = "";
+    ctxEl.appendChild(el("div", "ctx-head", w.title));
+    ctxItem("📂", "曲一覧を開く", function () { openWork(w); });
+    const first = EMBED_OK ? w.tracks.find(function (t) { return songMatches(w, t) && playSource(t); }) : null;
+    ctxItem("▶", "最初の曲から再生", function () { randomMode = false; playSong(w, first); }, !first);
+    ctxFav(w);
+  }
+  document.addEventListener("contextmenu", function (e) {
+    if (ctxEl.contains(e.target)) { e.preventDefault(); return; }
+    const row = e.target.closest("tr[data-key], .pl-row[data-key]");
+    const poster = !row && e.target.closest(".poster[data-work]");
+    const s = row && songByKey[row.dataset.key];
+    const w = poster && worksById[poster.dataset.work];
+    if (!s && !w) { hideCtx(); return; }
+    if (e.ctrlKey || e.shiftKey) { hideCtx(); return; }   // Ctrl/Shift+右クリックはブラウザ標準のメニュー
+    e.preventDefault();
+    if (s) songMenu(s, !!row.closest("#work-modal")); else posterMenu(w);
+    showCtxAt(e.clientX, e.clientY);
+  });
+  document.addEventListener("click", function (e) { if (!ctxEl.hidden && !ctxEl.contains(e.target)) hideCtx(); }, true);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hideCtx(); });
+  document.addEventListener("scroll", function (e) { if (!ctxEl.contains(e.target)) hideCtx(); }, true);
+  window.addEventListener("resize", hideCtx);
+  if (window.TouchContextMenu) TouchContextMenu.init("tr[data-key], .pl-row[data-key], .poster[data-work]");
 
   buildSources();
   render();

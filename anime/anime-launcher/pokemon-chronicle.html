@@ -860,5 +860,8 @@
   render();
 })();
 </script>
+<!-- タッチ端末（iPhone Safari等）は長押しで右クリックメニューを開く -->
+<script src="../shared/touch-contextmenu.js?v=20261002"></script>
+<script>TouchContextMenu.init(".chronicle-row .chronicle-tag, .chronicle-row .chronicle-tag-divider");</script>
 </body>
 </html>

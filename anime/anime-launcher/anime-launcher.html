@@ -1116,5 +1116,8 @@ AnimeFavorites.onCloudSync(function () {
   renderList(document.getElementById('search').value);
 });
 </script>
+<!-- タッチ端末（iPhone Safari等）は長押しで右クリックメニューを開く -->
+<script src="../shared/touch-contextmenu.js?v=20261002"></script>
+<script>TouchContextMenu.init("#list [data-id]");</script>
 </body>
 </html>

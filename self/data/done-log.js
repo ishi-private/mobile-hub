@@ -1,6 +1,30 @@
 // 自動生成ファイル - scrape/01_scan_reports.py で更新（手編集しないこと）（公開用: パス情報除去済み）
-// 最終スキャン: 2026-09-28 14:56:41 / 件数: 71
+// 最終スキャン: 2026-10-02 18:27:56 / 件数: 77
 window.DONE_LOG = [
+  {
+    "date": "2026-10-02",
+    "themeKey": "self",
+    "theme": "自己管理",
+    "title": "右クリックメニューをスマホ（長押し）でも開けるようにする／Cloudflare 個人用サイトにメニュー新設",
+    "status": "完了（Cloudflare 個人用サイトは本番反映済み。mobile-hub（GitHub Pages）への反映・push は未実施）",
+    "summary": "各サイトの右クリックメニューを、iPhone の Safari など右クリックできない端末からも使えるようにする。"
+  },
+  {
+    "date": "2026-10-02",
+    "themeKey": "self",
+    "theme": "自己管理",
+    "title": "アニメOP/ED: サビ位置の全体見直しと構成解析 v5（曲の形式の知識の導入）",
+    "status": "完了（本番デプロイ済み。スマホ実機の確認待ち）",
+    "summary": "ユーザー指示「サビの位置について全体的に再度見直し、構成に問題がないかと構成への知識を増やしてください」。 - 選択: 手で直した曲は無い（自己検証と図の目視で評価する）。構成バーは細かくする。 - 計画: C:\\Users\\ishi3\\.claude\\plans\\smooth-…"
+  },
+  {
+    "date": "2026-10-01",
+    "themeKey": "self",
+    "theme": "自己管理",
+    "title": "アニメOP/ED個人用サイト: ランダム再生の不具合修正とバックグラウンド再生",
+    "status": "完了",
+    "summary": "Cloudflare の個人用サイト（anime-songs-private）で、(1)「🔀 ランダム再生」を押しても曲が流れない、(2) モバイルで裏に回ると再生が止まる、の2点を直す。"
+  },
   {
     "date": "2026-09-28",
     "themeKey": "self",
@@ -331,24 +355,48 @@ window.DONE_LOG = [
   },
   {
     "date": "2026-09-04",
-    "themeKey": "arknights-roguelike",
-    "theme": "アークナイツ（ログライク）",
+    "themeKey": "arknights_bk",
+    "theme": "Arknights_bk",
     "title": "3層動画クリップ作成 + 動画アノテーション作業の引き継ぎ整備",
     "status": "完了",
     "summary": "4He7DvAhcuk_floor2（2層のみ収録、元動画基準t=408.825588〜900.0s）に続き、3層（夜明けの凍土）区間の動画をアノテーション対象として video_annotator.html から選択できるようにする（ユーザー依頼: 「今回は第二層から第三層まで…"
   },
   {
     "date": "2026-09-04",
-    "themeKey": "arknights-roguelike",
-    "theme": "アークナイツ（ログライク）",
+    "themeKey": "$recycle.bin",
+    "theme": "$RECYCLE.BIN",
+    "title": "3層動画クリップ作成 + 動画アノテーション作業の引き継ぎ整備",
+    "status": "完了",
+    "summary": "4He7DvAhcuk_floor2（2層のみ収録、元動画基準t=408.825588〜900.0s）に続き、3層（夜明けの凍土）区間の動画をアノテーション対象として video_annotator.html から選択できるようにする（ユーザー依頼: 「今回は第二層から第三層まで…"
+  },
+  {
+    "date": "2026-09-04",
+    "themeKey": "arknights_bk",
+    "theme": "Arknights_bk",
+    "title": "2層動画クリップ作成 + 動画アノテーション作業の引き継ぎ整備",
+    "status": "完了",
+    "summary": "4He7DvAhcuk_short_test（1層のみ収録、t=0〜416.87s）に続き、2層（静謐な森）区間の動画をアノテーション対象として video_annotator.html から選択できるようにする。あわせて、ここまでの動画解析セッションで蓄積した知見・手法・既知の…"
+  },
+  {
+    "date": "2026-09-04",
+    "themeKey": "$recycle.bin",
+    "theme": "$RECYCLE.BIN",
     "title": "2層動画クリップ作成 + 動画アノテーション作業の引き継ぎ整備",
     "status": "完了",
     "summary": "4He7DvAhcuk_short_test（1層のみ収録、t=0〜416.87s）に続き、2層（静謐な森）区間の動画をアノテーション対象として video_annotator.html から選択できるようにする。あわせて、ここまでの動画解析セッションで蓄積した知見・手法・既知の…"
   },
   {
     "date": "2026-09-03",
-    "themeKey": "arknights-roguelike",
-    "theme": "アークナイツ（ログライク）",
+    "themeKey": "arknights_bk",
+    "theme": "Arknights_bk",
+    "title": "ラン記録フレームワーク整備 + 既存動画解析記録の充足性監査",
+    "status": "完了",
+    "summary": "統合戦略（ローグライク）の1回のランに関する情報を漏れなく記録するための枠組みを整備する。この枠組みは (1) ユーザーが実際にプレイした際の手記録、(2) 他者の実況動画を解析する際の情報収集、の両方に使う土台とする。あわせて、動画視聴中の検証（誤記・カット箇所の把握、進行の整…"
+  },
+  {
+    "date": "2026-09-03",
+    "themeKey": "$recycle.bin",
+    "theme": "$RECYCLE.BIN",
     "title": "ラン記録フレームワーク整備 + 既存動画解析記録の充足性監査",
     "status": "完了",
     "summary": "統合戦略（ローグライク）の1回のランに関する情報を漏れなく記録するための枠組みを整備する。この枠組みは (1) ユーザーが実際にプレイした際の手記録、(2) 他者の実況動画を解析する際の情報収集、の両方に使う土台とする。あわせて、動画視聴中の検証（誤記・カット箇所の把握、進行の整…"

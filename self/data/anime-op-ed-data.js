@@ -3,6 +3,7 @@
 //
 // 記載ルール:
 //   - 作品は F:\anime のお気に入り（shared/favorites-data.js の FAVORITES_SEED）から選んだもの（劇場版・OVA・放送前を除く）。
+//     2026-10-01からは、端末で付けてクラウド同期（anime-favorites-sync の star）にだけある★の作品も含む。
 //   - 曲名・歌手・使用話数は日本語版Wikipediaの各作品記事で確認したものだけ（scrape/11 で生wikitextを取得 → 12 で下書き抽出 →
 //     人が一覧を読んで確認・修正）。記載のない項目は空欄（表では「—」表示）。記憶で書かない。
 //   - 画像は F:\anime のお気に入りページと同じサムネイル（myanimelist.net / animatetimes.com の画像を直接参照）。
@@ -378,6 +379,270 @@ window.ANIME_OP_ED_DATA = [
       "14052",
       "23245",
       "25726"
+    ]
+  },
+  {
+    "id": "pokemon97",
+    "title": "ポケットモンスター（無印）",
+    "year": 1997,
+    "wiki": "ポケットモンスター (1997-2002年のアニメ)",
+    "note": "無印（1997〜2002）",
+    "image": "https://cdn.myanimelist.net/images/anime/1787/140239l.jpg",
+    "imageCredit": "myanimelist.net",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "めざせポケモンマスター",
+        "artist": "松本梨香",
+        "usage": "第1話〜第82話",
+        "note": "第194話〜第240話ではWhiteberryによるカバーを使用",
+        "q": "ポケットモンスター（無印） OP めざせポケモンマスター 松本梨香",
+        "yt": {
+          "id": "kbsRaNXfsew",
+          "k": "mv",
+          "o": 1,
+          "ch": "Sony Music (Japan)",
+          "tv": {
+            "id": "kbsRaNXfsew",
+            "k": "mv",
+            "o": 1
+          },
+          "full": {
+            "id": "kbsRaNXfsew",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "ライバル!",
+        "artist": "松本梨香",
+        "usage": "第83話〜第118話",
+        "q": "ポケットモンスター（無印） OP ライバル! 松本梨香",
+        "yt": {
+          "id": "eFkVeWdIyyM",
+          "k": "ot",
+          "o": 0,
+          "ch": "SonicTVPlay"
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "OK!",
+        "artist": "松本梨香",
+        "usage": "第119話〜第193話",
+        "q": "ポケットモンスター（無印） OP OK! 松本梨香",
+        "yt": {
+          "id": "PzvSv5jbeJI",
+          "k": "ot",
+          "o": 0,
+          "ch": "SonicTVPlay"
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Ready Go!",
+        "artist": "田村直美",
+        "usage": "第241話〜第276話",
+        "q": "ポケットモンスター（無印） OP Ready Go! 田村直美",
+        "yt": {
+          "id": "xjW9Wkfa_ao",
+          "k": "mv",
+          "o": 1,
+          "ch": "ポケモン公式YouTubeチャンネル",
+          "e": 0,
+          "alt": {
+            "id": "sCrcUigTc4Y",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ひゃくごじゅういち",
+        "artist": "石塚運昇とポケモンキッズ",
+        "usage": "第1話〜第28話",
+        "note": "放送時は「石塚運昇」名義",
+        "q": "ポケットモンスター（無印） ED ひゃくごじゅういち 石塚運昇とポケモンキッズ",
+        "yt": {
+          "id": "w5j9JYbeB6s",
+          "k": "ot",
+          "o": 0,
+          "ch": "アニソン紹介-AnimeSongPod-"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ニャースのうた",
+        "artist": "犬山イヌコ",
+        "usage": "第29話〜第37話、第65話〜第70話",
+        "note": "放送時は「犬山犬子」名義",
+        "q": "ポケットモンスター（無印） ED ニャースのうた 犬山イヌコ",
+        "yt": {
+          "id": "ydEZc6Xdlr8",
+          "k": "ot",
+          "o": 0,
+          "ch": "TAKAHARA Studio"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ポケットにファンタジー",
+        "artist": "さち&じゅり",
+        "usage": "第38話〜第53話",
+        "q": "ポケットモンスター（無印） ED ポケットにファンタジー さち",
+        "yt": {
+          "id": "HfIsReoyVVo",
+          "k": "ot",
+          "o": 0,
+          "ch": "Vsinger Library"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ポケモン音頭",
+        "artist": "ガルーラ小林",
+        "usage": "第54話〜第64話、第106話",
+        "q": "ポケットモンスター（無印） ED ポケモン音頭 ガルーラ小林",
+        "yt": {
+          "id": "cm9cdJKQ9LY",
+          "k": "ot",
+          "o": 0,
+          "ch": "アニソン紹介-AnimeSongPod-"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "タイプ：ワイルド",
+        "artist": "松本梨香",
+        "usage": "第71話〜第105話",
+        "q": "ポケットモンスター（無印） ED タイプ：ワイルド 松本梨香",
+        "yt": {
+          "id": "3scL78wgshc",
+          "k": "ot",
+          "o": 0,
+          "ch": "nao"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ラプラスにのって",
+        "artist": "飯塚雅弓、愛河里花子",
+        "usage": "第107話〜第118話",
+        "q": "ポケットモンスター（無印） ED ラプラスにのって 飯塚雅弓",
+        "yt": {
+          "id": "915l5uTWUvY",
+          "k": "ot",
+          "o": 0,
+          "ch": "Casa di 禾韻"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ニャースのパーティ",
+        "artist": "犬山イヌコ、林原めぐみ、三木眞一郎",
+        "usage": "第119話〜第143話",
+        "q": "ポケットモンスター（無印） ED ニャースのパーティ 犬山イヌコ",
+        "yt": {
+          "id": "s6cQhCAV5IU",
+          "k": "ot",
+          "o": 0,
+          "ch": "Release - Topic"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ポケモンはらはらリレー",
+        "artist": "愛河里花子",
+        "usage": "第144話〜第153話、第165話〜第174話",
+        "q": "ポケットモンスター（無印） ED ポケモンはらはらリレー 愛河里花子",
+        "yt": {
+          "id": "6elZm-FTv8Y",
+          "k": "ot",
+          "o": 0,
+          "ch": "SonicTVPlay"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ポケモンはらはら²リレー（むずかし版）",
+        "artist": "愛河里花子",
+        "usage": "第154話〜第158話",
+        "q": "ポケットモンスター（無印） ED ポケモンはらはら²リレー（むずかし版） 愛河里花子",
+        "yt": {
+          "id": "h58fzabgLsM",
+          "k": "ot",
+          "o": 0,
+          "ch": "ひ"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "タケシのパラダイス",
+        "artist": "上田祐司",
+        "usage": "第159話〜第164話",
+        "q": "ポケットモンスター（無印） ED タケシのパラダイス 上田祐司",
+        "yt": {
+          "id": "kgs7LOpdY2w",
+          "k": "au",
+          "o": 1,
+          "ch": "Release - Topic",
+          "full": {
+            "id": "kgs7LOpdY2w",
+            "k": "au",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ぼくのベストフレンドへ",
+        "artist": "岩崎宏美",
+        "usage": "第175話〜第193話",
+        "q": "ポケットモンスター（無印） ED ぼくのベストフレンドへ 岩崎宏美",
+        "yt": {
+          "id": "67wlE9jW0dU",
+          "k": "au",
+          "o": 1,
+          "ch": "Hiromi Iwasaki Official YouTube Channel",
+          "full": {
+            "id": "67wlE9jW0dU",
+            "k": "au",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "前向きロケット団!",
+        "artist": "犬山イヌコ、林原めぐみ、三木眞一郎、上田祐司",
+        "usage": "第194話〜第240話",
+        "q": "ポケットモンスター（無印） ED 前向きロケット団! 犬山イヌコ",
+        "yt": {
+          "id": "0_AeYPS8JPM",
+          "k": "ot",
+          "o": 0,
+          "ch": "Release - Topic"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ポケッターリ モンスターリ",
+        "artist": "可名",
+        "usage": "第241話〜第276話",
+        "q": "ポケットモンスター（無印） ED ポケッターリ モンスターリ 可名",
+        "yt": {
+          "id": "RQw8mfDbA24",
+          "k": "ot",
+          "o": 0,
+          "ch": "A_oldmusic"
+        }
+      }
+    ],
+    "favs": [
+      "5490"
     ]
   },
   {
@@ -1360,6 +1625,986 @@ window.ANIME_OP_ED_DATA = [
     ]
   },
   {
+    "id": "fairytail",
+    "title": "FAIRY TAIL",
+    "year": 2009,
+    "wiki": "FAIRY TAIL",
+    "note": "第1期（2009〜2013）",
+    "image": "https://img2.animatetimes.com/2022/08/3356c783fdfe1c576afef2150f4748f0630ec053be8e81_20579504_44d2e5aae93d210cd7c18f3ddf28c87dabede532.jpg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "Snow fairy",
+        "artist": "FUNKIST",
+        "usage": "第1〜11話",
+        "q": "FAIRY TAIL OP Snow fairy FUNKIST",
+        "yt": {
+          "id": "sCxyiE1pI0k",
+          "k": "mv",
+          "o": 1,
+          "ch": "FUNKIST official",
+          "full": {
+            "id": "KifhL3YkTMs",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "KifhL3YkTMs",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "S.O.W. センスオブワンダー",
+        "artist": "アイドリング!!!",
+        "usage": "第12〜24話",
+        "q": "FAIRY TAIL OP S.O.W. センスオブワンダー アイドリング!!!",
+        "yt": {
+          "id": "xbuith2Ugv0",
+          "k": "mv",
+          "o": 1,
+          "ch": "ponycanyon",
+          "e": 0,
+          "alt": {
+            "id": "5Gy0arJUu1k",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "ft.",
+        "artist": "FUNKIST",
+        "usage": "第25〜35話",
+        "q": "FAIRY TAIL OP ft. FUNKIST",
+        "yt": {
+          "id": "RipDkq0Pr10",
+          "k": "ot",
+          "o": 0,
+          "ch": "ya hiko",
+          "e": 0
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "R.P.G.〜Rockin' Playing Game",
+        "artist": "SuG",
+        "usage": "第36〜48話",
+        "q": "FAIRY TAIL OP R.P.G.〜Rockin' Playing Game SuG",
+        "yt": {
+          "id": "ugaPUPV7NwM",
+          "k": "ot",
+          "o": 0,
+          "ch": "La Minute One Piece",
+          "e": 0,
+          "alt": {
+            "id": "_TwoHDAM9qw",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "エガオノマホウ",
+        "artist": "MAGIC PARTY",
+        "usage": "第49〜60話",
+        "q": "FAIRY TAIL OP エガオノマホウ MAGIC PARTY",
+        "yt": {
+          "id": "MAlYO3kydRQ",
+          "k": "au",
+          "o": 1,
+          "ch": "MAGIC PARTY - Topic",
+          "e": 0
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Fiesta",
+        "artist": "+Plus",
+        "usage": "第61〜72話",
+        "q": "FAIRY TAIL OP Fiesta +Plus",
+        "yt": {
+          "id": "hqE2fOyHYl8",
+          "k": "au",
+          "o": 1,
+          "ch": "+Plus - Topic",
+          "e": 0,
+          "alt": {
+            "id": "FwHU32HL3SE",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Evidence",
+        "artist": "Daisy×Daisy",
+        "usage": "第73〜85話",
+        "q": "FAIRY TAIL OP Evidence Daisy",
+        "yt": {
+          "id": "4H_9itcwwFM",
+          "k": "mv",
+          "o": 1,
+          "ch": "ponycanyon",
+          "e": 0,
+          "alt": {
+            "id": "2O-MR7jyhFg",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "The Rock City Boy",
+        "artist": "JAMIL",
+        "usage": "第86〜98話",
+        "q": "FAIRY TAIL OP The Rock City Boy JAMIL",
+        "yt": {
+          "id": "1k3V9SJG8Zs",
+          "k": "mv",
+          "o": 1,
+          "ch": "ponycanyon",
+          "e": 0,
+          "alt": {
+            "id": "gLkEEcsDB18",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "永久のキズナ feat. Another Infinity",
+        "artist": "Daisy×Daisy",
+        "usage": "第99〜111話",
+        "q": "FAIRY TAIL OP 永久のキズナ feat. Another Infinity Daisy",
+        "yt": {
+          "id": "co58mwCbMCc",
+          "k": "au",
+          "o": 1,
+          "ch": "Daisy×Daisy - Topic",
+          "e": 0,
+          "alt": {
+            "id": "yBG4FB4-OJA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "I Wish",
+        "artist": "Milky Bunny",
+        "usage": "第112〜124話",
+        "q": "FAIRY TAIL OP I Wish Milky Bunny",
+        "yt": {
+          "id": "Lc_8WnHEtYM",
+          "k": "au",
+          "o": 1,
+          "ch": "MilkyBunnyOfficialCh",
+          "e": 0,
+          "alt": {
+            "id": "mKBRSwtiDgA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "はじまりの空",
+        "artist": "+Plus",
+        "usage": "第125〜137話",
+        "q": "FAIRY TAIL OP はじまりの空 +Plus",
+        "yt": {
+          "id": "nk_4c5SQ2KA",
+          "k": "au",
+          "o": 1,
+          "ch": "+Plus - Topic",
+          "e": 0,
+          "alt": {
+            "id": "9njiyzLe50I",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "テノヒラ",
+        "artist": "HERO",
+        "usage": "第138〜150話",
+        "q": "FAIRY TAIL OP テノヒラ HERO",
+        "yt": {
+          "id": "krqLnI2haUs",
+          "k": "mv",
+          "o": 1,
+          "ch": "crownrecord",
+          "e": 0,
+          "alt": {
+            "id": "IwxKUcUoMKI",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Breakthrough",
+        "artist": "GOING UNDER GROUND",
+        "usage": "第151〜166話",
+        "q": "FAIRY TAIL OP Breakthrough GOING UNDER GROUND",
+        "yt": {
+          "id": "417W6s7Hl3M",
+          "k": "au",
+          "o": 1,
+          "ch": "GOING UNDER GROUND official",
+          "e": 0
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "フェアリーテイル 〜約束の日〜",
+        "artist": "米倉千尋",
+        "usage": "第167〜175話",
+        "q": "FAIRY TAIL OP フェアリーテイル 〜約束の日〜 米倉千尋",
+        "yt": {
+          "id": "9nfZyL05w60",
+          "k": "au",
+          "o": 1,
+          "ch": "米倉千尋のSMILE GO PEACE",
+          "e": 0,
+          "alt": {
+            "id": "pJRFRJfxqQY",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "MASAYUME CHASING",
+        "artist": "BoA",
+        "usage": "第176〜188話",
+        "q": "FAIRY TAIL OP MASAYUME CHASING BoA",
+        "yt": {
+          "id": "iM1V4VDG2mw",
+          "k": "mv",
+          "o": 1,
+          "ch": "avex",
+          "e": 0,
+          "alt": {
+            "id": "_KOiVgDwdeE",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "STRIKE BACK",
+        "artist": "BACK-ON",
+        "usage": "第189〜203話",
+        "q": "FAIRY TAIL OP STRIKE BACK BACK-ON",
+        "yt": {
+          "id": "2snm79cxw_8",
+          "k": "mv",
+          "o": 1,
+          "ch": "avex",
+          "e": 0,
+          "alt": {
+            "id": "rdCCebg8gtE",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Mysterious Magic",
+        "artist": "Do As Infinity",
+        "usage": "第204〜214話",
+        "q": "FAIRY TAIL OP Mysterious Magic Do As Infinity",
+        "yt": {
+          "id": "J6aFHKUM4D4",
+          "k": "mv",
+          "o": 1,
+          "ch": "avex",
+          "e": 0,
+          "alt": {
+            "id": "VvkT5a9_fI0",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "BREAK OUT",
+        "artist": "V6",
+        "usage": "第215〜226話",
+        "q": "FAIRY TAIL OP BREAK OUT V6",
+        "yt": {
+          "id": "gRBMrT2Ob2k",
+          "k": "au",
+          "o": 1,
+          "ch": "V6 - Topic",
+          "e": 0,
+          "alt": {
+            "id": "B-DZeYK04aY",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "ユメイログラフィティ",
+        "artist": "タッキー&翼",
+        "usage": "第227〜239話",
+        "q": "FAIRY TAIL OP ユメイログラフィティ タッキー",
+        "yt": {
+          "id": "DathlpRMgxI",
+          "k": "ot",
+          "o": 0,
+          "ch": "タッキー&翼の復活を願うファン",
+          "e": 0,
+          "alt": {
+            "id": "nelEmjkbNkI",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "NEVER-END TALE",
+        "artist": "小林竜之、鈴木このみ",
+        "usage": "第240〜252話",
+        "q": "FAIRY TAIL OP NEVER-END TALE 小林竜之",
+        "yt": {
+          "id": "xjFDXLRwsnY",
+          "k": "ot",
+          "o": 0,
+          "ch": "Pripara Starry Night",
+          "e": 0,
+          "alt": {
+            "id": "WVxII7nMpSw",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "Believe in Myself",
+        "artist": "EDGE of LIFE",
+        "usage": "第253〜265話",
+        "q": "FAIRY TAIL OP Believe in Myself EDGE of LIFE",
+        "yt": {
+          "id": "x2i_fsR0Lb8",
+          "k": "au",
+          "o": 1,
+          "ch": "EDGE of LIFE - Topic",
+          "e": 0,
+          "alt": {
+            "id": "7ZDS-tfjSRA",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "明日を鳴らせ",
+        "artist": "シシド・カフカ",
+        "usage": "第266〜277話",
+        "q": "FAIRY TAIL OP 明日を鳴らせ シシド・カフカ",
+        "yt": {
+          "id": "sf4k2oAjPvo",
+          "k": "ot",
+          "o": 0,
+          "ch": "Various Anime Music ",
+          "e": 0,
+          "alt": {
+            "id": "2a1KBMoY8lQ",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "power of the dream",
+        "artist": "lol",
+        "usage": "第278〜290話",
+        "q": "FAIRY TAIL OP power of the dream lol",
+        "yt": {
+          "id": "yCPHC_5TxKg",
+          "k": "mv",
+          "o": 1,
+          "ch": "lol-エルオーエル-",
+          "e": 0,
+          "alt": {
+            "id": "iO2pNrfu_jI",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "DOWN BY LAW",
+        "artist": "THE RAMPAGE from EXILE TRIBE",
+        "usage": "第291〜303話",
+        "q": "FAIRY TAIL OP DOWN BY LAW THE RAMPAGE from EXILE TRIBE",
+        "yt": {
+          "id": "2DJTIEloiLE",
+          "k": "mv",
+          "o": 1,
+          "ch": "WHALEZ OFFICIAL",
+          "full": {
+            "id": "2DJTIEloiLE",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "NO-LIMIT",
+        "artist": "大阪☆春夏秋冬",
+        "usage": "第304〜315話",
+        "q": "FAIRY TAIL OP NO-LIMIT 大阪☆春夏秋冬",
+        "yt": {
+          "id": "7iLSE6QF_rs",
+          "k": "mv",
+          "o": 1,
+          "ch": "avex",
+          "e": 0
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "MORE THAN LiKE",
+        "artist": "BiSH",
+        "usage": "第316〜328話",
+        "q": "FAIRY TAIL OP MORE THAN LiKE BiSH",
+        "yt": {
+          "id": "Jzg0oBf-47A",
+          "k": "mv",
+          "o": 1,
+          "ch": "BiSH",
+          "tv": {
+            "id": "ehzfoHomSZs",
+            "k": "nc",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "ehzfoHomSZs",
+            "k": "nc",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "完璧ぐ〜のね",
+        "artist": "渡り廊下走り隊",
+        "usage": "第1〜11話",
+        "q": "FAIRY TAIL ED 完璧ぐ〜のね 渡り廊下走り隊",
+        "yt": {
+          "id": "ao-TGl_sQ5k",
+          "k": "au",
+          "o": 1,
+          "ch": "WarotaOfficial",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "追憶メリーゴーランド",
+        "artist": "onelifecrew",
+        "usage": "第12〜24話",
+        "q": "FAIRY TAIL ED 追憶メリーゴーランド onelifecrew",
+        "yt": {
+          "id": "w4X8cYeakPM",
+          "k": "au",
+          "o": 1,
+          "ch": "onelifecrew - Topic",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ごめんね、私。",
+        "artist": "南波志帆",
+        "usage": "第25〜35話",
+        "q": "FAIRY TAIL ED ごめんね、私。 南波志帆",
+        "yt": {
+          "id": "MRk0p2HmsBM",
+          "k": "mv",
+          "o": 1,
+          "ch": "ponycanyon",
+          "e": 0,
+          "alt": {
+            "id": "LVVX8R24vQU",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "君がいるから",
+        "artist": "下川みくに",
+        "usage": "第36〜48話",
+        "q": "FAIRY TAIL ED 君がいるから 下川みくに",
+        "yt": {
+          "id": "HY2PMkV2Gp0",
+          "k": "ot",
+          "o": 0,
+          "ch": "cabbage ee",
+          "e": 0,
+          "alt": {
+            "id": "YWGzZ8yysKg",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "HOLY SHINE",
+        "artist": "Daisy×Daisy",
+        "usage": "第49〜60話",
+        "q": "FAIRY TAIL ED HOLY SHINE Daisy",
+        "yt": {
+          "id": "Ygk-2dbjyIg",
+          "k": "mv",
+          "o": 1,
+          "ch": "ponycanyon",
+          "e": 0,
+          "alt": {
+            "id": "A4GFZAvAbX8",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "-Be As One-",
+        "artist": "w-inds.",
+        "usage": "第61〜72話",
+        "q": "FAIRY TAIL ED -Be As One- w-inds."
+      },
+      {
+        "kind": "ED",
+        "name": "ひとりさみしく",
+        "artist": "ShaNa",
+        "usage": "第73〜85話",
+        "q": "FAIRY TAIL ED ひとりさみしく ShaNa",
+        "yt": {
+          "id": "D66hnmYSvXU",
+          "k": "mv",
+          "o": 1,
+          "ch": "ponycanyon",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Don't think. Feel !!!",
+        "artist": "アイドリング!!!",
+        "usage": "第86〜98話",
+        "q": "FAIRY TAIL ED Don't think. Feel !!! アイドリング!!!",
+        "yt": {
+          "id": "5V6PHyxfKK4",
+          "k": "ot",
+          "o": 0,
+          "ch": "anija あにじゃ",
+          "e": 0,
+          "alt": {
+            "id": "K6Ff7KfmG-8",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "この手伸ばして",
+        "artist": "Hi-Fi CAMP",
+        "usage": "第99〜111話",
+        "q": "FAIRY TAIL ED この手伸ばして Hi-Fi CAMP",
+        "yt": {
+          "id": "XDLi5u4zs1Q",
+          "k": "au",
+          "o": 1,
+          "ch": "Hi-Fi CAMP - Topic",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Boys Be Ambitious!!",
+        "artist": "Hi-Fi CAMP",
+        "usage": "第112〜124話",
+        "q": "FAIRY TAIL ED Boys Be Ambitious!! Hi-Fi CAMP",
+        "yt": {
+          "id": "pIvpO4i0kbQ",
+          "k": "au",
+          "o": 1,
+          "ch": "Hi-Fi CAMP - Topic",
+          "full": {
+            "id": "b7wTQ0wbOq8",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "b7wTQ0wbOq8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Glitter (Starving Trancer Remix)",
+        "artist": "Another Infinity feat. Mayumi Morinaga",
+        "usage": "第125〜137話",
+        "q": "FAIRY TAIL ED Glitter (Starving Trancer Remix) Another Infinity",
+        "yt": {
+          "id": "CffUHb-Se5g",
+          "k": "ot",
+          "o": 0,
+          "ch": "Ookami Mitsuki"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "YELL 〜輝くためのもの〜",
+        "artist": "サーターアンダギー",
+        "usage": "第138〜150話",
+        "q": "FAIRY TAIL ED YELL 〜輝くためのもの〜 サーターアンダギー",
+        "yt": {
+          "id": "yEFtV-p5bkw",
+          "k": "ot",
+          "o": 0,
+          "ch": "まゆ",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "キミがくれたもの",
+        "artist": "工藤静香",
+        "usage": "第151〜166話",
+        "q": "FAIRY TAIL ED キミがくれたもの 工藤静香",
+        "yt": {
+          "id": "PXE9kXWxYAg",
+          "k": "ot",
+          "o": 0,
+          "ch": "工藤静香 -PONY CANYON-",
+          "e": 0,
+          "alt": {
+            "id": "pvt1tI_pRvs",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "We're the stars",
+        "artist": "愛美",
+        "usage": "第167〜175話",
+        "q": "FAIRY TAIL ED We're the stars 愛美",
+        "yt": {
+          "id": "QMN85APucCs",
+          "k": "au",
+          "o": 1,
+          "ch": "AIMI official YouTube Channel",
+          "e": 0,
+          "alt": {
+            "id": "w9foVkUr9sM",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "君と彼と僕と彼女と",
+        "artist": "BREATHE",
+        "usage": "第176〜188話",
+        "q": "FAIRY TAIL ED 君と彼と僕と彼女と BREATHE",
+        "yt": {
+          "id": "A--_3MILdSk",
+          "k": "au",
+          "o": 1,
+          "ch": "Breathe - Topic",
+          "full": {
+            "id": "NsajLFU8NBw",
+            "k": "au",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "NsajLFU8NBw",
+            "k": "au",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "心の鍵",
+        "artist": "May J.",
+        "usage": "第189〜203話",
+        "q": "FAIRY TAIL ED 心の鍵 May J.",
+        "yt": {
+          "id": "qN4JCrLeAgs",
+          "k": "au",
+          "o": 1,
+          "ch": "May J.",
+          "full": {
+            "id": "Ui1LFF0wA3k",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "Ui1LFF0wA3k",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "キミノミライ",
+        "artist": "ROOT FIVE",
+        "usage": "第204〜214話",
+        "q": "FAIRY TAIL ED キミノミライ ROOT FIVE",
+        "yt": {
+          "id": "dCt0KiPeuAc",
+          "k": "au",
+          "o": 1,
+          "ch": "ROOTFIVEOFFICIAL",
+          "e": 0,
+          "alt": {
+            "id": "8URUS0g3Mv0",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Don't let me down",
+        "artist": "西内まりや",
+        "usage": "第215〜226話",
+        "q": "FAIRY TAIL ED Don't let me down 西内まりや",
+        "yt": {
+          "id": "-u3dSka3g0U",
+          "k": "ot",
+          "o": 0,
+          "ch": "yk3bk",
+          "e": 0,
+          "alt": {
+            "id": "azFjP2pxs-E",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Never ever",
+        "artist": "東京女子流",
+        "usage": "第227〜239話",
+        "q": "FAIRY TAIL ED Never ever 東京女子流",
+        "yt": {
+          "id": "d3jkCjlhlcQ",
+          "k": "ot",
+          "o": 0,
+          "ch": "Laxus Dreyar",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "FOREVER HERE",
+        "artist": "石田燿子",
+        "usage": "第240〜252話",
+        "q": "FAIRY TAIL ED FOREVER HERE 石田燿子",
+        "yt": {
+          "id": "a_ETJezPlzQ",
+          "k": "au",
+          "o": 1,
+          "ch": "石田燿子 Ishida Yoko Channel",
+          "e": 0,
+          "alt": {
+            "id": "79WBtyEwmGY",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "鮮やかな旅路",
+        "artist": "森恵",
+        "usage": "第253〜265話",
+        "q": "FAIRY TAIL ED 鮮やかな旅路 森恵",
+        "yt": {
+          "id": "8-GHRb1fUMI",
+          "k": "mv",
+          "o": 1,
+          "ch": "Megumi Mori ",
+          "full": {
+            "id": "8-GHRb1fUMI",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Landscape",
+        "artist": "SOLIDEMO",
+        "usage": "第266〜276話",
+        "q": "FAIRY TAIL ED Landscape SOLIDEMO",
+        "yt": {
+          "id": "zWAuvUIGp3c",
+          "k": "mv",
+          "o": 1,
+          "ch": "AnimateAnime",
+          "tv": {
+            "id": "zWAuvUIGp3c",
+            "k": "mv",
+            "o": 1
+          },
+          "full": {
+            "id": "zWAuvUIGp3c",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "MASAYUME CHASING",
+        "artist": "BoA",
+        "usage": "第277話",
+        "q": "FAIRY TAIL ED MASAYUME CHASING BoA",
+        "yt": {
+          "id": "2dGw17lGyLU",
+          "k": "ot",
+          "o": 0,
+          "ch": "Fairy Tail Việt Nam",
+          "e": 0,
+          "alt": {
+            "id": "_KOiVgDwdeE",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Endless Harmony",
+        "artist": "Beverly",
+        "usage": "第278〜290話",
+        "q": "FAIRY TAIL ED Endless Harmony Beverly",
+        "yt": {
+          "id": "ukuFXcSW-JY",
+          "k": "mv",
+          "o": 1,
+          "ch": "avex",
+          "tv": {
+            "id": "tK82gQcbglo",
+            "k": "nc",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "tK82gQcbglo",
+            "k": "nc",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ピアス",
+        "artist": "EMPiRE",
+        "usage": "第291〜303話",
+        "q": "FAIRY TAIL ED ピアス EMPiRE",
+        "yt": {
+          "id": "f7rAg1OQ79c",
+          "k": "mv",
+          "o": 1,
+          "ch": "ExWHYZ",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "僕と君のララバイ",
+        "artist": "みゆな",
+        "usage": "第304〜315話",
+        "q": "FAIRY TAIL ED 僕と君のララバイ みゆな",
+        "yt": {
+          "id": "9NgIYahOhfQ",
+          "k": "op",
+          "o": 1,
+          "ch": "みゆな Official Channel",
+          "e": 0,
+          "alt": {
+            "id": "CIucJT2Ftbg",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Exceed",
+        "artist": "Miyuu",
+        "usage": "第316〜328話",
+        "q": "FAIRY TAIL ED Exceed Miyuu",
+        "yt": {
+          "id": "KpUYrduOFfY",
+          "k": "au",
+          "o": 1,
+          "ch": "Miyuu ",
+          "e": 0,
+          "alt": {
+            "id": "EWtv7LsEYhE",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      }
+    ],
+    "favs": [
+      "17109"
+    ]
+  },
+  {
     "id": "hagarenfa",
     "title": "鋼の錬金術師 FULLMETAL ALCHEMIST",
     "year": 2009,
@@ -1530,6 +2775,71 @@ window.ANIME_OP_ED_DATA = [
     ],
     "favs": [
       "15347"
+    ]
+  },
+  {
+    "id": "yojohan",
+    "title": "四畳半神話大系",
+    "year": 2010,
+    "wiki": "四畳半神話大系",
+    "image": "https://img2.animatetimes.com/2018/11/6114d9d60eb63_ba45bb0508ab526d2f0f265d79c01b0c-e1628756445102.jpg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "迷子犬と雨のビート",
+        "artist": "ASIAN KUNG-FU GENERATION",
+        "usage": "初放送・再放送",
+        "note": "第11話ではエンディングテーマとして使用。2017年の特別放送ではシナリオアートによるカバーを使用",
+        "q": "四畳半神話大系 OP 迷子犬と雨のビート ASIAN KUNG-FU GENERATION",
+        "yt": {
+          "id": "xQvPyqXNNj8",
+          "k": "au",
+          "o": 1,
+          "ch": "ASIAN KUNG-FU GENERATION Official YouTube Channel",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "神様のいうとおり",
+        "artist": "いしわたり淳治&砂原良徳+やくしまるえつこ",
+        "usage": "初放送・再放送",
+        "note": "第11話ではオープニングテーマとして使用",
+        "q": "四畳半神話大系 ED 神様のいうとおり いしわたり淳治",
+        "yt": {
+          "id": "fvFO4eLp7oc",
+          "k": "mv",
+          "o": 1,
+          "ch": "Yoshinori Sunahara official",
+          "full": {
+            "id": "fvFO4eLp7oc",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ラブマゲドン",
+        "artist": "シナリオアート",
+        "usage": "特別放送",
+        "q": "四畳半神話大系 ED ラブマゲドン シナリオアート",
+        "yt": {
+          "id": "0HDei6rNd48",
+          "k": "mv",
+          "o": 1,
+          "ch": "シナリオアート Official YouTube Channel",
+          "full": {
+            "id": "0HDei6rNd48",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      }
+    ],
+    "favs": [
+      "1348"
     ]
   },
   {
@@ -1906,12 +3216,7 @@ window.ANIME_OP_ED_DATA = [
           "k": "au",
           "o": 1,
           "ch": "小野正利",
-          "e": 0,
-          "alt": {
-            "id": "B-ZuM-5hHt0",
-            "k": "ot",
-            "o": 0
-          }
+          "e": 0
         }
       },
       {
@@ -2491,6 +3796,70 @@ window.ANIME_OP_ED_DATA = [
     ],
     "favs": [
       "3186"
+    ]
+  },
+  {
+    "id": "hanayamata",
+    "title": "ハナヤマタ",
+    "year": 2014,
+    "wiki": "ハナヤマタ",
+    "image": "https://img2.animatetimes.com/2018/11/5eeb310d6e845_cacdb025ee725079fe5c791dfaef43c4-e1592471991204.jpg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "花ハ踊レヤいろはにほ",
+        "artist": "チーム“ハナヤマタ”［関谷なる（上田麗奈）、笹目ヤヤ（奥野香耶）、ハナ・N・フォンテーンスタンド（田中美海）、西御門多美（大坪由佳）、常盤真智（沼倉愛美）］",
+        "usage": "",
+        "q": "ハナヤマタ OP 花ハ踊レヤいろはにほ チーム“ハナヤマタ”［関谷なる",
+        "yt": {
+          "id": "VHxlXFoar3c",
+          "k": "ot",
+          "o": 0,
+          "ch": "Wei Frank",
+          "e": 0
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "花雪",
+        "artist": "smileY inc.",
+        "usage": "第1話〜第11話",
+        "q": "ハナヤマタ ED 花雪 smileY inc.",
+        "yt": {
+          "id": "3mL-WL9r5g8",
+          "k": "mv",
+          "o": 1,
+          "ch": "avex pictures",
+          "tv": {
+            "id": "3mL-WL9r5g8",
+            "k": "mv",
+            "o": 1
+          },
+          "full": {
+            "id": "3mL-WL9r5g8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "花雪（チーム“ハナヤマタ”ver.）",
+        "artist": "チーム“ハナヤマタ”",
+        "usage": "第12話",
+        "q": "ハナヤマタ ED 花雪（チーム“ハナヤマタ”ver.） チーム“ハナヤマタ”",
+        "yt": {
+          "id": "dgw_5HkxYm0",
+          "k": "mv",
+          "o": 1,
+          "ch": "avex",
+          "e": 0
+        }
+      }
+    ],
+    "favs": [
+      "4901"
     ]
   },
   {
@@ -3150,6 +4519,50 @@ window.ANIME_OP_ED_DATA = [
       "26848",
       "13525",
       "16772"
+    ]
+  },
+  {
+    "id": "plamemo",
+    "title": "プラスティック・メモリーズ",
+    "year": 2015,
+    "wiki": "プラスティック・メモリーズ",
+    "image": "https://img2.animatetimes.com/2018/11/f423a1231a0aefbe027320d1590bc17763734caa19c233_38580792_bd2f24b0b478893565cd6a82b21b0e83e49495c0.jpeg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "Ring of Fortune",
+        "artist": "佐々木恵梨",
+        "usage": "第1話では未使用。第8話ではエンディングテーマとして使用された",
+        "q": "プラスティック・メモリーズ OP Ring of Fortune 佐々木恵梨",
+        "yt": {
+          "id": "3106hWeD6K8",
+          "k": "mv",
+          "o": 1,
+          "ch": "Eri Sasaki 佐々木恵梨",
+          "full": {
+            "id": "3106hWeD6K8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "朝焼けのスターマイン",
+        "artist": "今井麻美",
+        "usage": "第1話(TV放映及び配信版)では未使用。第8話では挿入歌として使用された",
+        "q": "プラスティック・メモリーズ ED 朝焼けのスターマイン 今井麻美",
+        "yt": {
+          "id": "Mcx7AksshgA",
+          "k": "ot",
+          "o": 0,
+          "ch": "木神雕工"
+        }
+      }
+    ],
+    "favs": [
+      "5270"
     ]
   },
   {
@@ -4802,6 +6215,232 @@ window.ANIME_OP_ED_DATA = [
     ]
   },
   {
+    "id": "yuyuyu",
+    "title": "結城友奈は勇者である",
+    "year": 2017,
+    "wiki": "結城友奈は勇者である",
+    "note": "鷲尾須美の章・勇者の章",
+    "image": "https://img2.animatetimes.com/2022/04/ec5c2a190566ee047d7f32defd42bd6a63d2466117bce1_55932271_fb2ebe3265fea7cac8f00807beeb82c2824f1dda-e1674724970106.jpg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "ホシトハナ",
+        "artist": "讃州中学勇者部",
+        "usage": "結城友奈の章",
+        "note": "第1話ではエンディングテーマ位置で使用",
+        "q": "結城友奈は勇者である OP ホシトハナ 讃州中学勇者部",
+        "yt": {
+          "id": "EjOhpzbY4_4",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "EjOhpzbY4_4",
+            "k": "nc",
+            "o": 1
+          },
+          "fa": {
+            "id": "yA7BzjINVlI",
+            "k": "ot",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "エガオノキミへ",
+        "artist": "三森すずこ",
+        "usage": "鷲尾須美の章",
+        "note": "テレビ放送版で使用",
+        "q": "結城友奈は勇者である OP エガオノキミへ 三森すずこ",
+        "yt": {
+          "id": "k92-Qw8Ru8A",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "k92-Qw8Ru8A",
+            "k": "nc",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "ハナコトバ",
+        "artist": "讃州中学勇者部",
+        "usage": "勇者の章",
+        "note": "第1話ではエンディングテーマ位置で使用",
+        "q": "結城友奈は勇者である OP ハナコトバ 讃州中学勇者部",
+        "yt": {
+          "id": "9OwfbiwWryU",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "9OwfbiwWryU",
+            "k": "nc",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "アシタノハナタチ",
+        "artist": "讃州中学勇者部",
+        "usage": "大満開の章",
+        "note": "第1話ではエンディングテーマ位置で使用",
+        "q": "結城友奈は勇者である OP アシタノハナタチ 讃州中学勇者部",
+        "yt": {
+          "id": "t3EMGCuadQU",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "t3EMGCuadQU",
+            "k": "nc",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Aurora Days",
+        "artist": "讃州中学勇者部",
+        "usage": "結城友奈の章",
+        "note": "第10話と総集編では東郷美森（三森すずこ）、第11話では結城友奈（照井春佳）が歌唱",
+        "q": "結城友奈は勇者である ED Aurora Days 讃州中学勇者部",
+        "yt": {
+          "id": "gFqK32eJayw",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "gFqK32eJayw",
+            "k": "nc",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "祈りの歌",
+        "artist": "犬吠埼樹（黒沢ともよ）",
+        "usage": "結城友奈の章 第4話・第9話",
+        "q": "結城友奈は勇者である ED 祈りの歌 犬吠埼樹"
+      },
+      {
+        "kind": "ED",
+        "name": "ともだち",
+        "artist": "鷲尾須美（三森すずこ）、乃木園子（花澤香菜）、三ノ輪銀（花守ゆみり）",
+        "usage": "鷲尾須美の章 第2話・第3話・第5話",
+        "q": "結城友奈は勇者である ED ともだち 鷲尾須美",
+        "yt": {
+          "id": "_oxCNqdarSU",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "_oxCNqdarSU",
+            "k": "nc",
+            "o": 1
+          },
+          "full": {
+            "id": "wMx-snXf_CE",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "たましい",
+        "artist": "三ノ輪銀（花守ゆみり）",
+        "usage": "鷲尾須美の章 第4話",
+        "q": "結城友奈は勇者である ED たましい 三ノ輪銀",
+        "yt": {
+          "id": "6FrZUYGUhmY",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "6FrZUYGUhmY",
+            "k": "nc",
+            "o": 1
+          },
+          "full": {
+            "id": "7_EquC6_Xp4",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "やくそく",
+        "artist": "鷲尾須美（三森すずこ）、乃木園子（花澤香菜）",
+        "usage": "鷲尾須美の章 第6話",
+        "q": "結城友奈は勇者である ED やくそく 鷲尾須美",
+        "yt": {
+          "id": "HLoMblnuWjw",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "HLoMblnuWjw",
+            "k": "nc",
+            "o": 1
+          },
+          "full": {
+            "id": "EE66c-2LFU4",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "勇者たちのララバイ",
+        "artist": "讃州中学勇者部",
+        "usage": "勇者の章",
+        "q": "結城友奈は勇者である ED 勇者たちのララバイ 讃州中学勇者部",
+        "yt": {
+          "id": "H4LL1XoPlvc",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "H4LL1XoPlvc",
+            "k": "nc",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "地平線の向こうへ",
+        "artist": "讃州中学勇者部",
+        "usage": "大満開の章",
+        "q": "結城友奈は勇者である ED 地平線の向こうへ 讃州中学勇者部",
+        "yt": {
+          "id": "E7TSANPr8gw",
+          "k": "nc",
+          "o": 1,
+          "ch": "ぽにきゃん-Anime PONY CANYON",
+          "tv": {
+            "id": "E7TSANPr8gw",
+            "k": "nc",
+            "o": 1
+          }
+        }
+      }
+    ],
+    "favs": [
+      "14999"
+    ]
+  },
+  {
     "id": "emiya",
     "title": "衛宮さんちの今日のごはん",
     "year": 2018,
@@ -5139,6 +6778,56 @@ window.ANIME_OP_ED_DATA = [
       "13964",
       "18164",
       "25171"
+    ]
+  },
+  {
+    "id": "astra",
+    "title": "彼方のアストラ",
+    "year": 2019,
+    "wiki": "彼方のアストラ",
+    "image": "https://img2.animatetimes.com/2019/02/62c38f2679b3f_b272967c11a51b82e0a38ea124bddf18.jpeg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "star*frost",
+        "artist": "nonoc",
+        "usage": "",
+        "note": "初回と最終回ではエンディング位置で使用",
+        "q": "彼方のアストラ OP star*frost nonoc",
+        "yt": {
+          "id": "QK_62EgzF7o",
+          "k": "mv",
+          "o": 1,
+          "ch": "KADOKAWAanime",
+          "full": {
+            "id": "QK_62EgzF7o",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "Glow at the Velocity of Light",
+        "artist": "安月名莉子",
+        "usage": "",
+        "q": "彼方のアストラ ED Glow at the Velocity of Light 安月名莉子",
+        "yt": {
+          "id": "M-C8bbSlp2w",
+          "k": "mv",
+          "o": 1,
+          "ch": "KADOKAWAanime",
+          "full": {
+            "id": "M-C8bbSlp2w",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      }
+    ],
+    "favs": [
+      "7845"
     ]
   },
   {
@@ -6658,6 +8347,75 @@ window.ANIME_OP_ED_DATA = [
     ]
   },
   {
+    "id": "tanmoshi",
+    "title": "探偵はもう、死んでいる。",
+    "year": 2021,
+    "wiki": "探偵はもう、死んでいる。",
+    "note": "Season2",
+    "image": "https://img2.animatetimes.com/2022/07/c33216a3c1ef750ca7afc846f5f855ed69d309073624f7_53524927_c319edf2c1d07694e6636d53215e03284851cbcd-e1775438103686.png",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "ここで生きてる",
+        "artist": "めありー×jon-YAKITORY",
+        "usage": "Season1",
+        "q": "探偵はもう、死んでいる。 OP ここで生きてる めありー",
+        "yt": {
+          "id": "GPG6l3P3-a8",
+          "k": "au",
+          "o": 1,
+          "ch": "めありーちゃんねる",
+          "tv": {
+            "id": "GPG6l3P3-a8",
+            "k": "au",
+            "o": 1
+          },
+          "full": {
+            "id": "GPG6l3P3-a8",
+            "k": "au",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "この心臓に花束を",
+        "artist": "心梅",
+        "usage": "Season2",
+        "q": "探偵はもう、死んでいる。 OP この心臓に花束を 心梅"
+      },
+      {
+        "kind": "ED",
+        "name": "鼓動",
+        "artist": "カグラナナ",
+        "usage": "Season1",
+        "q": "探偵はもう、死んでいる。 ED 鼓動 カグラナナ",
+        "yt": {
+          "id": "WAjXT8Q109U",
+          "k": "mv",
+          "o": 1,
+          "ch": "カグラナナchannel／ななかぐら",
+          "full": {
+            "id": "WAjXT8Q109U",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "白昼夢",
+        "artist": "カグラナナ",
+        "usage": "Season2",
+        "q": "探偵はもう、死んでいる。 ED 白昼夢 カグラナナ"
+      }
+    ],
+    "favs": [
+      "16348"
+    ]
+  },
+  {
     "id": "arknights",
     "title": "アークナイツ",
     "year": 2022,
@@ -7064,6 +8822,132 @@ window.ANIME_OP_ED_DATA = [
       "19244",
       "22787",
       "25417"
+    ]
+  },
+  {
+    "id": "gaikotsu",
+    "title": "骸骨騎士様、只今異世界へお出掛け中",
+    "year": 2022,
+    "wiki": "骸骨騎士様、只今異世界へお出掛け中",
+    "note": "Ⅱ",
+    "image": "https://img2.animatetimes.com/2024/12/fd7703c6e0522348f3595dfe4478d9386a227e452d6b14_84278847_734458f93767e1dc28e55714ac992a1b23b3e1f6-e1780645452102.webp",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "嗚呼、我が浪漫の道よ",
+        "artist": "PelleK（ペルケイ）",
+        "usage": "第1期",
+        "q": "骸骨騎士様、只今異世界へお出掛け中 OP 嗚呼、我が浪漫の道よ PelleK",
+        "yt": {
+          "id": "vxtUG2AWn80",
+          "k": "mv",
+          "o": 1,
+          "ch": "pellekofficial",
+          "tv": {
+            "id": "63tS4a_epWI",
+            "k": "nc",
+            "o": 0
+          },
+          "full": {
+            "id": "sPmSuIZsGZU",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "sPmSuIZsGZU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "浪漫街道、お散歩中",
+        "artist": "PelleK",
+        "usage": "第2期",
+        "q": "骸骨騎士様、只今異世界へお出掛け中 OP 浪漫街道、お散歩中 PelleK",
+        "yt": {
+          "id": "Hik-WeENVDw",
+          "k": "au",
+          "o": 1,
+          "ch": "PelleK - Topic",
+          "tv": {
+            "id": "9Qr1nkwhqvM",
+            "k": "nc",
+            "o": 0
+          },
+          "e": 0,
+          "alt": {
+            "id": "9Qr1nkwhqvM",
+            "k": "nc",
+            "o": 0
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "僕らが愚かだなんて誰が言った",
+        "artist": "DIALOGUE+",
+        "usage": "第1期",
+        "q": "骸骨騎士様、只今異世界へお出掛け中 ED 僕らが愚かだなんて誰が言った DIALOGUE+",
+        "yt": {
+          "id": "xIzBdq1CcH0",
+          "k": "au",
+          "o": 1,
+          "ch": "DIALOGUE＋Official Channel",
+          "tv": {
+            "id": "9n36uxUbtkM",
+            "k": "nc",
+            "o": 0
+          },
+          "full": {
+            "id": "WR8L8FSAdUc",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "WR8L8FSAdUc",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "奇跡は起きない",
+        "artist": "DIALOGUE+",
+        "usage": "第2期",
+        "note": "第11話ではPelleKによるカバーをスペシャルエンディングテーマとして使用",
+        "q": "骸骨騎士様、只今異世界へお出掛け中 ED 奇跡は起きない DIALOGUE+",
+        "yt": {
+          "id": "YCCI6qrDhow",
+          "k": "mv",
+          "o": 1,
+          "ch": "DIALOGUE＋Official Channel",
+          "tv": {
+            "id": "UTR6_vbX5lQ",
+            "k": "nc",
+            "o": 0
+          },
+          "full": {
+            "id": "VTnNIRemKgk",
+            "k": "mv",
+            "o": 1
+          },
+          "e": 0,
+          "alt": {
+            "id": "VTnNIRemKgk",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      }
+    ],
+    "favs": [
+      "25337"
     ]
   },
   {
@@ -7817,6 +9701,92 @@ window.ANIME_OP_ED_DATA = [
       "24167",
       "19101",
       "24157"
+    ]
+  },
+  {
+    "id": "tenken",
+    "title": "転生したら剣でした",
+    "year": 2022,
+    "wiki": "転生したら剣でした",
+    "note": "第2期",
+    "image": "https://img2.animatetimes.com/2022/12/a2371a05c63cafbfc35daa1e9a646243686b7be33cc3d7_52433761_854ea125c8aec0b2454137a5fa55baab9825dbfb-e1751874541703.jpg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "転生したら剣でした",
+        "artist": "岸田教団&THE明星ロケッツ",
+        "usage": "第1期",
+        "q": "転生したら剣でした OP 転生したら剣でした 岸田教団",
+        "yt": {
+          "id": "Rq_Rl4zKw-c",
+          "k": "mv",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "tv": {
+            "id": "Rq_Rl4zKw-c",
+            "k": "mv",
+            "o": 1
+          },
+          "full": {
+            "id": "bkhN1HY0LPI",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "OP",
+        "name": "DREAM OF BUTTERFLY",
+        "artist": "FZMZ",
+        "usage": "第2期",
+        "q": "転生したら剣でした OP DREAM OF BUTTERFLY FZMZ",
+        "yt": {
+          "id": "10SRVGxLGSw",
+          "k": "ot",
+          "o": 0,
+          "ch": "OPEDAnimeHub"
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "more＜STRONGLY",
+        "artist": "黒崎真音",
+        "usage": "第1期",
+        "q": "転生したら剣でした ED more＜STRONGLY 黒崎真音",
+        "yt": {
+          "id": "ve06vhaxft0",
+          "k": "mv",
+          "o": 1,
+          "ch": "NBCUniversal Anime/Music",
+          "tv": {
+            "id": "ve06vhaxft0",
+            "k": "mv",
+            "o": 1
+          },
+          "full": {
+            "id": "ve06vhaxft0",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "バリバリBuddy",
+        "artist": "花冷え。",
+        "usage": "第2期",
+        "q": "転生したら剣でした ED バリバリBuddy 花冷え。",
+        "yt": {
+          "id": "DZT424VrY8s",
+          "k": "ot",
+          "o": 0,
+          "ch": "Japan vibe"
+        }
+      }
+    ],
+    "favs": [
+      "19149"
     ]
   },
   {
@@ -11126,6 +13096,32 @@ window.ANIME_OP_ED_DATA = [
     ]
   },
   {
+    "id": "chifuyo",
+    "title": "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。",
+    "year": 2026,
+    "wiki": "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。",
+    "image": "https://img2.animatetimes.com/2026/02/682f784a9953b8587419295bc0a178486aa205d93fd082_54916950_6aae48db7c66cb6da769e7535b41951846a825ea-e1789003233511.webp",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "エンバートーチ",
+        "artist": "sumika",
+        "usage": "",
+        "q": "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。 OP エンバートーチ sumika",
+        "yt": {
+          "id": "rpsTVZhigcw",
+          "k": "ot",
+          "o": 0,
+          "ch": "OCEAN BEACH TREE"
+        }
+      }
+    ],
+    "favs": [
+      "27631"
+    ]
+  },
+  {
     "id": "kamiina",
     "title": "上伊那ぼたん、酔へる姿は百合の花",
     "year": 2026,
@@ -11186,6 +13182,89 @@ window.ANIME_OP_ED_DATA = [
     ],
     "favs": [
       "25671"
+    ]
+  },
+  {
+    "id": "kimishini",
+    "title": "きみが死ぬまで恋をしたい",
+    "year": 2026,
+    "wiki": "きみが死ぬまで恋をしたい",
+    "image": "https://img2.animatetimes.com/2025/03/5c911a60f567ccce88dfa33b5c4cd3b86976da58b19031_75286964_d0ba29e3c5c240baae93a2c371824a24cef028e0.jpg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "Amore",
+        "artist": "ReoNa",
+        "usage": "",
+        "q": "きみが死ぬまで恋をしたい OP Amore ReoNa",
+        "yt": {
+          "id": "01Vgu7BIxmI",
+          "k": "nc",
+          "o": 1,
+          "ch": "KADOKAWAanime and 2 more",
+          "tv": {
+            "id": "01Vgu7BIxmI",
+            "k": "nc",
+            "o": 1
+          },
+          "full": {
+            "id": "njJfgw1D-H8",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "エテルネル",
+        "artist": "sajou no hana",
+        "usage": "",
+        "q": "きみが死ぬまで恋をしたい ED エテルネル sajou no hana",
+        "yt": {
+          "id": "bszg61aM_7E",
+          "k": "nc",
+          "o": 1,
+          "ch": "KADOKAWAanime and 2 more",
+          "tv": {
+            "id": "bszg61aM_7E",
+            "k": "nc",
+            "o": 1
+          },
+          "full": {
+            "id": "1T92vMhjHtA",
+            "k": "au",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "スターチス",
+        "artist": "リジィ・セイラン（瀬戸麻沙美）、モード・アリ（石川由依）",
+        "usage": "第7話・第8話",
+        "note": "特別エンディングテーマ",
+        "q": "きみが死ぬまで恋をしたい ED スターチス リジィ・セイラン",
+        "yt": {
+          "id": "Ih45BgTUxlA",
+          "k": "nc",
+          "o": 1,
+          "ch": "KADOKAWAanime and  infinite channel",
+          "tv": {
+            "id": "Ih45BgTUxlA",
+            "k": "nc",
+            "o": 1
+          },
+          "full": {
+            "id": "y_jDNly5S_k",
+            "k": "au",
+            "o": 1
+          }
+        }
+      }
+    ],
+    "favs": [
+      "25598"
     ]
   },
   {
@@ -11257,6 +13336,7 @@ window.ANIME_OP_ED_DATA = [
     "title": "魔法少女リリカルなのは EXCEEDS Gun Blaze Vengeance",
     "year": 2026,
     "wiki": "魔法少女リリカルなのは EXCEEDS Gun Blaze Vengeance",
+    "note": "2026年7月〜。「興味あり」ページでピン留めされているお気に入り（2026-09-23ユーザー指示で追加）",
     "image": "https://img2.animatetimes.com/2024/12/c2dd0be8150638ed0838ca124dc1c9976a052cc79a2450_23240394_6f04742f9b5d8fa4834aecce25f28ce47b1be957-e1778724066165.webp",
     "imageCredit": "animatetimes.com",
     "tracks": [
@@ -11300,6 +13380,71 @@ window.ANIME_OP_ED_DATA = [
     ],
     "favs": [
       "25418"
+    ]
+  },
+  {
+    "id": "nia",
+    "title": "凶乱令嬢ニア・リストン",
+    "year": 2026,
+    "wiki": "凶乱令嬢ニア・リストン",
+    "image": "https://img2.animatetimes.com/2026/01/7ca4fc682a50fad6c74601a15a7bc6ca697ab8031f6d93_30956416_d76594bd02c40bb4a5e44e8fa520e914802c81aa.jpg",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "リスポーン!!",
+        "artist": "角巻わため",
+        "usage": "",
+        "q": "凶乱令嬢ニア・リストン OP リスポーン!! 角巻わため",
+        "yt": {
+          "id": "1WciJ0UP0HU",
+          "k": "mv",
+          "o": 1,
+          "ch": "Watame Ch. 角巻わため",
+          "full": {
+            "id": "1WciJ0UP0HU",
+            "k": "mv",
+            "o": 1
+          }
+        }
+      },
+      {
+        "kind": "ED",
+        "name": "ときめきアン・ドゥ・トロワ♪",
+        "artist": "魔法映像ひろめ隊",
+        "usage": "",
+        "q": "凶乱令嬢ニア・リストン ED ときめきアン・ドゥ・トロワ♪ 魔法映像ひろめ隊"
+      }
+    ],
+    "favs": [
+      "27537"
+    ]
+  },
+  {
+    "id": "seitokai",
+    "title": "生徒会にも穴はある！",
+    "year": 2026,
+    "wiki": "生徒会にも穴はある!",
+    "image": "https://img2.animatetimes.com/2025/04/ae1ada87cf72e714bd705501af2d764b6a8bab3ac76d50_55262489_02ad9d709353575a9551e788b561e77674b054f0-e1787538248728.png",
+    "imageCredit": "animatetimes.com",
+    "tracks": [
+      {
+        "kind": "OP",
+        "name": "風の中は走るっきゃないっ！",
+        "artist": "三月のパンタシア",
+        "usage": "",
+        "q": "生徒会にも穴はある！ OP 風の中は走るっきゃないっ！ 三月のパンタシア"
+      },
+      {
+        "kind": "ED",
+        "name": "ぴ",
+        "artist": "ナナヲアカリ",
+        "usage": "",
+        "q": "生徒会にも穴はある！ ED ぴ ナナヲアカリ"
+      }
+    ],
+    "favs": [
+      "25874"
     ]
   },
   {

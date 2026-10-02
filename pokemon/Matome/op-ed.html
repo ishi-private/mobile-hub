@@ -132,7 +132,7 @@
       <button type="button" class="shuffle-btn" data-count="3">🔀 3曲追加</button>
     </div>
     <span style="font-size:0.76rem; color:var(--pk-text-dim); margin-left:8px;">
-      各曲の「▶ YouTube」は右クリックでも「再生」「トラックに追加」を選べます。
+      各曲の「▶ YouTube」は右クリック（スマホは長押し）でも「再生」「トラックに追加」を選べます。
     </span>
   </div>
 
@@ -151,7 +151,7 @@
   <section class="pk-section">
     <h2><span class="en">RANKING</span><span class="jp">人気ランキング</span></h2>
     <div class="pk-section-note">
-      複数のカラオケ/調査サイトを基にした内部スコアによる人気上位曲です（算出方法は下記参照）。曲名を右クリックすると、下の一覧表の該当箇所へスクロールできます。
+      複数のカラオケ/調査サイトを基にした内部スコアによる人気上位曲です（算出方法は下記参照）。曲名を右クリック（スマホは長押し）すると、下の一覧表の該当箇所へスクロールできます。
     </div>
     <details class="popularity-details">
       <summary>人気ランキングを表示する（上位15曲）</summary>
@@ -286,7 +286,7 @@
   (window.POPULARITY_RANKING || []).forEach(function (r) {
     var tr = document.createElement("tr");
     tr.innerHTML = "<td>" + r.rank + "位</td>" +
-      '<td class="song-title-cell" data-song-key="' + escapeAttr(r.title + "|" + r.vocal) + '" title="右クリックでスクロール">' + r.title + "</td>" +
+      '<td class="song-title-cell" data-song-key="' + escapeAttr(r.title + "|" + r.vocal) + '" title="右クリック（スマホは長押し）でスクロール">' + r.title + "</td>" +
       "<td>" + r.season + "</td><td>" + r.vocal + "</td>";
     popBody.appendChild(tr);
   });
@@ -1136,5 +1136,8 @@
 })();
 </script>
 
+<!-- タッチ端末（iPhone Safari等）は長押しで右クリックメニューを開く -->
+<script src="../shared/touch-contextmenu.js?v=20261002"></script>
+<script>TouchContextMenu.init(".song-title-cell, .song-link-btn.yt");</script>
 </body>
 </html>

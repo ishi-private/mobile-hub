@@ -241,6 +241,18 @@
   body.show-filter #threshold-wrap { display: flex; }
 
   #loading { text-align: center; color: #333; padding: 80px; grid-column: 1/-1; font-size: 0.88rem; }
+  /* ── 右クリックのコンテキストメニュー（animatetimes＋視聴サイトを選んで開く） ── */
+  .ctx-menu { position: fixed; z-index: 1000; background: #1c1c24; border: 1px solid #3a3a4a;
+               border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); overflow: hidden;
+               min-width: 220px; max-height: 80vh; overflow-y: auto; display: none; }
+  .ctx-menu-item { display: flex; align-items: center; gap: 9px; padding: 10px 14px;
+                     font-size: 0.8rem; color: #ccc; cursor: pointer; white-space: nowrap; }
+  .ctx-menu-item:hover { background: #262632; }
+  .ctx-menu-item.disabled { color: #555; cursor: default; }
+  .ctx-menu-item.disabled:hover { background: none; }
+  .ctx-menu-item .ico { font-size: 1rem; width: 18px; text-align: center; flex-shrink: 0; }
+  .ctx-menu-header { padding: 8px 14px 4px; font-size: 0.68rem; color: #556; }
+  .ctx-menu-sep { height: 1px; background: #2e2e3a; margin: 4px 0; }
 </style>
 </head>
 <body>
@@ -343,6 +355,7 @@
 </div>
 
 <script src="../anime-db/data/anime_guide_data.js?v=20260925"></script>
+<script src="../anime-db/data/anime_guide_sites.js?v=20260925"></script>
 <script src="../shared/favorites-data.js"></script>
 <script src="../shared/favorites-local-sync.js"></script>
 <script src="../shared/favorites.js?v=20260924"></script>
@@ -622,6 +635,7 @@ function makeFavStarBtn(id, className, onUpdate) {
 function makeCard(a) {
   const card = document.createElement("div");
   card.className = "card";
+  card.dataset.id = a.id;
 
   function applyFavBorder() {
     const state = AnimeFavorites.get(a.id);
@@ -728,6 +742,7 @@ function makeCard(a) {
 function makeListItem(a) {
   const el = document.createElement("div");
   el.className = "list-item";
+  el.dataset.id = a.id;
   function applyFavBorder() {
     const state = AnimeFavorites.get(a.id);
     el.style.borderBottomColor = AnimeFavorites.STATE_COLOR[state] || "";
@@ -948,9 +963,88 @@ document.querySelectorAll(".vt-btn").forEach(btn => {
 // ── もっと読み込む ────────────────────────────────────────────────────────────
 document.getElementById("load-more-btn").addEventListener("click", appendBatch);
 
+// ── 右クリックのコンテキストメニュー（animatetimes と視聴サイトのリンクを選んで開く） ──
+// ANIME_GUIDE_SITES は const 宣言のため window から参照できない → typeof で判定
+const ANIME_BY_ID = new Map(ANIME_GUIDE_DATA.anime.map(a => [String(a.id), a]));
+function getWatchSitesForId(id) {
+  const guide = typeof ANIME_GUIDE_SITES !== "undefined" ? ANIME_GUIDE_SITES[String(id)] : null;
+  if (guide && guide.length) return guide.filter(s => s.url);
+  const single = (window.WATCH_SITES || {})[id];
+  return single && single.url ? [single] : [];
+}
+
+const ctxMenu = document.createElement("div");
+ctxMenu.className = "ctx-menu";
+ctxMenu.id = "ctx-menu";
+document.body.appendChild(ctxMenu);
+function hideCtxMenu() { ctxMenu.style.display = "none"; }
+
+function addCtxItem(ico, color, label, url) {
+  const el = document.createElement("div");
+  el.className = "ctx-menu-item" + (url ? "" : " disabled");
+  const icoEl = document.createElement("span");
+  icoEl.className = "ico";
+  icoEl.style.color = color || "#888";
+  icoEl.textContent = ico;
+  const labelEl = document.createElement("span");
+  labelEl.textContent = label;
+  el.append(icoEl, labelEl);
+  if (url) {
+    el.addEventListener("click", () => {
+      window.open(url, "_blank", "noopener,noreferrer");
+      hideCtxMenu();
+    });
+  }
+  ctxMenu.appendChild(el);
+}
+function addCtxHeader(text) {
+  const h = document.createElement("div");
+  h.className = "ctx-menu-header";
+  h.textContent = text;
+  ctxMenu.appendChild(h);
+}
+
+function showCtxMenu(x, y, a) {
+  ctxMenu.innerHTML = "";
+  addCtxHeader("作品情報");
+  addCtxItem("📰", "#c8a060", a.at_url ? "animatetimesで開く" : "animatetimesリンクなし", a.at_url);
+  const sep = document.createElement("div");
+  sep.className = "ctx-menu-sep";
+  ctxMenu.appendChild(sep);
+  const sites = getWatchSitesForId(a.id);
+  if (sites.length === 0) {
+    addCtxItem("－", "#555", "視聴リンク未登録", null);
+  } else {
+    addCtxHeader("視聴サイトで開く");
+    sites.forEach(s => addCtxItem(s.confirmed === false ? "？" : "▶", s.color, `${s.label}で開く`, s.url));
+  }
+  // 表示してから実寸で画面内に収める
+  ctxMenu.style.display = "block";
+  ctxMenu.style.left = "0px";
+  ctxMenu.style.top = "0px";
+  const r = ctxMenu.getBoundingClientRect();
+  ctxMenu.style.left = `${Math.max(0, Math.min(x, window.innerWidth - r.width - 4))}px`;
+  ctxMenu.style.top  = `${Math.max(0, Math.min(y, window.innerHeight - r.height - 4))}px`;
+}
+
+document.getElementById("grid").addEventListener("contextmenu", e => {
+  const target = e.target.closest("[data-id]");
+  if (!target) return;
+  const a = ANIME_BY_ID.get(target.dataset.id);
+  if (!a) return;
+  e.preventDefault();
+  showCtxMenu(e.clientX, e.clientY, a);
+});
+document.addEventListener("click", e => { if (!ctxMenu.contains(e.target)) hideCtxMenu(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") hideCtxMenu(); });
+window.addEventListener("scroll", hideCtxMenu, { passive: true });
+
 // ── 初期化 ────────────────────────────────────────────────────────────────────
 render();
 AnimeFavorites.onCloudSync(render);
 </script>
+<!-- タッチ端末（iPhone Safari等）は長押しで右クリックメニューを開く -->
+<script src="../shared/touch-contextmenu.js?v=20261002"></script>
+<script>TouchContextMenu.init("#grid [data-id]");</script>
 </body>
 </html>
