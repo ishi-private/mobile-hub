@@ -21555,6 +21555,51 @@ window.WATCH_SITES = {
     "url": "https://www.miruro.tv/watch/XCv4grESFDtRdArE7Wcgrssy2Ym677xI/soreike-anpanman-pantan-to-yakusoku-no-hoshi",
     "label": "Miruro",
     "color": "#0891b2"
+  },
+  "17515": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-1-overlooking-view-siqgr/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17516": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-2-murder-speculation-part-a-co9zv/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17517": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-3-remaining-sense-of-pain-ec7qh/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17518": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-4-the-hollow-shrine-pkzy0/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17519": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-5-paradox-paradigm-qmtvv/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17520": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-6-oblivion-recording-asas2/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17521": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-7-murder-speculation-part-b-at9ff/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17522": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-chapter-8-the-final-chapter-yrdqg/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17523": {
+    "url": "https://anikoto.net/watch/the-garden-of-sinners-recalled-out-summer-extra-chorus-mijqr/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   }
 };
 window.SHORT_TITLES = {
