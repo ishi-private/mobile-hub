@@ -25080,6 +25080,541 @@ window.WATCH_SITES = {
     "url": "https://anikoto.net/watch/hello-wego-5bo5x/ep-1",
     "label": "Anikoto",
     "color": "#0ea5e9"
+  },
+  "2475": {
+    "url": "https://anikoto.net/watch/lupin-iii-ezf6r/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "975": {
+    "url": "https://anikoto.net/watch/gintama-e280d/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "3501": {
+    "url": "https://anikoto.net/watch/free-iwatobi-swim-club-sevoh/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "1147": {
+    "url": "https://anikoto.net/watch/little-busters-ranud/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14160": {
+    "url": "https://anikoto.net/watch/mobile-suit-gundam-ii-soldiers-of-sorrow-knmjc/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14161": {
+    "url": "https://anikoto.net/watch/mobile-suit-gundam-iii-encounters-in-space-d32kq/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "11883": {
+    "url": "https://www.miruro.tv/watch/gIYwHwmgU8ikFvH1mmDrLuZJY-ZvtEKR/kidou-senshi-z-gundam-a-new-translation-hoshi-wo-tsugu-mono",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "138": {
+    "url": "https://anikoto.net/watch/space-adventure-cobra-the-movie-t89kx/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "22523": {
+    "url": "https://www.animegg.org/series/uchuu-senkan-yamato-movie",
+    "label": "AnimeGG",
+    "color": "#c026d3"
+  },
+  "26752": {
+    "url": "https://www.miruro.tv/watch/VfQFx9Hjban1KX9E8FNpTXYHtOGT2yJZ/queen-millennia-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "13499": {
+    "url": "https://anikoto.net/watch/patlabor-the-movie-snhzw/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "16843": {
+    "url": "https://anikoto.net/watch/macross-plus-movie-edition-u8fts/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "18894": {
+    "url": "https://anikoto.net/watch/slayers-movie-3-42vpv/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12171": {
+    "url": "https://anikoto.net/watch/case-closed-the-movie-the-time-bombed-skyscraper-b2yq8/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12176": {
+    "url": "https://anikoto.net/watch/case-closed-movie-5-countdown-to-heaven-mqqux/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12729": {
+    "url": "https://www.miruro.tv/watch/dcd_Hwi6JJCG12SJohZyvDDxIZWW7yJ5/perfect-blue",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "11919": {
+    "url": "https://anikoto.net/watch/gundam-i-earth-light-15nlp/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15693": {
+    "url": "https://anikoto.net/watch/one-piece-movie-1-8bhn7/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "11886": {
+    "url": "https://www.miruro.tv/watch/rFRfwvyrNBQuE4jiu25_LAn9jUIJbpRH/digimon-hurricane-touchdown",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "18280": {
+    "url": "https://anikoto.net/watch/initial-d-third-stage-cxys7/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "5542": {
+    "url": "https://anikoto.net/watch/voices-of-a-distant-star-oepj4/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12757": {
+    "url": "https://anikoto.net/watch/xxxholic-the-movie-a-midsummer-night-s-dream-5th8h/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "2626": {
+    "url": "https://anikoto.net/watch/code-geass-akito-the-exiled-the-wyvern-arrives-6fgsr/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "3866": {
+    "url": "https://anikoto.net/watch/5-centimeters-per-second-e910b/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12927": {
+    "url": "https://www.miruro.tv/watch/gpZGjYADSebRfKjyXWNK8Hc0BjhPUht3/clannad-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "363": {
+    "url": "https://www.miruro.tv/watch/JMhuihNX57ati8_cbCrYrVvoCH4fpLMF/tengen-toppa-gurren-lagann-gurren-hen",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "164": {
+    "url": "https://anikoto.net/watch/tales-of-vesperia-the-first-strike-p1nsc/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "18635": {
+    "url": "https://anikoto.net/watch/macross-f-movie-2-sayonara-no-tsubasa-fycku/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12740": {
+    "url": "https://www.miruro.tv/watch/vCeIZRdFdMAWEUO7TSUIuwmZrK5mD3x1/scryed-alteration-i-tao",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "12741": {
+    "url": "https://www.miruro.tv/watch/UVYlYOjhHDJUl7CfbtDAeNoaNoMlySkY/scryed-alteration-ii-quan",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "12840": {
+    "url": "https://anikoto.net/watch/puella-magi-madoka-magica-the-movie-1-beginnings-2esbm/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12841": {
+    "url": "https://anikoto.net/watch/puella-magi-madoka-magica-the-movie-2-eternal-rsmil/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "12842": {
+    "url": "https://anikoto.net/watch/puella-magi-madoka-magica-the-movie-3-rebellion-vhcyv/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "24816": {
+    "url": "https://anikoto.net/watch/space-pirate-captain-harlock-rmor7/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15033": {
+    "url": "https://www.miruro.tv/watch/XlsnEa65tjZSkSq4gg_M4vmvcbPrjyMU/steinsgate-fuka-ryouiki-no-deja-vu",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "15608": {
+    "url": "https://www.miruro.tv/watch/cGMjEBYPbVdf2H5THEsjVUiTmpk7cXwz/persona-3-the-movie-1-spring-of-birth",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "18281": {
+    "url": "https://anikoto.net/watch/initial-d-legend-1-awakening-knb1q/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "4532": {
+    "url": "https://anikoto.net/watch/heaven-s-lost-property-my-eternal-master-zbhzq/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "6158": {
+    "url": "https://anikoto.net/watch/attack-on-titan-crimson-bow-and-arrow-dfjtd/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "6159": {
+    "url": "https://www.miruro.tv/watch/ouq-ntpvgee5OKj516_VNiguoiFm1Kay/attack-on-titan-the-roar-of-awakening",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "24680": {
+    "url": "https://anikoto.net/watch/attack-on-titan-the-last-attack-jbdxh/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "5329": {
+    "url": "https://www.miruro.tv/watch/0UR7J382Yo8L9fiUifPPJ-1s5_rGjAWQ/the-anthem-of-the-heart",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "14825": {
+    "url": "https://www.miruro.tv/watch/T5KqEfQUW-WBmBGtNI57D1peBiOFnz-S/highspeed-free-starting-days",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "5850": {
+    "url": "https://anikoto.net/watch/king-of-prism-by-pretty-rhythm-2hsfy/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "6284": {
+    "url": "https://anikoto.net/watch/blame-movie-efyon/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "5864": {
+    "url": "https://www.miruro.tv/watch/xhRptaXez4jdrUQ-LYKT7LI6BQUrtnYm/mobile-suit-gundam-thunderbolt-bandit-flower",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "6231": {
+    "url": "https://anikoto.net/watch/haikara-san-ga-tooru-movie-1-benio-hana-no-17-sai-xystb/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "13782": {
+    "url": "https://anikoto.net/watch/my-hero-academia-movie-1-two-heroes-pvnus/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "13783": {
+    "url": "https://anikoto.net/watch/my-hero-academia-the-movie-2-heroes-rising-wfipk/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "13784": {
+    "url": "https://anikoto.net/watch/my-hero-academia-the-movie-3-world-heroes-mission-tzhzq/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "22520": {
+    "url": "https://anikoto.net/watch/my-hero-academia-the-movie-4-you-re-next-wp0tc/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "7229": {
+    "url": "https://anikoto.net/watch/mobile-suit-gundam-narrative-te5iw/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15029": {
+    "url": "https://anikoto.net/watch/city-hunter-movie-shinjuku-private-eyes-zn6t1/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "8856": {
+    "url": "https://www.miruro.tv/watch/F-2XIsiJabwQE1nocg6kOL4TPSAoLa_1/seven-days-war",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "9611": {
+    "url": "https://www.miruro.tv/watch/a-3I9tbBFI6Bzp3fbdB4acxiMUSfwrTF/ginga-eiyuu-densetsu-die-neue-these-seiran",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "13480": {
+    "url": "https://anikoto.net/watch/ginga-eiyuu-densetsu-die-neue-these-gekitotsu-oprwn/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15318": {
+    "url": "https://anikoto.net/watch/ginga-eiyuu-densetsu-die-neue-these-4th-season-gt8lv/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15935": {
+    "url": "https://anikoto.net/watch/gundam-reconguista-in-g-movie-hb95i/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15936": {
+    "url": "https://anikoto.net/watch/gundam-g-no-reconguista-movie-ii-bellri-gekishin-vi5ox/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15937": {
+    "url": "https://anikoto.net/watch/gundam-g-no-reconguista-movie-iii-uchuu-kara-no-isan-7ikrm/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14882": {
+    "url": "https://anikoto.net/watch/gundam-reconguista-in-g-iv-love-that-cries-out-in-battle-vjukf/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14883": {
+    "url": "https://anikoto.net/watch/gundam-reconguista-in-g-v-beyond-the-peril-of-death-lqijv/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17148": {
+    "url": "https://anikoto.net/watch/goblin-slayer-goblin-v1ce2/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "9435": {
+    "url": "https://anikoto.net/watch/poupelle-of-chimney-town-a0ixx/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14067": {
+    "url": "https://anikoto.net/watch/bang-dream-movie-episode-of-roselia-i-yakusoku-jujap/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "7265": {
+    "url": "https://anikoto.net/watch/the-orbital-children-1zds9/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "13185": {
+    "url": "https://anikoto.net/watch/the-tatami-time-machine-blues-kmxan/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "13412": {
+    "url": "https://anikoto.net/watch/drifting-home-k1cec/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "13892": {
+    "url": "https://anikoto.net/watch/bubble-pkcpd/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15940": {
+    "url": "https://anikoto.net/watch/kaguya-sama-love-is-war-the-first-kiss-that-never-ends-g409k/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "21127": {
+    "url": "https://anikoto.net/watch/bocchi-the-rock-movie-yg78q/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "16224": {
+    "url": "https://anikoto.net/watch/sasaki-and-miyano-graduation-arc-irt5o/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "20255": {
+    "url": "https://www.miruro.tv/watch/I6EI77f0L6W-PjYLSbMbNqEeBPdbZ5KN/sand-land",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "12844": {
+    "url": "https://anikoto.net/watch/kizumonogatari-koyomi-vamp-phs2l/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "22512": {
+    "url": "https://anikoto.net/watch/oomuro-ke-dear-sisters-6h5xj/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14317": {
+    "url": "https://anikoto.net/watch/be-forever-yamato-rebel-3199-1z1pt/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14140": {
+    "url": "https://www.miruro.tv/watch/AwGXmT3uDNGV-ldKdd0alvWtK7hIisp-/star-blazers-space-battleship-yamato-2205",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "11462": {
+    "url": "https://anikoto.net/watch/code-geass-roze-of-the-recapture-3902l/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "24507": {
+    "url": "https://anikoto.net/watch/mononoke-the-movie-chapter-ii-fire-rat-3hub6/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "25698": {
+    "url": "https://anikoto.net/watch/mononoke-the-movie-chapter-iii-the-curse-of-the-serpent-aed1c/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "14177": {
+    "url": "https://anikoto.net/watch/sailor-moon-r-the-movie-the-promise-of-the-rose-trve3/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "13696": {
+    "url": "https://anikoto.net/watch/the-seven-deadly-sins-grudge-of-edinburgh-rpip4/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17632": {
+    "url": "https://anikoto.net/watch/hakuoki-demon-of-the-fleeting-blossom-wild-dance-of-kyoto-awf8h/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "18017": {
+    "url": "https://anikoto.net/watch/broken-blade-dsg2g/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "4887": {
+    "url": "https://www.miruro.tv/watch/MYgRvcncqWdjG7EnlzdBb6nMmF8BSjEn/sinbad-sora-tobu-hime-to-himitsu-no-shima",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "15632": {
+    "url": "https://www.miruro.tv/watch/sPJgfy_763XdtZOCmfUlAKby16cW1_hA/flcl-alternative",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "15633": {
+    "url": "https://www.miruro.tv/watch/1kK4LeZzGCEuMrEhWhgf_3YiH3ZT_9ot/flcl-progressive",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "4551": {
+    "url": "https://anikoto.net/watch/gargantia-on-the-verdurous-planet-far-beyond-the-voyage-lpepo/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "3533": {
+    "url": "https://www.miruro.tv/watch/R7eQ9pGofEtuEDWTQ91cWJyN_c_JXLTL/mahoutsukai-no-yome-hoshi-matsu-hito",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "15094": {
+    "url": "https://anikoto.net/watch/is-the-order-a-rabbit-dear-my-sister-snuqg/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15080": {
+    "url": "https://anikoto.net/watch/kiniro-mosaic-pretty-days-xdd8b/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15505": {
+    "url": "https://anikoto.net/watch/brave-witches-petersburg-grand-strategy-2wtxf/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15503": {
+    "url": "https://www.miruro.tv/watch/P5M3-jnwrMBUfYiQDCGrc_4n7JDz5hYa/strike-witches-operation-victory-arrow",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "4322": {
+    "url": "https://anikoto.net/watch/haiyore-nyaruko-san-f-ndpcj/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "16351": {
+    "url": "https://anikoto.net/watch/seitokai-yakuindomo-movie-2-f0plg/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "6412": {
+    "url": "https://anikoto.net/watch/collar-x-malice-movie-deep-cover-kfkhh/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "16860": {
+    "url": "https://www.miruro.tv/watch/YvtznDfIhOeCkE90IDHSAuuCeOGcCHw_/monster-strike-the-movie-sora-no-kanata",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "14779": {
+    "url": "https://www.miruro.tv/watch/UUgbJ4k2bGO8kpt9BBW5DhwbFHJc4WCi/yama-no-susume-omoide-present",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "6661": {
+    "url": "https://anikoto.net/watch/kase-san-and-morning-glories-fsfzl/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "16672": {
+    "url": "https://www.miruro.tv/watch/OStkE50Eg3EOKNrpYdAokUINZqG1G6ha/sk-extra-part",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "18871": {
+    "url": "https://anikoto.net/watch/love-live-nijigasaki-high-school-idol-club-next-sky-9faup/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "22994": {
+    "url": "https://www.miruro.tv/watch/VxvHk3_CVw4SgqiMMdXxC_TTUOgsM9Lk/shinmai-maou-no-testament-departures",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "5226": {
+    "url": "https://anikoto.net/watch/appleseed-alpha-7avus/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "17386": {
+    "url": "https://anikoto.net/watch/genius-party-beyond-uurtz/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "18822": {
+    "url": "https://anikoto.net/watch/peace-maker-kurogane-belief-friend-67qih/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "198": {
+    "url": "https://www.miruro.tv/watch/T2s9hrhSrD1r3Es3Xo5rPttAnDvV8vHD/hells",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "9307": {
+    "url": "https://anikoto.net/watch/mobile-suit-gundam-hathaway-the-sorcery-of-nymph-circe-7b100/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   }
 };
 window.SHORT_TITLES = {
