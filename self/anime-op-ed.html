@@ -243,7 +243,7 @@
     お気に入りに入れているアニメ（放送済みのTVシリーズ）のOP・ED主題歌と、「アニソンメドレー250曲」の各曲を、曲ごとの動画で聴けるまとめ（<a href="matome.html" style="color:#6699cc;text-decoration:none;">← まとめ一覧</a>）。
     曲名・歌手・使用話数は日本語版Wikipediaの各作品記事で確認できたものだけ、メドレーの曲名は投稿者本人のセットリストのとおりで、記載のない項目は「—」にしている（作品不明の曲は歌手なし）。
     動画は<b style="color:#4cc27d;">公式チャンネルのノンクレジット映像</b>を優先し、無い曲は公式のOP/ED映像・MV・音源、それも無い曲は「<span style="color:#c08a3e;">※非公式</span>」のアップロード。
-    <b>サビ</b>は音声の繰り返し構造と音量から<b>推定</b>したもので、外れる曲がある。
+    <b>サビ</b>は歌詞サイト（歌ネット等）の<b>試聴で無料で聴ける範囲</b>（iTunesの試聴音源が曲のどこにあたるかを音声の照合で求めたもの。TVサイズ版は編集で試聴範囲の一部だけになることがある）。試聴音源が見つからない曲は、音声の繰り返し構造と音量から<b>推定</b>したもので、外れる曲がある。
     <b>評価</b>（★お気に入り／○ふつう／△微妙）と<b>気分</b>（🔥盛り上がる／🌿安らぐ）は曲ごとに付けられ、🔀ランダム再生では、評価の高い曲が少し多め・微妙な曲が少し少なめに流れる（差は最大でも約4倍まで）。評価が1回も付いていない作品も時々流れるので、気に入ったら評価を付けてほしい。
   </div>
   <div id="notice"></div>
@@ -347,9 +347,9 @@
 
 <script>window.MOBILE_HUB_PLAYER = true;</script>
 <script src="shared/nav.js"></script>
-<script src="data/anime-op-ed-data.js"></script>
-<script src="data/anime-song-chorus-data.js"></script>
-<script src="data/anime-song-struct-data.js"></script>
+<script src="data/anime-op-ed-data.js?v=20261023"></script>
+<script src="data/anime-song-chorus-data.js?v=20261023"></script>
+<script src="data/anime-song-struct-data.js?v=20261023"></script>
 <script src="shared/touch-contextmenu.js"></script>
 <!--PERSONAL_DATA-->
 <script>
@@ -361,7 +361,9 @@
   // 区間の名前: v5（2026-10-02）は4番目に細かいラベル（頭サビ・1番Aメロ・2番サビ・落ちサビ・Cメロ（大サビ）・ラスサビ（転調）等）を持つ。無ければ役割名
   function segName(g) { return g[3] || ROLE_JA[g[2]]; }
   let selSec = null;
-  const CH = window.ANIME_SONG_CHORUS || {};     // 動画ID → [開始秒, 終了秒, "high"|"low"]  （サビの推定）
+  const CH = window.ANIME_SONG_CHORUS || {};     // 動画ID → [開始秒, 終了秒, "preview"(試聴範囲)|"high"|"low", 別の候補]  （サビ）
+  // サビの出どころの表示名（preview＝歌詞サイト等の試聴範囲。それ以外は推定）
+  function sabiKind(c) { return c[2] === "preview" ? "試聴範囲" : c[2] === "manual" ? "調整済み" : c[2] === "low" ? "推定・自信低" : "推定"; }
   // サイト内で再生できるのは http(s) で開いたとき（file:// では YouTube の埋め込みが動かない）
   // 個人用モード（Cloudflare の非公開配信）: 個人用ビルドだけが data/personal-audio-data.js（動画ID→音源の長さ）を持つ。
   // このとき再生は YouTube ではなく自分の音源ファイル（audio/{動画ID}.m4a）を <audio> で流す。公開版（mobile-hub）には音源も一覧も無い
@@ -527,7 +529,7 @@
     b.type = "button";
     b.dataset.key = key;
     if (!c) { b.disabled = true; b.title = EMBED_OK ? "この曲はサビ位置がまだありません／サイト内で再生できません" : "サイト内再生は http で開いたときだけ使えます"; }
-    else { b.title = "推定したサビ " + fmt(c[0]) + "〜" + fmt(c[1]) + (c[2] === "low" ? "（自信低）" : ""); }
+    else { b.title = "サビ " + fmt(c[0]) + "〜" + fmt(c[1]) + "（" + sabiKind(c) + "）"; }
     b.addEventListener("click", function (ev) { ev.stopPropagation(); randomMode = false; setChorusMode(true); playSong(w, t); });
     sabi.appendChild(b);
     cells.push(sabi);
@@ -774,7 +776,7 @@
     let nOff = 0, nOn = 0, nNone = 0, nCh = 0;
     allSongs.forEach(function (s) { if (s.t.yt) { if (s.t.yt.o) nOn++; else nOff++; } else nNone++; if (chorusOf(s.t)) nCh++; });
     document.getElementById("count").textContent = st.works + " 作品 / " + st.songs + " 曲（全" + allSongs.length + "曲）　動画: 公式 " + nOn + " / 非公式 " + nOff + " / 検索のみ " + nNone +
-      "　サビ推定あり " + nCh + "　評価済み " + rated +
+      "　サビあり " + nCh + "　評価済み " + rated +
       (PERSONAL ? "　【個人用モード】音源あり " + allSongs.filter(function (s) { return playSource(s.t); }).length + " / " + allSongs.length + " 曲" : "");
     const none = st.songs === 0;
     document.getElementById("empty").style.display = none ? "block" : "none";
@@ -1033,7 +1035,7 @@
     badge.className = "pl-badge" + (src.o ? "" : " unofficial");
     const mst = c ? 0 : win ? win[0] : mainStartOf(src.id);
     badge.textContent = (src.o ? "公式" : "※非公式") + (src.trimmed ? "（フル尺をサビを含む約1:30に短縮）" : src.full ? "（フルサイズ音源）" : src.id !== t.yt.id ? "（代替動画）" : "") +
-      (c ? "　サビ（推定）" + fmt(c[0]) + "〜" + fmt(c[1]) : win ? "　" + fmt(win[0]) + "〜" + fmt(win[1]) : mst > 1 ? "　イントロを省略（" + fmt(mst) + "〜）" : "");
+      (c ? "　サビ（" + sabiKind(c) + "）" + fmt(c[0]) + "〜" + fmt(c[1]) : win ? "　" + fmt(win[0]) + "〜" + fmt(win[1]) : mst > 1 ? "　イントロを省略（" + fmt(mst) + "〜）" : "");
     document.getElementById("pl-open").href = ytUrl(src.id, c ? c[0] : mst);
     if (opts.explore) plMsg("まだ評価のない作品です。気に入ったら評価を付けてください");
     else if (opts.note) plMsg(opts.note);
@@ -1410,7 +1412,7 @@
     renderStruct();
     const c = cur.sabi;
     document.getElementById("pl-alt").hidden = altsOf(cur.src.id).length === 0;
-    document.getElementById("pl-adj-info").textContent = fmt(c[0]) + "〜" + fmt(c[1]) + "（" + (c[2] === "manual" ? "調整済み" : c[2] === "low" ? "推定・自信低" : "推定") + "）";
+    document.getElementById("pl-adj-info").textContent = fmt(c[0]) + "〜" + fmt(c[1]) + "（" + sabiKind(c) + "）";
     const badge = document.getElementById("pl-badge");
     if (badge.textContent.indexOf("サビ") >= 0) badge.textContent = badge.textContent.replace(/　サビ.*$/, "") + "　サビ" + fmt(c[0]) + "〜" + fmt(c[1]);
     document.getElementById("pl-open").href = ytUrl(cur.src.id, c[0]);
@@ -1571,7 +1573,7 @@
     box.appendChild(document.createTextNode(
       "）の「主題歌」節・OP/ED表から転記した（取得: 2026-09-21）。メドレー250曲の曲名は、動画「【250曲】何度でも繰り返し聴ける！名曲アニソンメドレー」（あつき）の投稿者本人によるコメント欄のセットリストのとおり。" +
       "動画・サムネイル画像は各権利者のもので、YouTubeの埋め込みプレイヤー／画像を直接参照している（画像: myanimelist.net / animatetimes.com / YouTube）。" +
-      "サビの位置は音声の解析による推定で、外れる曲がある。"));
+      "サビの位置は歌詞サイト等の試聴範囲（iTunesの試聴音源。音源は配布せず、位置を求める照合にだけ使用）で、見つからない曲は音声の解析による推定（外れる曲がある）。"));
   }
 
   if (!EMBED_OK) {
