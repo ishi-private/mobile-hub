@@ -1482,9 +1482,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27611": {
-    "url": "https://animeheaven.me/anime.php?jx3ds",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://gogoanime.by/series/sanda/",
+    "label": "GogoAnime",
+    "color": "#3c8be0"
   },
   "27661": {
     "url": "https://anikoto.net/watch/ushiro-no-shoumen-kamui-san-1f2b5/ep-1",
@@ -1565,11 +1565,6 @@ window.WATCH_SITES = {
     "url": "https://anikoto.net/watch/migawari-reijou-wo-sukutta-no-wa-reikoku-mujihi-na-koori-no-ouji-no-ai-deshita-4db6e/ep-1",
     "label": "Anikoto",
     "color": "#0ea5e9"
-  },
-  "28168": {
-    "url": "https://animeheaven.me/anime.php?1ht8d",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
   },
   "28276": {
     "url": "https://www.miruro.tv/watch/mQZ0M48Iu2zq-lREYqWUx9L4-QQ_PLF3/chikyuu-daisuki-kikkun",
@@ -1970,11 +1965,6 @@ window.WATCH_SITES = {
     "url": "https://anikoto.net/watch/sword-of-the-demon-hunter-kijin-gentosho-bj5uo/ep-1",
     "label": "Anikoto",
     "color": "#0ea5e9"
-  },
-  "13824": {
-    "url": "https://www.animegg.org/series/bakuman",
-    "label": "AnimeGG",
-    "color": "#c026d3"
   },
   "14207": {
     "url": "https://anikoto.net/watch/i-ve-been-killing-slimes-for-300-years-and-maxed-out-my-level-season-2-ykjgm/ep-1",
@@ -3432,9 +3422,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "11324": {
-    "url": "https://aniwatchtv.ro/hikaru-no-go-episode-75/",
-    "label": "AniWatch.tv",
-    "color": "#0d9488"
+    "url": "https://gogoanime.by/hikari-no-ou-2nd-season-episode-1-english-subbed/",
+    "label": "GogoAnime",
+    "color": "#3c8be0"
   },
   "11628": {
     "url": "https://anikoto.net/watch/mission-yozakura-family-bvvlp/ep-1",
@@ -3742,9 +3732,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "20411": {
-    "url": "https://animeheaven.me/anime.php?qw2g9",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://gogoanime.by/maou-2099-episode-1-english-subbed/",
+    "label": "GogoAnime",
+    "color": "#3c8be0"
   },
   "20415": {
     "url": "https://anikoto.net/watch/senpai-is-an-otokonoko-kbklx/ep-1",
@@ -7522,9 +7512,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13614": {
-    "url": "https://gogoanime.by/bungou-stray-dogs-wan-2-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.animegg.org/series/bungou-stray-dogs-wan",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "13781": {
     "url": "https://www.animegg.org/series/boku-no-hero-academia",
@@ -8542,9 +8532,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "18322": {
-    "url": "https://gogoanime.by/saint-seiya-knights-of-the-zodiac-battle-sanctuary-part-2-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.animegg.org/series/saint-seiya-knights-of-the-zodiac---battle-sanctuary-part-2",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "24370": {
     "url": "https://anikoto.net/watch/rent-a-girlfriend-95n8o/ep-1",
@@ -10268,11 +10258,6 @@ window.WATCH_SITES = {
   },
   "16086": {
     "url": "https://www.animegg.org/series/zannen-na-ikimono-jiten-the-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
-  },
-  "16231": {
-    "url": "https://www.animegg.org/series/binbou-shimai-monogatari",
     "label": "AnimeGG",
     "color": "#c026d3"
   },
@@ -13596,11 +13581,6 @@ window.WATCH_SITES = {
     "label": "Anikoto",
     "color": "#0ea5e9"
   },
-  "14756": {
-    "url": "https://www.animegg.org/series/kanokon",
-    "label": "AnimeGG",
-    "color": "#c026d3"
-  },
   "14757": {
     "url": "https://www.animegg.org/series/go-go-tamagotchi",
     "label": "AnimeGG",
@@ -14762,9 +14742,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2900": {
-    "url": "https://animeheaven.me/anime.php?tgl3z",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.animegg.org/series/akagi",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "2909": {
     "url": "https://www.animegg.org/series/kokoro-connect",
@@ -15300,11 +15280,6 @@ window.WATCH_SITES = {
     "url": "https://anikoto.net/watch/mayo-chiki-kudzz/ep-1",
     "label": "Anikoto",
     "color": "#0ea5e9"
-  },
-  "2400": {
-    "url": "https://www.animegg.org/series/recycle-of-the-penguindrum-zenpen---kimi-no-ressha-wa-seizon-senryaku",
-    "label": "AnimeGG",
-    "color": "#c026d3"
   },
   "2411": {
     "url": "https://www.animegg.org/series/kimi-to-boku-2",
@@ -20130,11 +20105,6 @@ window.WATCH_SITES = {
     "url": "https://www.animegg.org/series/yu-gi-oh-5d",
     "label": "AnimeGG",
     "color": "#c026d3"
-  },
-  "11017": {
-    "url": "https://animeheaven.me/anime.php?j4pza",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
   },
   "11292": {
     "url": "https://www.animegg.org/series/aoi-bungaku",
@@ -25658,6 +25628,11 @@ window.WATCH_SITES = {
   },
   "29143": {
     "url": "https://www.miruro.tv/watch/GedWsuFoDfnoY6gH-Jn2q9PE7KLXBFPR/mazenchu",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
+  "1089": {
+    "url": "https://www.miruro.tv/watch/ZkbbIfGqvoOrvvss5iQuAlVkW4AaYPxz/one-piece",
     "label": "Miruro",
     "color": "#0891b2"
   }
