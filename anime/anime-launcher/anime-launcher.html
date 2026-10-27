@@ -184,7 +184,7 @@
 <div class="site-header-sticky">
   <nav id="site-nav" class="page-nav"></nav>
   <script src="../shared/nav.js?v=20260924"></script>
-  <script src="../anime-db/data/anime_guide_data.js?v=20261026"></script>
+  <script src="../anime-db/data/anime_guide_data.js?v=20261027"></script>
   <script src="../anime-db/data/anime_guide_sites.js?v=20261024c"></script>
   <script src="../anime-db/data/series_groups.js"></script>
   <script src="../shared/favorites-data.js?v=20261024c"></script>
@@ -249,6 +249,7 @@ const ANIME = (ANIME_GUIDE_DATA.anime || []).map(function (a) {
     short_title: a.title,
     best_site: pickBestSite(sites),
     is_movie: !!a.is_movie,
+    is_overseas: !!a.is_overseas,
   };
 });
 const ANIME_BY_ID = {};
@@ -364,6 +365,8 @@ const STATE_FILTER = new Set();  // 1=お気に入り, 2=永久保存版。空=�
 let PIN_FILTER = false;
 let RECOMMEND_FILTER = false;
 let MOVIE_ONLY_FILTER = false;
+// 海外作品(is_overseas)は検索結果に出さない（デフォルト。★等で登録済みの作品は常に表示。2026-10-27〜）
+let INCLUDE_OVERSEAS = false;
 function anyStateFilterActive() {
   return STATE_FILTER.size > 0 || PIN_FILTER || RECOMMEND_FILTER || MOVIE_ONLY_FILTER;
 }
@@ -875,6 +878,7 @@ function filterItems(list, q) {
     } else if (AnimeFavorites.get(a.anime_db_id) === 0) {
       return false;
     }
+    if (!INCLUDE_OVERSEAS && a.is_overseas && AnimeFavorites.get(a.anime_db_id) === 0) return false;
     if (!matchesStateFilters(a)) return false;
     return true;
   });
@@ -1098,6 +1102,26 @@ function makeMovieOnlyLegendBtn() {
   return btn;
 }
 
+function makeOverseasLegendBtn() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'legend-filter-btn';
+  btn.id = 'btn-include-overseas';
+  btn.title = '海外作品（吹替・字幕で国内放送/公開された作品）も検索結果に表示する';
+  btn.innerHTML = '<span class="ico">🌏</span><span>海外作品を含む</span>';
+  function render() {
+    btn.classList.toggle('active', INCLUDE_OVERSEAS);
+    btn.style.borderColor = INCLUDE_OVERSEAS ? '#fff' : 'transparent';
+  }
+  btn.addEventListener('click', function () {
+    INCLUDE_OVERSEAS = !INCLUDE_OVERSEAS;
+    render();
+    renderList(document.getElementById('search').value);
+  });
+  render();
+  return btn;
+}
+
 function renderInterestLegend() {
   const el = document.getElementById('interest-legend');
   el.innerHTML = '';
@@ -1106,6 +1130,7 @@ function renderInterestLegend() {
   el.appendChild(makePinLegendBtn());
   el.appendChild(makeRecommendLegendBtn());
   el.appendChild(makeMovieOnlyLegendBtn());
+  el.appendChild(makeOverseasLegendBtn());
 }
 
 document.getElementById('search').addEventListener('input', e => renderList(e.target.value));

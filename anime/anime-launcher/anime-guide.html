@@ -68,7 +68,7 @@
   #info-popup .close-btn:hover { color: #99a; }
 
   /* ── トグルスイッチ ── */
-  .toggles { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-left: auto; min-width: 0; }
   .toggle-item { display: flex; align-items: center; gap: 6px; cursor: pointer;
                   font-size: 0.74rem; color: #667; user-select: none; white-space: nowrap; }
   .toggle-item:hover { color: #99a; }
@@ -310,6 +310,12 @@
           <span class="sw-track"></span><span class="sw-thumb"></span>
         </span>🎬 劇場版を含む
       </label>
+      <label class="toggle-item" id="toggle-overseas-wrap" title="海外作品（吹替・字幕で国内放送/公開された作品。overseas_flags.json）も表示する">
+        <span class="sw">
+          <input type="checkbox" id="toggle-overseas">
+          <span class="sw-track"></span><span class="sw-thumb"></span>
+        </span>🌏 海外作品を含む
+      </label>
     </div>
   </div>
   <div id="genre-wrap"></div>
@@ -354,7 +360,7 @@
   <button id="load-more-btn" style="display:none"></button>
 </div>
 
-<script src="../anime-db/data/anime_guide_data.js?v=20261026"></script>
+<script src="../anime-db/data/anime_guide_data.js?v=20261027"></script>
 <script src="../anime-db/data/anime_guide_sites.js?v=20261024c"></script>
 <script src="../shared/favorites-data.js?v=20261024c"></script>
 <script src="../shared/favorites-local-sync.js"></script>
@@ -377,6 +383,7 @@ let viewMode      = "grid";    // "grid" | "list"
 let filterMode    = "season";  // "season" | "all"
 let showLowCoverage = false;   // false=配信未確認(low_site_coverage)作品を非表示（デフォルト）
 let includeMovies = true;      // true=劇場版(is_movie)も表示（デフォルト）
+let includeOverseas = false;   // false=海外作品(is_overseas)を非表示（デフォルト。2026-10-27〜）
 let _flatItems    = [];
 let _renderOffset = 0;
 const RENDER_BATCH = 100;
@@ -570,6 +577,11 @@ document.getElementById("toggle-lowcoverage").addEventListener("change", e => {
 
 document.getElementById("toggle-includemovies").addEventListener("change", e => {
   includeMovies = e.target.checked;
+  render();
+});
+
+document.getElementById("toggle-overseas").addEventListener("change", e => {
+  includeOverseas = e.target.checked;
   render();
 });
 
@@ -877,6 +889,7 @@ function render() {
   let items = ANIME_GUIDE_DATA.anime.filter(a => {
     if (!showLowCoverage && a.low_site_coverage) return false;
     if (!includeMovies && a.is_movie) return false;
+    if (!includeOverseas && a.is_overseas) return false;
     // 検索語がある場合はシーズン絞り込みを無視し、全作品を対象に検索する
     if (!isAllSeasons && !q && a.primary_season !== currentSeason) return false;
     if (popThreshold !== null && (a.popularity_score == null || a.popularity_score < popThreshold)) return false;
