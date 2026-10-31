@@ -10276,6 +10276,11 @@ window.WATCH_SITES = {
     "label": "Anikoto",
     "color": "#0ea5e9"
   },
+  "17110": {
+    "url": "https://anikoto.net/watch/fairy-tail-final-series-6kweo/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
   "17123": {
     "url": "https://anikoto.net/watch/senran-kagura-shinovi-master-n7wlq/ep-1",
     "label": "Anikoto",
@@ -13605,6 +13610,11 @@ window.WATCH_SITES = {
     "url": "https://www.animegg.org/series/pretty-rhythm-all-star-selection",
     "label": "AnimeGG",
     "color": "#c026d3"
+  },
+  "14763": {
+    "url": "https://anikoto.net/watch/fairy-tail-series-2-i4lg1/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "14769": {
     "url": "https://anikoto.net/watch/the-file-of-young-kindaichi-returns-yxh0s/ep-1",
@@ -25635,6 +25645,11 @@ window.WATCH_SITES = {
     "url": "https://www.miruro.tv/watch/ZkbbIfGqvoOrvvss5iQuAlVkW4AaYPxz/one-piece",
     "label": "Miruro",
     "color": "#0891b2"
+  },
+  "17109": {
+    "url": "https://anikoto.net/watch/fairy-tail-jknsq/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   }
 };
 window.SHORT_TITLES = {
