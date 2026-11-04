@@ -742,9 +742,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "6115": {
-    "url": "https://animeheaven.me/anime.php?amn09",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.animegg.org/series/made-in-abyss-movie-1-tabidachi-no-yoake",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "13762": {
     "url": "https://animeheaven.me/anime.php?1logn",
@@ -753,11 +753,6 @@ window.WATCH_SITES = {
   },
   "15026": {
     "url": "https://animeheaven.me/anime.php?9hih3",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
-  "26603": {
-    "url": "https://animeheaven.me/anime.php?amn09",
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
@@ -26204,11 +26199,11 @@ window.FAVORITES_INFO = {
   },
   "15026": {
     "title": "メイドインアビス 深き魂の黎明",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/6/86733l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1803/117183l.jpg"
   },
   "26603": {
     "title": "メイドインアビス 目覚める神秘",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/6/86733l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1444/156382l.jpg"
   },
   "25754": {
     "title": "メダリスト 第2期",
