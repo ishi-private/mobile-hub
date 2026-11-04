@@ -227,9 +227,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "14033": {
-    "url": "https://animeheaven.me/anime.php?uqhn4",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/bleach-thousand-year-blood-war-arc-2izxu/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "7240": {
     "url": "https://animeheaven.me/anime.php?odbas",
@@ -262,14 +262,14 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "384": {
-    "url": "https://animeheaven.me/anime.php?0oqgh",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.animegg.org/series/fullmetal-alchemist",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "15347": {
-    "url": "https://animeheaven.me/anime.php?0oqgh",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/fullmetal-alchemist-brotherhood-9s0fl/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "3402": {
     "url": "https://www.animegg.org/series/hoozuki-no-reitetsu",
@@ -342,9 +342,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "16661": {
-    "url": "https://animeheaven.me/anime.php?rmigl",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/samurai-x-nhtwe/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "13567": {
     "url": "https://animeheaven.me/anime.php?kirzp",
@@ -412,9 +412,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "15065": {
-    "url": "https://animeheaven.me/anime.php?45ky1",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/code-geass-lelouch-of-the-rebellion-mtskz/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "2149": {
     "url": "https://www.animegg.org/series/danball-senki",
@@ -442,7 +442,7 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "16625": {
-    "url": "https://animeheaven.me/anime.php?nzvy0",
+    "url": "https://animeheaven.me/anime.php?bnpj6",
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
@@ -542,9 +542,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "13715": {
-    "url": "https://animeheaven.me/anime.php?s9dqw",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/kabaneri-of-the-iron-fortress-the-battle-of-unato-5gm3u/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "16772": {
     "url": "https://animeheaven.me/anime.php?b2cc0",
@@ -607,14 +607,14 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "23503": {
-    "url": "https://animeheaven.me/anime.php?aa3pl",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/bleach-the-movie-hell-verse-vi7ia/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "19244": {
-    "url": "https://animeheaven.me/anime.php?gpc1t",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/bleach-thousand-year-blood-war-the-separation-zvwg0/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "22787": {
     "url": "https://animeheaven.me/anime.php?w24ez",
@@ -622,9 +622,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "25417": {
-    "url": "https://animeheaven.me/anime.php?07v8r",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/bleach-thousand-year-blood-war-the-calamity-752db/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "15349": {
     "url": "https://www.animegg.org/series/naruto-the-movie-ninja-clash-in-the-land-of-snow",
@@ -642,9 +642,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "15363": {
-    "url": "https://animeheaven.me/anime.php?nc7bk",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/naruto-shippuden-the-movie-vv6fp/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "15365": {
     "url": "https://www.animegg.org/series/naruto-shippuden-movie-3-hi-no-ishi-o-tsugu-mono",
@@ -676,15 +676,10 @@ window.WATCH_SITES = {
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
-  "27287": {
-    "url": "https://animeheaven.me/anime.php?r7510",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
   "12760": {
-    "url": "https://www.animegg.org/series/shirobako",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://anikoto.net/watch/shirobako-movie-kvamo/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "19101": {
     "url": "https://animeheaven.me/anime.php?ojfp5",
@@ -696,35 +691,25 @@ window.WATCH_SITES = {
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
-  "25171": {
-    "url": "https://animeheaven.me/anime.php?76jna",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
-  "25726": {
-    "url": "https://animeheaven.me/anime.php?xht89",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
   "23245": {
     "url": "https://animeheaven.me/anime.php?xht89",
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
   "25746": {
-    "url": "https://animeheaven.me/anime.php?oduzb",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/blue-box-season-2/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "12743": {
-    "url": "https://animeheaven.me/anime.php?45ky1",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/code-geass-lelouch-of-the-rebellion-ii-transgression-ni7kn/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "12744": {
-    "url": "https://animeheaven.me/anime.php?45ky1",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/code-geass-lelouch-of-the-rebellion-iii-glorification-7y9ac/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "12745": {
     "url": "https://animeheaven.me/anime.php?1iv8b",
@@ -782,7 +767,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "12001": {
-    "url": "https://animeheaven.me/anime.php?z58tb",
+    "url": "https://animeheaven.me/anime.php?isue8",
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
@@ -821,16 +806,6 @@ window.WATCH_SITES = {
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
-  "4657": {
-    "url": "https://animeheaven.me/anime.php?87m2t",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
-  "24930": {
-    "url": "https://animeheaven.me/anime.php?jq9sg",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
   "14855": {
     "url": "https://www.animegg.org/series/isekai-quartet-movie-another-world",
     "label": "AnimeGG",
@@ -840,11 +815,6 @@ window.WATCH_SITES = {
     "url": "https://www.animegg.org/series/yakusoku-no-neverland-2nd-season",
     "label": "AnimeGG",
     "color": "#c026d3"
-  },
-  "28019": {
-    "url": "https://animeheaven.me/anime.php?ak2gr",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
   },
   "13645": {
     "url": "https://animeheaven.me/anime.php?nkh0a",
@@ -857,24 +827,24 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "15565": {
-    "url": "https://animeheaven.me/anime.php?aj66j",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/sound-euphonium-the-movie-may-the-melody-reach-you-nnz7r/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "15566": {
-    "url": "https://animeheaven.me/anime.php?aj66j",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.animegg.org/series/hibike-euphonium-movie-3-chikai-no-finale",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "15614": {
-    "url": "https://animeheaven.me/anime.php?aj66j",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/sound-euphonium-the-movie-welcome-to-the-kitauji-high-school-concert-band-bmjab/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "15615": {
-    "url": "https://animeheaven.me/anime.php?aj66j",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/sound-euphonium-ensemble-contest-arc-sgctj/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "15263": {
     "url": "https://www.animegg.org/series/hoozuki-no-reitetsu-2nd-season",
@@ -882,14 +852,14 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14142": {
-    "url": "https://animeheaven.me/anime.php?5r29v",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.animegg.org/series/saiki-kusuo-no--nan-kanketsu-hen",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "14143": {
-    "url": "https://animeheaven.me/anime.php?5r29v",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.animegg.org/series/saiki-kusuo-no--nan-shidou-hen",
+    "label": "AnimeGG",
+    "color": "#c026d3"
   },
   "24972": {
     "url": "https://animeheaven.me/anime.php?y98v5",
@@ -906,20 +876,15 @@ window.WATCH_SITES = {
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
-  "25697": {
-    "url": "https://animeheaven.me/anime.php?aj66j",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
   "14858": {
     "url": "https://animeheaven.me/anime.php?20mlr",
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
   "12742": {
-    "url": "https://animeheaven.me/anime.php?45ky1",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/code-geass-lelouch-of-the-rebellion-i-initiation-d0otl/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "15100": {
     "url": "https://www.animegg.org/series/rezero-kara-hajimeru-isekai-seikatsu---memory-snow",
@@ -927,9 +892,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "15101": {
-    "url": "https://animeheaven.me/anime.php?yhxeg",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/re-zero-starting-life-in-another-world-the-frozen-bond-tgool/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "13613": {
     "url": "https://www.animegg.org/series/bungou-stray-dogs-dead-apple",
@@ -951,25 +916,15 @@ window.WATCH_SITES = {
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
-  "26834": {
-    "url": "https://animeheaven.me/anime.php?5u8d5",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
-  "13188": {
-    "url": "https://animeheaven.me/anime.php?76jna",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
   "13963": {
     "url": "https://animeheaven.me/anime.php?76jna",
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
   "14052": {
-    "url": "https://animeheaven.me/anime.php?rmigl",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://anikoto.net/watch/rurouni-kenshin-meiji-kenkaku-romantan-2023-44a6t/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "19220": {
     "url": "https://animeheaven.me/anime.php?kirzp",
@@ -1013,11 +968,6 @@ window.WATCH_SITES = {
   },
   "18945": {
     "url": "https://animeheaven.me/anime.php?tnj2h",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
-  "21269": {
-    "url": "https://animeheaven.me/anime.php?08e0u",
     "label": "AnimeHeaven",
     "color": "#e06c3c"
   },
@@ -25767,7 +25717,7 @@ window.FAVORITES_INFO = {
   },
   "13610": {
     "title": "文スト 第2シーズン（2期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1572/133096l.jpg"
   },
   "25058": {
     "title": "千歳くん",
@@ -25783,7 +25733,7 @@ window.FAVORITES_INFO = {
   },
   "24971": {
     "title": "葬送のフリーレン 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1921/154528l.jpg"
   },
   "384": {
     "title": "鋼の錬金術師（ハガレン）",
@@ -25951,7 +25901,7 @@ window.FAVORITES_INFO = {
   },
   "17152": {
     "title": "魔法使いの嫁 SEASON2（2期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/3/88476l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1532/135155l.jpg"
   },
   "9105": {
     "title": "無職転生 ～異世界行ったら本気だす～",
@@ -26003,11 +25953,11 @@ window.FAVORITES_INFO = {
   },
   "13964": {
     "title": "ゆるキャン△ SEASON２",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1255/110636l.jpg"
   },
   "18164": {
     "title": "ゆるキャン△ SEASON３（第3期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1178/142710l.jpg"
   },
   "23256": {
     "title": "SHY 東京奪還編",
@@ -26019,11 +25969,11 @@ window.FAVORITES_INFO = {
   },
   "23827": {
     "title": "シャンフロ 2nd season",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1500/139931l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1996/147601l.jpg"
   },
   "16772": {
     "title": "ワンパンマン 第3期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/12/76049l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1168/148347l.jpg"
   },
   "24600": {
     "title": "サイレント・ウィッチ",
@@ -26035,7 +25985,7 @@ window.FAVORITES_INFO = {
   },
   "26210": {
     "title": "異世界かるてっと３",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1965/99667l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1044/152103l.jpg"
   },
   "15601": {
     "title": "食戟のソーマ 餐ノ皿（3期）",
@@ -26107,7 +26057,7 @@ window.FAVORITES_INFO = {
   },
   "15365": {
     "title": "劇場版 NARUTO 疾風伝 火の意志を継ぐ者",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1703/134493l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1493/116732l.jpg"
   },
   "15366": {
     "title": "劇場版 NARUTO 疾風伝 ザ・ロストタワー",
@@ -26119,19 +26069,19 @@ window.FAVORITES_INFO = {
   },
   "15099": {
     "title": "リゼロ 2nd season（2期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1444/108005l.jpg"
   },
   "20420": {
     "title": "リゼロ 3rd season（3期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1706/144725l.jpg"
   },
   "25741": {
     "title": "リゼロ 4th season（4期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1540/155824l.jpg"
   },
   "27287": {
     "title": "SAKAMOTO DAYS 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1026/146459l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1506/159677l.jpg"
   },
   "12760": {
     "title": "劇場版 SHIROBAKO",
@@ -26139,15 +26089,15 @@ window.FAVORITES_INFO = {
   },
   "19101": {
     "title": "SPY×FAMILY Season2（2期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1506/138982l.jpg"
   },
   "22824": {
     "title": "お隣の天使様 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1240/133638l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1989/154843l.jpg"
   },
   "25171": {
     "title": "ゆるキャン△ SEASON４（第4期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/4/89877l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1391/155714l.jpg"
   },
   "13966": {
     "title": "映画『ゆるキャン△』",
@@ -26163,15 +26113,15 @@ window.FAVORITES_INFO = {
   },
   "25746": {
     "title": "アオのハコ 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1341/145349l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1990/160267l.jpg"
   },
   "12743": {
     "title": "コードギアスII 叛道",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/13/89275l.jpg"
   },
   "12744": {
     "title": "コードギアスIII 皇道",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1126/91344l.jpg"
   },
   "12745": {
     "title": "コードギアスR2（2期）",
@@ -26179,7 +26129,7 @@ window.FAVORITES_INFO = {
   },
   "25755": {
     "title": "シャンフロ 3rd season",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1500/139931l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1058/160088l.jpg"
   },
   "13976": {
     "title": "ダンボール戦機W（2期）",
@@ -26187,7 +26137,7 @@ window.FAVORITES_INFO = {
   },
   "14850": {
     "title": "ダンボール戦機WARS（3期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1937/94703l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1574/94701l.jpg"
   },
   "6115": {
     "title": "劇場版総集編メイドインアビス【前編】旅立ちの夜明け／【後編】放浪する黄昏",
@@ -26207,7 +26157,7 @@ window.FAVORITES_INFO = {
   },
   "25754": {
     "title": "メダリスト 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1029/146850l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1828/155038l.jpg"
   },
   "27437": {
     "title": "劇場版 メダリスト",
@@ -26219,7 +26169,7 @@ window.FAVORITES_INFO = {
   },
   "13525": {
     "title": "ワンパンマン 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/12/76049l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1247/122044l.jpg"
   },
   "26848": {
     "title": "ワンパンマン 第1期",
@@ -26231,15 +26181,15 @@ window.FAVORITES_INFO = {
   },
   "12001": {
     "title": "ヴァイオレット・エヴァーガーデン 外伝 - 永遠と自動手記人形 -",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1667/112943l.jpg"
   },
   "24876": {
     "title": "小市民シリーズ 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1164/143459l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1224/148321l.jpg"
   },
   "14369": {
     "title": "幼女戦記Ⅱ（2期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/5/82890l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1917/158371l.jpg"
   },
   "13611": {
     "title": "文スト 第1シーズン",
@@ -26247,19 +26197,19 @@ window.FAVORITES_INFO = {
   },
   "13612": {
     "title": "文スト 第3シーズン（3期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1037/100463l.jpg"
   },
   "13647": {
     "title": "文スト 第4シーズン（4期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1263/132759l.jpg"
   },
   "20445": {
     "title": "文スト 第5シーズン",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1161/136691l.jpg"
   },
   "14141": {
     "title": "斉木楠雄のΨ難（第2期）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1973/142750l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1961/91383l.jpg"
   },
   "4657": {
     "title": "映画 斉木楠雄のΨ難",
@@ -26267,7 +26217,7 @@ window.FAVORITES_INFO = {
   },
   "24930": {
     "title": "狼と香辛料 第2期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1059/142414l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1944/159799l.jpg"
   },
   "14855": {
     "title": "劇場版 異世界かるてっと ～あなざーわーるど～",
@@ -26283,11 +26233,11 @@ window.FAVORITES_INFO = {
   },
   "28019": {
     "title": "葬送のフリーレン 第3期",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1619/156313l.jpg"
   },
   "13645": {
     "title": "虚構推理 Season2",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1310/117188l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1901/131653l.jpg"
   },
   "25034": {
     "title": "逃げ上手の若君 第二期",
@@ -26315,15 +26265,15 @@ window.FAVORITES_INFO = {
   },
   "14142": {
     "title": "斉木楠雄のΨ難 完結編",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1961/91383l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1159/95661l.jpg"
   },
   "14143": {
     "title": "斉木楠雄のΨ難 Ψ始動編",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1961/91383l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1993/119022l.jpg"
   },
   "24972": {
     "title": "ウィストリア シーズン2",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1281/144104l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1190/155788l.jpg"
   },
   "15585": {
     "title": "ユーフォ 2（2期）",
@@ -26343,7 +26293,7 @@ window.FAVORITES_INFO = {
   },
   "12742": {
     "title": "コードギアスI 興道",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/6/87709l.jpg"
   },
   "15100": {
     "title": "リゼロ Memory Snow",
@@ -26351,15 +26301,15 @@ window.FAVORITES_INFO = {
   },
   "15101": {
     "title": "リゼロ 氷結の絆",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1238/104023l.jpg"
   },
   "13406": {
     "title": "文スト BEAST",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg"
+    "thumbnail": "https://img2.animatetimes.com/2021/09/6188cc4f5ea3f_a59c9e95c37e7a635031deac83f2e213.jpeg"
   },
   "13613": {
     "title": "文ストDEAD APPLE(デッドアップル）",
-    "thumbnail": "https://cdn.myanimelist.net/images/anime/3/79409l.jpg"
+    "thumbnail": "https://cdn.myanimelist.net/images/anime/1127/93981l.jpg"
   },
   "6033": {
     "title": "魔法使いの嫁（まほよめ）",
