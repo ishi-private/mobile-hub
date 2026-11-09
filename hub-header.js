@@ -73,6 +73,17 @@
     return w;
   }
 
+  // 区切り「|」は、同じ行の後ろに何か（要素か文字）があるときだけ出す
+  function updateSep(el) {
+    var sep = el && el.querySelector(".mhh-sep");
+    if (!sep) return;
+    var any = false;
+    for (var n = el.nextSibling; n; n = n.nextSibling) {
+      if (n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim())) { any = true; break; }
+    }
+    sep.style.display = any ? "" : "none";
+  }
+
   function place() {
     var old = document.getElementById(ID);
     var slot = findSlot();
@@ -89,6 +100,7 @@
       el = old || build("bar");
       if (document.body.firstChild !== el) document.body.insertBefore(el, document.body.firstChild);
     }
+    updateSep(el);
     var t = themeFor(slot ? slot.el : document.body);
     el.classList.remove("mhh-dark", "mhh-light");
     el.classList.add("mhh-" + t);
@@ -107,6 +119,8 @@
       if (busy) return;
       if (!document.getElementById(ID) || (slot && slot.mode === "prepend" && slot.el.firstChild !== document.getElementById(ID))) {
         busy = true; slot = place(); busy = false;
+      } else {
+        updateSep(document.getElementById(ID));
       }
     }).observe(target, { childList: true });
     // OSのダーク/ライト切替で背景が変わるページ（music.html 等）に追従
