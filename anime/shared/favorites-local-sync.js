@@ -2,12 +2,13 @@
 // 手編集しないこと。再生成: python anime-db/scrape/step23_sync_local_favorites.py
 // ローカルEdgeのlocalStorage(file://)のスナップショット。mobile-hub公開版のみで使用
 // （favorites.jsが、localStorageキーが未設定の場合のみこれを初期値として使う）。
-// 生成日時: 2026-11-10T02:14:37
+// 生成日時: 2026-11-14T15:20:46
 window.FAVORITES_LOCAL_SYNC = {
   "star": {
     "210": 1,
     "1348": 1,
     "2141": 2,
+    "2893": 2,
     "4901": 2,
     "5270": 2,
     "5490": 1,

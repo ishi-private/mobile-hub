@@ -10931,6 +10931,11 @@ window.WATCH_SITES = {
     "label": "Anikoto",
     "color": "#0ea5e9"
   },
+  "14378": {
+    "url": "https://anikoto.net/watch/gintama-season-5-gz9uz/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
   "14385": {
     "url": "https://gogoanime.by/yami-shibai-14-episode-1-english-subbed/",
     "label": "GogoAnime",
@@ -14282,9 +14287,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14824": {
-    "url": "https://www.animegg.org/series/free",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://anikoto.net/watch/free-iwatobi-swim-club-sevoh/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "14839": {
     "url": "https://anikoto.net/watch/my-teen-romantic-comedy-snafu-zecol/ep-1",
@@ -15437,9 +15442,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16634": {
-    "url": "https://www.animegg.org/series/gintama-2011",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://anikoto.net/watch/gintama-season-2-hrt5v/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "17342": {
     "url": "https://anikoto.net/watch/kimi-ni-todoke-from-me-to-you-2-6gpwd/ep-1",
@@ -20166,11 +20171,6 @@ window.WATCH_SITES = {
     "label": "AnimeGG",
     "color": "#c026d3"
   },
-  "3055": {
-    "url": "https://animeheaven.me/anime.php?hgs2e",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
-  },
   "4024": {
     "url": "https://www.animegg.org/series/bayonetta-bloody-fate",
     "label": "AnimeGG",
@@ -20286,11 +20286,6 @@ window.WATCH_SITES = {
     "label": "AnimeGG",
     "color": "#c026d3"
   },
-  "15779": {
-    "url": "https://www.animegg.org/series/fate-kaleid-liner-prisma-illya",
-    "label": "AnimeGG",
-    "color": "#c026d3"
-  },
   "16697": {
     "url": "https://www.animegg.org/series/k-missing-kings",
     "label": "AnimeGG",
@@ -20400,11 +20395,6 @@ window.WATCH_SITES = {
     "url": "https://www.animegg.org/series/legend-of-the-galactic-heroes-my-conquest-is-the-sea-of-stars",
     "label": "AnimeGG",
     "color": "#c026d3"
-  },
-  "7285": {
-    "url": "https://animeheaven.me/anime.php?3ld44",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
   },
   "14083": {
     "url": "https://anikoto.net/watch/doraemon-movie-41-nobita-s-space-war-little-star-wars-w7vdw/ep-1",
@@ -21301,11 +21291,6 @@ window.WATCH_SITES = {
     "label": "Miruro",
     "color": "#0891b2"
   },
-  "168": {
-    "url": "https://www.animegg.org/series/tennis-no-ouji-sama-dub",
-    "label": "AnimeGG",
-    "color": "#c026d3"
-  },
   "2756": {
     "url": "https://www.miruro.tv/watch/4wo8ltL_75CtokLIegPI26Wx57ft5Y7G/mahoutsukai-no-yoru",
     "label": "Miruro",
@@ -21330,11 +21315,6 @@ window.WATCH_SITES = {
     "url": "https://www.miruro.tv/watch/qLhSLPZCBMShWM2lVpiwEz6tlF30DIyp/rascal-does-not-dream-of-a-dear-friend",
     "label": "Miruro",
     "color": "#0891b2"
-  },
-  "26873": {
-    "url": "https://animeheaven.me/anime.php?mv1ee",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
   },
   "27001": {
     "url": "https://www.miruro.tv/watch/XvQiqVsoZWTB4e2jDu7Kh7AGC8fcWwR_/kusuriya-no-hitorigoto-bouhi-no-hihou",
@@ -21370,11 +21350,6 @@ window.WATCH_SITES = {
     "url": "https://www.miruro.tv/watch/3ro297fnyoQ3Cuu_iyI7v5ly0krBW_V4/kimi-to-hanabi-to-yakusoku-to",
     "label": "Miruro",
     "color": "#0891b2"
-  },
-  "27689": {
-    "url": "https://anikoto.net/watch/in-the-clear-moonlit-dusk-ewpfz/ep-1",
-    "label": "Anikoto",
-    "color": "#0ea5e9"
   },
   "27649": {
     "url": "https://www.miruro.tv/watch/DCJVFPNnUy8EJsEhLg1CyYl_ZzChxwb9/to-you-in-the-beyond",
@@ -21472,9 +21447,9 @@ window.WATCH_SITES = {
     "color": "#0891b2"
   },
   "26621": {
-    "url": "https://www.miruro.tv/watch/l-PrhWbdza1mAg4zuHltL_w9Uegux_fo/shin-gintama-movie-yoshiwara-daienjou",
-    "label": "Miruro",
-    "color": "#0891b2"
+    "url": "https://anikoto.net/watch/gintama-the-movie-2026-yoshiwara-in-flames-2f4b4/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "26602": {
     "url": "https://www.miruro.tv/watch/Db9VAmiX2yD-8_g-edNc2l-vjgtVneXH/paris-ni-saku-etoile",
@@ -21510,11 +21485,6 @@ window.WATCH_SITES = {
     "url": "https://www.miruro.tv/watch/ZI3PMXJP0rTeY1q8acpoDDhP5gHhfTuZ/milkysubway-the-galactic-limited-express-the-movie",
     "label": "Miruro",
     "color": "#0891b2"
-  },
-  "27191": {
-    "url": "https://anikoto.net/watch/oni-no-hanayome-e3e67/ep-1",
-    "label": "Anikoto",
-    "color": "#0ea5e9"
   },
   "27493": {
     "url": "https://www.miruro.tv/watch/XCv4grESFDtRdArE7Wcgrssy2Ym677xI/soreike-anpanman-pantan-to-yakusoku-no-hoshi",
@@ -23592,9 +23562,9 @@ window.WATCH_SITES = {
     "color": "#0891b2"
   },
   "15950": {
-    "url": "https://anikoto.net/watch/okko-s-inn-vptb8/ep-1",
-    "label": "Anikoto",
-    "color": "#0ea5e9"
+    "url": "https://www.miruro.tv/watch/RYqEaBB7Fsu18iVeq9DJxqB-OC6H7_qQ/okkos-inn",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16085": {
     "url": "https://www.miruro.tv/watch/JzIWP46xncGyxCJtKf24BI_41g3zxxjM/bem-become-human",
@@ -25041,21 +25011,6 @@ window.WATCH_SITES = {
     "label": "Anikoto",
     "color": "#0ea5e9"
   },
-  "2475": {
-    "url": "https://anikoto.net/watch/lupin-iii-ezf6r/ep-1",
-    "label": "Anikoto",
-    "color": "#0ea5e9"
-  },
-  "975": {
-    "url": "https://anikoto.net/watch/gintama-e280d/ep-1",
-    "label": "Anikoto",
-    "color": "#0ea5e9"
-  },
-  "3501": {
-    "url": "https://anikoto.net/watch/free-iwatobi-swim-club-sevoh/ep-1",
-    "label": "Anikoto",
-    "color": "#0ea5e9"
-  },
   "1147": {
     "url": "https://anikoto.net/watch/little-busters-ranud/ep-1",
     "label": "Anikoto",
@@ -25593,6 +25548,16 @@ window.WATCH_SITES = {
   },
   "17109": {
     "url": "https://anikoto.net/watch/fairy-tail-jknsq/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "16633": {
+    "url": "https://anikoto.net/watch/gintama-e280d/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
+  "15573": {
+    "url": "https://anikoto.net/watch/lupin-iii-ezf6r/ep-1",
     "label": "Anikoto",
     "color": "#0ea5e9"
   }

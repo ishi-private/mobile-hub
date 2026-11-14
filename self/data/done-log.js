@@ -1,6 +1,14 @@
 // 自動生成ファイル - scrape/01_scan_reports.py で更新（手編集しないこと）（公開用: パス情報除去済み）
-// 最終スキャン: 2026-11-10 02:14:42 / 件数: 82
+// 最終スキャン: 2026-11-14 15:21:00 / 件数: 83
 window.DONE_LOG = [
+  {
+    "date": "2026-11-11",
+    "themeKey": "tools",
+    "theme": "Tools",
+    "title": "my-blocker: TVer の CM（動画広告）自動早送り",
+    "status": "完了",
+    "summary": "TVer（tver.jp）でも my-blocker が機能するようにする。利用者の希望は「CM（動画広告）を飛ばす」（ページ上のバナー除去やサイト破損の修正ではない）。"
+  },
   {
     "date": "2026-10-23",
     "themeKey": "self",
