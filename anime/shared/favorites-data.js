@@ -1451,6 +1451,11 @@ window.WATCH_SITES = {
     "label": "Miruro",
     "color": "#0891b2"
   },
+  "27781": {
+    "url": "https://anikoto.net/watch/fairies-albums-3rd-season-bmhsl/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
+  },
   "27823": {
     "url": "https://www.miruro.tv/watch/gESC3UQx_EbKMHjW9tBf3vhZB21nkZCs/pop-pap-polters",
     "label": "Miruro",
@@ -4412,9 +4417,9 @@ window.WATCH_SITES = {
     "color": "#0891b2"
   },
   "25803": {
-    "url": "https://www.miruro.tv/watch/jsHaITsr7EDeGK7HRVzefgAksNFC0UTb/watashi-no-shiawase-na-kekkon-shinsaku-anime",
-    "label": "Miruro",
-    "color": "#0891b2"
+    "url": "https://anikoto.net/watch/my-happy-marriage-special-episodes-c7a98/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "25874": {
     "url": "https://anikoto.net/watch/there-is-also-a-hole-in-the-student-organization-7b321/ep-1",
@@ -4542,9 +4547,9 @@ window.WATCH_SITES = {
     "color": "#0891b2"
   },
   "28214": {
-    "url": "https://www.miruro.tv/watch/qVNgeCvUMf2yHmbAXjdW3yN1uZn6UxV1/cardfight-vanguard-divinez-unmei-seisen-hen",
-    "label": "Miruro",
-    "color": "#0891b2"
+    "url": "https://anikoto.net/watch/cardfight-vanguard-divinez-parallactic-fate-a6246/ep-1",
+    "label": "Anikoto",
+    "color": "#0ea5e9"
   },
   "28288": {
     "url": "https://anikoto.net/watch/the-world-s-strongest-witch-781ee/ep-1",
