@@ -21316,6 +21316,11 @@ window.WATCH_SITES = {
     "label": "Miruro",
     "color": "#0891b2"
   },
+  "26603": {
+    "url": "https://www.miruro.tv/watch/InJHQWYvjt72f8qOwEu8YbOQSnl0h89N/made-in-abyss-mezameru-shinpi",
+    "label": "Miruro",
+    "color": "#0891b2"
+  },
   "26868": {
     "url": "https://www.miruro.tv/watch/AriKOnOTDWR09m9TLWWoFjAt9Yy7qGAn/rascal-does-not-dream-of-a-dear-friend",
     "label": "Miruro",
