@@ -1062,7 +1062,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "6380": {
-    "url": "https://www.miruro.tv/watch/sokJGPuz4CQ6gjiVkEPfb3_e5hS5vS3z/raccoon-dog-fox",
+    "url": "https://www.miruro.tv/watch/n0lxjawKFl_Ahk55_d2aGKM3mKc4mOT3/raccoon-dog-fox",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1077,9 +1077,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "19149": {
-    "url": "https://gogoanime.by/tensei-shitara-ken-deshita-2nd-season-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/HlTCKAe6gmiHtSB9UvSN5e_0pYv7t6iV/reincarnated-as-a-sword-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "19243": {
     "url": "https://www.animegg.org/series/otome-game-sekai-wa-mob-ni-kibishii-sekai-desu",
@@ -1097,7 +1097,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23375": {
-    "url": "https://www.miruro.tv/watch/LUl6JsA9wF87sHF5POnTVXhcDWm6KOw7/magical-explorer",
+    "url": "https://www.miruro.tv/watch/U9_8vggrR9XSGBTcYSDpDjCW3kpXThq5/magical-explorer",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1107,19 +1107,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24096": {
-    "url": "https://animeheaven.me/anime.php?nqbd0",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/Nx9kUYKq-VCKLWkH9Hr6sGzHnwbGCz-T/the-ghost-in-the-shell",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24207": {
-    "url": "https://gogoanime.by/tokyo-revengers-santen-sensou-hen-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/xMJSmEV1PJTyj7oMivC_b1cOsJpeI0m1/tokyo-revengers-santen-sensou-hen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24301": {
-    "url": "https://animeheaven.me/anime.php?tbwu1",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/eYWnfYoy0PFjbMpZgl5EsVqvkR31q2U1/magic-knight-rayearth-2026",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24783": {
     "url": "https://anikoto.net/watch/the-exiled-heavy-knight-knows-how-to-game-the-system/ep-1",
@@ -1152,9 +1152,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25552": {
-    "url": "https://gogoanime.by/toaru-anbu-no-item-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/zfKJ8h_n89XWwKPw1EvcQCAzLlY2saw3/toaru-anbu-no-item",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "25576": {
     "url": "https://anikoto.net/watch/the-cat-and-the-dragon-1x5tc/ep-1",
@@ -1197,7 +1197,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25936": {
-    "url": "https://www.miruro.tv/watch/TjHFivT0hvRies3_-uWgQMvjvwqPQ7Jd/heroine-seijo-iie-all-works-maid-desu-ko",
+    "url": "https://www.miruro.tv/watch/eyrJ1dn_mkiK8wutkQiBajqGz137a_en/heroine-seijo-iie-all-works-maid-desu-ko",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1217,7 +1217,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "26401": {
-    "url": "https://www.miruro.tv/watch/kNzUngro9nZxBfecEu-yPFbY67wi0xS6/flaming-dodgeball-girl-danko",
+    "url": "https://www.miruro.tv/watch/bW7FOQzlJtzDlQqd4ekMhiqTLEnwHcAD/flaming-dodgeball-girl-danko",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1237,7 +1237,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "26463": {
-    "url": "https://www.miruro.tv/watch/h8fqcvY2ObGu82pirv2wULylcEshZ-90/cyborg-009-nemesis",
+    "url": "https://www.miruro.tv/watch/-jRJ7AZ8D_16xvCHbsBQPnRHyPQd4us5/cyborg-009-nemesis",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1302,9 +1302,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "26870": {
-    "url": "https://animeheaven.me/anime.php?avgch",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/m5rWwCiak8goE8TEtbdM0jWU0VnGpgSB/hotel-inhumans-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "26895": {
     "url": "https://anikoto.net/watch/tetsuryou-meet-with-tetsudou-musume-b2cab/ep-1",
@@ -1352,9 +1352,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27214": {
-    "url": "https://gogoanime.by/kyoufu-collector-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/U7AObqzWdaS7JnxHW01YU7YxwCFVkgw8/horror-collector",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27242": {
     "url": "https://anikoto.net/watch/dara-san-of-the-reiwa-era-5jhg/ep-1",
@@ -1362,7 +1362,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27257": {
-    "url": "https://www.miruro.tv/watch/ikR83LZYBGUxueKk4zu6YvzI28imTyTH/psyren",
+    "url": "https://www.miruro.tv/watch/-JJqSI1G4_xxTA5FQwbWjW3Kd729V_l_/psyren",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1407,9 +1407,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "27491": {
-    "url": "https://animeheaven.me/anime.php?pynn3",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/3J1PRGc6WENNcoFCyipt8lTzWkLjYRwG/dragon-ball-super-beerus",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27537": {
     "url": "https://anikoto.net/watch/nia-liston-the-merciless-maiden-27e4d/ep-1",
@@ -1447,9 +1447,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27779": {
-    "url": "https://animeheaven.me/anime.php?m6wg7",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/1ps3_ubcNjDqxEtkIaoPGFIwT1tgINEW/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27781": {
     "url": "https://anikoto.net/watch/fairies-albums-3rd-season-bmhsl/ep-1",
@@ -1457,7 +1457,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27823": {
-    "url": "https://www.miruro.tv/watch/gESC3UQx_EbKMHjW9tBf3vhZB21nkZCs/pop-pap-polters",
+    "url": "https://www.miruro.tv/watch/bK6g6OM2I2cJGR4I9cF9D9A5chE9xco0/pop-pap-polters",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1467,7 +1467,7 @@ window.WATCH_SITES = {
     "color": "#a21caf"
   },
   "27895": {
-    "url": "https://www.miruro.tv/watch/PHRYGQS6WXUlTQ0FQ-dbLlFUtvf7tYWD/plannosaurus-gachi-koseibutsu-bu",
+    "url": "https://www.miruro.tv/watch/YsSov0reOzVs2AwizWgdwW4eTldboT01/plannosaurus-gachi-koseibutsu-bu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1487,17 +1487,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27965": {
-    "url": "https://monoschinos.st/anime/tank-chair-sensha-isu-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/S_WZSq50pLDJcVnI0UU7XI00u0KsMF_H/tank-chair",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27989": {
-    "url": "https://www.miruro.tv/watch/b6_vfunIv125ljh1ociWC1aZ6AnU8u8O/sirotan",
+    "url": "https://www.miruro.tv/watch/LQXJam5fP-DmSAypJsYCaAmLk222jZ5v/sirotan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28013": {
-    "url": "https://www.miruro.tv/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3",
+    "url": "https://www.miruro.tv/watch/KRg7-6Ccm5shBuUkRhfhvAaRv_x6j3uz/ranma12-2024-season-3",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1517,7 +1517,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28276": {
-    "url": "https://www.miruro.tv/watch/mQZ0M48Iu2zq-lREYqWUx9L4-QQ_PLF3/chikyuu-daisuki-kikkun",
+    "url": "https://www.miruro.tv/watch/nV_t8HrLFS3mMVGRq62FgRDaAmWc3pNy/chikyuu-daisuki-kikkun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1542,9 +1542,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23322": {
-    "url": "https://animeheaven.me/anime.php?n77ek",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/OOs4KDMfUtVdwOujs77b1tasNQfI4NOa/dr-stone-science-future-cour-3",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23370": {
     "url": "https://anikoto.net/watch/i-made-friends-with-the-second-prettiest-girl-in-my-class-lymhb/ep-1",
@@ -1557,7 +1557,7 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "23380": {
-    "url": "https://www.miruro.tv/watch/Y3yyNTY0t6XA1_5kHSBB0w2pQvSJTILy/honzuki-no-gekokujou-ryoushu-no-youjo",
+    "url": "https://www.miruro.tv/watch/RvnYO8xGamFlfgLeJpulON86dt7Tttef/honzuki-no-gekokujou-ryoushu-no-youjo",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1567,12 +1567,12 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "24072": {
-    "url": "https://gogoanime.by/diamond-no-ace-act-ii-second-season-part-2-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/zoEhuh_bsaHIJlLDAWPcDnnFlOlu-mnF/ace-of-the-diamond-act-ii-second-season-",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24293": {
-    "url": "https://www.miruro.tv/watch/v_bJRyN1bb5pHttF8inD2t84mARxjA52/magical-sisters-luluttolilly",
+    "url": "https://www.miruro.tv/watch/4pUwRhSIExiiGjjCEUI0-c1DtjO5CkUC/magical-sisters-luluttolilly",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1637,7 +1637,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25812": {
-    "url": "https://www.miruro.tv/watch/tf-zWu0rpFodnYIbkvNPUfjZztGEQ5mh/steel-ball-run-jojos-bizarre-adventure-1st-stage",
+    "url": "https://www.miruro.tv/watch/pmsPdtZtWGhLY-aw_NZKIkCLkDBnFd0M/steel-ball-run-jojos-bizarre-adventure-1st-stage",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1657,9 +1657,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "26256": {
-    "url": "https://gogoanime.by/series/saikyou-no-ousama-nidome-no-jinsei-wa-nani-wo-suru-anime/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/VlP3mGC1Tyj9GzhMHFPWIcn1Qp8_vmTG/the-beginning-after-the-end-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "26322": {
     "url": "https://animeheaven.me/anime.php?np9nt",
@@ -1717,7 +1717,7 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "26728": {
-    "url": "https://www.miruro.tv/watch/blM99zhgxgKp19vHMXbBK1GjeNQj4D-a/nezumi-kun-no-chokki-tv",
+    "url": "https://www.miruro.tv/watch/1QAMBRa8UOPvLL4n7S4WaJ0xlSlIyD0S/nezumi-kun-no-chokki-tv",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -1772,7 +1772,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27110": {
-    "url": "https://www.miruro.tv/watch/Bb44_KvUEBE28__ummCV-0YVWlYlJ6dp/shou-3-ashibe-qq-goma-chan",
+    "url": "https://www.miruro.tv/watch/HhJpv9h-NDpVv6KJjzWgQaUX0TsZpzue/shou-3-ashibe-qq-goma-chan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -2047,9 +2047,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22397": {
-    "url": "https://gogoanime.by/mahouka-koukou-no-rettousei-3rd-season-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/r-68vtcdwo0ChxEWTtldrGXb6he-_QNK/mahouka-koukou-no-rettousei-yotsuba-keishou-hen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "22606": {
     "url": "https://animeheaven.me/anime.php?8cwkv",
@@ -2217,9 +2217,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23770": {
-    "url": "https://animeheaven.me/anime.php?kcie6",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/zSltDntBy43keshZlea2l6vV-zk-_7vt/beheneko-the-elf-girls-cat-is-secretly-an-s-ranked-monster",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23783": {
     "url": "https://gogoanime.by/zenshuu-episode-1-english-subbed/",
@@ -2237,9 +2237,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23807": {
-    "url": "https://gogoanime.by/series/himesama-goumon-no-jikan-desu/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/aM8xEnsgUy6X2aEBWiDSU89cWheSA0Tx/tis-time-for-torture-princess-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23826": {
     "url": "https://anikoto.net/watch/solo-leveling-season-2-arise-from-the-shadow-3eukp/ep-1",
@@ -2327,9 +2327,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "24144": {
-    "url": "https://animeheaven.me/anime.php?7qbjw",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/FXcI8p0zslxxUNHA_GFIX-k0F5cTFlhC/hazure-skill-kinomi-master-skill-no-mi-tabetara-shinu-wo-mugen-ni-taberareru-you-ni-natta-ken-nitsuite",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24168": {
     "url": "https://animeheaven.me/anime.php?611ts",
@@ -2572,9 +2572,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "24877": {
-    "url": "https://animeheaven.me/anime.php?yux1f",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/Hi-eo0jc5bSIFY1SuAaBc1l0xNRNKyh0/dark-moon-the-blood-altar",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24878": {
     "url": "https://anikoto.net/watch/may-i-ask-for-one-final-thing-ufasw/ep-1",
@@ -2692,7 +2692,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25145": {
-    "url": "https://www.miruro.tv/watch/mM6KtyixLSqQ-d4fQI-QNzUToPXro_zv/pan-no-akachan-tv",
+    "url": "https://www.miruro.tv/watch/ulZ1jTg5jPcQBJIv_YBxB29dJT23F0t9/pan-no-akachan-tv",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -3072,7 +3072,7 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "25740": {
-    "url": "https://www.miruro.tv/watch/v-omOXIq8SIjPI_qnN6T4TNILCFN1cqE/muzik-tiger-in-the-forest",
+    "url": "https://www.miruro.tv/watch/Uau6hWwMm-7CYYKVP3Y-B-J90YJuB6M1/muzik-tiger-in-the-forest",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -3112,9 +3112,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "25835": {
-    "url": "https://animeheaven.me/anime.php?wzzzh",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/sNsSaUDbKx6yIBcVssOT398wZiyvCs-O/my-gift-lvl-9999-unlimited-gacha-backstabbed-in-a-backwater-dungeon-im-out-for-revenge",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "25843": {
     "url": "https://anikoto.net/watch/easygoing-territory-defense-by-the-optimistic-lord-production-magic-turns-a-nameless-village-into-the-strongest-fortified-city-gvwdr/ep-1",
@@ -3327,12 +3327,12 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "27215": {
-    "url": "https://www.miruro.tv/watch/c0umPqrnxd6rV52iI5lFsotAc9sUFFCj/himitsu-kessha-taka-no-tsume-xx",
+    "url": "https://www.miruro.tv/watch/Sxdu2UkM9UwrmP2ELErjYE06PeIm5xS8/himitsu-kessha-taka-no-tsume-xx",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27239": {
-    "url": "https://www.miruro.tv/watch/l0l61B7Jbg_2sKBi-w4EjQYKZPy0HOte/duel-masters-lost-boukyaku-no-taiyou",
+    "url": "https://www.miruro.tv/watch/PDZ-3uJmJpNX5tejPMl3s-S4aEdeLPX5/duel-masters-lost-boukyaku-no-taiyou",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -3342,17 +3342,17 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "27303": {
-    "url": "https://www.miruro.tv/watch/6efbbgm01SKC11lTd6bEzdjcWfNLqfLf/mofusand",
+    "url": "https://www.miruro.tv/watch/etFMdHv3nFN260qIAsyVWfU2cjv-vC6g/mofusand",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27308": {
-    "url": "https://www.miruro.tv/watch/b6PoznZBarSV5Z21B06ovpwGOuw4P2MZ/choppers",
+    "url": "https://www.miruro.tv/watch/a8P38IN9jOiaq4mCEEC8PGdiC3jbmw5y/choppers",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27364": {
-    "url": "https://www.miruro.tv/watch/AJxdl0kPaWPFwe8y_Nf00_Y7idNWzMuz/gelpiyo",
+    "url": "https://www.miruro.tv/watch/BVnl6OfhH97Eb1u8v7cP2qoPdZixkai0/gelpiyo",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -3392,9 +3392,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "11690": {
-    "url": "https://animeheaven.me/anime.php?3pt6h",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/oKogSjRfMdLyrGvGh5ffmTi6VVR5-PWc/tis-time-for-torture-princess",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "11692": {
     "url": "https://gogoanime.by/2-5-jigen-no-ririsa-episode-1-english-subbed/",
@@ -3502,9 +3502,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "17303": {
-    "url": "https://gogoanime.by/series/arifureta-shokugyou-de-sekai-saikyou-prologue/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/1E_YaTlc3toJw3rrJUnGoxd5NiRmTlgs/arifureta-shokugyou-de-sekai-saikyou-3rd-season",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17343": {
     "url": "https://animeheaven.me/anime.php?lqoxx",
@@ -3772,9 +3772,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "21469": {
-    "url": "https://animeheaven.me/anime.php?vkrsb",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/J_lJTx58LfEOxL55iZA-gx-o1kAdMcSz/the-dangers-in-my-heart-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "21481": {
     "url": "https://anikoto.net/watch/the-banished-former-hero-lives-as-he-pleases-irdkr/ep-1",
@@ -3792,9 +3792,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22249": {
-    "url": "https://animeheaven.me/anime.php?22bkm",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/qPAqLY1hM5wURjLVXcQLB7ih9g7cuZJB/mashle-magic-and-muscles-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "22267": {
     "url": "https://anikoto.net/watch/mobile-suit-gundam-requiem-for-vengeance-dwu4d/ep-1",
@@ -3927,9 +3927,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22709": {
-    "url": "https://www.animegg.org/series/harimaware-koinu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ZMZqFI0CzUxAyymq0g2KeMfoyImn0wM0/harimaware-koinu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "22715": {
     "url": "https://animeheaven.me/anime.php?hz3j9",
@@ -4067,9 +4067,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23126": {
-    "url": "https://animeheaven.me/anime.php?wqqlk",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/lWgEgYN4d0k3hWhcsVKyEvqGwWGoZoWe/isekai-onsen-paradise",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23134": {
     "url": "https://anikoto.net/watch/magilumiere-co-ltd-afuwm/ep-1",
@@ -4137,9 +4137,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "23327": {
-    "url": "https://gogoanime.by/kikansha-no-mahou-wa-tokubetsu-desu-2nd-season-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/uPCFXxz7Gp2nUZRJbfZ3PZWFH3m0Ra4l/a-returners-magic-should-be-special-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23330": {
     "url": "https://gogoanime.by/shadowverse-flame-arc-hen-episode-1-english-subbed/",
@@ -4202,14 +4202,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23435": {
-    "url": "https://animeheaven.me/anime.php?fk6og",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/b5qWAu8IVwqQl-1rhc5FO6JNRMFqOeD8/failure-frame-i-became-the-strongest-and-annihilated-everything-with-low-level-spells",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23499": {
-    "url": "https://animeheaven.me/anime.php?kcbvl",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/9MU93y7j9dD4kN_NEsKPBBHtm190GHlA/tono-to-inu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23515": {
     "url": "https://anikoto.net/watch/the-healer-who-was-banished-from-his-party-is-in-fact-the-strongest-rfadl/ep-1",
@@ -4287,7 +4287,7 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "23786": {
-    "url": "https://www.miruro.tv/watch/KxVDepdysJRdkVEdWirggz-3P_Tvqwj4/harimaware-koinu",
+    "url": "https://www.miruro.tv/watch/ZMZqFI0CzUxAyymq0g2KeMfoyImn0wM0/harimaware-koinu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4327,9 +4327,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "23918": {
-    "url": "https://animeheaven.me/anime.php?bnqkv",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/5gTMQABtIClg37cS88oIXMCysScNJePZ/the-most-notorious-talker-runs-the-worlds-greatest-clan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23981": {
     "url": "https://anikoto.net/watch/okaimono-panda-lsdxi/ep-1",
@@ -4412,7 +4412,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "25683": {
-    "url": "https://www.miruro.tv/watch/HhEkEcV7yq-CwDkogPHJWBJb2FDWJwBI/girls-und-panzer-motto-love-love-sakusen-desu",
+    "url": "https://www.miruro.tv/watch/msUPWTf_hcPLiqbIIHJbN-RvPqrC0m6-/girls-und-panzer-motto-love-love-sakusen-desu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4467,7 +4467,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27189": {
-    "url": "https://www.miruro.tv/watch/IjDcoNUMngUvdg2wsseRv76FjdUv8qD-/devils-crest",
+    "url": "https://www.miruro.tv/watch/AoTiTue8-gIMa9ZOROHGP0yTwADnUb01/devils-crest",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4477,9 +4477,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27288": {
-    "url": "https://gogoanime.by/yasei-no-last-boss-ga-arawareta-2nd-season-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/KbkZ-cQhzhMBOyJfnOJh1Pe2_VeTp9v1/a-wild-last-boss-appeared-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27418": {
     "url": "https://anikoto.net/watch/full-clearing-another-world-under-a-goddess-with-zero-believers-e35bd/ep-1",
@@ -4497,7 +4497,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27631": {
-    "url": "https://www.miruro.tv/watch/elFB9e_c5b4rHGvHGnmcR-b2X-skwB9u/the-laid-off-cheat-granting-mage-enjoys-a-second-lease-on-life",
+    "url": "https://www.miruro.tv/watch/ToStpuBG0-W1w1Em1y2_K0wX9QwtraUq/the-laid-off-cheat-granting-mage-enjoys-a-second-lease-on-life",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4507,7 +4507,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27820": {
-    "url": "https://www.miruro.tv/watch/oFh9_i5j5s4IzApb-CJTqA3vAmP-QojJ/duel-masters-lost-danzai-no-shounen",
+    "url": "https://www.miruro.tv/watch/m3daxN3UhCw7rIBzgqOPN1qDCz552lhx/duel-masters-lost-danzai-no-shounen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4527,14 +4527,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27990": {
-    "url": "https://gogoanime.by/hanazakari-no-kimitachi-e-2nd-season-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/gHCwia-AQIW2HoPm8Uvyuh3kILC9cH1Y/hana-kimi-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28016": {
-    "url": "https://animeheaven.me/anime.php?yv7me",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/leB4oToqqGMw_rmyEEFjcC2RWgqrBbCU/mebius-dust",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28018": {
     "url": "https://www.animegg.org/series/ranma-12",
@@ -4542,7 +4542,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "28028": {
-    "url": "https://www.miruro.tv/watch/AlTbG1qX8Q15AROiHKz2UV-1Q4ikX525/punirunes-puni-4",
+    "url": "https://www.miruro.tv/watch/wMDGnonuLRPnaHwJEc-bmx9ZPmO_22zB/punirunes-puni-4",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4557,7 +4557,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28304": {
-    "url": "https://www.miruro.tv/watch/8f0KExlXNA4W6oc4P_BP7L2tlJdySYrs/transformers-wild-king-w",
+    "url": "https://www.miruro.tv/watch/I3jRQZ_Vc9S2w8zaXgHBgPB-rOCaO4kv/transformers-wild-king-w",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4567,9 +4567,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28403": {
-    "url": "https://gogoanime.by/hyouken-no-majutsushi-ga-sekai-wo-suberu-ii-episode-1-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/ZWP8mz1i8qnQlaJvaiDcEUwYAm63SVPN/hyouken-no-majutsushi-ga-sekai-wo-suberu-ii",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28456": {
     "url": "https://anikoto.net/watch/the-seven-knights-of-the-marronnier-kingdom-f9130/ep-1",
@@ -4577,7 +4577,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28459": {
-    "url": "https://www.miruro.tv/watch/Qc-Ow3B5czu62DyrtvJCbZLtHaPCS8N3/pie-no-mi-oshi-no-mori-e-youkoso",
+    "url": "https://www.miruro.tv/watch/onjy841T7NFBNGQkvG_CJ3Jeafy5Zhet/pie-no-mi-oshi-no-mori-e-youkoso",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4592,37 +4592,37 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28479": {
-    "url": "https://animeheaven.me/anime.php?n6eej",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/pJIBeSn0ueC7LjyqNS6y00YOiNZ6329u/dandivine",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28504": {
-    "url": "https://www.miruro.tv/watch/Ym5YXZuqNTsc-GhpD5c-u9oZF17c2BCD/tomica-tom",
+    "url": "https://www.miruro.tv/watch/NE4-FsbBX3NTyUQ5-_qgYnqjMMvwSbZ_/tomica-tom",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28579": {
-    "url": "https://www.miruro.tv/watch/Gyon7-8-fu7WUiCcFYCh5JEpyhdsswl-/yuruyuru-zukan",
+    "url": "https://www.miruro.tv/watch/J_BLNyh_KjukGv50BAAVTearo8uC08Qq/yuruyuru-zukan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28592": {
-    "url": "https://www.miruro.tv/watch/-BCrI0WXiOTFzCs3koKPDSsw8nJNM-kt/yami-shibai-17",
+    "url": "https://www.miruro.tv/watch/DR0pWJGO5dWViR4HJfeOLhFSiSN8G9Tq/yami-shibai-17",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28604": {
-    "url": "https://www.miruro.tv/watch/FQYeCVR_BhFaYpPyLLUirHgsw7wyJJaU/aware-meisaku-kun",
+    "url": "https://www.miruro.tv/watch/MYwM8xa7L2S1hX6NbSDUxCXukw99X7gq/aware-meisaku-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28680": {
-    "url": "https://www.miruro.tv/watch/3QeFscNXTlBPweEiukKVoQfJbsu1pXGm/cyberpunk-edgerunners-2",
+    "url": "https://www.miruro.tv/watch/rVAxx9bKcqvBdWSAz7PKmdZGVrrKR4xw/cyberpunk-edgerunners-2",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28682": {
-    "url": "https://www.miruro.tv/watch/tJQIVIrbPKe9fE84spAK8Wi235vEfZk7/bananya-at-home-party",
+    "url": "https://www.miruro.tv/watch/dqfKgcyVei1qBuoUi5aeDi5IiQB1kLy7/bananya-at-home-party",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4637,12 +4637,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28854": {
-    "url": "https://animeheaven.me/anime.php?k921x",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/T4Z9jwD-y3_A5ep_ojMZR6czfT5zBhYf/ghost-meets-gal",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28884": {
-    "url": "https://www.miruro.tv/watch/rOReSMmwUHObaRrlAAAt6ulbC3_ggbRx/yuusanchi-from-yuuhachi",
+    "url": "https://www.miruro.tv/watch/TjWBjwI8MJVfqHi-IpZhDccdCh2CAq1o/yu-sanchi-from-yu-hachi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -4662,7 +4662,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28988": {
-    "url": "https://www.miruro.tv/watch/x1l21SQDNPnoQGImFPctIC08dAuB8ziS/matsuken-anime-kore-seibaishite-mo-ii-desu-ka",
+    "url": "https://www.miruro.tv/watch/Upn0g-LXXBTjSzJ67CzIT3hr06yUgCHr/matsuken-anime-kore-seibaishite-mo-ii-desu-ka",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -5082,9 +5082,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16062": {
-    "url": "https://www.animegg.org/series/ijiranaide-nagatoro-san-2nd-attack",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/NEiPRJowC0mClOoM-CGFkh3HS1-RbUGY/ijiranaide-nagatoro-san-2nd-attack",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16063": {
     "url": "https://anikoto.net/watch/the-tale-of-outcasts-pi6vh/ep-1",
@@ -5477,9 +5477,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "19450": {
-    "url": "https://animeheaven.me/anime.php?o940a",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/QtDGLOoZYRQPeUnhfT7ZpCXFOPxBD3Ig/temple",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "19456": {
     "url": "https://www.animegg.org/series/rokudou-no-onna-tachi",
@@ -5732,9 +5732,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "26826": {
-    "url": "https://animeheaven.me/anime.php?6q6ni",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/odxAqwpDgMGFcNDI1BkyaFWOh5MN22vq/oshi-no-ko",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27004": {
     "url": "https://anikoto.net/watch/the-apothecary-diaries-p4q6s/ep-1",
@@ -6182,9 +6182,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "13542": {
-    "url": "https://www.animegg.org/series/kaguya-sama-wa-kokurasetai-ultra-romantic",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/DnCcYiOz4gAV4-HrmozVipAB8GA64ScJ/kaguya-sama-love-is-war-ultra-romantic-",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13547": {
     "url": "https://anikoto.net/watch/tokyo-twenty-fourth-ward-sxdf4/ep-1",
@@ -6212,7 +6212,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13616": {
-    "url": "https://www.miruro.tv/watch/_HNdfzkq4teHtx6FZS039VJTkx79Yejn/on-air-dekinai",
+    "url": "https://www.miruro.tv/watch/ch7-bSw7spnebWxrD74rU9F8B8JTJdyS/on-air-dekinai",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -6297,22 +6297,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13858": {
-    "url": "https://gogoanime.by/ninjala-episode-107-english-subbed/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/4rPmDD9Uy05OJLDqUQGL1MQzzfoxCJdt/ninjala",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13884": {
-    "url": "https://gogoanime.by/series/mahouka-koukou-no-rettousei-3rd-season/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/IsA8TvXn2WWiJp3K_WQJE95W_U9q9kS1/mahouka-koukou-no-rettousei-tsuioku-hen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13888": {
-    "url": "https://www.miruro.tv/watch/QP0S8WlGO8BdTybC7Rs6HPQBizjv0lAO/teiko-penguin",
+    "url": "https://www.miruro.tv/watch/gx0XHyf4yxELSdBKztuSmxePwAHtKHR_/teiko-penguin",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "13889": {
-    "url": "https://www.miruro.tv/watch/pd0zcsKAB6Ho7c-A1bYEHOfnSV50os8K/garugaku-ii-lucky-stars",
+    "url": "https://www.miruro.tv/watch/2_6jE11ZpnNZkO5gwTz8_yo299za_GJa/garugaku-ii-lucky-stars",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -6397,9 +6397,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14119": {
-    "url": "https://www.animegg.org/series/machikado-mazoku-2-choume",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/GIOu7Di_bcDQgpe5GVX0X8GQlzl-8-1p/machikado-mazoku-2-choume",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14135": {
     "url": "https://animeheaven.me/anime.php?oelk0",
@@ -6417,9 +6417,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "14208": {
-    "url": "https://gogoanime.by/series/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-v-houjou-no-megami-hen-online/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/1LMfmWEi85KIJMmFmcXitgslz_llzurU/is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-iv",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14232": {
     "url": "https://anikoto.net/watch/teppen-ypjoj/ep-1",
@@ -6442,9 +6442,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14277": {
-    "url": "https://www.animegg.org/series/puchi-seka",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/8kOAz_2v2Aoy6aKuxwdFrA1WMRH6i9Q_/puchi-seka",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14294": {
     "url": "https://animeheaven.me/anime.php?i0zsp",
@@ -6532,9 +6532,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14655": {
-    "url": "https://www.animegg.org/series/uzaki-chan-wa-asobitai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/g0AA5LIKdR80Aq3OfMVaWtNgQPmbl1nI/uzaki-chan-wa-asobitai",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14765": {
     "url": "https://anikoto.net/watch/vermeil-in-gold-soge4/ep-1",
@@ -6562,7 +6562,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14820": {
-    "url": "https://www.miruro.tv/watch/Lt7oSXxgDMU1Dn4vHYw4o6-4hJvPc9J6/eternal-boys",
+    "url": "https://www.miruro.tv/watch/gtaLgC6DJmNShVzHnbewmO4kkhAgQ1Lc/eternal-boys",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -6762,9 +6762,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5598": {
-    "url": "https://www.animegg.org/series/i-chu-halfway-through-the-idol",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1DZ60UC_BMFpuAJCBh6-sbjib-yjL6hX/ichu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6259": {
     "url": "https://anikoto.net/watch/the-vampire-dies-in-no-time-76pmo/ep-1",
@@ -6782,9 +6782,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6506": {
-    "url": "https://www.animegg.org/series/sankaku-mado-no-sotogawa-wa-yoru",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/kX4pWS71WQTEwL818e5B-DP2DZu_bFMe/sankaku-mado-no-sotogawa-wa-yoru",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6681": {
     "url": "https://www.animegg.org/series/poputepipikku",
@@ -6822,9 +6822,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8105": {
-    "url": "https://www.animegg.org/series/eden-ona",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Zw-1Rmwu3eZxbBD9IM0zCF5JbVYjw7hU/eden",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "8879": {
     "url": "https://www.animegg.org/series/vlad-love",
@@ -6847,9 +6847,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9147": {
-    "url": "https://www.animegg.org/series/shikizakura",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/cIZgImI44VZUEt98CPT6O4NARvASjOEP/shikizakura",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9178": {
     "url": "https://animeheaven.me/anime.php?klytm",
@@ -6917,9 +6917,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "9511": {
-    "url": "https://www.animegg.org/series/sakugan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/3btYsAEBjDbFB_TvVaccNf94PwnAe8fV/sakugan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9526": {
     "url": "https://animeheaven.me/anime.php?u8xsa",
@@ -7302,9 +7302,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "11836": {
-    "url": "https://animeheaven.me/anime.php?bdbm2",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/Ei1jXl5yfIm8yIhtH3KcRxaFMiqjzZ5j/mieruko-chan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "11839": {
     "url": "https://anikoto.net/watch/scarlet-nexus-850tr/ep-1",
@@ -7382,9 +7382,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12308": {
-    "url": "https://monoschinos.st/anime/komi-san-wa-komyushou-desu-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/7k1D9-eii455uS4mFEoJc0NMW9eJErV5/komi-cant-communicate",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12310": {
     "url": "https://anikoto.net/watch/kaginado-llsdr/ep-1",
@@ -7517,7 +7517,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14894": {
-    "url": "https://www.miruro.tv/watch/gbAqZQGTEbUdfMAmLa5RFvaJn-3-lkIw/hanyou-no-yashahime-ni-no-shou",
+    "url": "https://www.miruro.tv/watch/E03xf2GXVSYASgqQz8C_OKL_xHzqzyEd/hanyou-no-yashahime-ni-no-shou",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -7537,9 +7537,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15000": {
-    "url": "https://www.animegg.org/series/yuuki-yuuna-wa-yuusha-de-aru-dai-mankai-no-shou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/HQTh5m6X5ic6RAAyuye2WPZTxwzTwSKE/yuki-yuna-is-a-hero-the-great-mankai-chapter",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15001": {
     "url": "https://anikoto.net/watch/yuki-yuna-is-a-hero-pfgwy/ep-1",
@@ -7637,9 +7637,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15913": {
-    "url": "https://monoschinos.st/anime/biohazard-infinite-darkness-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/uvO9dFsKZ_BKtUqx5AhVlVsERPmqtJms/biohazard-infinite-darkness",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15947": {
     "url": "https://anikoto.net/watch/hetalia-world-stars-ndnop/ep-1",
@@ -7662,9 +7662,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "16296": {
-    "url": "https://www.animegg.org/series/b-the-beginning-succession",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/HUhdjj3DII2nj0nSWFlodj_vCrU7IjcK/b-the-beginning-succession",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16349": {
     "url": "https://www.animegg.org/series/otona-no-bouguya-san",
@@ -7882,9 +7882,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "8915": {
-    "url": "https://www.animegg.org/series/rikei-ga-koi-ni-ochita-no-de-shoumei-shitemita",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/UIQdHihRUk0JW17XzLuK-1vMocxy3ugq/science-fell-in-love-so-i-tried-to-prove-it",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "8917": {
     "url": "https://anikoto.net/watch/maesetsu-opening-act-hfdzz/ep-1",
@@ -7942,9 +7942,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9073": {
-    "url": "https://www.animegg.org/series/maou-gakuin-no-futekigousha-ii",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/eaDcQ7PdI-qyXOBxdC17CmVPTOJm2wq-/maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e-kayou",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9075": {
     "url": "https://anikoto.net/watch/wave-listen-to-me-u3i4m/ep-1",
@@ -8097,7 +8097,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9379": {
-    "url": "https://www.miruro.tv/watch/RbN-fn27UOpsqp7UxE2kU4JlF6Lwme_G/tower-of-god",
+    "url": "https://www.miruro.tv/watch/KZlQpX5sNbfAOhoHwg4aAwNmvuNaID18/tower-of-god",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8187,7 +8187,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9910": {
-    "url": "https://www.miruro.tv/watch/kSkKhj_8ASJxC2wHzRUclzcon-7Sv-OV/hanyou-no-yashahime",
+    "url": "https://www.miruro.tv/watch/rEiDKF4FHQB2Kiad0_Vjd4Nenu0RjMX_/hanyou-no-yashahime",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8207,9 +8207,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "10394": {
-    "url": "https://www.animegg.org/series/dragon-s-dogma",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Re40QkA5BQRrrHG3y_Vy8ZzInLx7M8Uf/dragons-dogma",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10426": {
     "url": "https://anikoto.net/watch/i-tried-asking-in-dogeza-ezpap/ep-1",
@@ -8237,9 +8237,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10586": {
-    "url": "https://www.animegg.org/series/tadaima-chibi-godzilla",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/DECr9Ba0TeFz5l49KS9VlxI3_I5-D7sG/tadaima-chibigodzilla",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10588": {
     "url": "https://www.animegg.org/series/kaeru-no-pickles-kimochi-no-iro",
@@ -8307,7 +8307,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14133": {
-    "url": "https://www.miruro.tv/watch/Idbmxxte6gReJY1I4PJ3N6fo8Ys6lhLk/baki-dai-raitaisai-hen",
+    "url": "https://www.miruro.tv/watch/TNk9HZFKPANNtrVkAJnkSJKqRHwqFMPF/baki-dai-raitaisai-hen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8357,9 +8357,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "15162": {
-    "url": "https://animeheaven.me/anime.php?qx2t2",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/UjUdYAfASZvgQjwkqvzbTvLfUJq16Bt_/haikyu-to-the-top",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15236": {
     "url": "https://anikoto.net/watch/fruits-basket-2nd-season-mzyhj/ep-1",
@@ -8462,7 +8462,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "16708": {
-    "url": "https://www.miruro.tv/watch/a0rMQ-5Jq8XvraQxPU7DIrCBj7CMQx9g/get-up-get-live-geragera",
+    "url": "https://www.miruro.tv/watch/M3Po8erN5n4rABI8DHVyQ50zjxxCiVim/get-up-get-live-geragera",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8587,7 +8587,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "7137": {
-    "url": "https://www.miruro.tv/watch/rpnrmfTJfo2qwesDrWce5eJUWzP-Ppy0/boogiepop-and-others",
+    "url": "https://www.miruro.tv/watch/1NLbdg_oxcF6sR4t_tU-Ox2sjM9IFyre/boogiepop-and-others",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8677,9 +8677,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "7403": {
-    "url": "https://www.animegg.org/series/rinshi-ekoda-chan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/id-pm1JGKq0v-nJ-inoIzvVbck5-XTqn/rinshi-ekodachan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7433": {
     "url": "https://anikoto.net/watch/stars-align-bwkee/ep-1",
@@ -8752,7 +8752,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7522": {
-    "url": "https://www.miruro.tv/watch/C0K8wdIMfj65584Q9JK12AQ9-YznZuCA/rainy-cocoa-sideg",
+    "url": "https://www.miruro.tv/watch/G3lPOn7kIhgfVMCqbdQUknqSwAqcaMu4/rainy-cocoa-sideg",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8812,7 +8812,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7726": {
-    "url": "https://www.miruro.tv/watch/u6Ke67CanraD0aSKsJowgnjcZf3utq-w/mannaka-no-rikkun",
+    "url": "https://www.miruro.tv/watch/SA-ELjRNLcqHoCc9EXumIG97O1QcG3Nq/mannaka-no-rikkun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8862,7 +8862,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "7768": {
-    "url": "https://www.miruro.tv/watch/D8fOn_rp7NkEPMGfF38eyN9T3BGDgcLt/im-from-japan",
+    "url": "https://www.miruro.tv/watch/XipXvRUHQ-wIW2c321SLcO7y8B4O8xyQ/im-from-japan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -8997,7 +8997,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8904": {
-    "url": "https://www.miruro.tv/watch/J2YsXHzDFn-ckPEUCrkvsit2XqxFSh5B/kaijuu-step-wandabada",
+    "url": "https://www.miruro.tv/watch/y3w6eJwO62dUVsyIU7MI6AQ_AsdMNQIH/kaijuu-step-wandabada",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -9042,9 +9042,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "12867": {
-    "url": "https://animeheaven.me/anime.php?kjkok",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/op6_ShLm5TjEqPJuSOSENto6Fj1-Utjm/zoku-owarimonogatari",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13534": {
     "url": "https://animeheaven.me/anime.php?1mz1u",
@@ -9072,9 +9072,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "14426": {
-    "url": "https://www.animegg.org/series/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-ii-ova",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/wHWk2Ukz-Fzodawc6twaHutldgH-7DH_/is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-arrow-of-the-orion",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14443": {
     "url": "https://anikoto.net/watch/bang-dream-2nd-season-ihzbz/ep-1",
@@ -9122,9 +9122,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "15414": {
-    "url": "https://www.animegg.org/series/poputepipikku-tv-special-dub",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/YR356euHpmflC5P6m7jtuFBfw2V8c_Wl/pop-team-epic-tv-special",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15417": {
     "url": "https://www.animegg.org/series/shounen-ashibe-go-go-goma-chan",
@@ -9317,9 +9317,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6047": {
-    "url": "https://www.animegg.org/series/dame-x-prince-anime-caravan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/7lGeA3s9lD7pHlM54bcEiVDc92NEWTLN/damepri-anime-caravan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6086": {
     "url": "https://www.animegg.org/series/island",
@@ -9627,9 +9627,9 @@ window.WATCH_SITES = {
     "color": "#3c8be0"
   },
   "6970": {
-    "url": "https://www.animegg.org/series/b-the-beginning",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/UBE3RdHte_05FTN7TIjrtyfDzKJPvGmR/b-the-beginning",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6975": {
     "url": "https://anikoto.net/watch/himote-house-a-share-house-of-super-psychic-girls-6xjnn/ep-1",
@@ -9662,9 +9662,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "6997": {
-    "url": "https://www.animegg.org/series/tachibana-kan-to-lie-angle",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/7wPgBFzrcIYLPKcmgGQIvr4Jc0gchaJE/love-to-lie-angle",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7004": {
     "url": "https://anikoto.net/watch/yuragi-sou-no-yuuna-san-vwo9r/ep-1",
@@ -9862,9 +9862,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7178": {
-    "url": "https://www.animegg.org/series/senjuushi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/tPIQh_rD-HEABKHet_Q4hkd2z7PMAT3w/senjuushi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7179": {
     "url": "https://anikoto.net/watch/ms-vampire-who-lives-in-my-neighborhood-m4p0d/ep-1",
@@ -10122,7 +10122,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15261": {
-    "url": "https://www.miruro.tv/watch/7oUIKcXuSkPnM0R1vwhanvVGmDwEwwur/gegege-no-kitaro",
+    "url": "https://www.miruro.tv/watch/Ya-gRJJ-kwmOVWTl6ntc_mnCXMTlomnI/gegege-no-kitaro",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -10202,9 +10202,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "15916": {
-    "url": "https://www.animegg.org/series/koneko-no-chii-ponponra-dairyokou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1lBjd32-q-CztipJS0dyoMOv4wS7O-Xh/chis-sweet-adventure-season-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16086": {
     "url": "https://www.animegg.org/series/zannen-na-ikimono-jiten-the-movie",
@@ -10252,9 +10252,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5114": {
-    "url": "https://www.animegg.org/series/dynamic-chord",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/NCNWUhijhyoUgs58Mt3cwfXG4TeK_Ltf/dynamic-chord",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5421": {
     "url": "https://www.animegg.org/series/frame-arms-girl",
@@ -10307,9 +10307,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6008": {
-    "url": "https://www.animegg.org/series/chou-shounen-tanteidan-neo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/3NO3pMdQKzkiSrka6W4I02AqZUI_nr1V/chou-shounen-tanteidan-neo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6018": {
     "url": "https://www.animegg.org/series/ldlive-dub",
@@ -10457,9 +10457,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6465": {
-    "url": "https://www.animegg.org/series/vatican-kiseki-chousakan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/lQ5z8TVXJXKOEXKpDmutyQ-dYr-EgZF6/vatican-miracle-examiner",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6471": {
     "url": "https://www.animegg.org/series/one-room",
@@ -10537,9 +10537,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6525": {
-    "url": "https://www.animegg.org/series/ryuu-no-haisha",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_-4q9zIz4JI9FLiAQBQPF5IO7E4dIWKM/ryuu-no-haisha",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6526": {
     "url": "https://anikoto.net/watch/the-royal-tutor-j5bsi/ep-1",
@@ -10697,9 +10697,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6676": {
-    "url": "https://www.animegg.org/series/kaito-x-ansa",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/QlZyEMuSmjq64q2AbR_C5dRQ1iLHbnbl/kaito-x-ansa",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6680": {
     "url": "https://anikoto.net/watch/konohana-kitan-ec2rs/ep-1",
@@ -11032,9 +11032,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14999": {
-    "url": "https://www.animegg.org/series/yuuki-yuuna-wa-yuusha-de-aru-washio-sumi-no-shou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/IUXKyYkQT6ZlojwAAwNpniQJkDJ80mHH/yuuki-yuuna-wa-yuusha-de-aru-washio-sumi-no-shou-3-yakusoku",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15011": {
     "url": "https://www.animegg.org/series/jigoku-shoujo-yoi-no-togi",
@@ -11137,9 +11137,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "331": {
-    "url": "https://www.animegg.org/series/gyakuten-saiban-sono-shinjitsu-igi-ari",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/3PCfA-xawGGF_j3SH7BbLL4DIrKQhAOB/ace-attorney",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "492": {
     "url": "https://anikoto.net/watch/shonen-maid-ubpuh/ep-1",
@@ -11182,14 +11182,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5446": {
-    "url": "https://www.animegg.org/series/ushio-to-tora",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Pc9TL1dOuMJZbIhK3f4kWLimMnae_ODv/ushio-to-tora-2-tv",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5461": {
-    "url": "https://www.animegg.org/series/momokuri",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Fcx2Occqa0TUqXVq_lC0Z6I2jGUVedsJ/momokuri",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5462": {
     "url": "https://anikoto.net/watch/nanbaka-mb2jk/ep-1",
@@ -11647,7 +11647,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "6079": {
-    "url": "https://www.miruro.tv/watch/PvOwA3IeeTT3FbnDnxguq8ENx_arYabN/kamiwaza-wanda",
+    "url": "https://www.miruro.tv/watch/n3-DiZRqpIjs3dpUAqHGZvZTFUcwbB5I/kamiwaza-wanda",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -11857,9 +11857,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13397": {
-    "url": "https://www.animegg.org/series/getsuyoubi-no-tawawa",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ac2Xg1gjrjAj4dDhCyQVwX23LBYsg9JQ/tawawa-on-monday",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13578": {
     "url": "https://anikoto.net/watch/aggretsuko-tenfh/ep-1",
@@ -11922,7 +11922,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14716": {
-    "url": "https://www.miruro.tv/watch/HsuA_Xr_v7Q9Ip0LBHhZI2Nk8dgQJHF2/rezero-starting-break-time-from-zero",
+    "url": "https://www.miruro.tv/watch/sefZlZAg260RAPuPYKOm1esdAueKr6Cc/rezero-starting-break-time-from-zero",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -11967,9 +11967,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15606": {
-    "url": "https://www.animegg.org/series/persona-5-the-animation-the-day-breaker",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/AlUA81G20VMpEYeE_QRfcwISHsZXLugK/persona-5-the-animation-the-day-breakers",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15635": {
     "url": "https://www.animegg.org/series/future-card-buddyfight-ddd",
@@ -12227,7 +12227,7 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "5274": {
-    "url": "https://www.miruro.tv/watch/ueWpf7VvZhgH14ptsvXpBgufvAEQkLTl/pankis-2-jigen",
+    "url": "https://www.miruro.tv/watch/-jdc3JenMMXUnTskHvI0mViXH6PQ2cNo/pankis-2-jigen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -12262,9 +12262,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5314": {
-    "url": "https://www.animegg.org/series/subete-ga-f-ni-naru-the-perfect-insider",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/kUSVeblIRMkJqb92YcQKfRfLY1H2kaTW/the-perfect-insider",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5323": {
     "url": "https://www.animegg.org/series/triage-x",
@@ -12317,9 +12317,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5401": {
-    "url": "https://www.animegg.org/series/ore-ga-ojousama-gakkou-ni-shomin-sample-toshite-gets-sareta-ken",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/CFCChc7cLXiXSn6vr-LF2xo31xkodJYK/shomin-sample",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5406": {
     "url": "https://monoschinos.st/anime/arslan-senki-sub-espanol",
@@ -12332,9 +12332,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5432": {
-    "url": "https://www.animegg.org/series/nar-doma",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/JjFnsY1PAq0dvPvLr7Z9za7W2sJjXiEZ/narudoma",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5440": {
     "url": "https://www.animegg.org/series/bar-kiraware-yasai",
@@ -12347,9 +12347,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "5445": {
-    "url": "https://www.animegg.org/series/eikoku-ikke-nihon-wo-taberu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ZgKQeHdGJk0-lUcICx42f6NvMrmqPC3I/sushi-and-beyond",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5454": {
     "url": "https://anikoto.net/watch/dance-with-devils-vb1m1/ep-1",
@@ -12382,9 +12382,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5489": {
-    "url": "https://www.animegg.org/series/venus-project-climax",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/y5bWlWWv0WxRPh_5kcEhUNIHPyzzq_Fu/venus-project-climax",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5494": {
     "url": "https://www.animegg.org/series/rakudai-kishi-no-cavalry",
@@ -12422,9 +12422,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5517": {
-    "url": "https://monoschinos.st/anime/wakabagirl-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/Hm_xc1u91AGFkZRBnTMs5uibFlxB0HNk/wakabagirl",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5518": {
     "url": "https://www.animegg.org/series/aquarion-logos",
@@ -12447,9 +12447,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5550": {
-    "url": "https://www.animegg.org/series/grisaia-no-meikyuu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/vW7GkFLlMfWn797SefUWOTqG_mU3orfE/grisaia-no-meikyuu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5551": {
     "url": "https://anikoto.net/watch/k-return-of-kings-g8mfz/ep-1",
@@ -12557,9 +12557,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10248": {
-    "url": "https://www.animegg.org/series/kamisama-minarai-himitsu-no-cocotama",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/KE7bfpGluN7ARgNvrmxO9hUGQ6MXQf4a/kamisama-minarai-himitsu-no-cocotama",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12865": {
     "url": "https://anikoto.net/watch/owarimonogatari-clekf/ep-1",
@@ -12607,7 +12607,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14427": {
-    "url": "https://www.miruro.tv/watch/BjvA6v03dp5mwn8D3yGGtX7bOoD0NH7t/fafner-exodus",
+    "url": "https://www.miruro.tv/watch/RmptFegMO5cU4N9CIIpmEOmwCe8fI3un/fafner-exodus",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -12772,9 +12772,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15946": {
-    "url": "https://www.animegg.org/series/hetalia-the-world-twinkle",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/SS_Hlq8JbQYGJ0bzFcMfnssbywCBaVnF/hetalia-the-world-twinkle",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15955": {
     "url": "https://www.animegg.org/series/fatekaleid-liner-prisma-illya-2wei-herz",
@@ -13077,9 +13077,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4133": {
-    "url": "https://www.animegg.org/series/manhou-shoujo-taisen",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/NdScevJnGHQDD-XWIn3BFSwF2p04KO6p/magica-wars",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4135": {
     "url": "https://anikoto.net/watch/minna-atsumare-falcom-gakuen-edgge/ep-1",
@@ -13357,9 +13357,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "4928": {
-    "url": "https://www.animegg.org/series/minarai-diva",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/dfcEGTRFGC1ntt2VCpQfK4qP4f_a3TdQ/minarai-diva",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4957": {
     "url": "https://anikoto.net/watch/wolf-girl-black-prince-5bu1j/ep-1",
@@ -13382,7 +13382,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "5003": {
-    "url": "https://www.miruro.tv/watch/9r9Dzrv-fTe9gPrex6OtTrgPaOvPuFha/medamayaki-no-kimi-itsu-tsubusu",
+    "url": "https://www.miruro.tv/watch/AzxP_Sc-18yvAg8y0IedVk2wrJFJqyAi/medamayaki-no-kimi-itsu-tsubusu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -13412,9 +13412,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "5074": {
-    "url": "https://www.animegg.org/series/maido-urayasu-tekkin-kazoku",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/bws03pPFYgrmQUCUaPN2MdQRczumYxnH/maido-urayasu-tekkin-kazoku",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5102": {
     "url": "https://anikoto.net/watch/yona-of-the-dawn-6w06l/ep-1",
@@ -13422,9 +13422,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5117": {
-    "url": "https://www.animegg.org/series/kaitou-joker",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/hFYcp-mR1616Usrjba-oZwK3TKcTmxbY/kaitou-joker",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5121": {
     "url": "https://www.animegg.org/series/gundam-build-fighters-try",
@@ -13442,9 +13442,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "5143": {
-    "url": "https://www.animegg.org/series/bonjour-koiaji-p-tisserie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ZPnUiH-41S8Mh39t0ydhx6G1-jon7nUZ/bonjour-koiaji-patisserie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5144": {
     "url": "https://www.animegg.org/series/wake-up-girl-zoo",
@@ -13582,9 +13582,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14771": {
-    "url": "https://www.animegg.org/series/la-no-corda-doro-blue-sky",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1KRDP-MsoUWYXDsb9BaBXrxOkznM7qac/la-corda-doro-blue-sky-",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14823": {
     "url": "https://anikoto.net/watch/free-eternal-summer-qqubi/ep-1",
@@ -13892,9 +13892,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "3266": {
-    "url": "https://www.animegg.org/series/ishida-to-asakura",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/K0ySMyOWrqsSnkhfyahH072vpMoWqkCM/ishida-to-asakura",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "3269": {
     "url": "https://www.animegg.org/series/zettai-karen-children-the-unlimited---hyoubu-kyousuke",
@@ -13972,7 +13972,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "3354": {
-    "url": "https://www.miruro.tv/watch/1wwOooO_soE__YIMho6pGKO2UJFPV2ZB/danchi-tomoo",
+    "url": "https://www.miruro.tv/watch/RuDzHEbd5Vs-9Tx45kOPt4k8h33VQdCZ/danchi-tomoo",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -14022,9 +14022,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "3437": {
-    "url": "https://www.animegg.org/series/miyakawa-ke-no-kuufuku",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/zm7AHhpsdRnV-iLxuRpwz_YVwBHDs7Fe/miyakawa-ke-no-kuufuku",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "3440": {
     "url": "https://anikoto.net/watch/watamote-no-matter-how-i-look-at-it-it-s-you-guys-fault-i-m-unpopular-l1fh9/ep-1",
@@ -14057,7 +14057,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "3488": {
-    "url": "https://www.miruro.tv/watch/Ugz-CGE17yjXrYOwh53m0_xJrwJX0wLm/glass-no-kamen-desu-ga",
+    "url": "https://www.miruro.tv/watch/7os-NX1cpY8FJd2siIybbj6ZzZ57axEs/glass-no-kamen-desu-ga",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -14217,9 +14217,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "10730": {
-    "url": "https://www.animegg.org/series/dd-hokuto-no-ken",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_4qNfYgY_LpmjKs59DLvAZv9ABkLFrtq/dd-hokuto-no-ken",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12791": {
     "url": "https://www.animegg.org/series/tamayura-more-aggressive",
@@ -14267,7 +14267,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14331": {
-    "url": "https://www.miruro.tv/watch/J4VgMXPvQ2SF8OleD9I2wvOHZF8MocaU/ganbare-oden-kun",
+    "url": "https://www.miruro.tv/watch/TINu0M95H6dUK9lwIsjDyzzul-SIqDrH/ganbare-oden-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -14327,7 +14327,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "14985": {
-    "url": "https://www.miruro.tv/watch/Ugz-CGE17yjXrYOwh53m0_xJrwJX0wLm/glass-no-kamen-desu-ga",
+    "url": "https://www.miruro.tv/watch/7os-NX1cpY8FJd2siIybbj6ZzZ57axEs/glass-no-kamen-desu-ga",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -14457,7 +14457,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2020": {
-    "url": "https://www.miruro.tv/watch/MMyOs-QhztNMnXzYqxCePHGolfeGYz1t/la-storia-della-arcana-famiglia",
+    "url": "https://www.miruro.tv/watch/zKeDfGDiQ4p00YuA_-51MzpkYkUsHE7o/la-storia-della-arcana-famiglia",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -14612,9 +14612,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "2680": {
-    "url": "https://www.animegg.org/series/arashi-no-yoru-ni-himitsu-no-tomodachi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/UfFvwtJvWmFguazey19Qf5ga2ODJ1htA/one-stormy-night-secret-friends",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2683": {
     "url": "https://anikoto.net/watch/natsu-iro-kiseki-azxep/ep-1",
@@ -14642,9 +14642,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "2719": {
-    "url": "https://www.animegg.org/series/acchi-kocchi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/PWznv5vRc7v9sTIpJlKEk39PltC3l4pM/acchi-kocchi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2733": {
     "url": "https://anikoto.net/watch/campione-azy49/ep-1",
@@ -14987,9 +14987,9 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "1474": {
-    "url": "https://www.animegg.org/series/hen-zemi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/9FL9pnDpltRs5Y57QEj56woDhAtiMkna/hen-zemi-tv",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "1753": {
     "url": "https://anikoto.net/watch/a-dark-rabbit-has-seven-lives-libxc/ep-1",
@@ -15012,9 +15012,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2015": {
-    "url": "https://www.animegg.org/series/moshidora",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/9BonP46uhw6hNGoGPXvOMVJupzRFcf7T/moshidora",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2053": {
     "url": "https://anikoto.net/watch/i-don-t-like-you-at-all-big-brother-u3gjc/ep-1",
@@ -15042,9 +15042,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "2092": {
-    "url": "https://www.animegg.org/series/30-sai-no-hoken-taiiku",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/jZ9i-Ju5WzoiLvhESjDoXpfQkp_1DKh8/30-sai-no-hoken-taiiku",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2093": {
     "url": "https://anikoto.net/watch/wandering-son-mdsi1/ep-1",
@@ -15222,9 +15222,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "2365": {
-    "url": "https://gogoanime.by/series/kidou-senshi-gundam-gquuuuuux-anime/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/XSL21P6bkq_xsm97iWdDS3GUMn6_aMAq/mobile-suit-gundam-age",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2373": {
     "url": "https://anikoto.net/watch/the-mystic-archives-of-dantalian-9c1rt/ep-1",
@@ -15262,7 +15262,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "2478": {
-    "url": "https://www.miruro.tv/watch/4CdW1RU0yvemOwa-Cd9I9SIpA9wNadFf/kayoe-chuugaku",
+    "url": "https://www.miruro.tv/watch/U5FCaa6IlRUOM9KlVsShQyhZ9dZhaEts/kayoe-chuugaku",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -15302,9 +15302,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5234": {
-    "url": "https://www.animegg.org/series/mai-no-mahou-to-katei-no-hi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Z_ZJAce0u4w208PhUA0JlQNkHAkeurE2/mai-no-mahou-to-katei-no-hi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5250": {
     "url": "https://www.animegg.org/series/happy-kappi",
@@ -15317,9 +15317,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5332": {
-    "url": "https://www.animegg.org/series/high-score",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/3PG0vKue1YOp6KiAaSYRLWXDm92wxMSA/high-score",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5340": {
     "url": "https://www.animegg.org/series/cross-fight-b-daman",
@@ -15347,9 +15347,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "6392": {
-    "url": "https://www.animegg.org/series/hidamari-sketch-x-sp",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ToUzEjRK8KUbAmaqMo2WF55ZZaMx3a6R/hidamari-sketch-x-sp",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10152": {
     "url": "https://anikoto.net/watch/chibidevi-deqr1/ep-1",
@@ -15482,9 +15482,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23573": {
-    "url": "https://www.animegg.org/series/x-men",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/yDix3BDf8bsppnQPsH5KHdDsaLAUbGHF/x-men",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23808": {
     "url": "https://www.animegg.org/series/aono-exorcist",
@@ -15522,9 +15522,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1115": {
-    "url": "https://www.animegg.org/series/ookami-kakushi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1D8PYq14ZuWxyDZId7pCzKcbeQ9YpGpw/ookami-kakushi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "1119": {
     "url": "https://animeheaven.me/anime.php?op2mj",
@@ -15672,7 +15672,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1795": {
-    "url": "https://www.miruro.tv/watch/c0KQf2VLgAw_R3h8kQAMhWzKtLue4SCr/high-school-of-the-dead",
+    "url": "https://www.miruro.tv/watch/q_jgDddFfMoKge_AMNR3VN3TkJQYUtR4/high-school-of-the-dead",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -15697,7 +15697,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "1922": {
-    "url": "https://www.miruro.tv/watch/2_k4bieBk_ogxSNUVQfkg9XiJ6TkF-og/nougyou-musume",
+    "url": "https://www.miruro.tv/watch/WnTHUdCqgM__7wx5NX1q62KDF0pha8jV/nougyou-musume",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -15737,9 +15737,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "5341": {
-    "url": "https://www.animegg.org/series/omae-umasou-da-na",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/U-zyXiQBwHmdBALGH6Ehtb7uSLGd8ZAt/heart-and-yummie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5379": {
     "url": "https://anikoto.net/watch/kaitou-reinya-xgxgm/ep-1",
@@ -15747,14 +15747,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5448": {
-    "url": "https://www.miruro.tv/watch/acUhsaG9YprQxJyowo3hIzrcGFMc1xPN/monhun-nikki-girigiri-airuu-mura-airuu-kiki-ippatsu",
+    "url": "https://www.miruro.tv/watch/yT2Id4eoZemu_ZLtc8hnX_Nt9S90aA5_/monhun-nikki-girigiri-airuu-mura-airuu-kiki-ippatsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "5456": {
-    "url": "https://www.animegg.org/series/stitch-zutto-saikou-no-tomodachi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/OJ1AGzh1vxO9evWr5qowlq15z1SF1G6L/stitch-best-friends-forever",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5477": {
     "url": "https://anikoto.net/watch/sekirei-pure-engagement-svhly/ep-1",
@@ -15832,9 +15832,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15196": {
-    "url": "https://www.animegg.org/series/kuroshitsuji-ii",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/b9Jplsj_Eg1X6M7E5a_uvMoUAGP7qPO0/black-butler-ii-ova",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15275": {
     "url": "https://www.animegg.org/series/to-aru-majutsu-no-index-ii",
@@ -15852,7 +15852,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15931": {
-    "url": "https://www.miruro.tv/watch/MTe1JbYef4vi0wemdzObD1V0vY2G1myc/schools-scary-stories-hanako-san-ga-kita",
+    "url": "https://www.miruro.tv/watch/HzycrblG6B0MytpaqPHDvmhV-NsBGSTQ/schools-scary-stories-hanako-san-ga-kita",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -15932,9 +15932,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "113": {
-    "url": "https://www.animegg.org/series/gyagu-manga-biyori",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/otl5PZk42AG2qZxX7Rj0tOwtQC2nIPR-/gag-manga-biyori",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "114": {
     "url": "https://anikoto.net/watch/neo-human-casshan-zfm3i/ep-1",
@@ -15942,7 +15942,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "118": {
-    "url": "https://www.miruro.tv/watch/o5r932Csft313bZgNxdHA9-QeB-tma1j/charady-no-joke-na-mainichi",
+    "url": "https://www.miruro.tv/watch/uiWT0aXd-zU4mRZf6Y4X-S6YGIYaAVTB/charady-no-joke-na-mainichi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -15992,9 +15992,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "160": {
-    "url": "https://www.animegg.org/series/tayutama-kiss-on-my-deity",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/pTXT_mPf-rGgYH2hmQeAZGx-KK3kOY1h/tayutama-kiss-on-my-deity",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "171": {
     "url": "https://anikoto.net/watch/toradora-tiwtx/ep-1",
@@ -16002,9 +16002,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "172": {
-    "url": "https://www.animegg.org/series/kaitouranma-the-animation",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/7FW56KS1EJ6nRyeH_lRQCiTbzKBlrmfs/night-wizard-the-animation",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "175": {
     "url": "https://anikoto.net/watch/web-ghosts-pipopa-zmhch/ep-1",
@@ -16047,7 +16047,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "215": {
-    "url": "https://www.miruro.tv/watch/Tfiwu5ppnPlzxzt5iLh-2D93l9sbdNpE/yatterman",
+    "url": "https://www.miruro.tv/watch/Mz2kEEXgo94VhBE503Tc_XP__ZZH-dI5/yatterman",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16087,9 +16087,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "327": {
-    "url": "https://gogoanime.by/series/kidou-senshi-gundam-gquuuuuux-anime/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/JYncmboSrWEpfiQ99ghN-_iJgShltP4a/mobile-suit-gundam-seed",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "340": {
     "url": "https://anikoto.net/watch/the-diary-of-a-crazed-family-dayid/ep-1",
@@ -16102,7 +16102,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "385": {
-    "url": "https://www.miruro.tv/watch/yhq5WkqZIWQyFMIwC38yzXpC6RIM2UBZ/koukaku-no-regios",
+    "url": "https://www.miruro.tv/watch/yGVgvkYk8dxXj0w347O3KW_MdvGJ1msu/koukaku-no-regios",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16147,14 +16147,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "514": {
-    "url": "https://www.miruro.tv/watch/L7n6GIz2m90P6JDS6zM2f-H9uEqFoD0q/shin-seiki-evangelion",
+    "url": "https://www.miruro.tv/watch/pniY3QU96tfYx9giUWjcc2LQPFpGDSro/shin-seiki-evangelion",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "525": {
-    "url": "https://www.animegg.org/series/shinkyoku-soukai-polyphonica",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/VOlZym05yw3MIQLh4FtocPPcNPlrRGyn/polyphonica",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "535": {
     "url": "https://anikoto.net/watch/library-wars-kp2ff/ep-1",
@@ -16192,9 +16192,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "617": {
-    "url": "https://www.animegg.org/series/taishou-yakyuu-musume",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/rXGAmm745MUN-aVOg1xwoQ8w5T7dpIsA/taisho-baseball-girls",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "661": {
     "url": "https://anikoto.net/watch/birdy-the-mighty-decode-jib5w/ep-1",
@@ -16227,9 +16227,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "734": {
-    "url": "https://www.animegg.org/series/bounen-no-xamdou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_8vg7jcmZugbsNilLWHhzvLV6oHPG703/bounen-no-zamned",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "746": {
     "url": "https://anikoto.net/watch/magical-angel-creamy-mami-sotmi/ep-1",
@@ -16237,7 +16237,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "748": {
-    "url": "https://www.miruro.tv/watch/qPgJ26iLemgplkw8zRvOvS0qeHanxQAP/mainichi-kaasan",
+    "url": "https://www.miruro.tv/watch/DzibHRRx1owVSRSCx8LNBsJfY1JQ1TsH/mainichi-kaasan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16282,9 +16282,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "851": {
-    "url": "https://www.animegg.org/series/hatenkou-yugi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/LLZgTu1m5o2-lAj9KX5zfkJ9-UOVQyb4/hatenkou-yugi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "858": {
     "url": "https://anikoto.net/watch/project-arms-e3q5i/ep-1",
@@ -16292,9 +16292,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "860": {
-    "url": "https://www.animegg.org/series/haja-taisei-dangaiou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Z50W976U1N61YaUlwcvmeaAw39V4Cccv/great-dangaioh",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "895": {
     "url": "https://anikoto.net/watch/saint-beast-seijuu-kourin-hen-2szcc/ep-1",
@@ -16327,7 +16327,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "940": {
-    "url": "https://www.miruro.tv/watch/d3enYcMa5IdRFHqYQIcRrSd9iYElEt8I/rundim",
+    "url": "https://www.miruro.tv/watch/V2Q9Wk6URcQNof96Y12bwKzGocGA3BbA/rundim",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16427,7 +16427,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "1223": {
-    "url": "https://www.miruro.tv/watch/WjSidgjqwxC6RdhqOah8xxTrJUhYLG6q/mahoromatic",
+    "url": "https://www.miruro.tv/watch/7GGTx1KRkELAUUiy_nNtkI54lEeeuA2k/mahoromatic",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16442,9 +16442,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1239": {
-    "url": "https://www.animegg.org/series/yumeiro-patissiere",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/JCA0v60mUbShnTGOM-nuxSfIyW7nDk-H/yumeiro-patissiere",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "1323": {
     "url": "https://anikoto.net/watch/big-windup-d7cs3/ep-1",
@@ -16522,9 +16522,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1560": {
-    "url": "https://www.animegg.org/series/meitantei-conan-vs-wooo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/n47IOzU7V-Csa7vE35BOn4TDX3Kci0a0/detective-conan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "1565": {
     "url": "https://anikoto.net/watch/stellvia-dbg4d/ep-1",
@@ -16547,12 +16547,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1769": {
-    "url": "https://www.miruro.tv/watch/H_8LV3ujCbF0wZlBi66lHm3gZghl2UCn/mobile-fighter-g-gundam",
+    "url": "https://www.miruro.tv/watch/xgWodNcM1PE2u7i0GUOr-GxJvQsWJFgF/mobile-fighter-g-gundam",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "1770": {
-    "url": "https://www.miruro.tv/watch/muuVnOLDoAvVcqhvaJKzWnzgaADk_5N2/mobile-suit-gundam-wing",
+    "url": "https://www.miruro.tv/watch/sMM4EmpkEeCt7rJGJlBeqV6ChPnaLzQn/mobile-suit-gundam-wing",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16567,9 +16567,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1811": {
-    "url": "https://www.animegg.org/series/gokujou-mecha-mote-iinchou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/DlqCn6Jwhx28WrvcN2SSI2iBioTn323t/gokujou-mecha-mote-iinchou",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "1839": {
     "url": "https://anikoto.net/watch/looking-up-at-the-half-moon-fsjbr/ep-1",
@@ -16642,9 +16642,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2328": {
-    "url": "https://www.animegg.org/series/zettai-muteki-raijin-oh-dub",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/l7gZ59FBeVj8ZxuL-ctuGpuUnLwBgece/matchless-raijin-oh",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2329": {
     "url": "https://anikoto.net/watch/the-vision-of-escaflowne-mga7g/ep-1",
@@ -16677,9 +16677,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2594": {
-    "url": "https://www.animegg.org/series/go-go-tamagotchi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/wDaNqgEJ8h22ZDUlFUW7FxDfGrEs3XTD/tamagotchi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2624": {
     "url": "https://anikoto.net/watch/white-album-zt5jm/ep-1",
@@ -16692,12 +16692,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2805": {
-    "url": "https://www.miruro.tv/watch/yrOG1uHd9BuJR4EqIWrQI9TbN15BE5Vu/macross",
+    "url": "https://www.miruro.tv/watch/OJ5OCyH7eVfGmOm5sGfpzGWb_XVTyIZ3/macross",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "3005": {
-    "url": "https://www.miruro.tv/watch/V88auPHBSTR1B3CiX3cI8ixy1KYkoSqk/fafner",
+    "url": "https://www.miruro.tv/watch/pzf0oIC-BsnD-qHseUIjihIFXVtClI3b/fafner",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16792,7 +16792,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3493": {
-    "url": "https://www.miruro.tv/watch/CB7tzzhjxPKrzDlkdP_-kWyqRbWZdFyV/peacemaker",
+    "url": "https://www.miruro.tv/watch/8psBhmqtl5kETLWF2Zw7XvYHKqIsB5Bp/peacemaker",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16802,14 +16802,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3526": {
-    "url": "https://www.miruro.tv/watch/T1ADmgdQlmngg2Lh2Nt11G0hjqUzSAhI/mobile-suit-gundam-seed-destiny",
+    "url": "https://www.miruro.tv/watch/yix6o4_Lkz9oOwys5PJgDUAWM9hcZu2I/mobile-suit-gundam-seed-destiny",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "3611": {
-    "url": "https://www.animegg.org/series/moetan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/aBpzlbA86AP3AwmzWi-EaSSsQ-xtJLJV/moetan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "3679": {
     "url": "https://anikoto.net/watch/itakiss-c4lg1/ep-1",
@@ -16842,9 +16842,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3735": {
-    "url": "https://www.animegg.org/series/asagiri-no-miko",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/vdYO3ihIKrxUntPnS17D4MRbkNJgRTnJ/asagiri-no-miko",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "3737": {
     "url": "https://anikoto.net/watch/shaman-king-0kpzb/ep-1",
@@ -16862,7 +16862,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3771": {
-    "url": "https://www.miruro.tv/watch/-e424ZDauI-JfR2NYKxd6bu0k2DPMudt/kyojin-no-hoshi",
+    "url": "https://www.miruro.tv/watch/Haxwc5C7Umdkwr8FOwMtPYtg9ndzcv-A/kyojin-no-hoshi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16907,7 +16907,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3854": {
-    "url": "https://www.miruro.tv/watch/HoiRhp2Ee5alfQ8-aeCqi6pt9bzljabv/the-soultaker",
+    "url": "https://www.miruro.tv/watch/XSadRQw6XIWi86Kfr8SayctKWtH1CkRn/the-soultaker",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16957,7 +16957,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3999": {
-    "url": "https://www.miruro.tv/watch/YDmMb6bT8aNkymJJs7B_GMd0v2wwjCaT/sexy-commando-gaiden-sugoiyo-masaru-san",
+    "url": "https://www.miruro.tv/watch/iNXbboEAV2xppwDOjaRo5448G0FBi9hv/sexy-commando-gaiden-sugoiyo-masaru-san",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -16977,14 +16977,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4964": {
-    "url": "https://www.miruro.tv/watch/DEa81_P42LkJjqlc_kN6snEZECMJBN5y/ranma-1989",
+    "url": "https://www.miruro.tv/watch/LXzhRft0tyNNlDSpv9bx1kOBGNsdQ_hH/ranma-1989",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "4990": {
-    "url": "https://www.animegg.org/series/figure-17-tsubasa-hikaru",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/jWj_n3_W3TX44B8swa0FAFoy3cfkAjEE/figure-17-tsubasa-hikaru",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5271": {
     "url": "https://anikoto.net/watch/magical-doremi-4nbiq/ep-1",
@@ -16992,7 +16992,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5297": {
-    "url": "https://www.miruro.tv/watch/yX4Cn4DOlYOIjF6cUH8KG91-00SmeF-b/ring-ni-kakero-1-nichibei-kessen-hen",
+    "url": "https://www.miruro.tv/watch/PivvwSlAGdQESVw8QXX6LXYdsAZ76QEh/ring-ni-kakero-1-nichibei-kessen-hen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17012,7 +17012,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5464": {
-    "url": "https://www.miruro.tv/watch/3l7H6QSlJiq1yoLEsA3q-CfFORa8C79D/stitch-itazura-alien-no-daibouken",
+    "url": "https://www.miruro.tv/watch/kcXb7BNFE3NzAOGoepzwj049JFipIyhM/stitch-itazura-alien-no-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17027,14 +17027,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5567": {
-    "url": "https://www.animegg.org/series/kaidan-restaurant",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Wa8bo7GKqLyZeqVsQvgL8JuEXrJD_VD8/kaidan-restaurant",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5568": {
-    "url": "https://www.animegg.org/series/atashin-chi-next",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Oo3muvn9VkvHXnZ7NsHGgqcbXJoMXojH/atashinchi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5576": {
     "url": "https://anikoto.net/watch/higepiyo-0vyyx/ep-1",
@@ -17042,9 +17042,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5597": {
-    "url": "https://www.animegg.org/series/ayakashi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/d0rF1JWvlJbMRQs1SOYUzmCoiymcEA1H/ayakashi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5603": {
     "url": "https://anikoto.net/watch/darker-than-black-gemini-of-the-meteor-f9tuw/ep-1",
@@ -17052,7 +17052,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5606": {
-    "url": "https://www.miruro.tv/watch/FOIxFimfkIaOdYqwqNnF_pNjaVHZbQpz/jungle-taitei-yuuki-ga-mirai-wo-kaeru",
+    "url": "https://www.miruro.tv/watch/hEYgZphak6lk0PJ_ONoaRg-Yio-iWjhL/jungle-taitei-yuuki-ga-mirai-wo-kaeru",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17062,7 +17062,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5627": {
-    "url": "https://www.miruro.tv/watch/a1jiJZRQbsdFnTEGQCAs0JQwnDWsnw_R/porphy-no-nagai-tabi",
+    "url": "https://www.miruro.tv/watch/QNDLFB3zKGfZYPqkOiilpoHjsRQ6d6rD/porphy-no-nagai-tabi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17072,9 +17072,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5633": {
-    "url": "https://www.animegg.org/series/wellber-no-monogatari-sisters-of-wellber-zwei",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/vXFrXPhcdaOIESLmH4ePQl5Oq6JxAVXp/wellber-no-monogatari-sisters-of-wellber",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5637": {
     "url": "https://anikoto.net/watch/h2o-footprints-in-the-sand-fpa72/ep-1",
@@ -17092,7 +17092,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5672": {
-    "url": "https://www.miruro.tv/watch/9u8nRH2B_wdmg0M3V3iL3J0lWkIJN2DB/takanes-bicycle",
+    "url": "https://www.miruro.tv/watch/B--miBrpO4vIbAPxWXSNHTWmB4e8VrXJ/takanes-bicycle",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17107,19 +17107,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5741": {
-    "url": "https://www.miruro.tv/watch/eEqG-IXBPzY0cwnrKNy9gfWaw-jQ4WVj/negibouzu-no-asatarou",
+    "url": "https://www.miruro.tv/watch/pzOOi8Rlug0WzXsnwPctUfrWcRWHuyEg/negibouzu-no-asatarou",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "5772": {
-    "url": "https://www.animegg.org/series/venus-versus-virus",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/QkG9ESC-pKwK2JwkmkzgAkgHu96gWgD7/venus-versus-virus",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5780": {
-    "url": "https://www.animegg.org/series/shuffle-memories",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/WcDnRd0PTY3MGOvnOtWL-4eYrDN3Aa7a/shuffle-memories",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5781": {
     "url": "https://anikoto.net/watch/shuffle-pdrip/ep-1",
@@ -17127,9 +17127,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5784": {
-    "url": "https://www.animegg.org/series/koi-suru-tenshi-angelique-kagayaki-no-ashita",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/sWh8dsfLT61PMObknB4dl9y9BYZQnKna/loving-angel-angelique-radiant-tomorrow",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5785": {
     "url": "https://anikoto.net/watch/gakuen-utopia-manabi-straight-6oi2n/ep-1",
@@ -17137,14 +17137,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5809": {
-    "url": "https://www.miruro.tv/watch/Oq_afAofDzUeQvemWe5MIFPVDNkQ9z87/master-of-epic-the-animation-age",
+    "url": "https://www.miruro.tv/watch/lJPmjKDwl6vvH3bC286azJ1Up25VR_zo/master-of-epic-the-animation-age",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "5812": {
-    "url": "https://www.animegg.org/series/himawari",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/zvyRlA8ItZUDb1FB7Cr6xF30NKSK5-YD/himawari",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5814": {
     "url": "https://anikoto.net/watch/himawari-zy9wg/ep-1",
@@ -17197,9 +17197,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5962": {
-    "url": "https://www.animegg.org/series/skull-man",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/VFcGsc3fSgm-Wm1VVmx6P6La019_8ci6/skull-man",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5965": {
     "url": "https://anikoto.net/watch/saint-beast-kouin-jojishi-tenshi-tan-aux4o/ep-1",
@@ -17272,9 +17272,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6497": {
-    "url": "https://www.animegg.org/series/tetsuko-no-tabi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/WjP-ytfaptmxVh10_hmZjF1iGqw-nsYL/tetsuko-no-tabi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6539": {
     "url": "https://anikoto.net/watch/mushi-uta-y5zqo/ep-1",
@@ -17292,9 +17292,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6596": {
-    "url": "https://monoschinos.st/anime/shinreigari-ghost-hound-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/1_eTKQstML4psIAGS-ZwcC4rUm-hb5Ed/ghost-hound",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6599": {
     "url": "https://anikoto.net/watch/shion-no-ou-lj7sw/ep-1",
@@ -17317,7 +17317,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6653": {
-    "url": "https://www.miruro.tv/watch/mKAvQ73YrtWT1bJO3HrP1IXOz3nlCuMz/hatara-kids-mai-ham-gumi",
+    "url": "https://www.miruro.tv/watch/LFg2H5R71Ei_eOl8XuGpwXeEbVmDcDip/hatara-kids-mai-ham-gumi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17387,9 +17387,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6889": {
-    "url": "https://www.animegg.org/series/popolocrois-monogatari",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/I2dQwHMzoXbaaQpUzG4PrVol3UkJCMFt/popolocrois-monogatari",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6901": {
     "url": "https://anikoto.net/watch/binchou-tan-rl1aq/ep-1",
@@ -17417,7 +17417,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6978": {
-    "url": "https://www.miruro.tv/watch/WyxgOhOiotol2UFWBRc8ZxwW3xRpDMxx/rec",
+    "url": "https://www.miruro.tv/watch/67iUpNZnGVQkUQKYQnlBBYRAWcKoW4-S/rec",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17437,9 +17437,9 @@ window.WATCH_SITES = {
     "color": "#a21caf"
   },
   "7134": {
-    "url": "https://www.animegg.org/series/soul-link",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1Myn-IrJnvJJxrFVz-XRA1zHOMENMnIb/soul-link",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7146": {
     "url": "https://anikoto.net/watch/the-good-witch-of-the-west-64ptn/ep-1",
@@ -17462,7 +17462,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7259": {
-    "url": "https://www.miruro.tv/watch/recM3GrFBRvonlrvg2W5m8WBVSwhWvzK/furakappa",
+    "url": "https://www.miruro.tv/watch/05cSYPV4SHw-2BZr36ZCL30tFbjlUxRI/furakappa",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17487,9 +17487,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7361": {
-    "url": "https://animeheaven.me/anime.php?jpjbp",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/UeYh0OKQZs9TUMQyFR63en9aLOC9p8RT/ray",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7468": {
     "url": "https://anikoto.net/watch/raw-mouretsu-atarou-ev2bw/ep-1",
@@ -17522,9 +17522,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7511": {
-    "url": "https://www.animegg.org/series/chokotto-sister",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/bywsFO4RjTA-e7Q6tW46-7LEWytP4AST/chocotto-sister",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7526": {
     "url": "https://anikoto.net/watch/tonagura-eiqhz/ep-1",
@@ -17557,7 +17557,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7766": {
-    "url": "https://www.miruro.tv/watch/i4j6ZHEDqb3cNnP_jSs5_RMOotIWrB66/key-princess-story-eternal-alice-rondo",
+    "url": "https://www.miruro.tv/watch/WQREmjay8u9oK6eiOsv3S0zUw1FW0_hV/key-princess-story-eternal-alice-rondo",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17582,12 +17582,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8061": {
-    "url": "https://www.miruro.tv/watch/OsIitjMt1psm5R5pc5lUNmie3paP3bZN/oden-kun",
+    "url": "https://www.miruro.tv/watch/1AWm2ERMJPsNVoPZK-U71--srO0gZ0OP/oden-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "8112": {
-    "url": "https://www.miruro.tv/watch/XGnjZ1uUc7gQnIgv9SIeiRU2I6INflHv/getbackers",
+    "url": "https://www.miruro.tv/watch/HEJRqCGAlkeBHYnkT8jp33zQTHR-kL9q/getbackers",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17607,9 +17607,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8847": {
-    "url": "https://www.animegg.org/series/zettai-shounen",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/bpWNZVyoaGwFvLHM9hA2i35rr8EhWoLA/zettai-shounen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "8855": {
     "url": "https://anikoto.net/watch/vandread-the-second-stage-5hayx/ep-1",
@@ -17647,24 +17647,24 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9025": {
-    "url": "https://www.animegg.org/series/shiawase-sou-no-okojo-san",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/tTsVk28HsENRvB81dYTLIOomxRUipNyG/shiawase-sou-no-okojo-san",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9039": {
-    "url": "https://www.miruro.tv/watch/wscHDnpOSFrDVptfZmM30pDqJR_DksJJ/oyo-neko-bunyan",
+    "url": "https://www.miruro.tv/watch/BarZUM0vCmg-RZg_AbR9u9yWtTeBhYNL/oyo-neko-bunyan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9040": {
-    "url": "https://www.miruro.tv/watch/o16J72EFOe9QphhmcDPwEBTKbqxUYtru/dokaben",
+    "url": "https://www.miruro.tv/watch/x9xxK7aNp_aEXksB9iDSL8A8yu8PmfMW/dokaben",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9041": {
-    "url": "https://www.animegg.org/series/yuusha-raideen",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/TAvPhuI1oY-UNkEyggwYGxYUGDSNJtUW/yuusha-raideen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9042": {
     "url": "https://anikoto.net/watch/future-police-urashiman-dgvb6/ep-1",
@@ -17682,7 +17682,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9097": {
-    "url": "https://www.miruro.tv/watch/NpNRM7dQ8C8dVPKlWsn57kvC6GiBvTAt/amazing-sarutobi",
+    "url": "https://www.miruro.tv/watch/o38J3GOYouggG_sSVNJuKYHIlVN2IA_U/amazing-sarutobi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17692,7 +17692,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9104": {
-    "url": "https://www.miruro.tv/watch/DC555eQdyUzCeMdYLdEit-k2wybO0zLS/zoe-doloresi",
+    "url": "https://www.miruro.tv/watch/3d48PAO1ZcL9u0ygl5obTueumZlUL09d/zoe-doloresi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17707,14 +17707,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9262": {
-    "url": "https://www.miruro.tv/watch/q-NHUMhCYMA17kEoelWt2rHkcCPJEAXE/hamtaro",
+    "url": "https://www.miruro.tv/watch/pfRQfrglcYaeVDdaOiMmAQph2TQfT6vC/hamtaro",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9306": {
-    "url": "https://www.animegg.org/series/bakusou-kyoudai-let-s-go-wgp",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/sO1Tp_GoMetyrq1BWjhojwv-UYCIwih6/bakusou-kyoudai-lets-go-wgp",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9323": {
     "url": "https://anikoto.net/watch/bakusou-kyoudai-let-s-go-max-vi67w/ep-1",
@@ -17762,12 +17762,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9648": {
-    "url": "https://www.miruro.tv/watch/iHhE6VhOfR1RoS73knhhCJIDt8TFlNzc/animal-lane",
+    "url": "https://www.miruro.tv/watch/Rge7ic_YbI5yDWMImkpLV6o51p3uVXyL/animal-lane",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9649": {
-    "url": "https://www.miruro.tv/watch/gWRa4MnFLJZw-A7gPEnLCps-5arTZZVv/igpx",
+    "url": "https://www.miruro.tv/watch/ckUABXtscprhHPMKdCcu7ngVTZQOB_Up/igpx",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17817,22 +17817,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9843": {
-    "url": "https://www.animegg.org/series/ginban-kaleidoscope",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/CNm2MccNDJnaMD-uYwt1ebKDKcVlu7SY/ginban-kaleidoscope",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9844": {
-    "url": "https://www.animegg.org/series/cluster-edge",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/8ZjzPY8jwh7XPez8fm1vGoxAnKYmjB4d/cluster-edge",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9845": {
-    "url": "https://www.miruro.tv/watch/EwYUtL8ar0KieONHJqKoptlp8l65kASr/kotencotenco",
+    "url": "https://www.miruro.tv/watch/OBkbnonTkmSai35jm-JAU7j8MuCUDzpd/kotencotenco",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9846": {
-    "url": "https://www.miruro.tv/watch/SRj56yZK4nGbCY0x9Efu6RxohnxHnMel/nangoku-shounen-papuwa-kun",
+    "url": "https://www.miruro.tv/watch/Uoq1d0myVcgjSnnqOiPGpRlGMt1aGrQB/nangoku-shounen-papuwa-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17867,7 +17867,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9863": {
-    "url": "https://www.miruro.tv/watch/-uFpZqjnaLUmaa0yRmzlWzP2h_v6tEp-/magicaltaruruuto-kun",
+    "url": "https://www.miruro.tv/watch/uV_-hGLlrvzyiHIVhPmCUshRbVa-jI1X/magicaltaruruuto-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17897,12 +17897,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9952": {
-    "url": "https://www.animegg.org/series/osomatsu-san",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/DbG6UE_54CE7YNtZQ7siwzdY2_nOFOrr/osomatsu-kun",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9953": {
-    "url": "https://www.miruro.tv/watch/Qdb4d_fbFEjvsWj7VWPbfje8gYrbCfTM/21-emon",
+    "url": "https://www.miruro.tv/watch/hstnsnyDwz6mNL_v331UtrEW_H_C3pd5/21-emon",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17912,7 +17912,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9959": {
-    "url": "https://www.miruro.tv/watch/TZiZkGLYlOD7pUxTZF3cW1OwB-uhWSmn/stitch",
+    "url": "https://www.miruro.tv/watch/LcGBQ8WizqfAFkGIGANMHIou-T_H_EaF/stitch",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17942,17 +17942,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10071": {
-    "url": "https://www.animegg.org/series/yuusha-tokkyuu-might-gaine",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/WfGrd5JGvgU6E99Jpra9e44z2J1utdIW/yuusha-tokkyuu-might-gaine",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10072": {
-    "url": "https://www.miruro.tv/watch/8puwON1-SkMY5iSXK4-ZOnv0tNhVCZvm/densetsu-no-yuusha-da-garn",
+    "url": "https://www.miruro.tv/watch/8wfh7gTA-yXhAq0JfOAvZ25YZ0io4K9U/densetsu-no-yuusha-da-garn",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "10073": {
-    "url": "https://www.miruro.tv/watch/WxIVcqjfXjw65bCdKRF8DeX7U_GH6QCb/yuusha-shirei-dagwon",
+    "url": "https://www.miruro.tv/watch/82-pDdqDjSis0cMrOCBZwRAKEzEJLMcO/yuusha-shirei-dagwon",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17962,7 +17962,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10088": {
-    "url": "https://www.miruro.tv/watch/agid_HDb77Yyffvzsoq0nljsXHu1lTFJ/midori-no-makibao",
+    "url": "https://www.miruro.tv/watch/YmyrVxuUCPhJmgRIPW5KjhGJlDXE03hU/midori-no-makibao",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -17977,9 +17977,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10154": {
-    "url": "https://www.animegg.org/series/wagamama-fairy-mirumo-de-pon",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/IYH5bGQeaRIn7N_LbO8pvNWIWkcBUSaf/mirmo-zibang",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10157": {
     "url": "https://anikoto.net/watch/pita-ten-xewlj/ep-1",
@@ -17997,7 +17997,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10247": {
-    "url": "https://www.miruro.tv/watch/iCaBvkFTVv8rD3Jfp7NuklBIltto08uq/dr-rin-ni-kiitemite",
+    "url": "https://www.miruro.tv/watch/L3v4D0KRvLTcVRVL17CSYjFKLXm9is20/dr-rin-ni-kiitemite",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18017,7 +18017,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10261": {
-    "url": "https://www.miruro.tv/watch/KkvdgW9t3aY0BdJy9HcS1JSMyaSoqnFE/yobarete-tobidete-akubi-chan",
+    "url": "https://www.miruro.tv/watch/KWTvr_yPw1IahYID3qeDtj0GisifzIRY/yobarete-tobidete-akubi-chan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18042,9 +18042,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10300": {
-    "url": "https://www.animegg.org/series/kita-e-diamond-dust-drops-special",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/mqbq3EoKGgVyarbZTMBAJGX30HOxx3_a/diamond-daydreams",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10301": {
     "url": "https://anikoto.net/watch/the-gokusen-fumaq/ep-1",
@@ -18052,7 +18052,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10310": {
-    "url": "https://www.miruro.tv/watch/OO3hqeBA1eU0rCNDovl2nVLe02LZf5rY/yadamon",
+    "url": "https://www.miruro.tv/watch/Kcdk10EEvGEAbyqHoLKV0kku1OHwk1VQ/yadamon",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18102,7 +18102,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10572": {
-    "url": "https://www.miruro.tv/watch/ltt0H6KMuS8KIk76pgHGthgz9nKdFFIG/uchi-no-3-shimai",
+    "url": "https://www.miruro.tv/watch/OEwWxLIJNz_SEejNPfHVmaiiUwsdK3sU/uchi-no-3-shimai",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18112,9 +18112,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10609": {
-    "url": "https://www.animegg.org/series/pugyuru",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/KfKz9DbL0kDkfm6Iqtwyp39ctSKCct4G/pugyuru",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10610": {
     "url": "https://anikoto.net/watch/gasaraki-ta4qv/ep-1",
@@ -18237,17 +18237,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "10952": {
-    "url": "https://www.miruro.tv/watch/-AfXmwK27V-TyZpRy35B5CIMhrZ51Uyu/samurai-gun",
+    "url": "https://www.miruro.tv/watch/bnhS4mukcWfDW0qFwuYwmJ-sXTIBJKfb/samurai-gun",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "10955": {
-    "url": "https://www.animegg.org/series/fuujin-monogatari",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/0I3_-zlZL0ZPZRQbTuy3vN4u6EtsEIQK/windy-tales",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10957": {
-    "url": "https://www.miruro.tv/watch/E8tiAaa7HZiwfthbtIOevqeMeSA2l16T/ryuusei-sentai-musumet",
+    "url": "https://www.miruro.tv/watch/kdUek1FxC5hCn0VS0cihYfcvZ2A7zvuA/ryuusei-sentai-musumet",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18307,7 +18307,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11297": {
-    "url": "https://www.miruro.tv/watch/tAN5lbdG_gQJVAvgVdSLAUAAvhSxu9Rx/vie-durant",
+    "url": "https://www.miruro.tv/watch/r7l5DUKWPu7UdNhgWsGI8yjlQjwpoLGe/vie-durant",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18317,12 +18317,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11432": {
-    "url": "https://www.miruro.tv/watch/FZveevmF-ZaB9civO0yP7eVzPezBosZx/moeru-onii-san",
+    "url": "https://www.miruro.tv/watch/5eFf1kpbHIrwIxtSq6Z15hqI8SkwI3Ce/moeru-onii-san",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "11463": {
-    "url": "https://www.miruro.tv/watch/xOBzxgYWt6zCGn8JwD-pn5uTBOkEfedb/spoon-oba-san",
+    "url": "https://www.miruro.tv/watch/eedZb2mr4486Nm0uumlx0FOoYEs4Nbib/spoon-oba-san",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18362,7 +18362,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11658": {
-    "url": "https://www.miruro.tv/watch/67ihKuAcZGMZ1jX4pNS7ogQ1n2UPn6G_/obocchama-kun",
+    "url": "https://www.miruro.tv/watch/rqnn5TshD7VZkjwVMqnPHhQMRUY5O95u/obocchama-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18377,7 +18377,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11665": {
-    "url": "https://www.miruro.tv/watch/AzxGW0tBEOCosAS88pOY0ORcnM1O-_lS/kyoro-chan",
+    "url": "https://www.miruro.tv/watch/c4wDc73FjQcnKLRQv0Xg7j3mkLCaHAvQ/kyoro-chan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18412,7 +18412,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11761": {
-    "url": "https://www.miruro.tv/watch/2TF_Ir4I71G--Ls2RuPTeak5dNIulG-V/mugen-senki-portriss",
+    "url": "https://www.miruro.tv/watch/zzTbnbhIm8Y7O8BWvZJ_m7b-OB-kFpxC/mugen-senki-portriss",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18482,7 +18482,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11945": {
-    "url": "https://www.miruro.tv/watch/zh63Clapr2s-UJaQ3klaHE4RefytCiTJ/fighting-foodons",
+    "url": "https://www.miruro.tv/watch/B-rMm5H464o8G1d4HvDx9GkCWySeaIVy/fighting-foodons",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18532,27 +18532,27 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12048": {
-    "url": "https://www.miruro.tv/watch/UMSjcfK4dH_4-bmVdsMR7XSuqICcUOkQ/go-go-itsutsugo-land",
+    "url": "https://www.miruro.tv/watch/IcGhaD-ZrUqdmIgnm7PnmMSkvfklhxAx/go-go-itsutsugo-land",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12053": {
-    "url": "https://www.miruro.tv/watch/JnqbitJBylbNSTiCisWJDfwzVVcP6kGS/bubu-chacha",
+    "url": "https://www.miruro.tv/watch/WiEchZ9ZaiAAzcFSkh9TuWal44uU0SkB/bubu-chacha",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12058": {
-    "url": "https://www.miruro.tv/watch/T6kNS7S3Whu8Vqw81SAnSlRPoF1Dphq4/daisuki-bubu-chacha",
+    "url": "https://www.miruro.tv/watch/cqAazzC8XzoA31XuoeUY2RlZ3cWzAs-r/daisuki-bubu-chacha",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12161": {
-    "url": "https://www.miruro.tv/watch/l5jN1p4osJ2-TmZALTaVWWmaN1rQeMZX/meimon-daisan-yakyuubu",
+    "url": "https://www.miruro.tv/watch/_99g-mvzsabh4aL3iO2EZHffoDbcoruZ/meimon-daisan-yakyuubu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12212": {
-    "url": "https://www.miruro.tv/watch/z7QFyZ5MlVAp9asJSWC7WEMg3Vw9u0Ij/samurai-giants",
+    "url": "https://www.miruro.tv/watch/0VqArzGxhF_ppNM7jp77TI55xoJCbxTT/samurai-giants",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18567,7 +18567,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12269": {
-    "url": "https://www.miruro.tv/watch/mt81Lgzqh_uWsJ0k0orEvp-c-wTmynbT/ashita-tenki-ni-naare",
+    "url": "https://www.miruro.tv/watch/m7uucK_TOWCDeMnNufmgG6GcFNGdmNOo/ashita-tenki-ni-naare",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18577,9 +18577,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12396": {
-    "url": "https://monoschinos.st/anime/himitsu-top-secret-the-revelation-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/SB58v2H55mwTRxIfe5X8Y7IR5n0p3f1j/himitsu-top-secret-the-revelation",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12527": {
     "url": "https://anikoto.net/watch/hare-guu-0i5ls/ep-1",
@@ -18607,9 +18607,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12811": {
-    "url": "https://www.animegg.org/series/xxxholic-shunmuki",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/N0MSVcZgWByZpISW7hpzB_34P58Lo6dU/xxxholic-shunmuki",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12825": {
     "url": "https://anikoto.net/watch/ghost-in-the-shell-stand-alone-complex-cueue/ep-1",
@@ -18632,14 +18632,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12885": {
-    "url": "https://www.animegg.org/series/uta-kata",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/JspwfxPthU0vNkMCYDXyJijq3116GxIt/utakata",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12888": {
-    "url": "https://www.animegg.org/series/mahou-sensei-negima-mou-hitotsu-no-sekai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Mnvsw-_FqKO244u3K5isLfSf2hvVSPIQ/mahou-sensei-negima-mou-hitotsu-no-sekai",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12915": {
     "url": "https://anikoto.net/watch/aim-for-the-ace-4ldq1/ep-1",
@@ -18652,12 +18652,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12917": {
-    "url": "https://www.animegg.org/series/ashita-no-joe",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/yUOMeLybLz4aSOzP6L-pfCxMjnlqT5GQ/ashita-no-joe-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12932": {
-    "url": "https://www.miruro.tv/watch/p6sH9f6fEqKvzDSqDWGHSQact3Tq72nw/in-the-beginning-stories-from-the-bible",
+    "url": "https://www.miruro.tv/watch/T8Mtd3mFxytKV-evbnYzFnhB8OiLnH2P/in-the-beginning-stories-from-the-bible",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18677,12 +18677,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13221": {
-    "url": "https://www.miruro.tv/watch/TKUryd9DcBmBT2mIHTGm8HxL8cLxPf9g/genma-wars-eve-of-mythology",
+    "url": "https://www.miruro.tv/watch/VYM9mFrvOw71i2GHQ27UEjMezsV_A_SC/genma-wars-eve-of-mythology",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "13328": {
-    "url": "https://www.miruro.tv/watch/683_HuD1JBBPbnZYhhYB2Ac-f9JDF-Ny/legendz-tale-of-the-dragon-kings",
+    "url": "https://www.miruro.tv/watch/fxLF-wHTVEdCWiyFDGq8ggIa_YeREonu/legendz-tale-of-the-dragon-kings",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18697,9 +18697,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13634": {
-    "url": "https://www.animegg.org/series/hajime-no-ippo-champion-road",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/QQc1Y_YqiG6Ub7vFw56uN3-0labTK97Y/hajime-no-ippo-champion-road",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14127": {
     "url": "https://anikoto.net/watch/magical-doremi-sharp-81lll/ep-1",
@@ -18722,9 +18722,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14162": {
-    "url": "https://gogoanime.by/series/kidou-senshi-gundam-gquuuuuux-anime/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/FjLjJ4Kp-bi6GifB6E3StZ5afEVwpBy9/mobile-suit-gundam",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14199": {
     "url": "https://anikoto.net/watch/sailor-moon-supers-w7rwn/ep-1",
@@ -18752,14 +18752,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14937": {
-    "url": "https://www.miruro.tv/watch/lBr9gOt2ZfO5UrsgFoBWgQ1mkLBy95n6/nekketsu-saikyou-go-saurer",
+    "url": "https://www.miruro.tv/watch/rOZoikgnvawkwjVurqa7Jk2eCKBs7Dq0/nekketsu-saikyou-go-saurer",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "14938": {
-    "url": "https://www.animegg.org/series/bannou-bunka-neko-musume",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/8DOBDT1tQQCq-jpAI68OzERuxh2ClpSy/bannou-bunka-neko-musume-dash",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14939": {
     "url": "https://anikoto.net/watch/raw-chimpui-c2lyv/ep-1",
@@ -18847,7 +18847,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15259": {
-    "url": "https://www.miruro.tv/watch/SyW2QSAmMtJYA64wg095FzQE4JiZT_U5/gegege-no-kitarou-daikaijuu",
+    "url": "https://www.miruro.tv/watch/YxT4laqNO4jPWgUMeMgas3SiQLjpIqBW/gegege-no-kitarou-daikaijuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18917,12 +18917,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16039": {
-    "url": "https://www.animegg.org/series/maido-urayasu-tekkin-kazoku",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_ENDAZEvLz7Sn-gryC8ESXifSFM_ayqS/urayasu-tekkin-kazoku",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16104": {
-    "url": "https://www.miruro.tv/watch/i7sZP43iIXS40GZd_LUEufS6eVy4Z8yG/battle-spirits-shounen-toppa-bashin",
+    "url": "https://www.miruro.tv/watch/XRY0vdVSPxJwCOMtfcvVvI45qriDvkeR/battle-spirits-shounen-toppa-bashin",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18942,7 +18942,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16345": {
-    "url": "https://www.miruro.tv/watch/xBW4hDVrc9mkua6GWNQn3XIvyEyY9T3Q/gto",
+    "url": "https://www.miruro.tv/watch/rdnpMKm6pAAix5aFzZNiqy-r2xfTExrC/gto",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -18987,9 +18987,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16707": {
-    "url": "https://www.animegg.org/series/chou-mashin-eiyuuden-wataru",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/U66X6YO06PaXyT7pGgQMaQKINfvM6tXk/mashin-eiyuuden-wataru",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16842": {
     "url": "https://anikoto.net/watch/the-beast-claw-kouip/ep-1",
@@ -19007,12 +19007,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16846": {
-    "url": "https://www.animegg.org/series/ookami-shounen-ken",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/4sZYoi7zDnW2gTeW2DfMneJnOcgkgpdN/ookami-shounen-ken",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17113": {
-    "url": "https://www.miruro.tv/watch/-Jj0YKJHS0_kdVwBbmMgBAqvDgBPq6tV/ninpen-manmaru",
+    "url": "https://www.miruro.tv/watch/LUD-d_XP5FU_wyQ7Wr8jBftFmpewF3I3/ninpen-manmaru",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19067,9 +19067,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17525": {
-    "url": "https://www.animegg.org/series/kiniro-no-corda-secondo-passo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/mSLXHDEOP4JWL15FvNiwGRhTL_SyHIrq/la-corda-doro-secondo-passo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17530": {
     "url": "https://anikoto.net/watch/shakugan-no-shana-season-ii-kk1w3/ep-1",
@@ -19087,7 +19087,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17654": {
-    "url": "https://www.miruro.tv/watch/XByHDTUN5JovWRa1eSsclEFmZWWuNUyA/spice-and-wolf-ii-specials",
+    "url": "https://www.miruro.tv/watch/ZkdvsTCYpx3yhU-q1l7I8iLGXI8l0m2s/spice-and-wolf-ii-specials",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19142,12 +19142,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "18282": {
-    "url": "https://www.miruro.tv/watch/VCoNFwUmgaKCfc6LPHT4JEsI5KHaB7TC/time-bokan",
+    "url": "https://www.miruro.tv/watch/IELlxFM-uslpCtddovjHpj5Xb6tk8f45/time-bokan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "18287": {
-    "url": "https://www.miruro.tv/watch/pRxn_tTQFh7W9hfmH6orsiH5bNSzYpvn/time-bokan-2000-kaitou-kiramekiman",
+    "url": "https://www.miruro.tv/watch/fp28JvE0blWqUQy2JFhiAKEEExyd-m9Y/time-bokan-2000-kaitou-kiramekiman",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19162,7 +19162,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "18798": {
-    "url": "https://www.miruro.tv/watch/1Ph1grbAY04ChbkCRlROQrCho6DA2OyB/steel-angel-kurumi-2",
+    "url": "https://www.miruro.tv/watch/WfZ_27VbL6TLCYH8RtfBWawsKgOE7NcH/steel-angel-kurumi-2",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19177,7 +19177,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22823": {
-    "url": "https://www.miruro.tv/watch/l8atoKrTCpHy2XD5E9-k3Uh5wwauWw6z/kariage-kun",
+    "url": "https://www.miruro.tv/watch/mlIxNtdSzxL9pQknYKjxVNGw0UFF4-FG/kariage-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19197,7 +19197,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23051": {
-    "url": "https://www.miruro.tv/watch/pPQz5wbmVTXa9Lx2JmC6v6Debjt-2vl4/dr-fabre-is-a-detective",
+    "url": "https://www.miruro.tv/watch/qGNPwuccbqONjwCE_i03T15GluiuFy9M/dr-fabre-is-a-detective",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19207,7 +19207,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23247": {
-    "url": "https://www.miruro.tv/watch/ofEWImiUvnbq-5U68A2nYiDP1XU6EAOT/the-one-piece",
+    "url": "https://www.miruro.tv/watch/hbPB2Ly-sfDMcOqdPvPjxdcPToPEvLEU/the-one-piece",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19227,17 +19227,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23636": {
-    "url": "https://monoschinos.st/anime/uchuu-kuubo-blue-noah-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/ruLr5xfcl6oOwBlToc5omejjcmPvufB_/uchuu-kuubo-blue-noah",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23649": {
-    "url": "https://monoschinos.st/anime/azuki-chan-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/w6fBHYa710xpPyDtJg5SpVNN3vXEDcIv/azuki-chan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23650": {
-    "url": "https://www.miruro.tv/watch/LGDhfKMDtM_BnzFEaPNUL-dTTydkmaQf/nils-no-fushigi-na-tabi",
+    "url": "https://www.miruro.tv/watch/Bp4DvOIRgmwRYSZKvGKmAh16zP24uCbI/nils-no-fushigi-na-tabi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19247,7 +19247,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23653": {
-    "url": "https://www.miruro.tv/watch/43UrKM6y3-NDwGhXi6WgNUaoQC4PW7N2/chikkun-takkun",
+    "url": "https://www.miruro.tv/watch/XoVdi-IQs4rUvZnjlU-yhOF-9b70FD3A/chikkun-takkun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19257,17 +19257,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23677": {
-    "url": "https://www.miruro.tv/watch/2AJqF2l7lo7BUZMlmxzTnreR7z_NnHFJ/anmitsu-hime",
+    "url": "https://www.miruro.tv/watch/jddk61XH92JUBnKDkyujYCpWCZlGdiEX/anmitsu-hime",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23679": {
-    "url": "https://www.miruro.tv/watch/PquWrxDU5IdvL821vcdX7DbGa_NMJhGU/norakuro-kun",
+    "url": "https://www.miruro.tv/watch/KKVHvcRWEjy_ZO8IJYQ6_4Daq4Odweo_/norakuro-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23682": {
-    "url": "https://www.miruro.tv/watch/0_f9VfFdeLhOeDEbTPGYYPeGd4a5cXa9/heisei-tensai-bakabon",
+    "url": "https://www.miruro.tv/watch/FZbt4seLGjHdrg6XLM8d6KaEg-PppllD/heisei-tensai-bakabon",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19282,42 +19282,42 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23813": {
-    "url": "https://www.miruro.tv/watch/DDL6v0pW3P0Lzj0wj71lYNSBkU68FFGM/ore-wa-chokkaku",
+    "url": "https://www.miruro.tv/watch/vjrCQRDK1IrdSZ1ylNVA0l-1PFRoXQzV/ore-wa-chokkaku",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23814": {
-    "url": "https://www.miruro.tv/watch/7Mr-VOWrDFVWM21FphC8I7dfPj33AFNd/three-little-ghosts",
+    "url": "https://www.miruro.tv/watch/VEswDhU2YXSVcCbtWk1Tvxmkay53rghU/three-little-ghosts",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23816": {
-    "url": "https://www.miruro.tv/watch/9oau6IBEe7d9M4EU2eP7hT0O9bT8Py-e/nontan-to-issho",
+    "url": "https://www.miruro.tv/watch/VZ3zkrGAhHHNc724pii3C6yRSB_pOCAW/nontan-to-issho",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23818": {
-    "url": "https://www.miruro.tv/watch/nLnUFC_vJpIB6MV5vu-_BZzi4kzY8XsT/hajime-ningen-gon",
+    "url": "https://www.miruro.tv/watch/9brRT1TYZbYY5q5rsC6g5gkECFNzk8h8/hajime-ningen-gon",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23851": {
-    "url": "https://www.miruro.tv/watch/hwv8viZNQIKr6GnpEnosT9fhcE9Mybkg/takoyaki-capeman",
+    "url": "https://www.miruro.tv/watch/-C0sAZcIRqBITAxGiFBLWRimNljsKoV3/takoyaki-capeman",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23855": {
-    "url": "https://www.animegg.org/series/yoiko",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/hvA6To7Ewf-fEsTkeOWehYizU2aQOgt6/yoiko",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23856": {
-    "url": "https://www.miruro.tv/watch/eN4VVsVJ2r5kNZtOr9ISmtwjPg8QT2da/chiisana-kyojin-microman",
+    "url": "https://www.miruro.tv/watch/8kFgPblPkraITMfaRFLFPnbLZA5ShffC/chiisana-kyojin-microman",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23858": {
-    "url": "https://www.miruro.tv/watch/AXz3v8P03yIDpa1pr8BXePM_XVwNJDjy/barbapapa-sekai-wo-mawaru",
+    "url": "https://www.miruro.tv/watch/_X-AQmOCidw96PoBcanbafTPEb_KiOso/barbapapa-sekai-wo-mawaru",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19337,12 +19337,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23863": {
-    "url": "https://www.animegg.org/series/kogepan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/0QhMSgTzUGi2XeO3OEUROQKFMj1ZvcFJ/kogepan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24216": {
-    "url": "https://www.miruro.tv/watch/dI31re7Y_Rfc5pjgE9CPiMnCXhPN8p9Y/swiss-family-robinson",
+    "url": "https://www.miruro.tv/watch/R7l7gUuQ2UbN3Bz9PiXPPZcCNae11FYS/swiss-family-robinson",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19352,7 +19352,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24218": {
-    "url": "https://www.miruro.tv/watch/3bLS-hw5C7Z5tdb5G7hk-7M4hVXoU-wz/alps-stories-my-annette",
+    "url": "https://www.miruro.tv/watch/anEO17eMl-9DKzsECLHx5xtvfSyu7fww/alps-stories-my-annette",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19372,12 +19372,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24224": {
-    "url": "https://www.animegg.org/series/trapp-ikka-monogatari",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/oOzwthQAw_NW-2qxYhjDiUrepHrnR-qw/trapp-ikka-monogatari",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24225": {
-    "url": "https://www.miruro.tv/watch/E3Y9n_Lqyv_PtONI0E6gLiMWrPpKDbfN/the-bush-baby",
+    "url": "https://www.miruro.tv/watch/QAmz-bSA5pkRYlaYdL1-S4nf1PyI3ZdR/the-bush-baby",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19412,7 +19412,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24536": {
-    "url": "https://www.miruro.tv/watch/bpr3Jz5_jPgJh-ETkAIHrmHiw1gyz1wZ/shoubushi-densetsu-tetsuya",
+    "url": "https://www.miruro.tv/watch/UTkW94q6pgdbC_KcJI_mGbwO6TjdeKjI/shoubushi-densetsu-tetsuya",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19427,22 +19427,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24713": {
-    "url": "https://www.miruro.tv/watch/dweBy6pSVUTt1YKtHccjSLuYMNAH-1Zn/kamen-no-ninja-akakage",
+    "url": "https://www.miruro.tv/watch/2g5Mm2ipB9TNW1TL2soeW7voNxM3OMz7/kamen-no-ninja-akakage",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24742": {
-    "url": "https://www.animegg.org/series/grander-musashi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Lt7ktY8UCBJlsyxDyNR8fPvkw_7TQmJt/grander-musashi-rv",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24743": {
-    "url": "https://www.miruro.tv/watch/SV-R5H1Dsjv4w_iNl4BXHAYqwHWULsCp/hanasaka-tenshi-tenten-kun",
+    "url": "https://www.miruro.tv/watch/CENID5HU0XMkqG_oZlmXAQbQSPSoiUyS/hanasaka-tenshi-tenten-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24744": {
-    "url": "https://www.miruro.tv/watch/-FT_KsquosS1HeSgp3K64XmtocEoaNYJ/future-boy-conan-2-taiga-adventure",
+    "url": "https://www.miruro.tv/watch/QRqM1_2PQtZf-N8pQzNIzrOtm_PZLZCG/future-boy-conan-2-taiga-adventure",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19452,17 +19452,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24766": {
-    "url": "https://www.animegg.org/series/yamato-takeru",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/WeRITd1yCFCcvHuxNxD_1FTxUh40tyy7/yamato-takeru",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24767": {
-    "url": "https://www.animegg.org/series/super-pig",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/UD50r3jROnp8izyrNJK6ZLvp8edNtVhX/super-pig",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24768": {
-    "url": "https://www.miruro.tv/watch/FGCNjn3fSr8--FAizW41CBOKJqGlbYat/mama-loves-the-poyopoyo-saurus",
+    "url": "https://www.miruro.tv/watch/n_K7HpOMVMzp18A_RG097L4OHNuOmp4A/mama-loves-the-poyopoyo-saurus",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19477,34 +19477,34 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24773": {
-    "url": "https://www.miruro.tv/watch/YemjVPxIc09wGrk6SGq-8C7FK8oWMTJm/kaze-no-naka-no-shoujo-kinpatsu-no-jeanie",
+    "url": "https://www.miruro.tv/watch/07wgK7VHIYOWJZoCHafrEwhkZy-zOJjW/kaze-no-naka-no-shoujo-kinpatsu-no-jeanie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24774": {
-    "url": "https://www.miruro.tv/watch/hwR1AEuop2jmSMgBjirGjNYv5P3ErbYc/muka-muka-paradise",
+    "url": "https://www.miruro.tv/watch/vUjA2DtHp9JWveQKZxH9sZXAm1LpVdcM/muka-muka-paradise",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24775": {
-    "url": "https://www.miruro.tv/watch/rd-lJjRODvW0nJ1iT5pJHG_2YVSFkYG8/heisei-inu-monogatari-bow",
+    "url": "https://www.miruro.tv/watch/0SVYXbSgYjTEiBfC1d0P7LkkPFYgIHc6/heisei-inu-monogatari-bow",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24777": {
-    "url": "https://www.animegg.org/series/wanwan-sanjuushi-dub",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/mUPe-39mKUQmoXPJdXpb4DqId8daZ0HS/wanwan-sanjushi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24778": {
-    "url": "https://www.miruro.tv/watch/sJwA9beoKvlSJ3RPhrpWRWOjD8ghxCFU/fuusen-no-doratarou",
+    "url": "https://www.miruro.tv/watch/gWxd-um8OpsRApbJdfkKdXRdvYPK_Ha5/fuusen-no-doratarou",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24779": {
-    "url": "https://www.animegg.org/series/ai-no-gakkou-cuore-monogatari",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/DDOh6eeC9iAjFrn5f29FinUrJieX1h72/ai-no-gakko-cuore-monogatari",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24780": {
     "url": "https://anikoto.net/watch/sanpei-the-fisherman-h1vlt/ep-1",
@@ -19512,7 +19512,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24787": {
-    "url": "https://www.miruro.tv/watch/7--pYSMqckruzGD0NleviTK22Z0WGq-l/konpora-kid",
+    "url": "https://www.miruro.tv/watch/KKX0QSr9K-QkFiXk0O23PDc2MvT2mSSj/konpora-kid",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19527,12 +19527,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24790": {
-    "url": "https://www.animegg.org/series/uchuusen-sagittarius",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_VmX2EmGl29JspjT9E9YJjp05z5QZr6C/uchuusen-sagittarius",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24792": {
-    "url": "https://www.miruro.tv/watch/vyEb8GrWeHeTLzonjBoo_79Z488ogtS8/noozles",
+    "url": "https://www.miruro.tv/watch/uukEIW39BKYCR1mmnCHmi8UF7EGbOxjB/noozles",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19542,7 +19542,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24796": {
-    "url": "https://www.miruro.tv/watch/DpeIMXeuSqKgdDu4XI4XmUk6_3tnRqFp/yumemiru-topo-gigio",
+    "url": "https://www.miruro.tv/watch/j2BEx59LiSbuZhEyM4e5ihXD_nqfg1DL/yumemiru-topo-gigio",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19552,14 +19552,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24798": {
-    "url": "https://www.miruro.tv/watch/9tsPRt9Hio5nLyc01Nc83SVSk0d9Uv9h/anime-80-nichikan-sekai-isshuu",
+    "url": "https://www.miruro.tv/watch/hla72HquPCPrGgcFte2zR04m6gvuWzrK/anime-80-nichikan-sekai-isshuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24824": {
-    "url": "https://www.animegg.org/series/video-senshi-lezarion",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/zM-kjtiMcaBO6PbJNDgc0L-_yZuezKlO/video-senshi-lezarion",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24825": {
     "url": "https://anikoto.net/watch/tongari-boushi-no-memole-dlgul/ep-1",
@@ -19572,22 +19572,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24828": {
-    "url": "https://www.miruro.tv/watch/u6Zw4ttfkzfxyZHpQRACg-LKzZ5etTY3/shin-mitsubachi-maya-no-bouken",
+    "url": "https://www.miruro.tv/watch/2q_NMYLA1ic-QGuslLLhr7Markdv1ulH/shin-mitsubachi-maya-no-bouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24829": {
-    "url": "https://www.miruro.tv/watch/f5_j5jnTnHzPuuqhHa6P6DVVBCRG1nQ-/bemubemu-hunter-kotengu-tenmaru",
+    "url": "https://www.miruro.tv/watch/HFXKnfXWPV4KuJBpMIjuEGXLTIAeISos/bemubemu-hunter-kotengu-tenmaru",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24831": {
-    "url": "https://www.miruro.tv/watch/OAbHknLs-DCPIAf4_LHxD9h4O8dgnZSZ/maya-the-bee",
+    "url": "https://www.miruro.tv/watch/_2cWqMC1fjxfLDY-mYiYPjPwsyLgC8XJ/maya-the-bee",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24832": {
-    "url": "https://www.miruro.tv/watch/d71_rRB6rYkMfEi0wSTdi7rsCrKFnYCW/sinbad-the-sailor",
+    "url": "https://www.miruro.tv/watch/MOVLoAaER9vx5UfQFzc0MUTL-id-zrfx/sinbad-the-sailor",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19607,7 +19607,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24841": {
-    "url": "https://www.miruro.tv/watch/vwOLEID460YAGam6n4H9isGI1-qrnTJi/mahou-shoujo-lalabel",
+    "url": "https://www.miruro.tv/watch/U7HdJdmIi3qJjHuz43O2K83sBAClY0iy/mahou-shoujo-lalabel",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19617,12 +19617,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24843": {
-    "url": "https://www.miruro.tv/watch/qhwDghzaRoqwyKsFLN81qgiyUVHJ9-BI/gear-senshi-dendoh",
+    "url": "https://www.miruro.tv/watch/je3WYyBuSvdtkQ8iWgv1so1DqTKs-WIj/gear-senshi-dendoh",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24844": {
-    "url": "https://www.miruro.tv/watch/ILMyf0mQsxcqExS4vIvtAnHMMTUOPrLB/monarch-the-big-bear-of-tallac",
+    "url": "https://www.miruro.tv/watch/LHw38Jh9Jvd5vQ0IaEne-85CpMAs2HzX/monarch-the-big-bear-of-tallac",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19632,12 +19632,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24848": {
-    "url": "https://www.miruro.tv/watch/A-iycqj__q3RdSK3bUPnpeRpiLsVJQsV/pinocchio-yori-piccolino-no-bouken",
+    "url": "https://www.miruro.tv/watch/uGfMOgDDiBAVWDHyYon7sQTfSR61ztCa/pinocchio-yori-piccolino-no-bouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24849": {
-    "url": "https://www.miruro.tv/watch/6NBpfHbKBJKhboZuBwYWCcHPKgfqPNq1/nyani-ga-nyandaa-nyandaa-kamen",
+    "url": "https://www.miruro.tv/watch/CGfMZzGtxzTmvSVO_k2tYiLV-cPyL6JE/nyani-ga-nyandaa-nyandaa-kamen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19647,7 +19647,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24856": {
-    "url": "https://www.miruro.tv/watch/D3z8EZ4bgXE4jte6ialdb13klIcyldrA/boogiepop-phantom",
+    "url": "https://www.miruro.tv/watch/dN6r4gAN3vV4qsK6q-6cD_V90GPQMRVs/boogiepop-phantom",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19657,12 +19657,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24895": {
-    "url": "https://www.miruro.tv/watch/XcEbRXPBA9h0iHmFcl-OPxgAQkSiD_5c/haou-taikei-ryuu-knight",
+    "url": "https://www.miruro.tv/watch/jx1BlPZ7tbfjZ6p8edXvzKvDovr7rOGM/haou-taikei-ryuu-knight",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24903": {
-    "url": "https://www.miruro.tv/watch/NqR6Lv47DwJ7ytrcL71V0UI-dQZtrfFy/kerokko-demetan",
+    "url": "https://www.miruro.tv/watch/DLQ_l3EF4-ZMeN_QFN0_UEvsjVXOMcrU/kerokko-demetan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19677,7 +19677,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24906": {
-    "url": "https://www.miruro.tv/watch/vXxfQyBTfYdlybhp-Rpjs5HUKPaeJ9z1/charlotte-holmes",
+    "url": "https://www.miruro.tv/watch/68smjI4l8zDj7qNtrhu5r88eQV9WSVoS/charlotte-holmes",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19687,32 +19687,32 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24908": {
-    "url": "https://www.miruro.tv/watch/5K-SDGqzEusOrzPtRGTfyW1JD2e17ctX/ore-wa-teppei",
+    "url": "https://www.miruro.tv/watch/2nBd8b3huPont9I9euCaiyvWwx9ikoJU/ore-wa-teppei",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24911": {
-    "url": "https://www.miruro.tv/watch/r4NRwW8bDoFhBCcGqBi20u6BbwLbzpKq/ippatsu-kanta-kun",
+    "url": "https://www.miruro.tv/watch/FvtSgmRkG87mwCXXLE9-RPDSl7pB15Cp/ippatsu-kanta-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24912": {
-    "url": "https://www.miruro.tv/watch/bLTVGwls0c6sqN6RTI2TP8WwDY_e_BkR/gowappa-5-gordam",
+    "url": "https://www.miruro.tv/watch/IVqQXAif30_xQFIzoZ70oMGwyuCQDCyh/gowappa-5-gordam",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24913": {
-    "url": "https://www.miruro.tv/watch/Mcv8Y47mi7XF5rBwMa-BFJnAfgNrKbJJ/tentou-mushi-no-uta",
+    "url": "https://www.miruro.tv/watch/1mIz49gaXK5gO1Si2GT8BlBsKH-lNshX/tentou-mushi-no-uta",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24914": {
-    "url": "https://www.miruro.tv/watch/xwdcMpBtkw0NzFbmIdzoK2iTFMyaLObc/konchuu-monogatari-minashigo-hutch",
+    "url": "https://www.miruro.tv/watch/kIPDq_66a18VTp9cLMonOm_c4uGAaM5v/konchuu-monogatari-minashigo-hutch",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24915": {
-    "url": "https://www.miruro.tv/watch/uSUFgC2PCUb1NFuaQ9igf5RZyhNxQLlr/the-new-adventures-of-hutch-the-honeybee",
+    "url": "https://www.miruro.tv/watch/MpotBNlupKmRkts15OSNm3iXyTSuu9Mq/the-new-adventures-of-hutch-the-honeybee",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19722,17 +19722,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24934": {
-    "url": "https://www.miruro.tv/watch/lGIVnqgX03ii2RtHLVLh9bZJ6UJBeR2q/fuusen-shoujo-temple-chan",
+    "url": "https://www.miruro.tv/watch/625Qvucc4QoYy-XkPWFMNKf_iSinJ_te/fuusen-shoujo-temple-chan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24935": {
-    "url": "https://www.miruro.tv/watch/QbU0rGK90TciJf_6ZONKBK-jt4Dsff1B/armored-police-metal-jack",
+    "url": "https://www.miruro.tv/watch/l01-fEtdBTIeNtEihC59v4t86cC_57nG/armored-police-metal-jack",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24936": {
-    "url": "https://www.miruro.tv/watch/JWqpIlG_YBX1l4fl1HtPQg8HQaMtDHnF/toushi-gordian",
+    "url": "https://www.miruro.tv/watch/BuC02E-idqg4OW31f_5nBbsTyIQNvm7V/toushi-gordian",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19757,7 +19757,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24953": {
-    "url": "https://www.miruro.tv/watch/byJ57IYej6fRA-r6gAt9KbfNJrp-mUNy/superbook",
+    "url": "https://www.miruro.tv/watch/lljVO9WYoSDM777_gTOtE5oqpVSZMnva/superbook",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19782,7 +19782,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24967": {
-    "url": "https://www.miruro.tv/watch/m4X10aaXJJi-5hLzkOUGEMadSAR0Ozuk/alpen-rose",
+    "url": "https://www.miruro.tv/watch/nHSz9TmaQRczrQBJewd3dA1Zp5tgoVxI/alpen-rose",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19792,19 +19792,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24996": {
-    "url": "https://www.miruro.tv/watch/X0-DXq93Ldpqad5dOgLehgdxvjqRLJGv/doteraman",
+    "url": "https://www.miruro.tv/watch/m265THKodhyzo2qc34z2ZCb49CSNgD9U/doteraman",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24998": {
-    "url": "https://www.animegg.org/series/robin-hood-no-daibouken",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Sp4EbsyrM1w_VX2rt1APzIaqQPqGdSI-/robin-hood-no-daibouken",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24999": {
-    "url": "https://www.animegg.org/series/shirayuki-hime-no-densetsu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/T3T7l37D7ZfBQ29qex1X7Slmnndr1T7l/the-legend-of-snow-white",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "25001": {
     "url": "https://anikoto.net/watch/the-story-of-cinderella-zebdb/ep-1",
@@ -19812,7 +19812,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25006": {
-    "url": "https://www.miruro.tv/watch/Z4zJf_mE-IZizluxOd_EfQ5BNQ_PIXvW/touma-kijin-den-oni",
+    "url": "https://www.miruro.tv/watch/M00A4lorz7evb-pDnFMMyTnf_3tAbO-K/touma-kijin-den-oni",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19837,14 +19837,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25024": {
-    "url": "https://www.animegg.org/series/samurai-deeper-kyo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/6K0FTBbOiZ2B9ZxZTDQvOWVnS8Z16DI9/samurai-deeper-kyo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "25146": {
-    "url": "https://www.animegg.org/series/chousoku-spinner",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/BeG4v7_3QCf_LzhcFvPcKaX3Sjt3biCr/super-yoyo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "25182": {
     "url": "https://anikoto.net/watch/tenchi-muyou-gxp-dunlq/ep-1",
@@ -19862,7 +19862,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25765": {
-    "url": "https://www.miruro.tv/watch/MrLmZ_XhvtL964IsMJgTCDdj81QtF7MT/bang-dream-its-mygo-ave-mujica-zoku-hen",
+    "url": "https://www.miruro.tv/watch/CVQPpIVFDlhO6JQdmLDw-xE1naBQJtEi/bang-dream-mygo-ave-mujica",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19877,12 +19877,12 @@ window.WATCH_SITES = {
     "color": "#e06c3c"
   },
   "26379": {
-    "url": "https://www.animegg.org/series/tobe-isami",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1Cj6rL9ZlLoaUEnVEG98TwwqGWxpqqnr/tobe-isami",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "26471": {
-    "url": "https://www.miruro.tv/watch/pnCKHyg4sqw6Wa4H3VhArhluyw6lHRGP/hirayasumi",
+    "url": "https://www.miruro.tv/watch/cD-_wjg6aHZwNQJuBrZPf2MZbjKNnvQ8/hirayasumi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19892,7 +19892,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "26894": {
-    "url": "https://www.miruro.tv/watch/ZVuoeaZaWZENRzucInpxRmZ0PNfKO_dU/youchien-wars",
+    "url": "https://www.miruro.tv/watch/KN8bK_p7_twprSzJP57-7D-o0CwtoWl-/youchien-wars",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19907,7 +19907,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27609": {
-    "url": "https://www.miruro.tv/watch/vbaHd3Z6uk_N_SiG_Kk6zckxFpxdXX43/mairimashita-iruma-kun-if-episode-of-mafia",
+    "url": "https://www.miruro.tv/watch/ITxxAeVyKXXrtcVx2044Hot5TXqWiML6/mairimashita-iruma-kun-if-episode-of-mafia",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19922,12 +19922,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27846": {
-    "url": "https://www.miruro.tv/watch/HFfcGjoPaUUcA0N4QBFqf-YUQbpuTKR2/zukkoke-sannin-gumi-kusunoki-yashiki-no-guruguru-sama",
+    "url": "https://www.miruro.tv/watch/zcNKt3sx4kyRUV4uMHHkOCoyXMIJQQXk/zukkoke-sannin-gumi-kusunoki-yashiki-no-guruguru-sama",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27970": {
-    "url": "https://www.miruro.tv/watch/LKwCGGfAdtLhX8vO2eqHkYxK6E-s14VR/zatsuyou-fuyojutsu-shi-ga-jibun-no-saikyou-ni-kizuku-made",
+    "url": "https://www.miruro.tv/watch/riW5sBwanJlR_iiU0ZYADS-9slD4L0lc/zatsuyou-fuyojutsu-shi-ga-jibun-no-saikyou-ni-kizuku-made",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19947,7 +19947,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28072": {
-    "url": "https://www.miruro.tv/watch/yef-I3oTou1gCdQoJyLLb5hQdvAm3JMn/yumedamaya-kidan",
+    "url": "https://www.miruro.tv/watch/y7DC57QuqbQ4MtenxPc6EJ26eHgtzofY/yumedamaya-kidan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19957,7 +19957,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28275": {
-    "url": "https://www.miruro.tv/watch/3pNFiXXlD8ydufOe4mpkQJFWUlk8nlBW/kagurabachi",
+    "url": "https://www.miruro.tv/watch/gKXDytKvwuWD5Tkw9Iz7FVgKafodq94C/kagurabachi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19967,7 +19967,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28654": {
-    "url": "https://www.miruro.tv/watch/pvBt7CeVwhxUjCDR26DsXwAwZjt4XdqU/lona",
+    "url": "https://www.miruro.tv/watch/Q9Cgu-WxLf6nlDZ9Ow2iPRLDh4uDVHn5/lona",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -19982,7 +19982,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28881": {
-    "url": "https://www.miruro.tv/watch/XwXOdp_Jnn1ry1rD9eFw9kWtx25SvRc2/free-fire-daybreak",
+    "url": "https://www.miruro.tv/watch/mk780HHpDbWhbU6GKyAcpRHtaCZeLU6U/free-fire-daybreak",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20407,7 +20407,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14542": {
-    "url": "https://www.miruro.tv/watch/4XQ-ZV_H8OaGEvVVlM6t3xEbgD0cTDFQ/doraemon-nobita-no-shin-kyoryuu",
+    "url": "https://www.miruro.tv/watch/Uq1XO00dVrn0eJ5p9A-f_tF7O5zTLVXb/doraemon-nobita-no-shin-kyoryuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20432,7 +20432,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11995": {
-    "url": "https://www.miruro.tv/watch/e4X4zetraHplyrMbOcqHdqi7G9cGDrGd/crayon-shin-chan-henderland-no-daibouken",
+    "url": "https://www.miruro.tv/watch/-ILdrIFWTFUzcQ23GsozwGTvr7CDzF1A/crayon-shin-chan-henderland-no-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20462,7 +20462,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12907": {
-    "url": "https://www.miruro.tv/watch/Ma4_oQh0Z9G-PW2qqx3JVzqadNR5LI7Y/crayon-shin-chan-arashi-wo-yobu-appare-sengoku-daikassen",
+    "url": "https://www.miruro.tv/watch/2U_-gXqJIV2a0P8qVTTARL7gZQ0qv7xZ/crayon-shin-chan-arashi-wo-yobu-appare-sengoku-daikassen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20677,7 +20677,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "6116": {
-    "url": "https://www.miruro.tv/watch/Saz-y_PZ57hXSafjf5NuCjy23fBKfnNa/stand-by-me-doraemon",
+    "url": "https://www.miruro.tv/watch/rCOOR0hmrL6obp1PYBMRCaNfJq-9d24-/stand-by-me-doraemon",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20687,17 +20687,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11950": {
-    "url": "https://www.miruro.tv/watch/30minGIgT1boQs8-wYzh64eN2t2-5ZQ8/doraemon-nobita-no-kyouryuu-2006",
+    "url": "https://www.miruro.tv/watch/YDMyUw4FzAXk17i0x4uLg_z6iOU4JN-X/doraemon-nobita-no-kyouryuu-2006",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "11957": {
-    "url": "https://www.miruro.tv/watch/p9fMrWJc4Zn3lv8d5FgZZESyaCnB0kdg/doraemon-nobita-to-midori-no-kyojin-den",
+    "url": "https://www.miruro.tv/watch/PTZTK8VLLz8BlcgpDXlEhiXDbq0St6Fj/doraemon-nobita-to-midori-no-kyojin-den",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "11960": {
-    "url": "https://www.miruro.tv/watch/cnM8QwrQSTOgwRd4RrAkljb_tjL9GXwm/doraemon-nobita-no-ningyo-daikaisen",
+    "url": "https://www.miruro.tv/watch/cdl7AT7vDyr0LMk_lav6ZQXXwiMwLWhw/doraemon-nobita-no-ningyo-daikaisen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20712,7 +20712,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11958": {
-    "url": "https://www.miruro.tv/watch/ZT3DgC0mvkbfTfrXJ_xTT9h_pMDaPDGk/doraemon-shin-nobita-no-uchuu-kaitakushi",
+    "url": "https://www.miruro.tv/watch/ZG9K7TReQQHEQseFMNS0egJSlj5VtMu-/doraemon-shin-nobita-no-uchuu-kaitakushi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20727,7 +20727,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11965": {
-    "url": "https://www.miruro.tv/watch/g2p17fzxsiix1bR91k3ZKkgDUvqQ0s4o/doraemon-shin-nobita-no-daimakyou-peko-to-5-nin-no-tankentai",
+    "url": "https://www.miruro.tv/watch/47oELc26uwjSxZTdff5sQ-fixkj4zchb/doraemon-shin-nobita-no-daimakyou-peko-to-5-nin-no-tankentai",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20752,12 +20752,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23205": {
-    "url": "https://www.miruro.tv/watch/V1nKn_eJDdm-N5fK3vZTV1fNB-gHz9U7/doraemon-nobitas-dinosaur",
+    "url": "https://www.miruro.tv/watch/NsS77wKSVu5UTx-fOQ3hGotsk6ICPeQb/doraemon-nobitas-dinosaur",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23206": {
-    "url": "https://www.miruro.tv/watch/mgV86qLDTFHhM056t5QUt4ni8z4n6fhb/doraemon-nobita-no-uchuu-kaitakushi",
+    "url": "https://www.miruro.tv/watch/b6umqJzb_pJRi9ao5H2CUElxdn-s8bji/doraemon-nobita-no-uchuu-kaitakushi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20772,7 +20772,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23210": {
-    "url": "https://www.miruro.tv/watch/QKT2TxbT00AFDHHIO9IKpuBK_Mo5pUbN/doraemon-nobita-no-makai-daibouken",
+    "url": "https://www.miruro.tv/watch/4DTT9vgnjDt8memaffVffnH3RQOiuk3e/doraemon-nobita-no-makai-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20807,7 +20807,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23459": {
-    "url": "https://www.miruro.tv/watch/El8J9yHAvY2Eb2c2mvYvIvOOAiw4AK15/doraemon-nobitas-animal-planet",
+    "url": "https://www.miruro.tv/watch/62E1pdOAtGqu3FTMIJDUtAI3lQCkjrj3/doraemon-nobitas-animal-planet",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20822,7 +20822,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23462": {
-    "url": "https://www.miruro.tv/watch/1HDT8TtP60oBgpJutr1g7t6a8oninXAI/doraemon-nobita-to-buriki-no-meikyuu",
+    "url": "https://www.miruro.tv/watch/kQXlYSVv8yI_D0p6WdV-ChISHzLfGOG9/doraemon-nobita-to-buriki-no-meikyuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20837,22 +20837,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23465": {
-    "url": "https://www.miruro.tv/watch/8aYpJLh0z3BTRDdiNeIODwpzi5MJF35a/doraemon-nobita-to-ginga-express",
+    "url": "https://www.miruro.tv/watch/8sURMPO-41A6cMqRtHSMl7is0Gqq3oiq/doraemon-nobita-to-ginga-express",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23466": {
-    "url": "https://www.miruro.tv/watch/TVJvbf-pmaPM3Fn_2HM2Jm5_Pg9dduTL/doraemon-nobita-no-nejimaki-city-boukenki",
+    "url": "https://www.miruro.tv/watch/z0frs-Lc4cfeUxCo0rfMABmacK6uZ68Q/doraemon-nobita-no-nejimaki-city-boukenki",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23531": {
-    "url": "https://www.miruro.tv/watch/S9IbGGqgqMOj1an6eZWVQqsN007nxOX0/doraemon-nobita-no-nankai-daibouken",
+    "url": "https://www.miruro.tv/watch/OBz4wuclPt8t1IqEGtOc7iqGUE4NQDjw/doraemon-nobita-no-nankai-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23532": {
-    "url": "https://www.miruro.tv/watch/-PVOy8oaIAQ7XWInb043o44NM4d6Bmg4/doraemon-nobita-gets-lost-in-space",
+    "url": "https://www.miruro.tv/watch/Ky0IPaohf-PQWJgj5jpMENbJAWAnX9In/doraemon-nobita-gets-lost-in-space",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20862,22 +20862,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23534": {
-    "url": "https://www.miruro.tv/watch/gSOlku4lXszqfs7EVAhZpURNaCBhe47j/doraemon-nobitas-winged-heroes",
+    "url": "https://www.miruro.tv/watch/jIfP_DOpadpjz5UFY8udfUAGpP9T9j8A/doraemon-nobitas-winged-heroes",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23535": {
-    "url": "https://www.miruro.tv/watch/15wHfJve1GObOiDxzp_m2vqvVCQxfgga/doraemon-nobita-to-robot-oukoku",
+    "url": "https://www.miruro.tv/watch/evahSPy69xScD7Wd0aFOXnIQX0WeKO_l/doraemon-nobita-to-robot-oukoku",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23536": {
-    "url": "https://www.miruro.tv/watch/IqqIDJCc8Pan7X70VDsJqDrgD4WkMwJy/doraemon-nobita-to-fushigi-kaze-tsukai",
+    "url": "https://www.miruro.tv/watch/6ihIcGDwzONToAyy8MUMlIdcExWme7j9/doraemon-nobita-to-fushigi-kaze-tsukai",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23568": {
-    "url": "https://www.miruro.tv/watch/08H2zGmA6cl0zRxIuvyyd7ta324jHhx3/doraemon-nobita-no-wan-nyan-jikuuden",
+    "url": "https://www.miruro.tv/watch/QJ3p8YafFm2xqx3AyrguaGtSTgoW_503/doraemon-nobita-no-wan-nyan-jikuuden",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20887,87 +20887,87 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6654": {
-    "url": "https://www.miruro.tv/watch/_36K7uoAjbYtp70y3ePIyPf8d6KnT6Lp/sore-ike-anpanman",
+    "url": "https://www.miruro.tv/watch/4xeO2qiQTaD_Z2zK6vxRx14T7DHi_uqy/sore-ike-anpanman",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "29014": {
-    "url": "https://www.miruro.tv/watch/TW5JrBTB1mn5k0kcALIgk6Lw3bn3jJmS/go-anpanman-the-shining-stars-tear",
+    "url": "https://www.miruro.tv/watch/3JBlmyIRUCZNaPhw2PCW5VWnBcD_7C3v/go-anpanman-the-shining-stars-tear",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "29013": {
-    "url": "https://www.miruro.tv/watch/G18ZFSUtamcN9eTEEuCwDlv_MtOpghWg/sore-ike-anpanman-baikinman-no-gyakushuu",
+    "url": "https://www.miruro.tv/watch/2MepX_nDG7ofWec-ZxNFDmertBgphN4_/sore-ike-anpanman-baikinman-no-gyakushuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28991": {
-    "url": "https://www.miruro.tv/watch/HvdD3xl8veftNX5VE302YJecVMSKtSF_/sore-ike-anpanman-tobe-tobe-chibigon",
+    "url": "https://www.miruro.tv/watch/DGj2ynMbI1RbqM9OMruD98LNUAkHUIdq/sore-ike-anpanman-tobe-tobe-chibigon",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28992": {
-    "url": "https://www.miruro.tv/watch/1F62P-H6EyIq5IJyEHzew2VbTNz0KNNp/sore-ike-anpanman-dokin-chan-no-dokidoki-calendar",
+    "url": "https://www.miruro.tv/watch/6yQad7yToTTTzTa16y0BqCLZsXDwxCfG/sore-ike-anpanman-dokin-chan-no-dokidoki-calendar",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28966": {
-    "url": "https://www.miruro.tv/watch/P2oXqArgiTBEyweRGvNR8ECHbtBWufoP/sore-ike-anpanman-tsumikijou-no-himitsu",
+    "url": "https://www.miruro.tv/watch/XU12c23cCApYkGC9qAxyBIo4OmVit7K0/sore-ike-anpanman-tsumikijou-no-himitsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28964": {
-    "url": "https://www.miruro.tv/watch/KOEh8Emc3xbF_nVLwHkcXJZNeG7tQg3a/sore-ike-anpanman-kyouryuu-nosshii-no-daibouken",
+    "url": "https://www.miruro.tv/watch/IGfZYVoRWVPQC-HD6jAQqSp5pq_-6-DP/sore-ike-anpanman-kyouryuu-nosshii-no-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28963": {
-    "url": "https://www.miruro.tv/watch/IqNvdBIl2_c-Xvjcea2VjyFIJFTn-YcR/sore-ike-anpanman-lyricalmagical-mahou-no-gakkou",
+    "url": "https://www.miruro.tv/watch/JbpbYjPLAghgbelHQ9wfxUFqjITAxbHe/sore-ike-anpanman-lyricalmagical-mahou-no-gakkou",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28970": {
-    "url": "https://www.animegg.org/series/sore-ike-anpanman-yuurei-sen-wo-yattsukero",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1KrdUgiSaowCZ2bR3VyWQzDM0KTMZZkH/sore-ike-anpanman-yuurei-sen-wo-yattsukero",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28969": {
-    "url": "https://www.miruro.tv/watch/k74C9uo09dlH9YcVd_TcKJo9oXipHCi8/sore-ike-anpanman-sora-tobu-ehon-to-glass-no-kutsu",
+    "url": "https://www.miruro.tv/watch/C2vM6SOgOXGEXhvKg_MvtTHBBJhny4wB/sore-ike-anpanman-sora-tobu-ehon-to-glass-no-kutsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "29042": {
-    "url": "https://www.miruro.tv/watch/y7ioH2R9Uzn_H_rxxRxuTQJwfVcEn7e_/sore-ike-anpanman-niji-no-pyramid",
+    "url": "https://www.miruro.tv/watch/ydOz7Sadn5Iz8OqX4ASCNBouQl9zRAtW/sore-ike-anpanman-niji-no-pyramid",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28959": {
-    "url": "https://www.miruro.tv/watch/UqbS10_7uX6naC2c18k4hq4koLwhwV4x/sore-ike-anpanman-yuuki-no-hana-ga-hiraku-toki",
+    "url": "https://www.miruro.tv/watch/17u8L5Ds8Qb_d7OoE5a9iaVjKb6K3F69/sore-ike-anpanman-yuuki-no-hana-ga-hiraku-toki",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28957": {
-    "url": "https://www.miruro.tv/watch/cp3C8q4zcRI2ZIGqJzPT_kiivB4p-seN/sore-ike-anpanman-ningyo-hime-no-namida",
+    "url": "https://www.miruro.tv/watch/mx3PK53oj4HJLq04EnkvO9YxrrdHOVh8/sore-ike-anpanman-ningyo-hime-no-namida",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28955": {
-    "url": "https://www.miruro.tv/watch/d5ij5V4iwqK7-k4wjaR2UUTd493jOdje/sore-ike-anpanman-gomira-no-hoshi",
+    "url": "https://www.miruro.tv/watch/QMOFeryQc2dsFe2TTPGHSTs0Nov4-UVl/sore-ike-anpanman-gomira-no-hoshi",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28954": {
-    "url": "https://www.animegg.org/series/sore-ike-anpanman-roll-to-laura-ukigumojou-no-himitsu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ioKZ8qW1PF1kvCAFecLW9nETSqO7litj/sore-ike-anpanman-roll-to-laura-ukigumojou-no-himitsu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28952": {
-    "url": "https://www.animegg.org/series/sore-ike-anpanman-ruby-no-negai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/lu8oAo5E8RgVpudgWjPGqZ_zXQNYcZLE/sore-ike-anpanman-ruby-no-negai",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28951": {
-    "url": "https://www.miruro.tv/watch/LmMBV4kIERI1NrUuUlAZI-jdZ0b4DcCs/sore-ike-anpanman-yumeneko-no-kuni-no-nyanii",
+    "url": "https://www.miruro.tv/watch/RWnJsK5K6_rOuR3-lNggbe0MzjEkCckD/sore-ike-anpanman-yumeneko-no-kuni-no-nyanii",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -20997,7 +20997,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28941": {
-    "url": "https://www.miruro.tv/watch/RxemDcyBoz1j9FIjlms1dyhR54mFQupP/sore-ike-anpanman-sukue-kokorin-to-kiseki-no-hoshi",
+    "url": "https://www.miruro.tv/watch/W_aAaVp9tNqz9R8Qb_J_s1pOXoO_Q_FX/sore-ike-anpanman-sukue-kokorin-to-kiseki-no-hoshi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21077,22 +21077,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12215": {
-    "url": "https://www.miruro.tv/watch/wFpV9Z5Fq_RVIvGKXWDyC3s-V0uO7X3I/meitantei-conan-baker-street-no-bourei",
+    "url": "https://www.miruro.tv/watch/4ArM9iagfKgxl67LyNFRzpdINloYuRIa/meitantei-conan-baker-street-no-bourei",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12173": {
-    "url": "https://www.miruro.tv/watch/9UliLe_2XoYko5Jpxjc_sXDj0Z0YodmE/detective-conan-the-fourteenth-target",
+    "url": "https://www.miruro.tv/watch/Ht7pn5-dMhkfsnGp50U0eQ8eQrU-q_qs/detective-conan-the-fourteenth-target",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12174": {
-    "url": "https://www.miruro.tv/watch/AhpnNmwGgQTnPPxspllMx8yv4rDsjQyl/meitantei-conan-seikimatsu-no-majutsushi",
+    "url": "https://www.miruro.tv/watch/jCCsJldm7P29WLYcU9SSTxnpsU3jtGS6/meitantei-conan-seikimatsu-no-majutsushi",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12175": {
-    "url": "https://www.miruro.tv/watch/6bGi80qCmCaFfwL6oWC9VMl6hH9m_eKz/detective-conan-captured-in-her-eyes",
+    "url": "https://www.miruro.tv/watch/fm0tGr2ZooqPeVvXJO9s7RSnQ9VKi3h2/detective-conan-captured-in-her-eyes",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21122,7 +21122,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "15697": {
-    "url": "https://www.miruro.tv/watch/cWKGHr4RCx5K-3AN8AT4rvBCghl873mT/one-piece-the-movie-dead-end-no-bouken",
+    "url": "https://www.miruro.tv/watch/6jukCICXshl6Sh51vAi1itFSR0yK1XEm/one-piece-the-movie-dead-end-no-bouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21247,7 +21247,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16595": {
-    "url": "https://www.miruro.tv/watch/w5e_m6pYg2efZgOB41mr4QesoC8kspOn/lupin-the-3rd-the-fuma-conspiracy",
+    "url": "https://www.miruro.tv/watch/r_Bgm2s0zgHZ2irtZKQCLR7-XCGfCIdx/lupin-the-3rd-the-fuma-conspiracy",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21277,14 +21277,14 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "17757": {
-    "url": "https://www.animegg.org/series/magical-girl-lyrical-nanoha-the-movie-1st",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/l-IWAcEVcb-KtZL8nuLDofvxgPEJ9Bl3/magical-girl-lyrical-nanoha-the-movie-1st",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17758": {
-    "url": "https://www.animegg.org/series/mahou-shoujo-lyrical-nanoha-the-movie-2nd-as",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/wJCNYPg14PFcV7_-27JxydI_SJ3irc2g/magical-girl-lyrical-nanoha-the-movie-2nd-as",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17759": {
     "url": "https://anikoto.net/watch/magical-girl-lyrical-nanoha-reflection-hflyf/ep-1",
@@ -21292,47 +21292,47 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17760": {
-    "url": "https://www.animegg.org/series/mahou-shoujo-lyrical-nanoha-detonation",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/aiwVJX0CQo_RkXOMppm5sWx7kwx4U1Ve/magical-girl-lyrical-nanoha-detonation",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2756": {
-    "url": "https://www.animegg.org/series/mahoutsukai-no-yoru",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/v8s-kP7LaXb5G36y9vql4s_lN1XZFQlW/mahoutsukai-no-yoru",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12846": {
-    "url": "https://www.miruro.tv/watch/8Nu2EKGomMxLl49Tve9jWZhBjqlZJDv1/mahou-shoujo-madokamagica-walpurgis-no-kaiten",
+    "url": "https://www.miruro.tv/watch/mfkMT4HXksGEzhvCnpnf1-J1iihj3eIf/mahou-shoujo-madokamagica-walpurgis-no-kaiten",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23521": {
-    "url": "https://www.miruro.tv/watch/Pj4NItiA_yuJny57XcxAjuRsi__xudyS/rakuen-tsuihou-kokoro-no-resonance",
+    "url": "https://www.miruro.tv/watch/K1SkISwiIKuFYkPNKYN39lbMFLQOjFF4/rakuen-tsuihou-kokoro-no-resonance",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "26366": {
-    "url": "https://animenosub.to/anime/grotesqqque/",
-    "label": "AnimeNoSub",
-    "color": "#475569"
+    "url": "https://www.miruro.tv/watch/MTCEwSqPYo3IzO2N6_rZY6frdVycIllq/grotesqqque",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "26868": {
-    "url": "https://www.miruro.tv/watch/qLhSLPZCBMShWM2lVpiwEz6tlF30DIyp/rascal-does-not-dream-of-a-dear-friend",
+    "url": "https://www.miruro.tv/watch/AriKOnOTDWR09m9TLWWoFjAt9Yy7qGAn/rascal-does-not-dream-of-a-dear-friend",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27001": {
-    "url": "https://www.miruro.tv/watch/XvQiqVsoZWTB4e2jDu7Kh7AGC8fcWwR_/kusuriya-no-hitorigoto-bouhi-no-hihou",
+    "url": "https://www.miruro.tv/watch/7I6Uu-1EhWG6trT3nezatnBgTpUog5Fu/kusuriya-no-hitorigoto-bouhi-no-hihou",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27130": {
-    "url": "https://www.miruro.tv/watch/nVIJCrLAoyFLYVnjCpKz3_XFB9fEdfL2/wareware-wa-uchuujin",
+    "url": "https://www.miruro.tv/watch/3_9rEaAj-APkyKF1P96rF8ON9M6FyH9J/wareware-wa-uchuujin",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27142": {
-    "url": "https://www.miruro.tv/watch/xmrFlFpOrAMTX40KK5t3kUJmRFS_g16L/chiikawa-ningyo-no-shima-no-himitsu",
+    "url": "https://www.miruro.tv/watch/XNdteyr9UPvPwwwLkaW8SugsZ83wKM-d/chiikawa-ningyo-no-shima-no-himitsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21342,32 +21342,32 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "27255": {
-    "url": "https://www.miruro.tv/watch/eqZca343_Tgpvv3qiW9k3J_DaH085WhI/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation",
+    "url": "https://www.miruro.tv/watch/OuB_xqVEdFi61wnaKO_VSRNsuT8XENG5/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27451": {
-    "url": "https://www.miruro.tv/watch/rEvqBQFgYSbgs82pLOAeaC4cSRa5MMNN/bang-dream-ave-mujica-prima-aurora",
+    "url": "https://www.miruro.tv/watch/TTSYM3bQRPUN5nuwBKQ2ti9EGzbMGdqY/bang-dream-ave-mujica-prima-aurora",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27489": {
-    "url": "https://www.miruro.tv/watch/3ro297fnyoQ3Cuu_iyI7v5ly0krBW_V4/kimi-to-hanabi-to-yakusoku-to",
+    "url": "https://www.miruro.tv/watch/ZwKEi1iH6q1qSctMmxcmUaxA1fEaqVG7/kimi-to-hanabi-to-yakusoku-to",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27649": {
-    "url": "https://www.miruro.tv/watch/DCJVFPNnUy8EJsEhLg1CyYl_ZzChxwb9/to-you-in-the-beyond",
+    "url": "https://www.miruro.tv/watch/wtdKMN7Ai1bzHitYUZSwZp5pKqwJSYOD/to-you-in-the-beyond",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27874": {
-    "url": "https://www.miruro.tv/watch/lEfKy0Y8YxUtcrvxtJZ0Co8JomRa1GTS/shiranuhi",
+    "url": "https://www.miruro.tv/watch/oZ15G53i-bE8Y42S3a8HoHgioxYLoc7b/shiranuhi",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27977": {
-    "url": "https://www.miruro.tv/watch/RAvKhMSkXu-uhVY3pOY6bNMwBRlAYxJ-/maebashi-witches-majo-minarai-no-emoemories",
+    "url": "https://www.miruro.tv/watch/xS0wPjt1D7jjA7AVMPwxvZxyDgKz4M-n/maebashi-witches-majo-minarai-no-emoemories",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21387,12 +21387,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28139": {
-    "url": "https://www.miruro.tv/watch/ZYTCtgGj7k7YE0yqYc_s5LGQ11rbQ3w_/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu",
+    "url": "https://www.miruro.tv/watch/eoBWOooXvFLyt2INXeOMCbjny8NiWmty/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28726": {
-    "url": "https://www.miruro.tv/watch/-1DJ7MUNG7zBhFIv5whBp9yQ29Oc_iow/rusuban",
+    "url": "https://www.miruro.tv/watch/b41mjZyMpo-W01pDv1Xsj_NZ2GXySZkt/rusuban",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21402,54 +21402,54 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "28259": {
-    "url": "https://www.miruro.tv/watch/2_jnNE2_d6yzgOFxpQWVqJRGAwKOvpYu/majo-no-tani-no-yoru",
+    "url": "https://www.miruro.tv/watch/dmnKa2WM7MWlN7OpB9fdQy74hCeQiGB1/majo-no-tani-no-yoru",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "22629": {
-    "url": "https://www.miruro.tv/watch/vk4D0AJE8zAFqTqjBgElT0QGOKYwDj9M/golden-kamuy-final-season",
+    "url": "https://www.miruro.tv/watch/yYzk3RkvFFQ9Swd_GUEnBG82HBj_H0Jx/golden-kamuy-final-season",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23842": {
-    "url": "https://www.miruro.tv/watch/i2s-YwXWfCIMtFDIUYYwku3jjQ1QPk94/shin-keroro-gunsou-movie-fukkatsushite-sokkou-chikyuu-metsubou-no-kiki-de-arimasu",
+    "url": "https://www.miruro.tv/watch/LAPrCXYSH5VoCYl4w038c1rqjaS3dMa2/shin-keroro-gunsou-movie-fukkatsushite-sokkou-chikyuu-metsubou-no-kiki-de-arimasu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24282": {
-    "url": "https://www.miruro.tv/watch/JpILIyA-pjRVk4FVipuM5c2CiDmyt_BU/mahouka-koukou-no-rettousei-yotsuba-keishou-hen",
+    "url": "https://www.miruro.tv/watch/r-68vtcdwo0ChxEWTtldrGXb6he-_QNK/mahouka-koukou-no-rettousei-yotsuba-keishou-hen",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24973": {
-    "url": "https://www.miruro.tv/watch/pBpeM0l3EnjCjSCtANh0Kn9ANNcCeea8/the-dangers-in-my-heart-the-movie",
+    "url": "https://www.miruro.tv/watch/rz0fPS-IkYIPY0wDUv7sWVj26Ev0bShZ/the-dangers-in-my-heart-the-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "24979": {
-    "url": "https://monoschinos.st/anime/tensei-shitara-slime-datta-ken-soukai-no-namida-hen-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/skfhZlycftPqHwrNK7r5RvesUixa6fZr/tensei-shitara-slime-datta-ken-soukai-no-namida-hen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "25463": {
-    "url": "https://www.miruro.tv/watch/H-E6JlZBmUx_g3wOcEpnW8sKBxb8KCFG/hanarokushou-ga-akeru-hi-ni",
+    "url": "https://www.miruro.tv/watch/92x84j_EyCRruzjzruA5da1RtM9TbNQV/hanarokushou-ga-akeru-hi-ni",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25788": {
-    "url": "https://www.miruro.tv/watch/L3tjKICFFYbJg2BJDcoAn9MQmmklPB6j/kusunoki-no-bannin",
+    "url": "https://www.miruro.tv/watch/EpHISN1KZvkW94UgwGEOi8YXETf6YZVa/kusunoki-no-bannin",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "26171": {
-    "url": "https://www.miruro.tv/watch/DvU_XCA9KyWXmnkVGjhuApsS4sTfU_RU/love-live-hasunosora-jogakuin-school-idol-club-bloom-garden-party",
+    "url": "https://www.miruro.tv/watch/M9IGQZQBJt8xVQ0RBLLahm55BJfCd_o7/love-live-hasunosora-jogakuin-school-idol-club-bloom-garden-party",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "26346": {
-    "url": "https://monoschinos.st/anime/meikyu-no-shiori-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/CZryZ_D8tH_Z387AC-A_QToibvwglgmP/labyrinth",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "26621": {
     "url": "https://anikoto.net/watch/gintama-the-movie-2026-yoshiwara-in-flames-2f4b4/ep-1",
@@ -21457,12 +21457,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "26602": {
-    "url": "https://www.miruro.tv/watch/Db9VAmiX2yD-8_g-edNc2l-vjgtVneXH/paris-ni-saku-etoile",
+    "url": "https://www.miruro.tv/watch/0TZzKHescr8SWm-xqjLi4O4ShL7dRy61/paris-ni-saku-etoile",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "26736": {
-    "url": "https://www.miruro.tv/watch/cY53E6ILhHHRaYhiPXW5rV4EGBHu_noR/doraemon-shin-nobita-no-kaitei-kiganjou",
+    "url": "https://www.miruro.tv/watch/5Ullwloz2C1qHvlPKSMGREAp1GezkOLB/doraemon-shin-nobita-no-kaitei-kiganjou",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21477,22 +21477,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27083": {
-    "url": "https://www.miruro.tv/watch/K5NFjdadSjPi4u1Ysc3Hmm5Giq4zW4oo/entotsu-machi-no-poupelle-yakusoku-no-tokei-dai",
+    "url": "https://www.miruro.tv/watch/Zh4PIiABa8bGvFF0DPPA5eJH7Nt-WPpC/entotsu-machi-no-poupelle-yakusoku-no-tokei-dai",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27175": {
-    "url": "https://www.miruro.tv/watch/KlIKMgKOJXyd2XSLqTmaAvGo6V_KQj0X/himitsu-no-aipri-mankai-buzzrium-live",
+    "url": "https://www.miruro.tv/watch/_S_7AhWnsZeL3Wd_wp6AQ8QJHT6lDpYN/himitsu-no-aipri-mankai-buzzrium-live",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27196": {
-    "url": "https://www.miruro.tv/watch/ZI3PMXJP0rTeY1q8acpoDDhP5gHhfTuZ/milkysubway-the-galactic-limited-express-the-movie",
+    "url": "https://www.miruro.tv/watch/IKhg80CTnuDnRGLruJi0OGh9xoV4jNxh/milkysubway-the-galactic-limited-express-the-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27493": {
-    "url": "https://www.miruro.tv/watch/XCv4grESFDtRdArE7Wcgrssy2Ym677xI/soreike-anpanman-pantan-to-yakusoku-no-hoshi",
+    "url": "https://www.miruro.tv/watch/RLSaqlDzR-uJe2GOWv4zI8qjLMtdXmjg/soreike-anpanman-pantan-to-yakusoku-no-hoshi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21557,7 +21557,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "689": {
-    "url": "https://www.miruro.tv/watch/aMBtXuigoUpx_nfWaVAcrQAuxUQF9mTZ/tennis-no-ouji-sama-eikokushiki-teikyuu-shiro-kessen",
+    "url": "https://www.miruro.tv/watch/pOvHMymZcad56JyK9v5foCSVLZXk3khQ/tennis-no-ouji-sama-eikokushiki-teikyuu-shiro-kessen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21587,9 +21587,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1329": {
-    "url": "https://www.animegg.org/series/planzet",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/7wny0-ptDMww3V42IA3tQ9ZVOHXINsi5/planzet",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "1419": {
     "url": "https://anikoto.net/watch/mardock-scramble-the-first-compression-5ga5v/ep-1",
@@ -21602,7 +21602,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "1941": {
-    "url": "https://www.miruro.tv/watch/Evx8zwIFpBrO2OcJc_wdJmYKSTr-RVTM/kowarekake-no-orgel-movie",
+    "url": "https://www.miruro.tv/watch/8DAzHyJVbg29oYraT9UYHL9pS3sLm6Wk/kowarekake-no-orgel-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21617,14 +21617,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2261": {
-    "url": "https://www.miruro.tv/watch/BY6IvuikcTkJEj4GGy1Z9JcA49-wpDOU/toufu-kozou",
+    "url": "https://www.miruro.tv/watch/fCJRIweJZTc8kdNgOwjyVpIFxW3BqSli/toufu-kozou",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "2304": {
-    "url": "https://www.animegg.org/series/toaru-hikuushi-e-no-tsuioku",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/7cUp_zz_FPUutEwUEr12D2OAsytZcsbz/the-princess-and-the-pilot",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2301": {
     "url": "https://anikoto.net/watch/towanoquon-the-ephemeral-petals-mr4iv/ep-1",
@@ -21632,9 +21632,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2336": {
-    "url": "https://www.animegg.org/series/hotarubi-no-mori-e",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/AcK-W0VXnl27g5bf2ecVjVNICdcONKAA/hotarubi-no-mori-e",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2585": {
     "url": "https://anikoto.net/watch/dragon-age-dawn-of-the-seeker-0hcg8/ep-1",
@@ -21642,9 +21642,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2438": {
-    "url": "https://www.animegg.org/series/mahou-sensei-nigima-anime-final",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Zl1BwB2jBV_mTevKM4oIWJB6LEg9hzmi/mahou-sensei-negima-anime-final",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2618": {
     "url": "https://anikoto.net/watch/patema-inverted-bs4xs/ep-1",
@@ -21662,9 +21662,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2666": {
-    "url": "https://www.animegg.org/series/cardcaptor-sakura-the-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/cBd3_94nNQ45jC9V66_gnQyBfq1Ilv5G/cardcaptor-sakura-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2732": {
     "url": "https://anikoto.net/watch/a-letter-to-momo-pja9c/ep-1",
@@ -21672,19 +21672,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "2851": {
-    "url": "https://monoschinos.st/anime/asura-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/EhMnCAy0ajzdkMypqp33Nj39CWWmfO9z/asura",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2836": {
-    "url": "https://monoschinos.st/anime/cardcaptor-sakura-movie-2-fuuin-sareta-card-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/alkIGfEhqmy6AUz__Xoj7iedQ7o854hg/cardcaptor-sakura-movie-fuinsareta-card",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2880": {
-    "url": "https://www.animegg.org/series/nerawareta-gakuen",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/nFgMg1S-yezwpXSfTddtXAj_tjKjE8dp/nerawareta-gakuen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2954": {
     "url": "https://anikoto.net/watch/fuse-memoirs-of-a-huntress-hypfo/ep-1",
@@ -21692,19 +21692,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3021": {
-    "url": "https://www.miruro.tv/watch/bD7hOBXSQBBo2krfrZNSZCi8D3DcIIVm/macross-fb7-listen-to-my-song",
+    "url": "https://www.miruro.tv/watch/QvweOe_31nr5B1ch8tOiOcRNpXwdVAB4/macross-fb7-listen-to-my-song",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "2976": {
-    "url": "https://www.animegg.org/series/starship-troopers-invasion",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/l4ai0Vl6JGRv6t_rVD6__8Go7aKU_zWE/starship-troopers-invasion",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "2974": {
-    "url": "https://www.animegg.org/series/aura-maryuuinkouga-saigo-no-tatakai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/xrxZ1M9v0fMsjwavrgA2utHVc10QvWf5/aura",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "3105": {
     "url": "https://anikoto.net/watch/expelled-from-paradise-6ooxn/ep-1",
@@ -21727,7 +21727,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3112": {
-    "url": "https://www.miruro.tv/watch/keKJXeAz1g9J9_OprmPdFkOJcywdfmBs/saintonii-san",
+    "url": "https://www.miruro.tv/watch/TOZaEhA09BI49EUSkKPerKjx2HTznk-C/saintonii-san",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21747,7 +21747,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3422": {
-    "url": "https://www.miruro.tv/watch/0m8p4Wbne-ULWEIrGsVsKzo7f07F5rcB/short-peace",
+    "url": "https://www.miruro.tv/watch/DGFLM9cWAYW6IhnhlrvRTsqjh5GprUhB/short-peace",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21762,9 +21762,9 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "3654": {
-    "url": "https://www.animegg.org/series/tezuka-osamu-no-buddha-akai-sabaku-yo-utsukushiku",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_6IxXJSpfoR_yxju4nAewDLoFpFE459v/tezuka-osamu-no-buddha-akai-sabaku-yo-utsukushiku",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "3773": {
     "url": "https://anikoto.net/watch/pripara-movie-mi-nna-no-akogare-let-s-goprix-paris-blg7m/ep-1",
@@ -21777,9 +21777,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3901": {
-    "url": "https://www.animegg.org/series/pripara-movie-mi-nna-atsumare-prism-tours",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ZosCys1A34OiPwb7s_AQKV1Czysp-XlZ/pripara-movie-minna-atsumare-prismtours",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "3907": {
     "url": "https://anikoto.net/watch/tobidasu-pripara-mi-nna-de-mezase-idolgrand-prix-7qeym/ep-1",
@@ -21787,12 +21787,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3897": {
-    "url": "https://www.miruro.tv/watch/Z8npTSqiYT99UQp1-KVs55mfxGjb0jWS/chibi-maruko-chan-movie-italia-kara-kita-shounen",
+    "url": "https://www.miruro.tv/watch/Gv9poKARiMJSCbhkx11wbVAv4sDMbYQ7/chibi-maruko-chan-movie-italia-kara-kita-shounen",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "3924": {
-    "url": "https://www.miruro.tv/watch/5b8Mg0fMqfcYjsyoO6Aw6ayDtI_l45fi/chibi-maruko-chan-watashi-no-suki-na-uta",
+    "url": "https://www.miruro.tv/watch/0CNRrwX_NLmwEI2qFh9PRVl_v5JUY45l/chibi-maruko-chan-watashi-no-suki-na-uta",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21807,19 +21807,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4201": {
-    "url": "https://www.animegg.org/series/kancolle-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/I3Ynhtj6EBdOFBSgvmS2b4bAPyBqoGi4/kancolle-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4205": {
-    "url": "https://www.miruro.tv/watch/tawF28g_QqsLCC7vK_gq-wwwcMZKDqoh/kaiketsu-zorori-zz-no-himitsu",
+    "url": "https://www.miruro.tv/watch/JDofJXNwy-uaSt7Hap5OKaQ2aLQOW_3O/kaiketsu-zorori-zz-no-himitsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "4208": {
-    "url": "https://www.animegg.org/series/prince-of-tennis-the-two-samurai-the-first-game",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/UeUORRoJTYiyZe9J2mM0y6l8BKspVKme/tennis-no-ouji-sama-futari-no-samurai-the-first-game",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4264": {
     "url": "https://anikoto.net/watch/ginga-kikoutai-majestic-prince-movie-kakusei-no-idenshi-hjd2i/ep-1",
@@ -21842,7 +21842,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4272": {
-    "url": "https://www.miruro.tv/watch/Ug9XNp-SXliLhbFrEcMIsIepjtVm8jZI/kaiketsu-zorori-uchuu-no-yuusha-tachi",
+    "url": "https://www.miruro.tv/watch/d6QySAYc8q4FJndFDLY_-bGZnfp5vDdT/kaiketsu-zorori-uchuu-no-yuusha-tachi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21852,9 +21852,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4284": {
-    "url": "https://www.animegg.org/series/zegapain-adp",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/ANIxZ2oRSWmHsqlYrusHuvIIDIYJa6ct/zegapain-adp",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4289": {
     "url": "https://anikoto.net/watch/dragon-ball-z-resurrection-f-f9nro/ep-1",
@@ -21862,17 +21862,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4332": {
-    "url": "https://www.miruro.tv/watch/yxO11j3EEFh5JLRq7Abp8Y6RrLY1yRov/tensai-bakavon-yomigaeru-flanders-no-inu",
+    "url": "https://www.miruro.tv/watch/6AqIfc1iKbT14LdM1cUNCROPMcpVFfz8/tensai-bakavon-yomigaeru-flanders-no-inu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "4382": {
-    "url": "https://monoschinos.st/anime/yowamushi-pedal-reride-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/ZiyPgHRPW9hhR8MVXwkMBLVoHbrj4DIB/yowamushi-pedal-reride",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4371": {
-    "url": "https://www.miruro.tv/watch/73d5ZBePbEyEaj53uTpD9m0TKEpnQiwr/meiji-tokyo-renka-yumihari-no-serenade",
+    "url": "https://www.miruro.tv/watch/_d-orpQnnFitNF66PrCCGzrqvKe36JJg/meiji-tokyo-renka-yumihari-no-serenade",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21887,9 +21887,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4444": {
-    "url": "https://monoschinos.st/anime/hunter-x-hunter-movie-2-the-last-mission-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/YrYC5ilPItpeUOBQ6_oi47Zf1OR4Hw7u/hunterhunter-the-last-mission",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4376": {
     "url": "https://anikoto.net/watch/saint-seiya-legend-of-sanctuary-zkp83/ep-1",
@@ -21907,7 +21907,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4453": {
-    "url": "https://www.miruro.tv/watch/64z1tKQH6SFv2NIB3Xi-wnb9vOtOyhpw/uchuu-kyoudai-0",
+    "url": "https://www.miruro.tv/watch/cl5yuumoIDhWApErtg-a9w5cyUohe57O/uchuu-kyoudai-0",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21932,7 +21932,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5080": {
-    "url": "https://www.miruro.tv/watch/AGdV4wp3zdvXRIsXVzEAP0d394fwL9rZ/spo-chan-taiketsu-youkai-daikessen",
+    "url": "https://www.miruro.tv/watch/tAIO8j4S0llcpagVLlfDehQPP3w41dUQ/spo-chan-taiketsu-youkai-daikessen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21967,7 +21967,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5618": {
-    "url": "https://www.miruro.tv/watch/xk1kdgUF_4VtZtaQqBVXJnO-ZUBEi_oS/kono-sekai-no-katasumi-ni",
+    "url": "https://www.miruro.tv/watch/5she4WNVe5BeSTJLoUVBBTlimNQl5rgM/kono-sekai-no-katasumi-ni",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21977,7 +21977,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5678": {
-    "url": "https://www.miruro.tv/watch/CDjybXzMgnXW-0lWiOUc44G3rDh-ZFlk/chocolate-underground-the-movie",
+    "url": "https://www.miruro.tv/watch/r75Nrx4DlVVbjqTaj66BWE7Qdvso1kkO/chocolate-underground-the-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -21987,14 +21987,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5703": {
-    "url": "https://www.miruro.tv/watch/VzU-jKqqSE_3JvY3WlruNmGGGnHiWoag/air-bound",
+    "url": "https://www.miruro.tv/watch/ZUuPnR--G8s9qWHkZfrPexCgY6QGGbW1/air-bound",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "5837": {
-    "url": "https://www.animegg.org/series/sacred-seven---shirogane-no-tsubasa",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/DuO6NbxPLHbC-cTTBy4ksnow7PMBnoPr/sacred-seven-shirogane-no-tsubasa",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5817": {
     "url": "https://anikoto.net/watch/a-silent-voice-fghla/ep-1",
@@ -22007,9 +22007,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5877": {
-    "url": "https://www.animegg.org/series/zutto-mae-kara-suki-deshita-kokuhaku-jikkou-iinkai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/DpHMuZlIn1gpzJMxZ4YI_OlnMCxKts7c/ive-always-liked-you",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5923": {
     "url": "https://anikoto.net/watch/your-name-mwvi0/ep-1",
@@ -22022,14 +22022,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5975": {
-    "url": "https://www.miruro.tv/watch/Xre1nO5wzaa1Q0fwdz03qtuZjOzesrdh/tokimeki-restaurant-miracle6",
+    "url": "https://www.miruro.tv/watch/P9dZ8o_x_r8LSIzG3m5o4JT-k8hL62yl/tokimeki-restaurant-miracle6",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "6021": {
-    "url": "https://www.animegg.org/series/love-live-sunshine-the-school-idol-movie-over-the-rainbow",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/WWwRWFSiqK6qo0XvFl0z03W_gz6cDpgy/love-live-sunshine-the-school-idol-movie-over-the-rainbow",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5967": {
     "url": "https://anikoto.net/watch/pop-in-q-lg503/ep-1",
@@ -22037,14 +22037,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6096": {
-    "url": "https://www.animegg.org/series/suki-ni-naru-sono-shunkan-wo-kokuhaku-jikkou-iinkai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Rx-qivgoujp0nReI-BnRpFFtUTxrTJUw/the-moment-you-fall-in-love",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6114": {
-    "url": "https://www.animegg.org/series/oushitsu-kyoushi-heine-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/KYq6zOzVEvNVhY5wMhMsTQT-Zpyb7O6d/the-royal-tutor-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6118": {
     "url": "https://anikoto.net/watch/napping-princess-nmzuq/ep-1",
@@ -22052,7 +22052,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6138": {
-    "url": "https://www.miruro.tv/watch/HpsXB7vun38LP0gRoMjBvArezXafD_KI/kono-sekai-no-sara-ni-ikutsumono-katasumi-ni",
+    "url": "https://www.miruro.tv/watch/bo4FI86bUPylCWMpwkOMARVfe_wY_8cw/kono-sekai-no-sara-ni-ikutsumono-katasumi-ni",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22062,17 +22062,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6121": {
-    "url": "https://monoschinos.st/anime/stand-by-me-doraemon-2-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/BWSfENrZge38PPfdtP-9WNoxXlFjU-R0/stand-by-me-doraemon-2",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6175": {
-    "url": "https://www.miruro.tv/watch/5TLkbNE6_nmmuPOyDRltImPuh4vrhYCX/crayon-shin-chan-bakumori-kung-fu-boys-ramen-tairan",
+    "url": "https://www.miruro.tv/watch/0rs_YLBuYka4Hf1Ho7iPYGRmYik5sC6j/crayon-shin-chan-bakumori-kung-fu-boys-ramen-tairan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "6147": {
-    "url": "https://www.miruro.tv/watch/4bOcGyQn6OKW0Yj0ClSg1hqvSxtJn5o_/doraemon-nobita-no-getsumen-tansa-ki",
+    "url": "https://www.miruro.tv/watch/WyvOu8PXNup7e8x4Nnff4AsbF5kMgHOn/doraemon-nobita-no-getsumen-tansa-ki",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22082,7 +22082,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6218": {
-    "url": "https://www.miruro.tv/watch/t7DaX3QRYKUe1Ea6SLP4YbY5JqJXI62I/pripara-kiratto-prichan-kira-kira-memorial-live",
+    "url": "https://www.miruro.tv/watch/XmHQnRWmKth2SBWk_Ud1G7B-Ty2qyoHf/pripara-kiratto-prichan-kira-kira-memorial-live",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22092,17 +22092,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6211": {
-    "url": "https://www.miruro.tv/watch/fWrWtD_3O65a-ZkhS23gD5ZjW92eVK5v/aikatsu-music-award-minna-de-shou-wo-moraima-show",
+    "url": "https://www.miruro.tv/watch/ShZL9EvG87yEM1O3RZpXqp9a6Zo6Zn1A/aikatsu-music-award-minna-de-shou-wo-moraima-show",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "6179": {
-    "url": "https://www.animegg.org/series/macross-movie-gekijou-no-walk-re",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/-JFnJmhhw_0iT_5nECXJCUAa5V4gPOn4/macross-gekijou-no-walkure",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6239": {
-    "url": "https://www.miruro.tv/watch/pSv_WZVI0DAfFpm01BueDI--Pgk4GTp2/tomica-hyper-rescue-drive-head-kidou-kyuukyuu-keisatsu-movie",
+    "url": "https://www.miruro.tv/watch/-DwAEv0b108wt4RdkYyyK_-y6gSZeOqn/tomica-hyper-rescue-drive-head-kidou-kyuukyuu-keisatsu-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22117,17 +22117,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6246": {
-    "url": "https://www.miruro.tv/watch/abUZv7fCpGCHJ5f_KTkIfHrG5X4W_lyW/chieri-to-cherry",
+    "url": "https://www.miruro.tv/watch/3C4kRjCSXfKWA5pEHJWadIQkKTPVxEWO/chieri-to-cherry",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "6278": {
-    "url": "https://www.miruro.tv/watch/lop2CGHTKxYZX0-0O_pZ79zlcGUsOBYs/cyborg009-call-of-justice-1",
+    "url": "https://www.miruro.tv/watch/3qY8L6sejt6sxoYyXjEk7_e9p-Lx9c7A/cyborg009-call-of-justice-1",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "6322": {
-    "url": "https://www.miruro.tv/watch/VDBv6vdyPxMFc4aUyl2h4JKfNUi-Jpti/ao-oni-the-animation",
+    "url": "https://www.miruro.tv/watch/FICB-O70KsKNkJlCGiUGefZMjxwCRQyF/ao-oni-the-animation",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22142,12 +22142,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6520": {
-    "url": "https://www.miruro.tv/watch/BvSNyilVgQu-ooibzSufAWBUK8jTmGNq/koisuru-shirokuma",
+    "url": "https://www.miruro.tv/watch/-8J0_NhpwnfZizlmUkonV1_1ZmVS1FnZ/koisuru-shirokuma",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "6512": {
-    "url": "https://www.miruro.tv/watch/wsixwkcYAQO8STgZudCW6Y95RGvvOlSk/go-chan-moko-to-chinjuu-no-mori-no-nakama-tachi",
+    "url": "https://www.miruro.tv/watch/YsHYcV_PF4FJuIO3V-bqNtYiCpNrNklG/go-chan-moko-to-chinjuu-no-mori-no-nakama-tachi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22167,7 +22167,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6540": {
-    "url": "https://www.miruro.tv/watch/6Ss6ZmaIw25Gswk9r0F4jnwTJD7bsBNY/go-chan-moko-to-koori-no-ue-no-yakusoku",
+    "url": "https://www.miruro.tv/watch/8o_KB9C3w45DQBYF6_Kr4hAI-w-i3Qvd/go-chan-moko-to-koori-no-ue-no-yakusoku",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22177,9 +22177,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6880": {
-    "url": "https://www.animegg.org/series/liz-to-aoi-tori",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Dg1_Mj_rwf-QR6K9yjp-F33-vZe7Z7Wp/liz-to-aoi-tori",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6767": {
     "url": "https://anikoto.net/watch/maquia-when-the-promised-flower-blooms-hrasg/ep-1",
@@ -22212,7 +22212,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7111": {
-    "url": "https://www.miruro.tv/watch/7rZul89gBTsPxuhqY0L_86Y7OcTh_qzG/precure-super-stars",
+    "url": "https://www.miruro.tv/watch/hEo2c9PdOqkoxsKYwYLdChfnMcw8Bs5z/precure-super-stars",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22247,9 +22247,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7358": {
-    "url": "https://monoschinos.st/anime/kaijuu-no-kodomo-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/H5Mp9MRWC0ViQXdV-Kgn8lInAOT04R1n/kaijuu-no-kodomo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7460": {
     "url": "https://anikoto.net/watch/dragon-ball-z-battle-of-gods-f1n4v/ep-1",
@@ -22267,24 +22267,24 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7530": {
-    "url": "https://www.miruro.tv/watch/_o0JZKupyw3HSle7YfcnoF-vfGV8eFEy/ride-your-wave",
+    "url": "https://www.miruro.tv/watch/8RXHx1bcy2bIe1cxuXoyA-grTffKsT3S/ride-your-wave",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "7738": {
-    "url": "https://animeheaven.me/anime.php?xssir",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/aFRsY-1gudG6FyjyOhpouKLmRR-hYWer/tenki-no-ko",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7759": {
-    "url": "https://www.animegg.org/series/kyochuu-rettou-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/7hOLH67luHLuYQTBAlVkAarlYnXMp5-3/kyochuu-rettou-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7775": {
-    "url": "https://www.animegg.org/series/birthday-wonderland",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/xRoFBfPheNutKT-tUxEKR5XwPALv0qrA/the-wonderland",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "7842": {
     "url": "https://anikoto.net/watch/words-bubble-up-like-soda-pop-2dwic/ep-1",
@@ -22317,7 +22317,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "7975": {
-    "url": "https://www.miruro.tv/watch/CMAbBiGnIlDXOoKD6hW5TIa8jx52rzlk/human-lost",
+    "url": "https://www.miruro.tv/watch/Hn9lYZdhgBjj2qW2aG4vFISfbah6a6nz/human-lost",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22327,14 +22327,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8011": {
-    "url": "https://www.miruro.tv/watch/Ua2LT_VSbHrUgy2JaH-4bARI-gXCtS3C/the-deer-king",
+    "url": "https://www.miruro.tv/watch/wXRCz_M7G470cGj5XDd8MSwFTpCBAM4s/the-deer-king",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "8096": {
-    "url": "https://monoschinos.st/anime/hello-world-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/1JlRSg3ohD6Nw58SigAxFzwymUMh0Val/hello-world",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "8116": {
     "url": "https://anikoto.net/watch/mobile-suit-gundam-f91-umuts/ep-1",
@@ -22342,14 +22342,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8223": {
-    "url": "https://www.miruro.tv/watch/7o0V_2ZuKh1gGgIvlgRduJ-LdW_LuEtg/walking-meat",
+    "url": "https://www.miruro.tv/watch/lDEgqrcSAcKb_YR6B6opvkFTtlPN1a1V/walking-meat",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "8113": {
-    "url": "https://www.animegg.org/series/omoi-omoware-furi-furare",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/hLcS50ggAHbhVubrp2BDGGeTs-bBDunj/omoi-omoware-furi-furare",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "8858": {
     "url": "https://anikoto.net/watch/inu-ou-ixbwf/ep-1",
@@ -22362,9 +22362,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8951": {
-    "url": "https://www.animegg.org/series/grave-of-the-fireflies",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/S2fHkj-_kYXuMH6s0S2S_UKEiYetckXJ/hotaru-no-haka",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9122": {
     "url": "https://anikoto.net/watch/umibe-no-etranger-mfcuq/ep-1",
@@ -22372,12 +22372,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9146": {
-    "url": "https://www.miruro.tv/watch/eRPas7gfgevhioJjTuDALkM9TOE0NBBz/santa-company-christmas-no-himitsu",
+    "url": "https://www.miruro.tv/watch/5gOTHO-Ma2Dc2lT4XJjvKTB85P4E2G9i/santa-company-christmas-no-himitsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9164": {
-    "url": "https://www.miruro.tv/watch/8q2cn17pJbeysP-TXfjX7_zpU3Vn49p9/deemo-memorial-keys",
+    "url": "https://www.miruro.tv/watch/3eO2NFOQ4nuxcaBEH_2RRZEQYVG35dkK/deemo-memorial-keys",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22397,22 +22397,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9438": {
-    "url": "https://www.miruro.tv/watch/0Td-ILlp1gfTCKr9VRzczBoY2_wQZnln/rebecca",
+    "url": "https://www.miruro.tv/watch/O7oSaJavjAco9O5j9wMPriBGm1dVqJ-l/rebecca",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9437": {
-    "url": "https://www.miruro.tv/watch/xBGvGwpGykspXhtYJZuSyLSujwnL-K-F/ometeotlhero",
+    "url": "https://www.miruro.tv/watch/4TZDA48TCt9xtsjDIZbjW2W2JcIRHzjO/ometeotlhero",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9439": {
-    "url": "https://www.miruro.tv/watch/_tcqNJocqG4HmMEHu04xGNkD_fk_nPX8/michiru-rescue",
+    "url": "https://www.miruro.tv/watch/jLsOXob2JtnDgIQwr-dD6SFBdc8zo8eP/michiru-rescue",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "9451": {
-    "url": "https://www.miruro.tv/watch/S2uiOmJRB3yfKdPJfumo0i7U6TOompuT/the-journey",
+    "url": "https://www.miruro.tv/watch/cGMVWKUsQ_ZIeZboz1T6wKWIlDfU93SE/the-journey",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22432,34 +22432,34 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "9968": {
-    "url": "https://www.miruro.tv/watch/MkWgavph4WwzE9yFGTeslG8A0a81kke9/ouritsu-uchuugun-honneamise-no-tsubasa",
+    "url": "https://www.miruro.tv/watch/eZhSf0vFtLcCHlXMfHnhoNnhcARr6YtZ/ouritsu-uchuugun-honneamise-no-tsubasa",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "10083": {
-    "url": "https://www.miruro.tv/watch/5PiI2wk_hFyNSflFP6WOou6jJ4e5eS3Y/the-lord-of-the-rings-rohan-no-tatakai",
+    "url": "https://www.miruro.tv/watch/QHjzs2UHM28apCpFafkfSqCbOIAkPP5c/the-lord-of-the-rings-rohan-no-tatakai",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "10011": {
-    "url": "https://www.animegg.org/series/resident-evil-vendetta",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1YJT0WAON2bRrCDf98f93fUWv0WBTwIK/biohazard-vendetta",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10014": {
-    "url": "https://www.miruro.tv/watch/4BJlbwbrgxbQFS7uP4exbZfBHvGNVEBX/biohazard-degeneration",
+    "url": "https://www.miruro.tv/watch/aADmHva1_8uRM-tbaN2n9-y92FsqZQ7T/biohazard-degeneration",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "10012": {
-    "url": "https://www.animegg.org/series/resident-evil-damnation",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/EpImMclSFT99BOi6x2slp5BXwVWe1L4y/biohazard-damnation",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10292": {
-    "url": "https://www.animegg.org/series/akihabara-dennou-gumi-2011-nen-no-natsuyasumi",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/7pEhzxlwljpQdp6c96Uapjew10ODss-o/akihabara-dennou-gumi-2011-nen-no-natsuyasumi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "10515": {
     "url": "https://anikoto.net/watch/yes-ka-no-ka-hanbunka-ljwda/ep-1",
@@ -22512,7 +22512,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11719": {
-    "url": "https://www.miruro.tv/watch/ktouaRNWIJOMeEm10AA92HgSVqcoBmL6/100-nichikan-ikita-wani",
+    "url": "https://www.miruro.tv/watch/3R1wgl8lin3j2R4lBlnUUkIU2Rn7yTqD/100-nichikan-ikita-wani",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22552,17 +22552,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12069": {
-    "url": "https://www.miruro.tv/watch/CL6SAAn_bhd510r8A8kme6ybY7v7Krec/riku-wa-yowakunai",
+    "url": "https://www.miruro.tv/watch/7P_binnWW8DyS7R3DRHamZXFjKxCFrD3/riku-wa-yowakunai",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12158": {
-    "url": "https://monoschinos.st/anime/mobile-suit-gundam-movie-i-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/CM5i0gTwxezhpU2jFJ2R7LozHbCeTkJn/mobile-suit-gundam-i",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12133": {
-    "url": "https://www.miruro.tv/watch/zIy14_RkuCKFuIMg4_eD23G8gXaejeYX/zannen-na-ikimono-jiten-the-movie",
+    "url": "https://www.miruro.tv/watch/IpoYB91V-ZOgoKrwb7Wg_4fB6ohcE2RB/zannen-na-ikimono-jiten-the-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22577,9 +22577,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12496": {
-    "url": "https://animeheaven.me/anime.php?9z70b",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/2ZNB6DU9KHMZHXvpKjcPONvJPyzeWPwE/kurayukaba",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12577": {
     "url": "https://anikoto.net/watch/goodbye-don-glees-lmbtk/ep-1",
@@ -22607,7 +22607,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12682": {
-    "url": "https://www.miruro.tv/watch/Ri4ep43eFGnXMObO3N1hdbPQrdU54FUq/tomorrows-leaves",
+    "url": "https://www.miruro.tv/watch/4eSsLZ7C8lv_fAtJ1f_yvGCGpqF-fyjm/tomorrows-leaves",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22617,7 +22617,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12703": {
-    "url": "https://www.miruro.tv/watch/NSNgIuviPm6sgLoH4XbBWex-GC8iIF2J/digimon-our-war-game",
+    "url": "https://www.miruro.tv/watch/hxKadlX838lzS37qH-WknlIwI4LtD1M7/digimon-our-war-game",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22627,9 +22627,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12721": {
-    "url": "https://www.animegg.org/series/steamboy",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_GLINSNUWjM3iqapYtPIDPuRrJn2PCp-/steamboy",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12709": {
     "url": "https://anikoto.net/watch/evangelion-1-0-you-are-not-alone-kkzdm/ep-1",
@@ -22652,9 +22652,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12731": {
-    "url": "https://www.animegg.org/series/tokyo-godfathers",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/MpoBybTD31mCuS7_g8vRp4gHFpyLd-hT/tokyo-godfathers",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12732": {
     "url": "https://anikoto.net/watch/paprika-gdodr/ep-1",
@@ -22672,7 +22672,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12768": {
-    "url": "https://www.miruro.tv/watch/thUZ2kunqArEkIH5m9T5KGgb5h0wwZWi/spooky-kitaro-the-obake-nighter",
+    "url": "https://www.miruro.tv/watch/nGCChk3L3fhstHEUJDkQlG4cIQ7ikZ9k/spooky-kitaro-the-obake-nighter",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22697,14 +22697,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12774": {
-    "url": "https://www.miruro.tv/watch/l-jGGKo3HOY2w_85cXfmiwzStvWk4JXR/sergeant-keroro-the-super-duper-movie-4",
+    "url": "https://www.miruro.tv/watch/F-NEx3FYf5m9Z7QaMSCWOzPrnjijjZhF/sergeant-keroro-the-super-duper-movie-4",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12771": {
-    "url": "https://www.animegg.org/series/keroro-gunsou-movie-1",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/dXZC68vdYKrGM5r5SkcXLC0spyP33fo8/keroro-gunsou-movie-1",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12776": {
     "url": "https://anikoto.net/watch/aria-the-crepuscolo-v4eye/ep-1",
@@ -22712,7 +22712,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12775": {
-    "url": "https://www.miruro.tv/watch/emWteZq68IXV0J2CVF3tPbKH8_x97jAn/sergeant-keroro-the-super-duper-movie-5",
+    "url": "https://www.miruro.tv/watch/n7FImsAmFra58VRC64IunV2nrdb_KNY9/sergeant-keroro-the-super-duper-movie-5",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22727,9 +22727,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12838": {
-    "url": "https://www.animegg.org/series/girls-und-panzer-das-finale",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/mGOb3tkfHrWBQMN5Xv1ScZEh8vczPPzf/girls-und-panzer-saishuushou-1",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12848": {
     "url": "https://anikoto.net/watch/revolutionary-girl-utena-the-adolescence-of-utena-cw6oj/ep-1",
@@ -22737,14 +22737,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12873": {
-    "url": "https://monoschinos.st/anime/tamako-love-story-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/lUf6k8yApVF7UzBQY61CCV40JGCkBluj/tamako-love-story",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12922": {
-    "url": "https://www.animegg.org/series/hamtaro-movie-1-ham-ham-land-big-adventure",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/fIeuUausTAgc6QWHUCfOYpCnIVtwn2cx/hamtaro-movie-1-ham-ham-land-big-adventure",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12910": {
     "url": "https://anikoto.net/watch/summer-days-with-coo-znrxh/ep-1",
@@ -22767,17 +22767,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12923": {
-    "url": "https://www.animegg.org/series/hamtaro-movie-2-ham-ham-ham-maboroshi-no-princess",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_iRAoIAARp7DRMnYyZp7cEXVoykXfkut/tottoko-hamtaro-movie-2-ham-ham-hamjya-maboroshi-no-princess",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "12925": {
-    "url": "https://www.miruro.tv/watch/DrBia-__SUa_ieZz98FKgpzr3bYpGeMA/hamtaro-the-mysterious-ogres-picture-book-tower",
+    "url": "https://www.miruro.tv/watch/lhbARVVD9p6vOLXdBEF784XlbhZskSTY/hamtaro-the-mysterious-ogres-picture-book-tower",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12924": {
-    "url": "https://www.miruro.tv/watch/OHU2FwZXDcjZFaMhXjyIb6Lep0wzummq/ham-ham-grand-prix-the-miracle-of-aurora-valley-ribon-chans-close-call",
+    "url": "https://www.miruro.tv/watch/9k4qVZdmaU7RvA2X-f9hjqsd1G1iwHSY/ham-ham-grand-prix-the-miracle-of-aurora-valley-ribon-chans-close-call",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22787,9 +22787,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13297": {
-    "url": "https://monoschinos.st/anime/blue-thermal-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/GWNJ_aENJYQWxfw6NHCEzjqnf9VY5I4P/blue-thermal",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13402": {
     "url": "https://anikoto.net/watch/jujutsu-kaisen-0-movie-lmsg3/ep-1",
@@ -22807,7 +22807,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13310": {
-    "url": "https://www.miruro.tv/watch/w2asDNNWQuPYIE6WIvIBb2nNfswJcokN/kimetsu-no-yaiba-mugen-ressha-hen",
+    "url": "https://www.miruro.tv/watch/42ibPG3ZdmOCaQHfGn3sdOLx8N0MgmGZ/kimetsu-no-yaiba-mugen-ressha-hen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22872,9 +22872,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "13608": {
-    "url": "https://www.animegg.org/series/sword-art-online-progressive-movie---kuraki-yuuyami-no-scherzo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/XQ6UrNSTT6cnfVZht5QxMYMLbSI8CEcF/sword-art-online-progressive-kuraki-yuuyami-no-scherzo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13711": {
     "url": "https://anikoto.net/watch/aria-the-benedizione-1f4zi/ep-1",
@@ -22917,7 +22917,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14020": {
-    "url": "https://www.miruro.tv/watch/tcP8J5rzbCELn5XQb2rAfkrljBL0Dzzh/oshiri-tantei-shiriarty",
+    "url": "https://www.miruro.tv/watch/Ob_J4EZ5nIItMmAt1vAt7L8ztMSfdcFA/oshiri-tantei-shiriarty",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22937,7 +22937,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14075": {
-    "url": "https://www.miruro.tv/watch/ou6QvKBLOWWyAZKkVbFsVI6Td28MhJos/shimajirou-to-kirakira-oukoku-no-ouji-sama",
+    "url": "https://www.miruro.tv/watch/qvnfr6E-d5Eue0wssgVG1HvDeguSe-tZ/shimajirou-to-kirakira-oukoku-no-ouji-sama",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -22962,19 +22962,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14107": {
-    "url": "https://www.miruro.tv/watch/gi7Isek5yVtuCCfgYLObpt0X3vSw8zNB/galaxy-express-999-movie",
+    "url": "https://www.miruro.tv/watch/pQYn72Jk6VZFgQJ34kO5qA5Xmi7vGGal/galaxy-express-999-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "14130": {
-    "url": "https://www.animegg.org/series/ojamajo-doremi-sharp-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/NWwm2Rmn1bPbJOUcPD-9nHJM7X9TDLKS/ojamajo-doremi-sharp-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14131": {
-    "url": "https://www.animegg.org/series/motto-ojamajo-doremi-secret-of-the-frog-stone",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/kVrtqAlyo2aoXoXvkIb2Ynq-7wOLj4SZ/motto-ojamajo-doremi-kaeru-ishi-no-himitsu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14124": {
     "url": "https://anikoto.net/watch/mr-osomatsu-the-movie-6ybxn/ep-1",
@@ -22982,19 +22982,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14126": {
-    "url": "https://monoschinos.st/anime/kuroshitsuji-movie-book-of-the-atlantic-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/SUb0cr4klZ1PN68Btzs83iCr_LeVtzGP/black-butler-book-of-the-atlantic",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14139": {
-    "url": "https://www.miruro.tv/watch/BHFPCt1VpfAHBKLkkhyv7CIgZjbLkwX5/star-blazers-chronicle-2202",
+    "url": "https://www.miruro.tv/watch/5q9ACyO83yv4sXj6XMt2MxgbYJHjQAba/star-blazers-chronicle-2202",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "14136": {
-    "url": "https://www.animegg.org/series/uchuu-senkan-yamato-2199-tsuioku-no-koukai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/xtwCsgG9rmh4GJRhx3bzp8croGv_OpCk/uchuu-senkan-yamato-2199-tsuioku-no-koukai",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14137": {
     "url": "https://anikoto.net/watch/uchuu-senkan-yamato-2199-hoshimeguru-hakobune-svest/ep-1",
@@ -23027,12 +23027,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14188": {
-    "url": "https://www.animegg.org/series/cowboy-bebop-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/m8p35VytF2bxKUWVcL8xJ9X3Voy8jM-G/cowboy-bebop-tengoku-no-tobira",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14227": {
-    "url": "https://www.miruro.tv/watch/HNOPfyxVkrHBsP8suPtS64OPbxf5bsRT/sore-ike-anpanman-dororin-to-bakeru-carnival",
+    "url": "https://www.miruro.tv/watch/MHuptnHJqUzk4slA0rY4ssHQZds1mXa4/sore-ike-anpanman-dororin-to-bakeru-carnival",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23062,9 +23062,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14393": {
-    "url": "https://www.animegg.org/series/saenai-heroine-no-sodatekata-fine",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/2hloHK6Ffa_j4vhPpfcEpqKUfzJoJCln/saekano-the-movie-finale",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14375": {
     "url": "https://anikoto.net/watch/blue-exorcist-the-movie-nw4l5/ep-1",
@@ -23117,7 +23117,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14622": {
-    "url": "https://www.miruro.tv/watch/3f4_Tu6-rr_DSQUPKsa1zBYK6ULNnp-I/idol-bu-show-movie",
+    "url": "https://www.miruro.tv/watch/Q8-cf1YfVdOPjmQ_s8iz4WYxFG7lH0x7/idol-bu-show-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23142,12 +23142,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14625": {
-    "url": "https://www.animegg.org/series/fullmetal-alchemist-the-conqueror-of-shamballa",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/oBuYwHpvhfmiICvGI-ciAtHmXdnSQ8ti/hagane-no-renkinjutsushi-shamballa-wo-yuku-mono",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14767": {
-    "url": "https://www.miruro.tv/watch/f3EiVY3FZClM8G5QvfE84e1mRHG7sdtV/osomatsu-san-hipipo-zoku-to-kagayaku-kajitsu",
+    "url": "https://www.miruro.tv/watch/qmq38fvrB4KIsVBC08Ywa9h4uDw8e802/osomatsu-san-hipipo-zoku-to-kagayaku-kajitsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23157,14 +23157,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14829": {
-    "url": "https://www.miruro.tv/watch/PcooZAlZd-IdGXIHBEmK3TZsOl-SyM3T/free-road-to-the-world-yume",
+    "url": "https://www.miruro.tv/watch/PvpcGdtblqeqfc9VUEmeWCuqqHbU0rhf/free-road-to-the-world-yume",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "14827": {
-    "url": "https://monoschinos.st/anime/free-movie-2-timeless-medley-yakusoku-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/trEuzzc8w_hFE8jmsfvJKzCOWz9vO1dG/free-timeless-medley-yakusoku",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14821": {
     "url": "https://anikoto.net/watch/free-movie-4-the-final-stroke-zenpen-7vgkj/ep-1",
@@ -23172,9 +23172,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14826": {
-    "url": "https://monoschinos.st/anime/free-movie-1-timeless-medley-kizuna-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/ykhbUeaL67fw_vu7X69UdrGjbO4AwcCX/free-timeless-medley-kizuna",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14929": {
     "url": "https://anikoto.net/watch/given-movie-pkbf6/ep-1",
@@ -23197,17 +23197,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15015": {
-    "url": "https://www.miruro.tv/watch/xZakhjS3--e0BmTMZAxpm0Zac_oVWoWB/kino-no-tabi-the-beautiful-world-byouki-no-kuni-for-you",
+    "url": "https://www.miruro.tv/watch/TR78NMMHPsUxVTX1BmGy8USbvl0a2w1N/kino-no-tabi-the-beautiful-world-byouki-no-kuni-for-you",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15024": {
-    "url": "https://www.miruro.tv/watch/SmjOEkX-7E30GEyhD6KALCWuWnYrUtNP/the-ideon-be-invoked",
+    "url": "https://www.miruro.tv/watch/WwMEIJ60ribxrANTPVNMyBfh1rfkBqzt/the-ideon-be-invoked",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15023": {
-    "url": "https://www.miruro.tv/watch/SrjQ52LdOX3kbqv04zevqLbPO78toMfu/the-ideon-a-contact",
+    "url": "https://www.miruro.tv/watch/gHK-82dqqtKAUgMGqmgWAeXQiznbHtV_/the-ideon-a-contact",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23217,24 +23217,24 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15031": {
-    "url": "https://www.miruro.tv/watch/Ama-dAXa9hk8omqAIFX4AzsEwyYjc7Nv/city-hunter-angel-dust",
+    "url": "https://www.miruro.tv/watch/D1Mwcn2UAB2IFv7E0dASuImArLhnldoy/city-hunter-angel-dust",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15057": {
-    "url": "https://www.animegg.org/series/kyoukai-no-kanata-movie-ill-be-here---kako-hen",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/vgfHNCa1EQWqIukowh7XEi-SOZ_MLV0L/beyond-the-boundary-ill-be-here-past",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15032": {
-    "url": "https://www.miruro.tv/watch/ovIskCitDF1iNX_21uA-xyD-sYUmdAvo/aikatsu-planet-movie",
+    "url": "https://www.miruro.tv/watch/2ebZ6_SkuycAjKCjuK0m0aF7vCGzyUp0/aikatsu-planet-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15070": {
-    "url": "https://www.animegg.org/series/ano-hi-mita-hana-no-namae-wo-bokutachi-wa-mada-shiranai-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/vo8wL8Vn0haTncDNeJKIDTwdioC5dvg9/anohana-the-movie-the-flower-we-saw-that-day",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15064": {
     "url": "https://anikoto.net/watch/the-disappearance-of-haruhi-suzumiya-jnatx/ep-1",
@@ -23257,7 +23257,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15126": {
-    "url": "https://www.miruro.tv/watch/kzm7KaMdEam9Vy8j97uI0YuqONLHz0Xh/kaiketsu-zorori-lalala-star-tanjou",
+    "url": "https://www.miruro.tv/watch/f1ds70ZSj_VhRE2PH_EqZniG7noxo6B7/kaiketsu-zorori-lalala-star-tanjou",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23282,9 +23282,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15266": {
-    "url": "https://www.animegg.org/series/kakushigoto-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/jcvmdqq6AnZ5SzaVNvZQRhU_JKePdy21/kakushigoto-theatrical-edition",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15234": {
     "url": "https://anikoto.net/watch/uta-noprince-sama-maji-love-kingdom-movie-xrxsk/ep-1",
@@ -23317,7 +23317,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15323": {
-    "url": "https://www.miruro.tv/watch/lqpFsjOi7ttyon7GY6irGUNaz9h0RvWx/precure-all-stars-dx-minna-tomodachikiseki-no-zenin-daishuugou",
+    "url": "https://www.miruro.tv/watch/pKHzDah0_N_98BKqFFqZNeWG8Ekl9GoV/precure-all-stars-dx-minna-tomodachikiseki-no-zenin-daishuugou",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23327,7 +23327,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15325": {
-    "url": "https://www.miruro.tv/watch/-O5KEKRodUXrWkIciB4eoitC-I7aBi60/precure-all-stars-dx2-kibou-no-hikarirainbow-jewel-wo-mamore",
+    "url": "https://www.miruro.tv/watch/eoheoDEuNNAdPuLwDCoXjAIKTjmhrzfH/precure-all-stars-dx2-kibou-no-hikarirainbow-jewel-wo-mamore",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23337,12 +23337,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15331": {
-    "url": "https://www.animegg.org/series/smile-precure-movie-ehon-no-naka-wa-minna-chiguhagu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/KP4VyI8sS_NyVVFexhd6HLZfL4lJaGOb/smile-precure-ehon-no-naka-wa-minna-chiguhagu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15333": {
-    "url": "https://www.miruro.tv/watch/4pfqY4AuYTGvzNxmMDubu4C5YomLC800/dokidoki-precure-mana-kekkon-mirai-ni-tsunagu-kibou-no-dress",
+    "url": "https://www.miruro.tv/watch/nUo5fj-SIVRTWWfwjypTnSRt6bUncVDW/dokidoki-precure-mana-kekkon-mirai-ni-tsunagu-kibou-no-dress",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23352,12 +23352,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15329": {
-    "url": "https://www.animegg.org/series/suite-precure-movie-torimodose-kokoro-ga-tsunaku-kiseki-no-melody",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/nz9HbwUF2V6FOdOa-57pG3Fk8m84v9O-/suite-precure-torimodose-kokoro-ga-tsunagu-kiseki-no-melody",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15334": {
-    "url": "https://www.miruro.tv/watch/6a_J7n9cWqan8FEhrwoWtOiTbx1SdLrp/precure-all-stars-new-stage-3-eien-no-tomodachi",
+    "url": "https://www.miruro.tv/watch/FmYM41MNkgxJyOVIaNZ519BPht_x-Gr_/precure-all-stars-new-stage-3-eien-no-tomodachi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23367,22 +23367,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15340": {
-    "url": "https://www.animegg.org/series/precure-all-stars-movie-minna-de-utau-kiseki-no-mahou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/kPvaZ5iAL0J4jtZ2dJT-UAS_-Avc2bRL/precure-all-stars-minna-de-utau-kiseki-no-mahou",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15338": {
-    "url": "https://www.animegg.org/series/precure-all-stars-movie-haru-no-carnival",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Sroeu1ul3FyiHap9P_hvpN4jb6EQdVgh/precure-all-stars-haru-no-carnival",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15341": {
-    "url": "https://www.animegg.org/series/argonavis-movie-axia",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/0qfoSzBi3FUADSike71BYRcMw0AYG2Py/argonavis-axia",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15356": {
-    "url": "https://www.miruro.tv/watch/VX8HwAcv5l64JlkP5yG-2gz7kilCvDT5/precure-dream-stars",
+    "url": "https://www.miruro.tv/watch/-0zymWLk91PLpMf8vaV9rZdCveCOqZ6D/precure-dream-stars",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23392,14 +23392,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15358": {
-    "url": "https://monoschinos.st/anime/precure-miracle-universe-movie-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/3SX042hXbSkUJSiF4L80sDNtpJzRlvtN/precure-miracle-universe",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15359": {
-    "url": "https://monoschinos.st/anime/startwinkle-precure-hoshi-no-uta-ni-omoi-wo-komete-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/FMN2XLMoUGEwUqSgjLxTavViwECyb76T/startwinkle-precure-hoshi-no-uta-ni-omoi-wo-komete",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15357": {
     "url": "https://anikoto.net/watch/kirakiraprecure-a-la-mode-movie-paritto-omoide-no-mille-feuille-uez42/ep-1",
@@ -23407,12 +23407,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15361": {
-    "url": "https://www.miruro.tv/watch/me0GHJiG1g_sX6naj5XnpXcrRMLNVZ5I/healin-goodprecure-yume-no-machi-de-kyun-tto-gogo-dai-henshin",
+    "url": "https://www.miruro.tv/watch/22d9v5HGilw6SeEonLiwtojCvuG6J3CZ/healin-goodprecure-yume-no-machi-de-kyun-tto-gogo-dai-henshin",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15360": {
-    "url": "https://www.miruro.tv/watch/c5k_3Ggl_8cQJ8aV9zDkdJrid_ESp0xA/precure-miracle-leap-minna-to-no-fushigi-na-ichinichi",
+    "url": "https://www.miruro.tv/watch/FDfWANA6aZq1HdXftLBQr0N2-WVPAUp2/precure-miracle-leap-minna-to-no-fushigi-na-ichinichi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23427,9 +23427,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15368": {
-    "url": "https://www.animegg.org/series/naruto-shippuuden-movie-6---road-to-ninja",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/EaHm8Bru5EfhHQhMLioQOgBULNIhAZsQ/road-to-ninja-naruto-the-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15404": {
     "url": "https://anikoto.net/watch/little-witch-academia-the-movie-2-the-enchanted-parade-pfk6z/ep-1",
@@ -23442,27 +23442,27 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15446": {
-    "url": "https://www.miruro.tv/watch/cFGA1ekJWUJtZnD0LrWk-4-AeC66sWsE/youkai-watch-shadowside-oni-ou-no-fukkatsu",
+    "url": "https://www.miruro.tv/watch/49rhs7H4W4-nQIMdGYwH51k3BJc5jt4r/youkai-watch-shadowside-oni-ou-no-fukkatsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15447": {
-    "url": "https://www.miruro.tv/watch/RKLnZ-18H_Z6VFVnBhe4OTEHXVrKi9Ev/youkai-watch-soratobu-kujira-to-double-sekai-no-daibouken-da-nyan",
+    "url": "https://www.miruro.tv/watch/4nTOgJj_0iBWKSLrtpsM8querRCZgwkt/youkai-watch-soratobu-kujira-to-double-sekai-no-daibouken-da-nyan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15442": {
-    "url": "https://monoschinos.st/anime/youkai-watch-forever-friends-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/M_PQO3viguPGS8P1k5SdYyhhNeotk8fi/youkai-watch-forever-friends",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15449": {
-    "url": "https://www.miruro.tv/watch/KOro7iKWDwKrxKT-IYHQB-mqCjcoh-B3/yo-kai-watch-the-movie",
+    "url": "https://www.miruro.tv/watch/62XOeNxcSg-2-EZJEMgij7OTsl_YiQJb/yo-kai-watch-the-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15448": {
-    "url": "https://www.miruro.tv/watch/k04Xc5INUZ_Uiq4gTGK65wtxAuhuh8GN/youkai-watch-enma-daiou-to-itsutsu-no-monogatari-da-nyan",
+    "url": "https://www.miruro.tv/watch/vwhrscFMykRhySYD3X7q3BUElVU7r4Cd/youkai-watch-enma-daiou-to-itsutsu-no-monogatari-da-nyan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23477,14 +23477,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15640": {
-    "url": "https://www.miruro.tv/watch/pklcwnxbpzUlHXsXzFNZbkac-hM4CeMU/inazuma-eleven-choujigen-dream-match",
+    "url": "https://www.miruro.tv/watch/rVQaS9g9zAk_G2jfqWWc7b8Cz4bT2Ltd/inazuma-eleven-choujigen-dream-match",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15642": {
-    "url": "https://www.animegg.org/series/inazuma-eleven-go-kyuukyoku-no-kizuna-gryphon-dub",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/VFgpXddO0rUyTX3bxRaMrFUmlPSzNZKA/inazuma-eleven-go-kyuukyoku-no-kizuna-gryphon",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15641": {
     "url": "https://anikoto.net/watch/inazuma-eleven-go-vs-danball-senki-w-movie-x0avb/ep-1",
@@ -23492,12 +23492,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15663": {
-    "url": "https://monoschinos.st/anime/one-piece-stampede-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/3kHLfWwrAPPpYsVZlUUdd52KKfe6l-27/one-piece-stampede",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15643": {
-    "url": "https://www.miruro.tv/watch/q8CuKX1GWuY-9oWG0SNVegrqUeeUHcQ9/inazuma-eleven-saikyou-gundan-ogre-shuurai",
+    "url": "https://www.miruro.tv/watch/aTeTDUASrtrSagAvITrur5_esvZUiYj6/inazuma-eleven-saikyou-gundan-ogre-shuurai",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23537,9 +23537,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15778": {
-    "url": "https://www.animegg.org/series/fatekaleid-liner-prisma-illya-movie-sekka-no-chikai",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/u0YvkHhYDGu9KrXA_ovG28M4lLIPH42X/fatekaleid-liner-prismaillya-vow-in-the-snow",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15722": {
     "url": "https://anikoto.net/watch/saiyuki-requiem-m86pg/ep-1",
@@ -23562,17 +23562,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15997": {
-    "url": "https://www.miruro.tv/watch/Xad2R0-Km18voW-fm6jMggbcuvPDTIeK/fuusen-inu-tinny-nandaka-fushigi-na-kyouryuu-no-kuni",
+    "url": "https://www.miruro.tv/watch/iTcc65QsNqrdY63Zz3ByljhQmMgVVc74/fuusen-inu-tinny-nandaka-fushigi-na-kyouryuu-no-kuni",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "15950": {
-    "url": "https://monoschinos.st/anime/wakaokami-wa-shougakusei-movie-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/Ws5aVT7-e0c1p2waGrcN-CVae9WC4Izy/okkos-inn",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16085": {
-    "url": "https://www.miruro.tv/watch/JzIWP46xncGyxCJtKf24BI_41g3zxxjM/bem-become-human",
+    "url": "https://www.miruro.tv/watch/Nc4vNXibvIaJppl53DaGKHRLVU5_mjxz/bem-become-human",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23597,9 +23597,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16259": {
-    "url": "https://www.animegg.org/series/sayonara-watashi-no-cramer-movie-first-touch",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/rLNLi4ysI-a-jihDpNfc4-kouA0WYlme/farewell-my-dear-cramer-first-touch",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16250": {
     "url": "https://anikoto.net/watch/shoujokageki-revue-starlight-movie-qajof/ep-1",
@@ -23607,17 +23607,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16293": {
-    "url": "https://www.animegg.org/series/aikatsu-10th-story-mirai-e-no-starway-2023",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/mWpotv9xgw2v9zs0faMMWOBeLAVGvDIY/aikatsu-10th-story-mirai-e-no-starway",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16314": {
-    "url": "https://www.animegg.org/series/infini-t-force-movie-gatchaman---saraba-tomo-yo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/o_0O0LqSxoZht2wF84mawyR654NSfHZY/infini-t-force-gatchaman-saraba-tomo-yo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16315": {
-    "url": "https://www.miruro.tv/watch/r7ENjCNPvyXenKwOsUgwV210gKi1qIjJ/argonavis-movie-ryuusei-no-obligato",
+    "url": "https://www.miruro.tv/watch/gbgr2PzhL6Bsuwth2nDPt6PniXfQVh-p/argonavis-movie-ryuusei-no-obligato",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23627,19 +23627,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16284": {
-    "url": "https://monoschinos.st/anime/thunderbolt-fantasy-the-sword-of-life-and-death-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/Emle--0jFS1DwUNgJXA_CKWm402fHpwt/thunderbolt-fantasy-seishi-ikken",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16320": {
-    "url": "https://www.animegg.org/series/trinity-seven-movie-eternity-library-to-alchemic-girl",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/6jJEKiGJcUNEckQMvDCBoMQpRNz16dsB/trinity-seven-eternal-library-alchemic-girl",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16321": {
-    "url": "https://www.animegg.org/series/trinity-seven-movie-2-tenkuu-toshokan-to-shinku-no-maou",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/P4oNBRqm2YUvapENYLtubl86Lg7boQxm/trinity-seven-heavens-library-crimson-lord",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16350": {
     "url": "https://anikoto.net/watch/seitokai-yakuindomo-movie-jc5nr/ep-1",
@@ -23647,22 +23647,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16385": {
-    "url": "https://www.animegg.org/series/digimon-adventure-last-evolution-kizuna",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/j6gMh0yqrSomNx1yFT3-vHVvEzWu4kui/digimon-adventure-last-evolution-kizuna",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16407": {
-    "url": "https://www.miruro.tv/watch/s5hASuRwNGxL0FavH7JdA_KSUbqtIF6f/kame-no-koura-wa-abarabone",
+    "url": "https://www.miruro.tv/watch/BYAGN6xsr4BrMSosc8T6xuYUmzdlrt3y/kame-no-koura-wa-abarabone",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "16393": {
-    "url": "https://www.miruro.tv/watch/ajltlN2wlXxT4NMtqaRhEoFEJdmBeY71/eiga-kamisama-minarai-himitsu-no-cocotama-kiseki-o-okose-tepple-to-dokidoki-cocotama-kai",
+    "url": "https://www.miruro.tv/watch/abTH2838DxxqDgIytf6-5zMaAC1jZkcV/eiga-kamisama-minarai-himitsu-no-cocotama-kiseki-o-okose-tepple-to-dokidoki-cocotama-kai",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "16391": {
-    "url": "https://www.miruro.tv/watch/2InBDh5XqRRGAq06q9oCWKk-PJPAs-hE/wave-surfing-yappe",
+    "url": "https://www.miruro.tv/watch/tuDvlU81zly2IkdiIvylzlKAaESuWZmZ/wave-surfing-yappe",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23677,9 +23677,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16430": {
-    "url": "https://monoschinos.st/anime/takanashi-rikka-kai-chuunibyou-demo-koi-ga-shitai-movie-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/d6Xr0rlTc_q4rbpQ0dnhcnVOxiW0L8o8/love-chunibyo-other-delusions-rikka-version",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16464": {
     "url": "https://anikoto.net/watch/natsume-yujin-cho-the-movie-ephemeral-bond-4kl5u/ep-1",
@@ -23687,9 +23687,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16561": {
-    "url": "https://www.animegg.org/series/natsume-yuujinchou-ishi-okoshi-to-ayashiki-raihousha",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/3HtCQLWbgV32rl2WL_KNT9QrZNba5B8Q/natsume-yuujinchou-ishi-okoshi-to-ayashiki-raihousha",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16598": {
     "url": "https://anikoto.net/watch/lupin-iii-jigen-s-gravestone-urpi9/ep-1",
@@ -23712,9 +23712,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16637": {
-    "url": "https://monoschinos.st/anime/gintama-movie-2-kanketsu-hen-yorozuya-yo-eien-nare-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/nJbtrpzo3nISoOPxlw1jiNYWbyi8czMj/gintama-kanketsu-hen-yorozuya-yo-eien-nare",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16638": {
     "url": "https://anikoto.net/watch/gintama-the-final-7xojm/ep-1",
@@ -23732,9 +23732,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16716": {
-    "url": "https://monoschinos.st/anime/haikyuu-movie-4-concept-no-tatakai-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/CwlbD3Ym1HIa6lcjggdLh20sIVNee4yY/haikyuu-concept-no-tatakai",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16717": {
     "url": "https://anikoto.net/watch/psycho-pass-sinners-of-the-system-case-1-tsumi-to-bachi-sug34/ep-1",
@@ -23757,14 +23757,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16775": {
-    "url": "https://www.miruro.tv/watch/RT5vyVzCFaVSgmX8TxEJbtECLs6NKGS2/atashinchi-movie",
+    "url": "https://www.miruro.tv/watch/UR4yFAOQUjjiI-hb94M_CKa88Cij0joe/atashinchi-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "16776": {
-    "url": "https://gogoanime.by/series/atashinchi-3d-movie-jounetsu-no-chou-chounouryoku-haha-dai-bousou/",
-    "label": "GogoAnime",
-    "color": "#3c8be0"
+    "url": "https://www.miruro.tv/watch/HgCIWLmeuASE_1CxPg-25m49YhNdlslY/3d-atashinchi-jounetsu-no-chou-chounouryokuhaha-dai-bousou",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "16720": {
     "url": "https://anikoto.net/watch/haikyuu-movie-1-owari-to-hajimari-cvlai/ep-1",
@@ -23787,19 +23787,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16834": {
-    "url": "https://www.miruro.tv/watch/yHn0zN-fJvfp5aITo97_x76zz92QmXKE/fwhamatora",
+    "url": "https://www.miruro.tv/watch/Dbt0l2niBPyb6KABFhR0ZMTs512refWC/fwhamatora",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "16863": {
-    "url": "https://www.miruro.tv/watch/Upa01zUF9IgNEgerlYmZeOH-badVdKBJ/dc-super-heroes-vs-taka-no-tsume-dan",
+    "url": "https://www.miruro.tv/watch/S4HCfSKk9Jk0x5mQ2Y2lmUBrF-tBW520/dc-super-heroes-vs-taka-no-tsume-dan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "16859": {
-    "url": "https://monoschinos.st/anime/monster-strike-the-movie-hajimari-no-basho-e-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/jY0gy2u76wCfobQEeYdDWZZc9ZfBlIkH/monster-strike-the-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17012": {
     "url": "https://anikoto.net/watch/macross-d-movie-2-zettai-live-4es9s/ep-1",
@@ -23817,7 +23817,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17013": {
-    "url": "https://www.miruro.tv/watch/-4F1IfqHuFGWY49A5MQm0tvc3hc-u9_t/macross-frontier-toki-no-meikyuu",
+    "url": "https://www.miruro.tv/watch/Ag9lDXgPH4Q6K1ccg-WMHB3l6Xe9xFpl/macross-frontier-toki-no-meikyuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23837,7 +23837,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17118": {
-    "url": "https://www.miruro.tv/watch/SgTYBzP375diJQzkfSOtzNCq2OLFrVpE/shinkai-no-survival",
+    "url": "https://www.miruro.tv/watch/xxaqFCQ15ajX8_rchAsbXcNbjcM4VEd7/shinkai-no-survival",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23847,17 +23847,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17119": {
-    "url": "https://www.miruro.tv/watch/czbnE51djHS80LzK24ZR6M7a1oHUr6uA/jintai-no-survival",
+    "url": "https://www.miruro.tv/watch/p2fWRFmqHOmtFjlquHxSkAQpqp9KDaPz/jintai-no-survival",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "17124": {
-    "url": "https://www.miruro.tv/watch/ILJ2vhAmbVDtGfvlBDgtnd-smyRgc2Je/meitantei-conan-hiiro-no-fuzai-shoumei",
+    "url": "https://www.miruro.tv/watch/2CXISDnLobZph4dyNE4bSL77DM0CjzVv/meitantei-conan-hiiro-no-fuzai-shoumei",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "17121": {
-    "url": "https://www.miruro.tv/watch/vNK5e0GbJQephyue_duaOziFZ27U0Dkr/oshiri-tantei-tentou-mushi-iseki-no-nazo",
+    "url": "https://www.miruro.tv/watch/yxnHxzRfRY55fnvikXt_2HYjNVi1d1NY/oshiri-tantei-tentou-mushi-iseki-no-nazo",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23872,12 +23872,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17122": {
-    "url": "https://www.miruro.tv/watch/dIHwXI02GWGrz_qkogX3knw6DuI7YE-w/oshiri-tantei-curry-naru-jiken",
+    "url": "https://www.miruro.tv/watch/1peqAnpYviMAdAvbm5idjkpK7TXJjXV4/oshiri-tantei-curry-naru-jiken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "17117": {
-    "url": "https://www.miruro.tv/watch/ST49wYq9M15hVnYNdaDbsa7V0tdAyEmG/oshiri-tantei-sufuure-tou-no-himitsu",
+    "url": "https://www.miruro.tv/watch/9ky0t_xDYpXbANx6JchEdaMgwqZppbOR/oshiri-tantei-sufuure-tou-no-himitsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23887,17 +23887,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17127": {
-    "url": "https://www.miruro.tv/watch/l3uianyz-cNz-9yyEde7CaMB7Y_iYkBI/shimajirou-to-ururu-no-hero-land",
+    "url": "https://www.miruro.tv/watch/HemMXbYGW_3v8UCL2XvyhO9F32GfMeBn/shimajirou-to-ururu-no-hero-land",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "17128": {
-    "url": "https://www.miruro.tv/watch/9RSoBHbeYPLqviLdbpRBPrzsTH7mOAVL/shimajirou-mahou-no-shima-no-daibouken",
+    "url": "https://www.miruro.tv/watch/lULHxQKkZon9T9oxxs1bZPoS2Gm4kq01/shimajirou-mahou-no-shima-no-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "17133": {
-    "url": "https://www.miruro.tv/watch/is-CCRM4qEYN2BtFEOkGldDjkNSvzYQc/sidonia-no-kishi-movie",
+    "url": "https://www.miruro.tv/watch/jKUycn-1OKRVV5eF1b30U80dgFWuRGv5/sidonia-no-kishi-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23907,17 +23907,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17142": {
-    "url": "https://www.miruro.tv/watch/5Jmid3jkiXnPcK2L8dGW7vKqnDGSi2gz/sumikkogurashi-good-to-be-in-the-corner",
+    "url": "https://www.miruro.tv/watch/qqZlG48UJOpa4BdOxfS27utDi5lCgliS/sumikkogurashi-good-to-be-in-the-corner",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "17141": {
-    "url": "https://www.miruro.tv/watch/I5uT4nffKGI3vrHGK2rtXNBZOkH_lMbO/otoppe-papa-dont-cry",
+    "url": "https://www.miruro.tv/watch/0Xf3rCgeErhcGt7_B6fYoj77o5ftweZX/otoppe-papa-dont-cry",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "17143": {
-    "url": "https://www.miruro.tv/watch/hE4e4gU9476YXJv5WFi2DbSSwyZE6UL1/sumikko-gurashi-movie-aoi-tsukiyo-no-mahou-no-ko",
+    "url": "https://www.miruro.tv/watch/7fLgVoJJiqq7MoPziyzre8F7EZ5rGJDn/sumikko-gurashi-movie-aoi-tsukiyo-no-mahou-no-ko",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23942,7 +23942,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17348": {
-    "url": "https://www.miruro.tv/watch/tWjJTbRzzfUy_Gfct7M0abrYwWNVlhrU/pyuu-to-fuku-jaguar-ima-fuki-ni-yukimasu",
+    "url": "https://www.miruro.tv/watch/1U-LB6wp3A978-QrngrXYRgcNm3mdqDB/pyuu-to-fuku-jaguar-ima-fuki-ni-yukimasu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -23962,9 +23962,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17503": {
-    "url": "https://www.animegg.org/series/hayate-no-gotoku-heaven-is-a-place-on-earth",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/MyoHInGMbAfE_8cOD7LAHvKc5Z9Zhj9z/hayate-no-gotoku-heaven-is-a-place-on-earth",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17534": {
     "url": "https://anikoto.net/watch/toshokan-sensou-kakumei-no-tsubasa-g6skp/ep-1",
@@ -23987,9 +23987,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "17670": {
-    "url": "https://www.animegg.org/series/harukanaru-toki-no-naka-de-maihitoyo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/oLG9rmD4qTwf-n5ae7OY5wWdyoQcpbMb/in-a-distant-time-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17854": {
     "url": "https://anikoto.net/watch/black-clover-sword-of-the-wizard-king-gog2j/ep-1",
@@ -24022,19 +24022,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "18176": {
-    "url": "https://www.miruro.tv/watch/Cb0Xq598ao514TWzhVlaOYrH-nQkEnHt/kuma-no-gakkou-patissier-jackie-to-ohisama-no-sweets",
+    "url": "https://www.miruro.tv/watch/GDkD9R_Is1FlTmzyDFJOoKtomOLaLLYb/kuma-no-gakkou-patissier-jackie-to-ohisama-no-sweets",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "18175": {
-    "url": "https://www.miruro.tv/watch/67aHffmMR6XTptdEmeHurfoW8rGtVw3-/kuma-no-gakkou-jackie-to-katie",
+    "url": "https://www.miruro.tv/watch/uvXbzO85JIuwVjsLSJPEODvQGY_ZocCQ/kuma-no-gakkou-jackie-to-katie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "18311": {
-    "url": "https://www.animegg.org/series/tsubasa-reservoir-chronicle-the-movie-the-princess-in-the-birdcage-kingdom",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/deCJxjQfkoGnKRQElSe1ABGQowwqBAmi/tsubasa-chronicle-tori-kago-no-kuni-no-himegimi",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "18616": {
     "url": "https://anikoto.net/watch/princess-principal-crown-handler-chapter-3-vvi3n/ep-1",
@@ -24057,7 +24057,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "18776": {
-    "url": "https://www.miruro.tv/watch/oTPgAO1v2rwYB93ZOJu2wvs9r-BT2JHs/onegai-my-melody-yuu-ai",
+    "url": "https://www.miruro.tv/watch/WcDNXCUFEVgsLoyGy1I6HPIRZ-tTkJCI/onegai-my-melody-yuu-ai",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24067,7 +24067,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "18815": {
-    "url": "https://www.miruro.tv/watch/h4VsURTyFSejTPFcK3OVCP3AFXAIWEGm/youkai-watch-jibanyan-vs-komasan-monge-daikessen-da-nyan",
+    "url": "https://www.miruro.tv/watch/wr3BxFhSy8_xNAhtkmtmoSAw5ZE869AR/youkai-watch-jibanyan-vs-komasan-monge-daikessen-da-nyan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24092,7 +24092,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "19333": {
-    "url": "https://www.miruro.tv/watch/nHju7DWU91cY1ns-m5kmv99tk5fBza9T/sore-ike-anpanman-roboly-to-pokapoka-present",
+    "url": "https://www.miruro.tv/watch/NyxrDnfUCpy4QgNyOUPStgKeTFdq7Cv4/sore-ike-anpanman-roboly-to-pokapoka-present",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24112,12 +24112,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "20136": {
-    "url": "https://www.miruro.tv/watch/hklqUJ7ISdI2ythoN_vNuTDmX8njdOOZ/kaitou-queen-no-yuuga-na-vacances",
+    "url": "https://www.miruro.tv/watch/ukUhrmyfxOxZv4FshU4YTXXPMKaEuHqd/kaitou-queen-no-yuuga-na-vacances",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "20231": {
-    "url": "https://www.miruro.tv/watch/00UDfzjpo57WuotGEgWSzL0YJQTldxXb/osomatsu-san-tamashii-no-takoyaki-party-to-densetsu-no-otomari-kai",
+    "url": "https://www.miruro.tv/watch/yDec0QlqcZ1YPgmIF2NHSden2ZTLcaHA/osomatsu-san-tamashii-no-takoyaki-party-to-densetsu-no-otomari-kai",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24137,7 +24137,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "20418": {
-    "url": "https://www.miruro.tv/watch/ussTkiIZxT_Duxitw9d3CE6DlTj7kaSt/koukaku-kidoutai-sac2045-saigo-no-ningen",
+    "url": "https://www.miruro.tv/watch/XOqrN40p7DHRn8Te04z6cpuqg4Hjf4PJ/koukaku-kidoutai-sac2045-saigo-no-ningen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24147,7 +24147,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "20497": {
-    "url": "https://www.miruro.tv/watch/ABZsFRE6t3r9YGuhmJJIaBdxD5FNWTmr/restars-mirai-e-tsunagu-2-tsu-no-kiraboshi",
+    "url": "https://www.miruro.tv/watch/qrmPoxSDZutD0JZFPWYIi_CdNPlDZYis/restars-mirai-e-tsunagu-2-tsu-no-kiraboshi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24157,7 +24157,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "20576": {
-    "url": "https://www.miruro.tv/watch/SMyOOeVwRgyr_Z2_oAhJk98j0OakLVL_/sylvanian-families-freya-kara-no-okurimono",
+    "url": "https://www.miruro.tv/watch/tkTtlawYeI4ixpOmdwnbad4lKuMmpkeh/sylvanian-families-freya-kara-no-okurimono",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24177,14 +24177,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22331": {
-    "url": "https://www.miruro.tv/watch/eFjDjBqVLVbm3DSaVVb_AjBQ_bYQRD63/sumikkogurashi-the-patched-up-factory-in-the-woods",
+    "url": "https://www.miruro.tv/watch/6xylgSK-bWGhVqYhFAXwetf1hD8yjpfA/sumikkogurashi-the-patched-up-factory-in-the-woods",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "22344": {
-    "url": "https://www.animegg.org/series/madogiwa-no-totto-chan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/36Ry2W_tRJ1uj_U_2YwCgh_LBhckdiT4/madogiwa-no-totto-chan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "22524": {
     "url": "https://anikoto.net/watch/farewell-to-space-battleship-yamato-in-the-name-of-love-krtko/ep-1",
@@ -24192,22 +24192,22 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22630": {
-    "url": "https://www.miruro.tv/watch/S6IcS_9mntIxyPP2CeF3uc0Wb3cmw67x/zegapain-sta",
+    "url": "https://www.miruro.tv/watch/qrmgsWhy6exCVW17KwBGXp6GwUM_1HEe/zegapain-sta",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "22661": {
-    "url": "https://www.miruro.tv/watch/gr8g10jtuHLgfnNMuT0SdLBtFXBcA_Rp/gintama-on-theater-2d-baragaki-hen",
+    "url": "https://www.miruro.tv/watch/GX2rV5iBJ8lhOK5TT1Gq7zfxt3b8zwMu/gintama-on-theater-2d-baragaki-hen",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "22789": {
-    "url": "https://www.miruro.tv/watch/2F8IjItcvaiCBy8trOT9nypWOyieSbc6/shimajirou-miracle-jima-no-nanairo-carnation",
+    "url": "https://www.miruro.tv/watch/VT8FLugaP-B1FytEm0HFqMccBj4E8qmo/shimajirou-miracle-jima-no-nanairo-carnation",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "22973": {
-    "url": "https://www.miruro.tv/watch/g3Hlj5DuKrYRDQ1DGDfBYRJ5efgfujKJ/yowamushi-pedal-regeneration",
+    "url": "https://www.miruro.tv/watch/2S2lLhipvMw_IeWPeg97viqRPpPyUAcJ/yowamushi-pedal-regeneration",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24217,9 +24217,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22974": {
-    "url": "https://www.animegg.org/series/yowamushi-pedal-reroad",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/2RQnZ5hTodHdEyDs7nr9UIe7jlsfYWaG/yowamushi-pedal-reroad",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23042": {
     "url": "https://anikoto.net/watch/attack-on-titan-chronicle-jvxv0/ep-1",
@@ -24252,7 +24252,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23280": {
-    "url": "https://www.miruro.tv/watch/iyuCADNoRAesLOH8j4cvtLQJexYZJ2ZK/oshiri-tantei-saraba-itoshiki-oshiri-yo",
+    "url": "https://www.miruro.tv/watch/D9kKm2R8DhvHTJtjFZs71PtgKCt-kWrQ/oshiri-tantei-saraba-itoshiki-oshiri-yo",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24262,12 +24262,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23329": {
-    "url": "https://www.miruro.tv/watch/X3tRYl9_Mg354l3NPZuWNrncYFgqvCnQ/uta-noprince-sama-taboo-night-xxxx",
+    "url": "https://www.miruro.tv/watch/n275AeRQfdPNPCxkiTUQ9rrSEfH-3wje/uta-noprince-sama-taboo-night-xxxx",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23360": {
-    "url": "https://www.miruro.tv/watch/q2nDiuRGtyAruwhSovlNYn9re6cR2IGo/sore-ike-anpanman-baikinman-to-ehon-no-lulun",
+    "url": "https://www.miruro.tv/watch/YUlNDc0cQHhNmGSdc0CvNx4CEDQO3E6e/sore-ike-anpanman-baikinman-to-ehon-no-lulun",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24277,24 +24277,24 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23467": {
-    "url": "https://www.miruro.tv/watch/FumyxDX6AJWeTqKOJ6zpjR68dLl_fH2g/pui-pui-molcar-the-movie-molmax",
+    "url": "https://www.miruro.tv/watch/ArPs5dbeHBPuKc1L3rveJnmRjvGMutAd/pui-pui-molcar-the-movie-molmax",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23481": {
-    "url": "https://www.miruro.tv/watch/Fl786JTUdpqM3UOtH2ryLdUMUO4fOG6d/sinoalice-ichiban-saigo-no-monogatari",
+    "url": "https://www.miruro.tv/watch/fHBjOxZmjiEQcmM7z4xDTP4ervCU-hrQ/sinoalice-ichiban-saigo-no-monogatari",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23497": {
-    "url": "https://www.miruro.tv/watch/i1YpMVWgp7nHRHc8kl93JBj0t6yvIrrh/suu-funkan-no-yell-wo",
+    "url": "https://www.miruro.tv/watch/wJWONc6AHZGBH3Y2kppgCgO-FGpdFlIk/suu-funkan-no-yell-wo",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23505": {
-    "url": "https://www.animegg.org/series/hunter-x-hunter-phantom-rouge",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/9gKnzJELZsOCfOHk9QsFSUxhprX5QZ9e/hunterhunter-phantom-rouge",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23508": {
     "url": "https://anikoto.net/watch/mai-mai-miracle-uguvh/ep-1",
@@ -24302,32 +24302,32 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23507": {
-    "url": "https://www.miruro.tv/watch/W4d1emgYJ-gMuYGD10J09DXZtGYAldOn/the-tibetan-dog",
+    "url": "https://www.miruro.tv/watch/loSB11czOZoQZs7OA26hs6oJD2-QpTve/the-tibetan-dog",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23510": {
-    "url": "https://www.animegg.org/series/highlander-vengeance",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/G8YQnoP_LJlF2sAfIBXjdIn5qYj_Oj5V/highlander",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23509": {
-    "url": "https://www.miruro.tv/watch/ntWmJ1BL3ACReknwrXUvHzNMEeKsEbLC/yona-yona-penguin",
+    "url": "https://www.miruro.tv/watch/efhXOAg5qOivc1W3jEifxPhRcKDeEzzW/yona-yona-penguin",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23511": {
-    "url": "https://www.miruro.tv/watch/zj9sXV_Uh0-5UjTkd61feAtLq-cyHWyg/meiji-tokyo-renka-hanakagami-no-fantasia",
+    "url": "https://www.miruro.tv/watch/AfT0m15NOQdMfDAtZ_GyDIkxI-dAJV7H/meiji-tokyo-renka-hanakagami-no-fantasia",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "23541": {
-    "url": "https://monoschinos.st/anime/make-a-girl-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/Utkl1NbUQwvyMoxCCtAVkMPzIyx_iXHo/make-a-girl",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23585": {
-    "url": "https://www.miruro.tv/watch/8R_kjIqcvFAAujImHMA4IRfv7FQJvPTR/gintama-on-theater-2d-ikkoku-keisei-hen",
+    "url": "https://www.miruro.tv/watch/6P3yfykqRHoBKxhdObN7Tmgc9D5ho3E1/gintama-on-theater-2d-ikkoku-keisei-hen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24337,9 +24337,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23617": {
-    "url": "https://www.animegg.org/series/vampire-hunter-d-bloodlust",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/Df-f_Rk_vo-teo3XaU7VrJVtx9UE_Byj/vampire-hunter-d-2000",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "23608": {
     "url": "https://anikoto.net/watch/look-back-dxt0w/ep-1",
@@ -24362,7 +24362,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23686": {
-    "url": "https://www.miruro.tv/watch/eEwF1-lUQjUyXh2LGearbOFcbcxFy5rz/nintama-rantarou-dokutake-ninja-tai-saikyu-no-gunshi",
+    "url": "https://www.miruro.tv/watch/Y5HgvI1eubOufbYGyiczyHcSNRgiZvsN/nintama-rantarou-dokutake-ninja-tai-saikyu-no-gunshi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24377,7 +24377,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23766": {
-    "url": "https://www.miruro.tv/watch/rAOGBc19GavV8t5iM2CpeBwH07gBnnVA/wonderful-precure-the-movie-dokidokigame-no-sekai-de-daibouken",
+    "url": "https://www.miruro.tv/watch/hf2XzRLexWyjOPpdFF2ixGoJcnWiPMXr/wonderful-precure-the-movie-dokidokigame-no-sekai-de-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24392,7 +24392,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "23867": {
-    "url": "https://www.miruro.tv/watch/CjSGTlgfJfhmszvMArsD0LZdEhEDjLOy/aitsu-to-lullaby-suiyoubi-no-cinderella",
+    "url": "https://www.miruro.tv/watch/26SZnl_lpmu2Xg3jK8hR5qwC-X7BNO-l/aitsu-to-lullaby-suiyoubi-no-cinderella",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24412,7 +24412,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24104": {
-    "url": "https://www.miruro.tv/watch/bfcIvwzlzKtIrWMBWIYfWvu2OoGD_oUt/housenka",
+    "url": "https://www.miruro.tv/watch/9KSJ7fQ3awdLIMPioDbAWsA2-L_OEUlR/housenka",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24422,9 +24422,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24091": {
-    "url": "https://www.animegg.org/series/nintama-rantarou-movie-ninjutsu-gakuen-zenin-shutsudou-no-dan",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/0f-CJZb8R4K2IPdAvrhkMrYf5ebNANF4/nintama-rantarou-movie-ninjutsu-gakuen-zenin-shutsudou-no-dan",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24111": {
     "url": "https://anikoto.net/watch/100-meters-5zlwp/ep-1",
@@ -24437,7 +24437,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24240": {
-    "url": "https://www.miruro.tv/watch/bPV7qM3YvhVwnjym2qnLtWQYO6geG067/gintama-on-theater-2d-kintama-hen",
+    "url": "https://www.miruro.tv/watch/jkeaSxg2gWX4LK1qAnb8jWzoB8WNnB3l/gintama-on-theater-2d-kintama-hen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24467,9 +24467,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24519": {
-    "url": "https://www.animegg.org/series/toriko-movie-bishokushin-no-special-menu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/RPxArXQ98tlhPkUi3iW1HGdEpoxbTdvL/toriko-movie-bishokushin-no-special-menu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24520": {
     "url": "https://anikoto.net/watch/rainbow-fireflies-s9amp/ep-1",
@@ -24477,9 +24477,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24521": {
-    "url": "https://www.animegg.org/series/gegege-no-kitarou-nippon-bakuretsu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/fhGDCe-eblHPYqtJ_3AEbcDjFzt8ozae/spooky-kitaro-japan-explodes",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "24657": {
     "url": "https://anikoto.net/watch/dream-animals-the-movie-7kca7/ep-1",
@@ -24487,7 +24487,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "24691": {
-    "url": "https://www.miruro.tv/watch/8AhVJJR_z2lBO8pMWrjHdNhkJ6PFsQjw/oshare-majolove-and-berry-shiawase-no-mahou",
+    "url": "https://www.miruro.tv/watch/QMnEzZeyqpVKKspKVDVlepS1b8LjsqF1/oshare-majolove-and-berry-shiawase-no-mahou",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24517,7 +24517,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25004": {
-    "url": "https://www.miruro.tv/watch/vM4gK9XTuQohafxNzQjPuHTJoGqION93/konchuu-monogatari-mitsubachi-hutch-yuuki-no-melody",
+    "url": "https://www.miruro.tv/watch/NuclCPc81JS702rMcgDHgpmcdCwBrBU5/konchuu-monogatari-mitsubachi-hutch-yuuki-no-melody",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24527,12 +24527,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25172": {
-    "url": "https://www.miruro.tv/watch/GxzgQIvi1j4BbpduhC0rwXZPB3U4P0-i/hypnosis-mic-division-rap-battle-movie",
+    "url": "https://www.miruro.tv/watch/0GCa6uw_N8duFR-XMxSg8_hhkRmG9v-N/hypnosis-mic-division-rap-battle-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25099": {
-    "url": "https://www.miruro.tv/watch/EKkAe1PA7JeF11Zg96uU1vNvJKt7KBBz/shimajirou-shimajirou-to-yuuki-no-uta",
+    "url": "https://www.miruro.tv/watch/WXc9ALEMLbofvpabnSR3k7OkJkK2gHGR/shimajirou-shimajirou-to-yuuki-no-uta",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24542,32 +24542,32 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25335": {
-    "url": "https://www.miruro.tv/watch/evYVujt-RMO5eIJBGZqV5FRnGyqTEUok/crayon-shin-chan-chou-karei-shakunetsu-no-kasukabe-dancers",
+    "url": "https://www.miruro.tv/watch/S01omHYzuDy_kWmXyz-xJ_lexZKHFH0b/crayon-shin-chan-chou-karei-shakunetsu-no-kasukabe-dancers",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25227": {
-    "url": "https://www.miruro.tv/watch/vbcGKa-Gklw8cQ4rhVIaX9AMi-FQErFo/kinnikuman-daiabare-segi-choujin",
+    "url": "https://www.miruro.tv/watch/QZbZEpoStxQQMZ-GPiLsFO0nLbMaxnMw/kinnikuman-daiabare-segi-choujin",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25391": {
-    "url": "https://www.miruro.tv/watch/5x0cn_ZYLG2GC41pbAjtHvL4-DIvpyGe/ganbare-tabuchi-kun",
+    "url": "https://www.miruro.tv/watch/fk3NcPmOKhwKHH-8Fcruf1iA1Mf6t7vg/ganbare-tabuchi-kun",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25364": {
-    "url": "https://www.miruro.tv/watch/fj5rh2UuQY23AxD7BptpYHeYmFCXgp-N/aldnoahzero-re",
+    "url": "https://www.miruro.tv/watch/lVwgE3WzWoc9XcAq-coGlCtArHqyt4qc/aldnoahzero-re",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25451": {
-    "url": "https://www.miruro.tv/watch/EoLviVvXNbe56fTFqm7oRvojsK939qlv/tooi-san-wa-seishun-shitai-baka-to-smapho-to-romance-to",
+    "url": "https://www.miruro.tv/watch/dQnKeYP75iBmBASPCDrzaMt6tNf_nXVH/tooi-san-wa-seishun-shitai-baka-to-smapho-to-romance-to",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25465": {
-    "url": "https://www.miruro.tv/watch/K8l4TaQlqL_wGdKClG2eRjjqSyid3E1T/peleliu-rakuen-no-guernica",
+    "url": "https://www.miruro.tv/watch/1av_jZ5Jkk63RPuwszO_RdD2p_meuQ6q/peleliu-rakuen-no-guernica",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24577,12 +24577,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25473": {
-    "url": "https://animeheaven.me/anime.php?348c7",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/1Ikn01c5JpFo3KVrj-f2hrzZ-GQcDSmY/fushigi-no-kuni-de-alice-to-dive-in-wonderland",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "25528": {
-    "url": "https://www.miruro.tv/watch/RKJerhKYwlySwjZcs_OUdUcqzR5u-SaY/soreike-anpanman-chapon-no-hero",
+    "url": "https://www.miruro.tv/watch/WQYeae42QGj8pv1-WJxdskmG1O9RXcMH/soreike-anpanman-chapon-no-hero",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24592,12 +24592,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "25597": {
-    "url": "https://www.miruro.tv/watch/tQuPWq7meBbcRvZxlAzjOfZNDfjXJyJN/king-of-prism-your-endless-call-minna-kirameke-prismtours",
+    "url": "https://www.miruro.tv/watch/M8vZ3USxjSUzx-V4nzUIv9u4DWVP4ByW/king-of-prism-your-endless-call-minna-kirameke-prismtours",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25710": {
-    "url": "https://www.miruro.tv/watch/r5kDi1E63CGjdc5eqj-4VkREt6Ae75Gi/sumikko-gurashi-sora-no-ookoku-to-futari-no-ko",
+    "url": "https://www.miruro.tv/watch/hqIAgYGCjTcTMf7EWfF-s7_2rvfZqCJ1/sumikko-gurashi-sora-no-ookoku-to-futari-no-ko",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24612,17 +24612,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "26016": {
-    "url": "https://www.miruro.tv/watch/qf25nf5PlwfFVNwtiDajkpQoXuw6B0_a/toritsukare-otoko",
+    "url": "https://www.miruro.tv/watch/BbdwXSndao3tV90eRab013ZCNKPTBLRB/toritsukare-otoko",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "25892": {
-    "url": "https://www.miruro.tv/watch/Qbu7iR_lGguIw_pRihT7CT6b6vPMfv5R/aikatsu-memorial-stage-kagayaki-no-unit-cup",
+    "url": "https://www.miruro.tv/watch/2E5llxFfqQsoGb3KDI27vNeJqU-VxXcR/aikatsu-memorial-stage-kagayaki-no-unit-cup",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "26116": {
-    "url": "https://www.miruro.tv/watch/L0x7twMplkA0UTkMhixMqOoiXmmX8wM8/kono-hon-wo-nusumu-mono-wa",
+    "url": "https://www.miruro.tv/watch/PvOQcwEwsxpKdNUWHCKjF53F-1EJl4fj/kono-hon-wo-nusumu-mono-wa",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24637,9 +24637,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "26843": {
-    "url": "https://monoschinos.st/anime/the-five-star-stories-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/IqWHj9GFtcaq8GoD42c0_ISi649BxAAV/five-star-stories",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27183": {
     "url": "https://anikoto.net/watch/the-big-first-grader-and-the-small-second-grader-jmrm0/ep-1",
@@ -24647,19 +24647,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27190": {
-    "url": "https://www.miruro.tv/watch/ECZdDqgc0rPjWoMov1zqbTT6hDjf7_Lg/boukensha-tachi-gamba-to-7-hiki-no-nakama",
+    "url": "https://www.miruro.tv/watch/MQZLr6ZdAsQA3oxwIqKMt1MQaHxGTqBj/boukensha-tachi-gamba-to-7-hiki-no-nakama",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27233": {
-    "url": "https://monoschinos.st/anime/ryo-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/955WieVJojPkPrtFNYCiuy6XaOuw8S_l/ryo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27296": {
-    "url": "https://monoschinos.st/anime/shakugan-no-shana-movie-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/kaazlcmtfajVSSKqcycu77yvd1E9N7H9/shakugan-no-shana-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27617": {
     "url": "https://anikoto.net/watch/escaflowne-a-girl-in-gaea-54auj/ep-1",
@@ -24682,12 +24682,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27765": {
-    "url": "https://www.miruro.tv/watch/IZFRTgpvTAVEfwAlf5JcRA_t5BkVMfwA/shashinkan",
+    "url": "https://www.miruro.tv/watch/WTPsAlfbwEKXaeHbNC-IAaVWb0s2ZuHH/shashinkan",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27845": {
-    "url": "https://www.miruro.tv/watch/4Z3ULOpk-1NOxxf7IhBWDWm26shMwDAQ/mazebakunetsu-jikuu-tenpen-kyoui-no-giant",
+    "url": "https://www.miruro.tv/watch/gXfXGmSZgpEGDh_BZR-vyZ-ZWsnlSYmX/mazebakunetsu-jikuu-tenpen-kyoui-no-giant",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24697,17 +24697,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27888": {
-    "url": "https://www.animegg.org/series/tekkon-kinkreet",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1fFYllpxkWpF7u74SlR4B7uUhn5VNuiZ/tekkonkinkreet",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27901": {
-    "url": "https://www.miruro.tv/watch/QK9L75ftxItl1gYeF4lPBml3xMQ4Vt7E/koro-sensei-q",
+    "url": "https://www.miruro.tv/watch/E3BYKvy_hJ0ZYPkaiz-AApGJXvYsHR5s/koro-sensei-q",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27980": {
-    "url": "https://www.miruro.tv/watch/-dfbpCoANHdQuofbv9O9ToO4GNbmapgN/doubutsu-no-mori",
+    "url": "https://www.miruro.tv/watch/Ky7NdVBorfxFxV-Hniyqi-WFga8_gHMR/doubutsu-no-mori",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24717,14 +24717,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "27984": {
-    "url": "https://www.miruro.tv/watch/JGXteiSOqfMEQSgF09rNKBkim510nc24/hanakappa-movie-hana-sake-pakkaan-chou-no-kuni-no-daibouken",
+    "url": "https://www.miruro.tv/watch/q0Lx1AQcCP3JnthanckoDO7MVT_9Kn3C/hanakappa-movie-hana-sake-pakkaan-chou-no-kuni-no-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28073": {
-    "url": "https://www.animegg.org/series/bungaku-shoujo",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/n3mAeExgpw1ltNFP-_aFuPkdbVIkle0G/bungaku-shoujo",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "28074": {
     "url": "https://anikoto.net/watch/sakura-wars-the-movie-iufe8/ep-1",
@@ -24732,17 +24732,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28070": {
-    "url": "https://www.miruro.tv/watch/71UTJsrybb3K-ZQLFwgeHYncti0Jypb1/tamagotchi-the-movie",
+    "url": "https://www.miruro.tv/watch/7FgYF5b4SBi3-b-TzGcvH4vfaOxAg1vL/tamagotchi-the-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28057": {
-    "url": "https://www.miruro.tv/watch/a0nIOJSGPm5Y90nuc7PRj9QzKhHEfL48/eiga-tamagotchi-uchuu-ichi-happy-na-monogatari",
+    "url": "https://www.miruro.tv/watch/SrekNbbD6-vKcoC6907jmfZhUwZM7GaL/eiga-tamagotchi-uchuu-ichi-happy-na-monogatari",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28076": {
-    "url": "https://www.miruro.tv/watch/rbngFcCK4agsM5BTw7EJ3Cj_BfXauDUE/drawer-hobs",
+    "url": "https://www.miruro.tv/watch/gX_QwiosHD-Cy4eNjYX3pkitPWHmjd6s/drawer-hobs",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24757,7 +24757,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28163": {
-    "url": "https://www.miruro.tv/watch/Tif_70rP4h1Pg2PWlFReP0zDeJtVRbO8/panpaka-pants-movie-bananan-oukoku-no-hihou",
+    "url": "https://www.miruro.tv/watch/55trN7bpdGTFg1Tn1pB69N_34dFZkxyM/panpaka-pants-movie-bananan-oukoku-no-hihou",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24777,7 +24777,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28369": {
-    "url": "https://www.miruro.tv/watch/eWzy5AiM94K-m-ku44zKK9gZd3g4Xt8b/bakusou-kyoudai-lets-go-wgp-bousou-mini-yonku-daitsuiseki",
+    "url": "https://www.miruro.tv/watch/aiDyidz0-uMDiFEsqgo2WCgBNlPoS6dk/bakusou-kyoudai-lets-go-wgp-bousou-mini-yonku-daitsuiseki",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24792,7 +24792,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28368": {
-    "url": "https://www.miruro.tv/watch/T0d7ZQsv43UTiE-KKtmWXeC7osTQpbZB/major-yuujou-no-ikkyuu",
+    "url": "https://www.miruro.tv/watch/YSWVVIEWiXHffcDnE_fk4ogld4_AwoSu/major-yuujou-no-ikkyuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24802,7 +24802,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28425": {
-    "url": "https://www.miruro.tv/watch/T75c9oFV0HN8xICDiPzDlGAFRRnkZkRm/gekijouban-aquarion",
+    "url": "https://www.miruro.tv/watch/As1hLrHFmDtw7lr0JTaC4t7T-dEZj4D8/gekijouban-aquarion",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24832,7 +24832,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28554": {
-    "url": "https://www.miruro.tv/watch/xURVMyDlDFOYbHjjPt1BvZryZuJA5gs1/gekitou-crush-gear-turbo-kaiservern-no-chousen",
+    "url": "https://www.miruro.tv/watch/AGD_ykUZcISjDfDTx199C2bbQ4wUajEA/gekitou-crush-gear-turbo-kaiservern-no-chousen",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24857,7 +24857,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28694": {
-    "url": "https://www.miruro.tv/watch/CKKE0G1z0Sa8F80xMLt6QlR2qnDocwy6/yuukai-anna",
+    "url": "https://www.miruro.tv/watch/vJG2FeNNAHD_nwzwuKssopN2fvwjfp02/yuukai-anna",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24867,7 +24867,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28753": {
-    "url": "https://www.miruro.tv/watch/a-ps_to15_nSs0KC3r-qNaRYHEXIf0Rc/chiisana-kyojin-microman-daigekisen-microman-vs-saikyou-senshi-gorgon",
+    "url": "https://www.miruro.tv/watch/VhQ7RwRaPGmmHMecWfNv7gYXX7Vm40Vx/chiisana-kyojin-microman-daigekisen-microman-vs-saikyou-senshi-gorgon",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24902,7 +24902,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28828": {
-    "url": "https://www.miruro.tv/watch/Q78IdBL6kvYcb9kDjC0jUbOWY48_EX4F/kouchuu-ouja-mushiking-greatest-champion-e-no-michi",
+    "url": "https://www.miruro.tv/watch/AQLXEkpnRbov2WKkwcCiypSdr7OUJLyF/kouchuu-ouja-mushiking-greatest-champion-e-no-michi",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24912,17 +24912,17 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28827": {
-    "url": "https://www.miruro.tv/watch/AYsNBg2Px4ymlBVuMWmxmwjrb0ojS_7D/kouchuu-ouja-mushiking-super-battle-movie-yami-no-kaizou-kouchuu",
+    "url": "https://www.miruro.tv/watch/fNTcH0t-W9AseLBOOQxjwdnGPJUAqCRn/kouchuu-ouja-mushiking-super-battle-movie-yami-no-kaizou-kouchuu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28850": {
-    "url": "https://www.miruro.tv/watch/wakbdY6IKfqpIurjVKTcvm_vvytmv8S1/sore-ike-anpanman-buruburu-no-takarasagashi-daibouken",
+    "url": "https://www.miruro.tv/watch/qo4HMABjG0mpNHiBXeRqJrUQyItS27dD/sore-ike-anpanman-buruburu-no-takarasagashi-daibouken",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28851": {
-    "url": "https://www.miruro.tv/watch/UwratIM4C3gXcAnbpsMm8V06RbRZ7L8q/sore-ike-anpanman-mija-to-mahou-no-lamp",
+    "url": "https://www.miruro.tv/watch/k5vX77Gknk8jcqYUcjAsHoR4v_uWAu_L/sore-ike-anpanman-mija-to-mahou-no-lamp",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24932,27 +24932,27 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28874": {
-    "url": "https://www.miruro.tv/watch/8d6GbheOOi0BgZM9tozxFecX6p-cwV9O/meitantei-holmes-aoi-ruby-no-maki-kaitei-no-zaihou-no-maki",
+    "url": "https://www.miruro.tv/watch/Olp03sxgPzPxfi-Ig-f20gt4ObLnLIMt/meitantei-holmes-aoi-ruby-no-maki-kaitei-no-zaihou-no-maki",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28872": {
-    "url": "https://www.miruro.tv/watch/WrXEm0LPA4zJI5P-CBWXXfkBeAIiPkZV/bug-tte-honey-megaromu-shoujo-mai-4622",
+    "url": "https://www.miruro.tv/watch/IhoEr1XaW6Og7trqB_51fpBhUSHIWYZ1/bug-tte-honey-megaromu-shoujo-mai-4622",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28901": {
-    "url": "https://www.miruro.tv/watch/JnQ2FCtssKOK8F6BWCMqX5r6CIZswmG_/meitantei-holmes-mrs-hudson-hitojichi-jiken-no-maki-dover-kaikyou-no-daikuuchuusen-no-maki",
+    "url": "https://www.miruro.tv/watch/qrEhjjUw-IxoHgKRLpNqP7Gx0zOf6SNN/meitantei-holmes-mrs-hudson-hitojichi-jiken-no-maki-dover-kaikyou-no-daikuuchuusen-no-maki",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28938": {
-    "url": "https://www.miruro.tv/watch/iqtAq29hgQTNKrcF-QcHat-FJBCVvESz/anpanman-apple-boy-and-everyones-hope",
+    "url": "https://www.miruro.tv/watch/C6NFf-VczNa50iDf0OKHv3Qmmk2jilyk/anpanman-apple-boy-and-everyones-hope",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28939": {
-    "url": "https://www.miruro.tv/watch/Aw59x5b6j7l-BaRAt4tSck2jeSC8FuSx/sore-ike-anpanman-tobase-kibou-no-handkerchief",
+    "url": "https://www.miruro.tv/watch/ObF4eoQstAR27M8H8QOyydPbsh42XO_z/sore-ike-anpanman-tobase-kibou-no-handkerchief",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -24962,32 +24962,32 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "28960": {
-    "url": "https://www.miruro.tv/watch/FuxoMnk8DT0Vxq9TMfbJrL0dsL0jLs2C/sore-ike-anpanman-tenohira-wo-taiyou-ni",
+    "url": "https://www.miruro.tv/watch/aEvtQDmTEOPVTGg6VvOx7S7ly0aIu4zS/sore-ike-anpanman-tenohira-wo-taiyou-ni",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "28971": {
-    "url": "https://www.miruro.tv/watch/hDyPvSLSkod7F6LQP_ir5jnVRikwPpYf/sore-ike-anpanman-dadandan-to-futago-no-hoshi",
+    "url": "https://www.miruro.tv/watch/OCE9FO50Kuk5vjGljV0hrTSrYYLvsLU8/sore-ike-anpanman-dadandan-to-futago-no-hoshi",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "29007": {
-    "url": "https://www.miruro.tv/watch/239vnkhqt1R_C1awNAvnsVmJvnOXU-gF/kyojin-no-hoshi-chizome-no-kesshousen",
+    "url": "https://www.miruro.tv/watch/65aFOJD3w1QHkH24fkDS8JfqvLylC6Mb/kyojin-no-hoshi-chizome-no-kesshousen",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "29008": {
-    "url": "https://www.miruro.tv/watch/ZSwWjfOBsB3xf6126QVzEAoWV0Gg8fTY/kyojin-no-hoshi-ike-ike-hyuuma",
+    "url": "https://www.miruro.tv/watch/p6mrUUx1lc10NpNtoIhL3E23q_OvIxdn/kyojin-no-hoshi-ike-ike-hyuuma",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "29059": {
-    "url": "https://www.miruro.tv/watch/aLaEXYE2gd1pUFk4ruBWnAvvENllJ0i8/kyojin-no-hoshi-shukumei-no-taiketsu",
+    "url": "https://www.miruro.tv/watch/kYnsg9Hdb_VgwbWPQG91yBcwNr7M4pDW/kyojin-no-hoshi-shukumei-no-taiketsu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "29058": {
-    "url": "https://www.miruro.tv/watch/i3Fnx-k9frAgNotu5cC9qxEjh0HoKm9i/kyojin-no-hoshi-dai-league-ball",
+    "url": "https://www.miruro.tv/watch/wheno0pBX2JOqFW4SQoYwdtQ-YPWGoXM/kyojin-no-hoshi-dai-league-ball",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -25002,14 +25002,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14590": {
-    "url": "https://www.miruro.tv/watch/7JWqjcRnunLWaTjAmxSZ0Pt3VNJOXN4-/tropical-rouge-precure-petit-tobikome-collabodance-party",
+    "url": "https://www.miruro.tv/watch/sZW3X6AhMlWD6UGXE6kmsedjgNxNb_V9/tropical-rouge-precure-petit-tobikome-collabodance-party",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "27906": {
-    "url": "https://monoschinos.st/anime/bannou-yasai-ninninman-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/hqzEdVfPym-fMaDU_kuskgqDYofyT-x-/bannou-yasai-ninninman",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "27955": {
     "url": "https://anikoto.net/watch/hello-wego-5bo5x/ep-1",
@@ -25032,9 +25032,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11883": {
-    "url": "https://monoschinos.st/anime/mobile-suit-zeta-gundam-a-new-translation-heir-to-the-stars-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/rOZDaii9go1ebW8XoWNmMkYOlEX3Ihs3/kidou-senshi-z-gundam-a-new-translation-hoshi-wo-tsugu-mono",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "138": {
     "url": "https://anikoto.net/watch/space-adventure-cobra-the-movie-t89kx/ep-1",
@@ -25047,7 +25047,7 @@ window.WATCH_SITES = {
     "color": "#c026d3"
   },
   "26752": {
-    "url": "https://www.miruro.tv/watch/VfQFx9Hjban1KX9E8FNpTXYHtOGT2yJZ/queen-millennia-movie",
+    "url": "https://www.miruro.tv/watch/Y16mICWwC9NWgeZ-qAeq4wt5emrLFgFw/queen-millennia-movie",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -25077,9 +25077,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12729": {
-    "url": "https://www.animegg.org/series/perfect-blue",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/s1ssHouRuGaTsLCW_U6RH4cQviN1ofEQ/perfect-blue",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "11919": {
     "url": "https://anikoto.net/watch/gundam-i-earth-light-15nlp/ep-1",
@@ -25092,7 +25092,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "11886": {
-    "url": "https://www.miruro.tv/watch/rFRfwvyrNBQuE4jiu25_LAn9jUIJbpRH/digimon-hurricane-touchdown",
+    "url": "https://www.miruro.tv/watch/SUup7VhHwgEI0gk1zD42hBM0oRISsf0v/digimon-hurricane-touchdown",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -25122,14 +25122,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12927": {
-    "url": "https://www.animegg.org/series/clannad-movie",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/3orHGcjGz7O9cy1ILpb1_ljsrdwzQoaF/clannad-movie",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "363": {
-    "url": "https://www.animegg.org/series/tengen-toppa-gurren-lagann-movie-gurren-hen",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/xz2c_h-x7rbE_tYulpQcwDZGq7fXI9Ko/tengen-toppa-gurren-lagann-gurren-hen",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "164": {
     "url": "https://anikoto.net/watch/tales-of-vesperia-the-first-strike-p1nsc/ep-1",
@@ -25142,12 +25142,12 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "12740": {
-    "url": "https://www.miruro.tv/watch/vCeIZRdFdMAWEUO7TSUIuwmZrK5mD3x1/scryed-alteration-i-tao",
+    "url": "https://www.miruro.tv/watch/HRcXaaI7LiCn6qqyQHd7MGz448AIJa4O/scryed-alteration-i-tao",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "12741": {
-    "url": "https://www.miruro.tv/watch/UVYlYOjhHDJUl7CfbtDAeNoaNoMlySkY/scryed-alteration-ii-quan",
+    "url": "https://www.miruro.tv/watch/0FSaRFkmzQltJVL5flM7EJ05bF-wJ3r3/scryed-alteration-ii-quan",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -25172,14 +25172,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15033": {
-    "url": "https://www.animegg.org/series/steins-gate-fuka-ryouiki-no-d-j-vu",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/BX1Nrl3WhWBLra-cNnjPaS6q5kt2QBcw/steinsgate-fuka-ryouiki-no-deja-vu",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15608": {
-    "url": "https://www.animegg.org/series/persona-3-the-movie-1-spring-of-birth",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/B3QK3X5AhLWb5h2NDqDynjkiJjaLhzjw/persona-3-the-movie-1-spring-of-birth",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "18281": {
     "url": "https://anikoto.net/watch/initial-d-legend-1-awakening-knb1q/ep-1",
@@ -25197,7 +25197,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "6159": {
-    "url": "https://www.miruro.tv/watch/ouq-ntpvgee5OKj516_VNiguoiFm1Kay/attack-on-titan-the-roar-of-awakening",
+    "url": "https://www.miruro.tv/watch/GWxAUqP_F008gnBIlB8DwAoIGSo_wKDo/attack-on-titan-the-roar-of-awakening",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -25207,14 +25207,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5329": {
-    "url": "https://www.animegg.org/series/kokoro-ga-sakebitagatterunda",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/_m9NyKWwILEdL2iy0yS4Ju2sEnJ-RRZa/the-anthem-of-the-heart",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14825": {
-    "url": "https://www.animegg.org/series/high-speed-free-starting-days",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/1AOBaVCw3GzaeKnTXSWpALRXvbRmBNhA/highspeed-free-starting-days",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5850": {
     "url": "https://anikoto.net/watch/king-of-prism-by-pretty-rhythm-2hsfy/ep-1",
@@ -25227,9 +25227,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "5864": {
-    "url": "https://www.animegg.org/series/mobile-suit-gundam-thunderbolt-bandit-flower",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/HdqPPvqpxjPVtK6QmfV1-uQm55pED-Py/mobile-suit-gundam-thunderbolt-bandit-flower",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6231": {
     "url": "https://anikoto.net/watch/haikara-san-ga-tooru-movie-1-benio-hana-no-17-sai-xystb/ep-1",
@@ -25267,14 +25267,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "8856": {
-    "url": "https://monoschinos.st/anime/bokura-no-nanokakan-sensou-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/GdCZDK4VO5GoDOazv3ci7hOa9kXAOWH5/seven-days-war",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "9611": {
-    "url": "https://www.animegg.org/series/ginga-eiyuu-densetsu-die-neue-these---seiran-tv",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/R73IIWC0CQZwBnyuXu4sKhnaubpyb5dG/ginga-eiyuu-densetsu-die-neue-these-seiran",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "13480": {
     "url": "https://anikoto.net/watch/ginga-eiyuu-densetsu-die-neue-these-gekitotsu-oprwn/ep-1",
@@ -25362,7 +25362,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "20255": {
-    "url": "https://www.miruro.tv/watch/I6EI77f0L6W-PjYLSbMbNqEeBPdbZ5KN/sand-land",
+    "url": "https://www.miruro.tv/watch/FNIrmrJol-VIS5hV-tToIjsdQfb7xuCb/sand-land",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -25382,9 +25382,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "14140": {
-    "url": "https://www.animegg.org/series/uchuu-senkan-yamato-2205-aratanaru-tabidachi---zenshou---take-off",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/GO6oyCDy4U-h-UjrKfWbNhVx_0XxpAZO/star-blazers-space-battleship-yamato-2205",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "11462": {
     "url": "https://anikoto.net/watch/code-geass-roze-of-the-recapture-3902l/ep-1",
@@ -25422,19 +25422,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "4887": {
-    "url": "https://www.animegg.org/series/sinbad-soratobu-hime-to-himitsu-no-shima",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/wcVYcJdeG6kLGs1XXHJ0yoXT1bv4qT5v/sinbad-sora-tobu-hime-to-himitsu-no-shima",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15632": {
-    "url": "https://www.animegg.org/series/flcl-alternative",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/jbJYkqmI5eAfxZZ354CRo84QcD5aqA0h/flcl-alternative",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15633": {
-    "url": "https://www.animegg.org/series/flcl-progressive",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/xZlBegnY4dQIvxyi9Ym5HJmmYRUyU7id/flcl-progressive",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4551": {
     "url": "https://anikoto.net/watch/gargantia-on-the-verdurous-planet-far-beyond-the-voyage-lpepo/ep-1",
@@ -25442,9 +25442,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "3533": {
-    "url": "https://monoschinos.st/anime/mahoutsukai-no-yome-hoshi-matsu-hito-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/zr3zTZjwbnh_siXCBLFQqMsIalPTnvUm/mahoutsukai-no-yome-hoshi-matsu-hito",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "15094": {
     "url": "https://anikoto.net/watch/is-the-order-a-rabbit-dear-my-sister-snuqg/ep-1",
@@ -25462,9 +25462,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "15503": {
-    "url": "https://www.animegg.org/series/strike-witches-operation-victory-arrow",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/zJ_2zHZ_y35DqM2LXW2emJ8mHUvM8oVY/strike-witches-operation-victory-arrow",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "4322": {
     "url": "https://anikoto.net/watch/haiyore-nyaruko-san-f-ndpcj/ep-1",
@@ -25482,14 +25482,14 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16860": {
-    "url": "https://monoschinos.st/anime/monster-strike-the-movie-sora-no-kanata-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/N9ADw51m3pfYrIF9w1A0py_pM37GN4_O/monster-strike-the-movie-sora-no-kanata",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "14779": {
-    "url": "https://monoschinos.st/anime/yama-no-susume-omoide-present-sub-espanol",
-    "label": "MonosChinos",
-    "color": "#a21caf"
+    "url": "https://www.miruro.tv/watch/XdvmB0aDAUZGB2hcuFgVE_l995gjRw9u/yama-no-susume-omoide-present",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "6661": {
     "url": "https://anikoto.net/watch/kase-san-and-morning-glories-fsfzl/ep-1",
@@ -25497,9 +25497,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "16672": {
-    "url": "https://animeheaven.me/anime.php?az7nw",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/d1WwuEDabgSRdhbACa39ygw730_v2kdm/sk-extra-part",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "18871": {
     "url": "https://anikoto.net/watch/love-live-nijigasaki-high-school-idol-club-next-sky-9faup/ep-1",
@@ -25507,9 +25507,9 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "22994": {
-    "url": "https://www.animegg.org/series/shinmai-maou-no-testament-departures",
-    "label": "AnimeGG",
-    "color": "#c026d3"
+    "url": "https://www.miruro.tv/watch/RRisMz-eOrIGXh1bMQ6TML7fuyin8cX5/shinmai-maou-no-testament-departures",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "5226": {
     "url": "https://anikoto.net/watch/appleseed-alpha-7avus/ep-1",
@@ -25527,7 +25527,7 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "198": {
-    "url": "https://www.miruro.tv/watch/T2s9hrhSrD1r3Es3Xo5rPttAnDvV8vHD/hells",
+    "url": "https://www.miruro.tv/watch/f5QOvS6FGvAPTNNmR7_6h06kmo1aRVGp/hells",
     "label": "Miruro",
     "color": "#0891b2"
   },
@@ -25537,19 +25537,19 @@ window.WATCH_SITES = {
     "color": "#0ea5e9"
   },
   "29127": {
-    "url": "https://animeheaven.me/anime.php?7p4ok",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/ezBQvipe0klPQEJabtBe_xVcdwxaQSgm/umayuru-full-gate",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "29143": {
-    "url": "https://www.miruro.tv/watch/GedWsuFoDfnoY6gH-Jn2q9PE7KLXBFPR/mazenchu",
+    "url": "https://www.miruro.tv/watch/gE9X6-E7sG1DsqZktu3l2gJzD_sToRPM/mazenchu",
     "label": "Miruro",
     "color": "#0891b2"
   },
   "1089": {
-    "url": "https://animeheaven.me/anime.php?1ht8d",
-    "label": "AnimeHeaven",
-    "color": "#e06c3c"
+    "url": "https://www.miruro.tv/watch/o8FU9Se7l1zWPEIo28kel7S1tthb6ldF/one-piece",
+    "label": "Miruro",
+    "color": "#0891b2"
   },
   "17109": {
     "url": "https://anikoto.net/watch/fairy-tail-jknsq/ep-1",
